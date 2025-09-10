@@ -856,41 +856,42 @@ jQuery.noConflict();
         //$("#divGeneratedElements").append('<div class="inputbox"><div class="row"><div class="col-md-8"><div class="form-floating"><input type="text" class="form-control"  name="custom_field[]" value="" data-class=""><label for="">'+fieldlabel+'</label></div><input type="hidden" name="custom_fieldtype[]" value="'+fieldtype+'"></div></div></div>');
         if (fieldtype == 'text') { appendid = 'divGeneratedElementsText'; } else { appendid = 'divGeneratedElements'; }
         $("#" + appendid).append(`
-      <div class="flex items-center gap-4 inputbox">
-        <div class="w-28 flex-none floting-input">
-          <input type="text" class="kt-input" name="field_label[]" id="" value="" placeholder="Title" data-class="${layout_labelclass}">
-          <label for="">Title</label>
+      <div class="flex items-center gap-4 inputbox mt-5">
+        <div class="flex items-center gap-2">
+          <div class="w-28 flex-none floting-input">
+            <input type="text" class="kt-input" name="field_label[]" id="" value="" placeholder="Title" data-class="${layout_labelclass}">
+            <label for="">Title</label>
+          </div>
+          <div class="flex-1 floting-input">
+            <input type="text" class="kt-input" id="" name="custom_field[]" value="" data-class="${layout_class}">
+            <label for="">${fieldlabel}</label>
+          </div>
         </div>
-        <div class="flex-1 floting-input">
-          <input type="text" class="kt-input" id="" name="custom_field[]" value="" data-class="${layout_class}">
-          <label for="">${fieldlabel}</label>
-        </div>
+
         <div class="flex gap-2 items-center">
           <label class="cursor-pointer">
             <input type="checkbox" name="field_fontweight[${field_count}]" id="bold-icon-${fieldid}" class="peer hidden style_bold" value="1" data-class="${layout_class}">
             <i class="fas fa-bold text-gray-400 peer-checked:text-gray-950"></i>
           </label>
-        </div>
-        <div class="flex gap-2 items-center">
           <label class="cursor-pointer">
             <input type="checkbox" name="field_fontstyle[${field_count}]" id="italic-icon-${fieldid}" class="peer hidden style_italic" value="1" data-class="${layout_class}">
             <i class="fas fa-italic text-gray-400 peer-checked:text-gray-950"></i>
           </label>
+          <div class="color_picker">
+            <input type="color" name="field_color[]" class="w-4 h-5 form-control-color" id="exampleColorInput" value="#000000" title="Choose your color" data-class="${layout_class}">
+          </div>
+          <div class="w-20">
+            <select class="kt-select kt-select-sm !leading-normal select_small_box" data-class="${layout_class}" name="field_fontsize[]">
+              <option value="10px">Small</option>
+              <option value="12px" selected>Normal</option>
+              <option value="14px">Large</option>
+              <option value="16px">Huge</option>
+            </select>
+          </div>
+          <a href="javascript:void(0);" class="text-danger remove_cusfield" data-id="${fieldtype}" data-number="${fieldno}">
+            <i class="hgi hgi-stroke hgi-delete-02"></i>
+          </a>
         </div>
-        <div class="color_picker">
-          <input type="color" name="field_color[]" class="size-4 form-control-color" id="exampleColorInput" value="#000000" title="Choose your color" data-class="${layout_class}">
-        </div>
-        <div class="flex gap-2 items-center">
-          <select class="text-xs select_small_box" data-class="${layout_class}" name="field_fontsize[]">
-            <option value="10px">Small</option>
-            <option value="12px" selected>Normal</option>
-            <option value="14px">Large</option>
-            <option value="16px">Huge</option>
-          </select>
-        </div>
-        <a href="javascript:void(0);" class="text-danger remove_cusfield" data-id="${fieldtype}" data-number="${fieldno}">
-          <i class="hgi hgi-stroke hgi-delete-02"></i>
-        </a>
         <input type="hidden" name="custom_fieldtype[]" value="${fieldtype}">
       </div>`);
         field_count++;

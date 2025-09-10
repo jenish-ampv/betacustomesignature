@@ -13,7 +13,7 @@
       <form id="msformedit" class="h-full">
         <input type="hidden" name="signature_image" value="%%DEFINE_signature_image_nmae%%" />
         <div class="flex gap-5 py-5 h-full">
-          <div class="w-full max-w-[680px] border border-gray-300 rounded-xl h-full flex hover_over_sign_bg">
+          <div class="w-full max-w-[700px] border border-gray-300 rounded-xl h-full flex hover_over_sign_bg">
             <div class="w-52 flex-none flex flex-col">
               <div class="pt-5 px-5 mb-12">
                 <a href="%%DEFINE_ROOT_LINK%%/dashboard">
@@ -74,7 +74,9 @@
                   <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/select-layout-title.svg" alt="">
                   <span>Select Layouts</span>
                 </p>
-                %%DEFINE_layout_list%%
+                <div class="flex flex-col gap-3">
+                  %%DEFINE_layout_list%%
+                </div>
               </div>
 
               <div class="hidden" id="infostyle">
@@ -116,12 +118,12 @@
                             </label>
 
                             <div class="flex items-center">
-                              <input class="size-4 rounded-sm form-control-color" type="color" name="signature_firstname_color"
+                              <input class="w-4 h-5 rounded-sm form-control-color" type="color" name="signature_firstname_color"
                                 id="exampleColorInput" value="%%DEFINE_firstname_color%%" title="Choose your color"
                                 data-class="layout_firstname">
                             </div>
 
-                            <select class="text-xs" data-class="layout_firstname" name="signature_firstname_fontsize">
+                            <select class="kt-select kt-select-sm select_small_box leading-normal" data-class="layout_firstname" name="signature_firstname_fontsize">
                               <option value="14px" %%DEFINE_firstname_fontsize_sel_14px%%>Small</option>
                               <option value="16px" %%DEFINE_firstname_fontsize_sel_16px%%>Normal</option>
                               <option value="18px" %%DEFINE_firstname_fontsize_sel_18px%%>Large</option>
@@ -155,12 +157,12 @@
 
 
                             <div class="flex items-center">
-                              <input type="color" name="signature_jobtitle_color" class="size-4 rounded-sm form-control-color"
+                              <input type="color" name="signature_jobtitle_color" class="w-4 h-5 rounded-sm form-control-color"
                                 id="exampleColorInput" value="%%DEFINE_jobtitle_color%%" title="Choose your color"
                                 data-class="layout_jobtitle">
                             </div>
 
-                            <select class="text-xs" data-class="layout_jobtitle" name="signature_jobtitle_fontsize">
+                            <select class="kt-select kt-select-sm select_small_box leading-normal" data-class="layout_jobtitle" name="signature_jobtitle_fontsize">
                               <option value="10px" %%DEFINE_jobtitle_fontsize_sel_10px%%>Small</option>
                               <option value="12px" %%DEFINE_jobtitle_fontsize_sel_12px%%>Normal</option>
                               <option value="14px" %%DEFINE_jobtitle_fontsize_sel_14px%%>Large</option>
@@ -192,12 +194,12 @@
                             </label>
 
                             <div class="flex items-center">
-                              <input type="color" name="signature_company_color" class="size-4 rounded-sm form-control-color"
+                              <input type="color" name="signature_company_color" class="w-4 h-5 rounded-sm form-control-color"
                                 id="exampleColorInput" value="%%DEFINE_company_color%%" title="Choose your color"
                                 data-class="layout_company">
                             </div>
 
-                            <select class="text-xs" data-class="layout_company" name="signature_company_fontsize">
+                            <select class="kt-select kt-select-sm select_small_box leading-normal" data-class="layout_company" name="signature_company_fontsize">
                               <option value="10px" %%DEFINE_company_fontsize_sel_10px%%>Small</option>
                               <option value="12px" %%DEFINE_company_fontsize_sel_12px%%>Normal</option>
                               <option value="14px" %%DEFINE_company_fontsize_sel_14px%%>Large</option>
@@ -206,10 +208,10 @@
                           </div>
                         </div>
                       </div>
-                      <div class="empty:hidden mt-2" id="divGeneratedElementsText">%%DEFINE_signature_custom_fields1%%
+                      <div class="empty:hidden" id="divGeneratedElementsText">%%DEFINE_signature_custom_fields1%%
                       </div>
                       <a href="javascript:void(0);"
-                        class="mt-3 bg-gray-200 text-xs inline-flex py-2 px-3 gap-1 items-center rounded-full text-gray-950 addcustomfield"
+                        class="mt-5 bg-gray-200 text-xs inline-flex py-2 px-3 gap-1 items-center rounded-full text-gray-950 addcustomfield"
                         id="addnewtextfield" data-id="text">
                         <i class="hgi hgi-stroke hgi-add-01 text-primary"></i>
                         <span>Add Text Field</span>
@@ -217,16 +219,16 @@
                     </div>
 
                     <div>
-                      <p class="font-semibold text-gray-950 uppercase flex items-center gap-2 mb-6">
+                      <p class="font-semibold text-gray-950 uppercase flex items-center gap-2 mb-1">
                         <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/personal-info-title.svg" alt="">
                         <span>Contact Info</span>
                       </p>
-                      <div id="divGeneratedElements" class="flex flex-col gap-5">
+                      <div id="divGeneratedElements" class="flex flex-col">
                         %%DEFINE_signature_custom_fields%%
                       </div>
-                      <div data-kt-dropdown="true" data-kt-dropdown-trigger="click">
+                      <div class="mt-5" data-kt-dropdown="true" data-kt-dropdown-trigger="click">
                         <a data-kt-dropdown-toggle="true"
-                          class="mt-3 bg-gray-200 text-xs inline-flex py-2 px-3 gap-1 items-center rounded-full text-gray-950"
+                          class="bg-gray-200 text-xs inline-flex py-2 px-3 gap-1 items-center rounded-full text-gray-950"
                           href="javascript:void(0);">
                           <i class="hgi hgi-stroke hgi-add-01 text-primary"></i>
                           <span>Add New</span>
@@ -276,11 +278,11 @@
                               <i class="fas fa-italic text-gray-400 peer-checked:text-gray-950"></i>
                             </label>
                             <div class="flex items-center">
-                              <input type="color" name="signature_label_color" class="size-4 rounded-sm form-control-color"
+                              <input type="color" name="signature_label_color" class="w-4 h-5 rounded-sm form-control-color"
                                 id="exampleColorInput" value="%%DEFINE_label_color%%" title="Choose your color"
                                 data-class="label">
                             </div>
-                            <select class="text-xs select_small_box" data-class="label" name="signature_label_fontsize">
+                            <select class="w-20 kt-select kt-select-sm !leading-normal select_small_box" data-class="label" name="signature_label_fontsize">
                               <option value="10px" %%DEFINE_label_fontsize_sel_10px%%>Small</option>
                               <option value="12px" %%DEFINE_label_fontsize_sel_12px%%>Normal</option>
                               <option value="14px" %%DEFINE_label_fontsize_sel_14px%%>Large</option>
@@ -292,7 +294,7 @@
 
                         <div class="flex items-center justify-between">
                           <span>Line Height</span>
-                          <select class="text-xs selectbox sellineheight" name="signature_lineheight">
+                          <select class="w-20 kt-select kt-select-sm !leading-normal selectbox sellineheight" name="signature_lineheight">
                             <option value="16px" %%DEFINE_signature_lineheight_16px_sel%%>Normal</option>
                             <option value="14px" %%DEFINE_signature_lineheight_14px_sel%%>Small</option>
                             <option value="18px" %%DEFINE_signature_lineheight_18px_sel%%>Large</option>
@@ -301,7 +303,7 @@
 
                         <div class="flex items-center justify-between">
                           <span>Font Style</span>
-                          <select class="selectbox selfontfamily" name="signature_fontfamily">
+                          <select class="w-20 kt-select kt-select-sm !leading-normal selectbox selfontfamily" name="signature_fontfamily">
                             <option value="Inter, sans-serif" %%DEFINE_signature_fontfamily_Inter__sans_serif_sel%%>
                               Inter
                             </option>
@@ -322,7 +324,7 @@
                         <div class="flex items-center justify-between">
                           <span>Border</span>
                           <div class="flex items-center gap-3">
-                            <input type="color" name="signature_bordercolor" class="size-4 rounded-sm form-control-color"
+                            <input type="color" name="signature_bordercolor" class="w-4 h-5 rounded-sm form-control-color"
                               value="%%DEFINE_signature_bordercolor%%" title="Choose your color"
                               data-class="layout_border">
 
@@ -349,7 +351,7 @@
                         <div class="flex items-center justify-between">
                           <span>Divider</span>
                           <div class="flex items-center gap-3">
-                            <input type="color" name="signature_dividercolor" class="size-4 rounded-sm form-control-color"
+                            <input type="color" name="signature_dividercolor" class="w-4 h-5 rounded-sm form-control-color"
                               value="%%DEFINE_signature_dividercolor%%" title="Choose your color"
                               data-class="layout_divider">
                             <div class="flex items-center gap-2">
@@ -476,7 +478,7 @@
                       </div>
 
 
-                      <div class="flex flex-wrap gap-2" id="social_link_box">
+                      <div class="flex flex-wrap gap-2 social_link_box" id="social_link_box">
                         {LOOP: SOCIALICONS}
                         <label for="{%%SOCIALICONS.iconname%%}-icon" class="relative cursor-pointer border border-gray-300 rounded-lg iconcheckbox" title="{%%SOCIALICONS.iconname%%}">
                           <input type="checkbox" name="{%%SOCIALICONS.iconname%%}-icon"
@@ -847,7 +849,7 @@
                             data-kt-tabs="true">
                             <div class="group relative active" data-kt-tab-toggle="#ctabtn1">
                               <div
-                                class="flex items-center border border-gray-200 rounded p-2 group-[.active]:border-primary"
+                                class="flex items-center border gap-2 border-gray-200 rounded p-2 group-[.active]:border-primary"
                                 id="ctabtn1-tab">
                                 <input type="checkbox" name="signature_ctabutton1" id="signature_ctabutton1"
                                   class="hidden" value="1">
@@ -863,7 +865,7 @@
                             </div>
                             <div class="group relative" data-kt-tab-toggle="#ctabtn2">
                               <div
-                                class="flex items-center border border-gray-200 rounded p-2 group-[.active]:border-primary"
+                                class="flex items-center border gap-2 border-gray-200 rounded p-2 group-[.active]:border-primary"
                                 id="ctabtn2-tab">
                                 <input type="checkbox" name="signature_ctabutton2" id="signature_ctabutton2"
                                   class="hidden" value="1">
@@ -879,10 +881,10 @@
                             </div>
                             <div class="group relative" data-kt-tab-toggle="#ctabtn3">
                               <div
-                                class="flex items-center border border-gray-200 rounded p-2 group-[.active]:border-primary"
+                                class="flex items-center border gap-2 border-gray-200 rounded p-2 group-[.active]:border-primary"
                                 id="ctabtn3-tab">
                                 <input type="checkbox" name="signature_ctabutton3" id="signature_ctabutton3"
-                                  class="d-none imgbgchk checkbox" value="1">
+                                  class="hidden checkbox" value="1">
                                 <img class="w-7" draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cta-icon.png" />
                                 <span>Call To Action</span>
                                 <span>03</span>
@@ -2236,11 +2238,11 @@
               </div>
             </div>
             <div class="flex text-sm items-center justify-between">
-              <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+              <span class="text-gray-600">© 2024 Custom Esignature's Inc. All rights reserved.</span>
               <div class="flex text-gray-700 items-center gap-2">
-                <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
+                <a href="#">Privacy Policy</a>
                 <i class="fas fa-circle text-[6px] text-gray-400"></i>
-                <a href="https://www.customesignature.com/terms-of-use" target="_blank">Terms and Conditions</a>
+                <a href="#">Terms and Conditions</a>
               </div>
             </div>
           </div>
