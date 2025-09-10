@@ -1,0 +1,1575 @@
+%%DEFINE_HEADER%%
+<div id="overlay"></div>
+<div id="popupDialog"></div>
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+	%%DEFINE_SIDEBAR%%
+	<main class="grow" id="content" role="content">
+		<div class="kt-container-fluid pb-4">
+			<div class="grid grid-cols-12 gap-2 w-full">
+				IF("%%DEFINE_manage_signatures%%" == ""){
+				<style>
+					.master_signature {
+						display: none;
+					}
+				</style>
+				{:IF}
+				<div class="col-span-12 xl:col-span-6 2xl:col-span-5">
+					<div class="kt-card h-full">
+						<div class="kt-card-header flex-col justify-start items-start">
+							<div class="kt-card-heading pt-5">
+								<div class="kt-card-title">Analytics Snapshot</div>
+							</div>
+							<div
+								class="kt-card-toolbar w-full mb-4 *:bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 *:gap-4 *:border *:border-primary *:rounded-full *:flex *:items-center *:p-2">
+								<div>
+									<img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
+									<div class="snapshot-data">
+										<span>Total Clicks</span>
+										<span id="total_clicks">0</span>
+									</div>
+								</div>
+								<div>
+									<img src="%%DEFINE_IMAGE_LINK%%/images/analytics-snapshot-view-icon.svg">
+									<div class="snapshot-data">
+										<span>Total Impression</span>
+										<span id="total_impressions">0</span>
+									</div>
+								</div>
+								<div>
+									<img src="%%DEFINE_IMAGE_LINK%%/images/unique-clicks-icon.svg">
+									<div class="snapshot-data">
+										<span>Unique Clicks</span>
+										<span id="total_unique_clicks">0</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="kt-card-content">
+							<div class="flex justify-between">
+								<div id="typeCTRSection">
+									<div>
+										<span class="rate"><span id="clickThroughRate">0</span><span>%</span></span>
+										<span class="change kt-badge kt-badge-success"
+											id="clickThroughChange"><span>▲</span> +0%</span>
+									</div>
+									<span class="text-xs text-gray-500">Click-Through Rate</span>
+								</div>
+
+								<div data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+									data-kt-dropdown-placement="bottom-end" data-toggle-replace="true">
+									<button class="kt-btn bg-white border border-gray-400 text-gray-600 !rounded-full"
+										data-kt-dropdown-toggle="true">
+										This Month
+										<span class="kt-dropdown-open:hidden">
+											<i class="fas fa-caret-down"></i>
+										</span>
+										<span class="hidden kt-dropdown-open:inline">
+											<i class="fas fa-caret-up"></i>
+										</span>
+									</button>
+									<div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
+										<ul>
+											<li class="chart-range-option kt-dropdown-menu-link" data-range="today">
+												Today</li>
+											<li class="chart-range-option kt-dropdown-menu-link" data-range="yesterday">
+												Yesterday</li>
+											<li class="chart-range-option kt-dropdown-menu-link" data-range="this-week">
+												This Week</li>
+											<li class="chart-range-option kt-dropdown-menu-link" data-range="last-week">
+												Last Week</li>
+											<li class="chart-range-option kt-dropdown-menu-link"
+												data-range="this-month">This Month</li>
+											<li class="chart-range-option kt-dropdown-menu-link"
+												data-range="last-month">Last Month</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="h-[300px]">
+								<canvas id="dashboardAnalyticsChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-span-12 xl:col-span-6 2xl:col-span-7 grid grid-cols-12 gap-2">
+					<div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-6 master_signature">
+						<div class="kt-card h-full">
+							<div class="kt-card-header">
+								<div class="kt-card-heading">
+									<div class="kt-card-title">Master Signature</div>
+								</div>
+								<div class="kt-card-toolbar">
+									IF("%%DEFINE_plan_signaturelimit%%" != "1"){
+									<a class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary"
+										href="javascript:void(0);"
+										onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
+										<i class="hgi hgi-stroke hgi-add-01"></i>
+									</a>
+									{:IF}
+									IF("%%DEFINE_plan_signaturelimit%%" == "1"){
+									<a class="kt-btn kt-btn-primary"
+										href="%%DEFINE_linkModuleNewsignature%%?siganature_type=master"><img
+											class="color" src="%%DEFINE_IMAGE_LINK%%/images/mastersig-icon.svg"
+											alt="">Create Master
+										Signature</a>
+									{:IF}
+								</div>
+							</div>
+							<div class="kt-card-content relative text-center">
+								%%DEFINE_master_signature%%
+							</div>
+						</div>
+					</div>
+					<div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-6 kt-card">
+						<div class="kt-card-header">
+							<div class="kt-card-heading">
+								<div class="kt-card-title">Top Performers</div>
+							</div>
+						</div>
+						<div class="kt-card-content py-1" id="chart-container">
+							<canvas id="signature_chart"></canvas>
+						</div>
+					</div>
+					<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+							%%DEFINE_signature_process%%
+						</div>
+					</div>
+				</div>
+			</div>
+			%%DEFINE_Message%%
+			<div class="kt-card mt-2">
+				<div class="kt-card-header flex-col justify-start items-start">
+					<div class="kt-card-heading pt-5">
+						<div class="kt-card-title">Analytics Snapshot</div>
+					</div>
+					<div class="kt-card-toolbar w-full mb-4 flex flex-wrap justify-between items-center">
+						<div class="flex items-center gap-1">
+							<div class="kt-input">
+								<i class="hgi hgi-stroke hgi-search-01"></i>
+								<input class="kt-input" type="text" id="search_input" placeholder="Type to Search...">
+							</div>
+							<div class="text-nowrap text-xs text-gray-600">
+								%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
+						</div>
+
+						<div class="flex flex-wrap gap-1">
+
+							<div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+								data-kt-dropdown-placement="bottom-end">
+								<button class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
+									Status
+								</button>
+								<div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
+									<ul id="signature-status-selector-menu" class="kt-dropdown-menu-sub">
+										<li id="all" class="kt-dropdown-menu-link">All</li>
+										<li id="installed" class="kt-dropdown-menu-link">Installed</li>
+										<li id="pending" class="kt-dropdown-menu-link">Pending</li>
+									</ul>
+								</div>
+							</div>
+
+							<a class="kt-btn kt-btn-primary" href="usermanagement/">
+								<i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
+							</a>
+
+							<div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+								data-kt-dropdown-placement="bottom-end">
+								<button id="deploy_button" class="kt-btn kt-btn-primary kt-btn-outline"
+									data-kt-dropdown-toggle="true">
+									Deploy <i class="hgi hgi-stroke hgi-rocket-01"></i>
+								</button>
+								<div class="kt-dropdown-menu w-40" data-kt-dropdown-menu="true">
+									<ul class="kt-dropdown-menu-sub">
+										<li><a class="kt-dropdown-menu-link" href="%%DEFINE_deployoutlook%%">Deploy to
+												Outlook</a></li>
+										<li><a class="kt-dropdown-menu-link" href="%%DEFINE_googledeploylink%%">Deploy
+												to Gmail</a></li>
+									</ul>
+								</div>
+							</div>
+
+
+							<div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+								data-kt-dropdown-placement="bottom-end">
+								<button id="import_button" class="kt-btn kt-btn-primary kt-btn-outline"
+									data-kt-dropdown-toggle="true">
+									Import <i class="hgi hgi-stroke hgi-file-import"></i>
+								</button>
+								<div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
+									<ul class="kt-dropdown-menu-sub">
+										<li><a class="kt-dropdown-menu-link" href="%%DEFINE_bulkupload%%">CSV</a></li>
+										<li><a class="kt-dropdown-menu-link" href="%%DEFINE_azuread%%"
+												id="import_integration">Microsoft 365 Active Directory</a></li>
+										<li><a class="kt-dropdown-menu-link" href="%%DEFINE_gsuite%%"
+												id="import_integration_google">Google Workspace</a></li>
+									</ul>
+								</div>
+							</div>
+
+							IF("%%DEFINE_plan_signaturelimit%%" == "1"){
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%"
+								href="%%DEFINE_linkModuleNewsignature%%"><img
+									src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create
+								Signature</a>
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%"
+								href="%%DEFINE_billing%%?action=freetrial"><img
+									src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create
+								Signature</a>
+							{:IF}
+							IF("%%DEFINE_integration_settings%%" == ""){
+							<style>
+								#deploy_button {
+									display: none;
+								}
+
+								#import_integration {
+									display: none;
+								}
+
+								#import_integration_google {
+									display: none;
+								}
+							</style>
+							{:IF}
+							IF("%%DEFINE_manage_signatures%%" == ""){
+							<style>
+								#create_signature_btn {
+									display: none;
+								}
+
+								#import_button {
+									display: none;
+								}
+							</style>
+							{:IF}
+						</div>
+					</div>
+				</div>
+				<div class="kt-card-content">
+					<div id="snackbar"></div>
+					<div id="snackbar-error"></div>
+					<div id="snackbar-info"></div>
+					<div class="signature_manager_top" style="display:none;" id="extratop">
+						<div class="button_right">
+							<input type="checkbox" value="" id="select_all" class="select_all" /> <label
+								for="select_all">Select All</label> <a class="btn" href="javascrip:void(0);"
+								data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
+						</div>
+					</div>
+					<div style="display:block"></div>
+					<div id="search_result" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+						%%DEFINE_signature_list%%
+						%%DEFINE_signature_create_upgrade%%
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+
+
+<input type="hidden" id="form_url" value="%%DEFINE_linkModuleDashboard%%" />
+
+
+
+<div class="kt-modal kt-modal-center" data-kt-modal="true" id="reviewModal">
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<h3 class="kt-modal-title">Feedback</h3>
+			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#reviewModal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="lucide lucide-x" aria-hidden="true">
+					<path d="M18 6 6 18"></path>
+					<path d="m6 6 12 12"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="kt-modal-body">
+			<div class="preview-logo"></div>
+		</div>
+		<div class="kt-modal-footer">
+			<button type="button" class="btn btn-secondary" data-kt-modal-toggle="#feedbackModal">Would like to
+				revise</button>
+			<a href="javascript:void(0);" class="btn btn-primary ajaxaction" id="looksgood" data-id="0"
+				data-action="status">Looks Goods! <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg"
+					alt=""></a>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="kt-modal kt-modal-center" data-kt-modal="true" id="changeLogoModel">
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<h3 class="kt-modal-title">Upload Brand Logo</h3>
+			<button type="button" class="kt-modal-close" aria-label="Close modal"
+				data-kt-modal-dismiss="#changeLogoModel">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="lucide lucide-x" aria-hidden="true">
+					<path d="M18 6 6 18"></path>
+					<path d="m6 6 12 12"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="kt-modal-body">
+			<input class="signature_logo" type="file" name="signature_logo" id="signature_logo" style="display:none;">
+			<div id="img_preview_logo"></div>
+			<div id="img_errormsg_logo"></div>
+			<div class="upload-area-logo" id="uploadfilelogo">
+				<input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
+				<div class="drag_your_image"> <img class="signature_logo" src="%%DEFINE_signature_change_image%%"
+						alt="">
+					<h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
+					<p>Supports: PNG, SVG, JPG, JPEG</p>
+				</div>
+			</div>
+			<p class="note"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
+				better animation quality.</p>
+			<div class="change-logo-reason">
+				<div class="form-floating">
+					<input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
+					<input type="text" class="form-control" name="change_reason" placeholder="Reason for change logo">
+					<label for="">Please add feedback</label>
+				</div>
+			</div>
+		</div>
+		<div class="kt-modal-footer">
+			<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Submit <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
+		</div>
+	</div>
+</div>
+
+<div class="kt-modal kt-modal-center" data-kt-modal="true" id="feedbackModal">
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<p class="kt-modal-title">Feedback</p>
+			<button type="button" class="kt-modal-close" aria-label="Close modal"
+				data-kt-modal-dismiss="#feedbackModal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="lucide lucide-x" aria-hidden="true">
+					<path d="M18 6 6 18"></path>
+					<path d="m6 6 12 12"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="kt-modal-body">
+			<textarea name="feedback" id="feedback" rows="5" class="form-control"></textarea>
+		</div>
+		<div class="flex gap-2">
+			<button type="button" class="kt-btn kt-btn-secondary" id="backreview" data-kt-modal-toggle="#reviewModal" data-img="" data-id="">Back</button>
+			<button type="button" class="kt-btn kt-btn-primary" id="sendfeedback">Send Feedback! <img
+					src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></button>
+		</div>
+	</div>
+</div>
+
+<div class="kt-modal kt-modal-center" data-kt-modal="true" id="thanksModal">
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<h3 class="kt-modal-title">Feedback</h3>
+			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#thanksModal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="lucide lucide-x" aria-hidden="true">
+					<path d="M18 6 6 18"></path>
+					<path d="m6 6 12 12"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="kt-modal-body">
+			<h3>Thank You!</h3>
+			<p>We will revert within 48hrs.</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+		</div>
+	</div>
+</div>
+
+<div class="kt-modal kt-modal-center" data-kt-modal="true" id="shareModal">
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<h3 class="kt-modal-title">Share Signature</h3>
+			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModal">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="lucide lucide-x" aria-hidden="true">
+					<path d="M18 6 6 18"></path>
+					<path d="m6 6 12 12"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="kt-modal-body">
+			<p>You can share the signature by copying the installation link</p>
+				<div class="form-floating">
+					<input style="margin:0;" type="text" class="form-control" id="share_url" name="share_url"
+						placeholder="Email Address" required="required" value="">
+
+					<div class="copy_icon_right"><a href="javascript:void(0);" id="copyshareurl"><img
+								src="%%DEFINE_IMAGE_LINK%%/images/copy-icon1.svg" alt="">copy</a></div>
+				</div>
+
+
+				<h6>or send by email to your team member</h6>
+				<div class="form-floating">
+					<input type="text" class="form-control" id="share_email" name="share_email"
+						placeholder="Email Address" required="required" value="">
+					<label for=" ">Email id</label>
+				</div>
+				<a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0"
+					data-action="share">Send<img src="%%DEFINE_IMAGE_LINK%%/images/sendbtn.svg" alt=""></a>
+		</div>
+	</div>
+</div>
+
+<div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgradeFromFreeTrialPopup">
+<div class="kt-modal-content max-w-[400px]">
+	<div class="kt-modal-header">
+	<h3 class="kt-modal-title">Upgrade Your Plan</h3>
+	<button
+		type="button"
+		class="kt-modal-close"
+		aria-label="Close modal"
+		data-kt-modal-dismiss="#upgradeFromFreeTrialPopup"
+	>
+		<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		class="lucide lucide-x"
+		aria-hidden="true"
+		>
+		<path d="M18 6 6 18"></path>
+		<path d="m6 6 12 12"></path>
+		</svg>
+	</button>
+	</div>
+	<div class="kt-modal-body">
+	<p style="padding-bottom:0;">You have to upgrade your plan to make your logo animated</p>
+	<div style="padding-bottom:10px;">
+		<a href="%%DEFINE_billing%%?action=freetrial" class="btn btn-primary">Upgrade <img
+				src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
+	</div>
+	</div>
+</div>
+</div>
+
+
+
+
+
+<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
+<!-- <script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.min.js"></script> -->
+<!-- <script src="%%DEFINE_JS_LINK%%/htmltoimage/html2canvas.js"></script> 
+<script src="%%DEFINE_JS_LINK%%/htmltoimage/htmltoimage.js"></script>  -->
+<script>
+	function myFunction(objid) {
+		$('.menu_open:not(#myDIV' + objid + ')').hide();
+		divobj = 'myDIV' + objid;
+		var x = document.getElementById(divobj);
+
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
+	$(document).on('click', function (event) {
+		if (!$(event.target).closest('.menu_open').length && !$(event.target).is('.openPopupClass')) {
+			$('.menu_open').hide();
+		}
+	});
+
+
+	$(document).ready(function () {
+
+		const feedbackModalEl = document.querySelector('#feedbackModal');
+		const feedbackModal = KTModal.getInstance(feedbackModalEl);
+
+
+		// delete and copy signature action
+		$('.ajaxaction').on("click", function () {
+			var id = $(this).attr('data-id');
+			var action = $(this).attr('data-action');
+			var url = $('#form_url').val();
+
+			if (action == 'delete') {
+				// var confirmation = confirm("are you sure you want to delete the signature?");
+				if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
+					openDeleteModal($(this), "Are you sure you want to delete this signature?", "This signature will be permanently removed.");
+					var confirmation = false;
+				} else {
+					var confirmation = true;
+				}
+			} else {
+				confirmation = true;
+			}
+			if (confirmation) {
+				$.ajax({
+					type: 'POST',
+					url: $('#form_url').val(),
+					data: 'action=' + action + '&id=' + id,
+					dataType: "json",
+				}).done(function (data) {
+					if (data.error == '0') {
+						window.location = url;
+					} else {
+
+						$('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+						$('#snackbar-error').show();
+						setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+						return false;
+					}
+					this.bind('click', handler);
+					// Optionally alert the user of success here...
+				}).fail(function (data) {
+					return false;
+					// Optionally alert the user of an error here...
+				});
+				return false;
+			}
+		});
+
+
+		// bulk delte
+		$('#bulk_deletesignature').on("click", function () {
+
+			if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
+				openDeleteModal($(this), "Are you sure you want to delete these signatures?", "These signatures will be permanently removed.");
+				return false;
+			}
+
+			$('#bulk_deletesignature').html('<div class="spinner-border text-light" role="status" style="width:1rem; height:1rem;"><span class="visually-hidden">Delete..</span></div>');
+			var ids = [];
+			$('.del_chekbox:checked').each(function (i, e) {
+				ids.push($(this).val());
+			});
+			var id = ids;
+			var action = $(this).attr('data-action');
+			var url = $('#form_url').val();
+			confirmation = true;
+			if (confirmation) {
+				$.ajax({
+					type: 'POST',
+					url: $('#form_url').val(),
+					data: 'action=' + action + '&id=' + id,
+					dataType: "json",
+				}).done(function (data) {
+					if (data.error == '0') {
+						window.location = url;
+					} else {
+						alert(data.msg);
+						return false;
+					}
+					this.bind('click', handler);
+					// Optionally alert the user of success here...
+				}).fail(function (data) {
+					return false;
+					// Optionally alert the user of an error here...
+				});
+				return false;
+			}
+		});
+
+		// share signature mail
+
+		// delete and copy signature action
+		$('.ajaxaction_share').on("click", function () {
+			var id = $(this).attr('data-id');
+			var action = $(this).attr('data-action');
+			var url = $('#form_url').val();
+			var mailto = $('#share_email');
+			var share_url = $('#share_url').val();
+			console.log(share_url)
+			if (mailto.val() == '') {
+				mailto.focus();
+			} else {
+				$.ajax({
+					type: 'POST',
+					url: $('#form_url').val(),
+					data: 'action=' + action + '&id=' + id + '&share_email=' + mailto.val() + '&share_url=' + share_url,
+					dataType: "json",
+				}).done(function (data) {
+					if (data.error == '0') {
+
+						$('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+						$('#snackbar').show();
+						setTimeout(function () { $('#snackbar').hide(); }, 2000);
+						// $('#shareModal').modal('hide');
+						shareModal.hide();
+					} else {
+						alert('somthing wrong try again');
+						return false;
+					}
+					// this.bind('click',handler);
+					// Optionally alert the user of success here...
+				}).fail(function (data) {
+					return false;
+					// Optionally alert the user of an error here...
+				});
+				return false;
+			}
+		});
+
+		// send feedback signature
+
+		$('#sendfeedback').on("click", function () {
+
+			const thanksModalEl = document.querySelector('#thanksModal');
+			const thanksModal = KTModal.getInstance(thanksModalEl);
+
+			var signatureid = $('#backreview').attr('data-id');
+			var feedback = $('#feedback');
+			if ($.trim(feedback.val()) == "") {
+				feedback.css('border-color', 'red');
+				return false;
+			}
+			var url = $('#form_url').val();
+			$.ajax({
+				type: 'POST',
+				url: $('#form_url').val(),
+				data: 'feedback=' + feedback.val() + '&signature_id=' + signatureid,
+				dataType: "json",
+				async: true,
+			}).done(function (data) {
+				if (data['error'] == '0') {
+
+					feedbackModal.hide();
+					thanksModal.show();
+					return false;
+				} else {
+					alert(data['error']);
+					return false;
+				}
+				this.bind('click', handler);
+				// Optionally alert the user of success here...
+			}).fail(function (data) {
+				return false;
+				// Optionally alert the user of an error here...
+			});
+			return false;
+		});
+
+		// search box
+		$("#search_input").keyup(function () {
+			var filter = $(this).val(),
+				count = 0;
+			$('#search_result div.search-container').each(function () {
+				if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+					$(this).hide();
+				} else {
+					$(this).show(); count++;
+				}
+				$('.menu_open').hide();
+			});
+		});
+
+	});
+
+	// review logo popup event and redirect
+	// review lgo popup event and redirect
+	// var reviewModal = document.getElementById('reviewModal');
+	// reviewModal.addEventListener('show.bs.modal', function (event) {
+	// 	// Button that triggered the modal
+	// 	var button = event.relatedTarget
+	// 	var reviewlogo = button.getAttribute('data-img');
+	// 	var signatureId = button.getAttribute('data-id');
+	// 	document.getElementById("looksgood").setAttribute('data-id', signatureId);
+
+	// 	document.getElementById("backreview").setAttribute('data-id', signatureId);
+	// 	document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+
+	// 	var imgBody = reviewModal.querySelector('.preview-logo');
+	// 	imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
+
+	// });
+
+	const reviewModalEl = document.querySelector('#reviewModal');
+	const reviewModal = KTModal.getInstance(reviewModalEl);
+
+	const reviewLogo = document.getElementById('reviewLogo');
+	reviewLogo.addEventListener('click', function() {
+		var reviewlogo = button.getAttribute('data-img');
+		var signatureId = button.getAttribute('data-id');
+		document.getElementById("looksgood").setAttribute('data-id', signatureId);
+
+		document.getElementById("backreview").setAttribute('data-id', signatureId);
+		document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+
+		var imgBody = reviewModal.querySelector('.preview-logo');
+		imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
+		reviewModal.show();
+	});
+
+
+	const changeLogoModelEl = document.querySelector('#changeLogoModel');
+	const changeLogoModel = KTModal.getInstance(changeLogoModelEl);
+
+	const backButton = document.getElementById('backreview');
+	backButton.addEventListener('click', function() {
+		const reviewlogo = this.getAttribute('data-img');
+		const signatureId = this.getAttribute('data-id');
+
+		// Update modal content
+		document.getElementById("looksgood").setAttribute('data-id', signatureId);
+		document.getElementById("backreview").setAttribute('data-id', signatureId);
+		document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+
+		const imgBody = reviewModalEl.querySelector('.preview-logo');
+		imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
+
+		// Show the modal
+		reviewModal.show();
+	});
+
+	const shareModalEl = document.querySelector('#shareModal');
+	const shareModal = KTModal.getInstance(shareModalEl);
+
+	shareModal.on('show', () => {
+		var button = event.relatedTarget
+		var signatureId = button.getAttribute('data-id');
+		var shareUrl = button.getAttribute('data-url');
+		var shareEmail = button.getAttribute('data-email');
+		document.getElementById("share_url").value = shareUrl;
+		document.getElementById("share_email").value = shareEmail;
+		document.getElementById("sharesig").setAttribute('data-id', signatureId);
+	});
+
+	$(document).ready(function () { // copy signature share url
+		$('#copyshareurl').on('click', function (event) {  // copy signature
+			text = $('#share_url').val();
+			var textField = $('#share_url');
+			textField.focus(); //SET FOCUS on the TEXTFIELD
+			textField.select();
+			document.execCommand('copy');
+			console.log('should have copied ' + text);
+			// $('#shareModal').focus();
+
+			$('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
+			$('#snackbar').show();
+			setTimeout(function () { $('#snackbar').hide(); }, 2000);
+			
+			shareModal.hide();
+		});
+	});
+
+
+</script>
+
+<script language="javascript">
+	$(document).ready(function () {
+		$('#select_all').on('click', function () {
+			if (this.checked) {
+				$('.del_chekbox').each(function () {
+					this.checked = true;
+					$('#bulk_deletesignature').removeClass('disable-button');
+				});
+			} else {
+				$('.del_chekbox').each(function () {
+					this.checked = false;
+					$('#bulk_deletesignature').addClass('disable-button');
+				});
+			}
+		});
+
+		$('.del_chekbox').on('click', function () {
+			if ($('.del_chekbox:checked').length == $('.del_chekbox').length) {
+				$('#select_all').prop('checked', true);
+				$('#bulk_deletesignature').removeClass('disable-button');
+			} else {
+				$('#select_all').prop('checked', false);
+				$('#bulk_deletesignature').addClass('disable-button');
+			}
+			if ($('.del_chekbox:checked').length < 1) {
+				$('#extratop').css('display', 'none');
+				$('#bulk_deletesignature').addClass('disable-button');
+			} else {
+				$('#extratop').css('display', '');
+				$('#bulk_deletesignature').removeClass('disable-button');
+			}
+		});
+	});
+
+
+</script>
+IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
+<script language="javascript">
+	$(document).ready(function () {
+		processPendingImportedSignature();
+	});
+</script>
+{:IF}
+<script src="%%DEFINE_JS_LINK%%/uploadlogo.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
+
+<!-- <script>
+	$(document).ready(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script> -->
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		setTimeout(function () {
+			var errorMsg = document.getElementById("error-msg");
+			if (errorMsg) {
+				errorMsg.style.display = "none";
+			}
+		}, 5000);
+	});
+</script>
+
+<script src="%%DEFINE_ROOT_LINK%%/script/chart.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/script/mapchart/chart.umd.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/script/mapchart/index.umd.min.js"></script>
+<script>
+	let chart;
+
+	function getMaxValue(data) {
+		const allValues = [...data.clicks];
+		return allValues.length ? Math.max(...allValues) : 0;
+	}
+
+	function getControlPoints(points, tension) {
+		const cp = [];
+		const n = points.length;
+
+		for (let i = 0; i < n; i++) {
+			const p0 = points[i === 0 ? i : i - 1];
+			const p1 = points[i];
+			const p2 = points[i === n - 1 ? i : i + 1];
+
+			const d01 = Math.hypot(p1.x - p0.x, p1.y - p0.y);
+			const d12 = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+
+			let cp1x = p1.x;
+			let cp1y = p1.y;
+			let cp2x = p1.x;
+			let cp2y = p1.y;
+
+			if (d01 + d12 !== 0) {
+				const fa = tension * d01 / (d01 + d12);
+				const fb = tension * d12 / (d01 + d12);
+
+				cp1x = p1.x - fa * (p2.x - p0.x);
+				cp1y = p1.y - fa * (p2.y - p0.y);
+
+				cp2x = p1.x + fb * (p2.x - p0.x);
+				cp2y = p1.y + fb * (p2.y - p0.y);
+			}
+
+			cp.push({ cp1: { x: cp1x, y: cp1y }, cp2: { x: cp2x, y: cp2y } });
+		}
+
+		return cp;
+	}
+
+	const verticalGradientHighlightPlugin = {
+		id: 'verticalGradientHighlightPlugin',
+		beforeDatasetsDraw(chart) {
+			const tooltip = chart.tooltip;
+
+			// Ensure tooltip is active (hovering)
+			if (!tooltip || !tooltip._active || !tooltip._active.length) return;
+
+			const ctx = chart.ctx;
+			const activePoint = tooltip._active[0];
+
+			// Get X position of the active point
+			const x = activePoint.element.x;
+
+			// Get chart area boundaries
+			const topY = chart.chartArea.top;
+			const bottomY = chart.chartArea.bottom;
+
+			// Create linear gradient
+			const gradient = ctx.createLinearGradient(x - 50, 0, x + 50, 0);
+			gradient.addColorStop(0, 'rgba(0, 204, 255, 0.1)');
+			gradient.addColorStop(1, 'rgba(0, 71, 255, 0.1)');
+
+			// Draw rectangle
+			ctx.save();
+			ctx.fillStyle = gradient;
+			ctx.fillRect(x - 50, topY, 100, bottomY - topY);
+			ctx.restore();
+		}
+	};
+
+	const lineShadowFillPlugin = {
+		id: 'lineShadowFillPlugin',
+		beforeDatasetsDraw(chart) {
+			const ctx = chart.ctx;
+			const datasetIndex = 0; // Clicks dataset index
+			const meta = chart.getDatasetMeta(datasetIndex);
+			if (meta.hidden) return;
+
+			const points = meta.data;
+			if (!points.length) return;
+
+			const bottom = chart.chartArea.bottom;
+
+			// Extract raw points and clamp y to baseline
+			const pts = points.map(p => ({
+				x: p.x,
+				y: Math.min(p.y, bottom) // Clamp point y to baseline
+			}));
+
+			const tension = chart.data.datasets[datasetIndex].tension ?? 0;
+
+			// Calculate control points for bezier curve
+			const controlPoints = getControlPoints(pts, tension);
+
+			// Clamp control points y to baseline so curve won't dip below
+			controlPoints.forEach(cp => {
+				cp.cp1.y = Math.min(cp.cp1.y, bottom);
+				cp.cp2.y = Math.min(cp.cp2.y, bottom);
+			});
+
+			ctx.save();
+
+			// Start path at bottom-left
+			ctx.beginPath();
+			ctx.moveTo(pts[0].x, bottom);
+
+			// Line up to first point
+			ctx.lineTo(pts[0].x, pts[0].y);
+
+			// Draw bezier curves through points using control points
+			for (let i = 1; i < pts.length; i++) {
+				const cpPrev = controlPoints[i - 1];
+				const cpCurr = controlPoints[i];
+
+				ctx.bezierCurveTo(
+					cpPrev.cp2.x, cpPrev.cp2.y,
+					cpCurr.cp1.x, cpCurr.cp1.y,
+					pts[i].x, pts[i].y
+				);
+			}
+
+			// Line down to bottom at last point
+			ctx.lineTo(pts[pts.length - 1].x, bottom);
+			ctx.closePath();
+
+			// Create vertical gradient for fading shadow effect
+			const gradient = ctx.createLinearGradient(0, chart.chartArea.top, 0, chart.chartArea.bottom);
+			gradient.addColorStop(0, 'rgba(77, 127, 255, 0.3)');
+			gradient.addColorStop(1, 'rgba(77, 127, 255, 0)');
+
+			ctx.shadowColor = 'rgba(77, 127, 255, 0.3)'; // Brighter, soft glow
+			ctx.shadowBlur = 25;
+			ctx.shadowOffsetX = 0;
+			ctx.shadowOffsetY = 0;
+
+			ctx.fillStyle = gradient;  // Use gradient fill instead of solid color
+			ctx.fill();
+
+			ctx.restore();
+		}
+	};
+
+	function padSingleDayData(data) {
+		if (data.labels.length === 1) {
+			return {
+				labels: ["", data.labels[0], ""],
+				clicks: [null, data.clicks[0], null],
+				impressions: [null, data.impressions[0], null],
+				unique_clicks: [null, data.unique_clicks[0], null]
+			};
+		}
+		return data;
+	}
+
+	function createChart(inputData) {
+		const data = padSingleDayData(inputData);
+
+		const canvas = document.getElementById('dashboardAnalyticsChart');
+		if (!canvas) {
+			console.error('Canvas element not found');
+			return;
+		}
+
+		// Optional: Adjust canvas width dynamically based on data points
+		canvas.width = data.labels.length * 30;
+
+		const ctx = canvas.getContext('2d');
+		const maxValue = getMaxValue(data);
+
+		// Tooltip setup
+		let tooltipEl = document.getElementById('chartjs-tooltip');
+		if (!tooltipEl) {
+			tooltipEl = document.createElement('div');
+			tooltipEl.id = 'chartjs-tooltip';
+			document.body.appendChild(tooltipEl);
+			Object.assign(tooltipEl.style, {
+				position: 'absolute',
+				pointerEvents: 'none',
+				background: '#fff',
+				borderRadius: '12px',
+				boxShadow: '0 6px 20px rgba(0,0,0,0.12)',
+				padding: '12px 20px',
+				fontSize: '14px',
+				color: '#000',
+				transform: 'translate(-50%, -100%)',
+				whiteSpace: 'nowrap',
+				zIndex: '1000',
+				display: 'none'
+			});
+		}
+
+		const isSingleDay = data.labels.length === 3;
+
+		chart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: data.labels,
+				datasets: [
+					{
+						label: 'Clicks',
+						data: data.clicks,
+						borderColor: '#4D7FFF',
+						pointBackgroundColor: '#4D7FFF',
+						pointBorderColor: '#4D7FFF',
+						pointRadius: isSingleDay ? 7 : 0,
+						pointHoverRadius: 7,
+						borderWidth: 2,
+						tension: 0.4,
+						pointHoverBorderColor: '#fff',
+						pointHoverBorderWidth: 4,
+						fill: false,
+						clip: false
+					},
+					{
+						label: 'Impressions',
+						data: data.impressions,
+						borderColor: '#10B981',
+						pointBackgroundColor: '#10B981',
+						pointBorderColor: '#10B981',
+						pointRadius: isSingleDay ? 7 : 0,
+						pointHoverRadius: 7,
+						borderWidth: 2,
+						tension: 0.4,
+						pointHoverBorderColor: '#fff',
+						pointHoverBorderWidth: 4,
+						fill: false,
+						clip: false
+					},
+					{
+						label: 'Unique Clicks',
+						data: data.unique_clicks,
+						borderColor: '#F59E0B',
+						pointBackgroundColor: '#F59E0B',
+						pointBorderColor: '#F59E0B',
+						pointRadius: isSingleDay ? 7 : 0,
+						pointHoverRadius: 7,
+						borderWidth: 2,
+						tension: 0.4,
+						pointHoverBorderColor: '#fff',
+						pointHoverBorderWidth: 4,
+						fill: false,
+						clip: false
+					}
+				]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				interaction: {
+					mode: 'index',
+					intersect: false
+				},
+				plugins: {
+					legend: {
+						display: false
+					},
+					tooltip: {
+						enabled: false,
+						external: function (context) {
+							const tooltipModel = context.tooltip;
+
+							if (tooltipModel.opacity === 0) {
+								tooltipEl.style.display = 'none';
+								return;
+							}
+
+							const canvasRect = context.chart.canvas.getBoundingClientRect();
+							let adjustedCaretX = tooltipModel.caretX;
+							const tooltipOffsetX = isSingleDay ? 0 : 50;
+							const tooltipOffsetY = 40;
+
+							if (isSingleDay) {
+								adjustedCaretX = context.chart.width / 2;
+							}
+
+							const left = canvasRect.left + window.pageXOffset + adjustedCaretX + tooltipOffsetX;
+							const top = canvasRect.top + window.pageYOffset + tooltipModel.caretY - tooltipOffsetY;
+
+							tooltipEl.style.left = left + 'px';
+							tooltipEl.style.top = top + 'px';
+							tooltipEl.style.display = 'block';
+
+							const firstDataPoint = tooltipModel.dataPoints[0];
+							const hoverDate = firstDataPoint.label || firstDataPoint.parsed.x || '';
+
+							let innerHtml = `
+                                <div style="font-weight:bold; margin-bottom:8px;">
+                                    ${hoverDate}
+                                </div>
+                            `;
+
+							tooltipModel.dataPoints.forEach(dataPoint => {
+								const color = dataPoint.dataset.borderColor || dataPoint.dataset.backgroundColor;
+								const value = dataPoint.parsed.y ?? dataPoint.raw ?? dataPoint.formattedValue;
+								const formattedValue = Number(value).toLocaleString();
+								const title = dataPoint.dataset.label || '';
+
+								innerHtml += `
+                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                        <span style="
+                                            display:inline-block;
+                                            width:12px;
+                                            height:12px;
+                                            border-radius:50%;
+                                            background-color:${color};
+                                            margin-right:10px;
+                                        "></span>
+                                        <span>${formattedValue} ${title}</span>
+                                    </div>
+                                `;
+							});
+
+							tooltipEl.innerHTML = innerHtml;
+						}
+					}
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						suggestedMax: maxValue + (maxValue * 0.2),
+						ticks: { display: false },
+						grid: { display: false, drawBorder: false },
+						border: { display: false, color: 'transparent', width: 0 }
+					},
+					x: {
+						ticks: {
+							color: '#666',
+							font: { size: 12 },
+							callback: function (value, index) {
+								const label = this.getLabelForValue(index);
+								return label === "" ? "" : label;
+							}
+						},
+						grid: { display: false, drawBorder: false },
+						border: { display: false, color: 'transparent', width: 0 }
+					}
+				}
+			},
+			plugins: [verticalGradientHighlightPlugin, lineShadowFillPlugin]
+		});
+	}
+
+	function updateChart(inputData) {
+		const data = padSingleDayData(inputData);
+		const maxValue = getMaxValue(data);
+
+		chart.data.labels = data.labels;
+		chart.data.datasets[0].data = data.clicks;
+		chart.data.datasets[1].data = data.impressions;
+		chart.data.datasets[2].data = data.unique_clicks;
+
+		chart.options.scales.y.suggestedMax = maxValue + (maxValue * 0.2);
+
+		const isSingleDay = data.labels.length === 3;
+		chart.data.datasets.forEach(ds => {
+			ds.pointRadius = isSingleDay ? 7 : 0;
+		});
+
+		chart.update();
+	}
+
+	function loadChartData(range, startDate, endDate) {
+		fetch(`%%DEFINE_ROOT_LINK%%/analytics/getDashboardChartData?range=${range}&start=${startDate}&end=${endDate}`)
+			.then(response => response.json())
+			.then(data => {
+				if (chart) {
+					updateChart(data);
+				} else {
+					createChart(data);
+				}
+				$("#total_clicks").html(data.total_clicks);
+				$("#total_impressions").html(data.total_impressions);
+				$("#total_unique_clicks").html(data.total_unique_clicks);
+
+				$("#clickThroughRate").html(data.clickThroughRate + "<span>%</span>");
+				const change = data.rateChange ?? 0;
+
+				const changeValue = Number(change); // Ensure it's a number
+				const $changeElem = $('#clickThroughChange'); // jQuery selector
+
+				if (changeValue < 0) {
+					$changeElem.html(`▼ ${Math.abs(changeValue)}%`)
+						.addClass('negative-change')
+						.removeClass('positive-change');
+				} else {
+					$changeElem.html(`▲ ${changeValue}%`)
+						.addClass('positive-change')
+						.removeClass('negative-change');
+				}
+			})
+			.catch(error => console.error('Error loading chart data:', error));
+	}
+
+
+	let signatureChart = null;
+	let hoveredIndex = null;
+
+	// Optional: helper for rounded rect bubble
+	CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+		const radius = typeof r === 'number' ? { tl: r, tr: r, br: r, bl: r } : r;
+		this.beginPath();
+		this.moveTo(x + radius.tl, y);
+		this.lineTo(x + w - radius.tr, y);
+		this.quadraticCurveTo(x + w, y, x + w, y + radius.tr);
+		this.lineTo(x + w, y + h - radius.br);
+		this.quadraticCurveTo(x + w, y + h, x + w - radius.br, y + h);
+		this.lineTo(x + radius.bl, y + h);
+		this.quadraticCurveTo(x, y + h, x, y + h - radius.bl);
+		this.lineTo(x, y + radius.tl);
+		this.quadraticCurveTo(x, y, x + radius.tl, y);
+		this.closePath();
+	};
+
+	async function drawSignatureChart(startDate, endDate) {
+		const res = await fetch(`/analytics/getDashboadSignatureChart?start=${startDate}&end=${endDate}`);
+		const data = await res.json();
+
+		$("#signature_total_clicks").html(data.total_clicks);
+		$("#signature_total_impressions").html(data.total_impressions);
+		$("#signature_total_unique_clicks").html(data.total_unique_clicks);
+		$("#signature_total_ctr").html(data.total_ctr);
+
+		const names = data.labels;
+		const values = data.allClicks;
+		const avatars = data.avatars || names.map(() => 'https://i.pravatar.cc/50');
+
+		const avatarImages = avatars.map(src => {
+			const img = new Image();
+			img.src = src;
+			return img;
+		});
+
+		const ctx = document.getElementById('signature_chart').getContext('2d');
+
+		// Get the parent container's dimensions
+		const chartContainer = document.getElementById('chart-container');
+		const parentHeight = chartContainer.clientHeight;
+
+		// Set the canvas height and width based on parent container
+		const canvas = document.getElementById('signature_chart');
+		canvas.height = 420;  // Set height to parent div height
+		canvas.width = chartContainer.clientWidth; // Optionally, set the width too
+
+		if (signatureChart) signatureChart.destroy();
+
+		const maxValue = Math.max(...values);
+		let stepSize = Math.ceil(maxValue / 3);
+		if (stepSize < 1) stepSize = 1;
+		const yAxisMax = stepSize * 4;
+
+		signatureChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: names,
+				datasets: [{
+					data: values,
+					backgroundColor: (ctx) => {
+						if (ctx.dataIndex === hoveredIndex) {
+							const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, ctx.chart.height);
+							gradient.addColorStop(0, '#1D4AFE');
+							gradient.addColorStop(1, '#26B7FF');
+							return gradient;
+						}
+						return '#e0e0e0';
+					},
+					borderRadius: Number.MAX_VALUE,
+					borderSkipped: false,
+					barThickness: 40
+				}]
+			},
+			options: {
+				responsive: true,
+				layout: { padding: { top: 30, bottom: 30 } },
+				plugins: {
+					legend: { display: false },
+					tooltip: { enabled: false },
+					title: {
+						display: false
+					}
+				},
+				scales: {
+					x: {
+						grid: {
+							display: false,
+							drawBorder: false,  // disables bottom border line
+						},
+						border: {
+							display: false     // disables border on x-axis
+						},
+						ticks: {
+							display: false
+						}
+					},
+					y: {
+						suggestedMin: 0,
+						suggestedMax: 3,
+						grid: {
+							display: false,
+							drawBorder: false,  // disables left border line
+						},
+						border: {
+							display: false     // disables border on y-axis
+						},
+						ticks: {
+							stepSize: stepSize,
+							color: '#888',
+							font: { size: 12 }
+						}
+					}
+				},
+				onHover: (event, elements) => {
+					hoveredIndex = elements.length ? elements[0].index : null;
+					signatureChart.update();
+				}
+			},
+			plugins: [{
+				id: 'customAvatarPlugin',
+				afterDatasetsDraw(chart) {
+					const { ctx, chartArea: { bottom }, scales: { x, y } } = chart;
+
+					values.forEach((val, i) => {
+						const xPos = x.getPixelForValue(i);
+						const yPos = y.getPixelForValue(val);
+
+						// Hover effects
+						if (i === hoveredIndex) {
+							// Dashed line (unchanged)
+							ctx.save();
+							ctx.setLineDash([5, 5]);
+							ctx.strokeStyle = 'white';
+							ctx.lineWidth = 2;
+							ctx.beginPath();
+							ctx.moveTo(xPos, yPos);
+							ctx.lineTo(xPos, chart.scales.y.bottom);
+							ctx.stroke();
+							ctx.setLineDash([]);
+							ctx.restore();
+
+							// Create a linear gradient for the dot (bar color gradient)
+							const gradient = ctx.createLinearGradient(0, 0, 0, 1);
+							gradient.addColorStop(0, '#26B7FF'); // Light Blue
+							gradient.addColorStop(1, '#1D4AFE'); // Dark Blue
+
+							// Apply shadow effect for the circle border (dot)
+							ctx.shadowColor = '#1D4AFE33'; // Shadow color (semi-transparent blue)
+							ctx.shadowOffsetX = 0;  // No horizontal offset
+							ctx.shadowOffsetY = 0;  // No vertical offset
+							ctx.shadowBlur = 10;    // Blur level for soft shadow effect
+
+							// Draw the dot with gradient
+							ctx.beginPath();
+							ctx.arc(xPos, yPos, 5, 0, 2 * Math.PI);
+							ctx.fillStyle = gradient;  // Set gradient as dot color
+							ctx.fill();
+
+							// Draw white border around the dot
+							ctx.lineWidth = 3; // Border width
+							ctx.strokeStyle = 'white'; // White border
+							ctx.stroke();  // Draw the white border
+
+							// Reset shadow after drawing the circle
+							ctx.shadowColor = 'transparent'; // Reset shadow after drawing
+
+							// Tooltip bubble (applying shadow to the box as well)
+							const label = `${val}`;
+							const paddingX = 10; // Slightly larger padding for the number
+							const paddingY = 4;  // Padding for vertical space inside box
+
+							ctx.font = 'bold 14px sans-serif';  // Bold text
+							const textWidth = ctx.measureText(label).width;
+							const boxWidth = textWidth + paddingX * 2;
+							const boxHeight = 30;  // Slightly larger height for a more relaxed feel
+
+							const boxX = xPos - boxWidth / 2;
+							let boxY = yPos - boxHeight - 16;
+							if (boxY < 0) {
+								boxY = yPos + 16; // Draw below the dot instead
+							}
+
+							// Apply shadow effect for the tooltip box (outside the box)
+							ctx.shadowColor = '#1D4AFE33'; // Same shadow color (semi-transparent blue)
+							ctx.shadowOffsetX = 0;  // No horizontal offset
+							ctx.shadowOffsetY = 0;  // No vertical offset
+							ctx.shadowBlur = 15;    // Increase blur for softer, larger shadow
+
+							// Fill the tooltip bubble with **solid white color**
+							ctx.fillStyle = '#fff';  // Solid white fill for the tooltip bubble
+							ctx.beginPath();
+							ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 6); // Rounded corners (softer curve)
+							ctx.fill();
+
+							// // Draw **white border** around the tooltip bubble
+							// ctx.strokeStyle = '#fff';  // White border for the tooltip bubble
+							// ctx.lineWidth = 2;  // Border width
+							// ctx.stroke();
+
+							// Reset shadow after drawing the bubble
+							ctx.shadowColor = 'transparent'; // Reset shadow after drawing
+
+							// Gradient text for the number inside the box
+							const textGradient = ctx.createLinearGradient(0, 0, 0, 1);
+							textGradient.addColorStop(0, '#26B7FF'); // Light Blue
+							textGradient.addColorStop(1, '#1D4AFE'); // Dark Blue
+
+							ctx.fillStyle = textGradient; // Apply the gradient for the text
+							ctx.textAlign = 'center';
+							ctx.textBaseline = 'middle';
+							ctx.fillText(label, xPos, boxY + boxHeight / 2);  // Draw the number with gradient inside the box
+						}
+
+						// Avatar
+						const img = avatarImages[i];
+						const imgSize = 36;
+						const imgY = bottom;
+
+						// Save context
+						ctx.save();
+
+						// Clip to circle and draw image
+						ctx.beginPath();
+						ctx.arc(xPos, imgY, imgSize / 2, 0, 2 * Math.PI);
+						ctx.closePath();
+						ctx.clip();
+
+						ctx.drawImage(img, xPos - imgSize / 2, imgY - imgSize / 2, imgSize, imgSize);
+
+						// Restore context to remove clipping
+						ctx.restore();
+
+						// Now draw white border outside the clip
+						ctx.beginPath();
+						ctx.arc(xPos, imgY, imgSize / 2, 0, 2 * Math.PI);
+						ctx.strokeStyle = '#fff';
+						ctx.lineWidth = 3;
+						ctx.stroke();
+
+
+						// Name
+						ctx.font = '12px sans-serif';
+						ctx.fillStyle = '#333';
+						ctx.textAlign = 'center';
+						ctx.fillText(names[i], xPos, imgY + 30);
+					});
+				}
+			},
+			{
+				id: 'customYAxisLines',
+				beforeDatasetsDraw(chart) {
+					const { ctx, chartArea: { left, right }, scales: { y } } = chart;
+
+					ctx.save();
+					ctx.strokeStyle = '#eee';      // Line color (light gray)
+					ctx.lineWidth = 2;
+					ctx.setLineDash([4, 4]);       // Dashed style
+
+					y.ticks.forEach(tick => {
+						const value = tick.value;
+						if (value === 0) return;     // Skip zero line
+
+						const yPos = y.getPixelForValue(value);
+
+						ctx.beginPath();
+						ctx.moveTo(left, yPos);      // Full width line
+						ctx.lineTo(right, yPos);
+						ctx.stroke();
+					});
+
+					ctx.restore();
+				}
+			}]
+		});
+	}
+
+
+	function getDateRange(range) {
+		const today = new Date();
+		let startDate, endDate;
+
+		switch (range) {
+			case 'today':
+				startDate = endDate = today;
+				break;
+			case 'yesterday':
+				startDate = endDate = new Date(today.setDate(today.getDate() - 1));
+				break;
+			case 'this-week':
+				const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+				startDate = firstDayOfWeek;
+				endDate = new Date();
+				break;
+			case 'last-week':
+				const lastWeekEnd = new Date(today.setDate(today.getDate() - today.getDay() - 1));
+				const lastWeekStart = new Date(lastWeekEnd);
+				lastWeekStart.setDate(lastWeekEnd.getDate() - 6);
+				startDate = lastWeekStart;
+				endDate = lastWeekEnd;
+				break;
+			case 'this-month':
+				startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+				endDate = new Date();
+				break;
+			case 'last-month':
+				const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+				startDate = new Date(lastMonth.getFullYear(), lastMonth.getMonth(), 1);
+				endDate = new Date(lastMonth.getFullYear(), lastMonth.getMonth() + 1, 0);
+				break;
+			case 'this-year':
+				startDate = new Date(today.getFullYear(), 0, 1);
+				endDate = new Date();
+				break;
+			default:
+				startDate = endDate = today;
+		}
+		// Format as YYYY-MM-DD
+		const formatLocal = d => {
+			const year = d.getFullYear();
+			const month = String(d.getMonth() + 1).padStart(2, '0'); // months are 0-based
+			const day = String(d.getDate()).padStart(2, '0');
+			return `${year}-${month}-${day}`;
+		};
+
+		return {
+			startDate: formatLocal(startDate),
+			endDate: formatLocal(endDate)
+		};
+	}
+
+	const { startDate, endDate } = getDateRange('this-month');
+	loadChartData('days', startDate, endDate);
+	drawSignatureChart(startDate, endDate);
+
+	$('.chart-range-option').on('click', function () {
+		const range = $(this).data('range');
+		const { startDate, endDate } = getDateRange(range);
+		loadChartData('days', startDate, endDate);
+		drawSignatureChart(startDate, endDate);
+	});
+
+</script>
+%%DEFINE_FOOTER%%

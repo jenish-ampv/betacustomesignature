@@ -1,0 +1,76 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">%%DEFINE_ModuleName%%</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+          <div class="card-header">
+            <h5>Refund Payment</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <!--<div class="m-20" style="display:%%DEFINE_display%%;">Please select website first to see the FREE & GOLD & PLATINUM Member list  
+                  <a href="%%DEFINE_li_export%%">Export All Member</a>
+              </div>-->
+              <div >
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                     IF("%%DEFINE_MessageStatus%%"=="1"){
+                        %%DEFINE_Message%%
+                    {:IF}
+                    <div class="refund-form">
+                        <form action="%%DEFINE_refundformurl%%" method="post" id="refundForm">
+                            <input type="hidden" name="charge_id" value="%%DEFINE_charge_id%%">
+                            <div class="refund-message">
+                                <span>Refunds take 5-10 days to appear on a customer's statement. Stripe's fees for the original payment won't be returned, but there are no additional fees for the refund. <a target="_blank" href="https://support.stripe.com/questions/understanding-fees-for-refunded-payments" rel="noopener noreferrer">Learn more</a>. </span>
+                            </div>
+                            <div class="refund-container">
+                              <div class="input-refund">
+                                <span>Refund</span>
+                                <input type="text" name="refund_amount" id="refund_amount" placeholder="%%DEFINE_total_possible_refund_amount%%">
+                              </div>
+                            </div>
+                            <div class="reason-container">
+                                <div class="select-reason">
+                                    <span>Reason</span>
+                                    <select aria-invalid="false" id="reason" name="reason" class="" style="color: rgb(64, 68, 82);">
+                                        <option value="select">Select a reason</option>
+                                        <option value="duplicate">Duplicate</option>
+                                        <option value="fraudulent">Fraudulent</option>
+                                        <option value="requested_by_customer">Requested by customer</option>
+                                    </select>
+                                    <div class="add-more-details-container">
+                                        <textarea name="reason_detail" id="reason_detail" placeholder="Add more details about this refund."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit">Refund</button>
+                        </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+

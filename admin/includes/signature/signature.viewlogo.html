@@ -1,0 +1,147 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<style>
+  .table td{
+    white-space:break-spaces !important;
+  }
+    .table-card .card-body .table tr td:last-child, .table-card .card-body .table tr th:last-child {
+    padding-right: 20px !important;
+  }
+  .signature_tbl{ width:100% !important;}
+</style>
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+              <div class="col-md-12">
+                  <div class="page-header-title">
+                      <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                  </div>
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                      <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_signature%%">%%DEFINE_ModuleName%% </a><a href="#!">/ View %%DEFINE_ModuleName%%</a></li>
+                  </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+              <h5>View %%DEFINE_ModuleName%%</h5>
+          </div>
+          <div class="card-body">
+           IF("%%DEFINE_MessageStatus%%"=="1"){
+             %%DEFINE_Message%%
+            {:IF}
+            <div class="col-xl-12 p-t-30">
+      				<div class="row">
+                     <div class="col-xl-4 col-md-12">
+                     	<div class="card text-center" style="padding:50px 30px;">
+                        %%DEFINE_signature_change_image%%
+      						</div>
+                     </div>
+                    <div class="col-xl-8 col-md-12">
+                         <form name="uploadsignature" action="" method="post" enctype="multipart/form-data">
+               	     <div class="form-group fill">
+                     <label for="exampleInputEmail1">Change Logo Process Status:</label> 
+                      <select name="logo_change_process" id="logo_change_process" class="form-control">
+                        <option value="0">Pending</option>
+                        <option value="1">Processing</option>
+                        <option value="2">Complete</option>
+                        <option value="3">Reject</option>
+                        <option value="4">Approve</option>
+                      </select>
+                       </div>
+             		  <div class="form-group fill logo-reject-reason-container" style="display:none">
+                                        <label for="exampleInputEmail1">Reject Logo Reson::</label>
+                                         <select name="change_logo_reject_reason" id="change_logo_reject_reason" class="form-control"  >
+                        <option value=""></option>
+                        <option value="Low resolution, please provide us with a high resolution logo.">Low resolution, please provide us with a high resolution logo.</option>
+                        <option value="Profile picture uploaded instead of company logo">Profile picture uploaded instead of company logo</option>
+                        <option value="The logo is generic (picture of product)">The logo is generic (picture of product)</option>
+                      </select>
+                                         
+                                    </div>	
+                      <div class="form-group fill">
+                                        <label for="">Client Feedback</label>
+                                        <!-- <textarea class="form-control" id="" rows="3"  disabled>%%DEFINE_change_logo_reason%%</textarea> -->
+                                     </div>
+                                     
+                                     
+                           %%DEFINE_feedback%%
+                                     
+                          <!-- <div class="form-group fill">
+                                 <label for="">Previous Feedback</label>
+                            </div>            
+                         <div class="date">
+                         	<span>29-03-2023</span>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                         </div>
+                         <div class="date">
+                         	<span>12-03-2023</span>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                         </div> -->
+                     
+                     
+                    <input type="submit" class="btn btn-primary has-ripple" name="submit" value="Save" id="submit"  />
+                  </form>
+                  
+                        
+                       
+                       	 
+                            
+                            
+                    </div>
+                    
+                 
+               
+                 
+      				</div>
+      			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+  </div>
+</div>
+
+<script>
+jQuery(document).on('change', '.checkboxverify', function() {
+    if(this.checked) {
+      var  verify = 1;
+    }else{
+		var verify = 0;
+	}
+	jQuery.ajax({
+            type : "POST",
+            url  : '%%DEFINE_li_verifypayment%%',
+            data :{ verifyforpayment: verify },
+
+            success : function(response) {
+				if(response == 1){
+					jQuery('#msgp').css("display","inline");
+				}
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('An error occurred... try again!');
+            },
+       });
+});
+jQuery(document).on('change','select#logo_change_process',function(){
+    if(jQuery(this).val() == "3"){
+      jQuery(".logo-reject-reason-container").show();
+      jQuery("#change_logo_reject_reason").attr("required",'required');
+    }else{
+      jQuery(".logo-reject-reason-container").hide();
+      jQuery("#change_logo_reject_reason").removeAttr("required");
+    }
+});
+
+</script>

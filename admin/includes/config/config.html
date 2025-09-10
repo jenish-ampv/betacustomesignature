@@ -1,0 +1,377 @@
+
+
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+   <div class="pcoded-content">
+      <div class="page-header">
+         <div class="page-block">
+            <div class="row align-items-center">
+               <div class="col-md-12">
+                  <div class="page-header-title">
+                     <h5 class="m-b-10">Configuration </h5>
+                  </div>
+                  <ul class="breadcrumb"style="float:left;">
+                     <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                     <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%">Dashboard</a><a href="#!"> / Configuration</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-sm-12">
+            <div class="card">
+               <div class="card-header">
+                  <h5>Site Configuration</h5>
+               </div>
+               <div class="card-body">
+                  <!--tabbed-->
+                  <div class="%%DEFINE_MessageClass%%">
+                     IF("%%DEFINE_MessageStatus%%"=="1"){
+                     <div class="alert alert-success" role="alert">
+                        %%DEFINE_Message%%
+                     </div>
+                     {:IF}  
+                  </div>
+                  <form name="add_config" action="%%DEFINE_li_config%%" method="post" id="add_config" enctype="multipart/form-data" onsubmit="return validateConfig(this)">
+                     <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link text-uppercase has-ripple active" id="General-tab" data-toggle="tab" href="#General" role="tab" aria-controls="home" aria-selected="true">General<span class="ripple ripple-animate" style="height: 73.6719px; width: 73.6719px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(70, 128, 255); opacity: 0.4; top: -11.8359px; left: 12.1641px;"></span></a>
+                        </li>
+                        
+                       <li class="nav-item">
+                           <a class="nav-link text-uppercase has-ripple" id="Debug-tab" data-toggle="tab" href="#Debug" role="tab" aria-controls="contact" aria-selected="false">Debug / SMTP<span class="ripple ripple-animate" style="height: 95.4844px; width: 95.4844px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(70, 128, 255); opacity: 0.4; top: -26.7422px; left: -6.58595px;"></span></a>
+                        </li>
+                        
+                        <!-- <li class="nav-item">
+                           <a class="nav-link text-uppercase has-ripple" id="CSS-tab" data-toggle="tab" href="#CSS" role="tab" aria-controls="profile" aria-selected="false">CSS / Logo<span class="ripple ripple-animate" style="height: 86.1719px; width: 86.1719px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(70, 128, 255); opacity: 0.4; top: -23.0859px; left: 34.2422px;"></span></a>
+                        </li>-->
+                     </ul>
+                     <div class="tab-content" id="myTabContent">
+                        <!--all tab form-->
+                        <!-- tab1 -->
+                        <div class="tab-pane fade active show" id="General" role="tabpanel" aria-labelledby="General-tab">
+                           <div class="col-md-8">
+                              <div class="form-group row">
+                                 <!--Site Title-->
+                                 <label for="inputEmail3" class="col-sm-3 col-form-label">Site Title:<span class="c-rd">*</span></label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="title" class="form-control" id="inputEmail3" value="%%DEFINE_conSITE_TITLE%%" required/>
+                                 </div>
+                              </div>
+                              
+                             <!-- <div class="form-group row">
+
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Site URL:<span class="c-rd">*</span></label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="url" class="form-control" id="inputPassword3" value="%%DEFINE_conSITE_URL%%" />
+                                    <small id="passwordHelpInline" class="text-muted">( http://www.domain.com )</small>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Sort URL:<span class="c-rd">*</span></label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="sorturl" class="form-control" id="inputPassword3" value="%%DEFINE_conSITE_SORTURL%%" />
+                                    <small id="passwordHelpInline" class="text-muted">( http://bitly.url.com sort url )</small>
+                                 </div>
+                              </div>
+
+                              <div class="form-group row">
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Phone:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="SITE_PHONE_NUMBER" value="%%DEFINE_conSITE_PHONE_NUMBER%%"  /> 
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Email:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="SITE_EMAIL_ADDRESS" value="%%DEFINE_conSITE_EMAIL_ADDRESS%%"  /> 
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Address:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="SITE_ADDRESS" value="%%DEFINE_conSITE_ADDRESS%%"  /><span class="admnotes"></span>
+                                 </div>
+                              </div>-->
+                              <div class="form-group row">
+                                 <!--Address-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Stipe secret key:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="STRIPE_SECRET_KEY" value="%%DEFINE_conSTRIPE_SECRET_KEY%%" required="required"  /><span class="admnotes"></span>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Address-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Stipe publishable key:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="STRIPE_PUBLISHABLE_KEY" value="%%DEFINE_conSTRIPE_PUBLISHABLE_KEY%%" required="required"  /><span class="admnotes"></span>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Address-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Stipe webhook secret:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="STRIPE_WEBHOOK_SECRET" value="%%DEFINE_conSTRIPE_WEBHOOK_SECRET%%" required="required"  /><span class="admnotes"></span>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Login Key:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" id="inputPassword3" name="ADMIN_LOGINKEY" value="%%DEFINE_conADMIN_LOGINKEY%%" required="required"  /><span class="admnotes"></span>
+                                 </div>
+                              </div>
+                              
+                              <!--demo for chekbox-->
+                              <!-- 
+                                 <div class="form-group row">
+                                       <label for="inputPassword3" class="col-sm-3 col-form-label">checkbox:</label>
+                                       <div class="col-sm-9">
+                                             <input type="checkbox" name="checkbox" value="1" class="form-check-input m-l-0 m-t-15">
+                                       </div>
+                                 </div> 
+                                 -->
+                           </div>
+                        </div>
+                        <!-- tab2 -->
+                        
+                        <!-- tab3 -->
+                        <div class="tab-pane fade" id="Debug" role="tabpanel" aria-labelledby="Debug-tab">
+                           <div class="col-md-8">
+                              <div class="form-group row">
+                                 <!--CSS Version-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">CSS Version:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="CSS_VERSION" class="form-control" id="inputPassword3" value="%%DEFINE_conCSS_VERSION%%" />
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--JS Version-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">JS Version:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="JS_VERSION" class="form-control" id="inputPassword3" value="%%DEFINE_conJS_VERSION%%" />
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Debug mode-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">S3BUCKET</label>
+                                 <div class="col-sm-9" style="display: flex;">
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio"  id="s3bucket1" value="1" name="S3BUCKET" IF("%%DEFINE_conS3BUCKET%%"=="1"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio1">Yes &nbsp;</label>
+                                    </div>
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio" name="S3BUCKET" id="s3bucket2" value="0" IF("%%DEFINE_conS3BUCKET%%"=="0"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio2">No</label>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Debug mode-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Debug mode</label>
+                                 <div class="col-sm-9" style="display: flex;">
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio"  id="radio1" value="1" name="debug" IF("%%DEFINE_concit_dbdebug%%"=="1"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio1">Yes &nbsp;</label>
+                                    </div>
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio" name="debug" id="radio2" value="0" IF("%%DEFINE_concit_dbdebug%%"=="0"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio2">No</label>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!-- Site Sort Title -->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Seo Friendly URLs</label>
+                                 <div class="col-sm-9" style="display: flex;">
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio"  id="radio3" value="1" name="seourl" IF("%%DEFINE_conmod_rewrite%%"=="1"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio3">Yes &nbsp;</label>
+                                    </div>
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio" name="seourl" id="radio4" value="0" IF("%%DEFINE_conmod_rewrite%%"=="0"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio4">No</label>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!-- Mail settings -->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Mail settings::</label>
+                                 <div class="col-sm-9">   
+                                 <select name="mailer" class="form-control" id="mailer" onchange="validateMailer(this.value)">
+                                 <option value="mail" IF("%%DEFINE_conmailer%%"=="mail"){ selected="selected" {:IF}>PHP Mail</option>
+                                 <option value="smtp" IF("%%DEFINE_conmailer%%"=="smtp"){ selected="selected" {:IF}>SMTP</option>
+                                 </select>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Sendmail Path-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Sendmail Path:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30"class="form-control" value="%%DEFINE_consendmail%%" name="sendmail">
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!-- SMTP Authentication -->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Authentication</label>
+                                 <div class="col-sm-9" style="display: flex;">
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio"  id="radio5" value="1" name="smtpauth" IF("%%DEFINE_conmod_rewrite%%"=="1"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio5">Yes &nbsp;</label>
+                                    </div>
+                                    <div class="form-check m-t-10">
+                                       <input class="form-check-input" type="radio" name="smtpauth" id="radio6" value="0" IF("%%DEFINE_conmod_rewrite%%"=="0"){ checked="checked" {:IF} >
+                                       <label class="form-check-label" for="radio6">No</label>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Site Tag Line-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Security:</label>
+                                 <div class="col-sm-9">
+                                    <select name="smtpsecure" class="form-control" id="inputGroupSelect02" aria-invalid="false">
+                                    <option value="none" IF("%%DEFINE_consmtpsecure%%"=="none"){ selected="selected" {:IF}>None</option>
+                                    <option value="ssl" IF("%%DEFINE_consmtpsecure%%"=="ssl"){ selected="selected" {:IF}>SSL</option>
+                                    <option value="tls" IF("%%DEFINE_consmtpsecure%%"=="tls"){ selected="selected" {:IF}>TLS</option>
+                                    </select>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--SMTP Port-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Port:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputPassword3"size="6" value="%%DEFINE_consmtpport%%" name="smtpport"/> 
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--SMTP Username-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Username:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" value="%%DEFINE_consmtpuser%%" id="smtpuser" name="smtpuser">
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--SMTP Password-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Password:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30" class="form-control" value="%%DEFINE_consmtppass%%" id="smtppass" name="smtppass">
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--SMTP Host-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Host:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" size="30"  class="form-control" value="%%DEFINE_consmtphost%%" id="smtphost" name="smtphost">
+                                 </div>
+                              </div>
+                              
+                              <div class="form-group row">
+                                 <!--SMTP Host-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">SMTP Domain:</label>
+                                 <div class="col-sm-9">
+                                 	<input type="text" size="30" class="form-control" value="%%DEFINE_consmtpdomain%%" id="smtpdomain" name="smtpdomain">
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- tab4 -->
+                        
+                        <!-- tab5 -->
+                        <div class="tab-pane fade" id="CSS" role="tabpanel" aria-labelledby="CSS-tab">
+                           <div class="col-md-8">
+                              <div class="form-group row">
+                                 <!--Color-->
+                                 <label for="inputEmail3" class="col-sm-3 col-form-label">Color:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="SITE_COLOR" class="form-control" id="inputEmail3" value="%%DEFINE_conSITE_COLOR%%" />
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--BG Color-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Secondary Color:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputPassword3" name="SITE_BGCOLOR" id="sort_title" value="%%DEFINE_conSITE_BGCOLOR%%" maxlength="9"/>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--RGB Color-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">RGB Color:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputPassword3" name="SITE_RGBCOLOR" id="rgb_color" value="%%DEFINE_conSITE_RGBCOLOR%%"/>
+                                 </div>
+                              </div>
+                              
+                              <div class="form-group row">
+                                 <!--Session time-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Session time:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="session" class="form-control" id="inputPassword3" value="%%DEFINE_conAdminSessionTimeout%%" />
+                                    <small id="passwordHelpInline" class="text-muted">( in second )</small>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--User Session time-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">User Session time:</label>
+                                 <div class="col-sm-9">
+                                    <input type="text" name="usersession" class="form-control" id="inputPassword3" value="%%DEFINE_conUserSessionTimeout%%" /> 
+                                    <small id="passwordHelpInline" class="text-muted">( in second )</small>
+                                 </div>
+                              </div>
+                              <div class="form-group row">
+                                 <!--Site Logo-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Site Logo:</label>
+                                 <div class="col-sm-9">
+                                    <small id="passwordHelpInline" class="text-muted">( Upload only jpg, jpeg, png files )</small>
+                                    <input type="file" class="form-control" id="inputPassword3" name="conlogo" value="%%DEFINE_conGOOGLE_LINK%%"/> 
+                                    %%DEFINE_conlogo%%            
+                                    <small id="passwordHelpInline" class="text-muted"> %%DEFINE_conlogodetails%%</small>
+                                 </div>
+                              </div>
+                              
+                              <div class="form-group row">
+                                 <!--Site Email Logo-->
+                                 <label for="inputPassword3" class="col-sm-3 col-form-label">Site Email Logo:</label>
+                                 <div class="col-sm-9">
+                                    <small id="passwordHelpInline" class="text-muted">( Upload only jpg, jpeg, png files )</small>
+                                    <input type="file" class="form-control" id="inputPassword3" name="conlogoemail"/> 
+                                    %%DEFINE_conlogoemail%%            
+                                    <small id="passwordHelpInline" class="text-muted"> %%DEFINE_conemaillogodetails%%</small>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- tab6 -->
+                        
+                        <!-- tab7 -->
+                        
+                        <!-- tab8 -->
+                        
+                     </div>
+                     <!--Save button-->
+                     <div class="rgt_ipt" style="margin-top:20px;">
+                        <input type="hidden" name="site_id" value="%%DEFINE_site_id%%">
+                        <input name="" type="submit" value="Save" class="btn btn-primary has-ripple">
+                        <input type="hidden" name="submit" value="submit">
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script> // hide and show 
+	  var cf = jQuery.noConflict();
+      cf(function() {
+            cf('#paypal_testmode').change(function(){
+               if(cf(this).val() == 1){
+				   cf("#testmode_email").prop('required',true);
+			   }else{
+				    cf("#testmode_email").prop('required',false);
+			   }
+            });
+		});
+</script>

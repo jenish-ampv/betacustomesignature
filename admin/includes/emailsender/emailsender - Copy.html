@@ -1,0 +1,58 @@
+%%DEFINE_HEADER%%
+<div id="middle"> 
+    
+    <!-- Side Navigation Start -->
+    
+   %%DEFINE_LEFT%%
+    
+    <!-- Side Navigation End --> 
+    
+    <!-- Content Wrapper Start -->
+    
+    <div id="content_wrapper">
+      <div class="page_head">Email Sender</div>
+      <div class="bread_crumb"><a href="%%DEFINE_li_dashboard%%">Home</a> / Email Sender</div>
+      <div class="content">
+        <div class="widgets">
+          <div class="box full_box">
+            <div class="box_head"><span style="margin-left:10px;">Email Sender</span></div>
+            
+        <form name="add_sampleclass" action="%%DEFINE_li_emailsender%%" method="post" onsubmit="return validation(Array('enter from email','enter to email','enter smtp'),Array('emailsender_from','emailsender_to','emailsender_smtp'))" id="add_sampleclass" enctype="multipart/form-data">   
+            <div class="box_cont">
+              
+              <div class="form_cnt">
+                <ul>
+                <li>
+                    <div class="lft_txt">Require field(<span style="color:red">*</span>)</div>
+                     <div class="%%DEFINE_MessageClass%%">IF("%%DEFINE_MessageStatus%%"=="1"){
+                %%DEFINE_Message%%
+              	{:IF}  </div>
+                  </li>
+                  <li>
+                    <div class="lft_txt">From Email<span style="color:red">*</span>:</div>
+                    <div class="rgt_ipt"><input type="text" name="emailsender_from" id="emailsender_from" value="%%DEFINE_Emailsenderfrom%%" onchange="checkEmail(emailsender_from)"  /></div>
+                  </li>
+                   <li>
+                    <div class="lft_txt">To Email <span style="color:red">*</span>:</div>
+                    <div class="rgt_ipt"> <input type="text" name="emailsender_to" id="emailsender_to" value="%%DEFINE_Emailsenderto%%" onchange="checkEmail(emailsender_to)"  /></div>
+                  </li>
+                   <li>
+                    <div class="lft_txt">SMTP <span style="color:red">*</span>:</div>
+                    <div class="rgt_ipt"> <input type="text" name="emailsender_smtp" id="emailsender_smtp" value="%%DEFINE_Emailsendersmtp%%"  /></div>
+                  </li>
+                  <li>
+                    <div class="lft_txt">&nbsp;</div>
+                    <div class="rgt_ipt">
+                    <input name="" type="submit" value="Save" class="gry_btn" />
+                    
+                  </li>
+                </ul>
+              </div>
+            </div>
+            </form> 
+          </div>
+          
+          
+        </div>
+      </div>
+%%DEFINE_FOOTER%%

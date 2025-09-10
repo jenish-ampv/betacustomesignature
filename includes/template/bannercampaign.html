@@ -1,0 +1,142 @@
+%%DEFINE_HEADER%%
+<section>
+<script src="https://js.stripe.com/v3/"></script>
+<div class="container">
+    <div class="new_dashboard_bg">
+        <div class="new_dashboard_left">
+            %%DEFINE_SIDEBAR%%
+        </div>
+        <div class="new_dashboard_right">
+            <div id="snackbar"></div>
+            <div id="snackbar-error"></div>
+            <div id="snackbar-info"></div>
+            %%DEFINE_Message%%
+            <div class="dashboard_set_up_bg bannercampaign-page">
+                <div class="bannercampaign-heading">
+                    <h1>Campaigns list</h1>
+                    <div class="campoin-status-row">
+                        <div class="status-selector">
+                            <div class="select">
+                                <span>Status</span>
+                            </div>
+                            <ul class="status-selector-menu">
+                                <li id="allcampaigns">All Campaign</li>
+                                <li id="scheduled">Scheduled</li>
+                                <li id="active">Active</li>
+                                <li id="completed">Completed</li>
+                                <li id="canceled">Canceled</li>
+                                <li id="pause">Pause</li>
+                                <li id="draft">Draft</li>
+                            </ul>
+                        </div>
+                        <a href="%%DEFINE_ROOT_LINK%%/bannercampaign/addBanner" class="btn" id="add_banner">Create New Campaign</a>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xl-12 col-md-12">
+                        <div class="bannercampaign-detials-list">
+                            <table class="table table-hover mb-0" id="banner_table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <!-- <th>Clicks</th> -->
+                                        <!-- <th>Views</th> -->
+                                        <!-- <th>CTR</th> -->
+                                        <th>Division Name</th>
+                                        <th>Banner Preview</th>
+                                        <th>Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    %%DEFINE_bannerCampaignTableBody%%
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="redirecturl" value="%%DEFINE_bannercampaign%%" />
+
+
+<script language="javascript">
+    // Ensure the function is in the global scope
+    function bannerAction(element) {
+        var redirecturl = $('#redirecturl').val();
+        if($(element).data('action') == "Delete"){
+            console.log(!$(element).hasClass('clickedFromDeleteConfirmationPopup'))
+            if(!$(element).hasClass('clickedFromDeleteConfirmationPopup')){
+                openDeleteModal($(element),"Are you sure you want to delete this banner campaign?","This banner campaign will be permanently removed.");
+                return false;
+            }
+        }
+        var ajaxUrl = $(element).data('url');  // Getting the URL from data-attribute
+        $.ajax({
+            url: ajaxUrl,
+            type: "GET",
+            success: function(response) {
+                var json = JSON.parse(response);
+                if(json.error != 1){
+                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + '</div>');
+                    $('#snackbar').show();
+                    $('html, body').animate({
+                      scrollTop: $('#snackbar').offset().top
+                    }, 500);
+                }else{
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
+                    $('#snackbar-error').show();
+                    $('html, body').animate({
+                      scrollTop: $('#snackbar-error').offset().top
+                    }, 500);
+                }
+                setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturl; }, 2000);
+            },
+            error: function(xhr, status, error) {
+                // On error, populate the error snackbar with a message
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
+                $('#snackbar-error').show();
+                $('html, body').animate({
+                  scrollTop: $('#snackbar-error').offset().top
+                }, 500);
+                setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturl; }, 2000);
+            }
+        });
+    }
+    $(document).ready(function(){  
+        $('.new_dashboard_left a').removeClass('active');
+        $('.new_dashboard_left .bannercampaign').addClass('active');  
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.status-selector-menu li').on('click', function() {
+            const status = $(this).attr('id');
+            $('#banner_table tbody tr').hide();
+            $('#banner_table tbody tr.' + status).show();
+            if ($('#banner_table tbody tr:not(#no_banner_row):visible').length > 0) {
+                $("#no_banner_row").hide();
+            } else {
+                $("#no_banner_row").show();
+            }
+        });
+
+        if ($('#banner_table tbody tr:not(#no_banner_row)').length > 0) {
+            $("#no_banner_row").hide();
+        } else {
+            $("#no_banner_row").show();
+        }
+    });
+</script>
+
+<script>
+jQuery.noConflict();
+  (function($) {
+    // To active/inactive in leftbar
+    $('.new_dashboard_left a').removeClass('active');
+  })(jQuery);
+</script>
+%%DEFINE_FOOTER%%

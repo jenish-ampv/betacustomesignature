@@ -1,0 +1,942 @@
+%%DEFINE_HEADER%%
+<style>
+  .header_bg .icon_right_side a.tutorial{ display: none;}
+</style>
+<section>
+<script src="https://accounts.google.com/gsi/client" async defer></script> 
+<script src="https://js.stripe.com/v3/"></script>
+
+<div class="register_page_main">
+<div class="container">
+  <div class="register_top_logo"><img src="%%DEFINE_ROOT_LINK%%/images/logo.svg" alt=""></div>
+  <form action="%%DEFINE_REGISTER_FORM_ACTION_URL%%" id="registerForm" method="post" data-rewardful>
+    <div class="row"> 
+      <div id="register-error">%%DEFINE_Message%%</div>
+      <div class="col-lg-6 col-12">
+        <div class="register_box_bg">
+          <fieldset disabled="disabled" style="pointer-events: none;">
+          <div class="signature_preview_container">
+             %%DEFINE_FREE_TRIAL_SIGNATURE_PREVIEW%%
+           </div>
+          </fieldset>
+          <h2>Sign Up</h2>
+          <div class="sign_in_button"> 
+            <!--<a href="#"><img class="google_but" src="%%DEFINE_IMAGE_LINK%%/images/signin-google-but.svg" alt=""></a>--> 
+            <!-- GOGLE LOGIN BUTTON --> 
+            <!-- <div id="g_id_onload" data-client_id="304186691480-b8hdvnn7dg42re813mcqiu201lilbrhf.apps.googleusercontent.com" data-context="signup" data-ux_mode="popup"data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
+                    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signup_with" data-size="large" data-logo_alignment="center" data-width=100%></div> --> 
+            <!-- GOGLE LOGIN BUTTON --> 
+            <!-- <div class="or_border"><span>or</span></div> --> 
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-floating">
+              <input type="name" name="user_firstname" value="%%DEFINE_user_firstname%%" class="form-control" id="user_firstname" placeholder="First Name" required="required">
+              <label for="">First Name</label>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="form-floating">
+              <input type="name" name="user_lastname" value="%%DEFINE_user_lastname%%" class="form-control" id="user_lastname" placeholder="First Name" required="required">
+              <label for="">Last Name</label>
+            </div>
+          </div>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" name="user_organization" value="%%DEFINE_user_organization%%" id="user_organization" placeholder="Organization">
+            <label for="">Company Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" name="user_email" value="%%DEFINE_user_email%%" class="form-control" id="user_email" placeholder="Enter Email" required="required">
+            <label for="">Enter Email</label>
+          </div>
+          <div class="form-floating" id="passField" %%DEFINE_signup_google_user_password_display_hide%%>
+            <input type="password" class="form-control"  name="user_password" id="user_password" value="%%DEFINE_user_password%%" placeholder="Password" required="required" %%DEFINE_signup_google_user_password_display_hide% >
+            <label for="">Create Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="hidden" class="form-control"  name="user_googleid" id="user_googleid" value="%%DEFINE_user_googleid%%">
+          </div>
+          <div class="form-floating">
+            <input type="hidden" class="form-control"  name="user_facebookid" id="user_facebookid" value="%%DEFINE_user_facebookid%%">
+          </div>
+          <div class="form-floating">
+            <input type="hidden" class="form-control"  name="user_x_id" id="user_x_id" value="%%DEFINE_user_x_id%%">
+          </div>
+          <div class="form-floating">
+            <input type="hidden" class="form-control"  name="user_outhprovider" id="user_outhprovider" value="%%DEFINE_user_outhprovider%%">
+          </div>
+          
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" name="user_term" id="user_term" required="required">
+            <label class="form-check-label" for="user_term">By signup you agree to <a href="https://customesignature.com/terms-of-use" target="_blank">Terms & Conditions</a></label>
+          </div>
+          <div class="or"><span>Or continue with</span></div>
+          <div class="continue_button">
+              <a href="%%DEFINE_GOOGLE_SIGNUP_AUTHURL%%"><img src="%%DEFINE_ROOT_LINK%%/images/r-button-google.svg" alt=""></a>
+              <a href="%%DEFINE_FACEBOOK_SIGNUP_AUTHURL%%"><img src="%%DEFINE_ROOT_LINK%%/images/r-button-facebook.svg" alt=""></a>
+              <a href="%%DEFINE_X_SIGNUP_AUTHURL%%"><img src="%%DEFINE_ROOT_LINK%%/images/r-button-twitter.svg" alt=""></a>
+          </div> 
+          <h3>Payment Method</h3>
+          <div class="payment_button" style="display: none;">
+              <a href="#"><img src="%%DEFINE_ROOT_LINK%%/images/gpay-but.svg" alt=""></a>
+              <a href="#"><img src="%%DEFINE_ROOT_LINK%%/images/apay-but.svg" alt=""></a>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" name="user_nameoncard" value="%%DEFINE_user_nameoncard%%" id="card_name" placeholder="Name on Card">
+            <label for="">Name on Card</label>
+          </div>
+          <div id="paymentResponse"></div>
+          <div class="form-floating card_info">
+            <div id="card-element"></div>
+           </div>
+          
+          <div class="payment_button" style="margin-top: 20px; display: none;">
+            <a id="googlepay-button"><img src="%%DEFINE_ROOT_LINK%%/images/gpay-but.svg" alt=""></a>
+            <a id="apple-pay-button"><img src="%%DEFINE_ROOT_LINK%%/images/apay-but.svg" alt=""></a>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-lg-6 col-12">
+        <div class="register_box_bg" style="background:#fff;" id="order-main">
+            
+          <div class="order_details_box">
+             <!-------- SELECT PLAN START--------------->
+
+            <div class="dashboard_set_up_bg" id="selectplan-main" style="display:block; border:none; padding:0;">
+              <div class="select_plan_title">Select Plan<br /> <span class="riskfree">14-Day Risk-Free Guarantee</span>
+                 <div class="tab_box_right">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link quarterly-yearly-tabs-button-class " id="quarterly-tab" data-bs-toggle="tab" data-bs-target="#quarterly-tab-pane" type="button" role="tab" aria-controls="quarterly-tab-pane" aria-selected="false" data-value="quarter">Quarterly</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link quarterly-yearly-tabs-button-class active" id="yearly-tab" data-bs-toggle="tab" data-bs-target="#yearly-tab-pane" type="button" role="tab" aria-controls="yearly-tab-pane" aria-selected="true" data-value="year">Yearly <span>Save 20%</span></button>
+                  </li>
+                </ul> 
+                 </div>
+                
+                
+
+                 
+                <div class="no_of_signatures">
+                  <p>How many signatures do you need?</p>
+                   <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
+                </div>
+                <div class="range_slider">
+                  <div id="range" class="noUi-target noUi-ltr noUi-horizontal"></div>
+                  <div class="range_text">
+                    <span class="rno active" id="rno1">1</span>
+                    <span class="rno" id="rno3">3</span>
+                    <span class="rno" id="rno5">5</span>
+                    <span class="rno" id="rno10">10</span>
+                    <span class="rno" id="rno15">15</span>
+                    <span class="rno" id="rno20">20</span>
+                    <span class="rno" id="rno25">25</span>
+                    <span class="rno" id="rno30">30</span>
+                    <span class="rno" id="rno35">35</span>
+                    <span class="rno" id="rno40">40</span>
+                    <span class="rno" id="rno45">45</span>
+                    <span class="rno" id="rno50">50</span>
+                    <span class="rno" id="rno55">55</span>
+                    <span class="rno" id="rno60">60</span>
+                    <span class="rno" id="rno65">65</span>
+                    <span class="rno" id="rno70">70</span>
+                    <span class="rno" id="rno75">75</span>
+                    <span class="rno" id="rno80">80</span>
+                    <span class="rno" id="rno85">85</span>
+                    <span class="rno" id="rno90">90</span>
+                    <span class="rno" id="rno95">95</span>
+                    <span class="rno" id="rno100">100</span>
+                  </div>
+                </div>
+                 
+                 <div class="tab-content" id="myTabContent">
+                  <!--Quarterly Plan -->  
+                  <div class="tab-pane fade" id="quarterly-tab-pane" role="tabpanel" aria-labelledby="quarterly-tab" tabindex="0">
+                    <div class="signature_layot" style="display: none;">
+                      <input type="radio" name="plan_id" id="plan_id1" class="d-none imgbgchk" value="1" required="required" %%DEFINE_plan_selplan1%%>
+                      <label for="plan_id1" class="changeprice" data-price="20">
+                        <div class="order_details_box border-price">
+                          <h6>Basic (Quarterly) <span class="offper_box"><span>Change to yearly, save 20%</span></span><b>
+                              <span class="offper %%DEFINE_freet_display%%">7 Day Free Trial</span>
+                              <!--<span class="offper">15% OFF</span>-->$ <span class="quarter_basicprice cprice">10</span> /mo
+                            </b>
+                          </h6>
+                          <div class="text_price">
+                            <span class="no_employee_qarter">5</span> Signature <div class="monthprice" style="display:none;">$ <span class="quarter_basicpricespl cpricespl">45</span> USD </div>
+                          </div>
+                          <ul>
+                            <li>Basic Logo Animation</li>
+                            <li>Static Icons</li>
+                          </ul>
+                          <ul>  
+                            <li>Basic Layouts</li>
+                            <li>5 Day Logo Turnaround</li>
+                          </ul>
+                        </div>
+                        <div class="tick_container">
+                          <div class="tick">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="signature_layot">
+                      <input type="radio" name="plan_id" id="plan_id2" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
+                      <label for="plan_id2" class="changeprice" data-price="20">
+                        <div class="order_details_box border-price">
+                          <h6>Pro Plan (Quarterly) <span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="quarter_proprice cprice">15</span>/mo </b></h6>
+                          <div class="text_price">
+                            <span class="no_employee_qarter">5</span> Signature <div class="monthprice" style="display:none;">$<span class="quarter_propricespl cpricespl">60</span> USD </div>
+                          </div>
+                          <ul>
+                          <li><b>Interactive Signature</b></li>
+                          <li>AI - Logo Animation™</li>
+                          <li>Remove CES Watermark</li>
+                          <li>Team Dashboard</sup></li>
+                          <li>Interactive Social Icons</li>
+                          <li>Animated Profile</li>
+                          
+                          </ul>
+                          <ul>
+                          <li>Verification Badge<img src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                          <li>Pro Templates</li>
+                          <li>Team Dashboard</li>
+                          <li>Outlook and Gmail Sync<img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                          <li class="right">Instant Load Speed</li>
+                          </ul>
+                        </div>
+                        <div class="tick_container">
+                          <div class="tick">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                  <!--Yearly Plan -->
+                  <div class="tab-pane fade show active" id="yearly-tab-pane" role="tabpanel" aria-labelledby="yearly-tab" tabindex="0">
+                    <div class="signature_layot" style="display: none;">
+                      <input type="radio" name="plan_id" id="plan_id3" class="d-none imgbgchk" value="3" required="required" %%DEFINE_plan_selplan3%%>
+                      <label for="plan_id3" class="changeprice" data-price="20">
+                        <div class="order_details_box border-price">
+                          <h6>Basic (Yearly) <span class="offper">Saving 20%</span> <b>
+                              <span class="offper %%DEFINE_freet_display%%">7 Day Free Trial</span>
+                              $<span class="year_basicprice cprice">10</span> /mo </b>
+                          </h6>
+                          <div class="text_price">
+                            <span class="no_employee_qarter">5</span> Signature <div class="monthprice">$<span class="year_basicpricespl cpricespl">60</span> USD </div>
+                          </div>
+                          <ul>
+                            <li>Basic Logo Animation</li>
+                            <li>Static Icons</li>
+                          </ul>
+                          <ul>  
+                            <li>Basic Layouts</li>
+                            <li>5 Day Logo Turnaround</li>
+                          </ul>
+                        </div>
+                        <div class="tick_container">
+                          <div class="tick">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="signature_layot">
+                      <input type="radio" name="plan_id" id="plan_id4" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+                      <label for="plan_id4" class="changeprice" data-price="20">
+                        <div class="order_details_box border-price">
+                          <h6>Pro Plan (Yearly) <span class="offper">Saving 20%</span><b>$<span class="year_proprice cprice">15</span> /mo </b>
+                          </h6>
+                          <div class="text_price">
+                            <span class="no_employee_qarter">5</span> Signature <div class="monthprice">$<span class="year_propricespl cpricespl">60</span> USD </div>
+                          </div>
+                          <ul>
+                          <li><b>Interactive Signature</b></li>
+                          <li>AI - Logo Animation™</li>
+                          <li>Remove CES Watermark</li>
+                          <li>Team Dashboard</sup></li>
+                          <li>Interactive Social Icons</li>
+                          <li>Animated Profile</li>
+                         
+                          </ul>
+                          <ul>
+                           <li>Verification Badge<img src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                          <li>Pro Templates</li>
+                          <li>Team Dashboard</li>
+                          <li>Outlook and Gmail Sync<img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                          <li class="right">Instant Load Speed</li>
+                          </ul>
+                        </div>
+                        <div class="tick_container">
+                          <div class="tick">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
+                          </div>
+                        </div>
+                      </label>
+                    </div>  
+                  </div>
+                 
+                 </div>
+               
+                  
+              </div>
+            </div>
+
+
+            <!-------- SELECT PLAN END--------------->
+
+          </div>
+           
+          <div class="form-floating newbox">
+            <input type="text" id="promo_code" class="form-control" id="" placeholder="">
+            <input type="hidden" id="coupon_id" name="coupon_id" value="" />
+            <label for="">Discount Code</label>
+            <button type="button" class="btn applied" id="apply_promocode">Apply Now</button>
+            <button type="button" class="btn applied d-none" id="applied_promocode">Remove</button>
+          </div>
+          <p class="special_offet" id="couponResponse"></p>
+          <div class="order_summary_box">
+            <h6>Order Summary</h6>
+            IF("%%DEFINE_free_trial%%" == "0"){
+            <p>Subtotal <span id="subtotal">%%DEFINE_plan_format_pricespl%% USD</span></p>
+            <p>Discount <span id="discount">$0 USD</span></p>
+             <p><span style="background: linear-gradient(90deg, #00CCFF 0%, #1D4AFE 100%); background-clip: border-box; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Saving</span> <span id="savings" style="background: linear-gradient(90deg, #00CCFF 0%, #1D4AFE 100%); background-clip: border-box; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">%%DEFINE_plan_format_savings%% USD</span></p>
+            <p>Total %%DEFINE_freetrialtext%% <span class="total" id="total">%%DEFINE_plan_format_price%% USD</span></p>
+             <input type="hidden" id="free_trial" value="0" />
+            {:IF}
+             IF("%%DEFINE_free_trial%%" == "1"){
+            <p>Total After Free Trial (cancel anytime) <span id="subtotal">%%DEFINE_plan_format_price%% USD</span></p>
+            <p>Discount <span id="discount">$0.00 USD</span></p>
+             <p style="color:#6BDA2F;">Saving <span id="savings" style="color:#6BDA2F;">$0.00 USD</span></p>
+            <p>Total due Today <span class="total" id="total">$0.00 USD</span></p>
+            <input type="hidden" id="free_trial" value="1" />
+            {:IF}
+            <input type="hidden" name="totalpay" id="totalpay" value="%%DEFINE_plan_price_hiden%%"  />
+          </div>
+          
+          <div class="back_button_bottom"> <a href="%%DEFINE_moduleLinkLogin%%">Back</a>
+            <input type="hidden" name="registersubmit" value="1" />
+             IF("%%DEFINE_free_trial%%" == "1"){
+            <button type="submit" name="signin" class="btn btn-primary">Start Free Trial</button>
+             {:IF}
+             IF("%%DEFINE_free_trial%%" == "0"){
+              <button type="submit" id="register_button" name="signin" class="btn btn-primary">Confirm Purchase</button>
+             {:IF}
+          </div>
+          
+          <ul class="bottom_text">
+          <li><img src="%%DEFINE_IMAGE_LINK%%/images/ssl-icon.svg" alt="">SSL Secure Checkout</li>
+          <li><img src="%%DEFINE_IMAGE_LINK%%/images/cancel-anytime-icon.svg" alt="">Cancel anytime</li>
+          <li><img src="%%DEFINE_IMAGE_LINK%%/images/risk-free-icon.svg" alt="">14-Day Risk-Free Guarantee</li>
+          </ul>
+        </div>
+        
+    </div>
+    </div>
+  </form>
+   <input type="hidden" id="ajax_url" value="%%DEFINE_linkModuleRegister%%" />
+   <input type="hidden" id="thank_url" value="%%DEFINE_thanks%%" />
+   <input type="hidden" id="from_pricing" value="%%DEFINE_plan_from_pricing%%" />
+   <input type="hidden" id="from_pricing_id" value="%%DEFINE_plan_id%%" />
+</div>
+</div>
+<!-- pricing plan change based on slider -->
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>         
+<link href="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.css" rel="stylesheet">
+<script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
+<script>
+  setTimeout(function(){ $('#register-error').html(''); }, 10000); // hide error message after 10 sec
+
+  // var isFreeTrial = "%%DEFINE_free_trial%%";
+  
+  if($('#from_pricing').val()){
+    $('.quarterly-yearly-tabs-button-class').removeClass('active');
+    planId = $('#from_pricing_id').val();
+    if(planId < 3){
+      $("#quarterly-tab").addClass('active');
+    }else{
+      $("#yearly-tab").addClass('active');
+    }
+  }
+
+function updateSelectPlan(){
+    
+    // if(isFreeTrial){
+    //   return false;
+    // }
+
+    if($(".quarterly-yearly-tabs-button-class.active").data('value') == 'quarter' && $('input[name=plan_id]:checked').val() < 3){
+      multiplyprice = 3;
+    }else{
+      multiplyprice = 12;
+    }
+    var radioObj = $('input[name=plan_id]:checked');
+    planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+    planpricesplint = parseFloat(radioObj.parent().find('label span.cpricespl').text() * multiplyprice);
+    totalsavings = parseFloat(planpricesplint - planpriceint);  
+    
+    $('#subtotal').text('$'+planpricesplint.toFixed(2)+' USD');
+    $('#savings').text('$'+totalsavings.toFixed(2)+' USD');
+    $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
+    var selectedplan = radioObj.parent().find('label').html();
+    $('#selected-plan').html(selectedplan);
+    // $('#selectplan-main').toggle();
+    // $('#order-main').toggle();
+    //for discount calcultion
+    $('#totalpay').val(planpriceint);
+    
+    $('#coupon_id').val('');
+    $('#promo_code').val('');
+    $('#couponResponse').text('');
+    $('#discount').text('$0.00 USD');
+    $("#apply_promocode").removeClass('d-none');
+    $("#applied_promocode").addClass('d-none');
+  };
+
+  
+
+  function updateGpayButton(price){
+    const stripe = Stripe("pk_test_51Lf5JtHp7DgNkCIvskUjNu75xBD5bJCrsAgaPf0ZT9al8jfTzcJXG8TwD1NZMI03qqINPFFIrrYHuJSN5n9ubfD100czetLSeB");
+    price = price * 100;
+
+    // Configure PaymentRequest
+    const paymentRequest = stripe.paymentRequest({
+      country: 'US', // Change based on your business location
+      currency: 'usd',
+      total: {
+        label: 'Your Product Name',
+        amount: price, // Amount in cents (e.g., $50.00)
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+
+    // Check for PaymentRequestButton support
+    const elements = stripe.elements();
+    paymentRequest.canMakePayment().then(function(result) {
+      if (result && result.googlePay) {
+        const prButton = elements.create('paymentRequestButton', {
+          paymentRequest: paymentRequest,
+        });
+
+        // Mount the button in the container
+        prButton.mount('#googlepay-button');
+      } else {
+        // document.getElementById('googlepay-button').style.display = 'none';
+      }
+    });
+    var url = $('#ajax_url').val();
+    var user_firstname = $('#user_firstname').val();
+    var user_lastname = $('#user_lastname').val();
+    var user_organization = $('#user_organization').val();
+    var user_email = $('#user_email').val();
+    var user_password = $("#user_password").val();
+    var plan_id = $("input[name=plan_id]:checked").val();
+    var plan_unit = $("#plan_unit").val();
+
+    
+
+  // Handle token received from Google Pay
+    paymentRequest.on('paymentmethod', function(ev) {
+      // Send the token to your server (via AJAX, for example)
+      var url = $('#ajax_url').val();
+      var user_firstname = $('#user_firstname').val();
+      var user_lastname = $('#user_lastname').val();
+      var user_organization = $('#user_organization').val();
+      var user_email = $('#user_email').val();
+      var user_password = $("#user_password").val();
+      var plan_id = $("input[name=plan_id]:checked").val();
+      var plan_unit = $("#plan_unit").val();
+
+      if(user_firstname == ''|| user_firstname == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid First Name</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      } else if(user_lastname == ''|| user_lastname == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid Last Name</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }else if(user_organization == ''|| user_organization == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid Company Name</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }else if(user_email == ''|| user_email == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid User Email</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }else if(user_password == ''|| user_password == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid password</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }
+      fetch('/processpayment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ payment_method: ev.paymentMethod.id,price:price, user_firstname:user_firstname, user_lastname:user_lastname, user_organization:user_organization, user_email:user_email, user_password:user_password, plan_id:plan_id, plan_unit:plan_unit}),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            ev.complete('fail');
+          } else {
+            ev.complete('success');
+            window.location.href = $("#thank_url").val();
+          }
+        });
+      });
+  }
+start = $('#plan_unit').val();
+var rangeSlider = $('#range')[0];
+  noUiSlider.create(rangeSlider, {
+    start: [start],
+    behaviour: 'tap', //drag
+    step: 5,
+    connect: [true, false],
+    range: {
+      'min': [1],
+      '4%': [3, 2],
+      '7%': [5, 5],
+      'max': [100]
+    }
+  });
+  
+  rangeSlider.noUiSlider.on('update', function( values, handle,unencoded ) {
+     //if(unencoded == 0 ) {unencoded = $('#plan_unit').val();}
+    //  if(unencoded == 0 ) {unencoded = 1;}
+    //  if( unencoded == '39.99999999999999') { unencoded = 40;}
+    //  if( unencoded == '74') { unencoded = 75;}
+    //  unencoded = unencoded.slice(0, 2);
+    unencoded = values;
+    unencoded = parseInt(unencoded);
+     if(unencoded == 0 ) {unencoded = [1];}
+    
+     $('#plan_unit').val(unencoded);
+     $('.no_employee_qarter').text(unencoded);
+   // quarter price changhe
+    //  var basic_quarter_unit = JSON.parse('%%DEFINE_basic_quarter_unit%%');
+     var pro_quarter_unit = JSON.parse('%%DEFINE_pro_quarter_unit%%');
+    //  var basic_quarter_unitspl = JSON.parse('%%DEFINE_basic_quarter_unitspl%%');
+     var pro_quarter_unitspl = JSON.parse('%%DEFINE_pro_quarter_unitspl%%');
+    //  $('.quarter_basicprice').text(basic_quarter_unit[unencoded]);
+     $('.quarter_proprice').text(pro_quarter_unit[unencoded]);
+      // $('.quarter_basicpricespl').text(basic_quarter_unitspl[unencoded]);
+     $('.quarter_propricespl').text(pro_quarter_unitspl[unencoded]);
+   
+    // year price changhe
+    //  var basic_year_unit = JSON.parse('%%DEFINE_basic_year_unit%%');
+     var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+      // var basic_year_unitspl = JSON.parse('%%DEFINE_basic_year_unitspl%%');
+     var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+    //  $('.year_basicprice').text(basic_year_unit[unencoded]);
+     $('.year_proprice').text(pro_year_unit[unencoded]);
+      // $('.year_basicpricespl').text(basic_year_unitspl[unencoded]);
+     $('.year_propricespl').text(pro_year_unitspl[unencoded]);
+     var radioObj = $('input[name=plan_id]:checked');
+     if($(".quarterly-yearly-tabs-button-class.active").data('value') == 'quarter' && $('input[name=plan_id]:checked').val() < 3){
+      multiplyprice = 3;
+     }else{
+      multiplyprice = 12;
+     }
+     planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+     
+    // month
+    // var basic_month_unit = JSON.parse('%%DEFINE_basic_month_unit%%');
+       //  var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+    // $('.month_basicprice').text(basic_month_unit[unencoded]);
+    // $('.month_proprice').text(pro_month_unit[unencoded]);
+   
+     $(".rno").removeClass("active");
+     $("#rno"+unencoded).addClass("active");
+
+     updateSelectPlan();
+     updateGpayButton(planpriceint.toFixed(2));
+  });
+  
+
+// chek plan coupon is valid
+
+$(document).ready(function(){
+  if($('#from_pricing').val()){
+    planId = $('#from_pricing_id').val();
+    if(planId < 3){
+      $("#yearly-tab").click();
+      $("#quarterly-tab").click();
+    }else{
+      
+    }
+  }
+  $("#apply_promocode").click(function(){
+    $('#paymentResponse').html('');
+    $('#coupon_id').val('');
+    var promo_code = $('#promo_code');
+    var freetrial = $('#free_trial').val();
+    if(promo_code.val() == ""){
+      promo_code.focus(); return false;
+    }else{
+      var url = $('#ajax_url').val();
+      jQuery.ajax({
+      url: url,
+      data:'coupon_apply=1&coupon_code='+promo_code.val(),
+      type: "POST",
+      dataType:"json",
+      async: false,
+      success:function(data){
+          if(data['coupon_id'] !=0){
+            $('#coupon_id').val(data['coupon_id']);
+            
+            totalValue = $('#totalpay').val();
+            if(data['coupon_type'] == 'per'){
+              discount =  ((totalValue * data['coupon_amount']) / 100).toFixed(2);
+              totalpay = (totalValue - discount).toFixed(2);
+            }else{
+              discount =  (data['coupon_amount']).toFixed(2);
+              totalpay = (totalValue - discount).toFixed(2);
+            }
+            
+            if(freetrial == 0){
+              $('#discount').text('$'+discount+' USD');
+              $('#total').text('$'+totalpay+' USD');
+              $("#apply_promocode").addClass('d-none');
+              $("#applied_promocode").removeClass('d-none');
+            }else{
+              $('#subtotal').text('$'+totalpay+' USD');
+              $('#discount').text('$'+discount+' USD');
+            }
+          }
+        $('#couponResponse').html(data['msg']);
+      },
+      error:function (){ 
+        clearconsole(); 
+      }
+      });
+    }
+  });
+  
+  $("#applied_promocode").click(function(){
+    $('#coupon_id').val('');
+    $('#promo_code').val('');
+    totalPay = $('#totalpay').val();
+    totalPay = parseFloat(totalPay).toFixed(2);
+    $('#discount').text('$0 USD');  
+    $('#total').text('$'+totalPay+' USD');
+    $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
+    $("#apply_promocode").removeClass('d-none');
+    $("#applied_promocode").addClass('d-none');
+  })  
+});  
+
+</script>
+<!-- end pricing plan change based on slider -->  
+
+
+<script>
+// Create an instance of the Stripe object
+// Set your publishable API key
+var stripe = Stripe('%%DEFINE_STRIPE_PUBLISHABLE_KEY%%');
+
+// Create an instance of elements
+var elements = stripe.elements();
+    var style = {
+      base: {
+        color: "#32325d",
+        fontFamily: 'Roboto, sans-serif',
+        fontSmoothing: "antialiased",
+        fontSize: "13px",
+        "::placeholder": {
+          color: "#32325d"
+        }
+      },
+      invalid: {
+        fontFamily: 'Arial, sans-serif',
+        color: "#fa755a",
+        iconColor: "#fa755a"
+      }
+    };
+
+    var cardElement = elements.create("card", {   hidePostalCode: true, style: style });
+    // Stripe injects an iframe into the DOM
+    cardElement.mount("#card-element");
+
+// Validate input of the card elements
+var resultContainer = document.getElementById('paymentResponse');
+cardElement.addEventListener('change', function(event) {
+    if (event.error) {
+        resultContainer.innerHTML = '<p style="color:#F00;">'+event.error.message+'</p>';
+    } else {
+        resultContainer.innerHTML = '';
+    }
+});
+// Get payment form element
+var form = document.getElementById('registerForm');
+
+// Create a token when the form is submitted.
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Always prevent default first
+
+  var user_firstname = $('#user_firstname').val().trim();
+  var user_lastname = $('#user_lastname').val().trim();
+  var user_email = $('#user_email').val().trim();
+
+  if (user_firstname === '') {
+    $("#register-error").html('<div class="alert alert-danger" role="alert">Please enter a valid First Name</div>');
+    $('html, body').animate({
+      scrollTop: $("#register-error").offset().top - 50 // offset slightly above the message
+    }, 500);
+    setTimeout(() => { $("#register-error").empty(); }, 3000);
+    return false;
+  }
+
+  if (user_lastname === '') {
+    $("#register-error").html('<div class="alert alert-danger" role="alert">Please enter a valid Last Name</div>');
+    $('html, body').animate({
+      scrollTop: $("#register-error").offset().top - 50 // offset slightly above the message
+    }, 500);
+    setTimeout(() => { $("#register-error").empty(); }, 3000);
+    return false;
+  }
+
+  if (user_email === '') {
+    $("#register-error").html('<div class="alert alert-danger" role="alert">Please enter a valid Email</div>');
+    $('html, body').animate({
+      scrollTop: $("#register-error").offset().top - 50 // offset slightly above the message
+    }, 500);
+    setTimeout(() => { $("#register-error").empty(); }, 3000);
+    return false;
+  }
+
+  var password = $('#user_password').val();
+  var errorMessage = '';
+
+  if (password.length < 8) {
+    errorMessage += 'Password must be at least 8 characters long. ';
+  }
+  else if (!/[a-z]/.test(password)) {
+    errorMessage += 'Password must contain at least one lowercase letter. ';
+  }
+  else if (!/[A-Z]/.test(password)) {
+    errorMessage += 'Password must contain at least one uppercase letter. ';
+  }
+  else if (!/[0-9]/.test(password)) {
+    errorMessage += 'Password must contain at least one number. ';
+  }
+  else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    errorMessage += 'Password must contain at least one special character. ';
+  }
+  if (errorMessage) {
+    $("#register-error").html('<div class="alert alert-danger" role="alert">'+errorMessage+'</div>');
+    $('html, body').animate({
+      scrollTop: $("#register-error").offset().top - 50 // offset slightly above the message
+    }, 500);
+    setTimeout(() => { $("#register-error").empty(); }, 3000);
+    return false;
+  }
+
+  // Passed all checks
+  $("#register_button").prop('disabled', true).text('Processing...').addClass('spinner');
+
+  // Call token creation or further logic
+  createToken();
+});
+
+// Create single-use token to charge the user
+function createToken() {
+  var card_name = document.getElementById('card_name').value;
+    stripe.createToken(cardElement,{name: card_name}).then(function(result) {
+        if (result.error) {
+            // Inform the user if there was an error
+            resultContainer.innerHTML = '<p style="color:#F00;">'+result.error.message+'</p>';
+            $("#register_button").prop('disabled', false);
+            $("#register_button").text('Confirm Purchase');
+            $("#register_button").removeClass('spinner');
+        } else {
+            // Send the token to your server
+            stripeTokenHandler(result.token);
+        }
+    });
+}
+
+// Callback to handle the response from stripe
+function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+    // Submit the form
+    form.submit();
+}
+</script> 
+<script>
+  function handleCredentialResponse(response) {
+     // decodeJwtResponse() is a custom function defined by you
+     // to decode the credential response.
+    var responsePayload = parseJwt(response.credential);
+  // console.log(responsePayload.email_verified);
+  document.getElementById('user_firstname').value = responsePayload.given_name+' '+responsePayload.family_name;
+  //document.getElementById('user_lastname').value = responsePayload.family_name;
+  document.getElementById('user_email').value = responsePayload.email;
+  document.getElementById("passField").style.display = "none"; 
+  document.getElementById("user_password").value ='google';
+  
+  var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'user_googleid');
+    hiddenInput.setAttribute('value', responsePayload.sub);
+    form.appendChild(hiddenInput);
+  
+  var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'user_image');
+    hiddenInput.setAttribute('value', responsePayload.picture);
+    form.appendChild(hiddenInput);
+  
+  }
+  
+  function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+</script> 
+
+<script>
+$(document).ready(function(){
+  $('.changeprice').on( "click", function() {
+    if($(".quarterly-yearly-tabs-button-class.active").data('value') == 'quarter' && $('input[name=plan_id]:checked').val() < 3){
+      multiplyprice = 3;
+    }else{
+      multiplyprice = 12;
+    }
+    planpriceint = parseFloat($(this).find('span.cprice').text() * multiplyprice);
+    planpricesplint = parseFloat($(this).find('span.cpricespl').text() * multiplyprice);
+    totalsavings = parseFloat(planpricesplint - planpriceint);
+    $('#subtotal').text('$'+planpricesplint.toFixed(2)+' USD');
+    $('#savings').text('$'+totalsavings.toFixed(2)+' USD');
+    $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
+    $('#totalpay').val(planpriceint);
+    $(this).css('border-color','#00CCFF');
+    var selectedplan = $(this).html();
+    $('#selected-plan').html(selectedplan);
+    
+    $('#coupon_id').val('');
+    $('#promo_code').val('');
+    $('#couponResponse').text('');
+    $('#discount').text('$0.00 USD');
+    $("#apply_promocode").removeClass('d-none');
+    $("#applied_promocode").addClass('d-none');
+  });
+  
+  $('#selectplan').on( "click", function() {  
+    updateSelectPlan();
+  });
+  $('#changeplan').on( "click", function() {     
+    $('#selectplan-main').toggle();
+    $('#order-main').toggle();
+  });
+
+
+  // By Defalut Basic Quartly plan selected code
+  // $($('.quarterly-yearly-tabs-button-class')[0]).click();
+  // By Defalut Basic Quartly plan selected code
+
+  // quarterly yearly tabs click code start
+  $('.quarterly-yearly-tabs-button-class').on( "click", function() {  
+    var tab = $(this).data('value');
+    if(tab == 'quarter'){
+      $('#plan_id2').click();
+      $('#plan_id2').siblings('.changeprice').click();
+    }else{
+      $('#plan_id4').click();
+      $('#plan_id4').siblings('.changeprice').click();
+    }
+    multiplyprice = 0
+    if($(".quarterly-yearly-tabs-button-class.active").data('value') == 'quarter' && $('input[name=plan_id]:checked').val() < 3){
+      multiplyprice = 3;
+    }else{
+      multiplyprice = 12;
+    }
+    var radioObj = $('input[name=plan_id]:checked');
+    planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+    updateGpayButton(planpriceint);
+  });
+  // quarterly yearly tabs click code start
+  
+
+// // Set your publishable key
+// const stripe = Stripe('pk_test_51Lf5JtHp7DgNkCIvskUjNu75xBD5bJCrsAgaPf0ZT9al8jfTzcJXG8TwD1NZMI03qqINPFFIrrYHuJSN5n9ubfD100czetLSeB');
+
+// // Create a payment request object
+// const paymentRequest = stripe.paymentRequest({
+//   country: 'US', // Set the country
+//   currency: 'usd', // Set the currency
+//   total: {
+//     label: 'Total',
+//     amount: 1000, // Amount in cents (e.g., $10.00)
+//   },
+//   requestPayerName: true, // Request the payer's name
+//   requestPayerEmail: true, // Request the payer's email
+// });
+
+// // Check if Apple Pay is available
+// paymentRequest.canMakePayment().then(function(result) {
+//   if (result && result.applePay) {
+//     // If Apple Pay is available, display the Apple Pay button
+//     document.getElementById('apple-pay-button').style.display = 'block';
+//   } else {
+//     // If Apple Pay is not available, hide the button
+//     document.getElementById('apple-pay-button').style.display = 'none';
+//   }
+// });
+
+// // Handle the payment submission
+// document.getElementById('apple-pay-button').addEventListener('click', function () {
+//   // Show the payment request button
+//   const elements = stripe.elements();
+//   const applePayButton = elements.create('paymentRequestButton', {
+//     paymentRequest: paymentRequest,
+//   });
+
+//   // Mount the Apple Pay button to the DOM
+//   applePayButton.mount('#apple-pay-button');
+// });
+
+// // When the payment method is selected, handle it
+// paymentRequest.on('paymentmethod', async (ev) => {
+//   // Call your PHP backend to create a Payment Intent and get the client_secret
+//   const { client_secret } = await fetch('/path_to_create_payment_intent.php', {
+//     method: 'POST',
+//   }).then((response) => response.json());
+
+//   // Confirm the payment with Stripe using the received client secret
+//   const confirmResult = await stripe.confirmPayment({
+//     clientSecret: client_secret,
+//     paymentMethod: ev.paymentMethod.id,
+//   });
+
+//   if (confirmResult.error) {
+//     // Handle error if payment fails
+//     ev.complete('fail');
+//   } else {
+//     // Handle success
+//     ev.complete('success');
+//     // Optionally show a success message or redirect the user
+//   }
+// });
+
+
+  
+
+
+
+
+
+
+});
+</script> 
+
+
+%%DEFINE_FOOTER%%

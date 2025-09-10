@@ -1,0 +1,51 @@
+%%DEFINE_HEADER%%
+<div id="middle"> 
+    
+    <!-- Side Navigation Start -->
+    
+   %%DEFINE_LEFT%%
+    
+    <!-- Side Navigation End --> 
+    
+    <!-- Content Wrapper Start -->
+    
+    <div id="content_wrapper">
+      <div class="page_head">Pages</div>
+      <div class="bread_crumb"><a href="%%DEFINE_li_dashboard%%">Home</a> / <a href="%%DEFINE_li_pages%%">Pages</a>/ View pages</div>
+      <div class="content">
+        <div class="widgets">
+          <div class="box full_box">
+            <div class="box_head"><span class="m-l-10">View page</span></div>
+            <div class="box_cont">
+              <div class="form_cnt">
+                <ul>
+                  <li>
+                    <div class="lft_txt">Parent Page name:</div>
+                    <div class="rgt_ipt"><span> %%DEFINE_GetParentName%%</span></div>
+                  </li>
+                  <li>
+                    <div class="lft_txt">Page name:</div>
+                    <div class="rgt_ipt"><span>%%DEFINE_GetName%%</span></div>
+                  </li>
+                   <li>
+                    <div class="lft_txt">Page url:</div>
+                    <div class="rgt_ipt"><span>%%DEFINE_GetSeoUrl%%</span></div>
+                  </li>
+                   <li>
+                    <div class="lft_txt">Page type:</div>
+                    <div class="rgt_ipt">%%DEFINE_PageType%%<span %%DEFINE_GetModuleTextDisplay%%><br />
+                    <strong>Module Name:</strong> %%DEFINE_GetModulename%%</span></div>
+                  </li>
+                  <li>
+                    <div class="lft_txt">Description:</div>
+                    <div class="rgt_ipt"><div id="blankDescContent">%%DEFINE_GetDesc%%</div></div>
+                  </li>
+                  
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+%%DEFINE_FOOTER%%

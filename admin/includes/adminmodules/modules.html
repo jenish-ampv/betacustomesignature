@@ -1,0 +1,86 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">%%DEFINE_ModuleName%%</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+              <li class="breadcrumb-item">
+              <a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> 
+              <a href="#!">%%DEFINE_ModuleName%%</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+          <div class="card-header">
+            <h5>%%DEFINE_ModuleName%%</h5>
+            <div class="card-header-right">
+              <a href="%%DEFINE_li_add%%" class="btn btn-sm btn-primary has-ripple"><i class="feather mr-2 icon-plus-square"></i>Add New</a>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0" id="modules">
+                    <thead>
+                      <tr> 
+                        <th>status</th>
+                        <th>Module Name</th>
+                        <th>Seo Url</th>
+                        <th>Parent Module Name</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<script>
+  var filter = jQuery.noConflict();
+  filter(document).ready(function(){
+    var filterurl = '%%DEFINE_li_modulesdata%%';
+    var dataTable = filter('#modules').DataTable({		
+      'processing': true,
+      'serverSide': true,
+      'select': true,
+      'order': [[0,"ASC"]],
+      // "lengthMenu": [[40], [40]],
+      "language": {                
+        "infoFiltered":""
+      }, 
+      'serverMethod': 'post',
+      'ajax': {
+        'url': filterurl,
+        'data': function(data){
+        },
+      }, 
+      'columns': [
+        { data : 'status'},
+        { data : 'name'},
+        { data : 'seourl'},
+        { data : 'parentmodulename'},
+        { data : 'action'}
+      ],	
+    });
+  });
+</script>
+

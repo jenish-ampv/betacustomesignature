@@ -1,0 +1,143 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Dashboard </h5>
+                        </div>
+                        <ul class="breadcrumb"style="float:left;">
+                            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#"> Dashboard</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- cards -->
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <a href="%%DEFINE_li_createsite%%">
+                                            <h4 class="text-c-yellow">Total: #%%DEFINE_TotalUser%%</h4>
+                                            <h6 class="text-muted m-b-0">User</h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <a href="%%DEFINE_li_createsite%%" title="Rewards website">
+                                            <i class="feather icon-bar-chart-2 f-28 text-c-yellow"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <a href="%%DEFINE_li_registerusers%%">
+                                            <h4 class="text-c-green">Total: #%%DEFINE_CompleteSignature%%</h4>
+                                            <h6 class="text-muted m-b-0">Signature Complete</h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <a href="%%DEFINE_li_registerusers%%" title="Gold member">
+                                            <i class="feather icon-user f-28 text-c-green"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <a href="%%DEFINE_li_registerusers%%">
+                                            <h4 class="text-c-red">Total: #%%DEFINE_ProcessSignature%%</h4>
+                                            <h6 class="text-muted m-b-0">Signature Process</h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <a href="%%DEFINE_li_registerusers%%" title="Free member">
+                                            <i class="feather icon-user f-28 text-c-red"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+			
+            
+            <!-- Latest User-->
+            <div class="col-xl-8 col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h5>Latest User</h5>
+                        <div class="card-header-right">
+                            <div class="btn-group card-option">
+                               <!-- <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="feather icon-more-horizontal"></i>
+                                </button>
+                                <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                    <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                    <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                                    <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                         <th class="text-center">Status</th>
+                                        <th>User Name </th>
+                                         <th>User Email </th>
+                                        <th>Date Added</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {LOOP: USER}
+                                    <tr>
+                                        <td><a href="{%%USER.user_view%%}" style="color:#373a3c;" title="View">{%%USER.user_id%%}</a></a></td>
+                                        <td><a href="{%%USER.user_view%%}" style="color:#373a3c;" title="View">{%%USER.user_status%%}</a></td>
+                                        <td><a href="{%%USER.user_view%%}" style="color:#373a3c;" title="View">{%%USER.user_fullname%%}</a></td>
+                                        <td><a href="{%%USER.li_view%%}" style="color:#373a3c;" title="View">{%%USER.user_email%%}</a></td>
+                                        <td><a href="{%%USER.user_view%%}" style="color:#373a3c;" title="View">{%%USER.user_created%%}</a></td>
+                                        <td class="text-center"><a href="{%%USER.user_view%%}" class="f-20 feather icon-eye" title="View"></a></td>
+                                    </tr>
+                                    {/LOOP: USER}
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                                <a href="%%DEFINE_li_registerusers%%" class="btn btn-primary btn-block has-ripple">View all User</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+		</div>
+    </div>
+</div> 

@@ -1,0 +1,39 @@
+%%DEFINE_HEADER%%
+<style>body{ background:#052438;}</style>
+<div class="auth-wrapper">
+	<div class="auth-content">
+		<div class="card">
+			<div class="row align-items-center text-center">
+				<div class="col-md-12">
+					<div class="card-body">
+						<!-- <h4 class="mb-3 f-w-400">%%DEFINE_SITE_TITLE%%</h4> -->
+						<img src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" class="mb-4" style="width:70%">
+						<div class="%%DEFINE_MessageClass%%" style="margin-left:10px;">%%DEFINE_Message%%</div>
+						<form name="login_form" id="login_form" action="%%DEFINE_ADMIN_LINK%%/" method="post" onSubmit="return loginValidate(this)">
+							<div class="form-group mb-3 m-t-20">
+								<label class="floating-label" for="Email">Email address</label>
+								<input type="text" class="form-control" name="email" id="Email" onChange="checkEmail(email)" value="%%DEFINE_AdminUserName%%" required/>
+							</div>
+							<div class="form-group mb-4 m-t-20">
+								<label class="floating-label" for="Password">Password</label>
+								<input type="password" class="form-control" id="Password" name="password" placeholder="" value="%%DEFINE_AdminUserPassword%%" required/>
+							</div>
+							<div class="custom-control custom-checkbox  text-left mb-4 mt-2">
+								<input type="checkbox" class="custom-control-input" id="customCheck1" name="rememberme" value="1" %%DEFINE_AdminRememberMe%%>
+								<label class="custom-control-label" for="customCheck1">Remember my login information </label>
+							</div>
+							<input name="submit" type="submit" class="btn btn-primary btn-block mb-4" value="Login" style="background-color:#052438;" />
+							<input type="hidden" name="cit_login_submit" value="1"/>
+							<p class="mb-2">Forgot Password? <a href="%%DEFINE_li_fp%%" class="f-w-400">Click here</a></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="%%DEFINE_JS_LINK%%/vendor-all.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_JS_LINK%%/plugins/bootstrap.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_JS_LINK%%/pcoded.min.js"></script>
+

@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@theme {
+    --font-sans: "Switzer", sans-serif;
+    --color-gray-950: #09090B;
+    --color-gray-900: #18181B;
+    --color-gray-800: #27272A;
+    --color-gray-700: #3F3F46;
+    --color-gray-600: #52525B;
+    --color-gray-500: #71717A;
+    --color-gray-400: #A1A1AA;
+    --color-gray-300: #D4D4D8;
+    --color-gray-200: #ECECF4;
+    --color-gray-100: #F8F8FD;
+    --color-gray-50: #FAFAFA;
+    --color-danger: #ff0000;
+    --text-base: 14px;
+    --text-lg: 16px;     /* optional custom sizes */
+    --text-xl: 18px;
+    --text-xxl: 20px;
+  }
+
+/* Tailwind core */
+@import 'tailwindcss';
+
+/* Tailwind scan sources */
+@source '../../dist/assets/vendors/ktui/';
+
+/* Switzer */
+@import '../../dist/assets/vendors/switzer/fonts.css';
+@import '../../dist/assets/vendors/swiper/swiper.bundle.css';
+
+/* Theme configs */
+@import "./config.ktui";
+
+/* KTUI styles */
+@import '../../node_modules/@keenthemes/ktui/styles.css';
+
+/* Metronic components  */
+@import "./components/index";
+
+/* Demos */
+@import "./demos/demo1.css";
+
+
+h1{
+    font-size: calc( 48px + (64 - 48) * (100vw - 400px) / (1920 - 400) );
+    line-height: calc(1.2em);
+}
+h2{
+    font-size: calc( 40px + (48 - 40) * (100vw - 400px) / (1920 - 400) );
+    line-height: calc(1.2em);
+}
+h3{font-size: calc( 32px + (40 - 32) * (100vw - 400px) / (1920 - 400) );}
+h4{font-size: calc( 24px + (32 - 24) * (100vw - 400px) / (1920 - 400) );}
+h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
+
+.bg-gradient{
+    @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
+}
+
+.kt-btn{
+    @apply rounded-full h-10 outline -outline-offset-2 px-4 outline-transparent;
+    i{
+        @apply leading-none;
+    }
+    &.kt-btn-sm{
+        @apply h-7 px-2.5;
+    }
+}
+.kt-btn-icon{
+    @apply w-10 p-0;
+}
+.kt-btn-primary{
+    @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] hover:from-[#1D4AFE] hover:to-[#26B7FF] outline-white/40;
+    &.kt-btn-outline{
+        @apply bg-white border border-primary/50 bg-none text-gray-950 hover:bg-primary hover:text-white;
+        i{
+            @apply text-gray-950;
+        }
+        &:hover{
+            i{@apply text-white;}
+        }
+    }
+}
+.kt-btn-white{
+    /* @apply relative bg-white text-primary before:rounded-[14px] before:inset-[1px] before:border-2 before:border-transparent before:absolute before:[border-image:linear-gradient(90deg,#4D7FFF,#FFFFFF)_1]; */
+    @apply relative bg-white text-primary place-items-center border-2 border-white;
+    &:after{
+        content: "";
+        background:linear-gradient(90deg,#4D7FFF,#FFFFFF) border-box;
+        mask-composite: exclude;
+        -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor; /* cuts inner area */
+        mask-composite: exclude;
+        @apply rounded-[12px] absolute p-[1px] inset-0;
+      }
+}
+.kt-input,.kt-select{
+    @apply rounded-full h-10;
+    &.kt-input-sm,&.kt-select-sm{
+        @apply h-7 leading-2.5;
+    }
+}
+
+.kt-modal-content{
+    @apply bg-muted p-1 rounded-[12px];
+}
+.kt-modal-body{
+    @apply bg-white rounded-[10px];
+}
+.kt-modal-header{
+    @apply border-b-0;
+}
+.kt-card-title{
+    @apply text-xxl;
+}
+.kt-modal-close{
+    i{
+        @apply text-[20px] leading-none;
+    }
+}
+
+.masterSignature{
+    @apply relative p-2 shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] rounded-xl;
+    &:after{
+        content: "";
+        background:linear-gradient(90deg,#26B7FF,#1D4AFE) border-box;
+        mask-composite: exclude;
+        -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor; /* cuts inner area */
+        mask-composite: exclude;
+        @apply rounded-lg absolute p-[2px] inset-0;
+      }
+}
+
+
+.floting-input{
+    @apply relative;
+    input{
+        @apply h-[48px];
+    }
+    label{
+        @apply absolute text-xs text-gray-400 -top-2 left-2 px-[6px] bg-white;
+    }
+}
+.swiper-wrapper{
+    @apply h-auto;
+}
+.swiper-pagination-bullet{
+    @apply !m-[2px] w-2 rounded-[80px] transition-all;
+    &.swiper-pagination-bullet-active{
+        @apply w-[18px] transition-all bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
+    }
+}
+
+.noUi-connect {
+    @apply rounded-[50px] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF];
+    /* shadow-[0px_-2px_89px_7px_rgba(29,74,254,0.5)] */
+}
+.noUi-origin{
+    @apply top-1/2;
+}
+.noUi-target{
+    @apply w-full m-0 bg-gray-200 rounded-full border-none shadow-none;
+}
+.noUi-horizontal{
+    @apply h-1.5;
+    .noUi-handle {
+        @apply size-5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0 bg-transparent
+            bg-[url('../../../images/ellipse.png')] bg-left bg-no-repeat bg-cover 
+            border-none shadow-none cursor-pointer after:hidden before:hidden
+            transition-all duration-200 ease-in-out 
+            [filter:drop-shadow(0_0_3px_rgba(0,204,255))_drop-shadow(0_0_18px_rgba(29,74,254))];
+    }
+}

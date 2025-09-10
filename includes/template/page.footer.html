@@ -1,0 +1,264 @@
+<footer>
+	<input type="hidden" value="%%DEFINE_ROOT_LINK%%" id="root_link" />
+	<input type="hidden" value="%%DEFINE_UPLOAD_LINK%%" id="upload_link" />
+	<input type="hidden" value="%%DEFINE_IMAGE_LINK%%" id="image_link" />
+    <!-- <div id="snackbar"></div>
+    <div id="snackbar-error"></div>
+    <div id="snackbar-info"></div> -->
+</footer>
+
+  <!-- <a href="javascript:void(0)" class="btn" id="delet-confirmation" data-bs-toggle="modal" data-bs-target="#delet-confirmation-popup">Open</a> -->
+<div class="modal fade" id="delet-confirmation-popup" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+           <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  -->
+      </div>
+      <div class="modal-body">
+        <div class="delet-confirmation-content">
+          <div class="icon-container">
+              <svg class="trash-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 6h18v2H3V6zm2 3v11a2 2 0 002 2h10a2 2 0 002-2V9H5zm3 2h2v7H8v-7zm4 0h2v7h-2v-7z"/>
+                  <path d="M8 4V2a1 1 0 011-1h6a1 1 0 011 1v2h4v2H4V4h4zm2-1v1h4V3h-4z"/>
+              </svg>
+          </div>
+          <h2 class="popup-title" id="confirmation-popup-title">Are you sure you want to delete this user?</h2>
+          <p class="popup-description" id="confirmation-popup-description">This user will be permanently removed.</p>
+          <div class="button-container">
+              <button class="btn button-cancel btn-close" id="cancelBtnDeleteConfirmation" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+              <button class="btn button-delete" id="deleteBtncancelBtnDeleteConfirmation">Delete</button>
+          </div>
+        </div>
+      </div>
+	  </div>
+	</div>
+</div>
+
+<div class="modal fade" id="upgrade-plan-popup">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+      </div>
+      <div class="modal-body" id="upgrade-plan-popupmodal-body">
+        <div class="button-container">
+          <button class="kt-btn kt-btn-primary mt-5" id="load-upgrade-content">Start 7-day Free Trial</button>
+          <span id="countdown">00:01:30</span>
+        </div>
+      </div>
+	  </div>
+	</div>
+</div>
+    
+  <!-- Optional JavaScript; choose one of the two! --> 
+
+<!-- Option 1: Bootstrap Bundle with Popper --> 
+ 
+<!-- Option 2: Separate Popper and Bootstrap JS --> 
+<!--<script src="js/jquery-3.5.1.slim.min.js"></script>	
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> --> 
+
+<!-- Form--> 
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_JS_LINK%%/vendor/bootstrap.bundle.min.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.min.js"></script>
+<script src="%%DEFINE_JS_LINK%%/default.js"></script> 
+<script src="%%DEFINE_JS_LINK%%/croppie/croppie.js"></script> 
+<script src="%%DEFINE_JS_LINK%%/croppie/cropImage.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/swiper/swiper.bundle.js"></script>
+
+  %%DEFINE_LOTTIE_JS_BASEON_SIGNATURELOGOPROCESSPENDING%%
+  <script type="text/javascript">
+    let isDeleteConfirmed = false;
+    let clickedElementForDeleteConfirmation = false;
+    let myDeleteConfirmationModal = false;
+
+    function openDeleteModal(passedEmelemt,title = null, description = null) {
+      myDeleteConfirmationModal = new bootstrap.Modal(document.getElementById('delet-confirmation-popup'));
+      myDeleteConfirmationModal.show();
+      isDeleteConfirmed = false;  // Reset to null every time the modal opens
+      clickedElementForDeleteConfirmation = passedEmelemt;
+      if (title !== null) {
+        const titleElement = document.getElementById('confirmation-popup-title');
+        if (titleElement) {
+          titleElement.textContent = title;
+        }
+      }
+      if (description !== null) {
+        const descriptionElement = document.getElementById('confirmation-popup-description');
+        if (descriptionElement) {
+          descriptionElement.textContent = description;
+        }
+      }
+    }
+
+    document.getElementById('cancelBtnDeleteConfirmation').addEventListener('click', function() {
+      isDeleteConfirmed = false;
+      console.log('Delete confirmed:', isDeleteConfirmed); // Log for debugging
+    });
+
+    document.getElementById('deleteBtncancelBtnDeleteConfirmation').addEventListener('click', function() {
+      isDeleteConfirmed = true;
+      console.log('Delete confirmed:', isDeleteConfirmed); // Log for debugging
+      $(clickedElementForDeleteConfirmation).addClass('clickedFromDeleteConfirmationPopup');
+      if (clickedElementForDeleteConfirmation) {
+        if(clickedElementForDeleteConfirmation.is('a')){
+          const href = clickedElementForDeleteConfirmation.attr('href');
+          if (href && href !== 'javascript:void(0);') {
+            window.location.href = href;  // Redirect manually
+          } else if (href === 'javascript:void(0);') {
+            $(clickedElementForDeleteConfirmation).click();
+          }
+        }
+        else{
+          $(clickedElementForDeleteConfirmation).click();
+        }
+      }
+      myDeleteConfirmationModal.hide();
+    });
+
+    function checkUserChoiceForDeleteConfirmation() {
+      return isDeleteConfirmed;
+    }
+  </script>
+  <script>
+  jQuery.noConflict();
+  (function( $ ) {
+    $(function() {
+          $("[rel='tooltip']").tooltip();
+    });
+  })(jQuery);
+  $(document).ready(function(){
+    const swiper = new Swiper('#loginSlider', {
+      loop: true,              // enable infinite loop
+      slidesPerView: 1,        // number of slides visible
+      spaceBetween: 10,        // gap between slides
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 3000,
+      },
+    });
+  });
+</script>
+
+<script>
+  let count = 1;
+  let counterInterval;
+  // Function to update the counter and progress bar
+  function updateCustomLoader(pauseCount, loaderText) {
+    const loader = document.getElementById("loader");
+    const counter = document.getElementById("counter");
+    const progressBar = document.getElementById("progress");
+    const loaderTextContainer = document.getElementById("custom-loader-text");
+    if ($('.loader-container').is(':hidden')) {
+      $('.loader-container').show();
+    }
+    if(loaderText){
+      loaderTextContainer.textContent = loaderText;
+    }
+    const interval = setInterval(() => {
+      if (count <= pauseCount && count <= 100) {
+        counter.textContent = count + "%";
+        progressBar.style.width = `${count}%`;
+        count++;
+      } else {
+        clearInterval(interval);
+        console.log(count)
+        if(count > 100){
+          pauseCustomLoader();
+        }
+      }
+    }, 100);
+  }
+
+  function pauseCustomLoader(){
+    loader.style.display = "none";
+  };
+
+  function resetCustomLoader(){
+    count = 1;
+    document.getElementById("progress").style.width = `0%`;
+  };
+
+  </script>
+
+
+<script>
+    const countdownEl = document.getElementById('countdown');
+    const redirectUrl = $('#root_link').val();
+    let countdownInterval;
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `00:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function startCountdown(duration) {
+      let timeLeft = duration;
+
+      // Show initial time
+      countdownEl.textContent = formatTime(timeLeft);
+
+      // Clear any existing interval
+      clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = formatTime(timeLeft);
+
+        if (timeLeft <= 0) {
+          clearInterval(countdownInterval);
+          window.location.href = redirectUrl;
+        }
+      }, 1000);
+    }
+
+    // Listen to Bootstrap modal open event
+    const modal = document.getElementById('upgrade-plan-popup');
+    modal.addEventListener('shown.bs.modal', () => {
+      startCountdown(90); // 90 seconds = 1 min 30 sec
+    });
+
+    // Optional: stop countdown when modal closes
+    modal.addEventListener('hidden.bs.modal', () => {
+      clearInterval(countdownInterval);
+    });
+    
+
+    $('#load-upgrade-content').on('click', function () {
+      clearInterval(countdownInterval);
+      const $button = $(this);
+      const $target = $('#upgrade-plan-popupmodal-body');
+      const originalContent = $target.html();
+      const targetUrl = $('#root_link').val() + '/pricing';
+
+      // Set loading state
+      $button.prop('disabled', true).text('Processing...').addClass('spinner');
+
+      $.ajax({
+        url: targetUrl,
+        method: 'GET',
+        dataType: 'html',
+        complete: function (xhr) {
+          // Reset button state with new text
+          $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
+          // Only update content on HTTP 200
+          xhr.status === 200 ? $target.html(xhr.responseText) : $target.html(originalContent);
+        }
+      });
+    });
+
+
+
+  </script>
+  </body>
+</html>

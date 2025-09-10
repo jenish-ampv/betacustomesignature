@@ -1,0 +1,184 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_salesmember%%">%%DEFINE_ModuleName%% </a><a href="#!">/ View %%DEFINE_ModuleName%%</a></li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5>View %%DEFINE_ModuleName%%</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b>Marketing Link:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_MarketingLink%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b>Agent Link:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_AgentLink%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b>First Name:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_FName%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b>Last Name:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_LName%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b>Email Address:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_Email%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b> Phone:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_Phone%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b>Address:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_Address%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b> City:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_City%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b> State:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_State%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b> Country:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_Country%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b> Status:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>%%DEFINE_Status%%</span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label"><b> Local Shop Register:</b></label>
+                    <div class="col-sm-9 m-t-10">
+                      <span>Gold: <strong>%%DEFINE_Gold%%</strong> | Free: <strong>%%DEFINE_Free%%</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" name="STEPURL" id="STEPURL" value="%%DEFINE_li_localshops%%" />
+      <input type="hidden" name="LocalshopID" id="LocalshopID" value="%%DEFINE_shop_id%%" />
+      
+      IF("%%DEFINE_Free%%"!="0"){
+        <div class="row">
+          <div class="col-xl-6 col-md-6">
+            <div class="card table-card">
+              <div class="card-header">
+                <h5>View Free Member</h5>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table table-hover mb-0">
+                        <thead>
+                          <tr> 
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {LOOP: FREEMEMBER}
+                            <tr>
+                              <td>{%%FREEMEMBER.name%%}</td>
+                              <td>{%%FREEMEMBER.email%%}</td>
+                              <td>{%%FREEMEMBER.phone%%}</td>
+                            </tr> 
+                          {/LOOP: FREEMEMBER}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {:IF}
+        IF("%%DEFINE_Gold%%"!="0"){
+          <div class="col-xl-6 col-md-6">
+            <div class="card table-card">
+              <div class="card-header">
+                <h5>View Gold member</h5>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table table-hover mb-0">
+                        <thead>
+                          <tr> 
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {LOOP: GOLDMEMBER}
+                            <tr>
+                              <td>{%%GOLDMEMBER.name%%}</td>
+                              <td>{%%GOLDMEMBER.email%%}</td>
+                              <td>{%%GOLDMEMBER.phone%%}</td>
+                            </tr> 
+                          {/LOOP: GOLDMEMBER}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {:IF}
+  </div>
+</div> 

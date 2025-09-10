@@ -1,0 +1,95 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                  <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                </div>
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_adminmodules%%">%%DEFINE_ModuleName%%</a><a href="#!"> / Add %%DEFINE_ModuleName%%</a></li>
+                </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <!-- [ Main Content ] start -->
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+              <div class="card-header">
+                  <h5>Add %%DEFINE_ModuleName%%</h5>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-8">
+                        <form name="add_user" action="%%DEFINE_li_add%%" method="post" >
+                            IF("%%DEFINE_MessageStatus%%"=="1"){
+                              %%DEFINE_Message%%
+                            {:IF}
+                              <div class="form-group row"><!--Note!-->
+                                <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span>
+                                </label>
+                              </div>
+
+                              <div class="form-group row"><!--Page name-->
+                                <label for="inputPassword3" class="col-sm-3 col-form-label">Parent Module:</label>
+                                <div class="col-sm-9">
+                                  <select name="parentid" id="parentid" class="form-control" >
+                                    <option value="0">-- select parent page --</option>
+                                    %%DEFINE_CatContent%%
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group row"><!--Page name-->
+                                <label for="inputPassword3" class="col-sm-3 col-form-label">Module Name:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="mname" id="mname" placeholder="Module Name" value="%%DEFINE_GetModuleName%%" class="form-control">
+                                </div>
+                              </div>
+                              
+                              <div class="form-group row"><!--Page url-->
+                                <label for="inputPassword3" class="col-sm-3 col-form-label">Module url:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="seourl" id="seourl" value="%%DEFINE_GetSeoUrl%%" placeholder="Module Url" class="form-control" onchange="seocheck(this.value)">
+                                  <input type="hidden" name="hseourl" id="hseourl" value="%%DEFINE_GetSeoUrl%%" />
+                                  <small id="passwordHelpInline" class="text-muted">Only alphanumeric characters (A-Z, a-z, 0-9) and hyphen(-) are allowed.</small>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-3 col-form-label">Module Icon:</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="micon" id="micon" placeholder="Module Icon" value="%%DEFINE_GetModuleIcon%%" class="form-control">
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-3 col-form-label">Module Permission:</label>
+                                <div class="col-sm-9">
+                                  <input type="checkbox" name="mpermission" class="form-check-input" id="gridCheck1" value="1">
+                                  <label class="form-check-label" for="gridCheck1">Master Admin Only.</label>
+                                </div>
+                              </div>
+
+                              <div class="form-group row"><!--submit-->
+                                <div class="col-sm-10">
+                                  <input name="" type="submit" value="Save" class="btn btn-primary"/>
+                                </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div> 
+%%DEFINE_FOOTER%%

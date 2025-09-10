@@ -1,0 +1,124 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_plan%%">%%DEFINE_ModuleName%%</a><a href="#!"> / Add %%DEFINE_ModuleName%%</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add %%DEFINE_ModuleName%%</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form name="add_user" action=""  method="post" enctype="multipart/form-data" onsubmit="return userValidate(this)">
+                                    IF("%%DEFINE_MessageStatus%%"=="1"){
+                                        %%DEFINE_Message%%
+                                    {:IF}
+                                    <div class="form-group row"><!--Note!-->
+                                        <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span></label>
+                                        <div class="col-sm-9">
+                                        </div>
+                                    </div>
+									
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="user_firstname" class="form-control" value="%%DEFINE_user_fullname%%" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Email:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="email" name="user_email" class="form-control" value="%%DEFINE_user_emailaddress%%" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Current Plan:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                         	<select name="plan_id" id="plan_id" required class="form-control">
+                                            	<option value="">Select Plan</option>
+                                                <option value="1" %%DEFINE_Plansel1%%>Basic(Quarterly)</option>
+                                                <option value="2" %%DEFINE_Plansel2%%>Pro (Quarterly)</option>
+                                                 <option value="3" %%DEFINE_Plansel3%%>Basic(Yearly)</option>
+                                                <option value="4" %%DEFINE_Plansel4%%>Pro (Yearly)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Current Signatures:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                         	  <select name="plan_unit" id="plan_unit" required class="form-control">
+                                            	<option value="">Select</option>
+                                                <option value="1" %%DEFINE_Sigsel1%%>1</option>
+                                                <option value="3" %%DEFINE_Sigsel5%%>3</option>
+                                                <option value="5" %%DEFINE_Sigsel5%%>5</option>
+                                                <option value="10" %%DEFINE_Sigsel10%%>10</option>
+                                                <option value="15" %%DEFINE_Sigsel15%%>15</option>
+                                                <option value="20" %%DEFINE_Sigsel20%%>20</option>
+                                                <option value="25" %%DEFINE_Sigsel25%%>25</option>
+                                                <option value="30" %%DEFINE_Sigsel30%%>30</option>
+                                                <option value="35" %%DEFINE_Sigsel35%%>35</option>
+                                                <option value="40" %%DEFINE_Sigsel40%%>40</option>
+                                                <option value="45" %%DEFINE_Sigsel45%%>45</option>
+                                                <option value="50" %%DEFINE_Sigsel50%%>50</option>
+                                                <option value="60" %%DEFINE_Sigsel60%%>60</option>
+                                                <option value="65" %%DEFINE_Sigsel65%%>65</option>
+                                                <option value="70" %%DEFINE_Sigsel70%%>70</option>
+                                                <option value="75" %%DEFINE_Sigsel75%%>75</option>
+                                                <option value="80" %%DEFINE_Sigsel80%%>80</option>
+                                                <option value="85" %%DEFINE_Sigsel85%%>85</option>
+                                                <option value="90" %%DEFINE_Sigsel90%%>90</option>
+                                                <option value="95" %%DEFINE_Sigsel95%%>95</option>
+                                                <option value="100" %%DEFINE_Sigsel100%%>100</option>
+                                            </select>
+                                           <!--  <small id="passwordHelpInline" class="text-muted">If payment succeeds, the subscription is updated. If payment fails, the Subscription object that’s returned contains a pending_update hash with the changes</small>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="user_type" class="col-sm-3 col-form-label">User Type:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                         	  <select name="user_type" id="user_type" required class="form-control">
+                                            	<option value="">Select</option>
+                                                <option value="normal" %%DEFINE_user_type_normal%%>Normal User</option>
+                                                <option value="enterprise" %%DEFINE_user_type_enterprise%%>Enterprise User</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                         <input  type="hidden" name="addnewuser" value="1"/>
+                                            <input name="submit" type="submit" value="Upgrade" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+%%DEFINE_FOOTER%%

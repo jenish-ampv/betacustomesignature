@@ -1,0 +1,82 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">%%DEFINE_ModuleName%%</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+          <div class="card-header">
+            <h5>CMS %%DEFINE_ModuleName%%</h5>
+            <div class="card-header-right">
+              <a href="%%DEFINE_li_add%%" class="btn btn-sm btn-primary has-ripple"><i class="feather mr-2 icon-plus-square"></i>Add New</a>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0" id="pages">
+                    <thead>
+                      <tr> 
+                        <th>#</th>
+                        <th>Page Name</th>
+                        <th>Seo Url</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<script>
+  var filter = jQuery.noConflict();
+  filter(document).ready(function(){
+    var filterurl = '%%DEFINE_li_pagesdata%%';
+    var dataTable = filter('#pages').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'select': true,
+      'order': [[0,"desc"]],
+      "language": {                
+        "infoFiltered":""
+      }, 
+      'serverMethod': 'post',
+      'ajax': {
+        'url': filterurl,
+        'data': function(data){
+        },
+      }, 
+      'columns': [
+        { data : 'id'},
+        { data : 'name'},
+        { data : 'seourl'},
+        { data : 'type'},
+        { data : 'action'}
+      ],	
+    });
+  });
+</script>
+%%DEFINE_FOOTER%%

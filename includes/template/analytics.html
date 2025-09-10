@@ -1,0 +1,1690 @@
+%%DEFINE_HEADER%%
+<div class="loader-image" style="display: none;">
+    <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
+</div>
+
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    %%DEFINE_SIDEBAR%%
+    <main class="grow" id="content" role="content">
+        <div class="kt-container-fluid pb-4">
+            <div id="snackbar"></div>
+            <div id="snackbar-error"></div>
+            <div id="snackbar-info"></div>
+
+            <div class="flex gap-2 flex-wrap justify-between items-center mb-4">
+                <h5 class="text-xl text-nowrap">Analytics Overview</h5>
+                <div class="kt-input w-auto">
+                    <i class="hgi hgi-stroke hgi-calendar-03"></i>
+                    <input type="text" class="w-[180px]" id="datepicker" name="date_range" readonly>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="kt-card" style="background-image: url(../../images/per-click-box-bg.png);">
+                    <div class="kt-card-content flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-gray-400">Total Click</span>
+                            <h5 class="font-semibold text-gray-950 total_count total_clicks">%%DEFINE_TOTAL_CLICKS%%</h5>
+                        </div>
+                        <img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg" alt="" />
+                    </div>
+                </div>
+                <div class="kt-card" style="background-image: url(../../images/per-click-box-bg.png);">
+                    <div class="kt-card-content flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-gray-400">Impression</span>
+                            <h5 class="font-semibold text-gray-950 class="total_count total_impressions">%%DEFINE_TOTAL_IMPRESSION%%</h5>
+                        </div>
+                        <img src="%%DEFINE_IMAGE_LINK%%/images/analytics-snapshot-view-icon.svg" alt="" />
+                    </div>
+                </div>
+                <div class="kt-card" style="background-image: url(../../images/per-click-box-bg.png);">
+                    <div class="kt-card-content flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-gray-400">Total Unique Clicks</span>
+                            <h5 class="font-semibold text-gray-950 total_count total_unique_clicks">%%DEFINE_TOTAL_UNIQUE_CLICKS%%</h5>
+                        </div>
+                        <img src="%%DEFINE_IMAGE_LINK%%/images/unique-clicks-icon.svg" alt="" />
+                    </div>
+                </div>
+                <div class="kt-card" style="background-image: url(../../images/per-click-box-bg.png);">
+                    <div class="kt-card-content flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-gray-400">CTR</span>
+                            <h5 class="font-semibold text-gray-950 total_count total_ctr">%%DEFINE_TOTAL_CTR%%</h5>
+                        </div>
+                        <img src="%%DEFINE_IMAGE_LINK%%/images/profile-click-new.svg" alt="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-3">
+                <div class="kt-card overflow-hidden">
+                    <div class="kt-card-table">
+                        <table class="kt-table" id="general_clicks" cellpadding="0" cellspacing="0" border="0">
+                            <thead class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">
+                                <tr class="*:text-gray-950">
+                                    <th align="left" valign="middle" class="title text-nowrap">All Elements Click</th>
+                                    <th align="left" valign="middle" class="title text-nowrap">Clicks</th>
+                                    <th align="left" valign="middle" class="title text-nowrap">Unique Clicks</th>
+                                    <th align="left" valign="middle" class="title text-nowrap">CTR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="email_row" style="display:none">
+                                    <td class="hover"><span>Email</span></td>
+                                    <td id="total_email_clicks">%%DEFINE_TOTAL_EMAIL_CLICKS%%</td>
+                                    <td id="total_email_unique_clicks">%%DEFINE_TOTAL_EMAIL_UNIQUE_CLICKS%%</td>
+                                    <td id="total_email_ctr">%%DEFINE_TOTAL_EMAIL_CTR%%</td>
+                                </tr>
+                                <tr id="phone_row" style="display:none">
+                                    <td class="hover"><span>Phone</span></td>
+                                    <td id="total_phone_clicks">%%DEFINE_TOTAL_PHONE_CLICKS%%</td>
+                                    <td id="total_phone_unique_clicks">%%DEFINE_TOTAL_PHONE_UNIQUE_CLICKS%%</td>
+                                    <td id="total_phone_ctr">%%DEFINE_TOTAL_PHONE_CTR%%</td>
+                                </tr>
+                                <tr id="social_row" style="display:none">
+                                    <td class="hover"><span>Social</span></td>
+                                    <td id="total_social_clicks">%%DEFINE_TOTAL_SOCIAL_CLICKS%%</td>
+                                    <td id="total_social_unique_clicks">%%DEFINE_TOTAL_SOCIAL_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_social_ctr">%%DEFINE_TOTAL_SOCIAL_CTR%%</td>
+                                </tr>
+                                <tr id="cta_button_row" style="display:none">
+                                    <td class="hover"><span>CTA Buttons</span></td>
+                                    <td id="total_cta_button_clicks">%%DEFINE_TOTAL_CTA_BUTTON_CLICKS%%</td>
+                                    <td id="total_cta_button_unique_clicks">
+                                        %%DEFINE_TOTAL_CTA_BUTTON_UNIQUE_CLICKS%%</td>
+                                    <td id="total_cta_button_ctr">%%DEFINE_TOTAL_CTA_BUTTON_CTR%%</td>
+                                </tr>
+                                <tr id="marketplace_row" style="display:none">
+                                    <td class="hover"><span>Marketplace Buttons</span></td>
+                                    <td id="total_marketplace_clicks">%%DEFINE_TOTAL_MARKETPLACE_CLICKS%%</td>
+                                    <td id="total_marketplace_unique_clicks">
+                                        %%DEFINE_TOTAL_MARKETPLACE_UNIQUE_CLICKS%%</td>
+                                    <td id="total_marketplace_ctr">%%DEFINE_TOTAL_MARKETPLACE_CTR%%</td>
+                                </tr>
+                                <tr id="banner_row" style="display:none">
+                                    <td class="hover"><span>Banner</span></td>
+                                    <td id="total_banner_clicks">%%DEFINE_TOTAL_BANNER_CLICKS%%</td>
+                                    <td id="total_banner_unique_clicks">%%DEFINE_TOTAL_BANNER_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_banner_ctr">%%DEFINE_TOTAL_BANNER_CTR%%</td>
+                                </tr>
+                                <tr id="logo_row" style="display:none">
+                                    <td class="hover"><span>Logo</span></td>
+                                    <td id="total_logo_clicks">%%DEFINE_TOTAL_LOGO_CLICKS%%</td>
+                                    <td id="total_logo_unique_clicks">%%DEFINE_TOTAL_LOGO_UNIQUE_CLICKS%%</td>
+                                    <td id="total_logo_ctr">%%DEFINE_TOTAL_LOGO_CTR%%</td>
+                                </tr>
+                                <tr id="general_clicks_no_record_row" style="display:none">
+                                    <td class="hover" colspan="4"><span>No Records Found</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="kt-card overflow-hidden">
+                    <div class="kt-card-table">
+                        <table class="kt-table" id="social_clicks" cellpadding="0" cellspacing="0" border="0">
+                            <thead class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">
+                                <tr class="*:text-gray-950">
+                                    <th align="left" valign="middle" class="title text-nowrap">Social Media</th>
+                                    <th align="left" valign="middle" class="title text-nowrap">Clicks</th>
+                                    <th align="left" valign="middle" class="title text-nowrap">Unique Clicks</th>
+                                    <th align="left" valign="middle" class="title text-nowrap">CTR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="web_row" style="display:none;">
+                                    <td class="hover"><span>Web</span></td>
+                                    <td id="total_web_clicks">%%DEFINE_TOTAL_WEB_CLICKS%%</td>
+                                    <td id="total_web_unique_clicks">%%DEFINE_TOTAL_WEB_UNIQUE_CLICKS%%</td>
+                                    <td id="total_web_ctr">%%DEFINE_TOTAL_WEB_CTR%%</td>
+                                </tr>
+                                <tr id="insta_row" style="display:none;">
+                                    <td class="hover"><span>Instagram</span></td>
+                                    <td id="total_insta_clicks">%%DEFINE_TOTAL_INSTA_CLICKS%%</td>
+                                    <td id="total_insta_unique_clicks">%%DEFINE_TOTAL_INSTA_UNIQUE_CLICKS%%</td>
+                                    <td id="total_insta_ctr">%%DEFINE_TOTAL_INSTA_CTR%%</td>
+                                </tr>
+                                <tr id="linkedin_row" style="display:none;">
+                                    <td class="hover"><span>LinkedIn</span></td>
+                                    <td id="total_linkedin_clicks">%%DEFINE_TOTAL_LINKEDIN_CLICKS%%</td>
+                                    <td id="total_linkedin_unique_clicks">%%DEFINE_TOTAL_LINKEDIN_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_linkedin_ctr">%%DEFINE_TOTAL_LINKEDIN_CTR%%</td>
+                                </tr>
+                                <tr id="facebook_row" style="display:none;">
+                                    <td class="hover"><span>Facebook</span></td>
+                                    <td id="total_facebook_clicks">%%DEFINE_TOTAL_FACEBOOK_CLICKS%%</td>
+                                    <td id="total_facebook_unique_clicks">%%DEFINE_TOTAL_FACEBOOK_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_facebook_ctr">%%DEFINE_TOTAL_FACEBOOK_CTR%%</td>
+                                </tr>
+                                <tr id="tiktok_row" style="display:none;">
+                                    <td class="hover"><span>TikTok</span></td>
+                                    <td id="total_tiktok_clicks">%%DEFINE_TOTAL_TIKTOK_CLICKS%%</td>
+                                    <td id="total_tiktok_unique_clicks">%%DEFINE_TOTAL_TIKTOK_UNIQUE_CLICKS%%</td>
+                                    <td id="total_tiktok_ctr">%%DEFINE_TOTAL_TIKTOK_CTR%%</td>
+                                </tr>
+                                <tr id="youtube_row" style="display:none;">
+                                    <td class="hover"><span>YouTube</span></td>
+                                    <td id="total_youtube_clicks">%%DEFINE_TOTAL_YOUTUBE_CLICKS%%</td>
+                                    <td id="total_youtube_unique_clicks">%%DEFINE_TOTAL_YOUTUBE_UNIQUE_CLICKS%%</td>
+                                    <td id="total_youtube_ctr">%%DEFINE_TOTAL_YOUTUBE_CTR%%</td>
+                                </tr>
+                                <tr id="twitter_row" style="display:none;">
+                                    <td class="hover"><span>Twitter</span></td>
+                                    <td id="total_twitter_clicks">%%DEFINE_TOTAL_TWITTER_CLICKS%%</td>
+                                    <td id="total_twitter_unique_clicks">%%DEFINE_TOTAL_TWITTER_UNIQUE_CLICKS%%</td>
+                                    <td id="total_twitter_ctr">%%DEFINE_TOTAL_TWITTER_CTR%%</td>
+                                </tr>
+                                <tr id="vimeo_row" style="display:none;">
+                                    <td class="hover"><span>Vimeo</span></td>
+                                    <td id="total_vimeo_clicks">%%DEFINE_TOTAL_VIMEO_CLICKS%%</td>
+                                    <td id="total_vimeo_unique_clicks">%%DEFINE_TOTAL_VIMEO_UNIQUE_CLICKS%%</td>
+                                    <td id="total_vimeo_ctr">%%DEFINE_TOTAL_VIMEO_CTR%%</td>
+                                </tr>
+                                <tr id="pintrest_row" style="display:none;">
+                                    <td class="hover"><span>Pinterest</span></td>
+                                    <td id="total_pintrest_clicks">%%DEFINE_TOTAL_PINTREST_CLICKS%%</td>
+                                    <td id="total_pintrest_unique_clicks">%%DEFINE_TOTAL_PINTREST_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_pintrest_ctr">%%DEFINE_TOTAL_PINTREST_CTR%%</td>
+                                </tr>
+                                <tr id="google_row" style="display:none;">
+                                    <td class="hover"><span>Google</span></td>
+                                    <td id="total_google_clicks">%%DEFINE_TOTAL_GOOGLE_CLICKS%%</td>
+                                    <td id="total_google_unique_clicks">%%DEFINE_TOTAL_GOOGLE_UNIQUE_CLICKS%%</td>
+                                    <td id="total_google_ctr">%%DEFINE_TOTAL_GOOGLE_CTR%%</td>
+                                </tr>
+                                <tr id="yelp_row" style="display:none;">
+                                    <td class="hover"><span>Yelp</span></td>
+                                    <td id="total_yelp_clicks">%%DEFINE_TOTAL_YELP_CLICKS%%</td>
+                                    <td id="total_yelp_unique_clicks">%%DEFINE_TOTAL_YELP_UNIQUE_CLICKS%%</td>
+                                    <td id="total_yelp_ctr">%%DEFINE_TOTAL_YELP_CTR%%</td>
+                                </tr>
+                                <tr id="zillow_row" style="display:none;">
+                                    <td class="hover"><span>Zillow</span></td>
+                                    <td id="total_zillow_clicks">%%DEFINE_TOTAL_ZILLOW_CLICKS%%</td>
+                                    <td id="total_zillow_unique_clicks">%%DEFINE_TOTAL_ZILLOW_UNIQUE_CLICKS%%</td>
+                                    <td id="total_zillow_ctr">%%DEFINE_TOTAL_ZILLOW_CTR%%</td>
+                                </tr>
+                                <tr id="airbnb_row" style="display:none;">
+                                    <td class="hover"><span>Airbnb</span></td>
+                                    <td id="total_airbnb_clicks">%%DEFINE_TOTAL_AIRBNB_CLICKS%%</td>
+                                    <td id="total_airbnb_unique_clicks">%%DEFINE_TOTAL_AIRBNB_UNIQUE_CLICKS%%</td>
+                                    <td id="total_airbnb_ctr">%%DEFINE_TOTAL_AIRBNB_CTR%%</td>
+                                </tr>
+                                <tr id="whatsapp_row" style="display:none;">
+                                    <td class="hover"><span>WhatsApp</span></td>
+                                    <td id="total_whatsapp_clicks">%%DEFINE_TOTAL_WHATSAPP_CLICKS%%</td>
+                                    <td id="total_whatsapp_unique_clicks">%%DEFINE_TOTAL_WHATSAPP_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_whatsapp_ctr">%%DEFINE_TOTAL_WHATSAPP_CTR%%</td>
+                                </tr>
+                                <tr id="discord_row" style="display:none;">
+                                    <td class="hover"><span>Discord</span></td>
+                                    <td id="total_discord_clicks">%%DEFINE_TOTAL_DISCORD_CLICKS%%</td>
+                                    <td id="total_discord_unique_clicks">%%DEFINE_TOTAL_DISCORD_UNIQUE_CLICKS%%</td>
+                                    <td id="total_discord_ctr">%%DEFINE_TOTAL_DISCORD_CTR%%</td>
+                                </tr>
+                                <tr id="imbd_row" style="display:none;">
+                                    <td class="hover"><span>IMDb</span></td>
+                                    <td id="total_imbd_clicks">%%DEFINE_TOTAL_IMBD_CLICKS%%</td>
+                                    <td id="total_imbd_unique_clicks">%%DEFINE_TOTAL_IMBD_UNIQUE_CLICKS%%</td>
+                                    <td id="total_imbd_ctr">%%DEFINE_TOTAL_IMBD_CTR%%</td>
+                                </tr>
+                                <tr id="ebay_row" style="display:none;">
+                                    <td class="hover"><span>eBay</span></td>
+                                    <td id="total_ebay_clicks">%%DEFINE_TOTAL_EBAY_CLICKS%%</td>
+                                    <td id="total_ebay_unique_clicks">%%DEFINE_TOTAL_EBAY_UNIQUE_CLICKS%%</td>
+                                    <td id="total_ebay_ctr">%%DEFINE_TOTAL_EBAY_CTR%%</td>
+                                </tr>
+                                <tr id="spotify_row" style="display:none;">
+                                    <td class="hover"><span>Spotify</span></td>
+                                    <td id="total_spotify_clicks">%%DEFINE_TOTAL_SPOTIFY_CLICKS%%</td>
+                                    <td id="total_spotify_unique_clicks">%%DEFINE_TOTAL_SPOTIFY_UNIQUE_CLICKS%%</td>
+                                    <td id="total_spotify_ctr">%%DEFINE_TOTAL_SPOTIFY_CTR%%</td>
+                                </tr>
+                                <tr id="amazon_row" style="display:none;">
+                                    <td class="hover"><span>Amazon</span></td>
+                                    <td id="total_amazon_clicks">%%DEFINE_TOTAL_AMAZON_CLICKS%%</td>
+                                    <td id="total_amazon_unique_clicks">%%DEFINE_TOTAL_AMAZON_UNIQUE_CLICKS%%</td>
+                                    <td id="total_amazon_ctr">%%DEFINE_TOTAL_AMAZON_CTR%%</td>
+                                </tr>
+                                <tr id="clendly_row" style="display:none;">
+                                    <td class="hover"><span>Calendly</span></td>
+                                    <td id="total_clendly_clicks">%%DEFINE_TOTAL_CLENDLY_CLICKS%%</td>
+                                    <td id="total_clendly_unique_clicks">%%DEFINE_TOTAL_CLENDLY_UNIQUE_CLICKS%%</td>
+                                    <td id="total_clendly_ctr">%%DEFINE_TOTAL_CLENDLY_CTR%%</td>
+                                </tr>
+                                <tr id="wechat_row" style="display:none;">
+                                    <td class="hover"><span>WeChat</span></td>
+                                    <td id="total_wechat_clicks">%%DEFINE_TOTAL_WECHAT_CLICKS%%</td>
+                                    <td id="total_wechat_unique_clicks">%%DEFINE_TOTAL_WECHAT_UNIQUE_CLICKS%%</td>
+                                    <td id="total_wechat_ctr">%%DEFINE_TOTAL_WECHAT_CTR%%</td>
+                                </tr>
+                                <tr id="apple_row" style="display:none;">
+                                    <td class="hover"><span>Apple</span></td>
+                                    <td id="total_apple_clicks">%%DEFINE_TOTAL_APPLE_CLICKS%%</td>
+                                    <td id="total_apple_unique_clicks">%%DEFINE_TOTAL_APPLE_UNIQUE_CLICKS%%</td>
+                                    <td id="total_apple_ctr">%%DEFINE_TOTAL_APPLE_CTR%%</td>
+                                </tr>
+                                <tr id="snapchat_row" style="display:none;">
+                                    <td class="hover"><span>Snapchat</span></td>
+                                    <td id="total_snapchat_clicks">%%DEFINE_TOTAL_SNAPCHAT_CLICKS%%</td>
+                                    <td id="total_snapchat_unique_clicks">%%DEFINE_TOTAL_SNAPCHAT_UNIQUE_CLICKS%%
+                                    </td>
+                                    <td id="total_snapchat_ctr">%%DEFINE_TOTAL_SNAPCHAT_CTR%%</td>
+                                </tr>
+                                <tr id="reddit_row" style="display:none;">
+                                    <td class="hover"><span>Reddit</span></td>
+                                    <td id="total_reddit_clicks">%%DEFINE_TOTAL_REDDIT_CLICKS%%</td>
+                                    <td id="total_reddit_unique_clicks">%%DEFINE_TOTAL_REDDIT_UNIQUE_CLICKS%%</td>
+                                    <td id="total_reddit_ctr">%%DEFINE_TOTAL_REDDIT_CTR%%</td>
+                                </tr>
+                                <tr id="shopify_row" style="display:none;">
+                                    <td class="hover"><span>Shopify</span></td>
+                                    <td id="total_shopify_clicks">%%DEFINE_TOTAL_SHOPIFY_CLICKS%%</td>
+                                    <td id="total_shopify_unique_clicks">%%DEFINE_TOTAL_SHOPIFY_UNIQUE_CLICKS%%</td>
+                                    <td id="total_shopify_ctr">%%DEFINE_TOTAL_SHOPIFY_CTR%%</td>
+                                </tr>
+                                <tr id="threads_row" style="display:none;">
+                                    <td class="hover"><span>Threads</span></td>
+                                    <td id="total_threads_clicks">%%DEFINE_TOTAL_THREADS_CLICKS%%</td>
+                                    <td id="total_threads_unique_clicks">%%DEFINE_TOTAL_THREADS_UNIQUE_CLICKS%%</td>
+                                    <td id="total_threads_ctr">%%DEFINE_TOTAL_THREADS_CTR%%</td>
+                                </tr>
+                                <tr id="venmo_row" style="display:none;">
+                                    <td class="hover"><span>Venmo</span></td>
+                                    <td id="total_venmo_clicks">%%DEFINE_TOTAL_VENMO_CLICKS%%</td>
+                                    <td id="total_venmo_unique_clicks">%%DEFINE_TOTAL_VENMO_UNIQUE_CLICKS%%</td>
+                                    <td id="total_venmo_ctr">%%DEFINE_TOTAL_VENMO_CTR%%</td>
+                                </tr>
+                                <tr id="zelle_row" style="display:none;">
+                                    <td class="hover"><span>Zelle</span></td>
+                                    <td id="total_zelle_clicks">%%DEFINE_TOTAL_ZELLE_CLICKS%%</td>
+                                    <td id="total_zelle_unique_clicks">%%DEFINE_TOTAL_ZELLE_UNIQUE_CLICKS%%</td>
+                                    <td id="total_zelle_ctr">%%DEFINE_TOTAL_ZELLE_CTR%%</td>
+                                </tr>
+                                <tr id="social_clicks_no_record_row" style="display:none">
+                                    <td class="hover" colspan="4"><span>No Records Found</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-3">
+                <div class="kt-card">
+                    <div class="kt-card-header">
+                        <div class="kt-card-heading">
+                            <h2 class="kt-card-title">Clicks and Impressions</h2>
+                        </div>
+                    </div>
+                    <div class="kt-card-content">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                <div class="kt-card">
+                    <div class="kt-card-header">
+                        <div class="kt-card-heading flex items-center">
+                            <h2 class="kt-card-title mb-0 mr-3">Type and Popular Day</h2>
+                            <i class="hgi hgi-stroke hgi-information-circle mb-0 mt-1" data-kt-tooltip="#tooltip1" data-kt-tooltip-placement="bottom-start"></i>
+                            <div id="tooltip1" class="kt-tooltip">Unique Clicks count each user only once</div>
+                        </div>
+                    </div>
+
+                    <div class="kt-card-content flex flex-col gap-4">
+                        <div class="flex justify-between gap-5">
+                            <div class="flex items-center gap-2">
+                                <div class="size-7 relative -top-1 rounded-lg bg-[linear-gradient(178.19deg,#E5F6FF_6.15%,#E4EAFF_98.35%)]"></div>
+                                <div>
+                                    <p id="totalTypeClicks" class="total-count-click-number leading-none">0</p>
+                                    <p class="text-gray-400">All Clicks</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="size-7 relative -top-1 bg-[repeating-linear-gradient(135deg,rgba(219,237,255,0.7),rgba(219,237,255,0.7)_2px,transparent_2px,transparent_4px)]"></div>
+                                <div>
+                                    <p id="totalTypeUniqueClicks" class="size-7 total-count-click-number leading-none">0</p>
+                                    <p class="text-gray-400">Unique Clicks</p>
+                                </div>
+                            </div>
+                            <div id="typeCTRSection" class="mt-auto">
+                                <div class="flex items-center gap-2">
+                                    <h5 class="text-2xl" id="clickThroughRate">0 <span>%</span></h5>
+                                    <span class="kt-badge kt-badge-success" id="clickThroughChange"><span>▲</span> +0%</span>
+                                </div>
+                                <span class="text-gray-400 text-xs">Click-Through Rate</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <canvas id="type_and_popular_chart" width="400" height="270"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="type_and_popular_bg" style="display: none;">
+                    <div class="clicks_impressions">
+                        <div class="clicktext">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/clicks-dot.svg" alt="" />Clicks
+                        </div>
+                        <div class="impressionstext">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/impressions-dot.svg" alt="" />Impressions
+                        </div>
+                    </div>
+                    <div id="click_section">
+                        <div class="all_clicks_box">
+                            <div class="left">
+                                <p><span><img src="%%DEFINE_IMAGE_LINK%%/images/all-clicks-dot.svg"
+                                            alt="" />All clicks</span> <span class="right"
+                                        id="total_week_clicks">0</span></p>
+                                <p><span><img src="%%DEFINE_IMAGE_LINK%%/images/impressions-dot.svg"
+                                            alt="" />Unique clicks</span> <span class="right"
+                                        id="total_week_unique_clicks">0</span></p>
+                            </div>
+                            <div class="right">
+                                <div role="progressbar1" aria-valuenow="0" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:0" id="week_click_progressbar"></div>
+                            </div>
+                        </div>
+                        <div class="sunsat_bg">
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="sun_clicks"></div>
+                                </div>
+                                <span>SUN</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="mon_clicks"></div>
+                                </div>
+                                <span>MON</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="tue_clicks"></div>
+                                </div>
+                                <span>TUE</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="wed_clicks"></div>
+                                </div>
+                                <span>WED</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="thu_clicks"></div>
+                                </div>
+                                <span>THU</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="fri_clicks"></div>
+                                </div>
+                                <span>FRI</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="sat_clicks"></div>
+                                </div>
+                                <span>SAT</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="impressions_section" style="display: none;">
+                        <div class="all_clicks_box">
+                            <div class="left">
+                                <p><span><img src="%%DEFINE_IMAGE_LINK%%/images/all-clicks-dot.svg"
+                                            alt="" />All impressions</span> <span class="right"
+                                        id="total_week_impressions">0</span></p>
+                                <p><span><img src="%%DEFINE_IMAGE_LINK%%/images/impressions-dot.svg"
+                                            alt="" />Unique impressions</span> <span class="right"
+                                        id="total_week_unique_impressions">0</span></p>
+                            </div>
+                            <div class="right">
+                                <div role="progressbar1" aria-valuenow="0" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:0" id="week_impression_progressbar">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sunsat_bg">
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="sun_impressions"></div>
+                                </div>
+                                <span>SUN</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="mon_impressions"></div>
+                                </div>
+                                <span>MON</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="tue_impressions"></div>
+                                </div>
+                                <span>TUE</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="wed_impressions"></div>
+                                </div>
+                                <span>WED</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="thu_impressions"></div>
+                                </div>
+                                <span>THU</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="fri_impressions"></div>
+                                </div>
+                                <span>FRI</span>
+                            </div>
+                            <div class="box">
+                                <div class="barcontainer">
+                                    <div class="bar" style="height:0%" id="sat_impressions"></div>
+                                </div>
+                                <span>SAT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-3">
+                <div class="kt-card">
+                    <div class="kt-card-header">
+                        <h4 class="kt-card-title">Clicks by Countries</h4>
+                    </div>
+                    <div class="kt-card-content relative">
+                        <div id="statsBox" class="absolute top-5 right-5"></div>
+                        <canvas id="worldMap"></canvas>
+                    </div>
+                </div>
+                <div class="kt-card">
+                    <div class="kt-card-header">
+                        <h4 class="kt-card-title">Clicks by Platforms and Devices</h4>
+                    </div>
+                    <div class="kt-card-content flex flex-col gap-5">
+                        <div id="clickByPlateform" class="gap-4 grid grid-cols-1 sm:grid-cols-3">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <img src="%%DEFINE_IMAGE_LINK%%/images/new_desktop.svg" alt="" />
+                                <p class="text-lg text-gray-500">Desktop Clicks</p>
+                                <p class="progress-value" id="total_desktop_clicks_percentage">
+                                    %%DEFINE_TOTAL_DESKTOP_CLICKS_PERCENTAGE%%%
+                                </p>
+                                <div class="relative h-12 rounded-lg overflow-hidden max-w-full desktop_clicks">
+                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg"></div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="text_box-top">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/new_mobile.svg" alt="" />
+                                    <p class="text-lg text-gray-500">Mobile Clicks</p>
+                                    <p id="total_mobile_clicks_percentage">
+                                        %%DEFINE_TOTAL_MOBILE_CLICKS_PERCENTAGE%%
+                                    </p>
+                                </div>
+                                <div class="relative h-12 rounded-lg overflow-hidden max-w-full mobile_clicks">
+                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg"></div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="text_box-top">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/new_tablet.svg" alt="" />
+                                    <p class="text-lg text-gray-500">Tablet Clicks</p>
+                                    <p id="total_tablet_clicks_percentage">
+                                        %%DEFINE_TOTAL_TABLET_CLICKS_PERCENTAGE%%
+                                    </p>
+                                </div>
+                                <div class="relative h-12 rounded-lg overflow-hidden max-w-full tablet_clicks">
+                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 *:flex *:items-center space-y-5">
+                            <div>
+                                <div class="flex items-center gap-2 min-w-28">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/windows.svg" alt="" />Windows
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-1.5 flex-1">
+                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_windows_clicks_percentage_style"></div>
+                                </div>
+                                <span class="ml-5" id="total_windows_clicks_percentage">0%</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 min-w-28">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/macos.svg" alt="" />MacOS
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-1.5 flex-1">
+                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_macos_clicks_percentage_style"></div>
+                                </div>
+                                <span class="ml-5" id="total_macos_clicks_percentage">0%</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 min-w-28">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/linux.svg" alt="" />Linux
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-1.5 flex-1">
+                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_linux_clicks_percentage_style"></div>
+                                </div>
+                                <span class="ml-5" id="total_linux_clicks_percentage">0%</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 min-w-28">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/ios.svg" alt="" />iOS
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-1.5 flex-1">
+                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_ios_clicks_percentage_style"></div>
+                                </div>
+                                <span class="ml-5" id="total_ios_clicks_percentage">0%</span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2 min-w-28">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/android.svg" alt="" />Android
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-1.5 flex-1">
+                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_android_clicks_percentage_style"></div>
+                                </div>
+                                <span class="ml-5" id="total_android_clicks_percentage">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<input type="hidden" id="form_url" value="%%DEFINE_linkModuleDashboard%%" />
+
+
+
+<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/script/litepicker/litepicker.css">
+<script src="%%DEFINE_ROOT_LINK%%/script/litepicker/litepicker.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // To active/inactive in leftbar
+
+        $('.clicktext').click(function () {
+            $('#click_section').show();
+            $('#impressions_section').hide();
+        });
+
+        $('.impressionstext').click(function () {
+            $('#click_section').hide();
+            $('#impressions_section').show();
+        });
+
+    });
+
+</script>
+
+
+<script src="%%DEFINE_ROOT_LINK%%/script/chart.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/script/mapchart/chart.umd.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/script/mapchart/index.umd.min.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/script/mapchart/chartjs-plugin-datalabels.js"></script>
+<script>
+    var today = new Date();
+    var sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(today.getDate() - 6);
+
+    var todayDate = today.toISOString().split('T')[0];
+    var startDate = sevenDaysAgo.toISOString().split('T')[0];
+
+    var selectedStartDate = startDate;
+    var selectedEndDate = todayDate;
+
+    function fetchAnalyticsData(startDate, endDate) {
+        $.ajax({
+            url: '%%DEFINE_ROOT_LINK%%/analytics/getAnalyticsByDateRange',
+            type: 'POST',
+            data: {
+                start_date: startDate,
+                end_date: endDate
+            },
+            success: function (response) {
+                try {
+                    var data = (typeof response === "string") ? JSON.parse(response) : response;
+
+                    $('.total_clicks').text(data.total_clicks);
+                    $('.total_impressions').text(data.total_impressions);
+                    $('.total_unique_clicks').text(data.total_unique_clicks);
+                    $('.total_ctr').text(data.total_ctr);
+                    $('.total_logo_impressions').text(data.logo_impressions);
+                    $('.total_banner_clicks').text(data.banner_clicks);
+                    $('.total_banner_impressions').text(data.banner_impressions);
+                    $('.total_profile_clicks').text(data.profile_clicks);
+                    $('.total_profile_impressions').text(data.profile_impressions);
+                    $('.total_social_clicks').text(data.social_clicks);
+                    $('.total_social_impressions').text(data.social_impressions);
+
+                    // For Tables
+
+                    const otherClicks = [
+                        'email', 'phone', 'custombtnlink', 'ctabtnlink1', 'ctabtnlink2', 'ctabtnlink3','playstorebtn', 'appstorebtn','banner','logo'
+                    ];
+                    ctaButtonClicks = 0;
+                    ctaButtonUniqueClicks = 0;
+                    marketplaceClicks = 0;
+                    marketplaceUniqueClicks = 0;
+                    enableCtaButtonSection = false;
+                    enableMarketplaceSection = false;
+                    otherClicks.forEach(key => {
+                        const clicks = data[`total_${key}_clicks`] ?? 0;
+                        const unique_clicks = data[`total_${key}_unique_clicks`] ?? 0;
+                        const ctr = data[`total_${key}_ctr`];
+                        if (['custombtnlink', 'ctabtnlink1', 'ctabtnlink2', 'ctabtnlink3'].includes(key)){
+                            ctaButtonClicks += Number(clicks) || 0;
+                            ctaButtonUniqueClicks += Number(unique_clicks) || 0;
+                            ctaButtonCTR = ctaButtonUniqueClicks > 0
+                                ? ((ctaButtonUniqueClicks * 100) / ctaButtonClicks).toFixed(2)
+                                : '0';
+                            ctaButtonCTR = Math.min(100, Math.round(ctaButtonCTR * 100) / 100)+'%';
+                            $(`#total_cta_button_clicks`).text(ctaButtonClicks);
+                            $(`#total_cta_button_unique_clicks`).text(ctaButtonUniqueClicks);
+                            $(`#total_cta_button_ctr`).text(ctaButtonCTR);
+                            if(ctaButtonClicks > 0 || ctaButtonUniqueClicks > 0){
+                                enableCtaButtonSection = true;
+                            }
+                        }else if(['playstorebtn', 'appstorebtn'].includes(key)){
+                            marketplaceClicks += Number(clicks) || 0;
+                            marketplaceUniqueClicks += Number(unique_clicks) || 0;
+                            marketplaceCTR = marketplaceUniqueClicks > 0
+                                ? ((marketplaceUniqueClicks * 100) / marketplaceClicks).toFixed(2)
+                                : '0';
+                            marketplaceCTR = Math.min(100, Math.round(marketplaceCTR * 100) / 100)+'%';
+                            $(`#total_marketplace_clicks`).text(marketplaceClicks);
+                            $(`#total_marketplace_unique_clicks`).text(marketplaceUniqueClicks);
+                            $(`#total_marketplace_ctr`).text(marketplaceCTR);
+                            if(marketplaceClicks > 0 || marketplaceUniqueClicks > 0){
+                                enableMarketplaceSection = true;
+                            }
+                        } else{
+                            $(`#total_${key}_clicks`).text(clicks);
+                            $(`#total_${key}_unique_clicks`).text(unique_clicks);
+                            $(`#total_${key}_ctr`).text(ctr);
+                        }
+
+                        const isValidClicks = clicks !== undefined && clicks !== null && clicks != 0;
+                        const isValidUniqueClicks = unique_clicks !== undefined && unique_clicks !== null && unique_clicks != 0;
+                        if (isValidClicks || isValidUniqueClicks) {
+                            $(`#${key}_row`).show();
+                        } else {
+                            $(`#${key}_row`).hide();
+                        }
+                        $('#cta_button_row').toggle(enableCtaButtonSection);
+                        $('#marketplace_row').toggle(enableMarketplaceSection);
+                    });
+                    $(`#total_social_clicks`).text(data.total_social_clicks);
+                    $(`#total_social_unique_clicks`).text(data.total_social_unique_clicks);
+                    $(`#total_social_ctr`).text(data.total_social_ctr);
+                    if(data.total_social_clicks > 0 || data.total_social_unique_clicks > 0 || data.total_social_ctr > 0){
+                        $('#social_row').show();
+                    } else {
+                        $('#social_row').hide();
+                    }
+                    if ($('#general_clicks tbody tr:visible').length == 0) {
+                        $("#general_clicks_no_record_row").show();
+                    } else {
+                        $("#general_clicks_no_record_row").hide();
+                        $('#general_clicks tbody tr:visible').addClass('active-tr-row');
+                    }
+                    const socialPlatforms = [
+                        'web', 'insta', 'linkedin', 'facebook', 'tiktok', 'youtube', 'twitter', 'vimeo', 'pintrest', 'google', 'yelp', 'zillow', 'airbnb', 'whatsapp', 'discord', 'imbd', 'ebay', 'spotify', 'amazon', 'clendly', 'wechat', 'apple', 'snapchat', 'reddit', 'shopify', 'threads', 'venmo', 'zelle'
+                    ];
+                    socialPlatforms.forEach(platform => {
+                        const clicks = data[`total_${platform}_clicks`];
+                        const unique_clicks = data[`total_${platform}_unique_clicks`];
+                        const ctr = data[`total_${platform}_ctr`];
+                        $(`#total_${platform}_clicks`).text(clicks);
+                        $(`#total_${platform}_unique_clicks`).text(unique_clicks);
+                        $(`#total_${platform}_ctr`).text(ctr);
+                        const isValidClicks = clicks !== undefined && clicks !== null && clicks != 0;
+                        const isValidUniqueClicks = unique_clicks !== undefined && unique_clicks !== null && unique_clicks != 0;
+                        if (isValidClicks || isValidUniqueClicks) {
+                            $(`#${platform}_row`).show();
+                        } else {
+                            $(`#${platform}_row`).hide();
+                        }
+                    });
+                    if ($('#social_clicks tbody tr:visible').length == 0) {
+                        $("#social_clicks_no_record_row").show();
+                    } else {
+                        $("#social_clicks_no_record_row").hide();
+                        $('#social_clicks tbody tr:visible').addClass('active-tr-row');
+                    }
+
+                    // For Tables
+
+
+                    // For Type and popular day section
+                    $('#sun_clicks').css('height', Math.min(100, Math.round(data.sun_clicks_percentage * 100) / 100) + '%');
+                    $('#mon_clicks').css('height', Math.min(100, Math.round(data.mon_clicks_percentage * 100) / 100) + '%');
+                    $('#tue_clicks').css('height', Math.min(100, Math.round(data.tue_clicks_percentage * 100) / 100) + '%');
+                    $('#wed_clicks').css('height', Math.min(100, Math.round(data.wed_clicks_percentage * 100) / 100) + '%');
+                    $('#thu_clicks').css('height', Math.min(100, Math.round(data.thu_clicks_percentage * 100) / 100) + '%');
+                    $('#fri_clicks').css('height', Math.min(100, Math.round(data.fri_clicks_percentage * 100) / 100) + '%');
+                    $('#sat_clicks').css('height', Math.min(100, Math.round(data.sat_clicks_percentage * 100) / 100) + '%');
+                    $('#total_week_clicks').text(data.total_week_clicks);
+                    $('#total_week_unique_clicks').text(data.total_week_unique_clicks);
+                    $('#week_click_progressbar').css('--value', Math.min(100, Math.round(data.total_week_clicks_percentage * 100) / 100));
+
+                    $('#sun_impressions').css('height', Math.min(100, Math.round(data.sun_impressions_percentage * 100) / 100) + '%');
+                    $('#mon_impressions').css('height', Math.min(100, Math.round(data.mon_impressions_percentage * 100) / 100) + '%');
+                    $('#tue_impressions').css('height', Math.min(100, Math.round(data.tue_impressions_percentage * 100) / 100) + '%');
+                    $('#wed_impressions').css('height', Math.min(100, Math.round(data.wed_impressions_percentage * 100) / 100) + '%');
+                    $('#thu_impressions').css('height', Math.min(100, Math.round(data.thu_impressions_percentage * 100) / 100) + '%');
+                    $('#fri_impressions').css('height', Math.min(100, Math.round(data.fri_impressions_percentage * 100) / 100) + '%');
+                    $('#sat_impressions').css('height', Math.min(100, Math.round(data.sat_impressions_percentage * 100) / 100) + '%');
+                    $('#total_week_impressions').text(data.total_week_impressions);
+                    $('#total_week_unique_impressions').text(data.total_week_unique_impressions);
+                    $('#week_impression_progressbar').css('--value', Math.min(100, Math.round(data.total_week_impressions_percentage * 100) / 100));
+
+                    // For Clicks by platforms and devices section
+                    $('#total_desktop_clicks_percentage').text(Math.min(100, Math.round(data.desktop_clicks_percentage * 100) / 100) + '%');
+                    $('#total_mobile_clicks_percentage').text(Math.min(100, Math.round(data.mobile_clicks_percentage * 100) / 100) + '%');
+                    $('#total_tablet_clicks_percentage').text(Math.min(100, Math.round(data.tablet_clicks_percentage * 100) / 100) + '%');
+                    $('#total_windows_clicks_percentage').text(Math.min(100, Math.round(data.windows_clicks_percentage * 100) / 100) + '%');
+                    $('#total_macos_clicks_percentage').text(Math.min(100, Math.round(data.macos_clicks_percentage * 100) / 100) + '%');
+                    $('#total_linux_clicks_percentage').text(Math.min(100, Math.round(data.linux_clicks_percentage * 100) / 100) + '%');
+                    $('#total_ios_clicks_percentage').text(Math.min(100, Math.round(data.ios_clicks_percentage * 100) / 100) + '%');
+                    $('#total_android_clicks_percentage').text(Math.min(100, Math.round(data.android_clicks_percentage * 100) / 100) + '%');
+
+                    $('.desktop_clicks').find('.progress_new').css('width', Math.min(100, Math.round(data.desktop_clicks_percentage * 100) / 100) + '%');
+                    $('.mobile_clicks').find('.progress_new').css('width', Math.min(100, Math.round(data.mobile_clicks_percentage * 100) / 100) + '%');
+                    $('.tablet_clicks').find('.progress_new').css('width', Math.min(100, Math.round(data.tablet_clicks_percentage * 100) / 100) + '%');
+                    $('#total_windows_clicks_percentage_style').css('width', Math.min(100, Math.round(data.windows_clicks_percentage * 100) / 100) + '%')
+                    $('#total_macos_clicks_percentage_style').css('width', Math.min(100, Math.round(data.macos_clicks_percentage * 100) / 100) + '%')
+                    $('#total_linux_clicks_percentage_style').css('width', Math.min(100, Math.round(data.linux_clicks_percentage * 100) / 100) + '%')
+                    $('#total_ios_clicks_percentage_style').css('width', Math.min(100, Math.round(data.ios_clicks_percentage * 100) / 100) + '%')
+                    $('#total_android_clicks_percentage_style').css('width', Math.min(100, Math.round(data.android_clicks_percentage * 100) / 100) + '%')
+                } catch (e) {
+                    console.error('Error parsing response:', e);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching analytics data:', error);
+            }
+        });
+    }
+
+    const picker = new Litepicker({
+        element: document.getElementById('datepicker'),
+        singleMode: false,
+        numberOfMonths: 2,
+        numberOfColumns: 2,
+        format: 'MMM DD, YYYY',
+        startDate: selectedStartDate,
+        endDate: selectedEndDate,
+        hideOnSelect: false,
+        firstDay: 0,
+        setup: (picker) => {
+
+            function insertButtons() {
+                const container = document.querySelector('.litepicker');
+                if (!container) return;
+
+                // Remove old buttons to avoid duplicates
+                const oldButtons = container.querySelector('.litepicker-preset-buttons');
+                if (oldButtons) oldButtons.remove();
+
+                // Create buttons container
+                const btnContainer = document.createElement('div');
+                btnContainer.classList.add('litepicker-preset-buttons');
+                btnContainer.innerHTML = `
+                    <button data-range="today">Today</button>
+                    <button data-range="yesterday">Yesterday</button>
+                    <button data-range="this-week">This Week</button>
+                    <button data-range="last-week">Last Week</button>
+                    <button data-range="this-month">This Month</button>
+                    <button data-range="last-month">Last Month</button>
+                    <button data-range="this-year">This Year</button>
+                `;
+
+                // Insert buttons to the left of the calendar container
+                const calendarContainer = container.querySelector('.litepicker-calendar-container');
+                if (calendarContainer) {
+                    container.insertBefore(btnContainer, calendarContainer);
+                } else {
+                    container.prepend(btnContainer);
+                }
+
+                // Add click handlers for preset buttons
+                btnContainer.querySelectorAll('button').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const range = btn.getAttribute('data-range');
+                        const today = new Date();
+                        let start, end;
+
+                        switch (range) {
+                            case 'today':
+                                start = end = new Date(today);
+                                break;
+                            case 'yesterday':
+                                start = end = new Date(today);
+                                start.setDate(start.getDate() - 1);
+                                break;
+                            case 'this-week': {
+                                const day = today.getDay(); // Sunday = 0
+                                start = new Date(today);
+                                start.setDate(today.getDate() - day);
+                                end = new Date(today);
+                                break;
+                            }
+                            case 'last-week': {
+                                const day = today.getDay();
+                                end = new Date(today);
+                                end.setDate(today.getDate() - day - 1);
+                                start = new Date(end);
+                                start.setDate(end.getDate() - 6);
+                                break;
+                            }
+                            case 'this-month':
+                                start = new Date(today.getFullYear(), today.getMonth(), 1);
+                                end = new Date(today);
+                                break;
+                            case 'last-month':
+                                start = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                                end = new Date(today.getFullYear(), today.getMonth(), 0);
+                                break;
+                            case 'this-year':
+                                start = new Date(today.getFullYear(), 0, 1);
+                                end = new Date(today);
+                                break;
+                            default:
+                                return;
+                        }
+
+                        picker.setDateRange(start, end);
+                        picker.emit('selected', picker.getStartDate(), picker.getEndDate());
+                        picker.hide(); // Optional: close picker on click
+                    });
+                });
+            }
+
+            // Insert buttons on picker show
+            picker.on('show', () => {
+                insertButtons();
+            });
+
+            // Also insert buttons every time the calendar re-renders
+            picker.on('render', () => {
+                insertButtons();
+            });
+
+            // Original 'selected' event handler
+            picker.on('selected', (start, end) => {
+                const selectedStartDate = start.format('YYYY-MM-DD');
+                const selectedEndDate = end.format('YYYY-MM-DD');
+                $(".loader-image").show();
+                fetchAnalyticsData(selectedStartDate, selectedEndDate);
+                drawTypeAndPopularChart(selectedStartDate, selectedEndDate);
+                loadChartData($('.range-option.active').data('range'), selectedStartDate, selectedEndDate);
+                drawMap(selectedStartDate, selectedEndDate);
+            });
+        }
+    });
+
+
+
+    // 🟢 Trigger default fetch on page load
+    fetchAnalyticsData(selectedStartDate, selectedEndDate);
+    drawTypeAndPopularChart(selectedStartDate, selectedEndDate)
+
+
+
+    /// Clicks and impressions ///
+    let chart;
+
+    function getMaxValue(data) {
+        const allValues = [...data.clicks, ...data.impressions];
+        return allValues.length ? Math.max(...allValues) : 0;
+    }
+    function getControlPoints(points, tension) {
+        const cp = [];
+        const n = points.length;
+
+        for (let i = 0; i < n; i++) {
+            const p0 = points[i === 0 ? i : i - 1];
+            const p1 = points[i];
+            const p2 = points[i === n - 1 ? i : i + 1];
+
+            const d01 = Math.hypot(p1.x - p0.x, p1.y - p0.y);
+            const d12 = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+
+            let cp1x = p1.x;
+            let cp1y = p1.y;
+            let cp2x = p1.x;
+            let cp2y = p1.y;
+
+            if (d01 + d12 !== 0) {
+                const fa = tension * d01 / (d01 + d12);
+                const fb = tension * d12 / (d01 + d12);
+
+                cp1x = p1.x - fa * (p2.x - p0.x);
+                cp1y = p1.y - fa * (p2.y - p0.y);
+
+                cp2x = p1.x + fb * (p2.x - p0.x);
+                cp2y = p1.y + fb * (p2.y - p0.y);
+            }
+
+            cp.push({ cp1: { x: cp1x, y: cp1y }, cp2: { x: cp2x, y: cp2y } });
+        }
+
+        return cp;
+    }
+
+
+    const verticalGradientHighlightPlugin = {
+        id: 'verticalGradientHighlightPlugin',
+        beforeDatasetsDraw(chart) {
+            const tooltip = chart.tooltip;
+
+            if (!tooltip || !tooltip._active || !tooltip._active.length) return;
+
+            const ctx = chart.ctx;
+            const activePoint = tooltip._active[0];
+            const x = activePoint.element.x;
+            const topY = chart.chartArea.top;
+            const bottomY = chart.chartArea.bottom;
+
+            // Create the linear gradient
+            const gradient = ctx.createLinearGradient(x - 50, 0, x + 50, 0);
+            gradient.addColorStop(0, 'rgba(0, 204, 255, 0.1)');
+            gradient.addColorStop(1, 'rgba(0, 71, 255, 0.1)');
+
+            ctx.save();
+            ctx.fillStyle = gradient;
+            ctx.fillRect(x - 50, topY, 100, bottomY - topY);
+            ctx.restore();
+        }
+    };
+
+
+    const lineShadowFillPlugin = {
+        id: 'lineShadowFillPlugin',
+        beforeDatasetsDraw(chart) {
+            const ctx = chart.ctx;
+            const datasetIndex = 0; // Clicks dataset index
+            const meta = chart.getDatasetMeta(datasetIndex);
+            if (meta.hidden) return;
+
+            const points = meta.data;
+            if (!points.length) return;
+
+            const bottom = chart.chartArea.bottom;
+
+            // Extract raw points and clamp y to baseline
+            const pts = points.map(p => ({
+                x: p.x,
+                y: Math.min(p.y, bottom) // Clamp point y to baseline
+            }));
+
+            const tension = chart.data.datasets[datasetIndex].tension ?? 0;
+
+            // Calculate control points for bezier curve
+            const controlPoints = getControlPoints(pts, tension);
+
+            // Clamp control points y to baseline so curve won't dip below
+            controlPoints.forEach(cp => {
+                cp.cp1.y = Math.min(cp.cp1.y, bottom);
+                cp.cp2.y = Math.min(cp.cp2.y, bottom);
+            });
+
+            ctx.save();
+
+            // Start path at bottom-left
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, bottom);
+
+            // Line up to first point
+            ctx.lineTo(pts[0].x, pts[0].y);
+
+            // Draw bezier curves through points using control points
+            for (let i = 1; i < pts.length; i++) {
+                const cpPrev = controlPoints[i - 1];
+                const cpCurr = controlPoints[i];
+
+                ctx.bezierCurveTo(
+                    cpPrev.cp2.x, cpPrev.cp2.y,
+                    cpCurr.cp1.x, cpCurr.cp1.y,
+                    pts[i].x, pts[i].y
+                );
+            }
+
+            // Line down to bottom at last point
+            ctx.lineTo(pts[pts.length - 1].x, bottom);
+            ctx.closePath();
+
+            // Create vertical gradient for fading shadow effect
+            const gradient = ctx.createLinearGradient(0, chart.chartArea.top, 0, chart.chartArea.bottom);
+            gradient.addColorStop(0, 'rgba(77, 127, 255, 0.3)');
+            gradient.addColorStop(1, 'rgba(77, 127, 255, 0)');
+
+            ctx.shadowColor = 'rgba(77, 127, 255, 0.3)'; // Brighter, soft glow
+            ctx.shadowBlur = 25;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+
+            ctx.fillStyle = gradient;  // Use gradient fill instead of solid color
+            ctx.fill();
+
+            ctx.restore();
+        }
+    };
+
+    function padSingleDayData(data) {
+        if (data.labels.length === 1) {
+            return {
+                labels: ["", data.labels[0], ""],
+                clicks: [null, data.clicks[0], null],
+                impressions: [null, data.impressions[0], null],
+                unique_clicks: data.unique_clicks
+                    ? [null, data.unique_clicks[0], null]
+                    : undefined
+            };
+        }
+        return data;
+    }
+
+    function createChart(data) {
+        data = padSingleDayData(data);  // <-- pad single day data here
+
+        const canvas = document.getElementById('performanceChart');
+        if (!canvas) {
+            console.error('Canvas element not found');
+            return;
+        }
+
+        // Create or get tooltip element
+        let tooltipEl = document.getElementById('chartjs-tooltip');
+        if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.id = 'chartjs-tooltip';
+            document.body.appendChild(tooltipEl);
+            // Basic styles - can move this CSS to your stylesheet
+            Object.assign(tooltipEl.style, {
+                position: 'absolute',
+                pointerEvents: 'none',
+                background: '#fff',
+                borderRadius: '12px',
+                boxShadow: '0 6px 20px rgba(0,0,0,0.12)',
+                padding: '12px 20px',
+                fontSize: '14px',
+                color: '#000',
+                transform: 'translate(-50%, -100%)',
+                whiteSpace: 'nowrap',
+                zIndex: '1000',
+                display: 'none'
+            });
+        }
+
+        const ctx = canvas.getContext('2d');
+        const maxValue = getMaxValue(data);
+
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.labels,
+                datasets: [
+                    {
+                        label: 'Clicks',
+                        data: data.clicks,
+                        borderColor: '#4D7FFF',
+                        pointBackgroundColor: '#4D7FFF',
+                        pointBorderColor: '#4D7FFF',
+                        pointRadius: 0,
+                        pointHoverRadius: 7,
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 4,
+                        fill: false,
+                        clip: false
+                    },
+                    {
+                        label: 'Impression',
+                        data: data.impressions,
+                        borderColor: '#26B7FF',
+                        pointBackgroundColor: '#26B7FF',
+                        pointBorderColor: '#26B7FF',
+                        pointRadius: 0,
+                        pointHoverRadius: 7,
+                        borderWidth: 2,
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 4,
+                        tension: 0.4,
+                        fill: false,
+                        clip: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                    intersect: false
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom', // Legend at bottom
+                        align: 'center',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            padding: 20,
+                            color: '#000',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        onClick: (e, legendItem, legend) => {
+                            const index = legendItem.datasetIndex;
+                            const ci = legend.chart;
+                            const meta = ci.getDatasetMeta(index);
+                            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+                            ci.update();
+                        }
+                    },
+                    tooltip: {
+                        enabled: false, // disable native tooltip
+                        external: function (context) {
+                            const tooltipModel = context.tooltip;
+
+                            // Hide if no tooltip
+                            if (tooltipModel.opacity === 0) {
+                                tooltipEl.style.display = 'none';
+                                return;
+                            }
+
+                            // Set tooltip position
+                            const canvasRect = context.chart.canvas.getBoundingClientRect();
+
+                            const tooltipOffsetX = 10;  // pixels right offset
+                            const tooltipOffsetY = 40;  // pixels up offset (to clear the dot)
+
+                            const left = canvasRect.left + window.pageXOffset + tooltipModel.caretX + tooltipOffsetX;
+                            const top = canvasRect.top + window.pageYOffset + tooltipModel.caretY - tooltipOffsetY;
+
+                            tooltipEl.style.left = left + 'px';
+                            tooltipEl.style.top = top + 'px';
+                            tooltipEl.style.display = 'block';
+
+                            const firstDataPoint = tooltipModel.dataPoints[0];
+                            const hoverDate = firstDataPoint.label || firstDataPoint.parsed.x || '';
+
+                            let innerHtml = `
+                                <div style="font-weight:bold; margin-bottom:8px;">
+                                    ${hoverDate}
+                                </div>
+                            `;
+
+                            tooltipModel.dataPoints.forEach(dataPoint => {
+                                const color = dataPoint.dataset.borderColor || dataPoint.dataset.backgroundColor;
+                                const value = dataPoint.parsed.y ?? dataPoint.raw ?? dataPoint.formattedValue;
+                                const formattedValue = Number(value).toLocaleString();
+                                const title = dataPoint.dataset.label || '';
+
+                                innerHtml += `
+                                    <div style="display:flex; align-items:center; margin-bottom:6px;">
+                                        <span style="
+                                            display:inline-block;
+                                            width:12px;
+                                            height:12px;
+                                            border-radius:50%;
+                                            background-color:${color};
+                                            margin-right:10px;
+                                        "></span>
+                                        <span>${formattedValue} ${title}</span>
+                                    </div>
+                                `;
+                            });
+
+                            tooltipEl.innerHTML = innerHtml;
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: Math.ceil(maxValue * 1.1),
+                        display: false, // 🔴 Completely hide Y-axis (ticks, labels, grid, and border)
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#666',
+                            font: {
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    }
+                }
+            },
+            plugins: [verticalGradientHighlightPlugin, lineShadowFillPlugin]
+        });
+    }
+
+    function updateChart(data) {
+        data = padSingleDayData(data);  // <-- pad single day data here
+
+        const maxValue = getMaxValue(data);
+
+        chart.data.labels = data.labels;
+        chart.data.datasets[0].data = data.clicks;
+        chart.data.datasets[1].data = data.impressions;
+
+        chart.options.scales.y.max = maxValue === 0 ? 5 : Math.ceil(maxValue * 1.1);
+
+        chart.update();
+    }
+
+    function loadChartData(range, startDate, endDate) {
+        fetch(`%%DEFINE_ROOT_LINK%%/analytics/getChartData?range=${range}&start=${startDate}&end=${endDate}`)
+            .then(response => response.json())
+            .then(data => {
+                if (chart) {
+                    updateChart(data);
+                } else {
+                    createChart(data);
+                }
+            })
+            .catch(error => console.error('Error loading chart data:', error));
+    }
+
+
+    /// Clicks and impressions ///
+
+
+    /// Type and popular day ///
+
+    let typeAndPopularChart = null;
+    let typeChartData = {}; // Global variable to store fetched data
+
+    // Function to fetch type/popular chart data
+    async function fetchTypeChartData(startDate, endDate) {
+        const res = await fetch(`%%DEFINE_ROOT_LINK%%/analytics/getTypePopularChartData?start=${startDate}&end=${endDate}`);
+        const data = await res.json();
+        Object.assign(typeChartData, data); // update the global data variable
+    }
+
+    window.chartPatterns = {
+        draw: function (name, color, ctx) {
+            if (name !== 'diagonal-left-right') {
+                throw new Error(`Unsupported pattern: ${name}`);
+            }
+
+            const width = 200;
+            const height = 200;
+
+            const patternCanvas = document.createElement('canvas');
+            patternCanvas.width = width;
+            patternCanvas.height = height;
+            const pctx = patternCanvas.getContext('2d');
+
+            pctx.strokeStyle = color;
+            pctx.lineWidth = 4;
+
+            // Draw continuous diagonal lines across a large canvas
+            for (let i = -height; i < width * 2; i += 10) {
+                pctx.beginPath();
+                pctx.moveTo(i, 0);
+                pctx.lineTo(i + height, height);
+                pctx.stroke();
+            }
+
+            return ctx.createPattern(patternCanvas, 'repeat');
+        }
+    };
+
+    // Function to draw the stacked bar chart
+    async function drawTypeAndPopularChart(startDate, endDate) {
+        // Fetch new data
+        if (startDate && endDate) {
+            await fetchTypeChartData(startDate, endDate);
+        }
+
+        // Destroy previous chart if it exists
+        if (typeAndPopularChart) {
+            typeAndPopularChart.destroy();
+        }
+
+        const canvas = document.getElementById('type_and_popular_chart');
+        const ctx = canvas.getContext('2d');
+
+        // Gradient background
+        const gradientFill = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradientFill.addColorStop(0.06, '#E5F6FF');
+        gradientFill.addColorStop(0.98, '#E4EAFF');
+
+        // Gradient border (simulated)
+        const gradientBorder = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradientBorder.addColorStop(0, '#BEDEFF');
+        gradientBorder.addColorStop(1, 'rgba(190, 222, 255, 0)');
+        typeAndPopularChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: typeChartData.labels,
+                datasets: [
+                    {
+                        label: 'All Clicks',
+                        data: typeChartData.allClicks,
+                        backgroundColor: gradientFill,
+                        borderColor: gradientBorder,
+                        borderWidth: 1,
+                        borderRadius: { topLeft: 12, topRight: 12, bottomLeft: 12, bottomRight: 12 },
+                        borderSkipped: false,
+                        stack: 'clicks'
+                    },
+                    {
+                        label: 'Spacer',
+                        data: typeChartData.allClicks.map(() => 0.0001), // nearly zero value
+                        backgroundColor: 'rgba(255, 255, 255, 0)',
+                        borderWidth: 0,
+                        stack: 'clicks',
+                        minBarLength: 6 // forces visual thickness
+                    },
+                    {
+                        label: 'Unique Clicks',
+                        data: typeChartData.uniqueClicks,
+                        backgroundColor: chartPatterns.draw('diagonal-left-right', 'rgba(219,237,255, 0.7)', ctx),
+                        borderColor: gradientBorder,
+                        borderWidth: 1,
+                        borderRadius: { topLeft: 12, topRight: 12, bottomLeft: 12, bottomRight: 12 },
+                        borderSkipped: false,
+                        stack: 'clicks'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: false
+                    },
+                    legend: { display: false },
+                    datalabels: false
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 10,
+                            display: false
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        // Update Click-Through Rate Text
+        const ctr = typeChartData.clickThroughRate ?? 0;
+        const change = typeChartData.rateChange ?? 0;
+        const totalClicks = typeChartData.totalClicks ?? 0;
+        const totalUniqueClicks = typeChartData.totalUniqueClicks ?? 0;
+
+        document.getElementById('totalTypeClicks').innerHTML = `${totalClicks}`;
+        document.getElementById('totalTypeUniqueClicks').innerHTML = `${totalUniqueClicks}`;
+        document.getElementById('clickThroughRate').innerHTML = `${ctr}<span>%</span>`;
+
+        const changeElem = document.getElementById('clickThroughChange');
+        const changeValue = Number(change);
+        if (changeValue < 0) {
+            changeElem.innerHTML = `▼ ${Math.abs(changeValue)}%`;
+            changeElem.classList.add('negative-change');
+            changeElem.classList.remove('positive-change');
+        } else {
+            changeElem.innerHTML = `▲ ${changeValue}%`;
+            changeElem.classList.add('positive-change');
+            changeElem.classList.remove('negative-change');
+        }
+    }
+
+    /// Type and popular day ///
+
+
+
+    /// for map chart
+
+
+    let mapchart;
+    const clickCounts = {};
+
+    // Function to clear the map counts
+    function clearMapCounts() {
+        // Reset the clickCounts to an empty object
+        Object.keys(clickCounts).forEach(key => delete clickCounts[key]);
+
+        // Optionally, log to see if it's cleared
+    }
+
+    // Function to fetch click data from the server
+    async function fetchClickData(startDate, endDate) {
+        const res = await fetch(`%%DEFINE_ROOT_LINK%%/analytics/getMapData?start=${startDate}&end=${endDate}`);
+        const data = await res.json();
+        Object.assign(clickCounts, data);
+    }
+
+    // Function to draw the map
+    async function drawMap(startDate, endDate) {
+        // Clear the map counts first
+        clearMapCounts();
+
+        // Fetch new click data only if startDate and endDate are provided
+        if (startDate && endDate) {
+            await fetchClickData(startDate, endDate);
+        }
+
+        // Fetch the map data (countries shapes)
+        const res = await fetch('%%DEFINE_ROOT_LINK%%/script/mapchart/countries-110m.json');
+        const world = await res.json();
+        const countries = ChartGeo.topojson.feature(world, world.objects.countries).features;
+
+        // Ensure data is available
+        if (!world || !countries || countries.length === 0) {
+            console.error("Failed to load map data.");
+            return;
+        }
+
+        // Clear previous chart (if any)
+        if (mapchart) {
+            mapchart.destroy();
+        }
+
+        // Set the canvas context
+        const canvas = document.getElementById('worldMap');
+        canvas.height = 300;
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas width and height to 100% of the parent container
+        const container = canvas.parentElement;
+        canvas.width = container.offsetWidth;
+        // canvas.height = container.offsetHeight;
+        canvas.height = container.offsetWidth * 0.55;
+
+        // Clear previous chart content (if any)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Prepare dataset for the choropleth map (with the current clickCounts)
+        const dataset = countries.map(country => {
+            const id = country.id;
+            const value = clickCounts[id] || 0;
+            return {
+                feature: country,
+                value: value
+            };
+        });
+
+        // 🧠 Collect click stats
+        let totalClicks = 0;
+        const statsRows = [];
+
+        for (const country of countries) {
+            const id = country.id;
+            const count = clickCounts[id];
+            if (count && count > 0) {
+                const name = country.properties.name;
+                totalClicks += count;
+                statsRows.push({ id, name, count });
+            }
+        }
+
+        statsRows.sort((a, b) => b.count - a.count); // Highest clicks first
+
+        // 🔁 Map numeric ID → ISO Alpha-2 (for flags)
+        const isoMapping = {};
+        for (const c of countries) {
+            isoMapping[c.id] = c.properties.iso_a2?.toLowerCase(); // lowercase for flagcdn
+        }
+
+        // 📦 Inject into #statsBox
+        const statsBox = document.getElementById('statsBox');
+        if (statsBox) {
+            statsBox.innerHTML = `
+                <div class='border border-gray-200 rounded-lg bg-white'>
+                    <div class="flex items-center gap-3 p-3" id="collapse_toggle" data-kt-collapse="#collapse_content" aria-expanded="false">
+                        <div>
+                            <p class="text-2xl text-gray-950 font-semibold">${totalClicks.toLocaleString()}</p>
+                            <p class="text-xs text-gray-400">Worldwide Clicks</p>
+                        </div>
+                        <button class='kt-btn kt-btn-outline kt-btn-primary kt-btn-icon transition-all hover:-rotate-45'>
+                            <i class="hgi hgi-stroke hgi-arrow-right-02"></i>
+                        </button>
+                    </div>
+
+                    <div class="transition-[height] duration-300 hidden" id="collapse_content">
+                        ${statsRows.map(row => {
+                        // const code = isoMapping[row.id];
+                        const code = row.id;
+                        const countryName = row.name.toLowerCase().slice(0, 2);
+                        const flag = code ? `<img src="%%DEFINE_ROOT_LINK%%/images/countryflags/${countryName}.svg" alt="${row.name}" >` : '';
+                return `<div class="country_row">
+                            <div class="country_flag">
+                                ${flag}
+                                <span class="country_name">${row.name}</span>
+                            </div>
+                            <span>${row.count.toLocaleString()}</span>
+                        </div>`;
+                        }).join('')}
+                    </div>
+
+                </div>
+               `;
+        }
+        
+        KTCollapse.init();
+
+        // Create new chart
+        mapchart = new Chart(ctx, {
+            type: 'choropleth',
+            data: {
+                labels: countries.map(d => d.properties.name),
+                datasets: [{
+                    label: 'Country Clicks',
+                    outline: countries,
+                    data: dataset,
+                    borderColor: '#fff',
+                    borderWidth: 0.5
+                }]
+            },
+            options: {
+                responsive: false, // Disable responsive to control size manually
+                maintainAspectRatio: false, // Allow resizing to fit the container
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => {
+                                const name = ctx.chart.data.labels[ctx.dataIndex];
+                                const value = ctx.dataset.data[ctx.dataIndex].value || 0;
+                                return `${name}: ${value} clicks`;
+                            }
+                        }
+                    }
+                },
+                layout: {
+                    padding: 0
+                },
+                scales: {
+                    projection: {
+                        axis: 'x',
+                        projection: 'equalEarth'
+                    },
+                    color: {
+                        axis: 'color',
+                        interpolate: value => value > 0 ? '#1E5EFF98' : '#DAE0EC',
+                        display: false
+                    }
+                }
+            }
+        });
+        $('.country-dropdown').click(function () {
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.country_list').slideToggle(300);
+        });
+        $('.country-dropdown').focusout(function () {
+            $(this).removeClass('active');
+            $(this).find('.country_list').slideUp(300);
+        });
+        $(".loader-image").hide();
+
+    }
+
+    /// for map chart
+
+    $(document).ready(function () {
+        loadChartData('days', selectedStartDate, selectedEndDate);
+        drawMap(selectedStartDate, selectedEndDate);
+
+        $('.range-option').on('click', function () {
+            $('.range-option').removeClass('active');
+            $(this).addClass('active');
+            const range = $(this).data('range');
+            loadChartData(range, selectedStartDate, selectedEndDate);
+        });
+    });
+
+</script>
+
+%%DEFINE_FOOTER%%

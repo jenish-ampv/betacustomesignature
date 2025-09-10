@@ -1,0 +1,95 @@
+
+
+
+
+
+<!--------------------------------flora editor-------------------------------------->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/css/froala_editor.css">
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/css/froala_style.css">
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/css/plugins/code_view.css">
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/css/plugins/image.css">
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/css/plugins/image_manager.css">
+<link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/codemirror/codemirror.min.css">
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/codemirror/codemirror.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/codemirror/xml.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/froala_editor.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/code_beautifier.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/code_view.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/draggable.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/font_size.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/font_family.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/paragraph_style.min.js"></script>
+
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/lists.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/image.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/link.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/video.min.js"></script>
+<script type="text/javascript" src="%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/js/plugins/image_manager.min.js"></script>
+<style> .fr-box{width: 830px;}</style>  
+
+<script>
+       $(function(){
+           $('.editor_flora').froalaEditor({
+              imageUploadURL:'%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/upload_image.php',
+              imageManagerLoadURL:'%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/load_image.php',
+              imageManagerDeleteURL:'%%DEFINE_ROOT_LINK%%/admin/editor/froala_editor/delete_image.php',
+              heightMax: 500,
+              heightMin: 200,
+              imageResizeWithPercent: true,
+              codeMirror: true,
+         });
+           $(".fr-box a[href='https://froala.com/wysiwyg-editor']").parent().remove();
+       });
+</script>  -->  
+
+<!--------------------------------flora editor end---------------------------------->
+
+<!--------------------------------CK editor----------------------------------------->
+
+<script src="https://cdn.ckeditor.com/4.5.7/standard-all/ckeditor.js"></script>
+<style>#cke_editor1,#cke_editor2,#cke_editor3,#cke_editor4{width: 830px;}</style>
+
+<script> // editor
+	
+	CKEDITOR.config.disableNativeSpellChecker = false;
+    CKEDITOR.disableAutoInline = true;
+	CKEDITOR.config.extraPlugins = 'colorbutton';
+	
+	CKEDITOR.config.allowedContent = true;
+	CKEDITOR.config.extraAllowedContent = 'div(*)';
+	CKEDITOR.config.extraAllowedContent = 'div(col-md-*,container-fluid,row)';
+	CKEDITOR.config.extraAllowedContent = 'dl; dt dd[dir]';
+	CKEDITOR.config.extraAllowedContent = 'span;ul;li;table;td;style;*[id];*(*);*{*}';
+	
+	CKEDITOR.replace('editor1',{
+      filebrowserBrowseUrl: '%%DEFINE_ROOT_LINK%%/admin/editor/ckfinder/ckfinder.html',
+      filebrowserUploadUrl: '%%DEFINE_ROOT_LINK%%/admin/editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Image',
+	  filebrowserImageUploadUrl : "%%DEFINE_UPLOAD_LINK%%/"
+	 });
+	CKEDITOR.replace('editor2', {
+      filebrowserBrowseUrl: '../ckfinder/ckfinder.html',
+      filebrowserUploadUrl: '../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+    });
+
+    CKEDITOR.replace('editor3', {
+      filebrowserBrowseUrl: '../ckfinder/ckfinder.html',
+      filebrowserUploadUrl: '../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+    });
+
+    CKEDITOR.replace('editor4', {
+      filebrowserBrowseUrl: '../ckfinder/ckfinder.html',
+      filebrowserUploadUrl: '../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+	  extraPlugins: 'colorbutton'
+    });
+
+    CKEDITOR.replace('editor5', {
+      filebrowserBrowseUrl: '../ckfinder/ckfinder.html',
+      filebrowserUploadUrl: '' 
+    })
+	
+</script>
+
+<!--------------------------------CK editor end------------------------------------->
+
+

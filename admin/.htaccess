@@ -1,0 +1,37 @@
+RewriteEngine On
+#RewriteBase /admin/
+#RewriteCond %{HTTP_HOST} ^lonewolfrrbentley.com/admin/$ [NC]
+#RewriteRule (.*)$ http://www.lonewolfrrbentley.com/admin/index.php$1 [L,R=301]
+
+RewriteRule ^([a-zA-Z0-9]+)/?$ index.php?module=$1 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)$ index.php?module=$1&action=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([A-Za-z0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([A-Za-z0-9-^]+)$ index.php?module=$1&action=$2&image_id=$3&image_new_width=$4&image_new_height=$5&upload_folder=$6 [L]
+
+
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z]+)/([0-9]+)/([0-1]+)$ index.php?module=$1&gallery_id=$2&action=$3&id=$4&status=$5 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z]+)/([0-9]+)/([0-1]+)/([a-z0-9]+)$ index.php?module=$1&gallery_id=$2&action=$3&id=$4&status=$5&page=$6 [L]
+
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)$ index.php?module=$1&gallery_id=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z]+)$ index.php?module=$1&gallery_id=$2&action=$3 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z0-9]+)$ index.php?module=$1&gallery_id=$2&page=$3 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z]+)/([0-9]+)$ index.php?module=$1&gallery_id=$2&action=$3&id=$4 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z]+)/([a-z0-9]+)$ index.php?module=$1&gallery_id=$2&action=$3&page=$4 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([A-Z0-9]+)/([a-z]+)/([0-9]+)/([a-z0-9]+)$ index.php?module=$1&gallery_id=$2&action=$3&id=$4&page=$5 [L] 
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([0-9]+)/([0-1]+)$ index.php?module=$1&action=$2&id=$3&status=$4 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([0-9]+)/([0-1]+)/([a-z0-9]+)$ index.php?module=$1&action=$2&id=$3&status=$4&page=$5 [L]
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-z0-9]+)$ index.php?module=$1&page=$2 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([0-9]+)$ index.php?module=$1&action=$2&id=$3 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([a-z0-9]+)$ index.php?module=$1&action=$2&id=$3 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([a-zA-Z0-9_]+)$ index.php?module=$1&action=$2&subscription_id=$3 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/canclesubscription/([a-zA-Z0-9_]+)/([0-9]+)/([a-zA-Z0-9_]+)$ index.php?module=$1&action=canclesubscription&subscription_id=$2&user_id=$3&customer_id=$4 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([a-z0-9]+)/([0-9]+)$ index.php?module=$1&action=$2&page=$3&page=$4 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([0-9]+)/([a-z0-9]+)$ index.php?module=$1&action=$2&id=$3&page=$4 [L] 
+RewriteRule ^([a-zA-Z0-9]+)/([a-z]+)/([0-9]+)/([a-zA-Z0-9-_]+)$ index.php?module=$1&action=$2&id=$3&db_name=$4 [L] 
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z|0-9-]+)$ index.php?module=$1&submodule=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z|0-9-]+)/([a-z]+)$  index.php?module=$1&submodule=$2&action=$3
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z|0-9-]+)/([a-z]+)/([0-9]+)$  index.php?module=$1&submodule=$2&action=$3&id=$4
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z|0-9-]+)/([a-z0-9]+)$  index.php?module=$1&submodule=$2&page=$3 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z|0-9-]+)/([a-z]+)/([a-z0-9]+)$  index.php?module=$1&submodule=$2&action=$3&page=$4 [L]

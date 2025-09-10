@@ -1,0 +1,178 @@
+%%DEFINE_HEADER%%
+<div class="container">	
+	 <div class="new_dashboard_bg">
+     	
+        	<div class="new_dashboard_left">
+            	%%DEFINE_SIDEBAR%%
+            </div>
+            <div class="new_dashboard_right">
+              
+              <div class="bulk_upload_main deploy_data_main">
+               <div class="deploy-signature-wrapper">
+                <a class="backarrow" href="%%DEFINE_ROOT_LINK%%"><img src="%%DEFINE_IMAGE_LINK%%/images/back-arrow.svg" alt="">Back</a>	
+                <div class="signature_integration_withhead_box step" id="step1" style="float:left;">
+                    <div class="headbox_content">
+                        <h5>Deploy the Signature to Google</h5>
+                        <p>&nbsp;</p>
+                        <p>Select the accounts to which the signatures will be applied. Once deployed, the signatures will be automatically installed into the users' respective email inboxes.</p>
+                        <p>&nbsp;</p>
+                        <p>%%DEFINE_google_signature_data_last_updated_message%% If you see outdated data <a href="%%DEFINE_ROOT_LINK%%/integrations">Update Now</a></p>
+                        <p>&nbsp;</p>
+                        <p> <input type="text" class="form-control" value="" id="search_member" placeholder="Search username or email"></p>
+                        <p id="notfound" style="display:none;">No results found</p>
+                        <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
+                        <form id="groupdeploygoogle" method="post" action="" enctype="multipart/form-data">
+                             
+                                    <div class="accordionbox">
+                                        <ul class="main">
+                                            <li><input type="checkbox" class="form-check-input groupcbox" id="select_all" /> <label for="select_all">Select All</label> <div class="mem_right">Selected:<span id="selected_mem">0</span></div></li>
+                                        </ul>
+                                        <div class="accordion" id="accordionExample">
+                                            %%DEFINE_group_list%%
+                                        </div>
+                                    </div>
+                              
+                            <input type="hidden" name="groupdeploygoogle_submit" value="1" />
+                                <div class="bottom_bg_btn" style="padding:30px 0 0 0 !important; float:right;">
+                                    <button type="submit" name="next" class="submit btn next action-button"  value="Next Step">Deploy </button>
+                                </div>
+                        </form>
+                    </div>
+             </div>
+                </div>
+            </div>
+            
+            	<div class="bulk_upload_main text-center %%DEFINE_bulkerrorcls%%">
+            <h2><a href="%%DEFINE_linkModuleDashboard%%">please select your Master Signature <br /> For bulk upload</a></h2>
+        <p><a class="btn btn-primary" href="%%DEFINE_linkModuleDashboard%%">Dashboard <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a></p>
+        
+    </div>
+            </div>
+        </div>
+     </div>
+
+ 
+<script type="text/javascript">
+    $(document).ready(function(){
+        var members = [];
+
+        // Disable duplicate users if any
+        $('.member_deploy').each(function(){ 
+            var found = jQuery.inArray($(this).find("div.deploy_mail").attr('value'), members);
+            if (found >= 0) {
+                // Element was found, disable it.
+                $(this).find(".deploy_mail_label").append('<span class="mail_label_error" style="color: red;display: block;">This address is already used(duplication)</span>');
+                $(this).find(".mem_checkbox").attr('disabled',true);
+            } else {
+                // Element was not found, add it.
+                members.push($(this).find("div.deploy_mail").attr('value'));
+            }
+        });
+        
+        // Disable deplou button till checkbox check
+        if($('.mem_checkbox:checked').length == 0){
+            $('button.submit').attr('disabled',true);
+        }
+        
+        //select all function
+        $('#select_all').on('click',function(){
+            if(this.checked){
+                $('.mem_checkbox:not(:disabled)').each(function(){ this.checked = true;});
+            }else{
+                $('.mem_checkbox').each(function(){ this.checked = false; });
+                
+            }
+            var selectedmem = ($('.mem_checkbox:checked').length);
+            $('#selected_mem').text(selectedmem);
+            if($('.mem_checkbox:checked').length > 0){
+                $('button.submit').attr('disabled',false);
+            }else{
+                $('button.submit').attr('disabled',true);
+            }
+        });
+        
+        // mark select_all on checking checkboxes one by one
+        $('.mem_checkbox').on('click',function(){
+            if($('.mem_checkbox:checked').length == $('.mem_checkbox:not(:disabled)').length){
+                $('#select_all').prop('checked',true);
+            }else{
+                $('#select_all').prop('checked',false);
+            }
+        });
+
+        // check box select
+        $('.mem_checkbox').change(function() {  
+            var selectedmem = ($('.mem_checkbox:checked').length);
+			$('#selected_mem').text(selectedmem);
+            if($('.mem_checkbox:checked').length > 0){
+                $('button.submit').attr('disabled',false);
+            }else{
+                $('button.submit').attr('disabled',true);
+            }
+	    });
+
+        // search members
+		$("#search_member").keyup(function() {
+            var filter = $(this).val(); var res =0;
+            $('#search_result div.search-container').hide();
+            $('#search_result').css('display','none');
+            $('#notfound').css('display','none');
+            if(filter.length < 3){ return false;}
+            $('#search_result').css('display','block');
+		    $('#search_result div.search-container').each(function() {
+                if($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).hide();
+                }else {
+                res =1;
+                $(this).show();
+                }
+            });
+		    if(res == 0){
+                $('#search_result').css('display','none');
+                $('#notfound').css('display','block');
+		    }
+		});
+
+        $('.mem_search_checkbox').change(function() {
+			var searchsel = $(this).attr('id');
+			searchselid = searchsel.replace("search_","");
+			groupid = $(this).attr('data-master');
+            if($(this).prop('checked')==true){ 
+            $('#'+searchselid).prop("checked", true);
+            }else{
+            $('#'+searchselid).prop("checked", false);
+            $('#'+groupid).prop("checked", false);
+            $('#select_all').prop('checked',false);
+            }
+            var selectedmem = ($('.mem_checkbox:checked').length);
+            $('#selected_mem').text(selectedmem);
+            if($('.mem_checkbox:checked').length > 0){
+                $('button.submit').attr('disabled',false);
+            }else{
+                $('button.submit').attr('disabled',true);
+            }
+            if($('.mem_checkbox:checked').length == $('.mem_checkbox:not(:disabled)').length){
+                $('#select_all').prop('checked',true);
+            }else{
+                $('#select_all').prop('checked',false);
+            }
+		});
+    });
+    
+</script>
+
+
+
+
+
+
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_JS_LINK%%/heapbox.min.js"></script>
+<script>
+  jQuery.noConflict();
+    (function($) {
+      // To active/inactive in leftbar
+      $('.new_dashboard_left a').removeClass('active');
+  })(jQuery);
+</script>
+%%DEFINE_FOOTER%%

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    %%DEFINE_signature_source%%
+  </body>
+</html>
+
+<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script> 
+<script>
+  // remove empty tr from layout
+  $("img[src='']").remove();
+  $("span:empty").remove();
+  $(document).ready(function(){
+    $('td').each(function() {
+      if ($(this).html().trim() == '') {
+        if ($(this).closest("tr").find('td').html().trim() == '') {
+          $(this).closest("tr").remove();
+        }
+      }
+      if ($(this).is(":hidden")) {
+        $(this).remove();
+      }
+    });
+  });
+</script>

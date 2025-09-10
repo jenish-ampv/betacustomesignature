@@ -1,0 +1,188 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+
+<script>
+function formSubmit(adduser){
+	var theForm = document.getElementById(adduser); // get the form
+    var cb = theForm.getElementsByTagName('input'); // get the inputs
+    for(var i=0;i<cb.length;i++){ 
+    	if(cb[i].type=='checkbox' && !cb[i].checked){  // if this is an unchecked checkbox
+     		cb[i].value = 0; // set the value to "off"
+            cb[i].checked = true; // make sure it submits
+        }
+	}
+    return true;
+}
+
+</script>
+
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add %%DEFINE_ModuleName%%</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                IF("%%DEFINE_MessageStatus%%"=="1"){
+                                    %%DEFINE_Message%%
+                                {:IF}
+                                <form name="add_user" id="adduser" action="%%DEFINE_li_add%%" method="post" onSubmit="return formSubmit('adduser');">
+                                   
+                                    <div class="form-group row">
+                                        <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Name:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="uname" class="form-control" id="inputEmail3" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">password:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="password" class="form-control" id="inputPassword3" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Confirm password:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="password" name="cpassword" value="" class="form-control" id="inputPassword4" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputcheckEmail3" class="col-sm-3 col-form-label">Email Address:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="email" class="form-control" id="inputcheckEmail3" onchange="checkEmail(email)" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="phone" class="col-sm-3 col-form-label">Phone:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="phone" class="form-control" id="phone" required>
+                                        </div>
+                                    </div>
+                                    
+                                        
+                                        
+                                        <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Modules:<span class="c-rd">*</span></label> 
+                                        <div class="col-sm-9">
+                                        <div class="row">
+                                        
+                                        <div class="col-sm-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="checkall" value="1"><label class="form-check-label" for="gridCheck1">Select all</label></div></div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                            %%DEFINE_ParentModules%%
+                                         </div>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input type="hidden" name="usertype" value="1" />
+                                            <input name="" type="submit" value="Save" class="btn btn-primary"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h5>%%DEFINE_ModuleName%%</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" id="user_table">
+                                <thead>
+                                    <tr> 
+                                        <th>Status</th>
+                                        <th>User</th>
+                                        <th>E-mail</th>
+                                        <th>Last Login Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    var filter = jQuery.noConflict();
+    filter(document).ready(function(){
+      var filterurl = '%%DEFINE_li_getuserdata%%';
+      var dataTable = filter('#user_table').DataTable({
+        'processing': true,
+        'serverSide': true,
+        'select': true,
+        "language": {                
+          "infoFiltered":""
+        }, 
+        'serverMethod': 'post',
+        'ajax': {
+          'url': filterurl,
+          'data': function(data){
+            var fd = filter('#filter_district').val();
+            data.filter_district = fd;
+          },
+        }, 
+        'columns': [
+          { data : 'status'},
+          { data : 'usertype'},
+          { data : 'email'},
+          { data : 'last_login'},
+          { data : 'action'}
+        ],	
+      });
+      filter('#filter_district').change(function(){
+        dataTable.draw();
+      });
+    });
+	
+	
+	
+ 	var selchk = jQuery.noConflict();
+ 	selchk('#checkall').click(function(){
+	  var theForm = document.getElementById('adduser'); // get the form
+		var cb = theForm.getElementsByTagName('input'); // get the inputs
+		for(var i=0;i<cb.length;i++){ 
+			if(cb[i].type=='checkbox' && selchk(this).prop("checked") == true  ){  // if this is an unchecked checkbox
+				cb[i].checked = true; // make sure it submits
+			}else{
+				cb[i].checked = false; // make sure it submits
+			}
+		}
+		return true;
+   });
+</script>  

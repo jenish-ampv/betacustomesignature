@@ -1,0 +1,164 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Add %%DEFINE_ModuleName%%</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <form name="add_user" action="%%DEFINE_li_add%%" method="post" onsubmit="return userValidate(this)">
+                  IF("%%DEFINE_MessageStatus%%"=="1"){
+                    %%DEFINE_Message%%
+                  {:IF}
+                  <div class="form-group row"><!--Note!-->
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span></label>
+                    <div class="col-sm-9">
+                    </div>
+                  </div>
+
+                  <div class="form-group row"><!--Name-->
+                    <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Name:<span class="c-rd">*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="name" class="form-control" id="inputEmail3" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row"><!--Code-->
+                    <label for="inputPassword3" class="col-sm-3 col-form-label">Code:<span class="c-rd">*</span></label>
+                    <div class="col-sm-9">
+                      <input type="text" name="code" class="form-control" value="" id="inputPassword3" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row"><!--Discount Amount-->
+                    <label for="inputPassword3" class="col-sm-3 col-form-label">Discount Amount:<span class="c-rd">*</span></label>
+                    <div class="col-sm-9">
+                      <input type="text" name="amount" value="" class="form-control" id="inputPassword3" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row"><!--amount_type-->
+                    <label for="inputPassword3" class="col-sm-3 col-form-label">Amount Type:<span class="c-rd">*</span></label>
+                    <div class="col-sm-9">
+                    <select name="amount_type" class="form-control" id="inputGroupSelect02">
+                      <option value="0">Fix</option>
+                      <option value="1">Percentage</option>
+                    </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row"><!--Website-->
+                    <label for="inputPassword3" class="col-sm-3 col-form-label">Select Plan:<span class="c-rd">*</span></label>
+                    <div class="col-sm-9">
+                      <select name="website[]" class="form-control" multiple="multiple" id="inputGroupSelect02">
+                        <option value="0">All plan</option>
+                        %%DEFINE_SITELIST%%
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row"><!--Expire Date-->
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Expire Date:<span class="c-rd">*</span></label>
+                    <div class="col-sm-9">
+                      <input type="text" name="expdate" class="form-control" value="" id="expdate" required>
+                    </div>
+                  </div>
+            
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                      <input name="" type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+          <div class="card-header">
+            <h5>%%DEFINE_ModuleName%%</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0" id="promo">
+                <thead>
+                  <tr> 
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Amount</th>
+                    <th>Exp Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- date js -->
+<script>
+  jQuery(document).ready(function($){	
+    var startDate = new Date();
+    $("#expdate").datepicker({minDate: 0,dateFormat: 'dd-mm-yy'});
+    $('#expdate').datepicker('setDate', startDate);
+  });
+</script>
+
+<script>
+  var filter = jQuery.noConflict();
+  filter(document).ready(function(){
+    var filterurl = '%%DEFINE_li_promodata%%';
+    var dataTable = filter('#promo').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'select': true,
+      "language": {                
+        "infoFiltered":""
+      }, 
+      'serverMethod': 'post',
+      'ajax': {
+        'url': filterurl,
+        'data': function(data){
+        },
+      }, 
+      'columns': [
+        { data : 'status'},
+        { data : 'name'},
+        { data : 'code'},
+        { data : 'amount'},
+        { data : 'expdate'},
+        { data : 'action'}
+      ],	
+    });
+  });
+</script>

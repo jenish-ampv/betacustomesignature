@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75">
+  <g id="_6-pre" data-name="6-pre" transform="translate(-915.154 -300)">
+    <rect id="Rectangle_13" data-name="Rectangle 13" width="75" height="75" transform="translate(915.154 300)" fill="none"/>
+    <g id="_6-6" data-name="6-6" transform="translate(917.154 302)">
+      <g id="Group_44" data-name="Group 44" transform="translate(0 0)">
+        <path id="Path_25" data-name="Path 25" d="M2.5-.5h13a44.337,44.337,0,0,0,2,10q26.481,1.5,53,1v4Q64.89,29.57,59.5,45l-41,1a2.5,2.5,0,0,0,0,4l41,1a7.822,7.822,0,0,1,0,7.5,328.492,328.492,0,0,1-44,.5Q4.908,53.733,9,42.5q2.272-3.266,4.5-6.5-2.985-13.674-5-27.5a24.936,24.936,0,0,1-7-.5,9.579,9.579,0,0,0-2-2.5v-3A6.541,6.541,0,0,0,2.5-.5Z" transform="translate(0.5 0.5)" fill="#abb8d4" fill-rule="evenodd" opacity="0.938"/>
+      </g>
+      <g id="Group_45" data-name="Group 45" transform="translate(16.992 60.998)">
+        <path id="Path_26" data-name="Path 26" d="M25.5,70.5h-6q-4.245-2.793-2.5-8A10.61,10.61,0,0,1,26.5,61Q32.409,66.43,25.5,70.5Z" transform="translate(-16.492 -60.498)" fill="#abb8d4" fill-rule="evenodd" opacity="0.779"/>
+      </g>
+      <g id="Group_46" data-name="Group 46" transform="translate(43.215 61)">
+        <path id="Path_27" data-name="Path 27" d="M52.5,70.5h-6q-8.853-7.946,3-10,8.249.019,5.5,8A9.578,9.578,0,0,0,52.5,70.5Z" transform="translate(-42.715 -60.5)" fill="#abb8d4" fill-rule="evenodd" opacity="0.765"/>
+      </g>
+    </g>
+  </g>
+</svg>

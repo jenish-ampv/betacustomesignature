@@ -1,0 +1,119 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">%%DEFINE_ModuleName%%</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+          <div class="card-header">
+            <!-- <h5>Register Member (%%DEFINE_Totaluser%%)</h5> -->
+            <h5>%%DEFINE_ModuleName%%</h5>
+            <div class="card-header-right" >
+              <a href="%%DEFINE_li_add%%"><input class="btn btn-primary btn-sm has-ripple" type="button" value="Add New" class="gry_btn"></a>
+            </div> 
+          </div>
+          <div class="collapse" id="collapseExample">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <div class="collapse" id="collapseExample">
+                    <tr> 
+                      <div class="form-row m-10">
+                        <div class="col-md-3 mb-3">
+                          <select name="filter_val" class="custom-select" id="filter_val">
+                            <option value="">Select</option>
+                            <option value="1">Status Deactive</option>
+                            <option value="2">Status Active</option>
+                            <option value="3">Last Login</option>
+                            <option value="4">Not Login</option>
+                          </select>
+                        </div>
+                      </div>
+                    </tr>               
+                  </div>  
+                </thead>
+              </table>
+            </div>             
+          </div> 
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <!--<div class="m-20" style="display:%%DEFINE_display%%;">Please select website first to see the FREE & GOLD & PLATINUM Member list  
+                  <a href="%%DEFINE_li_export%%">Export All Member</a>
+              </div>-->
+              <div >
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    IF("%%DEFINE_MessageStatus%%"=="1"){
+                      %%DEFINE_Message%%
+                    {:IF}
+                    <table class="table table-hover mb-0" id="register_table">
+                      <thead>
+                        <tr>
+                          <th>Status</th> 
+                          <th>Layout No</th>
+                          <th>Social</th>
+                          <th>Create at</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<script>
+  var filter = jQuery.noConflict();
+  filter(document).ready(function(){
+    var filterurl = '%%DEFINE_li_getuserdata%%';
+    var dataTable = filter('#register_table').DataTable({
+	  "lengthMenu": [[10, 25, 50,100,500], [10, 25, 50,100]],	
+      'processing': true,
+      'serverSide': true,
+      'select': true,
+      'order': [[ 1, "asc" ]],
+      "language": {                
+        "infoFiltered":""
+      }, 
+      'serverMethod': 'post',
+      'ajax': {
+        'url': filterurl,
+        'data': function(data){
+          var fd = filter('#filter_val').val();
+          data.filter_val = fd;
+        },
+      }, 
+      'columns': [
+        { data : 'layout_status'},
+		{ data : 'index_id'},
+		{ data : 'layout_socialstyle'},
+        { data : 'layout_created'},
+        { data : 'action'}
+      ],	
+    });
+    filter('#filter_val').change(function(){
+      dataTable.draw();
+    });
+  });
+</script>  

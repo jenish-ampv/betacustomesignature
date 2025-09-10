@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xsi:type="MailApp">
+  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+  <Id>4700cb92-95dd-4d3e-b1c9-61a9bb120a33</Id>
+  <!--Version. Updates from the store only get triggered if there is a version change. -->
+  <Version>1.0.0.2</Version>
+  <ProviderName>Custom Esignature</ProviderName>
+  <DefaultLocale>en-us</DefaultLocale>
+  <DisplayName DefaultValue="Custom Esignature Email Signatures for Outlook"/>
+  <Description DefaultValue="Custom Esignature Email Signatures for Outlook enables companies to design and deploy branded company-wide signatures that are inserted in every composed email"/>
+  <IconUrl DefaultValue="https://betaapp.customesignature.com/office-addin/logo64x64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://betaapp.customesignature.com/office-addin/logo128x128.png"/>
+  <SupportUrl DefaultValue="https://www.customesignature.com/contact-us"/>
+  <AppDomains>
+    <AppDomain>https://www.customesignature.com</AppDomain>
+  </AppDomains>
+
+  <Requirements>
+    <Sets DefaultMinVersion="1.5">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+
+  <!-- Old schema. This will be overridden by the VersionOverrides below. -->
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://betaapp.customesignature.com/office-addin/index.html"/>
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadWriteMailbox</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  </Rule>
+  <!-- /Old schema. -->
+
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+      <Requirements>
+        <bt:Sets DefaultMinVersion="1.10">
+          <bt:Set Name="Mailbox" />
+        </bt:Sets>
+      </Requirements>
+
+      <Hosts>
+        <Host xsi:type="MailHost">
+        <!-- Specify the runtime for event-based activation. -->
+        <!-- For more information, see https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch -->
+          <Runtimes>
+            <Runtime resid="autorun">
+              <Override type="javascript" resid="runtimeJs"/>
+            </Runtime>
+          </Runtimes>
+
+          <DesktopFormFactor>
+            <!-- Specify function to call for new message and new appointment events -->
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="checkSignature" />
+                <LaunchEvent Type="OnMessageFromChanged" FunctionName="onMessageFromChangedHandler"/>
+              </LaunchEvents>
+              <SourceLocation resid="autorun" />
+            </ExtensionPoint>
+          </DesktopFormFactor>
+          <MobileFormFactor>
+            <!-- Specify function to call for new message and new appointment events -->
+            <ExtensionPoint xsi:type="LaunchEvent">
+              <LaunchEvents>
+                <LaunchEvent Type="OnNewMessageCompose" FunctionName="checkSignature"/>
+              </LaunchEvents>
+              <SourceLocation resid="autorun" />
+            </ExtensionPoint>
+          </MobileFormFactor>
+        </Host>
+      </Hosts>
+      <Resources>
+        <bt:Urls>
+          <bt:Url id="autorun" DefaultValue="https://betaapp.customesignature.com/office-addin/index.html"></bt:Url>
+          <bt:Url id="runtimeJs" DefaultValue="https://betaapp.customesignature.com/office-addin/index.js"></bt:Url>
+        </bt:Urls>
+      </Resources>
+    </VersionOverrides>
+  </VersionOverrides>
+</OfficeApp>

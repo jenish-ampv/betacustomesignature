@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27" height="14" viewBox="0 0 27 14">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_301" data-name="Rectangle 301" width="14" height="14" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="calendar-icon" transform="translate(-1039 -3100)">
+    <rect id="Rectangle_302" data-name="Rectangle 302" width="26" height="14" transform="translate(1040 3100)" fill="#fff"/>
+    <g id="calendar-icon-2" data-name="calendar-icon" transform="translate(1039 3100)" clip-path="url(#clip-path)">
+      <path id="Path_255" data-name="Path 255" d="M0,11.084A2.92,2.92,0,0,0,2.917,14h8.167A2.92,2.92,0,0,0,14,11.084V5.834H0ZM9.917,8.459a.875.875,0,1,1-.619.256A.875.875,0,0,1,9.917,8.459ZM7,8.459a.875.875,0,1,1-.619.256A.875.875,0,0,1,7,8.459Zm-2.917,0a.875.875,0,1,1-.619.256A.875.875,0,0,1,4.083,8.459Z" fill="#92a1ae"/>
+      <path id="Path_256" data-name="Path 256" d="M11.083,1.167H10.5V.583a.583.583,0,0,0-1.167,0v.583H4.667V.583A.583.583,0,1,0,3.5.583v.583H2.917A2.92,2.92,0,0,0,0,4.083v.583H14V4.083a2.92,2.92,0,0,0-2.917-2.917Z" fill="#92a1ae"/>
+    </g>
+  </g>
+</svg>

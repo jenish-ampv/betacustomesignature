@@ -1,0 +1,281 @@
+%%DEFINE_HEADER%%
+
+<div class="flex w-full">
+  <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10">
+    <div class="flex-1 flex flex-col">
+
+
+      <div class="flex-1 flex flex-col">
+        <div class="max-w-[600px] w-full mx-auto progress-boxes">
+          <div class="flex items-center gap-2 mb-8 cursor-pointer" id="back2">
+            <i class="fa-solid fa-angle-left"></i> Back
+          </div>
+        </div>
+
+        <form id="wizard" class="flex-1 flex flex-col" novalidate>
+          <!-- STEP 1 -->
+          <div class="flex-1 step" data-step="1">
+
+            <div class="h-full flex flex-col">
+              <div class="flex-1 max-w-[600px] w-full mx-auto">
+                <div>
+                  <h5 class="text-gray-950 text-2xl font-medium">Upload Company Logo</h5>
+                  <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
+                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                  <div class="h-[6px] rounded-full bg-gray-400"></div>
+                </div>
+                <div class="flex flex-col gap-4">
+                  <div>
+                    <label class="kt-form-label">Company Logo</label>
+
+                    <input class="hidden" type="file" id="companyLogo">
+                    <label for="companyLogo"
+                      class="w-full bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px]">
+                      <div class="cursor-pointer p-6 upload-box">
+                        <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
+                        <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or SVG</p>
+                        <span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span>
+                      </div>
+                      <div class="preview size-full absolute z-[1] hidden">
+                        <div class="size-full flex items-center justify-center">
+                          <img class="size-[140px] object-cover object-center" src="">
+                        </div>
+                        <button class="!absolute right-1 top-1 kt-btn kt-btn-white !text-gray-950"><i class="fas fa-pen"></i> Edit Logo</button>
+                      </div>
+                    </label>
+
+                    <p class="text-gray-600 text-xs mt-2"><span class="text-gray-950">Notes:</span> Please upload a logo
+                      with dimension <span class="text-gray-950">500*500 and above pixel</span> for better animation
+                      quality.</p>
+                  </div>
+                  <div>
+                    <label class="kt-form-label">Profile Photo</label>
+                    <input class="hidden" type="file" id="profileLogo">
+                    <label class="w-full bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px]" for="profileLogo">
+                      <div class="cursor-pointer p-6 upload-box">
+                        <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
+                        <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or SVG</p>
+                        <span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span>
+                      </div>
+                      <div class="preview size-full absolute z-[1] hidden">
+                        <div class="size-full flex items-center justify-center">
+                          <img class="size-[200px] object-cover object-center" src="">
+                        </div>
+                        <button class="!absolute right-1 top-1 kt-btn kt-btn-white !text-gray-950"><i class="fas fa-pen"></i> Edit Profile</button>
+                      </div>
+                    </label>
+                    <p class="text-gray-600 text-xs mt-2"><span class="text-gray-950">Notes:</span> Please upload a logo
+                      with dimension <span class="text-gray-950">500*500 and above pixel</span> for better animation
+                      quality.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="text-end">
+                <button class="kt-btn kt-btn-primary" id="next1">Continue</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="flex-1 step hidden" data-step="2">
+            <div class="h-full flex flex-col">
+              <div class="flex-1 max-w-[600px] w-full mx-auto">
+                <div>
+                  <h5 class="text-gray-950 text-2xl font-medium">Just a couple more questions.</h5>
+                  <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
+                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                  <div>
+                    <label class="kt-form-label">How many team members need a signature?</label>
+                    <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
+                      data-kt-select-config='{
+                          "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                        }'>
+                      <option value="react">React</option>
+                      <option value="nextjs">Next.js</option>
+                      <option value="angular">Angular</option>
+                      <option value="vue">Vue</option>
+                      <option value="svelte">Svelte</option>
+                      <option value="ember">Ember</option>
+                      <option value="nuxt">Nuxt.js</option>
+                      <option value="remix">Remix</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="kt-form-label">What Email Platform You Use?</label>
+                    <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
+                      data-kt-select-config='{
+                          "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                        }'>
+                      <option value="react">React</option>
+                      <option value="nextjs">Next.js</option>
+                      <option value="angular">Angular</option>
+                      <option value="vue">Vue</option>
+                      <option value="svelte">Svelte</option>
+                      <option value="ember">Ember</option>
+                      <option value="nuxt">Nuxt.js</option>
+                      <option value="remix">Remix</option>
+                    </select>
+                  </div>
+                  <div class="mt-5">
+                    <label class="kt-form-label">How did you hear about us?</label>
+                    <div class="flex flex-wrap *:h-10 *:rounded-2xl *:px-2 gap-[6px] *:font-normal">
+                      <button class="kt-btn kt-btn-outline">Facebook/Instagram</button>
+                      <button class="kt-btn kt-btn-outline">Facebook/Instagram</button>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="kt-form-label">What brought you to Custom Esignature today?</label>
+                    <div class="flex flex-wrap *:h-10 *:rounded-2xl *:px-2 gap-[6px] *:font-normal">
+                      <button class="kt-btn kt-btn-outline">The Interactive Design</button>
+                      <button class="kt-btn kt-btn-outline">Boost Your Replies</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-end">
+                <button class="kt-btn kt-btn-primary" id="next2">Continue</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 step hidden" data-step="3">
+            <div class="h-full flex flex-col">
+              <div class="flex-1 max-w-[600px] w-full mx-auto font-normal text-gray-950 flex flex-col">
+                <div>
+                  <h2>Hey, Bob Smith<br>Welcome to<br><span
+                      class="font-medium bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom
+                      Esignature</span></h2>
+                  <button class="kt-btn kt-btn-primary w-full mt-8">Get Started</button>
+                </div>
+                <div class="flex-1 flex items-center justify-center">
+                  <img src="%%DEFINE_IMAGE_LINK%%/images/welcome.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="flex text-sm items-center justify-between">
+      <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+      <div class="flex text-gray-700 items-center gap-2">
+        <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
+        <i class="fas fa-circle text-[6px] text-gray-400"></i>
+        <a href="https://www.customesignature.com/terms-of-use" target="_blank">Terms and Conditions</a>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+    style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
+    <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
+      <div class="swiper w-full" id="loginSlider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide text-center">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/slide1.png" alt="">
+            <p class="text-2xl text-dark font-medium mb-2 mt-14">Select From multiple Template</p>
+            <p class="text-gray-600">Use the intuitive editor to create a personalized, professional signature with
+              AI-enhanced layout and branding options.</p>
+          </div>
+          <div class="swiper-slide text-center">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/slide2.png" alt="">
+            <p class="text-2xl text-dark font-medium mb-2 mt-14">Select From multiple Template</p>
+            <p class="text-gray-600">Use the intuitive editor to create a personalized, professional signature with
+              AI-enhanced layout and branding options.</p>
+          </div>
+        </div>
+        <div class="swiper-pagination mt-8 !static px-16"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+%%DEFINE_FOOTER%%
+
+<script>
+  $(function () {
+    const $steps = $(".step");
+    const $boxes = $(".progress-box");
+    const $titles = $("[data-title]");
+    let current = 1;
+
+    function showStep(n) {
+      current = n;
+
+      // show current step only
+      $steps.addClass("hidden").filter(`[data-step="${n}"]`).removeClass("hidden");
+
+    }
+
+    // validation (optional, right now no error divs in your form)
+    function validateStep(n) {
+      return true; // skip for now
+    }
+
+    $("#next1").on("click", function (e) {
+      e.preventDefault();
+      if (validateStep(1)) showStep(2);
+    });
+    $("#next2").on("click", function (e) {
+      e.preventDefault();
+      if (validateStep(2)) showStep(3);
+    });
+
+    $("#back2").on("click", function (e) {
+      e.preventDefault();
+      showStep(1);
+    });
+
+    $("#wizard").on("submit", function (e) {
+
+    });
+  });
+
+  
+  function setupUploader(inputId, previewId) {
+    let $input = $("#" + inputId);
+    let $wrapper = $input.next("label");
+    let $uploadBox = $wrapper.find(".upload-box");
+    let $previewBox = $wrapper.find(".preview");
+    let $previewImg = $wrapper.find("img");
+
+    $input.on("change", function () {
+      let file = this.files[0];
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          $previewImg.attr("src", e.target.result);
+          $uploadBox.addClass("hidden");
+          $previewBox.removeClass("hidden");
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Optional: Reset on Edit button click
+    $wrapper.find(".edit-btn").on("click", function (e) {
+      e.preventDefault();
+      $input.val(""); // clear file input
+      $previewImg.attr("src", "");
+      $previewBox.addClass("hidden");
+      $uploadBox.removeClass("hidden");
+    });
+  }
+
+  // Initialize both
+  $(document).ready(function () {
+    setupUploader("profileLogo", "profilePreview");
+    setupUploader("companyLogo", "companyPreview");
+  });
+
+</script>

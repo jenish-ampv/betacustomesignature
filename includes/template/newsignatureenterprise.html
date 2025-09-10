@@ -1,0 +1,2316 @@
+%%DEFINE_HEADER%%
+
+IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
+<style>
+#logoProfileUploadContainer { display: none;}
+#msform {display:inline;}
+</style>
+{:IF}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
+<section>
+  <div class="loader-image" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
+  <div class="new_signin_bg" id="logoProfileUploadContainer">
+ 	<div class="row">
+        <div class="col-xl-8 col-lg-8 col-12">
+        	<form id="logoimageform">
+    <fieldset>
+      <div class="upload_brand_logo_main">
+        <div class="top_logo"><img draggable="false" src="%%DEFINE_ROOT_LINK%%/images/logo.svg" alt=""></div>
+        <div class="step">Step 2 of 2</div>	
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-12">
+            <h3>Upload Brand Logo <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/uploadbrand-logo.svg" alt=""></h3>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p> -->
+            <input type="file" name="file" id="file" style="display:none;">
+            <div class="upload-area" id="uploadfile">
+              <div class="drag_your_image"> 
+                <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
+                <p>Supports: PNG, SVG</p>
+                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/img-icon.svg" alt="">
+              </div>
+            </div>
+            <div id="img_preview"></div>
+            <div id="img_errormsg"></div>
+          </div>
+          <div class="col-xl-6 col-md-6 col-12" style="display: none;">
+            <h3>Upload Profile Pic <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/uploadprofile-pic.svg" alt=""></h3>
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p> -->
+            <input type="file" name="profileImage" id="profileImage" style="display:none;">
+            <div class="upload-area-profile" id="uploadProfileImage">
+              <div class="drag_your_image"> 
+                <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
+                <p>Supports: PNG, SVG</p>
+                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/img-icon.svg" alt="">
+              </div>
+            </div>
+            <div id="profile_img_preview"></div>
+            <div id="profile_img_errormsg"></div>
+          </div>
+        </div>
+      
+        <input type="hidden" value="%%DEFINE_USERUPLOADLIMIT%%" id="uploadlimit" />
+        <div class="button">
+          <a href="%%DEFINE_linkModuleDashboard%%" class="previous action-button-previous">Back</a>
+          <button type="button" name="next" class="btn next action-button" value="Next Step" id="nxt2" data-id="1" disabled="disabled" >Next Step </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-12">
+        	<div class="signin_left_bg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/thanks-left-bg.png" alt=""></div>
+        </div>
+        
+       </div>
+  </div>
+   
+  <div class="container">
+
+    <!-- progressbar -->
+    <!-- <ul id="progressbar">
+      <li  id="step1" class="%%DEFINE_activetabclass1%%">&nbsp;</li>
+      <li id="step2" class="%%DEFINE_activetabclass2%%">&nbsp;</li>
+      <li id="step3">&nbsp;</li>
+    </ul> -->
+    <div class="dashboard_set_up_bg" style="box-shadow:none; padding:0; border:none; background: none;">
+    
+    <form id="msform">
+      
+    <fieldset>
+      <!-- only for saving logo to DB -->
+      <input type="hidden" name="signature_image" value="">
+      <input type="hidden" name="current_department" value="%%DEFINE_current_department_id_add_sign%%">
+      <!-- only for saving logo to DB -->
+      <div class="dashboard_set_up_bg" style="box-shadow:none; padding:0; border:none; background: none;">
+              <!-- <h3>Add Details</h3> -->
+
+              <div class="row">
+                <div class="col-xl-5 col-lg-6 col-12">
+                   <div class="hover_over_sign_bg">
+                         <div class="tab_main">
+                          <div class="nav-tabs-head">
+                            <div class="nav-tabs-head-inner">
+                              <span class="tab_logo"><a href="%%DEFINE_ROOT_LINK%%/dashboard"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt=""></a></span>
+                            </div>
+                           <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="template-tab" data-bs-toggle="tab" data-bs-target="#template" type="button" role="tab" aria-controls="template" aria-selected="true"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/template-icon.svg" alt="">Layouts</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="infostyle-tab" data-bs-toggle="tab" data-bs-target="#infostyle" type="button" role="tab" aria-controls="infostyle" aria-selected="false"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/info-style-icon.svg" alt="">Info / Style</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" type="button" role="tab" aria-controls="social" aria-selected="false"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social-icon.svg" alt="">Social</button>
+                            </li>
+                            
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="logo-tab" data-bs-toggle="tab" data-bs-target="#logo" type="button" role="tab" aria-controls="logo" aria-selected="false"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/logo-img-icon.svg" alt="">Logo/Images</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="banner-tab" data-bs-toggle="tab" data-bs-target="#banner-tab-detail" type="button" role="tab" aria-controls="banner-tab-detail" aria-selected="false"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/banner-icon.svg" alt="">Banner</button>
+                            </li>
+                            <!--<li class="nav-item" role="presentation">
+                              <button class="nav-link" id="ecardqrcode-tab" data-bs-toggle="tab" data-bs-target="#ecardqrcode" type="button" role="tab" aria-controls="ecardqrcode" aria-selected="false"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/ecard-qr-code-icon.svg" alt="">E-Card™ <span>QR-Code</span></button>
+                            </li>-->
+                            <span class="back_btn"><a href="%%DEFINE_ROOT_LINK%%/dashboard"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/back_arrow.svg" alt=""> Back</a></span>
+                          </ul>
+                          </div>
+             <div class="tab-content" id="myTabContent">
+               <div class="tab-pane fade show active" id="template" role="tabpanel" aria-labelledby="template-tab">
+                <div class="add_details_bg tab_sign_box">
+                  <h1><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/layout-title.svg" alt="">Layouts</h1>
+                  <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/select-layout-title.svg" alt="">Select Layouts</h3>
+                  %%DEFINE_layout_list%%
+                </div>
+               </div>
+               <div class="tab-pane fade" id="infostyle" role="tabpanel" aria-labelledby="infostyle-tab">
+                <div class="add_details_bg tab_sign_box">
+                  <h1><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/info-style-icon.svg" alt="">Add Contact Details</h1>
+                  <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/personal-info-title.svg" alt=""> Personal Information</h3>
+
+                    <div class="inputbox">
+                     <div class="row">
+                       <div class="col-md-8">
+                           <div class="form-floating">
+                         <input type="text" class="form-control" name="signature_firstname" id="signature_firstname" value="%%DEFINE_signature_firstname_text%%" placeholder="Full Name" data-class="layout_firstname">
+                         <label for="">Full Name</label>
+                       </div>
+                         </div>
+                         <div class="col-md-4">
+                              <div class="custome_icon">
+                               <input type="checkbox" name="signature_firstname_bold" id="bold-icon-f" class="d-none imgbgchk style_bold" value="1" data-class="layout_firstname" %%DEFINE_firstname_bold_sel%%>
+                               <label for="bold-icon-f" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#bold" role="button" aria-expanded="false" aria-controls="bold">
+                              <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon.svg" alt="">
+                              <div class="tick_container">
+                                 <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon-hover.svg" alt=""></div>
+                               </div>
+                                </label>
+                             </div>
+                             <div class="custome_icon">
+                               <input type="checkbox" name="signature_firstname_italic" id="italic-icon-f" class="d-none imgbgchk style_italic" value="1" data-class="layout_firstname" %%DEFINE_firstname_italic_sel%%>
+                               <label for="italic-icon-f" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#italic" role="button" aria-expanded="false" aria-controls="italic">
+                              <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon.svg" alt="">
+                              <div class="tick_container">
+                                 <div class="tick italic"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon-hover.svg" alt=""></div>
+                               </div>
+                                </label>
+                             </div>
+                            <div class="color_picker">
+      <input type="color" name="signature_firstname_color" class="form-control form-control-color" id="exampleColorInput" value="#000000" title="Choose your color" data-class="layout_firstname">
+                              </div>
+                              <div class="custome_icon">
+                                <select class="select_small_box" data-class="layout_firstname" name="signature_firstname_fontsize">
+                                  <option value="14px" %%DEFINE_firstname_fontsize_sel_14px%%>Small</option>
+                                  <option value="16px" %%DEFINE_firstname_fontsize_sel_16px%%>Normal</option>
+                                  <option value="18px" %%DEFINE_firstname_fontsize_sel_18px%%>Large</option>
+                                  <option value="20px" %%DEFINE_firstname_fontsize_sel_20px%%>Huge</option>
+                                 </select>
+
+                             </div>
+                         </div>
+                     </div>
+                     </div>
+                     <div class="inputbox">
+                       <div class="row">
+                         <div class="col-md-8">
+                             <div class="form-floating">
+                           <input type="text" class="form-control" id="signature_jobtitle"  name="signature_jobtitle" value="%%DEFINE_signature_jobtitle_text%%" placeholder="Job Title" data-class="layout_jobtitle">
+                           <label for="">Title / Sub Title</label>
+                         </div>
+                           </div>
+                           <div class="col-md-4">
+                                <div class="custome_icon">
+                                 <input type="checkbox" name="signature_jobtitle_bold" id="bold-icon-j" class="d-none imgbgchk style_bold" value="1" data-class="layout_jobtitle" %%DEFINE_jobtitle_bold_sel%%>
+                                 <label for="bold-icon-j" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#bold" role="button" aria-expanded="false" aria-controls="bold">
+                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon.svg" alt="">
+                                <div class="tick_container">
+                                   <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon-hover.svg" alt=""></div>
+                                 </div>
+                                  </label>
+                               </div>
+                               <div class="custome_icon">
+                                 <input type="checkbox" name="signature_jobtitle_italic" id="italic-icon-j" class="d-none imgbgchk style_italic" value="1" data-class="layout_jobtitle" %%DEFINE_jobtitle_italic_sel%%>
+                                 <label for="italic-icon-j" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#italic" role="button" aria-expanded="false" aria-controls="italic">
+                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon.svg" alt="">
+                                <div class="tick_container">
+                                   <div class="tick italic"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon-hover.svg" alt=""></div>
+                                 </div>
+                                  </label>
+                               </div>
+                              <div class="color_picker">
+        <input type="color" name="signature_jobtitle_color" class="form-control form-control-color" id="exampleColorInput" value="#000000" title="Choose your color" data-class="layout_jobtitle">
+                                </div>
+                                <div class="custome_icon">
+                                 <select class="select_small_box" data-class="layout_jobtitle"  name="signature_jobtitle_fontsize" >
+                                  <option value="10px" %%DEFINE_jobtitle_fontsize_sel_10px%%>Small</option>
+                                  <option value="12px" %%DEFINE_jobtitle_fontsize_sel_12px%%>Normal</option>
+                                  <option value="14px" %%DEFINE_jobtitle_fontsize_sel_14px%%>Large</option>
+                                  <option value="16px" %%DEFINE_jobtitle_fontsize_sel_16px%%>Huge</option>
+                                 </select>
+
+                             </div>
+                           </div>
+                       </div>
+                       </div>
+
+                       <div class="inputbox">
+                         <div class="row">
+                           <div class="col-md-8">
+                               <div class="form-floating">
+                             <input type="text" class="form-control" id="signature_company"  name="signature_company" value="%%DEFINE_signature_company_text%%" placeholder="Company" data-class="layout_company">
+                             <label for="">Company Name</label>
+                           </div>
+                             </div>
+                             <div class="col-md-4">
+                                  <div class="custome_icon">
+                                   <input type="checkbox" name="signature_company_bold" id="bold-icon-c" class="d-none imgbgchk style_bold" value="1" data-class="layout_company" %%DEFINE_company_bold_sel%%>
+                                   <label for="bold-icon-c" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#bold" role="button" aria-expanded="false" aria-controls="bold">
+                                  <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon.svg" alt="">
+                                  <div class="tick_container">
+                                     <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon-hover.svg" alt=""></div>
+                                   </div>
+                                    </label>
+                                 </div>
+                                 <div class="custome_icon">
+                                   <input type="checkbox" name="signature_company_italic" id="italic-icon-c" class="d-none imgbgchk style_italic" value="1" data-class="layout_company" %%DEFINE_company_italic_sel%%>
+                                   <label for="italic-icon-c" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#italic" role="button" aria-expanded="false" aria-controls="italic">
+                                  <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon.svg" alt="">
+                                  <div class="tick_container">
+                                     <div class="tick italic"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon-hover.svg" alt=""></div>
+                                   </div>
+                                    </label>
+                                 </div>
+                                <div class="color_picker">
+          <input type="color" name="signature_company_color" class="form-control form-control-color" id="exampleColorInput" value="#000000" title="Choose your color" data-class="layout_company">
+                                  </div>
+                                  <div class="custome_icon">
+                                   <select class="select_small_box" data-class="layout_company" name="signature_company_fontsize" >
+                                 <option value="10px" %%DEFINE_company_fontsize_sel_10px%%>Small</option>
+                                  <option value="12px" %%DEFINE_company_fontsize_sel_12px%%>Normal</option>
+                                  <option value="14px" %%DEFINE_company_fontsize_sel_14px%%>Large</option>
+                                  <option value="16px" %%DEFINE_company_fontsize_sel_16px%%>Huge</option>
+                                 </select>
+                                   </select>
+
+                             </div>
+                             </div>
+                         </div>
+                         </div>
+                      <div id="divGeneratedElementsText">
+                            %%DEFINE_signature_custom_fields1%%
+                        </div>
+                         <div class="style_design_box">
+                              <div class="addnew_field">
+                          <a href="javascript:void(0);" class="addcustomfield"  id="addnewtextfield" data-id="text"><img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/plus-icon.png" alt="Add New Text Field">Add Text Field</a>
+                        </div>
+                        </div>
+
+                      <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/personal-info-title.svg" alt="">Contact Info</h3>
+                     <div id="divGeneratedElements">
+                      %%DEFINE_signature_custom_fields%%
+                     </div>
+
+                     <div class="style_design_box">
+                              <div class="addnew_field">
+                            <div class="dropdown">
+                          <a class="dropdown-toggle" href="javascript:void(0);"  id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"><img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/plus-icon.png" alt="Add New Text Field">Add New</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="email">Email</a></li>
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="phone">Phone</a></li>
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="fax">Fax</a></li>
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="website">Website</a></li>
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="address">Address</a></li>
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="hyperlink">Hyperlink</a></li>
+                            <li><a class="dropdown-item addcustomfield" href="javascript:void(0);" data-id="disclaimer">Disclaimer</a></li>
+                          </ul>
+                            </div>
+                        </div>
+                        </div>
+
+                      <!--   <h3>Style / Design</h3>-->
+                      <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/personal-info-title.svg" alt="">Design</h3>
+
+                         <div class="style_design_box" style="margin-top:0;">
+                           <span style="padding-top:22px;">Label Text</span>
+                              <div class="inputbox">
+
+                                <div class="custome_icon">
+                                 <input type="checkbox" name="signature_label_bold" id="bold-icon-label" class="d-none imgbgchk style_bold" value="1" data-class="label" %%DEFINE_label_bold_sel%%>
+                                 <label for="bold-icon-label" class="iconcheckbox collapsed" data-bs-toggle="collapse" >
+                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon.svg" alt="">
+                                <div class="tick_container">
+                                   <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/bold-icon-hover.svg" alt=""></div>
+                                 </div>
+                                  </label>
+                               </div>
+                               <div class="custome_icon">
+                                 <input type="checkbox" name="signature_label_italic" id="italic-icon-label" class="d-none imgbgchk style_italic" value="1" data-class="label" %%DEFINE_label_italic_sel%%>
+                                 <label for="italic-icon-label" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#italic" role="button" aria-expanded="false" aria-controls="italic">
+                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon.svg" alt="">
+                                <div class="tick_container">
+                                   <div class="tick italic"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/italic-icon-hover.svg" alt=""></div>
+                                 </div>
+                                  </label>
+                               </div>
+                              <div class="color_picker">
+                    <input type="color" name="signature_label_color" class="form-control form-control-color" id="exampleColorInput" value="%%DEFINE_label_color%%" title="Choose your color" data-class="label">
+                                </div>
+                                <div class="custome_icon">
+                                 <select class="select_small_box" data-class="label"  name="signature_label_fontsize" >
+                                  <option value="10px" %%DEFINE_label_fontsize_sel_10px%%>Small</option>
+                                  <option value="12px" %%DEFINE_label_fontsize_sel_12px%%>Normal</option>
+                                  <option value="14px" %%DEFINE_label_fontsize_sel_14px%%>Large</option>
+                                  <option value="16px" %%DEFINE_label_fontsize_sel_16px%%>Huge</option>
+                                 </select>
+
+
+                           </div>
+                              </div>
+                        </div>
+                       <div class="style_design_box">
+                           <span>Line Height</span>
+                              <select class="selectbox sellineheight" name="signature_lineheight">
+                                <option value="16px" %%DEFINE_signature_lineheight_16px_sel%%>Normal</option>
+                                <option value="14px" %%DEFINE_signature_lineheight_14px_sel%%>Small</option>
+                               <option value="18px" %%DEFINE_signature_lineheight_18px_sel%%>Large</option>
+                              </select>
+                        </div>
+                        <div class="style_design_box">
+                           <span>Font Style</span>
+                              <select class="selectbox selfontfamily" name="signature_fontfamily">
+                                <option value="Inter, sans-serif">Inter</option>
+                                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                                <option value="Garamond, serif">Garamond</option>
+                                <option value="Georgia, serif">Georgia</option>
+                                <option value="MS Sans Serif’, Geneva, sans-serif">MS Sans Serif</option>
+                              </select>
+                        </div>
+                        <div class="style_design_box" style="margin:0;">
+                      <span style="padding:15px 0 0 0;">Border</span>
+                        <div class="inputbox">
+                            <div class="custome_icon">
+                                <div class="color_picker" style="margin-top:0px;">
+                          <input type="color" name="signature_bordercolor" class="form-control form-control-color" value="%%DEFINE_signature_bordercolor%%" title="Choose your color" data-class="layout_border">
+                                 </div>
+                             </div>
+                             <div class="custome_icon">
+                                <div class="form-check form-switch">
+                                      <input class="form-check-input signature_border" type="checkbox" role="switch" id="signature_border" name="signature_border" value="1" checked="checked">
+                                      <label class="form-check-label profile_display" for="signature_border">OFF/ON</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="style_design_box">
+                      <span>Border Width</span>
+                        <div class="pricing_employees_bg_main borderdevider">
+                            <div class="range_slider">
+                            <div id="borderwidth"  class="noUi-target noUi-ltr noUi-horizontal"></div></div>
+                             <input type="hidden" id="signature_borderwidth" value="1" name="signature_borderwidth" />
+                     </div>
+                    </div>
+
+                        <div class="style_design_box" style="margin:0;">
+                      <span style="padding:15px 0 0 0;">Divider</span>
+                          <div class="inputbox">
+                          <div class="custome_icon">
+                                <div class="color_picker" style="margin-top:0px;">
+                        <input type="color" name="signature_dividercolor" class="form-control form-control-color"  value="%%DEFINE_signature_dividercolor%%" title="Choose your color" data-class="layout_divider">
+                                 </div>
+                             </div>
+                            <div class="custome_icon">
+                            <div class="form-check form-switch">
+                                  <input class="form-check-input divider" type="checkbox" role="switch" id="signature_divider" name="signature_divider" value="1" checked="checked">
+                                  <label class="form-check-label signature_divider" for="signature_divider">OFF/ON</label>
+                            </div>
+                           </div>
+                           </div>
+                    </div>
+                        <div class="style_design_box">
+                      <span>Divider Width</span>
+                        <div class="pricing_employees_bg_main borderdevider">
+                            <div class="range_slider">
+                            <div id="dividerwidth"  class="noUi-target noUi-ltr noUi-horizontal"></div></div>
+                             <input type="hidden" id="signature_dividerwidth" value="1" name="signature_dividerwidth" />
+                     </div>
+                    </div>
+
+                     <!-- <div class="addnew_field"><a href="#" title="Add New Text Field"><img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/plus-icon.png" alt="Add New Text Field"> Add New Text Field</a></div> -->
+
+
+                 </div>
+               </div>
+               <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                <div class="add_details_bg tab_sign_box">
+                  <h1><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social-icon.svg" alt="">Add Social Profiles</h1>
+                    <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social-icon-title.svg" alt="">Social Icons</h3>
+                     <div class="style_design_box">
+                      <span>Verified Badge <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/verify1.svg" alt="Verified"></span>
+                        <div class="form-check form-switch">
+                              <input class="form-check-input verified" type="checkbox" role="switch" id="signature_verified" name="signature_verified" value="1" %%DEFINE_verified_display_sel%%>
+                              <label class="form-check-label" for="signature_verified">OFF/ON</label>
+                    </div>
+                 </div>
+                     <!-------------------------------- Social Icon ------------------------------------------------------->
+                      <div class="style_design_box">
+                        <span>Icon Animation</span>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input socialanimation" type="checkbox" role="switch" id="signature_socialanimation" name="signature_socialanimation" value="1" %%DEFINE_signature_socialanimation_sel1%%>
+                            <label class="form-check-label" for="signature_socialanimation">OFF/ON</label>
+                          </div>
+                      </div>
+                      <div class="style_design_box">
+                           <span>Design</span>
+                              <div class="icon_style">
+                               <div class="custome_icon">
+                                 <input type="radio" name="signature_socialdesign" id="icon-design1" class="d-none imgbgchk checkbox" value="1" %%DEFINE_signature_socialdesign_sel1%%>
+                                 <label for="icon-design1" class="socialdesign">
+                                 <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social/static/1/facebook-icon.png" alt="select icon">
+                                 <div class="tick_container">
+                                   <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                                 </div>
+                                 </label>
+                               </div>
+                               <div class="custome_icon">
+                                 <input type="radio" name="signature_socialdesign" id="icon-design2" class="d-none imgbgchk checkbox" value="2" %%DEFINE_signature_socialdesign_sel2%%>
+                                 <label for="icon-design2" class="socialdesign">
+                                 <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social/static/2/facebook-icon.png" alt="select icon">
+                                 <div class="tick_container">
+                                   <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                                 </div>
+                                 </label>
+                               </div>
+                               <div class="custome_icon">
+                                 <input type="radio" name="signature_socialdesign" id="icon-design3" class="d-none imgbgchk checkbox" value="3" %%DEFINE_signature_socialdesign_sel3%%>
+                                 <label for="icon-design3" class="socialdesign">
+                                 <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social/static/3/facebook-icon.png" alt="select icon">
+                                 <div class="tick_container">
+                                   <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                                 </div>
+                                 </label>
+                               </div>
+                               <div class="custome_icon">
+                                 <input type="radio" name="signature_socialdesign" id="icon-design4" class="d-none imgbgchk checkbox" value="4" %%DEFINE_signature_socialdesign_sel4%%>
+                                 <label for="icon-design4" class="socialdesign">
+                                 <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social/static/4/facebook-icon.png" alt="select icon">
+                                 <div class="tick_container">
+                                   <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                                 </div>
+                                 </label>
+                               </div>
+
+                              </div>
+                      </div>
+                      <div class="style_design_box">
+                           <span>Icon Size</span>
+                              <select class="selectbox socialsize" name="signature_socialsize">
+                                <option value="24" %%DEFINE_signature_socialsize_24_sel%%>Normal</option>
+                                <option value="22" %%DEFINE_signature_socialsize_22_sel%%>Small</option>
+                               <option value="30" %%DEFINE_signature_socialsize_30_sel%%>Large</option>
+                              </select>
+                      </div>
+
+                      <div class="social_search_box">
+                        <input id="social_search_input" class="form-control" placeholder="Search" />
+                        <button type="button">
+                           <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/social-search.svg" alt="">
+                        </button>                  
+                      </div>
+              <div class="social_link_box" id="social_link_box">
+                {LOOP: SOCIALICONS}
+                <div class="custome_icon">
+                  <input type="checkbox" name="{%%SOCIALICONS.iconname%%}-icon" id="{%%SOCIALICONS.iconname%%}-icon" class="d-none imgbgchk checkbox" value="1" %%DEFINE_signature_{%%SOCIALICONS.iconname%%}_chk%% >
+                  <label for="{%%SOCIALICONS.iconname%%}-icon" class="iconcheckbox" data-bs-toggle="collapse" href="#{%%SOCIALICONS.iconname%%}" role="button" aria-expanded="false" aria-controls="{%%SOCIALICONS.iconname%%}" >
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/social/static/%%DEFINE_signature_socialdesign%%/{%%SOCIALICONS.iconname%%}-icon.png" data-src="%%DEFINE_IMAGE_LINK%%/images/social/%%DEFINE_signature_socialdesign%%/{%%SOCIALICONS.iconname%%}-icon.gif" alt="{%%SOCIALICONS.iconname%%}" title="{%%SOCIALICONS.iconname%%}">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+              {/LOOP: SOCIALICONS}
+
+              </div>
+              {LOOP: SOCIALICONSLINK}
+              <div class="form-floating collapse %%DEFINE_signature_{%%SOCIALICONSLINK.iconname%%}_show%%" id="{%%SOCIALICONSLINK.iconname%%}">
+                    <input type="text" name="signature_{%%SOCIALICONSLINK.iconname%%}" class="form-control" id="" value="%%DEFINE_signature_{%%SOCIALICONSLINK.iconname%%}%%" placeholder="{%%SOCIALICONSLINK.label%%}">
+                    <label for="">{%%SOCIALICONSLINK.label%%}</label>
+              </div>
+            {/LOOP: SOCIALICONSLINK}
+                   <!----------------------- End Social Icon -------------------------------------------------------------->
+
+
+
+                    <!----------------------- Start Custome Button -------------------------------------------------------------->
+
+                   <h3 style="padding-bottom:0;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/animated-buttons-title.svg" alt="">Animated Buttons</h3>
+                      <div class="style_design_box">
+                           <span style="padding:18px 0 0 0;">Design</span>
+                           <div class="icon_style">
+                             <div class="custome_icon">
+                               <input type="radio" name="signature_btndesign" id="signature_btndesign1" class="d-none imgbgchk checkbox" value="1" %%DEFINE_signature_btndesign_sel1%%>
+                               <label for="signature_btndesign1" class="buttondesign">
+                               <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/1.svg" alt="select icon">
+                               <div class="tick_container">
+                                 <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                               </label>
+                             </div>
+                             <div class="custome_icon">
+                               <input type="radio" name="signature_btndesign" id="signature_btndesign2" class="d-none imgbgchk checkbox" value="2" %%DEFINE_signature_btndesign_sel2%%>
+                               <label for="signature_btndesign2" class="buttondesign">
+                               <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/2.svg" alt="select icon">
+                               <div class="tick_container">
+                                 <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                               </label>
+                             </div>
+                             <div class="custome_icon">
+                               <input type="radio" name="signature_btndesign" id="signature_btndesign3" class="d-none imgbgchk checkbox" value="3" %%DEFINE_signature_btndesign_sel3%%>
+                               <label for="signature_btndesign3" class="buttondesign">
+                               <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/3.svg" alt="select icon">
+                               <div class="tick_container">
+                                 <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                               </label>
+                             </div>
+                             <div class="custome_icon">
+                               <input type="radio" name="signature_btndesign" id="signature_btndesign4" class="d-none imgbgchk checkbox" value="4" %%DEFINE_signature_btndesign_sel4%%>
+                               <label for="signature_btndesign4" class="buttondesign">
+                               <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/4.svg" alt="select icon">
+                               <div class="tick_container">
+                                 <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                               </label>
+                             </div>
+
+                            </div>
+                      </div>
+                      <div class="style_design_box">
+                           <span>Size</span>
+                              <select class="selectbox cusbtnsize" name="signature_custombtnsize">
+                                <option value="80" %%DEFINE_signature_custombtnsize_80_sel%%>Normal</option>
+                                <option value="73" %%DEFINE_signature_custombtnsize_73_sel%%>Small</option>
+                               <option value="102" %%DEFINE_signature_custombtnsize_102_sel%%>Large</option>
+                              </select>
+                      </div>
+                       <div class="style_design_box">
+                            <span>Button Animation</span>
+                            <div class="form-check form-switch">
+                                  <input class="form-check-input" type="checkbox" role="switch" id="signature_custombtnanimation" name="signature_custombtnanimation" value="1" checked="">
+                                  <label class="form-check-label profile_display" for="profile_display">OFF/ON</label>
+                            </div>
+                     </div>
+
+                   <!--<h6 class="infotitle">Call-to-Action Button</h6>-->
+                   <div class="signature_customebtn" style="display:none;">
+                     <div class="form-floating custombtntext" style="display:%%DEFINE_cusbtnshow%%;">
+                       <input type="text" name="signature_custombtntext" id="signature_custombtntext" class="form-control" placeholder="Button Name"  value="%%DEFINE_signature_custombtntext%%" maxlength="15" />
+                       <label for="floatingPassword">Button Name</label>
+                     </div>
+                     <div class="form-floating">
+                       <input type="text" name="signature_custombtnlink" placeholder="Button Link" class="form-control"  value="%%DEFINE_signature_custombtnlink%%" />
+                       <label for="floatingPassword">Button Link</label>
+                     </div>
+                   </div>
+
+                   <div class="button_box_main">
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn_static" class="d-none imgbgchk" value="custome" %%DEFINE_cusbtnchk_custome%% %%DEFINE_cusbtnchkd_custome%% >
+                  <label for="signature_customebtn_static" class="custombtntxt custom_btn" data-id="custome">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/customebutton.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/customebutton.png" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn1" class="d-none imgbgchk" value="contactus.gif" %%DEFINE_cusbtnchk_contactus.gif%%>
+                  <label for="signature_customebtn1" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/contactus.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/contactus.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn2" class="d-none imgbgchk" value="signup.gif" %%DEFINE_cusbtnchk_signup.gif%%>
+                  <label for="signature_customebtn2" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/signup.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/signup.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn3" class="d-none imgbgchk" value="getstarted.gif" %%DEFINE_cusbtnchk_getstarted.gif%% data-waschecked="true">
+                  <label for="signature_customebtn3" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/getstarted.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/getstarted.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn4" class="d-none imgbgchk" value="startaproject.gif" %%DEFINE_cusbtnchk_startaproject.gif%%>
+                  <label for="signature_customebtn4" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/startaproject.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/startaproject.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn5" class="d-none imgbgchk" value="getaquote.gif" %%DEFINE_cusbtnchk_getaquote.gif%%>
+                  <label for="signature_customebtn5" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/getaquote.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/getaquote.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn6" class="d-none imgbgchk" value="getademo.gif" %%DEFINE_cusbtnchk_getademo.gif%%>
+                  <label for="signature_customebtn6" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/getademo.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/getademo.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn7" class="d-none imgbgchk" value="writeareview.gif" %%DEFINE_cusbtnchk_writeareview.gif%%>
+                  <label for="signature_customebtn7" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/writeareview.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/writeareview.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn8" class="d-none imgbgchk" value="buynow.gif" %%DEFINE_cusbtnchk_buynow.gif%%>
+                  <label for="signature_customebtn8" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/buynow.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/buynow.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn10" class="d-none imgbgchk" value="bookameeting.gif" %%DEFINE_cusbtnchk_bookameeting.gif%%>
+                  <label for="signature_customebtn10" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/bookameeting.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/bookameeting.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn11" class="d-none imgbgchk" value="bookacall.gif" %%DEFINE_cusbtnchk_bookacall.gif%%>
+                  <label for="signature_customebtn11" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/bookacall.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/bookacall.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn12" class="d-none imgbgchk" value="applynow.gif" %%DEFINE_cusbtnchk_applynow.gif%%>
+                  <label for="signature_customebtn12" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/applynow.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/applynow.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn13" class="d-none imgbgchk" value="letsconnect.gif" %%DEFINE_cusbtnchk_joinourteam.gif%%>
+                  <label for="signature_customebtn13" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/letsconnect.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/letsconnect.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn14" class="d-none imgbgchk" value="viewinventory.gif" %%DEFINE_cusbtnchk_viewinventory.gif%%>
+                  <label for="signature_customebtn14" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/viewinventory.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/viewinventory.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn15" class="d-none imgbgchk" value="shopnow.gif" %%DEFINE_cusbtnchk_shopnow.gif%%>
+                  <label for="signature_customebtn15" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/shopnow.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/shopnow.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+                <div class="custome_icon">
+                  <input type="radio" name="signature_custombtn" id="signature_customebtn16" class="d-none imgbgchk" value="tryforfree.gif" %%DEFINE_cusbtnchk_tryforfree.gif%%>
+                  <label for="signature_customebtn16" class="custom_btn"  data-id="fixed">
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/custome/static/3/tryforfree.png" data-src="%%DEFINE_IMAGE_LINK%%/images/custome/animation/3/tryforfree.gif" alt="select icon">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" data-src="" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+
+              </div>
+                    <!-----------------------End Custome Button ------------------------------------>
+
+
+             <!----------------------- Start CTA Button -------------------------------------------------------------->
+               <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custom-buttons-title.svg" alt="">Custom Buttons  &nbsp;<span>(Static only)</span></h3>
+               <div class="style_design_box">
+                <div class="addnew_field">
+                        <a href="javascript:void(0);" class="addCtaButton"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/plus-icon.png" alt="Add Button">Add Button</a>
+                          </div>
+                      </div>
+               <div class="ctabutton_main">
+                  <ul class="nav nav-tabs" id="myCtaTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <div class="custome_icon nav-link active" id="ctabtn1-tab" data-bs-toggle="tab" data-bs-target="#ctabtn1" type="button" role="tab" aria-controls="ctabtn1" aria-selected="true">
+                  <input type="checkbox" name="signature_ctabutton1" id="signature_ctabutton1" class="d-none imgbgchk checkbox" value="1" >
+                  <label for="signature_ctabutton1" class="ctabtncheckbox" >
+                  <div class="cta_btn"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cta-icon.png" /> Call To Action</div>
+                  <!--<div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                  </div>-->
+                  </label>
+                  <span>01</span>
+                </div>
+                	<div class="cancel-btn ctabtnclose" data-cta-number="1" id="ctabtn1Cancel"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cancel-btn.svg" alt="Cancel"></div>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                   <div class="custome_icon nav-link" id="ctabtn2-tab" data-bs-toggle="tab" data-bs-target="#ctabtn2" type="button" role="tab" aria-controls="ctabtn2" aria-selected="true">
+                  <input type="checkbox" name="signature_ctabutton2" id="signature_ctabutton2" class="d-none imgbgchk checkbox" value="1" >
+                  <label for="signature_ctabutton2" class="ctabtncheckbox" >
+                  <div class="cta_btn"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cta-icon.png" /> Call To Action</div>
+                  </label>
+                  <span>02</span>
+                </div>
+                  <div class="cancel-btn ctabtnclose" data-cta-number="2" id="ctabtn2Cancel"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cancel-btn.svg" alt="Cancel"></div>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <div class="custome_icon nav-link" id="ctabtn3-tab" data-bs-toggle="tab" data-bs-target="#ctabtn3" type="button" role="tab" aria-controls="ctabtn3" aria-selected="true">
+                  <input type="checkbox" name="signature_ctabutton3" id="signature_ctabutton3" class="d-none imgbgchk checkbox" value="1" >
+                  <label for="signature_ctabutton3" class="ctabtncheckbox" >
+                  <div class="cta_btn"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cta-icon.png" /> Call To Action</div>
+                  </label>
+                  <span>03</span>
+                </div>
+                <div class="cancel-btn ctabtnclose" data-cta-number="3" id="ctabtn3Cancel"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/cancel-btn.svg" alt="Cancel"></div>
+                </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+
+                 <!--------------- CTATab1  ----------------------->
+                  <div class="tab-pane fade show active" id="ctabtn1" role="tabpanel" aria-labelledby="ctabtn1-tab">
+                  <!-- <div class="style_design_box">
+                            <span>Button Display</span>
+                            <div class="form-check form-switch">
+                                  <input class="form-check-input ctabtndis" type="checkbox" role="switch" id="signature_ctabtndisplay1" name="signature_ctabtndisplay1" value="1" data-class="layout_ctabtn1">
+                                  <label class="form-check-label" for="signature_ctabtndisplay1">OFF/ON</label>
+                            </div>
+                     </div> -->
+                   <div class="form-floating">
+                        <input type="hidden" class="ctabtndisplay" name="signature_ctabtndisplay1" id="signature_ctabtndisplay1" value="%%DEFINE_signature_ctabtn1_display%%">
+                        <input type="text" name="signature_ctabtnname1" data-class="layout_ctabtn1" class="form-control ctabutton" id="signature_ctabtnname1" value="" data-number="1" placeholder="Button Name">
+                         <label for="">Button Name</label>
+                     </div>
+                      <div class="form-floating">
+                         <input type="text" name="signature_ctabtnlink1" data-class="layout_ctabtn1" class="form-control" id="signature_ctabtlink1" value="" placeholder="Button Link">
+                       <label for="">Button Link</label>
+                       </div>
+                       <div class="ctabackground">
+                       <div class="style_design_box">
+                      <span>Preview</span>
+                       %%DEFINE_signature_ctabtn1%%
+                     </div>
+                      <!-- <div class="style_design_box">
+                      <span>Size</span>
+                         <select class="selectbox ctabtnsize" name="signature_ctabtnsize1" data-class="layout_ctabtn1">
+                           <option value="12px" %%DEFINE_signature_ctabtn1_size_sel_12px%%>Normal</option>
+                          <option value="10px" %%DEFINE_signature_ctabtn1_size_sel_10px%%>Small</option>
+                          <option value="14px" %%DEFINE_signature_ctabtn1_size_sel_14px%%>Large</option>
+                         </select>
+                     </div> -->
+
+                     <div class="style_design_box" style="display: none;">
+                  		<span>Design</span>
+                         <select class="selectbox ctabtndesign" name="signature_ctabtndesign1" data-cta-number="1">
+                          <option value="1" %%DEFINE_signature_ctabtn1_design_sel_1%%>Solid</option>
+                          <option value="2" %%DEFINE_signature_ctabtn1_design_sel_2%%>Border</option>
+                          <option value="3" %%DEFINE_signature_ctabtn1_design_sel_3%%>Solid Black</option>
+                          <option value="4" %%DEFINE_signature_ctabtn1_design_sel_4%%>White</option>
+                         </select>
+                     </div>
+
+                     <div class="style_design_box">
+                      <span>Shape</span>
+                      <div class="icon_style">
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape1" id="signature_marketbtnshape1-1" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn1" value="0px" checked="checked">
+                          <label for="signature_marketbtnshape1-1" class="marketbuttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon3.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape1" id="signature_marketbtnshape1-2" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn1" value="3px" %%DEFINE_signature_ctabtn1_shape_chk_3px%%>
+                          <label for="signature_marketbtnshape1-2" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon2.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape1" id="signature_marketbtnshape1-3" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn1" value="200px" %%DEFINE_signature_ctabtn1_shape_chk_200px%%>
+                          <label for="signature_marketbtnshape1-3" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon1.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                       </div>
+                 </div>
+
+                 <div class="style_design_box">
+                      <span>Icon</span>
+                      <div class="icon_style btnicon_main">
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-1" class="d-none imgbgchk ctabtnicon1" value="1.png" data-class="layout_ctabtn1"%%DEFINE_signature_ctabtn1_icon_chk_1.svg%%>
+                          <label for="signature_ctabtnicon1-1" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/1-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-2" class="d-none imgbgchk ctabtnicon1" value="2.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_2.svg%%>
+                          <label for="signature_ctabtnicon1-2" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/2-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-3" class="d-none imgbgchk ctabtnicon1" value="3.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_3.svg%%>
+                          <label for="signature_ctabtnicon1-3" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/3-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-4" class="d-none imgbgchk ctabtnicon1" value="4.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_4.svg%%>
+                          <label for="signature_ctabtnicon1-4" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/4-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-5" class="d-none imgbgchk ctabtnicon1" value="5.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_5.svg%%>
+                          <label for="signature_ctabtnicon1-5" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/5-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-6" class="d-none imgbgchk ctabtnicon1" value="6.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_6.svg%%>
+                          <label for="signature_ctabtnicon1-6" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/6-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-7" class="d-none imgbgchk ctabtnicon1" value="7.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_7.svg%%>
+                          <label for="signature_ctabtnicon1-7" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/7-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+  <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-8" class="d-none imgbgchk ctabtnicon1" value="8.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_8.svg%%>
+  <label for="signature_ctabtnicon1-8" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/8-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+            </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-9" class="d-none imgbgchk ctabtnicon1" value="9.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_9.svg%%>
+                          <label for="signature_ctabtnicon1-9" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/9-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-10" class="d-none imgbgchk ctabtnicon1" value="10.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_10.svg%%>
+                          <label for="signature_ctabtnicon1-10" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/10-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-11" class="d-none imgbgchk ctabtnicon1" value="11.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_11.svg%%>
+                          <label for="signature_ctabtnicon1-11" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/11-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-12" class="d-none imgbgchk ctabtnicon1" value="12.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_12.svg%%>
+                          <label for="signature_ctabtnicon1-12" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/12-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <!--<div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-13" class="d-none imgbgchk ctabtnicon1" value="13.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_13.svg%%>
+                          <label for="signature_ctabtnicon1-13" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/13-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>-->
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-14" class="d-none imgbgchk ctabtnicon1" value="14.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_14.svg%%>
+                          <label for="signature_ctabtnicon1-14" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/14-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                       <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-15" class="d-none imgbgchk ctabtnicon1" value="15.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_15.svg%%>
+                          <label for="signature_ctabtnicon1-15" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/15-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                         <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-16" class="d-none imgbgchk ctabtnicon1" value="16.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_16.svg%%>
+                          <label for="signature_ctabtnicon1-16" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/16-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-17" class="d-none imgbgchk ctabtnicon1" value="17.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_17.svg%%>
+                          <label for="signature_ctabtnicon1-17" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/17-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon1" id="signature_ctabtnicon1-18" class="d-none imgbgchk ctabtnicon1" value="18.png" data-class="layout_ctabtn1" %%DEFINE_signature_ctabtn1_icon_chk_18.svg%%>
+                          <label for="signature_ctabtnicon1-18" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/18-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+
+
+                       </div>
+                 </div>
+
+                 <div class="style_design_box">
+                      <span>Button Color</span>
+                        <div class="color_picker">
+      <input type="color" name="signature_ctabtnbgcolor1" class="form-control ctabtncolor" id="exampleColorInput" value="#000000" title="Choose your color" data-class="layout_ctabtn1" style="width:60px; padding:5px;">
+                              </div>
+                     </div>
+                     <div class="style_design_box">
+                  		<span>Size</span>
+                        <div class="pricing_employees_bg_main borderdevider">
+                          <div class="range_slider">
+                            <div id="ctabtnsize1"  class="noUi-target noUi-ltr noUi-horizontal"></div>
+                          </div>
+                          <input type="hidden" id="signaturectabtnsize1" value="%%DEFINE_signature_ctabtn1_size%%" name="signature_ctabtnsize1" />
+                          <div class="banner_size"><span>Small</span> <span>Normal</span> <span>Large</span></div>
+                        </div>
+                        </div>
+        </div>
+                  </div>
+
+                   <!--------------- CTATab2  ----------------------->
+                  <div class="tab-pane fade" id="ctabtn2" role="tabpanel" aria-labelledby="ctabtn2-tab">
+                  <!-- <div class="style_design_box">
+                            <span>Button Display</span>
+                            <div class="form-check form-switch">
+                                  <input class="form-check-input ctabtndis" type="checkbox" role="switch" id="signature_ctabtndisplay2" name="signature_ctabtndisplay2" value="1" data-class="layout_ctabtn2">
+                                  <label class="form-check-label" for="signature_ctabtndisplay2">OFF/ON</label>
+                            </div>
+                     </div> -->
+                   <div class="form-floating">
+                        <input type="hidden" class="ctabtndisplay" name="signature_ctabtndisplay2" id="signature_ctabtndisplay2" value="%%DEFINE_signature_ctabtn2_display%%">
+                        <input type="text" name="signature_ctabtnname2" data-class="layout_ctabtn2" class="form-control ctabutton" id="signature_ctabtnname2" value="" data-number="2" placeholder="Button Name">
+                         <label for="">Button Name</label>
+                     </div>
+                      <div class="form-floating">
+                         <input type="text" name="signature_ctabtnlink2" data-class="layout_ctabtn2" class="form-control" id="signature_ctabtlink2" value="" placeholder="Button Link">
+                       <label for="">Button Link</label>
+                       </div>
+                       <div class="ctabackground">
+                       <div class="style_design_box">
+                      <span>Preview</span>
+                       %%DEFINE_signature_ctabtn2%%
+                     </div>
+                      <!-- <div class="style_design_box">
+                      <span>Size</span>
+                         <select class="selectbox ctabtnsize" name="signature_ctabtnsize2" data-class="layout_ctabtn2">
+                           <option value="12px" %%DEFINE_signature_ctabtn2_size_sel_12px%%>Normal</option>
+                          <option value="10px" %%DEFINE_signature_ctabtn2_size_sel_10px%%>Small</option>
+                          <option value="14px" %%DEFINE_signature_ctabtn2_size_sel_14px%%>Large</option>
+                         </select>
+                     </div> -->
+
+                     <div class="style_design_box" style="display: none;">
+                  		<span>Design</span>
+                         <select class="selectbox ctabtndesign" name="signature_ctabtndesign2" data-cta-number="2">
+                          <option value="1" %%DEFINE_signature_ctabtn2_design_sel_1%%>Solid</option>
+                          <option value="2" %%DEFINE_signature_ctabtn2_design_sel_2%%>Border</option>
+                          <option value="3" %%DEFINE_signature_ctabtn2_design_sel_3%%>Solid Black</option>
+                          <option value="4" %%DEFINE_signature_ctabtn2_design_sel_4%%>White</option>
+                         </select>
+                     </div>
+
+                     <div class="style_design_box">
+                      <span>Shape</span>
+                      <div class="icon_style">
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape2" id="signature_marketbtnshape2-1" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn2" value="0px" checked="checked">
+                          <label for="signature_marketbtnshape2-1" class="marketbuttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon3.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape2" id="signature_marketbtnshape2-2" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn2" value="3px" %%DEFINE_signature_ctabtn2_shape_chk_3px%%>
+                          <label for="signature_marketbtnshape2-2" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon2.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape2" id="signature_marketbtnshape2-3" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn2" value="200px" %%DEFINE_signature_ctabtn2_shape_chk_200px%%>
+                          <label for="signature_marketbtnshape2-3" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon1.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                       </div>
+                 </div>
+
+                 <div class="style_design_box">
+                      <span>Icon</span>
+                      <div class="icon_style btnicon_main">
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-1" class="d-none imgbgchk ctabtnicon2" value="1.png" data-class="layout_ctabtn2"%%DEFINE_signature_ctabtn2_icon_chk_1.svg%%>
+                          <label for="signature_ctabtnicon2-1" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/1-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-2" class="d-none imgbgchk ctabtnicon2" value="2.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_2.svg%%>
+                          <label for="signature_ctabtnicon2-2" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/2-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-3" class="d-none imgbgchk ctabtnicon2" value="3.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_3.svg%%>
+                          <label for="signature_ctabtnicon2-3" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/3-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-4" class="d-none imgbgchk ctabtnicon2" value="4.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_4.svg%%>
+                          <label for="signature_ctabtnicon2-4" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/4-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-5" class="d-none imgbgchk ctabtnicon2" value="5.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_5.svg%%>
+                          <label for="signature_ctabtnicon2-5" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/5-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-6" class="d-none imgbgchk ctabtnicon2" value="6.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_6.svg%%>
+                          <label for="signature_ctabtnicon2-6" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/6-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-7" class="d-none imgbgchk ctabtnicon2" value="7.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_7.svg%%>
+                          <label for="signature_ctabtnicon2-7" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/7-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+  <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-8" class="d-none imgbgchk ctabtnicon2" value="8.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_8.svg%%>
+  <label for="signature_ctabtnicon2-8" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/8-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+            </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-9" class="d-none imgbgchk ctabtnicon2" value="9.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_9.svg%%>
+                          <label for="signature_ctabtnicon2-9" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/9-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-10" class="d-none imgbgchk ctabtnicon2" value="10.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_10.svg%%>
+                          <label for="signature_ctabtnicon2-10" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/10-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-11" class="d-none imgbgchk ctabtnicon2" value="11.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_11.svg%%>
+                          <label for="signature_ctabtnicon2-11" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/11-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-12" class="d-none imgbgchk ctabtnicon2" value="12.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn2_icon_chk_12.svg%%>
+                          <label for="signature_ctabtnicon2-12" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/12-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <!--<div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-13" class="d-none imgbgchk ctabtnicon2" value="13.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn1_icon_chk_13.svg%%>
+                          <label for="signature_ctabtnicon2-13" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/13-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>-->
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-14" class="d-none imgbgchk ctabtnicon2" value="14.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn1_icon_chk_14.svg%%>
+                          <label for="signature_ctabtnicon2-14" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/14-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                       <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-15" class="d-none imgbgchk ctabtnicon2" value="15.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn1_icon_chk_15.svg%%>
+                          <label for="signature_ctabtnicon2-15" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/15-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                         <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-16" class="d-none imgbgchk ctabtnicon2" value="16.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn1_icon_chk_16.svg%%>
+                          <label for="signature_ctabtnicon2-16" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/16-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-17" class="d-none imgbgchk ctabtnicon2" value="17.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn1_icon_chk_17.svg%%>
+                          <label for="signature_ctabtnicon2-17" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/17-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon2" id="signature_ctabtnicon2-18" class="d-none imgbgchk ctabtnicon2" value="18.png" data-class="layout_ctabtn2" %%DEFINE_signature_ctabtn1_icon_chk_18.svg%%>
+                          <label for="signature_ctabtnicon2-18" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/18-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+
+
+                       </div>
+                 </div>
+
+                 <div class="style_design_box">
+                      <span>Button Color</span>
+                        <div class="color_picker">
+      <input type="color" name="signature_ctabtnbgcolor2" class="form-control ctabtncolor" id="exampleColorInput" value="#000000" title="Choose your color" data-class="layout_ctabtn2" style="width:60px; padding:5px;">
+                              </div>
+                     </div>
+                     <div class="style_design_box">
+                  		<span>Size</span>
+                        <div class="pricing_employees_bg_main borderdevider">
+                            <div class="range_slider">
+                            <div id="ctabtnsize2"  class="noUi-target noUi-ltr noUi-horizontal"></div></div>
+                             <input type="hidden" id="signaturectabtnsize2" value="%%DEFINE_signature_ctabtn2_size%%" name="signature_ctabtnsize2" />
+                             <div class="banner_size"><span>Small</span> <span>Normal</span> <span>Large</span></div>
+                     </div>
+                 		</div> 
+        </div>
+                  </div>
+
+                  <!--------------- CTATab3  ----------------------->
+                 <div class="tab-pane fade" id="ctabtn3" role="tabpanel" aria-labelledby="ctabtn3-tab">
+                 <!-- <div class="style_design_box">
+                            <span>Button Display</span>
+                            <div class="form-check form-switch">
+                                  <input class="form-check-input ctabtndis" type="checkbox" role="switch" id="signature_ctabtndisplay3" name="signature_ctabtndisplay3" value="1" data-class="layout_ctabtn3" >
+                                  <label class="form-check-label" for="signature_ctabtndisplay3">OFF/ON</label>
+                            </div>
+                     </div> -->
+                   <div class="form-floating">
+                        <input type="hidden" class="ctabtndisplay" name="signature_ctabtndisplay3" id="signature_ctabtndisplay3" value="%%DEFINE_signature_ctabtn3_display%%">
+                        <input type="text" name="signature_ctabtnname3" data-class="layout_ctabtn3" class="form-control ctabutton" id="signature_ctabtnname3" value="" data-number="3" placeholder="Button Name">
+                         <label for="">Button Name</label>
+                     </div>
+                      <div class="form-floating">
+                         <input type="text" name="signature_ctabtnlink3" data-class="layout_ctabtn3" class="form-control" id="signature_ctabtlink3" value="" placeholder="Button Link">
+                       <label for="">Button Link</label>
+                       </div>
+                       <div class="ctabackground">
+                       <div class="style_design_box">
+                      <span>Preview</span>
+                       %%DEFINE_signature_ctabtn3%%
+                     </div>
+                      <!-- <div class="style_design_box">
+                      <span>Size</span>
+                         <select class="selectbox ctabtnsize" name="signature_ctabtnsize3" data-class="layout_ctabtn3">
+                           <option value="12px" %%DEFINE_signature_ctabtn3_size_sel_12px%%>Normal</option>
+                          <option value="10px" %%DEFINE_signature_ctabtn3_size_sel_10px%%>Small</option>
+                          <option value="14px" %%DEFINE_signature_ctabtn3_size_sel_14px%%>Large</option>
+                         </select>
+                     </div> -->
+
+                     <div class="style_design_box" style="display: none;">
+                  		<span>Design</span>
+                         <select class="selectbox ctabtndesign" name="signature_ctabtndesign3" data-cta-number="3">
+                          <option value="1" %%DEFINE_signature_ctabtn3_design_sel_1%%>Solid</option>
+                          <option value="2" %%DEFINE_signature_ctabtn3_design_sel_2%%>Border</option>
+                          <option value="3" %%DEFINE_signature_ctabtn3_design_sel_3%%>Solid Black</option>
+                          <option value="4" %%DEFINE_signature_ctabtn3_design_sel_4%%>White</option>
+                         </select>
+                     </div>
+
+                     <div class="style_design_box">
+                      <span>Shape</span>
+                      <div class="icon_style">
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape3" id="signature_marketbtnshape3-1" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn3" value="0px" checked="checked">
+                          <label for="signature_marketbtnshape3-1" class="marketbuttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon3.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape3" id="signature_marketbtnshape3-2" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn3" value="3px"%%DEFINE_signature_ctabtn3_shape_chk_3px%%>
+                          <label for="signature_marketbtnshape3-2" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon2.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_ctabtnshape3" id="signature_marketbtnshape3-3" class="d-none imgbgchk ctabtnshape" data-class="layout_ctabtn3" value="200px" %%DEFINE_signature_ctabtn3_shape_chk_200px%%>
+                          <label for="signature_marketbtnshape3-3" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/shape-icon1.svg" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                       </div>
+                 </div>
+
+                 <div class="style_design_box">
+                      <span>Icon</span>
+                      <div class="icon_style btnicon_main">
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-1" class="d-none imgbgchk ctabtnicon3" value="1.png" data-class="layout_ctabtn3"%%DEFINE_signature_ctabtn3_icon_chk_1.svg%%>
+                          <label for="signature_ctabtnicon3-1" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/1-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-2" class="d-none imgbgchk ctabtnicon3" value="2.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_2.svg%%>
+                          <label for="signature_ctabtnicon3-2" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/2-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-3" class="d-none imgbgchk ctabtnicon3" value="3.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_3.svg%%>
+                          <label for="signature_ctabtnicon3-3" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/3-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-4" class="d-none imgbgchk ctabtnicon3" value="4.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_4.svg%%>
+                          <label for="signature_ctabtnicon3-4" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/4-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-5" class="d-none imgbgchk ctabtnicon3" value="5.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_5.svg%%>
+                          <label for="signature_ctabtnicon3-5" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/5-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-6" class="d-none imgbgchk ctabtnicon3" value="6.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_6.svg%%>
+                          <label for="signature_ctabtnicon3-6" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/6-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-7" class="d-none imgbgchk ctabtnicon3" value="7.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_7.svg%%>
+                          <label for="signature_ctabtnicon3-7" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/7-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+  <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-8" class="d-none imgbgchk ctabtnicon3" value="8.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_8.svg%%>
+  <label for="signature_ctabtnicon3-8" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/8-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+            </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-9" class="d-none imgbgchk ctabtnicon3" value="9.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_9.svg%%>
+                          <label for="signature_ctabtnicon3-9" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/9-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-10" class="d-none imgbgchk ctabtnicon3" value="10.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_10.svg%%>
+                          <label for="signature_ctabtnicon3-10" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/10-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-11" class="d-none imgbgchk ctabtnicon3" value="11.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_11.svg%%>
+                          <label for="signature_ctabtnicon3-11" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/11-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-12" class="d-none imgbgchk ctabtnicon3" value="12.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn3_icon_chk_12.svg%%>
+                          <label for="signature_ctabtnicon3-12" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/12-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <!--<div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-13" class="d-none imgbgchk ctabtnicon3" value="13.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn1_icon_chk_13.svg%%>
+                          <label for="signature_ctabtnicon3-13" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/13-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>-->
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-14" class="d-none imgbgchk ctabtnicon3" value="14.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn1_icon_chk_14.svg%%>
+                          <label for="signature_ctabtnicon3-14" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/14-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                       <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-15" class="d-none imgbgchk ctabtnicon3" value="15.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn1_icon_chk_15.svg%%>
+                          <label for="signature_ctabtnicon3-15" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/15-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                         <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-16" class="d-none imgbgchk ctabtnicon3" value="16.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn1_icon_chk_16.svg%%>
+                          <label for="signature_ctabtnicon3-16" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/16-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-17" class="d-none imgbgchk ctabtnicon3" value="17.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn1_icon_chk_17.svg%%>
+                          <label for="signature_ctabtnicon3-17" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/17-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+                        <div class="custome_icon iconprecta">
+                          <input type="checkbox" name="signature_ctabtnicon3" id="signature_ctabtnicon3-18" class="d-none imgbgchk ctabtnicon3" value="18.png" data-class="layout_ctabtn3" %%DEFINE_signature_ctabtn1_icon_chk_18.svg%%>
+                          <label for="signature_ctabtnicon3-18" class="marketbuttondesign"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/buttonicon/18-pre.png"  id="ctaicon-img" alt="select icon"><div class="tick_container"><div class="tick"></div></div></label>
+                        </div>
+
+
+                       </div>
+                 </div>
+
+                 <div class="style_design_box">
+                      <span>Button Color</span>
+                        <div class="color_picker">
+      <input type="color" name="signature_ctabtnbgcolor3" class="form-control ctabtncolor" id="exampleColorInput" value="#000000" title="Choose your color" data-class="layout_ctabtn3" style="width:60px; padding:5px;">
+                              </div>
+                     </div>
+                <div class="style_design_box">
+                <span>Size</span>
+                  <div class="pricing_employees_bg_main borderdevider">
+                      <div class="range_slider">
+                      <div id="ctabtnsize3"  class="noUi-target noUi-ltr noUi-horizontal"></div></div>
+                        <input type="hidden" id="signaturectabtnsize3" value="%%DEFINE_signature_ctabtn3_size%%" name="signature_ctabtnsize3" />
+                        <div class="banner_size"><span>Small</span> <span>Normal</span> <span>Large</span></div>
+                </div>
+              </div>     
+                
+        </div>
+                  </div>
+                </div>
+               </div>
+
+             <!----------------------- END CTA Button -------------------------------------------------------------->
+
+                 <!--- market place button ---------->
+
+                 <h3>Marketplace Button</h3>
+                 <div class="style_design_box">
+                      <span>Design</span>
+                      <div class="icon_style">
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_marketbtndesign" id="signature_marketbtndesign1" class="d-none imgbgchk checkbox" value="1" %%DEFINE_signature_marketbtndesign_sel1%%>
+                          <label for="signature_marketbtndesign1" class="marketbuttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/1.png" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_marketbtndesign" id="signature_marketbtndesign2" class="d-none imgbgchk checkbox" value="2" %%DEFINE_signature_marketbtndesign_sel2%%>
+                          <label for="signature_marketbtndesign2" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/2.png" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_marketbtndesign" id="signature_marketbtndesign3" class="d-none imgbgchk checkbox" value="3" %%DEFINE_signature_marketbtndesign_sel3%%>
+                          <label for="signature_marketbtndesign3" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/3.png" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+                        <div class="custome_icon">
+                          <input type="radio" name="signature_marketbtndesign" id="signature_marketbtndesign4" class="d-none imgbgchk checkbox" value="4" %%DEFINE_signature_marketbtndesign_sel4%%>
+                          <label for="signature_marketbtndesign4" class="buttondesign">
+                          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/custome/4.png" alt="select icon">
+                          <div class="tick_container">
+                            <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                          </div>
+                          </label>
+                        </div>
+
+                       </div>
+                 </div>
+                 <div class="style_design_box">
+                      <span>Size</span>
+                         <select class="selectbox marketbtnsize" name="signature_marketbtnsize">
+                          <option value="80" %%DEFINE_signature_marketbtnsize_80_sel%%>Normal</option>
+                          <option value="73" %%DEFINE_signature_marketbtnsize_73_sel%%>Small</option>
+                         <option value="102" %%DEFINE_signature_marketbtnsize_102_sel%%>Large</option>
+                         </select>
+                 </div>
+                 <div class="style_design_box">
+                      <span>Button Animation</span>
+                        <div class="form-check form-switch">
+                              <input class="form-check-input marketbtnanimation" type="checkbox" role="switch" id="signature_marketbtnanimation" name="signature_marketbtnanimation" value="1" checked="checked">
+                              <label class="form-check-label" for="signature_marketbtnanimation">OFF/ON</label>
+                    </div>
+                 </div>
+
+                 {LOOP: MARKETPLACEBTNLINK}
+                  <div class="form-floating collapse" id="{%%MARKETPLACEBTNLINK.iconname%%}">
+                        <input type="text" name="signature_{%%MARKETPLACEBTNLINK.iconname%%}" class="form-control" id="" value="%%DEFINE_signature_{%%MARKETPLACEBTNLINK.iconname%%}_link%%" placeholder="{%%MARKETPLACEBTNLINK.label%%}" onchange="return validURL(this);">
+                        <label for="">{%%MARKETPLACEBTNLINK.label%%}</label>
+                  </div>
+                {/LOOP: MARKETPLACEBTNLINK}
+
+             <div class="marketplace_link_box" id="marketplace_link_box">
+                 {LOOP: MARKETPLACEBTN}
+                <div class="custome_icon">
+                  <input type="checkbox" name="{%%MARKETPLACEBTN.iconname%%}-btn" id="{%%MARKETPLACEBTN.iconname%%}-btn" class="d-none imgbgchk checkbox" value="1" %%DEFINE_signature_{%%MARKETPLACEBTN.iconname%%}_chk%% >
+                  <label for="{%%MARKETPLACEBTN.iconname%%}-btn" class="iconcheckbox" data-bs-toggle="collapse" href="#{%%MARKETPLACEBTN.iconname%%}" role="button" aria-expanded="false" aria-controls="{%%MARKETPLACEBTN.iconname%%}" >
+                  <img draggable="false"  src="%%DEFINE_IMAGE_LINK%%/images/marketplace/static/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.png" data-src="%%DEFINE_IMAGE_LINK%%/images/marketplace/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.gif" alt="{%%MARKETPLACEBTN.iconname%%}" title="{%%MARKETPLACEBTN.iconname%%}">
+                  <div class="tick_container">
+                    <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                  </div>
+                  </label>
+                </div>
+              {/LOOP: MARKETPLACEBTN}
+               </div>
+                <!--- end market place button --->
+
+                 </div>
+               </div>
+
+               <div class="tab-pane fade" id="logo" role="tabpanel" aria-labelledby="logo-tab">
+                <div class="add_details_bg tab_sign_box">
+                  <h1><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/logo-img-icon.svg" alt="">Logo/Images</h1>
+                     <!-------------------------------- Social Icon ------------------------------------------------------->
+
+                     <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/personal-info-title.svg" alt="">CustoM Esignature™</h3>
+                      <div class="custom_logo">
+                        <img draggable="false" class="layout_logo" src="%%DEFINE_signature_image%%" alt="" width="%%DEFINE_signature_logosize%%">
+                      </div>
+                     <p style="font-size: 12px; color: #000000; text-align: center;margin-top: 10px;">Uploaded wrong logo? Please contact to <a href="mailto:support@customesignature.com">support@customesignature.com</a>.</p>
+                     <div class="pricing_employees_bg_main logosize">
+                       <h6>Size: <span id="logo_size">30</span>px</h6>
+                            <div class="range_slider">
+                            <div id="range"  class="noUi-target noUi-ltr noUi-horizontal"></div></div>
+                             <input type="hidden" id="signature_logosize" value="" name="signature_logosize" />
+                     </div>
+                     <div class="form-floating">
+                      <input type="text" name="signature_link" id="signature_link" class="form-control" id="" placeholder="" value="" required>
+                      <label for="">Enter Link</label>
+                   </div>
+                     <!-- <div class="style_design_box">
+                           <span>Size</span>
+                              <select class="selectbox">
+                                <option value="1">Normal</option>
+                                <option selected="">Small</option>
+                               <option value="2">Large</option>
+                              </select>
+                      </div> -->
+
+                      <h6 class="infotitle" style="display: flex; justify-content: space-between; align-items: center;">Profile Image <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="profile_display" name="profile_disply" value="1" checked>
+                        <label class="form-check-label profile_display" for="profile_display">OFF/ON</label>
+                      </div></h6>
+                      <!-- <div id="img_errormsg_profile"></div>
+                      <div class="form-floating">
+                         <input type="text" name="signature_profile" id="signature_profile" class="form-control" id="" placeholder="" value="">
+                         <label for="">Enter Image Link</label>
+                      </div>   -->
+                      <div class="row" style="display:none;margin-top: 30px;" >
+                        <input class="profileCropped" type="hidden" name="profileCropped" id="profileCropped" value="">
+                        <div id="upload-image"></div>
+                        <div class="bottom_bg_btn croppie-buttons">
+                         <button class="btn next action-button cropped_image">Set & Save</button>
+                         <a href="javascript:void(0);" class="previous action-button-previous cropped_image_change">Change Image</a>
+                        </div>
+                      </div>
+
+                      <input class="profile" type="file" name="profile" id="profile" style="display:none;">
+                 <div id="img_preview2"></div>
+                <div id="img_errormsg2"></div>
+                 <div class="upload-area1 signature_profile_section" id="uploadfile2">
+                  <div class="drag_your_image"> <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/img-icon.svg" alt="">
+                    <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
+                    <p>Supports: PNG, JPG, JPEG</p>
+                  </div>
+                </div>
+                <div class="style_design_box signature_profile_section">
+                  <div id="lottie-circle" style="position: absolute; width: 300px; height: 300px;opacity: 0; pointer-events: none; overflow: hidden;"></div>
+                  <div id="lottie-square" style="position: absolute; width: 300px; height: 300px;opacity: 0; pointer-events: none; overflow: hidden;"></div>
+                  <img id="result-circle" style="position: absolute; width: 300px; height: 300px;opacity: 0; pointer-events: none; overflow: hidden;" />
+                  <img id="result-square" style="position: absolute; width: 300px; height: 300px;opacity: 0; pointer-events: none; overflow: hidden;" />
+                  <span>Image Shape</span>
+                  <div class="icon_style">
+                   <div class="custome_icon">
+                     <input type="radio" name="signature_profileshape" id="profile_square" class="d-none imgbgchk" value="0px" data-class="signature_profile" %%DEFINE_signature_profileshape_0px_chk%%>
+                     <label for="profile_square" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#profile_square" role="button" aria-expanded="false" aria-controls="profile_square">
+                       <div class="image-shape square" style="width:30px;"></div>
+                       <div class="tick_container">
+                         <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                        </div>
+                      </label>
+                   </div>
+                   <div class="custome_icon">
+                     <input type="radio" name="signature_profileshape" id="profile_rounded" class="d-none imgbgchk" value="10px" data-class="signature_profile" %%DEFINE_signature_profileshape_10px_chk%%>
+                     <label for="profile_rounded" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#profile_rounded" role="button" aria-expanded="false" aria-controls="profile_rounded">
+                        <div class="image-shape rounded" style="width:30px;"></div>
+                        <div class="tick_container">
+                          <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="custome_icon">
+                      <input type="radio" name="signature_profileshape" id="profile_circle" class="d-none imgbgchk" value="200px" data-class="signature_profile" %%DEFINE_signature_profileshape_200px_chk%%>
+                      <label for="profile_circle" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#profile_circle" role="button" aria-expanded="false" aria-controls="profile_circle">
+                        <div class="image-shape circle" style="width:30px; border-radius:20px;"></div>
+                        <div class="tick_container">
+                          <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="pricing_employees_bg_main profilesize signature_profile_section">
+                  <h6>Size: <span id="profile_image_size">0</span>px</h6>
+                  <div class="range_slider">
+                    <div id="rangeprofile"  class="noUi-target noUi-ltr noUi-horizontal"></div>
+                  </div>
+                  <input type="hidden" id="signature_profilesize" value="%%DEFINE_signature_profilesize%%" name="signature_profilesize" />
+                </div>
+                <div class="profile_animation_section section_disabled">
+                  <h6 class="infotitle signature_profile_section" style="display: flex; justify-content: space-between; align-items: center;">Profile Animation
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="signature_profileanimation" name="signature_profileanimation" value="1" %%DEFINE_signature_profileanimation1_signature_profileanimation_chk_1%%  data-gtm-form-interact-field-id="1">
+                      <label class="form-check-label signature_profileanimation" for="signature_profileanimation">OFF/ON</label>
+                    </div>
+                  </h6>
+                  <div class="style_design_box section_disabled" id="signature_profile_select_animation_section">
+                   <span>Select Animation</span>
+                    <input type="hidden" name="signature_profileanimation_gif_name" id="signature_profileanimation_gif_name" value="%%DEFINE_signature_profileanimation1_signature_profileanimation_gif_name%%" >
+                    <div class="icon_style">
+                      <div class="custome_icon profile_animation_change_gif">
+                        <input type="radio" name="signature_profileanimation_gif" id="signature_profileanimation_gif1" class="signature_profileanimation_gif d-none imgbgchk checkbox" value="1" %%DEFINE_signature_profileanimation_gif_sel1%% data-shape='square'>
+                        <label for="signature_profileanimation_gif1" class="socialdesign">
+                        <img draggable="false" src="%%DEFINE_UPLOAD_LINK%%/signature/gifs/giphyy-1.gif" alt="" class="" style="background: black;" data-shape='square'>
+                        <div class="tick_container">
+                          <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                        </div>
+                      </div>
+                      <div class="custome_icon profile_animation_change_gif">
+                        <input type="radio" name="signature_profileanimation_gif" id="signature_profileanimation_gif2" class="signature_profileanimation_gif d-none imgbgchk checkbox" value="2" %%DEFINE_signature_profileanimation_gif_sel2%% data-shape='circle'>
+                        <label for="signature_profileanimation_gif2" class="socialdesign">
+                        <img draggable="false" src="%%DEFINE_UPLOAD_LINK%%/signature/gifs/giphyy-2.gif" alt="" class=""  style="background: black;" data-shape='circle'>
+                        <div class="tick_container">
+                          <div class="tick"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin: 25px 0 0 0;" class="signature_profile_section">
+                    <span style="font-weight: 600;font-size: 16px;line-height: 24px;color: #0A7BFF;">We’ve made major updates to the animation to ensure support across all platforms. If it has stopped working on your end, please re-enable the animation.</span>
+                  </div>
+                </div>
+                      <!-- <div class="style_design_box">
+                           <span>Image Shape</span>
+                              <div class="icon_style">
+                                <div class="image-shape square"></div>
+                                 <div class="image-shape rounded"></div>
+                                 <div class="image-shape circle"></div>
+                               </div>
+                      </div>
+                      <div class="style_design_box">
+                           <span>Image Size</span>
+                              <select class="selectbox">
+                                <option value="1">Normal</option>
+                                <option selected="">Small</option>
+                               <option value="2">Large</option>
+                              </select>
+                      </div> -->
+
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade %%DEFINE_is_banner_campaign%%" id="banner-tab-detail" role="tabpanel" aria-labelledby="banner-tab">
+                    <div class="add_details_bg tab_sign_box">
+                      <div class="banner_detail_switch">
+                        <h1><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/banner-icon.svg" alt="">Banner</h1>
+                        <div class="form-check form-switch">
+                          <input class="form-check-input" type="checkbox" role="switch" id="signature_banner_display" name="signature_banner_display" value="1" %%DEFINE_signature_banner_display_sel%%>
+                          <label class="form-check-label signature_banner_display" for="signature_banner_display">OFF/ON</label>
+                        </div>
+                      </div>
+                      <!-- <h1><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/add-contact-title.svg" alt="">Banner</h1>
+                      <h3><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/profile-image-title.svg" alt="">Banner
+                      <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="signature_banner_display" name="signature_banner_display" value="1" %%DEFINE_signature_banner_display_sel%%>
+                                <label class="form-check-label signature_banner_display" for="signature_banner_display">OFF/ON</label>
+                              </div></h3> -->
+
+                      <input class="banner" type="file" name="banner" id="banner" style="display:none;">
+                         <div id="img_preview3"></div>
+                        <div id="img_errormsg3"></div>
+                         <div class="upload-area2 banner_style_section" id="uploadfile3">
+                          <div class="drag_your_image"> <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/img-icon.svg" alt="">
+                            <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
+                            <p>Supports: PNG, JPG, JPEG</p>
+                          </div>
+                        </div>
+                        <p>&nbsp;</p>
+                        <h3 class="banner_style_section"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/banner-style-title.svg" alt="">Banner Style/Design</h3>
+                       <div class="style_design_box banner_style_section">
+                           <span>Shape</span>
+                              <div class="icon_style">
+                              <div class="custome_icon">
+                               <input type="radio" name="signature_bannershape" id="square" class="d-none imgbgchk" value="0px" data-class="layout_banner" checked="checked">
+                               <label for="square" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#square" role="button" aria-expanded="false" aria-controls="square">
+                               <div class="image-shape square" style="width:75px;"></div>
+                              <div class="tick_container">
+                                 <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                                </label>
+                             </div>
+
+                             <div class="custome_icon">
+                               <input type="radio" name="signature_bannershape" id="rounded" class="d-none imgbgchk" value="10px" data-class="layout_banner">
+                               <label for="rounded" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#rounded" role="button" aria-expanded="false" aria-controls="rounded">
+                               <div class="image-shape rounded" style="width:75px;"></div>
+                              <div class="tick_container">
+                                 <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                                </label>
+                             </div>
+                             <div class="custome_icon">
+                               <input type="radio" name="signature_bannershape" id="circle" class="d-none imgbgchk" value="200px" data-class="layout_banner">
+                               <label for="circle" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#circle" role="button" aria-expanded="false" aria-controls="circle">
+                               <div class="image-shape circle" style="width:75px; border-radius:20px;"></div>
+                              <div class="tick_container">
+                                 <div class="tick bold"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt=""></div>
+                               </div>
+                                </label>
+                             </div>
+
+                               </div>
+                      </div>
+                      <div class="style_design_box banner_style_section">
+                        <span>Size</span>
+                        <div class="pricing_employees_bg_main borderdevider">
+                    
+                         <div class="range_slider">
+                         <div id="rangebanner"  class="noUi-target noUi-ltr noUi-horizontal"></div>
+                         <div class="banner_size"><span>150px</span> <span>600px</span></div>
+                         </div>
+                          <input type="hidden" id="signature_bannersize" value="%%DEFINE_signature_bannersize%%" name="signature_bannersize" />
+                          <!--<h6>Size: <span id="banner_size">150</span>px</h6>-->
+                          
+                  </div>    
+                   </div>
+                     <div class="form-floating banner_style_section">
+                      <input type="text" name="signature_bannerlink" id="banner_link" class="form-control" id="" placeholder="" value="">
+                      <label for="">Banner Link</label>
+                   </div>
+
+
+
+                 </div>
+               </div>
+               <div class="tab-pane fade" id="ecardqrcode" role="tabpanel" aria-labelledby="ecardqrcode-tab">
+             
+               </div>
+             </div>
+                         </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-7 col-lg-6 col-12">
+                    <div class="hover_previous_right_bg">
+                      <div id="snackbar"></div>
+                      <div id="snackbar-error"></div>
+                      <div id="snackbar-info"></div>
+                        <div class="">
+                         <div class="sign_previous_bg">
+                           <div class="previous_top_bg_box">
+                    	<div class="previous_top_img">
+                    	<div class="previous_left">
+                        	<img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
+                            <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
+                        </div>
+                        <div class="previous_right_img"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt=""></div>
+                    </div>
+                    	<p>&nbsp;</p>
+                    	<p>Hey John,</p>
+                        <div class="line_one">&nbsp;</div>
+                        <div class="line_two">&nbsp;</div>
+                        <p>Best,</p>
+                        <p>&nbsp;</p>
+                    </div>
+                          <div class="signature_previous_box">
+                            %%DEFINE_lauout_load%%
+                            %%DEFINE_signature_profilesize_hidden_input%%
+                          </div>
+                          <div class="signature_temp_preview_box">
+                          </div> <!-- 	// code is for saving signature html(to use in deploy)  -->
+                          </div>
+                          
+                          <div class="bottom_bg_btn">
+                      <a href="%%DEFINE_linkModuleDashboard%%?department_id=%%DEFINE_current_department_id_add_sign%%" class="previous action-button-previous">Go Back</a>
+                      <button type="submit" name="next" class="submit btn next action-button" value="Next Step">Save Signature</button>
+      
+                      </div>
+                      </div>
+                       </div>
+                      
+                   </div>
+
+      </div>
+    </fieldset>
+      </form>
+    </div>
+
+  </div>
+  <input type="hidden" id="upload_url" value="%%DEFINE_linkModuleNewsignature%%/uploadimg" />
+  <input type="hidden" id="upload_profile_url" value="%%DEFINE_linkModuleNewsignature%%/uploadprofileimg" />
+  <input type="hidden" id="form_url" value="%%DEFINE_linkModuleNewsignature%%" />
+  <input type="hidden" id="form_url_params" value="%%DEFINE_signatureTypeParam%%" />
+  <input type="hidden" id="signature_html_url" value="%%DEFINE_sig_html_save_url%%" /> <!-- 	// code is for saving signature html(to use in deploy) -->
+  <input type="hidden" id="redirecturl" value="%%DEFINE_linkModuleNewsignature%%/done" />
+  <input type="hidden" id="redirecturld" value="%%DEFINE_linkModuleDashboard%%?department_id=%%DEFINE_current_department_id_add_sign%%" />
+</section>
+<!-- Form-->
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script> 
+<script src="%%DEFINE_JS_LINK%%/uploadimage.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
+<script src="%%DEFINE_JS_LINK%%/uploadsigprofile.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
+<!-- <script src="%%DEFINE_JS_LINK%%/uploadprofileimagefirsttime.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script> --> <!-- Js for first time profile upload for new user  -->
+<script src="%%DEFINE_JS_LINK%%/uploadbanner.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
+<script src="%%DEFINE_JS_LINK%%/sigeditor.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
+
+<link href="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.css" rel="stylesheet">
+<script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+$(document).ready(function(){
+
+/*
+//  Old code for next step and previous step 
+
+var current_fs, next_fs, previous_fs; //fieldsets
+var opacity; var step_fs;
+
+
+
+$(".next").click(function(){
+  var validate =1;
+  step_fs = $(this).attr("data-id");
+  current_fs = $(this).parent();
+  next_fs = $(this).parent().next();
+  if(next_fs.length == 0){
+      next_fs = current_fs;
+  }
+
+  //Add Class Active
+  //$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+  
+  //show the next fieldset
+  next_fs.show();
+  //hide the current fieldset with style
+  current_fs.animate({opacity: 0}, {
+    step: function(now) {
+      // for making fielset appear animation
+      opacity = 1 - now;
+
+      current_fs.css({
+        'display': 'none',
+        'position': 'relative'
+      });
+      // next_fs.css({'opacity': opacity});
+      
+    },
+    duration: 600
+  });
+  
+  //show the next fieldset
+  current_fs.promise().done(function(){
+    next_fs.show();
+    next_fs.css('opacity', '1');
+  });
+  
+  
+});
+
+$(".previous").click(function(){
+
+current_fs = $(this).parent();
+previous_fs = $(this).parent().prev();
+
+//Remove class active
+//$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+previous_fs.show();
+
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative',
+
+});
+previous_fs.css({'opacity': opacity });
+},
+duration: 600
+});
+});
+
+
+//  Old code for next step and previous step 
+*/
+
+
+//  New code for next step start
+  $('#nxt2').click(function() {
+    $("#logoProfileUploadContainer").hide();
+    $("#msform").show();
+  });
+//  New code for next step start
+
+
+
+$(".submit").click(function(){
+  var redirecturl = $('#redirecturl').val();
+  var redirecturld = $('#redirecturld').val();
+  var validate =1;
+  $(".loader-image").show();
+  $('.form-control').css('border-bottom-color','');
+  if($('#signature_firstname').val() === ""){
+    $('#signature_firstname').css('border-bottom-color','#842029'); validate =0;
+  }
+  if($('#signature_email').val() === ""){
+    $('#signature_email').css('border-bottom-color','#842029'); validate =0;
+  }
+  if($('#signature_phone').val() === ""){
+    $('#signature_phone').css('border-bottom-color','#842029'); validate =0;
+  }
+  if(validate != 1){
+    stopPropagation(); return false;
+  }
+  var form = $('#msform');
+  data = form.serialize();
+  formUrl = $('#form_url').val()+$('#form_url_params').val();
+
+  $.ajax({
+      type: 'POST',
+      url: formUrl,
+      data: form.serialize()
+    }).done(function(data) {
+      var json = JSON.parse(data);
+      $(".loader-image").hide();
+      if(json.error != 1){
+        if($('#uploadlimit').val() === 1){
+          window.location = redirecturl;
+        }else{
+          $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+				  $('#snackbar').show();
+				  setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturld; }, 2000);
+          setTimeout(function(){ x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
+        }
+      }else{
+        $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>'+json.msg+' </div>');
+        $('#snackbar-error').show();
+        setTimeout(function(){ $('#snackbar-error').hide(); window.location = redirecturld; }, 2000);
+        return false;
+      }
+      // Optionally alert the user of success here...
+    }).fail(function(data) {
+    return false;
+      // Optionally alert the user of an error here...
+    });
+return false;
+});
+
+  // code is for saving signature html(to use in deploy) START
+
+  function checkAllHtmlToImageGenerated(addedSignatureId){
+    var allImagesGenerated = false;
+    var convertedImageCount = 0;
+
+    $('.imagetopngClass:visible').each(function(){       //hide/show social icon border based on selected custom icons if its with social icon area
+      if($(this).find('a').children('img').length){
+        convertedImageCount++;
+      }
+    });
+    if(convertedImageCount == $('.imagetopngClass:visible').length){
+      console.log('COMPLETED:  ' + convertedImageCount)
+      allImagesGenerated = true;
+    }else{
+      if((convertedImageCount > 0) && (convertedImageCount < $('.imagetopngClass:visible').length)){
+        console.log('WAITING:  ' + convertedImageCount)
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "%%DEFINE_JS_LINK%%/htmltoimage/html2canvas.js";
+        var s2 = document.createElement("script");
+        s2.type = "text/javascript";
+        s2.src = "%%DEFINE_JS_LINK%%/htmltoimage/htmltoimage.js";
+        $("head").append(s);
+        $("head").append(s2);
+      }
+      convertedImageCount = 0;
+    }
+    setTimeout(function () {
+      if(allImagesGenerated){
+        // For remove signature profile if not visible
+        if($('.signature_temp_preview_box').find('.signature_profile').not(':visible').length){
+          // $('.signature_temp_preview_box').find('.signature_profile').parent().remove();
+          $('.signature_temp_preview_box').find('.profile-annimation-gif').remove();
+        }
+        
+        // For remove signature social icon container if not visible
+        if($('.signature_temp_preview_box').find('.layout_socialicon_border').not(':visible').length){
+          $('.signature_temp_preview_box').find('.layout_socialicon_border').remove();
+        }
+
+        // For remove signature banner if not visible
+        if($('.signature_temp_preview_box').find('.layout_banner').not(':visible').length){
+          $('.signature_temp_preview_box').find('.layout_banner').closest('#layout_bannerlink').remove();
+        }
+
+        $('.signature_temp_preview_box').find('td').each(function() {
+          if ($(this).html().trim() == '') {
+            if ($(this).closest("tr").find('td').html().trim() == '') {
+              $(this).closest("tr").remove();
+            }
+          }
+          if ($(this).is(":hidden")) {
+            $(this).remove();
+          }
+        });
+        
+        saveSignatureHtml(addedSignatureId);
+      }else{
+        checkAllHtmlToImageGenerated(addedSignatureId);
+      }
+    },5000);
+  }
+  
+  function saveSignatureHtml(addedSignatureId){
+    var redirecturld = $('#redirecturld').val();
+    var saveSignatureUrl = $('#signature_html_url').val()+'/'+addedSignatureId;
+    $.ajax({
+      type: 'POST',
+      url: saveSignatureUrl,
+      data:{html: $('.signature_temp_preview_box').html()}
+    }).done(function(data) {
+        $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+				$('#snackbar').show();
+				setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturld; }, 2000);
+    }).fail(function(data) {
+		  return false;
+    });
+  }
+
+  // code is for saving signature html(to use in deploy) END
+
+});
+})(jQuery);
+</script>
+<!--  Form End-->
+
+<script>
+jQuery.noConflict();
+(function($) {
+$(document).ready(function(){
+// logo size
+var logosize = 100;
+$('#signature_logosize').val(logosize);
+
+var rangeSlider = $('#range')[0];
+  noUiSlider.create(rangeSlider, {
+    start: [logosize],
+    step: 5,
+    connect: [true, false],
+    range: {
+      'min': [30],
+      'max': [300]
+    },
+  });
+
+ rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+
+    if(unencoded == 0 ) {unencoded = 100;}
+    logowith = parseInt(unencoded);
+    $('#logo_size').text(logowith);
+    $('.signature_tbl img.layout_logo').attr("width",logowith);
+    $('#signature_logosize').val(logowith);
+ });
+
+ // banner size
+ var bannersize = 400;
+$('#signature_bannersize').val(bannersize);
+var rangeSlider = $('#rangebanner')[0];
+  noUiSlider.create(rangeSlider, {
+    start: [bannersize],
+    step: 5,
+    connect: [true, false],
+    range: {
+      'min': [150],
+      'max': [600]
+    },
+  });
+
+ rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+
+    if(unencoded == 0 ) {unencoded = 150;}
+    bannerwith = parseInt(unencoded);
+    $('#banner_size').text(bannerwith);
+    $('.signature_tbl img.layout_banner').attr("width",bannerwith);
+    $('#signature_bannersize').val(bannerwith);
+ });
+
+ // border width
+var borderwidth = 1;
+$('#signature_borderwidth').val(borderwidth);
+
+var borderSlider = $('#borderwidth')[0];
+  noUiSlider.create(borderSlider, {
+    start: [borderwidth],
+    step: 1,
+    connect: [true, false],
+    range: {
+      'min': [0],
+      'max': [7]
+    },
+  });
+borderSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+
+    //if(unencoded == 0 ) {unencoded = 1;}
+    border = parseInt(unencoded);
+    borderwidth = parseInt(unencoded) +'px';
+    $('.layout_border').css('border-width',borderwidth);
+    $('#signature_borderwidth').val(border);
+ });
+
+
+  // devider width
+var dividerwidth = 1;
+$('#signature_dividerwidth').val(dividerwidth);
+
+var dividerSlider = $('#dividerwidth')[0];
+  noUiSlider.create(dividerSlider, {
+    start: [dividerwidth],
+    step: 1,
+    connect: [true, false],
+    range: {
+      'min': [0],
+      'max': [7]
+    },
+  });
+dividerSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+
+    if(unencoded == 0 ) {unencoded = 1;}
+    border = parseInt(unencoded);
+    borderwidth = parseInt(unencoded) +'px';
+    $('.layout_divider').css('border-left-width',borderwidth);
+    $('.layout_divider_bottom').css('border-bottom-width',borderwidth);
+    $('.layout_divider_right').css('border-right-width',borderwidth);
+    $('#signature_dividerwidth').val(border);
+
+ });
+
+ ///// Profile size ////
+ var profilesize = '%%DEFINE_signature_profilesize%%';
+ var maxWidth = Number('%%DEFINE_profile_image_size%%');
+ var checkedLayoutId = $("input[type='radio'][name=layout_id]:checked").val();
+ // maxWidth = $('label[for="layout_id'+checkedLayoutId+'"]').find("img.signature_profile").data('width');
+ var profileImageSlider = "";
+
+ function createProfileImageSlider(maxWidth,layOutChanged = false) {
+   $('#signature_profilesize').val(profilesize);
+   var rangeSlider = $('#rangeprofile')[0];
+   width = $('label[for="layout_id'+checkedLayoutId+'"]').find("img.signature_profile").width();
+   profilesize = (profilesize != null) ? width : profilesize ;
+   startRange = (layOutChanged) ? width : profilesize;
+   startRange = (width != null) || (profilesize != null ) ? startRange : 10 ;
+   profileImageSlider = noUiSlider.create(rangeSlider, {
+     start: [startRange],
+     step: 5,
+     connect: [true, false],
+     range: {
+       'min': [10],
+       'max': [maxWidth]
+     },
+   });
+
+   rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+     if(unencoded == 0 ) {unencoded = 50;}
+     profilewith = parseInt(unencoded);
+     $('#profile_image_size').text(profilewith);
+     $('label[for="layout_id'+checkedLayoutId+'"]').find("img.signature_profile").attr("width",profilewith);
+     $('.signature_previous_box').find("img.profile-annimation-gif").attr("width",profilewith);
+     $('label[for="layout_id'+checkedLayoutId+'"]').find("img.profile-annimation-gif").attr("width",profilewith);
+     $('.signature_previous_box img.signature_profile').last().attr("width",profilewith);
+     $('#signature_profilesize').val(profilewith);
+   });
+ }
+ if (maxWidth != null) {
+   createProfileImageSlider(maxWidth);
+ }else{
+   createProfileImageSlider(140);
+ }
+
+ $('input:radio[name="layout_id"]').change(function(){
+   checkedLayoutId = $(this).val();
+   // maxWidth = $('label[for="layout_id'+checkedLayoutId+'"]').find("img.signature_profile").data('width');
+   maxWidth = Number($('input#profile_image_size'+checkedLayoutId).val());
+   
+   if (maxWidth != null) {
+     profileImageSlider.destroy();
+     createProfileImageSlider(maxWidth,true);
+   }else{
+     profileImageSlider.destroy();
+     createProfileImageSlider(140,true);
+   }
+ });
+
+ ///// Profile size END////
+
+ /// Cta buttons size slider ///
+
+  // ctabtn1
+  var ctabtn1size = '%%DEFINE_signature_ctabtn1_size%%';
+  ctabtn1sizestart = 2; // by default normal
+  if(ctabtn1size == '10px'){
+    ctabtn1sizestart = 1; // small
+  } else if(ctabtn1size == '12px'){
+    ctabtn1sizestart = 2; // normal
+  } else if (ctabtn1size == '14px'){
+    ctabtn1sizestart = 3; // large
+  }
+
+  $('#signaturectabtnsize1').val(ctabtn1size);
+  var rangeSlider = $('#ctabtnsize1')[0];
+    noUiSlider.create(rangeSlider, {
+      start: [ctabtn1sizestart],
+      step: 1,
+      connect: [true, false],
+      range: {
+        'min': [1],
+        'max': [3]
+      },
+    });
+
+  rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+      if(unencoded == 0 ) {unencoded = 2;}
+      ctabtn1size = '12px'; // by default normal
+      if(unencoded == 1){
+        ctabtn1size = '10px'; // small
+      }
+      else if(unencoded == 2){
+        ctabtn1size = '12px'; // normal
+      }
+      else if(unencoded == 3){
+        ctabtn1size = '14px'; // large
+      }
+
+      $(".layout_ctabtn1").css('font-size',ctabtn1size);
+      $("input[name=signature_ctabtnsize1]").val(ctabtn1size);
+  });
+
+  // ctabtn2
+  var ctabtn2size = '%%DEFINE_signature_ctabtn2_size%%';
+  ctabtn2sizestart = 2; // by default normal
+  if(ctabtn2size == '10px'){
+    ctabtn2sizestart = 1; // small
+  } else if(ctabtn2size == '12px'){
+    ctabtn2sizestart = 2; // normal
+  } else if (ctabtn2size == '14px'){
+    ctabtn2sizestart = 3; // large
+  }
+  
+  $('#signaturectabtnsize2').val(ctabtn2size);
+  var rangeSlider = $('#ctabtnsize2')[0];
+    noUiSlider.create(rangeSlider, {
+      start: [ctabtn2sizestart],
+      step: 1,
+      connect: [true, false],
+      range: {
+        'min': [1],
+        'max': [3]
+      },
+    });
+
+  rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+    if(unencoded == 0 ) {unencoded = 2;}
+    ctabtn2size = '12px'; // by default normal
+    if(unencoded == 1){
+      ctabtn2size = '10px'; // small
+    }
+    else if(unencoded == 2){
+      ctabtn2size = '12px'; // normal
+    }
+    else if(unencoded == 3){
+      ctabtn2size = '14px'; // large
+    }
+
+    $(".layout_ctabtn2").css('font-size',ctabtn2size);
+    $("input[name=signature_ctabtnsize2]").val(ctabtn2size);
+  });
+
+  // ctabtn3
+  var ctabtn3size = '%%DEFINE_signature_ctabtn3_size%%';
+  ctabtn3sizestart = 2; // by default normal
+  if(ctabtn3size == '10px'){
+    ctabtn3sizestart = 1; // small
+  } else if(ctabtn3size == '12px'){
+    ctabtn3sizestart = 2; // normal
+  } else if (ctabtn3size == '14px'){
+    ctabtn3sizestart = 3; // large
+  }
+  $('#signaturectabtnsize3').val(ctabtn3size);
+  var rangeSlider = $('#ctabtnsize3')[0];
+    noUiSlider.create(rangeSlider, {
+      start: [ctabtn3sizestart],
+      step: 1,
+      connect: [true, false],
+      range: {
+        'min': [1],
+        'max': [3]
+      },
+    });
+
+  rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+    if(unencoded == 0 ) {unencoded = 2;}
+    ctabtn3size = '12px'; // by default normal
+    if(unencoded == 1){
+      ctabtn3size = '10px'; // small
+    }
+    else if(unencoded == 2){
+      ctabtn3size = '12px'; // normal
+    }
+    else if(unencoded == 3){
+      ctabtn3size = '14px'; // large
+    }
+
+    $(".layout_ctabtn3").css('font-size',ctabtn3size);
+    $("input[name=signature_ctabtnsize3]").val(ctabtn3size);
+  });
+
+  /// Cta buttons size slider END///
+
+
+ //  hide/show social icon border based on selected social icons
+ if($(".sicon:visible").length < 1){
+    $(".signature_previous_box").find('.sicon').closest('.layout_socialicon_border').hide();
+    $(".signature_previous_box").find('.sicon').closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'none'});
+    $(".signature_layot").find('.sicon').closest('.layout_socialicon_border').hide();
+    $(".signature_layot").find('.sicon').closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'none'});
+  }else{
+    $(".signature_previous_box").find('.sicon').closest('.layout_socialicon_border').show();
+    $(".signature_layot").find('.sicon').closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'none'});
+    $(".signature_layot").find('.sicon').closest('.layout_socialicon_border').show();
+    $(".signature_layot").find('.sicon').closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'revert'});
+  }
+  
+  $('.layout_socialicon_border').each(function(){       //hide/show social icon border based on selected custom icons if its with social icon area
+    if($(this).find('.layout-custombtn').length > 0){
+      if($(this).find('.layout-custombtn').find('a').length == 0){
+        if($("#social_link_box").find('input[type=checkbox]:checked').length > 0){
+          $(this).closest('.layout_socialicon_border').show();
+          $(this).closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'revert'});
+        }else{
+          $(this).closest('.layout_socialicon_border').hide();
+          $(this).closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'none'});
+        }
+      }else{
+        $(this).closest('.layout_socialicon_border').show();
+        $(this).closest('.layout_socialicon_border').siblings('.layout_between_gap').css({'display': 'revert'});
+      }
+    }
+  });
+
+    // For manage padding only with devider on/off
+
+    $('#signature_divider').change(function() {
+    isPaddingRemove = $('input[name=layout_id]:checked').data('layout_divider_padding_remove')
+    if(this.checked) {
+      $(".layout_divider").css('padding','0 0 0 15px');
+    }else{
+      console.log(isPaddingRemove)
+      if(isPaddingRemove) {
+        $(".layout_divider").css('padding','0');
+      } else{
+        $(".layout_divider").css('padding','0 0 0 15px');
+      }
+    }
+  });
+
+
+
+ });
+})(jQuery);
+</script>
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($) {
+  $(document).ready(function(){
+   
+    var tooltip = $("<div class='hover_tooltip'>Please upload your profile picture or click 'Set & Save' if it’s already uploaded.</div>");
+    $('body').append(tooltip);
+
+    // Track mousemove globally (since pointer-events are disabled)
+    $(document).on('mousemove', function(e) {
+        // Check if the mouse is over the .profile_animation_section
+        var $section = $('.profile_animation_section');
+        var sectionOffset = $section.offset();
+        var sectionWidth = $section.outerWidth();
+        var sectionHeight = $section.outerHeight();
+
+        // Check if the mouse is within the bounds of the section
+        if (
+            e.pageX >= sectionOffset.left &&
+            e.pageX <= sectionOffset.left + sectionWidth &&
+            e.pageY >= sectionOffset.top &&
+            e.pageY <= sectionOffset.top + sectionHeight
+        ) {
+            // If the section is disabled, show the tooltip
+            if ($section.hasClass('section_disabled')) {
+                tooltip.show();
+                tooltip.css({
+                    left: e.pageX + 10,  // Position tooltip slightly to the right
+                    top: e.pageY + 10    // Position tooltip slightly below
+                });
+            }
+        } else {
+            tooltip.hide();  // Hide the tooltip when not hovering the section
+        }
+    });
+
+    // Hide tooltip when the mouse leaves the document
+    $(document).on('mouseleave', function() {
+        tooltip.hide();
+    });
+
+  });
+})(jQuery);
+</script>
+%%DEFINE_FOOTER%%

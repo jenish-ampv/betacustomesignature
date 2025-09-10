@@ -1,0 +1,281 @@
+%%DEFINE_HEADER%%
+<style>
+table{ border:none; border-collapse: collapse;}
+tr, td{ border:none; border-collapse: collapse;}
+</style>
+<section>
+  <div class="container">
+ 
+   <div class="use_signature_box_main">
+     <div class="use_header_top">
+     	<div class="top_logo"><img src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt=""></div>
+        <div class="tutorial_but"><a href="https://www.customesignature.com/tutorials" target="_blank"><img src="%%DEFINE_IMAGE_LINK%%/images/top-tutorial-icon.svg" alt="">Tutorial</a></div>
+     </div>
+    
+    <div class="use_center_box_bg"> 
+      <div class="warning_top_msg"><img src="%%DEFINE_IMAGE_LINK%%/images/warning-use-sign-symbol.svg" alt=""> <strong> Safari </strong>isn't supported. Use&nbsp;<strong>Chrome</strong> or other browser to integrate signature</div>
+      
+      <div id="snackbar"></div>
+      <div id="snackbar-error"></div>
+      <div id="snackbar-info"></div>
+    	<div class="signature_use_box">
+   			<div class="previous_top_bg_box">
+                    	<div class="previous_top_img">
+                    	<div class="previous_left">
+                        	<img src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
+                            <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
+                        </div>
+                        <div class="previous_right_img"><img src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt=""></div>
+                    </div>
+                    	<p>&nbsp;</p>
+                    	<p>Hey John,</p>
+                        <div class="line_one">&nbsp;</div>
+                        <div class="line_two">&nbsp;</div>
+                        <p>Best,</p>
+                        <p>&nbsp;</p>
+                    </div>
+                    <div  id="signature_source">
+   			 			%%DEFINE_signature_source%%
+             		</div>
+    	</div>
+      <div class="overlay-loader">
+   		 <img class="loaderGif" style="display: block; margin-left: auto; margin-right: auto;" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif"/>
+      </div>
+        
+      <div class="button_bg signature_use_button"> 
+        <a href="%%DEFINE_linkModuleDashboard%%" class="previous action-button-previous"><img src="%%DEFINE_IMAGE_LINK%%/images/goback.svg" alt="">Go Back</a>
+        %%DEFINE_use_signature_buttons%%
+      </div>
+     </div>
+    
+    </div>
+    
+    <!--<div class="add_button_bottom">
+  
+         <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Gmail <img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon.svg" alt=""></a>
+        <span class="line">&nbsp;</span>
+         <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Outlook <img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon.svg" alt=""></a>
+        <span class="line">&nbsp;</span>
+        <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Yahoo Mail <img src="%%DEFINE_IMAGE_LINK%%/images/yahoo-icon.svg" alt=""></a>
+        <span class="line">&nbsp;</span>
+        <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Apple Mail <img src="%%DEFINE_IMAGE_LINK%%/images/apple-icon.svg" alt=""></a>
+        
+    </div>-->
+    
+  </div>
+</section>
+<!-- Instruction Popup -->
+<div class="modal fade sigaddpopup" id="sigaddpopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="sig_add_text">
+        <h3 id="esg-gmail-info">How do I add my new email signature to Gmail?</h3>
+ 
+  <ol>
+    <li>Log in to your Gmail account, then click the setting icon in the top right corner.</li>
+    <li>Select <b>"See All Settings"</b> from the drop down menu.</li>
+    <li>Scroll down until you reach the email signature editor, then paste your new email signature there.</li>
+    <li>Select the <b>"Insert signature before quoted text</b> in replies and remove the "--" line that precedes it."</li>
+    <li>Under the 2 drop downs <b>"For new email use" & "On Reply/Forward"</b> make sure the signature you want is selected for both.</li>
+    <li>Scroll to the bottom of the page and click <b>"save changes"</b>.
+    </li>
+  </ol>
+ 
+<img src="%%DEFINE_IMAGE_LINK%%/images/signature-use-gmail.png" alt="Email Signature in Gmail" class="use_image">
+<h3 id="esg-outlook-info">How do I add my new email signature to Outlook?</h3>
+<p>To create a signature in Outlook for Windows and Mac:</p>
+<ol>
+  <li>Log in to your Outlook account and select the Home Tab > New Email</li>
+  <li>Click the Message tab </li>
+  <li>In the Include group section, select Signature > Signatures</li>
+  <li>In the Choose Default Signature section, select the account you would like to associate with the signature from the email account dropdown</li>
+  <li>In the Select Signature to Edit section, click the New button and name your signature  </li>
+  <li>In the Edit Signature section, paste in your Custom Esignature and select OK</li>
+</ol>
+<h3 id="esg-outlook-info">How do I create a signature for Outlook on the web and Outlook.com?</h3>
+<p>To set up an email signature for the online versions of Outlook:</p>
+<ol>
+  <li>Log in to Outlook on the web and click on the cog in the top-right corner</li>
+  <li>Select View all Outlook settings at the bottom of the column</li>
+  <li>Navigate to Email &gt; Compose and Reply</li>
+  <li>Name your signature in the Edit Signature name field</li>
+  <li>Paste your signature for Outlook in the Edit Signature section</li>
+  <li>Select Save</li>
+</ol>
+<img src="%%DEFINE_IMAGE_LINK%%/images/signature-use-outlook.png" alt="Email Signature in Outlook" class="use_image"><br>
+
+<h3 id="esg-apple-info">How do I add my new email signature to Apple Mail?</h3>
+ 
+  <ol>
+    <li>Open the Mail application and log in to your account.</li>
+    <li>Click Mail and then Preferences in the top left corner of your screen.</li>
+    <li>From the preferences pop-up, click the Signatures tab.</li>
+    <li>Click the + button at the bottom of the middle column.</li>
+    <li>Paste your new email signature into the right-hand column and make sure to <em>uncheck</em> the checkbox that states, "always match my default message font."</li>
+    <li>Close the pop-up window to save.</li>
+  </ol>
+ 
+<img src="%%DEFINE_IMAGE_LINK%%/images/signature-use-apple.png" alt="Email Signature in Apple" class="use_image">
+<h3 id="esg-yahoo-info">How do I add my new email signature to Yahoo Mail?</h3>
+ 
+  <ol>
+    <li>Log in to your Yahoo Mail account and select Settings &gt; More Settings.</li>
+    <li>On the left side of the screen, select "Writing email" and then locate the Signature header.</li>
+    <li>If you have multiple Yahoo Mail accounts, use the toggle to toggle on the account you want to customize your email signature for.</li>
+    <li>Paste your new email signature into the text box to save it.</li>
+  </ol>
+ 
+<img src="%%DEFINE_IMAGE_LINK%%/images/signature-use-yahoo.png" alt="Email Signature in Yahoo" class="use_image">
+
+      </div>
+      </div>
+       
+    </div>
+  </div>
+</div>
+<!-- End  Popup -->
+ <script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script> 
+ 
+ <script src="%%DEFINE_JS_LINK%%/htmltoimage/html2canvas.js"></script> 
+ <script src="%%DEFINE_JS_LINK%%/htmltoimage/htmltoimage.js"></script> 
+<script>
+  // remove empty tr from layout
+  $("img[src='']").remove();
+  $("span:empty").remove();
+  $(document).ready(function(){
+    $('td').each(function() {
+      if ($(this).html().trim() == '') {
+        if ($(this).closest("tr").find('td').html().trim() == '') {
+          $(this).closest("tr").remove();
+        }else if ($(this).closest("tr").find('td').find('table').length) {
+          $(this).closest("tr").find('td').find('table').find('tr').each(function() {
+            if ($(this).html().trim() == '') {
+              $(this).remove();
+            }
+          });
+        }
+      }
+      else if ($(this).closest("tr").find('td').find('table').length) {
+          var removeCount = 0;
+          $(this).closest("tr").find('td').find('table').find('tr').each(function() {
+            if ($(this).html().trim() == '') {
+              $(this).remove();
+              removeCount++;
+            }
+          });
+          if($(this).closest("tr").find('td').find('table').find('tr').length == removeCount){
+            $(this).closest("tr").find('td').remove();
+          }
+      }
+    });
+  });
+  
+  /*function CopyToClipboard(el) {
+	  el = document.getElementById(el);
+  var body1 = document.body,
+    range,
+    sel;
+  if (document.createRange && window.getSelection) {
+    range = document.createRange();
+    sel = window.getSelection();
+    sel.removeAllRanges();
+    try {
+      range.selectNodeContents(el);
+      sel.addRange(range);
+    } catch (e) {
+      range.selectNode(el);
+      sel.addRange(range);
+    }
+  } else if (body1.createTextRange) {
+    range = body1.createTextRange();
+    range.moveToElementText(el);
+    range.select();
+  }
+  document.execCommand("Copy");
+  $('#snackbar').html('Copied!');
+	var x = document.getElementById("snackbar");
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}*/
+
+
+
+function CopyToClipboard(element) {
+		var doc = document, 
+    text = doc.getElementById(element), 
+    range, selection;
+	
+	if (doc.body.createTextRange){
+		range = doc.body.createTextRange();
+		range.moveToElementText(text);
+		range.select();
+	}else if (window.getSelection){
+		 $("#style1").attr("disabled", "disabled");
+		 $("#style2").attr("disabled", "disabled");
+		selection = window.getSelection(); 
+		range = doc.createRange();
+		range.selectNodeContents(text);
+		selection.removeAllRanges();
+		selection.addRange(range);   
+ 	}
+	document.execCommand('copy');
+	window.getSelection().removeAllRanges();
+	$("#style1").removeAttr('disabled');
+	$("#style2").removeAttr('disabled');
+  $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied! </div>');
+  $('#snackbar').show();
+  setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+	//document.getElementById("btn").value="Copied";
+}
+
+$(document).ready(function(){
+$('#sigaddpopup').on('shown.bs.modal', function (event) { // popup target
+var $trigger = $(event.relatedTarget);
+    var targetid = $trigger.data('id');
+  $target = $('#'+targetid);
+  $('.modal-body').animate({
+    scrollTop: $target.offset().top + 'px'
+  }, 'slow');
+  
+});
+
+
+$('#copy_sorcecode').on('click', function (event) {  // copy signature
+	content = $('#signature_source').html();
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val(content).select();
+  document.execCommand("copy");
+  $temp.remove();
+  $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied! </div>');
+  $('#snackbar').show();
+  setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+});
+
+// var copyBtn = document.querySelector('#copy_btn');
+// copyBtn.addEventListener('click', function () {
+//   var urlField = document.querySelector('table');
+// 
+//   // create a Range object
+//   var range = document.createRange();  
+//   // set the Node to select the "range"
+//   range.selectNode(urlField);
+//   // add the Range to the set of window selections
+//   window.getSelection().addRange(range);
+// 
+//   // execute 'copy', can't 'cut' in this case
+//   document.execCommand('copy');
+// }, false);
+
+
+
+});
+</script>
+
+
+%%DEFINE_FOOTER%%

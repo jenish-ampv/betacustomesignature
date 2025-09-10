@@ -1,0 +1,163 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+          <div class="card-header">
+            <h5>%%DEFINE_ModuleName%% (%%DEFINE_SITE_TITLE%%)</h5>
+            <div class="card-header-right">
+              <a href="%%DEFINE_li_add%%" class="btn btn-sm btn-primary has-ripple"><i class="feather mr-2 icon-plus-square"></i>Add New</a>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0" id="template">
+                IF("%%DEFINE_MessageStatus%%"=="1"){
+                  %%DEFINE_Message%%
+                {:IF}
+                <thead>
+                  <tr> 
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Url</th>
+                    <th>Subject</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Template Detail (%%DEFINE_SITE_TITLE%%)</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <form name="add_newsletter" action="" method="post" onsubmit="">
+                  <div class="form-group row"><!--Template Header-->
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Template Header :</label>
+                    <div class="col-sm-9">
+                      <textarea cols="80" id="editor1" name="template_header" rows="10">%%DEFINE_TemplateHeader%%</textarea>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row"><!--Template Footer-->
+                    <label for="inputPassword3" class="col-sm-3 col-form-label">Template Footer :</label>
+                    <div class="col-sm-9">
+                      <textarea cols="80" id="editor2" name="template_footer" rows="10">%%DEFINE_TemplateFooter%%</textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input name="" type="submit" value="Save" class="btn btn-primary" />
+                        <input  type="hidden" name="editid" value="%%DEFINE_GetId%%"   />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      IF("%%DEFINE_SITE_ID%%"=="0"){
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <h5>Template Detail (ADMIN)</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <form name="add_newsletter" action="" method="post" onsubmit="">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="col-sm-3 col-form-label">Template Header:<span class="c-rd">*</span></label>
+                      <div class="col-sm-9">
+                        <textarea cols="80" id="editor3" name="template_adminheader" rows="10">%%DEFINE_TemplateAdminHeader%%</textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="inputPassword3" class="col-sm-3 col-form-label">Template Footer:<span class="c-rd">*</span></label>
+                      <div class="col-sm-9">
+                        <textarea cols="80" id="editor4" name="template_adminfooter" rows="10">%%DEFINE_TemplateAdminFooter%%</textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <input name="" type="submit" value="Save" class="btn btn-primary" />
+                        <input type="hidden" name="editid" value="%%DEFINE_GetId%%" />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {:IF}
+    </div>
+  </div>
+</div> 
+<!-- date js -->
+<script>
+  jQuery(document).ready(function($){	
+    var startDate = new Date();
+    $("#expdate").datepicker({minDate: 0,dateFormat: 'dd-mm-yy'});
+    $('#expdate').datepicker('setDate', startDate);
+  });
+</script>
+%%DEFINE_FOOTER%%
+
+<script>
+  var filter = jQuery.noConflict();
+  filter(document).ready(function(){
+    var filterurl = '%%DEFINE_li_gettemplatedata%%';
+    var dataTable = filter('#template').DataTable({
+      'processing': true,
+      'serverSide': true,
+      'select': true,
+      "language": { 
+        "infoFiltered":""
+      }, 
+      'serverMethod': 'post',
+      'ajax': {
+        'url': filterurl,
+        'data': function(data){
+        },
+      }, 
+      'columns': [
+        { data : 'template_id'},
+        { data : 'template_name'},
+        { data : 'template_url'},
+        { data : 'template_subject'},
+        { data : 'action'}
+      ],	
+    });
+  });
+</script>

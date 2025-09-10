@@ -1,0 +1,107 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_plan%%">%%DEFINE_ModuleName%%</a><a href="#!"> / Add %%DEFINE_ModuleName%%</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add %%DEFINE_ModuleName%%</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form name="add_user" action="%%DEFINE_li_add%%"  method="post" enctype="multipart/form-data" onsubmit="return userValidate(this)">
+                                    IF("%%DEFINE_MessageStatus%%"=="1"){
+                                        %%DEFINE_Message%%
+                                    {:IF}
+                                    <div class="form-group row"><!--Note!-->
+                                        <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span></label>
+                                        <div class="col-sm-9">
+                                        </div>
+                                    </div>
+									
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Name:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="plan_name" class="form-control" id="plan_name" placeholder="Enter Plan Name" required="required">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Type:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                           <select name="plan_type" id="plan_type" class="form-control">
+                                           		<option value="">Select Type</option>
+                                                <option value="month">Month</option>
+                                                <option value="quarter">Quarter</option>
+                                                <option value="year">Year</option>
+                                           </select>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Price:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="plan_price" class="form-control" id="plan_price" placeholder="Enter Plan Price" required="required">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Price Id (STRIPE):<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="plan_priceid" class="form-control" id="plan_priceid" placeholder="Enter Plan Price ID" required="required">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan is Populer?:</label>
+                                        <div class="col-sm-9">
+                                            <input type="checkbox" name="plan_popular" id="plan_popular" class="m-15">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row" id="blankDesc">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Plan Feature:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9" id="blankDescContent">
+                                          <textarea class="form-control" id="editor1" name="plan_feature"></textarea>
+                                        </div>
+                              		</div>
+
+                                    
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input name="" type="submit" value="Save" class="btn btn-primary" />
+                                            <!-- <input  type="hidden" name="editid" value="%%DEFINE_GetId%%"/> -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+%%DEFINE_FOOTER%%

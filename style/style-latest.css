@@ -1,0 +1,51 @@
+:root{
+   --white-transparent: 255, 255, 255;
+}
+
+
+/* body{    background: linear-gradient(0.92deg, rgba(38, 183, 255, 0.024) -6.14%, rgba(29, 74, 254, 0.028) -2.09%, rgba(29, 74, 254, 0.04) 95.68%);} */
+
+#inviteadmin .form-floating>label { z-index: 2;color: #99A5B1;}
+
+.signature_integration_withhead_box .form-floating .form-control { color: #000; }
+
+#master_signature_box .master_signature_box .sin_dashboard_box{ padding: 10px 10px 10px 10px; }
+
+
+#inviteadmin a.disabled-button { background: #00000040; pointer-events: none; cursor: not-allowed !important; position: relative;     color: #e2e2e2; }
+#inviteadmin a.disabled-button::after { content:''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); --border-width:  2px; --loader-ratio:20px; width: var(--loader-ratio); height: var(--loader-ratio); border: var(--border-width) solid #000; border-top: var(--border-width) solid #fff;  border-radius: 50%; animation: spin 1s linear infinite; }
+
+
+
+
+
+
+
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------
+  DASHBOARD BLOCKS STYLES
+-------------------*/
+/* .dashboard_set_up_bg, .sin_dashboard_box {    background: rgba(var(--white-transparent), 40%);} */
+.master_signature_box{background: rgba(var(--white-transparent), 40%);}
+/* .new_dashboard_bg .new_dashboard_left ul{    background: rgba(var(--white-transparent), 40%); padding: 4px; border-radius: 50px; backdrop-filter: blur(20px);} */
+.master_signature_box .title_border a.adddepartment{background: linear-gradient(to right, rgba(var(--white-transparent), 20%), rgba(var(--white-transparent), 20%))}
+
+
+.new_dashboard_bg .new_dashboard_left{background: transparent;}

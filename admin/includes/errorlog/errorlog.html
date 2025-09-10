@@ -1,0 +1,73 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<style>
+.table-card .card-body .table tr td:last-child, .table-card .card-body .table tr th:last-child{ word-wrap:anywhere !important;}
+</style>
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="#!">%%DEFINE_ModuleName%%</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h5>%%DEFINE_ModuleName%%</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" id="contactus">
+                                <thead>
+                                    <tr> 
+                                        <th>#</th>
+                                        <th>Time</th>
+                                        <th>Error</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    var filter = jQuery.noConflict();
+    filter(document).ready(function(){
+      var filterurl = '%%DEFINE_li_errorlogdata%%';
+      var dataTable = filter('#contactus').DataTable({
+        'processing': true,
+        'serverSide': true,
+        'select': true,
+		'sDom': 't',
+        "language": {                
+          "infoFiltered":""
+        }, 
+        'serverMethod': 'post',
+        'ajax': {
+          'url': filterurl,
+          'data': function(data){
+          },
+        }, 
+        'columns': [
+          { data : 'id'},
+          { data : 'time'},
+          { data : 'error'},
+        ],	
+      });
+    });
+  </script>

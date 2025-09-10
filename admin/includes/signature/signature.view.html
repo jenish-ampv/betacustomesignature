@@ -1,0 +1,124 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<style>
+  .table td{
+    white-space:break-spaces !important;
+  }
+    .table-card .card-body .table tr td:last-child, .table-card .card-body .table tr th:last-child {
+    padding-right: 20px !important;
+  }
+  .signature_tbl{ width:100% !important;}
+</style>
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_signature%%">%%DEFINE_ModuleName%% </a><a href="#!">/ View %%DEFINE_ModuleName%%</a></li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        <!-- add user -->
+        <div class="col-sm-12">
+          <div class="card">
+              <div class="card-header">
+                  <h5>View %%DEFINE_ModuleName%%</h5>
+              </div>
+              <div class="card-body">
+               IF("%%DEFINE_MessageStatus%%"=="1"){
+                 %%DEFINE_Message%%
+                {:IF}
+                  <div class="col-xl-12 p-t-30">
+				<div class="row justify-content-center">
+					<div class="col-sm-12 col-md-7">
+						<div class="card text-center">
+                  <img src="%%DEFINE_signature_image%%" alt="Logo" width="250" />
+						</div>
+					</div>
+                    <div class="col-sm-12 col-md-7">
+
+                    	<form name="uploadsignature" action="" method="post" enctype="multipart/form-data">
+						<div class="card text-center">
+  							<input type="file" class="form-control" name="signature_image" id="signature_image" required="required" />
+						</div>
+                        <input type="submit" class="btn btn-primary has-ripple" name="submit" value="Upload" id="submit"  />
+                        <small id="passwordHelpInline" class="text-muted">(upload animated signature logo and status chnage processing to complete)</small>
+                        </form>
+                        IF("%%DEFINE_signature_process%%" == "0"){
+                        {:IF}
+
+					</div>
+                    <div class="col-sm-12 col-md-7 p-t-10">
+                     %%DEFINE_completebtn%%
+                    </div>
+				</div>
+			</div>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="card">
+              <div class="card-header">
+                  <h5>Signature Feedback</h5>
+              </div>
+              <div class="card-body">
+                  <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th class="text-center">Feedback</th>
+                                        <th>Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    %%DEFINE_FeedbackList%%
+                                </tbody>
+                            </table>
+                        </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- [ Main Content ] end -->
+  </div>
+</div>
+<script>
+jQuery(document).on('change', '.checkboxverify', function() {
+    if(this.checked) {
+      var  verify = 1;
+    }else{
+		var verify = 0;
+	}
+	jQuery.ajax({
+            type : "POST",
+            url  : '%%DEFINE_li_verifypayment%%',
+            data :{ verifyforpayment: verify },
+
+            success : function(response) {
+				if(response == 1){
+					jQuery('#msgp').css("display","inline");
+				}
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('An error occurred... try again!');
+            },
+       });
+});
+
+</script>

@@ -1,0 +1,152 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_plan%%">%%DEFINE_ModuleName%%</a> <a href="#!">/ Update %%DEFINE_ModuleName%%</a> </li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        
+          <!-- edit user -->
+          <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Update %%DEFINE_ModuleName%%</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                             <!-- <form> -->
+                              <!-- <form name="edit_user" class="form-horizontal" action="%%DEFINE_li_edit%%" method="post" enctype="multipart/form-data"> -->
+
+                              <form name="edit_user" action="%%DEFINE_li_edit%%" method="post" enctype="multipart/form-data" onsubmit="return userValidate(this)">
+
+                                IF("%%DEFINE_MessageStatus%%"=="1"){
+                                  %%DEFINE_Message%%
+                                {:IF}
+
+                                <div class="form-group row"><!--Note!-->
+                                  <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span></label>
+                                  <div class="col-sm-9">
+                                    <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                  </div>
+                                </div>
+
+     <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Name:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="plan_name" class="form-control" id="plan_name" value="%%DEFINE_plan_name%%" placeholder="Enter Plan Name" required="required">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Type:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                           <select name="plan_type" id="plan_type" class="form-control">
+                                           		<option value="">Select Type</option>
+                                                <option value="month" %%DEFINE_plan_typeselmonth%%>Month</option>
+                                                <option value="quarter" %%DEFINE_plan_typeselquarter%%>Quarter</option>
+                                                <option value="year" %%DEFINE_plan_typeselyear%%>Year</option>
+                                           </select>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Price:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="plan_price" class="form-control" id="plan_price" value="%%DEFINE_plan_price%%" placeholder="Enter Plan Price" required="required">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Price Id:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="plan_priceid" class="form-control" id="plan_priceid" value="%%DEFINE_plan_priceid%%" placeholder="Enter Plan Price ID" required="required">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Plan is Populer?:</label>
+                                        <div class="col-sm-9">
+                                            <input type="checkbox" name="plan_popular" id="plan_popular" class="m-15" value="1" %%DEFINE_plan_popular%%>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row" id="blankDesc">
+                                        <label for="inputPassword3" class="col-sm-3 col-form-label">Plan Feature:<span class="c-rd">*</span></label>
+                                        <div class="col-sm-9" id="blankDescContent">
+                                          <textarea class="form-control" id="editor1" name="plan_feature">%%DEFINE_plan_feature%%</textarea>
+                                        </div>
+                              		</div>
+                                  <div class="field_wrapper">
+                                    <div class="form-group row">
+                                      <label for="inputEmail3" class="col-sm-3 col-form-label">Plan Unit:</label>
+                                        <div class="col-sm-3">
+                                         # of Employee
+                                        </div>
+                                        <div class="col-sm-3">
+                                          Unit Price
+                                        </div>
+                                        <div class="col-sm-3"> <a href="javascript:void(0);" class="add_button" title="Add field"><i class="f-20 feather icon-plus"></i> Add more</a></div>
+                                       
+                                  </div>
+                                %%DEFINE_Plan_units%%
+                              </div>
+
+                                <div class="form-group row">
+                                  <div class="col-sm-10">
+                                    <input name="" type="submit" value="Save" class="btn btn-primary" />
+                                  </div>
+                                </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- [ Main Content ] end -->
+  </div>
+</div> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxField = 15; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = ' <div class="form-group row"><label for="inputEmail3" class="col-sm-3 col-form-label">&nbsp;</label><div class="col-sm-3"><input type="text" name="plan_unit[]" class="form-control" id="plan_priceid" value="" placeholder="No of Employee" required="required"></div><div class="col-sm-3"> <input type="text" name="plan_unitprice[]" class="form-control" id="plan_priceid" value="" placeholder="Unit Price" required="required"></div><div class="col-sm-3"> <input type="text" name="plan_unitsplprice[]" class="form-control" id="plan_splprice" value="" placeholder="Unit Price Display" required="required"></div><div class="col-sm-3"><a href="javascript:void(0);" class="remove_button"><i class="f-20 feather icon-trash"></i></a></div></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).closest('.row').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+</script>
+%%DEFINE_FOOTER%%

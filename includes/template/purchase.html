@@ -1,0 +1,558 @@
+%%DEFINE_HEADER%%
+<style>
+  .header_bg .icon_right_side a.tutorial{ display: none;}
+</style>
+<section>
+<script src="https://accounts.google.com/gsi/client" async defer></script> 
+<script src="https://js.stripe.com/v3/"></script>
+
+<div class="register_page_main">
+<div class="container">
+  <div class="register_top_logo"><img src="%%DEFINE_ROOT_LINK%%/images/logo.svg" alt=""></div>
+    <div class="row"> 
+      <div id="register-error">%%DEFINE_Message%%</div>
+      <div class="col-lg-6 col-12">
+        <div class="register_box_bg" style="background:#fff;" id="order-main">
+            
+          <div class="order_details_box">
+             <!-------- SELECT PLAN START--------------->
+
+            <div class="dashboard_set_up_bg" id="selectplan-main" style="display:block; border:none; padding:0;">
+              <div class="select_plan_title">
+                <div class="tab_box_left">
+                  <span>Start Your 7-day Free Trial!</span>
+                  <span class="riskfree">Choose Your Plan</span>
+                  <span>Cancel Anytime</span>
+                </div>
+                <div class="tab_box_right">
+                  <div class="nav nav-tabs" id="myTab" role="tablist">
+                    <span id="month-tab" data-bs-toggle="tab" data-bs-target="#monthly-tab-panel">Monthly</span>
+                    <input class="form-check-input" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
+                    <span id="year-tab" data-bs-toggle="tab" data-bs-target="#yearly-tab-panel">Yearly <span>Save 20%</span></span>
+                  </div>
+                </div>
+                
+                
+
+                 
+                <div class="no_of_signatures">
+                  <p>How many signatures do you need?</p>
+                   <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
+                </div>
+                <div class="range_slider">
+                  <div id="range" class="noUi-target noUi-ltr noUi-horizontal"></div>
+                  <div class="range_text">
+                    <span class="rno active" id="rno1">1</span>
+                    <span class="rno" id="rno3">3</span>
+                    <span class="rno" id="rno5">5</span>
+                    <span class="rno" id="rno10">10</span>
+                    <span class="rno" id="rno15">15</span>
+                    <span class="rno" id="rno20">20</span>
+                    <span class="rno" id="rno25">25</span>
+                    <span class="rno" id="rno30">30</span>
+                    <span class="rno" id="rno35">35</span>
+                    <span class="rno" id="rno40">40</span>
+                    <span class="rno" id="rno45">45</span>
+                    <span class="rno" id="rno50">50</span>
+                    <span class="rno" id="rno55">55</span>
+                    <span class="rno" id="rno60">60</span>
+                    <span class="rno" id="rno65">65</span>
+                    <span class="rno" id="rno70">70</span>
+                    <span class="rno" id="rno75">75</span>
+                    <span class="rno" id="rno80">80</span>
+                    <span class="rno" id="rno85">85</span>
+                    <span class="rno" id="rno90">90</span>
+                    <span class="rno" id="rno95">95</span>
+                    <span class="rno" id="rno100">100</span>
+                  </div>
+                </div>
+                 
+                 <div class="tab-content" id="myTabContent">
+                  <!--Monthly Plan -->  
+                  <div class="tab-pane fade" id="monthly-tab-panel" role="tabpanel" aria-labelledby="monthly-tab" tabindex="0">
+                    <div class="signature_layot">
+                      <input type="radio" name="plan_id" id="plan_id2" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
+                      <label for="plan_id2" class="changeprice" data-price="20">
+                        <div class="order_details_box border-price">
+                          <h6>Pro Plan <span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="month_proprice cprice">15</span>/mo </b></h6>
+                          <div class="text_price">
+                            <span class="no_employee_qarter">5</span> Signature <div class="monthprice" style="display:none;">$<span class="month_propricespl cpricespl">60</span> USD </div>
+                          </div>
+                          <ul>
+                          <li><b>Interactive Signature</b></li>
+                          <li>AI - Logo Animation™</li>
+                          <li>Remove CES Watermark</li>
+                          <li>Team Dashboard</sup></li>
+                          <li>Interactive Social Icons</li>
+                          <li>Animated Profile</li>
+                          
+                          </ul>
+                          <ul>
+                          <li>Verification Badge<img src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                          <li>Pro Templates</li>
+                          <li>Team Dashboard</li>
+                          <li>Outlook and Gmail Sync<img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                          <li class="right">Instant Load Speed</li>
+                          </ul>
+                        </div>
+                        <div class="tick_container">
+                          <div class="tick">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
+                          </div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                  <!--Yearly Plan -->
+                  <div class="tab-pane fade show active" id="yearly-tab-panel" role="tabpanel" aria-labelledby="yearly-tab" tabindex="0">
+                    <div class="signature_layot">
+                      <input type="radio" name="plan_id" id="plan_id4" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+                      <label for="plan_id4" class="changeprice" data-price="20">
+                        <div class="order_details_box border-price">
+                          <h6>Pro Plan</h6>
+                          <div class="text_price">
+                            <span class="no_employee_qarter">5</span> Signature <div class="yearprice" style="display:none;">$<span class="year_propricespl cpricespl">60</span> USD </div>
+                          </div>
+                          <span>14-Day Risk-Free Guarantee</span>
+                          <span>$<div style="text-decoration:line-through;" class="year_propricespl">30</div>
+                          <b>$<span class="year_proprice cprice">15</span> /mo </b>
+                          <span>Billed Annualy</span>
+                          <span>Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</span>
+                          <ul>
+                            <li>Interactive Signature</li>
+                            <li>AI - Logo Animation™</li>
+                            <li>Remove CES Watermark</li>
+                            <li>Team Dashboard</sup></li>
+                            <li>Interactive Social Icons</li>
+                            <li>Animated Profile</li>
+                          </ul>
+                          <ul>
+                            <li>Verification Badge<img src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                            <li>Pro Templates</li>
+                            <li>Team Dashboard</li>
+                            <li>Outlook and Gmail Sync<img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                            <li class="right">Instant Load Speed</li>
+                          </ul>
+                        </div>
+                      </label>
+                    </div>  
+                  </div>
+                 
+                 </div>
+               
+                  
+              </div>
+            </div>
+
+
+            <!-------- SELECT PLAN END--------------->
+
+          </div>
+           
+          
+        </div>
+        
+      </div>
+
+      <div class="col-lg-6 col-12">
+        <form action="%%DEFINE_PAYMENT_FORM_ACTION_URL%%" id="paymentform" method="post" data-rewardful>
+          <div class="card-element-wrapper">
+            <div id="paymentResponse"></div>
+            <div class="form-floating card_info">
+              <div id="card-element"></div>
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control" name="user_nameoncard" value="%%DEFINE_user_nameoncard%%" id="card_name" placeholder="Name on Card">
+              <label for="">Name on Card</label>
+            </div>
+          </div>
+          <div class="form-floating newbox">
+            <input type="text" id="promo_code" class="form-control" id="" placeholder="">
+            <input type="hidden" id="coupon_id" name="coupon_id" value="" />
+            <label for="">Discount Code</label>
+            <button type="button" class="btn applied" id="apply_promocode">Apply Now</button>
+            <button type="button" class="btn applied d-none" id="applied_promocode">Remove</button>
+          </div>
+          <p class="special_offet" id="couponResponse"></p>
+          <div class="order_summary_box">
+            <h6>Order Summary</h6>
+            <p>Subtotal <span id="subtotal">%%DEFINE_plan_format_pricespl%% USD</span></p>
+            <p>Discount <span id="discount">$0 USD</span></p>
+            <p><span style="background: linear-gradient(90deg, #00CCFF 0%, #1D4AFE 100%); background-clip: border-box; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Saving</span> <span id="savings" style="background: linear-gradient(90deg, #00CCFF 0%, #1D4AFE 100%); background-clip: border-box; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">%%DEFINE_plan_format_savings%% USD</span></p>
+            <p>Total %%DEFINE_freetrialtext%% <span class="total" id="total">%%DEFINE_plan_format_price%% USD</span></p>
+            <input type="hidden" id="free_trial" value="0" />
+            <input type="hidden" name="totalpay" id="totalpay" value="%%DEFINE_plan_price_hiden%%"  />
+          </div>
+            
+          <div class="back_button_bottom"> <a href="%%DEFINE_moduleLinkDashboard%%">Back</a>
+            <input type="hidden" name="paymentsubmit" value="1" />
+            <input type="hidden" name="plan_id" id="form_plan_id" value="%%DEFINE_plan_id%%" />
+            <input type="hidden" name="plan_unit" id="form_plan_unit" value="%%DEFINE_plan_unit%%" />
+            <input type="hidden" name="user_id" value="%%DEFINE_PAYMENT_USER_ID%%" />
+            <input type="hidden" name="user_email" value="%%DEFINE_PAYMENT_USER_EMAIL%%" />
+            <input type="hidden" name="user_name" value="%%DEFINE_PAYMENT_USER_NAME%%" />
+            <button type="submit" id="payment_button" name="signin" class="btn btn-primary">Confirm Purchase</button>
+          </div>
+            
+          <ul class="bottom_text">
+            <li><img src="%%DEFINE_IMAGE_LINK%%/images/ssl-icon.svg" alt="">SSL Secure Checkout</li>
+            <li><img src="%%DEFINE_IMAGE_LINK%%/images/cancel-anytime-icon.svg" alt="">Cancel anytime</li>
+            <li><img src="%%DEFINE_IMAGE_LINK%%/images/risk-free-icon.svg" alt="">14-Day Risk-Free Guarantee</li>
+          </ul>
+        </form>
+      </div>
+    </div>
+</div>
+</div>
+<!-- pricing plan change based on slider -->
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>         
+<link href="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.css" rel="stylesheet">
+<script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+  (function($) {
+    $(document).ready(function(){
+      $('#plan_type').on('change', function() {
+        if ($(this).is(':checked')) {
+          $("#year-tab").click();
+          $("#form_plan_id").val(4);
+        } else {
+          $("#month-tab").click();
+          $("#form_plan_id").val(2);
+        }
+    });
+    });
+  })(jQuery);
+</script>
+<script>
+  setTimeout(function(){ $('#register-error').html(''); }, 10000); // hide error message after 10 sec
+
+  function updateSelectPlan(){
+      
+      // if(isFreeTrial){
+      //   return false;
+      // }
+
+      if($(".monthly-yearly-tabs-button-class.active").data('value') == 'month' && $('input[name=plan_id]:checked').val() < 3){
+        multiplyprice = 3;
+      }else{
+        multiplyprice = 12;
+      }
+      var radioObj = $('input[name=plan_id]:checked');
+      planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+      planpricesplint = parseFloat(radioObj.parent().find('label span.cpricespl').text() * multiplyprice);
+      totalsavings = parseFloat(planpricesplint - planpriceint);  
+      $('#subtotal').text('$'+planpricesplint.toFixed(2)+' USD');
+      $('#savings').text('$'+totalsavings.toFixed(2)+' USD');
+      $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
+      var selectedplan = radioObj.parent().find('label').html();
+      $('#selected-plan').html(selectedplan);
+      // $('#selectplan-main').toggle();
+      // $('#order-main').toggle();
+      //for discount calcultion
+      $('#totalpay').val(planpriceint);
+      
+      $('#coupon_id').val('');
+      $('#promo_code').val('');
+      $('#couponResponse').text('');
+      $('#discount').text('$0.00 USD');
+      $("#apply_promocode").removeClass('d-none');
+      $("#applied_promocode").addClass('d-none');
+    };
+
+  
+
+  function updateGpayButton(price){
+    const stripe = Stripe("pk_test_51Lf5JtHp7DgNkCIvskUjNu75xBD5bJCrsAgaPf0ZT9al8jfTzcJXG8TwD1NZMI03qqINPFFIrrYHuJSN5n9ubfD100czetLSeB");
+    price = price * 100;
+
+    // Configure PaymentRequest
+    const paymentRequest = stripe.paymentRequest({
+      country: 'US', // Change based on your business location
+      currency: 'usd',
+      total: {
+        label: 'Your Product Name',
+        amount: price, // Amount in cents (e.g., $50.00)
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+
+    // Check for PaymentRequestButton support
+    const elements = stripe.elements();
+    paymentRequest.canMakePayment().then(function(result) {
+      if (result && result.googlePay) {
+        const prButton = elements.create('paymentRequestButton', {
+          paymentRequest: paymentRequest,
+        });
+
+        // Mount the button in the container
+        prButton.mount('#googlepay-button');
+      } else {
+        // document.getElementById('googlepay-button').style.display = 'none';
+      }
+    });
+    var url = $('#ajax_url').val();
+    var user_firstname = $('#user_firstname').val();
+    var user_lastname = $('#user_lastname').val();
+    var user_organization = $('#user_organization').val();
+    var user_email = $('#user_email').val();
+    var user_password = $("#user_password").val();
+    var plan_id = $("input[name=plan_id]:checked").val();
+    var plan_unit = $("#plan_unit").val();
+
+    
+
+  // Handle token received from Google Pay
+    paymentRequest.on('paymentmethod', function(ev) {
+      // Send the token to your server (via AJAX, for example)
+      var url = $('#ajax_url').val();
+      var user_firstname = $('#user_firstname').val();
+      var user_lastname = $('#user_lastname').val();
+      var user_organization = $('#user_organization').val();
+      var user_email = $('#user_email').val();
+      var user_password = $("#user_password").val();
+      var plan_id = $("input[name=plan_id]:checked").val();
+      var plan_unit = $("#plan_unit").val();
+
+      if(user_firstname == ''|| user_firstname == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid First Name</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      } else if(user_lastname == ''|| user_lastname == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid Last Name</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }else if(user_organization == ''|| user_organization == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid Company Name</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }else if(user_email == ''|| user_email == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid User Email</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }else if(user_password == ''|| user_password == ' '){
+        $("#register-error").html('<div class="alert alert-danger" role="alert">Please Enter valid password</div>');
+        setTimeout(function(){ $("#register-error").empty();$("#register-error").html('');}, 3000);
+      }
+      fetch('/processpayment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ payment_method: ev.paymentMethod.id,price:price, user_firstname:user_firstname, user_lastname:user_lastname, user_organization:user_organization, user_email:user_email, user_password:user_password, plan_id:plan_id, plan_unit:plan_unit}),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            ev.complete('fail');
+          } else {
+            ev.complete('success');
+            window.location.href = $("#thank_url").val();
+          }
+        });
+      });
+  }
+  start = $('#plan_unit').val();
+  var rangeSlider = $('#range')[0];
+    noUiSlider.create(rangeSlider, {
+      start: [start],
+      behaviour: 'tap', //drag
+      step: 5,
+      connect: [true, false],
+      range: {
+        'min': [1],
+        '4%': [3, 2],
+        '7%': [5, 5],
+        'max': [100]
+      }
+    });
+  
+  rangeSlider.noUiSlider.on('update', function( values, handle,unencoded ) {
+     //if(unencoded == 0 ) {unencoded = $('#plan_unit').val();}
+    //  if(unencoded == 0 ) {unencoded = 1;}
+    //  if( unencoded == '39.99999999999999') { unencoded = 40;}
+    //  if( unencoded == '74') { unencoded = 75;}
+    //  unencoded = unencoded.slice(0, 2);
+    unencoded = values;
+    unencoded = parseInt(unencoded);
+     if(unencoded == 0 ) {unencoded = [1];}
+     $("#form_plan_unit").val(unencoded);
+    
+     $('#plan_unit').val(unencoded);
+     $('.no_employee_qarter').text(unencoded);
+    // month price changhe
+     var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+     var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
+     $('.month_proprice').text(pro_month_unit[unencoded]);
+     $('.month_propricespl').text(pro_month_unitspl[unencoded]);
+    // year price changhe
+     var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+     var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+     $('.year_proprice').text(pro_year_unit[unencoded]);
+     $('.year_propricespl').text(pro_year_unitspl[unencoded]);
+     var radioObj = $('input[name=plan_id]:checked');
+     if($(".monthly-yearly-tabs-button-class.active").data('value') == 'month' && $('input[name=plan_id]:checked').val() < 3){
+      multiplyprice = 3;
+     }else{
+      multiplyprice = 12;
+     }
+     planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+     
+    // month
+    // var basic_month_unit = JSON.parse('%%DEFINE_basic_month_unit%%');
+       //  var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+    // $('.month_basicprice').text(basic_month_unit[unencoded]);
+    // $('.month_proprice').text(pro_month_unit[unencoded]);
+   
+     $(".rno").removeClass("active");
+     $("#rno"+unencoded).addClass("active");
+
+     updateSelectPlan();
+     updateGpayButton(planpriceint.toFixed(2));
+  });
+  
+
+// chek plan coupon is valid
+
+  $(document).ready(function(){
+    $("#apply_promocode").click(function(){
+      $('#paymentResponse').html('');
+      $('#coupon_id').val('');
+      var promo_code = $('#promo_code');
+      var freetrial = $('#free_trial').val();
+      if(promo_code.val() == ""){
+        promo_code.focus(); return false;
+      }else{
+        var url = $('#ajax_url').val();
+        jQuery.ajax({
+        url: url,
+        data:'coupon_apply=1&coupon_code='+promo_code.val(),
+        type: "POST",
+        dataType:"json",
+        async: false,
+        success:function(data){
+            if(data['coupon_id'] !=0){
+              $('#coupon_id').val(data['coupon_id']);
+              
+              totalValue = $('#totalpay').val();
+              if(data['coupon_type'] == 'per'){
+                discount =  ((totalValue * data['coupon_amount']) / 100).toFixed(2);
+                totalpay = (totalValue - discount).toFixed(2);
+              }else{
+                discount =  (data['coupon_amount']).toFixed(2);
+                totalpay = (totalValue - discount).toFixed(2);
+              }
+              
+              if(freetrial == 0){
+                $('#discount').text('$'+discount+' USD');
+                $('#total').text('$'+totalpay+' USD');
+                $("#apply_promocode").addClass('d-none');
+                $("#applied_promocode").removeClass('d-none');
+              }else{
+                $('#subtotal').text('$'+totalpay+' USD');
+                $('#discount').text('$'+discount+' USD');
+              }
+            }
+          $('#couponResponse').html(data['msg']);
+        },
+        error:function (){ 
+          clearconsole(); 
+        }
+        });
+      }
+    });
+    
+    $("#applied_promocode").click(function(){
+      $('#coupon_id').val('');
+      $('#promo_code').val('');
+      totalPay = $('#totalpay').val();
+      totalPay = parseFloat(totalPay).toFixed(2);
+      $('#discount').text('$0 USD');  
+      $('#total').text('$'+totalPay+' USD');
+      $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
+      $("#apply_promocode").removeClass('d-none');
+      $("#applied_promocode").addClass('d-none');
+    })  
+  });  
+
+</script>
+<!-- end pricing plan change based on slider -->  
+
+
+<script>
+  // Create an instance of the Stripe object
+  // Set your publishable API key
+  var stripe = Stripe('%%DEFINE_STRIPE_PUBLISHABLE_KEY%%');
+
+  // Create an instance of elements
+  var elements = stripe.elements();
+      var style = {
+        base: {
+          color: "#32325d",
+          fontFamily: 'Roboto, sans-serif',
+          fontSmoothing: "antialiased",
+          fontSize: "13px",
+          "::placeholder": {
+            color: "#32325d"
+          }
+        },
+        invalid: {
+          fontFamily: 'Arial, sans-serif',
+          color: "#fa755a",
+          iconColor: "#fa755a"
+        }
+      };
+
+      var cardElement = elements.create("card", {   hidePostalCode: true, style: style });
+      // Stripe injects an iframe into the DOM
+      cardElement.mount("#card-element");
+
+      // Validate input of the card elements
+      var resultContainer = document.getElementById('paymentResponse');
+      cardElement.addEventListener('change', function(event) {
+      if (event.error) {
+          resultContainer.innerHTML = '<p style="color:#F00;">'+event.error.message+'</p>';
+      } else {
+          resultContainer.innerHTML = '';
+      }
+  });
+  
+  var form = document.getElementById('paymentform');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Always prevent default first
+    // Passed all checks
+    $("#payment_button").prop('disabled', true).text('Processing...').addClass('spinner');
+
+    // Call token creation or further logic
+    createToken();
+  });
+
+  // Create single-use token to charge the user
+  function createToken() {
+    var card_name = document.getElementById('card_name').value;
+      stripe.createToken(cardElement,{name: card_name}).then(function(result) {
+          if (result.error) {
+              // Inform the user if there was an error
+              resultContainer.innerHTML = '<p style="color:#F00;">'+result.error.message+'</p>';
+              $("#payment_button").prop('disabled', false);
+              $("#payment_button").text('Confirm Purchase');
+              $("#payment_button").removeClass('spinner');
+          } else {
+              // Send the token to your server
+              stripeTokenHandler(result.token);
+          }
+      });
+  }
+
+  // Callback to handle the response from stripe
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+    // Submit the form
+    form.submit();
+}
+</script> 
+
+
+
+%%DEFINE_FOOTER%%

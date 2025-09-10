@@ -1,0 +1,142 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%% 
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_pages%%">%%DEFINE_ModuleName%%</a><a href="#!"> / Update %%DEFINE_ModuleName%%</a></li>
+                    </ul>
+                </div> 
+              </div>
+          </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+          <!-- add user -->
+          <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Update %%DEFINE_ModuleName%%</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form name="add_user" action="%%DEFINE_li_edit%%" method="post" enctype="multipart/form-data"  onsubmit="return pageValidate(this);">
+                                IF("%%DEFINE_MessageStatus%%"=="1"){
+                                    %%DEFINE_Message%%
+                                {:IF}
+                                <div class="form-group row"><!--Note!-->
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span></label>
+                                </div>
+
+                                <div class="form-group row"><!--Page name-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Page name:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="name" class="form-control" id="name" value="%%DEFINE_GetName%%" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row"><!--Page url-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Page url:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="seourl" id="seourl" value="%%DEFINE_GetSeoUrl%%" class="form-control" onchange="seocheck(this.value)">
+                                        <input type="hidden" name="hseourl" id="hseourl" value="%%DEFINE_GetSeoUrl%%" />
+                                        <small id="passwordHelpInline" class="text-muted">Only alphanumeric characters (A-Z, a-z, 0-9) and hyphen(-) are allowed.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row"><!--Page url-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Page metatitle:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="metatitle" id="seourl" value="%%DEFINE_GetMetaTitle%%" class="form-control">
+                                       
+                                    </div>
+                                </div>
+								<div class="form-group row"><!--Page url-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Page metakeyword:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="metakeywords" id="seourl" value="%%DEFINE_GetMetaKeywords%%" class="form-control">
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group row"><!--Page url-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Page metadescription:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="metadescription" id="seourl" value="%%DEFINE_GetMetaDescription%%" class="form-control">
+                                       
+                                    </div>
+                                </div>
+                                IF("%%DEFINE_MessageStatus%%"=="1"){
+                                <div class="form-group row"><!--preview Image:-->
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">preview Image:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <img src="%%DEFINE_ServiceImage%%" width="300" height="150"  />
+                                    </div>
+                                </div>
+                                {:IF}  
+
+                                <div class="form-group row"><!--Page Image:-->
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Page Image:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="cms_image" class="form-control" id="cms_image">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" ><!--Page type-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Page type</label>
+                                    <div class="col-sm-9"style="display: flex;">
+                                        <div class="form-check m-l-10">
+                                            <input class="form-check-input" type="radio" name="type" id="blank" value="2" IF("%%DEFINE_GetType%%"=="2"){ checked="checked"{:IF} onchange="checkModuleChecked()">
+                                            <label class="form-check-label" for="blank">BLANK</label>
+                                        </div>                 
+                                        <div class="form-check m-l-10">
+                                            <input class="form-check-input" type="radio" name="type" id="cms" value="1"IF("%%DEFINE_GetType%%"=="1"){ checked="checked"{:IF} onchange="checkModuleChecked()">
+                                            <label class="form-check-label" for="cms">CMS</label>
+                                        </div>
+                                        <div class="form-check m-l-10">
+                                            <input class="form-check-input" type="radio" name="type" id="module" value="0" IF("%%DEFINE_GetType%%"=="0"){ checked="checked"{:IF} onchange="checkModuleChecked()">
+                                            <label class="form-check-label" for="module">MODULE</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" id="modulename" style="display:none;"><!--Page url-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Module Name:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="modulename" id="modulenam" value="%%DEFINE_GetModulename%%" class="form-control">
+                                        <small id="passwordHelpInline" class="text-muted">Only alphanumeric characters (A-Z, a-z, 0-9) and underscore(_) are allowed.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" id="blankDesc"><!--Description-->
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Description:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9" id="blankDescContent">
+                                        <textarea class="form-control" id="editor1" name="desc">%%DEFINE_GetDesc%%</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row"><!--submit-->
+                                    <div class="col-sm-10">
+                                        <input name="" type="submit" value="Save" class="btn btn-primary" />
+                                        <input type="hidden" name="editid" id="editid" value="%%DEFINE_GetId%%" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- [ Main Content ] end -->
+  </div>
+</div> 
+%%DEFINE_FOOTER%%

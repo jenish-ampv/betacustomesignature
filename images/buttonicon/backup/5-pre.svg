@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75">
+  <g id="_5-pre" data-name="5-pre" transform="translate(-750.697 -300)">
+    <rect id="Rectangle_14" data-name="Rectangle 14" width="75" height="75" transform="translate(750.697 300)" fill="none"/>
+    <g id="_5-5" data-name="5-5" transform="translate(752.697 302)">
+      <g id="Group_42" data-name="Group 42" transform="translate(0 0)">
+        <path id="Path_23" data-name="Path 23" d="M9.5-.5h4a15.456,15.456,0,0,1,1,7h7a8.731,8.731,0,0,1,2-7h4a15.456,15.456,0,0,1,1,7h7a21.445,21.445,0,0,1,1-7h5a21.445,21.445,0,0,1,1,7q5.506-.26,7.5,5a169.242,169.242,0,0,1,0,26l-18,18a20.088,20.088,0,0,0-1.5,6q-13.01.25-26-.5a15.359,15.359,0,0,1-5-6.5v-42q1.8-5.786,8-6A11.2,11.2,0,0,1,9.5-.5Zm2,21a72.444,72.444,0,0,1,12,.5,4.269,4.269,0,0,1,2,4.5,112.935,112.935,0,0,1-15-.5Q8.878,22.434,11.5,20.5Zm-1,12q11.511-.25,23,.5a2.5,2.5,0,0,1,0,4,121.244,121.244,0,0,1-22,0l-2-2A2.857,2.857,0,0,0,10.5,32.5Z" transform="translate(0.5 0.5)" fill="#abb8d4" fill-rule="evenodd" opacity="0.924"/>
+      </g>
+      <g id="Group_43" data-name="Group 43" transform="translate(35.261 34.188)">
+        <path id="Path_24" data-name="Path 24" d="M70.5,39.5v6Q58.8,56.446,47.5,68q-4.126,1.414-8,2.5h-4a22.265,22.265,0,0,1,.5-13L58.5,35a6.677,6.677,0,0,1,6-1A46.143,46.143,0,0,0,70.5,39.5Z" transform="translate(-34.761 -33.688)" fill="#abb8d4" fill-rule="evenodd" opacity="0.917"/>
+      </g>
+    </g>
+  </g>
+</svg>

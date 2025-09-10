@@ -1,0 +1,101 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a><a href="%%DEFINE_li_emailtemplate%%"> %%DEFINE_ModuleName%% </a> <a href="#!"> / Add %%DEFINE_ModuleName%%</a></li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+          <!-- add user -->
+          <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Add %%DEFINE_ModuleName%%</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                          <form name="add_newsletter" action="%%DEFINE_li_add%%" method="post" onsubmit="return CategoryAdd(this);">
+                              IF("%%DEFINE_MessageStatus%%"=="1"){
+                                %%DEFINE_Message%%
+                              {:IF} 
+                              <div class="form-group row"><!--Note!-->
+                                <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                  <label for="inputEmail3" class="col-sm-3 col-form-label">Require field<span class="c-rd">(*)</span></label>
+                                  <div class="col-sm-9">                                    
+                                  </div>
+                              </div>
+
+                              <div class="form-group row"><!--Template Name-->
+                                <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                  <label for="inputEmail3" class="col-sm-3 col-form-label">Template Name:<span class="c-rd">*</span></label>
+                                  <div class="col-sm-9">
+                                      <input type="text" name="template_name" class="form-control" id="inputEmail3" value="%%DEFINE_template_name%%" required="required">
+                                  </div>
+                              </div>
+
+                              <div class="form-group row"><!--Template url-->
+                                  <label for="inputPassword3" class="col-sm-3 col-form-label">Template url:<span class="c-rd">*</span></label>
+                                  <div class="col-sm-9">
+                                      <input type="text" name="template_url" class="form-control" id="inputPassword3"value="%%DEFINE_template_url%%" required="required">
+                                  </div>
+                              </div>
+
+                              <div class="form-group row"><!--Template Subject-->
+                                <label for="inputPassword3" class="col-sm-3 col-form-label">Template Subject:<span class="c-rd">*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="template_subject" class="form-control" id="inputPassword3" value="%%DEFINE_template_subject%%">
+                                </div>
+                              </div>
+
+                              <div class="form-group row"><!--Description-->
+                                  <label for="inputPassword3" class="col-sm-3 col-form-label">Description:<span class="c-rd">*</span></label>
+                                  <div class="col-sm-9">
+                                    <textarea cols="80" id="editor1" name="template_content" rows="10"></textarea>
+                                  </div>
+                              </div>
+
+                              <div class="form-group row"><!--Template Note!-->
+                                <label for="inputEmail3" class="col-sm-3 col-form-label">Template Note:<span class="c-rd">*</span></label>
+                                <div class="col-sm-9">
+                                  <textarea name="tempnote" class="form-control">
+                                    Please add &#37;&#37;DEFINE_UserName&#37;&#37; for add username in Email.<br />
+                                    Please add &#37;&#37;DEFINE_EcardName&#37;&#37; for add eCard name Name in Email.<br/>
+                                    Please add &#37;&#37;DEFINE_SITE_EMAIL_ADDRESS&#37;&#37; for add Website email in Email.<br/>
+                                    Please add &#37;&#37;DEFINE_SITE_TITLE&#37;&#37; for add website name and slogan in Email.
+                                  </textarea>
+                                </div>
+                              </div>
+
+                              <div class="form-group row"><!--submit-->
+                                  <div class="col-sm-10">
+                                      <!-- <button type="submit" class="btn  btn-primary">Sign in</button> -->
+                                      <input name="submit" type="submit" value="Save" class="btn btn-primary" />
+                                  </div>
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div> 
+
+%%DEFINE_FOOTER%%

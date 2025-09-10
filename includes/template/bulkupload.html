@@ -1,0 +1,275 @@
+ %%DEFINE_HEADER%%
+ <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    %%DEFINE_SIDEBAR%%
+    <main class="grow" id="content" role="content">
+        <div class="kt-container-fluid pb-4">
+            %%DEFINE_Message%%
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 %%DEFINE_bulkuploadcls%%">
+                <div class="rounded-2xl overflow-hidden">
+                    <video width="100%" border="0" controls disablePictureInPicture controlsList="nodownload" poster="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png">
+                        <source src="%%DEFINE_IMAGE_LINK%%/images/video/bulk-signature-tutorial.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="kt-card kt-card-accent">
+                    <div class="kt-card-header mb-2">
+                        <div class="kt-card-heading">
+                            <h2 class="kt-card-title mb-0">Bulk Signature</h2>
+                            <span>Import Team</span>
+                        </div>
+                    </div>
+                    <div class="kt-card-content">
+                        <p>Download the Sample CSV, complete all columns, and upload to create bulk signatures. Ensure details match columns and keep the CSV format unchanged.</p>
+                        <div class="grid grid-cols-3 text-center mt-10 *:relative *:after:w-1/2 *:after:h-[1px] *:after:absolute *:after:top-5 *:after:bg-primary">
+                            <div class="after:left-1/2">
+                                <div class="mx-auto relative z-[1] rounded-full size-10 mb-2 border border-primary bg-white flex items-center justify-center">1</div>
+                                <h6 class="font-semibold">Download CSV</h6>
+                            </div>
+                            <div class="after:left-1/2 before:w-1/2 before:h-[1px] before:absolute before:right-1/2 before:top-5 before:bg-primary">
+                                <div class="mx-auto relative z-[1] rounded-full size-10 mb-2 border border-primary bg-white flex items-center justify-center">2</div>
+                                <h6 class="font-semibold">Fill out CSV</h6>
+                            </div>
+                            <div class="after:right-1/2">
+                                <div class="mx-auto relative z-[1] rounded-full size-10 mb-2 border border-primary bg-white flex items-center justify-center">3</div>
+                                <h6 class="font-semibold">Upload here</h6>
+                            </div>
+                        </div>
+                         <div class="flex justify-center gap-4 border border-dashed border-gray-300 rounded-2xl p-10 my-10">
+                            <a href="%%DEFINE_samplecsv_download%%" class="kt-btn kt-btn-primary next">
+                                <i class="hgi hgi-stroke hgi-file-download"></i> Download CSV
+                            </a>
+                            <a href="%%DEFINE_moduleLinkDashboard%%" class="kt-btn kt-btn-primary next">Back to Dashboard</a>
+                        </div>
+                        <div class="up_form">
+                            <form action="" method="post" id="bulkUpload" name="bulkUpload" enctype="multipart/form-data">
+                                <input class="kt-input" name="csv_file" id="csv_file" type="file" onchange="form.submit()" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+             <div class="kt-card %%DEFINE_bulkerrorcls%%">
+                 <div class="row">
+                     <div class="col-md-6 col-12">
+                         <div class="bulkupload_video"><img src="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png" /></div>
+                     </div>
+                     <div class="col-md-6 col-12">
+                         <h5>Import Team</h5>
+                         <h2>Select master signature</h2>
+                         <p>please go to dashboard and select set as master signature for import team.</p>
+
+
+                         <div class="bottom_bg_btn"><a href="%%DEFINE_moduleLinkDashboard%%" class="btn next action-button">Dashboard</a></div>
+
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+     </div>
+ </div>
+
+ </div>
+
+
+ <!-- share Popup -->
+
+ <div class="modal fade" id="success-importmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header" style="border:none;">
+                 <!--    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+                 <button data-url="%%DEFINE_moduleLinkDashboard%%" type="button" class="btn-close redirectButton" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                 <div class="signature_ready_box">
+                     <img src="%%DEFINE_IMAGE_LINK%%/images/success-msg.png" />
+                     <h3>Congratulations!</h3>
+                     <p>The signatures you requested have been generated successfully</p>
+                 </div>
+             </div>
+             <div class="modal-footer">
+                 <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" id="backreview" data-bs-target="#shareModalbulk">Share signature</a>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+ <div class="kt-modal kt-modal-center" data-kt-modal="true" id="successImportmodel1">
+    <div class="kt-modal-content max-w-[400px]">
+      <div class="kt-modal-body text-center">
+        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#successImportmodel1">
+            <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+        </button> 
+        <img class="inline-block" src="%%DEFINE_IMAGE_LINK%%/images/success-msg.png" />
+        <h5 class="my-3 font-semibold">Congratulations!</h5>
+        <p class="mb-3">The signatures you requested have been generated successfully</p>
+        <a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="backreview" data-kt-modal-toggle="#shareModalbulk">Share signature</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <div class="kt-modal kt-modal-center" data-kt-modal="true" id="shareModalbulk">
+    <div class="kt-modal-content max-w-[600px]">
+      <div class="kt-modal-header">
+        <p class="kt-modal-title">Share Signature</p>
+        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#shareModalbulk">
+            <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+        </button> 
+      </div>
+      <div class="kt-modal-body">
+         <p>Enter email to share generated signature</p>
+        <span id="sahre_msg"></span>
+        <form id="bulkshare" enctype="multipart/form-data">
+            <div class="kt-card my-4">
+                <div class="kt-card-table">
+                    <div class="kt-table-wrapper overflow-auto">
+                        <table class="kt-table">
+                            <thead>
+                                <tr class="text-nowrap">
+                                    <th>Name on Signature</th>
+                                    <th>Enter email to share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                %%DEFINE_signature_sharelists%%
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="bulkshare" value="_bulksahre" />
+        </form>
+        <div class="text-right">
+            <a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">Share</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <input type="hidden" id="form_url" value="%%DEFINE_bulkupload%%" />
+
+ <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
+
+ <script type="text/javascript">
+     $(document).ready(function() {
+        //  $('#OpenImgUpload').click(function() {
+        //      $('#csv_file').click();
+        //  });
+
+         $('#bulkUpload').submit(function() {
+             $('#loaderImg').show();
+             return true;
+         });
+     });
+ </script>
+
+ IF("%%DEFINE_success_popup%%" == "1"){
+ <script>
+     
+     $(document).ready(function() {
+         
+        setTimeout(function(){ $('.alert-success').hide();}, 3000);
+
+        const successImportmodelEl = document.querySelector('#successImportmodel1');
+        const successImportmodel = KTModal.getInstance(successImportmodelEl);
+        successImportmodel.show();
+
+
+        //  $("#success-importmodel").modal('show'); // show success message
+
+         $('.ajaxaction_share').on("click", function() {
+             var form = $('#bulkshare');
+             var formdata = form.serialize();
+             $.ajax({
+                 type: 'POST',
+                 url: $('#form_url').val(),
+                 data: formdata,
+                 dataType: 'json',
+                 beforeSend: function () {
+                    // Show loader before request starts
+                    Swal.fire({
+                        title: 'Please wait...',
+                        text: 'Processing your request',
+                        allowOutsideClick: false,
+                        customClass: {
+                            htmlContainer: '!font-semibold !text-base !text-gray-500 !pt-1 !px-0',
+                            popup: '!p-8 !rounded-xl !border-none !w-full !max-w-[350px] !dark:bg-black',
+                            title: '!font-bold !text-xl !text-gray-900 !p-0',
+                            closeButton: 'kt-btn kt-btn-xl kt-btn-icon kt-btn-light !absolute !top-2 !right-2',
+                            confirmButton: 'kt-btn kt-btn-primary',
+                            cancelButton: 'kt-btn kt-btn-dark',
+                            denyButton: 'kt-btn kt-btn-light',
+                            icon:'!mt-0 !mb-6',
+                        },
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                }
+             }).done(function(data) {
+                //  $('#sahre_msg').html(data.msg);
+                 $("#shareModalbulk").modal('hide');
+                 Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Signature share success',
+                    confirmButtonText: 'OK',
+                     customClass: {
+                        htmlContainer: '!font-semibold !text-base !text-gray-500 !pt-1 !px-0',
+                        popup: '!p-8 !rounded-xl !border-none !w-full !max-w-[350px] !dark:bg-black',
+                        title: '!font-bold !text-xl !text-gray-900 !p-0',
+                        closeButton: 'kt-btn kt-btn-xl kt-btn-icon kt-btn-light !absolute !top-2 !right-2',
+                        confirmButton: 'kt-btn kt-btn-primary',
+                        cancelButton: 'kt-btn kt-btn-dark',
+                        denyButton: 'kt-btn kt-btn-light',
+                        icon:'!mt-0 !mb-6',
+                     }
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        // Run your modal show code here
+                        // const shareModalbulklEl = document.querySelector('#shareModalbulk');
+                        // const shareModalbulkl = KTModal.getInstance(shareModalbulklEl);
+                        // shareModalbulkl.hide();
+                        window.location.href = "%%DEFINE_ROOT_LINK%%";
+                    }
+                });
+                 // Optionally alert the user of success here...
+             }).fail(function(data) {
+                 return false;
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong. Please try again.',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        htmlContainer: '!font-semibold !text-base !text-gray-500 !pt-1 !px-0',
+                        popup: '!p-8 !rounded-xl !border-none !w-full !max-w-[350px] !dark:bg-black',
+                        title: '!font-bold !text-xl !text-gray-900 !p-0',
+                        closeButton: 'kt-btn kt-btn-xl kt-btn-icon kt-btn-light !absolute !top-2 !right-2',
+                        confirmButton: 'kt-btn kt-btn-primary',
+                        cancelButton: 'kt-btn kt-btn-dark',
+                        denyButton: 'kt-btn kt-btn-light',
+                        icon:'!mt-0 !mb-6',
+                     }
+                });
+                 // Optionally alert the user of an error here...
+             });
+             return false;
+         });
+         $('.redirectButton').on("click", function() {
+            url = $(this).data('url');
+            window.location.href = url;
+         });
+     });
+ </script>
+ {:IF}
+ %%DEFINE_FOOTER%%

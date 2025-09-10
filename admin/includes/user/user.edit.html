@@ -1,0 +1,134 @@
+%%DEFINE_HEADER%%
+%%DEFINE_LEFT%%
+<script>
+function formSubmit(edit_user){
+	var theForm = document.getElementById(edit_user); // get the form
+    var cb = theForm.getElementsByTagName('input'); // get the inputs
+    for(var i=0;i<cb.length;i++){ 
+    	if(cb[i].type=='checkbox' && !cb[i].checked){  // if this is an unchecked checkbox
+     		cb[i].value = 0; // set the value to "off"
+            cb[i].checked = true; // make sure it submits
+        }
+	}
+    return true;
+}
+
+</script>
+<div class="pcoded-main-container">
+  <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+          <div class="page-block">
+              <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">%%DEFINE_ModuleName%% </h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="%%DEFINE_li_dashboard%%"> Dashboard /</a> <a href="%%DEFINE_li_user%%">%%DEFINE_ModuleName%%</a> <a href="#!">/ Update %%DEFINE_ModuleName%%</a> </li>
+                    </ul>
+                </div>
+              </div>
+          </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        
+          <!-- edit user -->
+          <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Edit %%DEFINE_ModuleName%%</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                             <!-- <form> -->
+                              <form name="edit_user" id="edit_user" action="%%DEFINE_li_edit%%" method="post" onsubmit="return formSubmit('edit_user')">
+                                IF("%%DEFINE_MessageStatus%%"=="1"){
+                                  %%DEFINE_Message%%
+                                {:IF}
+                                <div class="form-group row">
+                                    <input type="hidden" name="siteid" value="%%DEFINE_site_id%%" />
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">username:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="uname" class="form-control" id="uname" value="%%DEFINE_GetUname%%"  onchange="checkEmail(email)" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">password:<span class="c-rd">*</span></label> 
+                                    <div class="col-sm-9">
+                                        <input type="password" name="password" class="form-control" id="password" value="%%DEFINE_GetPassword%%"  required/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-3 col-form-label">Confirm password:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" name="cpassword" id="cpassword" value="%%DEFINE_GetPassword%%" required/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Email Address:<span class="c-rd">*</span></label>
+                                    <div class="col-sm-9">
+                                    <input type="email" name="email" class="form-control" id="email" value="%%DEFINE_GetEmail%%"  onchange="checkEmail(email)" required />
+                                    </div>
+                                </div>
+                            
+                                
+                                
+                                <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Modules:<span class="c-rd">*</span></label> 
+                                        <div class="col-sm-9">
+                                        <div class="row">
+                                         <div class="col-sm-12">
+                                         	<div class="form-check">
+                                           	 <input class="form-check-input" type="checkbox" id="checkall" value="1">
+                                             <label class="form-check-label" for="gridCheck1">Select all</label>
+                                            </div>
+                                         </div>
+                                           %%DEFINE_ParentModules%%
+                                         </div>
+                                        </div>
+                                    </div>
+                                
+                                
+                                
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <!-- <button type="submit" class="btn  btn-primary">Sign in</button> -->
+                                        <input type="hidden" name="usertype" value="1" />
+                                        <input name="" type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      
+      </div>
+      <!-- [ Main Content ] end -->
+  </div>
+</div> 
+<script>
+var selchk = jQuery.noConflict();
+ 	selchk('#checkall').click(function(){
+	  var theForm = document.getElementById('edit_user'); // get the form
+		var cb = theForm.getElementsByTagName('input'); // get the inputs
+		for(var i=0;i<cb.length;i++){ //alert('hi');
+			if(cb[i].type=='checkbox' && selchk(this).prop("checked") == true  ){  // if this is an unchecked checkbox
+				cb[i].checked = true; // make sure it submits
+			}else{
+				cb[i].checked = false; // make sure it submits
+			}
+		}
+		return true;
+   });
+</script>

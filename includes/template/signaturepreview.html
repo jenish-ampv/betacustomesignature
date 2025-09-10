@@ -1,0 +1,259 @@
+%%DEFINE_HEADER%%
+<!-- <div class="loader-image" style="display: block;"><img src="http://127.0.0.1/esignature-local//images/loading-2.gif" alt=""></div> -->
+<div class="loader-popup loader-image" style="display: block;">
+   <div class="progress_in_signature_bg">
+      <div class="import_signature_preview_box">
+        %%DEFINE_signature_outlook_imported%%
+        <div class="popup_loading"><img src="%%DEFINE_IMAGE_LINK%%/images/Process_Loader_1.gif" alt=""></div>
+      </div>
+    </div> 
+</div>
+<div id="snackbar"></div>
+<div id="snackbar-error"></div>
+<div id="snackbar-info"></div>
+
+<input type="hidden" id="signature_save_html_url" value="%%DEFINE_sig_save_html_url%%" />
+<input type="hidden" id="redirecturl" value="%%DEFINE_link_redirect%%" />
+<input type="hidden" id="upload_link" value="%%DEFINE_UPLOAD_LINK%%" />
+<input type="hidden" id="link_copy_cta_btn_url" value="%%DEFINE_link_copy_cta_btn_url%%" />
+
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_JS_LINK%%/heapbox.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+
+    var root_link = $('#root_link').val();
+    var upload_link = $('#upload_link').val();
+    
+    var signtureCtabtnCopyFromId = [];
+    var signtureCtabtnCopyToId = [];
+
+    var isGenerateCtnBtnToImgOnlyForFirstSigature = false;
+    var isWaitingForCtaBtnNotGeneratedBySomeIssue = false;
+    var totalImportedSignature = $('.import_signature_preview_box').find('.signature_tbl').length;
+    var importedSignature = 0;
+
+    
+    function saveSignatureHtml(signatureHtml,url){
+        var redirecturl = $('#redirecturl').val();
+
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data:{html: signatureHtml}
+        }).done(function(data) {
+
+            // $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved!</div>');
+            // $('#snackbar').show();
+            // setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+            importedSignature++;
+            beforeCount = $("#sig_processing_number").html();
+            if(beforeCount != '0'){
+              $("#sig_processing_number").html(beforeCount-1);
+            }
+            sig_process_bar_percentage = ((parseInt(importedSignature)/parseInt(totalImportedSignature)) * 100)+'%';
+            $("#sig_process_bar").css('width',sig_process_bar_percentage);
+
+            if(importedSignature == totalImportedSignature){
+              // $(".progress_in_signature_bg").html('<h6>Signature Completed</h6><img src="%%DEFINE_IMAGE_LINK%%/images/progress-right-icon.svg" alt="">'); //Signature Completed popup
+              if(redirecturl){
+                setTimeout(function(){ window.location = redirecturl; }, 2000);
+              } 
+            }
+            
+            // return true;
+        }).fail(function(data) {
+              // return false;
+        });
+        // $(".loader-image").hide();
+    }
+
+
+    if($('.import_signature_preview_box').find('.signature_profile').not(':visible').length){
+      $('.import_signature_preview_box').find('.profile-annimation-gif').remove();
+    }
+    
+    // For remove signature social icon container if not visible
+    if($('.import_signature_preview_box').find('.layout_socialicon_border').not(':visible').length){
+      $('.import_signature_preview_box').find('.layout_socialicon_border').remove();
+    }
+
+    // For remove signature banner if not visible
+    if($('.import_signature_preview_box').find('.layout_banner').not(':visible').length){
+      $('.import_signature_preview_box').find('.layout_banner').closest('#layout_bannerlink').remove();
+    }
+
+    $('.import_signature_preview_box').find('td').each(function() {
+      if ($(this).html().trim() == '') {
+        if ($(this).closest("tr").find('td').html().trim() == '') {
+          $(this).closest("tr").remove();
+        }
+      }
+    });
+
+
+    $('.signature_tbl').each(function(index, value) {
+      signatureHtml = $(this).closest('.signature_preview_container').html();
+      signatureId = $(this).closest('.signature_preview_container').data('signature-id');
+      // var result = /[^/]*$/.exec("foo/bar/test.html")[0];
+      url = $('#signature_save_html_url_'+signatureId).val();
+
+        saveSignatureHtml(signatureHtml,url);
+      
+      // if($(this).find('[class*=imagetopngClass]').is(":visible")){
+      //   manageCtaBtnHtmlToImage(this,signatureHtml,url);
+      //   // checkAllHtmlToImageGenerated(this,signatureHtml,url);
+      // }
+      // else{
+      //   saveSignatureHtml(signatureHtml,url);
+      // }
+
+     
+
+
+      var isLastElement = index == $('.signature_tbl').length -1;
+      // if (isLastElement) {
+      //   var redirecturl = $('#redirecturl').val();
+      //   window.location = redirecturl;
+      // }
+    });
+
+    function checkAllHtmlToImageGenerated(element,signatureHtml,url){
+      var allImagesGenerated = false;
+      var convertedImageCount = 0;
+      
+      $(element).find('.imagetopngClass:visible').each(function(){       //hide/show social icon border based on selected custom icons if its with social icon area
+        if($(this).find('a').children('img').length){
+          convertedImageCount++;
+        }
+      });
+      if(convertedImageCount == $(element).find('.imagetopngClass:visible').length){
+        console.log('COMPLETED:  ' + convertedImageCount)
+        allImagesGenerated = true;
+      }else{
+        if((convertedImageCount >= 0) && (convertedImageCount < $('.imagetopngClass:visible').length)){
+          console.log('WAITING:  ' + convertedImageCount)
+          isWaitingForCtaBtnNotGeneratedBySomeIssue = true;
+          var s = document.createElement("script");
+          sessionStorage.setItem("sig_preview_signature_id",signatureId);
+
+          if(!isGenerateCtnBtnToImgOnlyForFirstSigature || isWaitingForCtaBtnNotGeneratedBySomeIssue){
+            isGenerateCtnBtnToImgOnlyForFirstSigature = true;
+            s.type = "text/javascript";
+            s.src = "%%DEFINE_JS_LINK%%/htmltoimage/html2canvas.js";
+            var s2 = document.createElement("script");
+            s2.type = "text/javascript";
+            s2.src = "%%DEFINE_JS_LINK%%/htmltoimage/htmltoimage.js";
+            $("head").append(s);
+            $("head").append(s2);
+            jQuery.ready();
+          }
+          
+        }
+        convertedImageCount = 0;
+      }
+      setTimeout(function () {
+        if(allImagesGenerated){
+          // For remove signature profile if not visible
+          if($(element).find('.signature_profile').not(':visible').length){
+            $(element).find('.profile-annimation-gif').remove();
+          }
+          
+          // For remove signature social icon container if not visible
+          if($(element).find('.layout_socialicon_border').not(':visible').length){
+            $(element).find('.layout_socialicon_border').remove();
+          }
+
+          // For remove signature banner if not visible
+          if($(element).find('.layout_banner').not(':visible').length){
+            $(element).find('.layout_banner').closest('#layout_bannerlink').remove();
+          }
+
+          $(element).find('td').each(function() {
+            if ($(this).html().trim() == '') {
+              if ($(this).closest("tr").find('td').html().trim() == '') {
+                $(this).closest("tr").remove();
+              }
+            }
+            if ($(this).is(":hidden")) {
+              $(this).remove();
+            }
+          });
+          signatureHtml = $(element).closest('.signature_preview_container').html();
+          sessionStorage.removeItem("sig_preview_signature_id");
+          copyCtaBtnForImportProcess();
+          saveSignatureHtml(signatureHtml,url);        
+        }else{
+          sessionStorage.removeItem("sig_preview_signature_id");
+          checkAllHtmlToImageGenerated(element,signatureHtml,url);
+        }
+      },5000);
+    
+    }
+  
+
+    var manageCtaBtnHtmlToImageForFirstSignOnly = false;
+    var manageCtaBtnHtmlToImageForFirstSignatureId = null;
+
+
+
+    function manageCtaBtnHtmlToImage(element,signatureHtml,url){
+      if(!manageCtaBtnHtmlToImageForFirstSignOnly){
+        manageCtaBtnHtmlToImageForFirstSignOnly = true;
+        if(manageCtaBtnHtmlToImageForFirstSignatureId == null){
+          manageCtaBtnHtmlToImageForFirstSignatureId = $(element).closest('.signature_preview_container').data('signature-id');
+        }
+
+        checkAllHtmlToImageGenerated(element,signatureHtml,url);
+      }else{
+        signatureId = $(element).closest('.signature_preview_container').data('signature-id');
+        if($.inArray(signatureId, signtureCtabtnCopyToId) === -1){ // is not in array
+          signtureCtabtnCopyFromId.push(manageCtaBtnHtmlToImageForFirstSignatureId);
+          signtureCtabtnCopyToId.push(signatureId);
+        }
+      }
+    }
+
+    function copyCtaBtnForImportProcess(){
+
+
+      for (let index = 0; index < signtureCtabtnCopyFromId.length; ++index) {
+
+        copy_from_signature_id = signtureCtabtnCopyFromId[index];
+        copy_to_signature_id = signtureCtabtnCopyToId[index];
+        var copyCtaBtnUrl = $('#link_copy_cta_btn_url').val();
+        
+        $.ajax({
+          type: 'POST',
+          url: copyCtaBtnUrl,
+          data:{copy_from_signature_id: copy_from_signature_id, copy_to_signature_id: copy_to_signature_id}
+        }).done(function(response) {
+          var data = jQuery.parseJSON(response);
+          signatureId = data.signature_id;
+          url = $('#signature_save_html_url_'+signatureId).val();
+          $('div[data-signature-id='+signatureId+']').find('.imagetopngClass').each(function(i) {
+            $(this).removeAttr('style');
+            $(this).removeAttr('bgcolor');
+            $(this).find('a').removeAttr('style');
+            ctabtnindex = i+1;
+            // beforewidth = Math.ceil($($(this)).width());
+            // beforeheight = Math.ceil($($(this)).height());
+            beforewidth = Math.ceil($($('.imagetopngClass')[i]).width());
+            beforeheight = Math.ceil($($('.imagetopngClass')[i]).height());
+            const randomstring = Math.floor(Math.random() * 9999);
+            $(this).find('a').html('<img width="'+beforewidth+'" height="'+beforeheight+'" style="vertical-align: middle;" src="'+upload_link+'/htmltoimage/34/'+signatureId+'/ctabtn'+ctabtnindex+'.png">');
+          });
+          signatureHtml = $('div[data-signature-id='+signatureId+']').html();
+          saveSignatureHtml(signatureHtml,url);
+        }).fail(function(data) {
+              return false;
+        });
+
+      }
+      
+    }
+
+  });
+</script>
+%%DEFINE_FOOTER%%
