@@ -68,19 +68,19 @@ class CIT_DASHBOARD
 		}
 
 		// create a logo store directory
-		if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$GLOBALS['USERID'])) {
-			if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$GLOBALS['USERID'])) {
-				$error = 1;
-				die("\"temp\" folder not created. Permission problem.......");
-			}
-		}
+		// if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$GLOBALS['USERID'])) {
+		// 	if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$GLOBALS['USERID'])) {
+		// 		$error = 1;
+		// 		die("\"temp\" folder not created. Permission problem.......");
+		// 	}
+		// }
 
 		// create a signature store directory
-		if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
-			if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
-				die("\"temp\" folder not created. Permission problem.......");
-			}
-		}
+		// if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
+		// 	if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
+		// 		die("\"temp\" folder not created. Permission problem.......");
+		// 	}
+		// }
 
 		$user = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? ",array($GLOBALS['USERID']));
 		if($user['user_type'] == "enterprise"){

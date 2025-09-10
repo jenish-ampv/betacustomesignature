@@ -58,7 +58,6 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 .bg-gradient{
     @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
 }
-
 .kt-btn{
     @apply rounded-full h-10 outline -outline-offset-2 px-4 outline-transparent;
     i{
@@ -104,7 +103,6 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
         @apply h-7 leading-2.5;
     }
 }
-
 .kt-modal-content{
     @apply bg-muted p-1 rounded-[12px];
 }
@@ -122,6 +120,9 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
         @apply text-[20px] leading-none;
     }
 }
+.kt-form-label{
+    @apply mb-1;
+}
 
 .masterSignature{
     @apply relative p-2 shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] rounded-xl;
@@ -137,13 +138,8 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
         @apply rounded-lg absolute p-[2px] inset-0;
       }
 }
-
-
 .floting-input{
     @apply relative;
-    input{
-        @apply h-[48px];
-    }
     label{
         @apply absolute text-xs text-gray-400 -top-2 left-2 px-[6px] bg-white;
     }

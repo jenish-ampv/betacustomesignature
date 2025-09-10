@@ -2280,10 +2280,10 @@ section {
     padding-bottom: 20px;
 }
 
-.das_popup .drag_your_image {
+/* .das_popup .drag_your_image {
     margin: 0;
     background: #fff;
-}
+} */
 
 .das_popup .form-floating .form-control {
     border: 1px solid #CEDAE6;
@@ -6675,11 +6675,11 @@ section {
     width: 36px;
 }
 
-.upload_brand_logo_main .drag_your_image {
+/* .upload_brand_logo_main .drag_your_image {
     border: 1px solid #0000001A;
     border-radius: 10px;
     margin-top: 40px;
-}
+} */
 
 .upload_brand_logo_main .button {
     padding: 105px 0 0 0;
@@ -8300,7 +8300,7 @@ div[role="progressbar1"]::before {
     padding: 0px;
     margin-top: 30px;
 }
-
+/* 
 #departmentModel .drag_your_image {
     height: 230px;
     overflow-y: auto;
@@ -8321,7 +8321,7 @@ div[role="progressbar1"]::before {
 #departmentModel .drag_your_image h4 {
     margin-top: 10px;
     color: #000;
-}
+} */
 
 .toggleCheckbox-title {
     display: flex;
@@ -8345,12 +8345,12 @@ div[role="progressbar1"]::before {
     height: 18px;
 }
 
-#departmentModel .drag_your_image span {
+/* #departmentModel .drag_your_image span {
     font-size: 12px;
     font-weight: 600;
     color: #000;
     margin-top: 10px;
-}
+} */
 
 #departmentModel .sign_in_button button {
     font-weight: 400;
@@ -8398,7 +8398,7 @@ div[role="progressbar1"]::before {
     display: block;
 }
 
-.upload_brand-logo-page .upload_brand_logo_main .drag_your_image {
+/* .upload_brand-logo-page .upload_brand_logo_main .drag_your_image {
     margin-top: 30px;
     border: 1px dashed #00000033;
     padding: 15px;
@@ -8412,7 +8412,7 @@ div[role="progressbar1"]::before {
 
 .upload_brand-logo-page .upload_brand_logo_main .drag_your_image h4 {
     margin-top: 0px;
-}
+} */
 
 .upload_brand-logo-page .upload_brand_logo_main .button {
     padding-top: 30px;
@@ -10322,9 +10322,9 @@ td.layout_border {
         padding-left: 5px !important;
     } */
 
-    .upload_brand_logo_main .drag_your_image {
+    /* .upload_brand_logo_main .drag_your_image {
         margin-top: 20px;
-    }
+    } */
 
     .pending_signature_bg {
         display: none;
@@ -11348,9 +11348,9 @@ td.layout_border {
         padding: 30px 0 0 0;
     }
 
-    .upload_brand_logo_main .drag_your_image {
+    /* .upload_brand_logo_main .drag_your_image {
         margin-top: 20px;
-    }
+    } */
 
     .signature_integration_withhead_box {
         padding: 20px;
@@ -11736,9 +11736,9 @@ td.layout_border {
         padding: 30px;
     }
 
-    .upload_brand-logo-page .upload_brand_logo_main .drag_your_image {
+    /* .upload_brand-logo-page .upload_brand_logo_main .drag_your_image {
         margin-top: 20px;
-    }
+    } */
 
     .upload_brand-logo-page .upload_brand_logo_main .button {
         padding-top: 20px;
@@ -12157,10 +12157,10 @@ td.layout_border {
     }
 
     /*.marketplace_link_box .custome_icon img { height:24px !important;}*/
-    .drag_your_image h4 {
+    /* .drag_your_image h4 {
         font-size: 12px;
         line-height: 18px;
-    }
+    } */
 
     /* .hover_over_sign_bg .add_details_bg p {
         font-size: 11px;
