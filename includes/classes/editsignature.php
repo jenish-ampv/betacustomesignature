@@ -1126,7 +1126,7 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 				if($fieldtype == "text"){
 					$fieldvar = 1;
 					$GLOBALS['signature_custom_fields'. $fieldvar].='
-						<div class="flex items-center gap-4 inputbox">
+						<div class="flex items-center gap-4 inputbox mt-5">
 							<div class="flex-1 floting-input">
 								<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" placeholder="Title" data-class="'.$layout_labelclass.'">
 								<label for="">Title</label>
@@ -1146,9 +1146,9 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 									<i class="fas fa-italic text-gray-400 peer-checked:text-gray-950"></i>
 								</label>
 								<div class="flex items-center">
-									<input type="color" name="field_color[]" class="size-4 rounded-sm form-control-color" id="exampleColorInput" value="'.$fieldcolor.'" title="Choose your color" data-class="'.$layout_class.'">
+									<input type="color" name="field_color[]" class="w-4 h-5 rounded-sm form-control-color" id="exampleColorInput" value="'.$fieldcolor.'" title="Choose your color" data-class="'.$layout_class.'">
 								</div>
-								<select class="text-xs select_small_box" data-class="'.$layout_class.'" name="field_fontsize[]">
+								<select class="kt-select kt-select-sm !leading-normal select_small_box" data-class="'.$layout_class.'" name="field_fontsize[]">
 									<option value="10px" '.$fontsizesel10px.'>Small</option><option value="12px" '.$fontsizesel12px.'>Normal</option>
 									<option value="14px" '.$fontsizesel14px.'>Large</option><option value="16px" '.$fontsizesel16px.'>Huge</option>
 								</select>
@@ -1160,15 +1160,17 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 					';
 				}else{
 					$GLOBALS['signature_custom_fields'].='
-					<div class="flex items-center gap-4 inputbox">
-						<div class="w-28 flex-none floting-input">
-							<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" placeholder="Title" data-class="'.$layout_labelclass.'">
-							<label for="">Title</label>
-						</div>
-						<div class="flex-1 floting-input">
-							<input type="text" class="kt-input" id="" name="custom_field[]" value="'.$fieldvalue.'" data-class="'.$layout_class.'">
-							<label for="">'.$fieldlabel.'</label>
-							<input type="hidden" name="custom_fieldtype[]" value="'.$fieldtype.'">
+					<div class="flex items-center gap-4 inputbox mt-5">
+						<div class="flex items-center gap-2">
+							<div class="w-28 flex-none floting-input">
+								<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" placeholder="Title" data-class="'.$layout_labelclass.'">
+								<label for="">Title</label>
+							</div>
+							<div class="flex-1 floting-input">
+								<input type="text" class="kt-input" id="" name="custom_field[]" value="'.$fieldvalue.'" data-class="'.$layout_class.'">
+								<label for="">'.$fieldlabel.'</label>
+								<input type="hidden" name="custom_fieldtype[]" value="'.$fieldtype.'">
+							</div>
 						</div>
 						<div class="flex gap-2 items-center">
 							<label class="cursor-pointer">
@@ -1180,9 +1182,9 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 								<i class="fas fa-italic text-gray-400 peer-checked:text-gray-950"></i>
 							</label>
 							<div class="flex items-center">
-								<input type="color" name="field_color[]" class="size-4 rounded-sm form-control-color" id="exampleColorInput" value="'.$fieldcolor.'" title="Choose your color" data-class="'.$layout_class.'">
+								<input type="color" name="field_color[]" class="w-4 h-5 rounded-sm form-control-color" id="exampleColorInput" value="'.$fieldcolor.'" title="Choose your color" data-class="'.$layout_class.'">
 							</div>
-							<select class="text-xs select_small_box" data-class="'.$layout_class.'" name="field_fontsize[]">
+							<select class="w-20 kt-select kt-select-sm !leading-normal select_small_box" data-class="'.$layout_class.'" name="field_fontsize[]">
 								<option value="10px" '.$fontsizesel10px.'>Small</option><option value="12px" '.$fontsizesel12px.'>Normal</option>
 								<option value="14px" '.$fontsizesel14px.'>Large</option>
 								<option value="16px" '.$fontsizesel16px.'>Huge</option>
@@ -1340,17 +1342,34 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 				}else{
 					$GLOBALS['signature_dividerpadding'] = '0 0 0 15px';
 				}
-				 $GLOBALS['layout_list'] .= "
-				 <div class='sin_dashboard_box signature_layot'>".$templateTitle.'
-				 	<input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="peer hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.' data-layout_divider_padding_remove="'.$layoutRow['layout_divider_padding_remove'].'">
-				 	<label class="relative group layout_id" for="layout_id'.$layout_id.'">
-						<table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" cellspacing="0" cellpadding="0" border="0">
-							<tr><td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td></tr>
-						</table>
-						<span class="top-0 hidden peer-checked:flex right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] items-center justify-center">
+				 $GLOBALS['layout_list'] .= '
+				 <div class="relative block cursor-pointer">
+				 	'.$templateTitle.'
+					<label class="relative block cursor-pointer" for="layout_id'.$layout_id.'">
+						<input type="radio" 
+							name="layout_id" 
+							id="layout_id'.$layout_id.'" 
+							class="peer hidden imgbgchk" 
+							value="'.$layout_id.'" 
+							required="required" 
+							'.$selected.' 
+							data-layout_divider_padding_remove="'.$layoutRow['layout_divider_padding_remove'].'">
+
+						<span class="top-1/2 right-1/2 hidden absolute -translate-y-1/2 -translate-x-1/2 bg-gradient size-6 text-white rounded-full 
+									text-lg items-center justify-center peer-checked:flex z-[1]">
 							<i class="hgi hgi-stroke hgi-tick-02"></i>
 						</span>
-						<input type="hidden" id="profile_image_size'.$layout_id.'" value="'.$layoutRow['profile_image_size'].'">
+
+						<span class="layout_id peer-checked:opacity-50">
+							<table class="signature_tbl_main" 
+								style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" 
+								cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td>
+								</tr>
+							</table>
+							<input type="hidden" id="profile_image_size'.$layout_id.'" value="'.$layoutRow['profile_image_size'].'">
+						</span>
 					</label>
 				</div>';
 			$templet_no++;
