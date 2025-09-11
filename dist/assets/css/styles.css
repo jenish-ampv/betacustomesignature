@@ -3021,6 +3021,23 @@
       }
     }
   }
+  .\[\&\>span\]\:block {
+    &>span {
+      display: block;
+    }
+  }
+  .\[\&\>span\]\:hidden {
+    &>span {
+      display: none;
+    }
+  }
+  .peer-checked\:\[\&\>span\]\:flex {
+    &:is(:where(.peer):checked ~ *) {
+      &>span {
+        display: flex;
+      }
+    }
+  }
   .\[has\(\:checked\)\]\:\[\&\>span\]\:flex {
     &:is(has(:checked)) {
       &>span {

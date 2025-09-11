@@ -1888,19 +1888,21 @@
                         <div class="marketplace_link_box flex gap-2" id="marketplace_link_box">
                           <div class="flex gap-3 *:relative *:cursor-pointer">
                             {LOOP: MARKETPLACEBTN}
-                            <input type="checkbox" name="{%%MARKETPLACEBTN.iconname%%}-btn"
-                            id="{%%MARKETPLACEBTN.iconname%%}-btn" class="peer hidden checkbox" value="1"
-                            %%DEFINE_signature_{%%MARKETPLACEBTN.iconname%%}_chk%%>
-                            <label for="{%%MARKETPLACEBTN.iconname%%}-btn" class="iconcheckbox [has(:checked)]:[&>span]:flex">
-                              <img class="h-9" draggable="false"
-                                  src="%%DEFINE_IMAGE_LINK%%/images/marketplace/static/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.png"
-                                  data-src="%%DEFINE_IMAGE_LINK%%/images/marketplace/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.gif"
-                                  alt="{%%MARKETPLACEBTN.iconname%%}" title="{%%MARKETPLACEBTN.iconname%%}">
-                              <span
-                              class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] items-center justify-center">
-                              <i class="hgi hgi-stroke hgi-tick-02"></i>
-                            </span>
-                          </label>
+                            <div>
+                              <input type="checkbox" name="{%%MARKETPLACEBTN.iconname%%}-btn"
+                              id="{%%MARKETPLACEBTN.iconname%%}-btn" class="peer hidden checkbox" value="1"
+                              %%DEFINE_signature_{%%MARKETPLACEBTN.iconname%%}_chk%%>
+                              <label for="{%%MARKETPLACEBTN.iconname%%}-btn" class="iconcheckbox [&>span]:hidden peer-checked:[&>span]:flex">
+                                <img class="h-9" draggable="false"
+                                    src="%%DEFINE_IMAGE_LINK%%/images/marketplace/static/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.png"
+                                    data-src="%%DEFINE_IMAGE_LINK%%/images/marketplace/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.gif"
+                                    alt="{%%MARKETPLACEBTN.iconname%%}" title="{%%MARKETPLACEBTN.iconname%%}">
+                                <span
+                                  class="top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] items-center justify-center">
+                                  <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                </span>
+                              </label>
+                            </div>
                             {/LOOP: MARKETPLACEBTN}
                           </div>
                         </div>
@@ -2238,11 +2240,11 @@
               </div>
             </div>
             <div class="flex text-sm items-center justify-between">
-              <span class="text-gray-600">© 2024 Custom Esignature's Inc. All rights reserved.</span>
+              <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
               <div class="flex text-gray-700 items-center gap-2">
-                <a href="#">Privacy Policy</a>
-                <i class="fas fa-circle text-[6px] text-gray-400"></i>
-                <a href="#">Terms and Conditions</a>
+                  <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
+                  <i class="fas fa-circle text-[6px] text-gray-400"></i>
+                  <a href="https://www.customesignature.com/terms-of-use" target="_blank">Terms and Conditions</a>
               </div>
             </div>
           </div>
