@@ -174,3 +174,26 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
             [filter:drop-shadow(0_0_3px_rgba(0,204,255))_drop-shadow(0_0_18px_rgba(29,74,254))];
     }
 }
+.iti{
+    @apply block;
+}
+.iti__selected-country-primary{
+    @apply !bg-transparent pl-4;
+}
+.iti__selected-country{
+    @apply border-r border-r-gray-300 pr-4;
+}
+.iti--inline-dropdown{
+    .iti__dropdown-content{
+        @apply border border-gray-200 rounded-xl p-2 shadow;
+        .iti__search-input-wrapper{
+            @apply mb-2;
+        }
+        .iti__search-input{
+            @apply h-8 border border-gray-200 outline-none rounded-full;
+        }
+        .iti__country{
+            @apply rounded-full px-4;
+        }
+    }
+}
