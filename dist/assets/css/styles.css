@@ -3021,6 +3021,13 @@
       }
     }
   }
+  .\[has\(\:checked\)\]\:\[\&\>span\]\:flex {
+    &:is(has(:checked)) {
+      &>span {
+        display: flex;
+      }
+    }
+  }
 }
 @font-face {
   font-family: 'Switzer Thin';

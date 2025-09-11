@@ -123,7 +123,7 @@
                                 data-class="layout_firstname">
                             </div>
 
-                            <select class="kt-select kt-select-sm select_small_box leading-normal" data-class="layout_firstname" name="signature_firstname_fontsize">
+                            <select class="kt-select kt-select-sm !leading-normal select_small_box" data-class="layout_firstname" name="signature_firstname_fontsize">
                               <option value="14px" %%DEFINE_firstname_fontsize_sel_14px%%>Small</option>
                               <option value="16px" %%DEFINE_firstname_fontsize_sel_16px%%>Normal</option>
                               <option value="18px" %%DEFINE_firstname_fontsize_sel_18px%%>Large</option>
@@ -162,7 +162,7 @@
                                 data-class="layout_jobtitle">
                             </div>
 
-                            <select class="kt-select kt-select-sm select_small_box leading-normal" data-class="layout_jobtitle" name="signature_jobtitle_fontsize">
+                            <select class="kt-select kt-select-sm !leading-normal select_small_box" data-class="layout_jobtitle" name="signature_jobtitle_fontsize">
                               <option value="10px" %%DEFINE_jobtitle_fontsize_sel_10px%%>Small</option>
                               <option value="12px" %%DEFINE_jobtitle_fontsize_sel_12px%%>Normal</option>
                               <option value="14px" %%DEFINE_jobtitle_fontsize_sel_14px%%>Large</option>
@@ -199,7 +199,7 @@
                                 data-class="layout_company">
                             </div>
 
-                            <select class="kt-select kt-select-sm select_small_box leading-normal" data-class="layout_company" name="signature_company_fontsize">
+                            <select class="kt-select kt-select-sm !leading-normal select_small_box" data-class="layout_company" name="signature_company_fontsize">
                               <option value="10px" %%DEFINE_company_fontsize_sel_10px%%>Small</option>
                               <option value="12px" %%DEFINE_company_fontsize_sel_12px%%>Normal</option>
                               <option value="14px" %%DEFINE_company_fontsize_sel_14px%%>Large</option>
@@ -464,7 +464,7 @@
                         <div class="flex items-center justify-between">
                           <span>Icon Size</span>
                           <div class="w-28">
-                            <select class="kt-select kt-select-sm socialsize" name="signature_socialsize">
+                            <select class="kt-select kt-select-sm socialsize !leading-normal" name="signature_socialsize">
                               <option value="24" %%DEFINE_signature_socialsize_24_sel%%>Normal</option>
                               <option value="22" %%DEFINE_signature_socialsize_22_sel%%>Small</option>
                               <option value="30" %%DEFINE_signature_socialsize_30_sel%%>Large</option>
@@ -480,7 +480,7 @@
 
                       <div class="flex flex-wrap gap-2 social_link_box" id="social_link_box">
                         {LOOP: SOCIALICONS}
-                        <label for="{%%SOCIALICONS.iconname%%}-icon" class="relative cursor-pointer border border-gray-300 rounded-lg iconcheckbox" title="{%%SOCIALICONS.iconname%%}">
+                        <label for="{%%SOCIALICONS.iconname%%}-icon" class="relative cursor-pointer rounded-lg iconcheckbox" title="{%%SOCIALICONS.iconname%%}">
                           <input type="checkbox" name="{%%SOCIALICONS.iconname%%}-icon"
                             id="{%%SOCIALICONS.iconname%%}-icon" class="peer hidden checkbox" value="1"
                             %%DEFINE_signature_{%%SOCIALICONS.iconname%%}_chk%%>
@@ -559,7 +559,7 @@
                         <div class="flex items-center justify-between">
                           <span>Button Size</span>
                           <div class="w-28">
-                            <select class="kt-select kt-select-sm cusbtnsize" name="signature_custombtnsize">
+                            <select class="kt-select kt-select-sm !leading-normal cusbtnsize " name="signature_custombtnsize">
                               <option value="80" %%DEFINE_signature_custombtnsize_80_sel%%>Normal</option>
                               <option value="73" %%DEFINE_signature_custombtnsize_73_sel%%>Small</option>
                               <option value="102" %%DEFINE_signature_custombtnsize_102_sel%%>Large</option>
@@ -1857,7 +1857,7 @@
                         <div class="flex items-center justify-between">
                           <span>Size</span>
                           <div class="w-28">
-                            <select class="kt-select kt-select-sm marketbtnsize" name="signature_marketbtnsize">
+                            <select class="kt-select kt-select-sm !leading-normal marketbtnsize" name="signature_marketbtnsize">
                               <option value="80" %%DEFINE_signature_marketbtnsize_80_sel%%>Normal</option>
                               <option value="73" %%DEFINE_signature_marketbtnsize_73_sel%%>Small</option>
                               <option value="102" %%DEFINE_signature_marketbtnsize_102_sel%%>Large</option>
@@ -1888,19 +1888,19 @@
                         <div class="marketplace_link_box flex gap-2" id="marketplace_link_box">
                           <div class="flex gap-3 *:relative *:cursor-pointer">
                             {LOOP: MARKETPLACEBTN}
-                            <label>
-                              <input type="checkbox" name="{%%MARKETPLACEBTN.iconname%%}-btn"
-                                id="{%%MARKETPLACEBTN.iconname%%}-btn" class="peer hidden checkbox" value="1"
-                                %%DEFINE_signature_{%%MARKETPLACEBTN.iconname%%}_chk%%>
+                            <input type="checkbox" name="{%%MARKETPLACEBTN.iconname%%}-btn"
+                            id="{%%MARKETPLACEBTN.iconname%%}-btn" class="peer hidden checkbox" value="1"
+                            %%DEFINE_signature_{%%MARKETPLACEBTN.iconname%%}_chk%%>
+                            <label for="{%%MARKETPLACEBTN.iconname%%}-btn" class="iconcheckbox [has(:checked)]:[&>span]:flex">
                               <img class="h-9" draggable="false"
-                                src="%%DEFINE_IMAGE_LINK%%/images/marketplace/static/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.png"
-                                data-src="%%DEFINE_IMAGE_LINK%%/images/marketplace/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.gif"
-                                alt="{%%MARKETPLACEBTN.iconname%%}" title="{%%MARKETPLACEBTN.iconname%%}">
+                                  src="%%DEFINE_IMAGE_LINK%%/images/marketplace/static/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.png"
+                                  data-src="%%DEFINE_IMAGE_LINK%%/images/marketplace/%%DEFINE_signature_marketbtndesign%%/{%%MARKETPLACEBTN.iconname%%}-btn.gif"
+                                  alt="{%%MARKETPLACEBTN.iconname%%}" title="{%%MARKETPLACEBTN.iconname%%}">
                               <span
-                                class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
-                                <i class="hgi hgi-stroke hgi-tick-02"></i>
-                              </span>
-                            </label>
+                              class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] items-center justify-center">
+                              <i class="hgi hgi-stroke hgi-tick-02"></i>
+                            </span>
+                          </label>
                             {/LOOP: MARKETPLACEBTN}
                           </div>
                         </div>
