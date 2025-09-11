@@ -375,7 +375,7 @@ class CIT_DASHBOARD
 								</div>';
 					if($signatureSubscription){
 						if($signatureSubscription['subscription_id'] == ""){
-							$GLOBALS['signature_process'] .= '<button class="kt-btn kt-btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#upgrade-plan-popup">Upgrade to animate</button>';
+							$GLOBALS['signature_process'] .= '<button class="kt-btn kt-btn-primary mt-5" data-kt-modal-toggle="#upgrade-plan-popup">Upgrade to animate</button>';
 						}
 					}
 					$GLOBALS['signature_process'] .= '</div></div>';

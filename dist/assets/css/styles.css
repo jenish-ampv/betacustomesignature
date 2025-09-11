@@ -358,6 +358,9 @@
   .top-100 {
     top: calc(var(--spacing) * 100);
   }
+  .top-\[10\%\] {
+    top: 10%;
+  }
   .\!right-2 {
     right: calc(var(--spacing) * 2) !important;
   }
@@ -938,6 +941,9 @@
   .h-\[56px\] {
     height: 56px;
   }
+  .h-\[200px\] {
+    height: 200px;
+  }
   .h-\[300px\] {
     height: 300px;
   }
@@ -1418,6 +1424,9 @@
   }
   .bg-gray-400 {
     background-color: var(--color-gray-400);
+  }
+  .bg-muted {
+    background-color: var(--muted);
   }
   .bg-primary {
     background-color: var(--primary);
@@ -1998,6 +2007,10 @@
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
     backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   }
+  .backdrop-filter {
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -2386,6 +2399,14 @@
       }
     }
   }
+<<<<<<< HEAD
+=======
+  .sm\:h-6 {
+    @media (width >= 40rem) {
+      height: calc(var(--spacing) * 6);
+    }
+  }
+>>>>>>> stage
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2396,9 +2417,19 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
+  .sm\:p-5 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 5);
+    }
+  }
   .md\:col-span-6 {
     @media (width >= 48rem) {
       grid-column: span 6 / span 6;
+    }
+  }
+  .md\:mt-6 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 6);
     }
   }
   .md\:\!block {
@@ -2422,6 +2453,11 @@
       height: calc(var(--spacing) * 8);
     }
   }
+  .md\:h-7 {
+    @media (width >= 48rem) {
+      height: calc(var(--spacing) * 7);
+    }
+  }
   .md\:grid-cols-2 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2437,14 +2473,29 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
+  .md\:flex-row {
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+  }
   .md\:p-1 {
     @media (width >= 48rem) {
       padding: calc(var(--spacing) * 1);
     }
   }
+  .md\:p-6 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 6);
+    }
+  }
   .lg\:relative {
     @media (width >= 64rem) {
       position: relative;
+    }
+  }
+  .lg\:mt-8 {
+    @media (width >= 64rem) {
+      margin-top: calc(var(--spacing) * 8);
     }
   }
   .lg\:block {
@@ -2465,6 +2516,11 @@
   .lg\:h-\(--header-height\) {
     @media (width >= 64rem) {
       height: var(--header-height);
+    }
+  }
+  .lg\:h-8 {
+    @media (width >= 64rem) {
+      height: calc(var(--spacing) * 8);
     }
   }
   .lg\:grid-cols-2 {
@@ -2502,6 +2558,11 @@
       padding: calc(var(--spacing) * 0);
     }
   }
+  .lg\:p-7 {
+    @media (width >= 64rem) {
+      padding: calc(var(--spacing) * 7);
+    }
+  }
   .lg\:p-10 {
     @media (width >= 64rem) {
       padding: calc(var(--spacing) * 10);
@@ -2537,6 +2598,16 @@
       grid-column: span 12 / span 12;
     }
   }
+  .xl\:mt-10 {
+    @media (width >= 80rem) {
+      margin-top: calc(var(--spacing) * 10);
+    }
+  }
+  .xl\:h-9 {
+    @media (width >= 80rem) {
+      height: calc(var(--spacing) * 9);
+    }
+  }
   .xl\:grid-cols-3 {
     @media (width >= 80rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2545,6 +2616,11 @@
   .xl\:bg-cover {
     @media (width >= 80rem) {
       background-size: cover;
+    }
+  }
+  .xl\:p-8 {
+    @media (width >= 80rem) {
+      padding: calc(var(--spacing) * 8);
     }
   }
   .\32 xl\:col-span-5 {
@@ -2562,6 +2638,24 @@
       grid-column: span 7 / span 7;
     }
   }
+<<<<<<< HEAD
+=======
+  .\32 xl\:mt-14 {
+    @media (width >= 96rem) {
+      margin-top: calc(var(--spacing) * 14);
+    }
+  }
+  .\32 xl\:h-10 {
+    @media (width >= 96rem) {
+      height: calc(var(--spacing) * 10);
+    }
+  }
+  .\32 xl\:p-10 {
+    @media (width >= 96rem) {
+      padding: calc(var(--spacing) * 10);
+    }
+  }
+>>>>>>> stage
   .dark\:bg-black {
     &:is(.dark *) {
       background-color: var(--color-black);

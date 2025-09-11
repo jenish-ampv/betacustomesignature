@@ -23,6 +23,10 @@
 /* Tailwind core */
 @import 'tailwindcss';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> stage
 /* Theme configs */
 @import "./config.ktui";
 
