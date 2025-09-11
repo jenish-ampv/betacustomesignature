@@ -8,11 +8,11 @@
 </footer>
 
   <!-- <a href="javascript:void(0)" class="btn" id="delet-confirmation" data-bs-toggle="modal" data-bs-target="#delet-confirmation-popup">Open</a> -->
-<div class="modal fade" id="delet-confirmation-popup" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="delet-confirmation-popup" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-           <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  -->
+           
       </div>
       <div class="modal-body">
         <div class="delet-confirmation-content">
@@ -32,7 +32,7 @@
       </div>
 	  </div>
 	</div>
-</div>
+</div> -->
 
 <div class="modal fade" id="upgrade-plan-popup">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -74,49 +74,76 @@
     let clickedElementForDeleteConfirmation = false;
     let myDeleteConfirmationModal = false;
 
-    function openDeleteModal(passedEmelemt,title = null, description = null) {
-      myDeleteConfirmationModal = new bootstrap.Modal(document.getElementById('delet-confirmation-popup'));
-      myDeleteConfirmationModal.show();
-      isDeleteConfirmed = false;  // Reset to null every time the modal opens
-      clickedElementForDeleteConfirmation = passedEmelemt;
-      if (title !== null) {
-        const titleElement = document.getElementById('confirmation-popup-title');
-        if (titleElement) {
-          titleElement.textContent = title;
+    // function openDeleteModal(passedEmelemt,title = null, description = null) {
+
+    //   myDeleteConfirmationModal = new bootstrap.Modal(document.getElementById('delet-confirmation-popup'));
+    //   myDeleteConfirmationModal.show();
+    //   isDeleteConfirmed = false;  // Reset to null every time the modal opens
+    //   clickedElementForDeleteConfirmation = passedEmelemt;
+
+    //   if (title !== null) {
+    //     const titleElement = document.getElementById('confirmation-popup-title');
+    //     if (titleElement) {
+    //       titleElement.textContent = title;
+    //     }
+    //   }
+    //   if (description !== null) {
+    //     const descriptionElement = document.getElementById('confirmation-popup-description');
+    //     if (descriptionElement) {
+    //       descriptionElement.textContent = description;
+    //     }
+    //   }
+    // }
+
+
+    function openDeleteModal(passedElement, title = "Are you sure you want to delete this user?", description = "This user will be permanently removed.") {
+      clickedElementForDeleteConfirmation = passedElement;
+      Swal.fire({
+        title: title,
+        text: description,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          isDeleteConfirmed = true;
+          console.log('Delete confirmed:', isDeleteConfirmed); // Log for debugging
+          $(clickedElementForDeleteConfirmation).addClass('clickedFromDeleteConfirmationPopup');
+          if (clickedElementForDeleteConfirmation) {
+            if(clickedElementForDeleteConfirmation.is('a')){
+              const href = clickedElementForDeleteConfirmation.attr('href');
+              if (href && href !== 'javascript:void(0);') {
+                window.location.href = href;  // Redirect manually
+              } else if (href === 'javascript:void(0);') {
+                $(clickedElementForDeleteConfirmation).click();
+              }
+            }
+            else{
+              $(clickedElementForDeleteConfirmation).click();
+            }
+          }
+          myDeleteConfirmationModal.hide();
+
+          // 👉 Call your delete function here
+          // e.g., deleteItem(clickedElementForDeleteConfirmation);
+        } else {
+          isDeleteConfirmed = false;
         }
-      }
-      if (description !== null) {
-        const descriptionElement = document.getElementById('confirmation-popup-description');
-        if (descriptionElement) {
-          descriptionElement.textContent = description;
-        }
-      }
+      });
     }
 
-    document.getElementById('cancelBtnDeleteConfirmation').addEventListener('click', function() {
-      isDeleteConfirmed = false;
-      console.log('Delete confirmed:', isDeleteConfirmed); // Log for debugging
-    });
 
-    document.getElementById('deleteBtncancelBtnDeleteConfirmation').addEventListener('click', function() {
-      isDeleteConfirmed = true;
-      console.log('Delete confirmed:', isDeleteConfirmed); // Log for debugging
-      $(clickedElementForDeleteConfirmation).addClass('clickedFromDeleteConfirmationPopup');
-      if (clickedElementForDeleteConfirmation) {
-        if(clickedElementForDeleteConfirmation.is('a')){
-          const href = clickedElementForDeleteConfirmation.attr('href');
-          if (href && href !== 'javascript:void(0);') {
-            window.location.href = href;  // Redirect manually
-          } else if (href === 'javascript:void(0);') {
-            $(clickedElementForDeleteConfirmation).click();
-          }
-        }
-        else{
-          $(clickedElementForDeleteConfirmation).click();
-        }
-      }
-      myDeleteConfirmationModal.hide();
-    });
+    // document.getElementById('cancelBtnDeleteConfirmation').addEventListener('click', function() {
+    //   isDeleteConfirmed = false;
+    //   console.log('Delete confirmed:', isDeleteConfirmed); // Log for debugging
+    // });
+
+    // document.getElementById('deleteBtncancelBtnDeleteConfirmation').addEventListener('click', function() {
+      
+    // });
 
     function checkUserChoiceForDeleteConfirmation() {
       return isDeleteConfirmed;

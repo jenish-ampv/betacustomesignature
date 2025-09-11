@@ -1734,7 +1734,7 @@ section {
     border: none;
 }
 
-.social_link_box {
+/* .social_link_box {
     width: 100%;
     margin-top: 15px;
     display: flex;
@@ -1744,9 +1744,9 @@ section {
 .social_link_box img {
     width: 26px;
     margin: 2px 2px 0 0;
-}
+} */
 
-.signature_ready_box {
+/* .signature_ready_box {
     text-align: center;
     width: 100%;
 }
@@ -1754,13 +1754,13 @@ section {
 .signature_ready_box h4.yay {
     text-align: center;
     width: 100%;
-}
+} */
 
 #msform {
     display: none;
 }
 
-#msform .row {
+/* #msform .row {
     margin-right: -10px;
     margin-left: -10px;
 }
@@ -1788,7 +1788,7 @@ section {
 .inputbox .row>* {
     padding-right: 5px !important;
     padding-left: 5px !important;
-}
+} */
 
 #msform fieldset {
     border: none;

@@ -332,21 +332,21 @@ const swalClasses = {
 };
 
 function showConfirmationAlert({
-        title = 'Are you sure?',
-        confirmButtonText = 'Yes',
-        cancelButtonText = 'No',
-        text = 'You won\'t be able to revert this!'
-    } = {}) {
-        Swal.fire({
-            title: title,
-            text: text,
-            iconHtml:'<i class="fa-duotone fa-solid fa-trash-can text-5xl"></i>',
-            showCancelButton: true,
-            confirmButtonText: confirmButtonText,
-            cancelButtonText: cancelButtonText,
-            customClass: swalClasses,
-        });
-    }
+    title = 'Are you sure?',
+    confirmButtonText = 'Yes',
+    cancelButtonText = 'No',
+    text = 'You won\'t be able to revert this!'
+} = {}) {
+    Swal.fire({
+        title: title,
+        text: text,
+        iconHtml:'<i class="fa-duotone fa-solid fa-trash-can text-5xl"></i>',
+        showCancelButton: true,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        customClass: swalClasses,
+    });
+}
     
 /*status-selector*/
 $('.status-selector').click(function () {
