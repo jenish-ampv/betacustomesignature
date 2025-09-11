@@ -2,3 +2,4 @@ lib/*
 upload/*
 upload-beta/*
 node_modules
+dist
