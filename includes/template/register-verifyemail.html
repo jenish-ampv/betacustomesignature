@@ -39,21 +39,22 @@
 					<p class="text-center">Please enter the 6-digit code sent to you at<br><a href="mailto:%%DEFINE_otp_email%%" class="text-primary">%%DEFINE_otp_email%%</a></p>
 					<p class="text-center mt-1 text-gray-400">check spam folder if not in inbox</p>
 					<div class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
+						<span id="verify_email_otp_error_message"></span>
 						<div class="digit-group flex justify-center gap-2 *:size-[52px] *:text-center">
 							<input type="text" id="digit-1" name="digit-1" data-next="digit-2"
-								class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+								class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-2" name="digit-2" data-next="digit-3"
-								data-previous="digit-1" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-1" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-3" name="digit-3" data-next="digit-4"
-								data-previous="digit-2" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-2" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-4" name="digit-4" data-next="digit-5"
-								data-previous="digit-3" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-3" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-5" name="digit-5" data-next="digit-6"
-								data-previous="digit-4" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-4" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-6" name="digit-6" data-previous="digit-5"
-								class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+								class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 						</div>
-						<button type="submit" name="submit" class="my-5 kt-btn kt-btn-primary w-full">Continue</button>
+						<button type="submit" name="submit" class="my-5 kt-btn kt-btn-primary w-full" id="verifyOTP">Continue</button>
 						<div class="text-center text-gray-400 text-sm font-light">
 							Didn’t receive OTP code? <a href="%%DEFINE_li_resendotp%%" class="text-primary font-semibold">Resend Code</a>
 						</div>
@@ -170,36 +171,94 @@
 
 	<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
 	<script>
-		$('.digit-group').find('input').each(function () {
-			$(this).attr('maxlength', 1);
-			$(this).on('keyup', function (e) {
-				var parent = $($(this).parent());
-
-				if (e.keyCode === 8 || e.keyCode === 37) {
-					var prev = parent.find('input#' + $(this).data('previous'));
-
-					if (prev.length) {
-						$(prev).select();
-					}
-				} else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
-					var next = parent.find('input#' + $(this).data('next'));
-
-					if (next.length) {
-						$(next).select();
-					} else {
-						if (parent.data('autosubmit')) {
-							parent.submit();
-						}
-					}
-				}
-			});
-		});
-	</script>
-	<script>
 	$(document).ready(function(){
 		if($('.alert').length > 0){
 			setTimeout(function(){ $('.alert').hide(); }, 3000);
 		}
+		// Function to check if all OTP fields are filled
+        function checkOtpFields() {
+            let allFilled = true;
+            for (let i = 1; i <= 6; i++) {
+                if (!$(`#digit-${i}`).val()) {
+                    allFilled = false;
+                    break;
+                }
+            }
+            $('#verifyOTP').prop('disabled', !allFilled);
+        }
+ 
+        // Handle input for each OTP field
+        $('.inputotp').on('input', function(e) {
+            // Get the current input value
+            let value = $(this).val().trim();
+ 
+            // Error message on non-digit characters
+            if (value && !/^\d+$/.test(value)) {
+				e.preventDefault();
+				$('#verify_email_otp_error_message').html('<div class="alert alert-danger"><strong>Fail!</strong> Please enter numbers only.</div>');
+				setTimeout(function(){ $('#verify_email_otp_error_message').html(''); }, 3000);
+				$(this).val('');
+				return;
+			}
+ 
+            // Take only the first digit
+            value = value.slice(0, 1);
+ 
+            // Update the input value
+            $(this).val(value);
+ 
+            // Check if all fields are filled
+            checkOtpFields();
+ 
+            // If a digit was entered, move to next input
+            if (value.length === 1) {
+                let nextInput = $(this).next('.inputotp');
+                if (nextInput.length) {
+                    nextInput.focus();
+                }
+            }
+        });
+ 
+        // Handle backspace key
+        $('.inputotp').on('keydown', function(e) {
+            if (e.key === 'Backspace' && !$(this).val()) {
+                let prevInput = $(this).prev('.inputotp');
+                if (prevInput.length) {
+                    prevInput.focus();
+                }
+            }
+        });
+ 
+        // Handle paste event
+        $('.inputotp').on('paste', function(e) {
+            e.preventDefault();
+            let pastedData = (e.originalEvent.clipboardData || window.clipboardData).getData('text').trim();
+			if (!/^\d+$/.test(pastedData)) {
+				$('#verify_email_otp_error_message').html('<div class="alert alert-danger"><strong>Fail!</strong> Please enter numbers only.</div>');
+				setTimeout(function(){ $('#verify_email_otp_error_message').html(''); }, 3000);
+				return;
+			}
+            pastedData = pastedData.replace(/[^0-9]/g, '').slice(0, 6);
+ 
+            // Fill the inputs with pasted data
+            for (let i = 0; i < pastedData.length; i++) {
+                $(`#digit-${i + 1}`).val(pastedData[i]);
+            }
+ 
+            // Check if all fields are filled
+            checkOtpFields();
+ 
+            // Focus the next empty input or the last input
+            let nextEmptyInput = $('.inputotp').filter(function() {
+                return !$(this).val();
+            }).first();
+ 
+            if (nextEmptyInput.length) {
+                nextEmptyInput.focus();
+            } else {
+                $('#digit-6').focus();
+            }
+        });
 	});
 	</script>
 </section>
