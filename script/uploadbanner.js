@@ -113,7 +113,13 @@ function addThumbnail2(data){
 function removeImage2(){
 	ui("#uploadfile3").empty();
 	ui("#img_preview3").empty();
-	ui("#uploadfile3").append('<div class="drag_your_image"> <img src="'+image_link+'/images/img-icon.svg" alt=""><h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG, JPG, JPEG</p></div>');
+	ui("#uploadfile3").append(`
+        <div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+        <img src="${image_link}/images/img-icon.svg" alt="">
+        <p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a class="text-primary" href="#">browse</a></p>
+        <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+        </div>`
+    );
     ui(".layout_banner").attr("src",image_link+'/images/banner-img1.png');
     $("#banner").val('');
 }

@@ -304,7 +304,7 @@
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="changeLogoModel">
 	<div class="kt-modal-content max-w-[400px]">
 		<div class="kt-modal-header">
-			<h3 class="kt-modal-title">Upload Brand Logo</h3>
+			<p class="kt-modal-title">Upload Brand Logo</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#changeLogoModel">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -321,24 +321,29 @@
 			<div id="img_errormsg_logo"></div>
 			<div class="upload-area-logo" id="uploadfilelogo">
 				<input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
-				<div class="drag_your_image"> <img class="signature_logo" src="%%DEFINE_signature_change_image%%"
-						alt="">
-					<h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
-					<p>Supports: PNG, SVG, JPG, JPEG</p>
+				<div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+					<img class="signature_logo" src="%%DEFINE_signature_change_image%%" alt="">
+					<p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a href="javascript:void(0);">browse</a></p>
+					<p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
 				</div>
 			</div>
-			<p class="note"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
-				better animation quality.</p>
+			<div class="kt-alert kt-alert-light kt-alert-warning my-5">
+				<div class="kt-alert-icon">
+				<i class="hgi hgi-stroke hgi-alert-01"></i>
+				</div>
+				<div class="kt-alert-title"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
+				better animation quality.</div>
+			</div>
 			<div class="change-logo-reason">
-				<div class="form-floating">
-					<input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
-					<input type="text" class="form-control" name="change_reason" placeholder="Reason for change logo">
-					<label for="">Please add feedback</label>
+				<input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
+				<label class="kt-form-label" for="">Please add feedback</label>
+				<div class="kt-input-group">
+					<input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
+					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">
+						Submit <i class="hgi hgi-stroke hgi-arrow-right-02"></i>
+					</a>
 				</div>
 			</div>
-		</div>
-		<div class="kt-modal-footer">
-			<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Submit <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
 		</div>
 	</div>
 </div>
