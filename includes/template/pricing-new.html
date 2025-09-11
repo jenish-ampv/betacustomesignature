@@ -47,20 +47,19 @@
         <div class="pricing_table_bg" style="padding:40px 20px 40px 20px;">
         	   		<div class="pricing_plan_box" style="display: flex; justify-content: center; flex-wrap: wrap; min-height:inherit; padding:0;">
                    	   <h2 style="justify-content: center; font-size: 22px; font-weight: 600; line-height: 26.63px; letter-spacing: -0.02em; padding-bottom:10px;">Select Plan</h2>
-                        <!-- <div class="select_plan_type" role="tablist"> -->
                         <div class="monthly_button nav nav-tabs" id="myTab" role="tablist">
-                          <span id="month-tab" data-bs-toggle="tab" data-bs-target="#month">Monthly</span>
+                          <span>Monthly</span>
                           <input class="form-check-input" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
-                          <span class="yearly active" id="year-tab" data-bs-toggle="tab" data-bs-target="#year">Yearly <span>Save 20%</span></span>
+                          <span>Yearly <span>Save 20%</span></span>
                         </div>
                    </div>
                    
               <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="month" role="tabpanel" aria-labelledby="month-tab">
+                <div class="tab-panel hidden" id="monthly-tab">
                 
                   <div class="pricing_col recommended">
                       <div class="pricing_plan_box">
-                      	  <div class="recommtext">Most Popular MONTH</div>
+                      	  <div class="recommtext">Most Popular</div>
                           <h2>Pro Plan </h2> 
                           <span><span class="no_employee">1</span> signature</span>
                           <span class="">14-Day Risk-Free Guarantee</span>
@@ -112,11 +111,7 @@
                       
                   </div>
                 </div>
-                
-                
-                
-                
-                <div class="tab-pane fade  show active" id="year" role="tabpanel" aria-labelledby="year-tab">
+                <div class="tab-panel" id="yearly-tab">
                  <div class="pricing_col recommended">
                     <div class="pricing_plan_box">
                     	<div class="recommtext">Most Popular</div>
@@ -256,9 +251,11 @@ jQuery.noConflict();
     $(document).ready(function(){
       $('#plan_type').on('change', function() {
         if ($(this).is(':checked')) {
-          $("#year-tab").click();
+          $("#yearly-tab").removeClass('hidden');
+          $("#monthly-tab").addClass('hidden');
         } else {
-          $("#month-tab").click();
+          $("#monthly-tab").removeClass('hidden');
+          $("#yearly-tab").addClass('hidden');
         }
     });
     });
