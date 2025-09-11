@@ -26,9 +26,9 @@
                 </div>
                 <div class="tab_box_right">
                   <div class="nav nav-tabs" id="myTab" role="tablist">
-                    <span id="month-tab" data-bs-toggle="tab" data-bs-target="#monthly-tab-panel">Monthly</span>
+                    <span>Monthly</span>
                     <input class="form-check-input" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
-                    <span id="year-tab" data-bs-toggle="tab" data-bs-target="#yearly-tab-panel">Yearly <span>Save 20%</span></span>
+                    <span>Yearly <span>Save 20%</span></span>
                   </div>
                 </div>
                 
@@ -69,9 +69,9 @@
                  
                  <div class="tab-content" id="myTabContent">
                   <!--Monthly Plan -->  
-                  <div class="tab-pane fade" id="monthly-tab-panel" role="tabpanel" aria-labelledby="monthly-tab" tabindex="0">
+                  <div class="tab-pane hidden" id="monthly-tab-panel" tabindex="0">
                     <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id2" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
+                      <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
                       <label for="plan_id2" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Pro Plan <span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="month_proprice cprice">15</span>/mo </b></h6>
@@ -104,9 +104,9 @@
                     </div>
                   </div>
                   <!--Yearly Plan -->
-                  <div class="tab-pane fade show active" id="yearly-tab-panel" role="tabpanel" aria-labelledby="yearly-tab" tabindex="0">
+                  <div class="tab-pane" id="yearly-tab-panel" tabindex="0">
                     <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id4" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+                      <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
                       <label for="plan_id4" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Pro Plan</h6>
@@ -211,15 +211,41 @@
 <script type="text/javascript">
 jQuery.noConflict();
   (function($) {
+    if ($('input[name="plan_id"]:checked').length === 0) {
+      $("#yearly-tab-panel").removeClass('hidden');
+      $("#monthly-tab-panel").addClass('hidden');
+      $("#plan_id4").prop('checked', true);
+      $("#form_plan_id").val(4);
+    }else{
+      if($('input[name="plan_id"]:checked').data('section') == 'monthly'){
+        $('#plan_type').prop('checked', false);
+        $("#monthly-tab-panel").removeClass('hidden');
+        $("#yearly-tab-panel").addClass('hidden');
+        $("#plan_id2").prop('checked', true);
+        $("#form_plan_id").val(2);
+      }else{
+        $('#plan_type').prop('checked', true);
+        $("#yearly-tab-panel").removeClass('hidden');
+        $("#monthly-tab-panel").addClass('hidden');
+        $("#plan_id4").prop('checked', true);
+        $("#form_plan_id").val(4);
+      }
+    }
     $(document).ready(function(){
       $('#plan_type').on('change', function() {
         if ($(this).is(':checked')) {
-          $("#year-tab").click();
+          $("#yearly-tab-panel").removeClass('hidden');
+          $("#monthly-tab-panel").addClass('hidden');
+          $("#plan_id4").prop('checked', true);
           $("#form_plan_id").val(4);
         } else {
           $("#month-tab").click();
+          $("#monthly-tab-panel").removeClass('hidden');
+          $("#yearly-tab-panel").addClass('hidden');
+          $("#plan_id2").prop('checked', true);
           $("#form_plan_id").val(2);
         }
+        updateSelectPlan();
     });
     });
   })(jQuery);
@@ -233,8 +259,8 @@ jQuery.noConflict();
       //   return false;
       // }
 
-      if($(".monthly-yearly-tabs-button-class.active").data('value') == 'month' && $('input[name=plan_id]:checked').val() < 3){
-        multiplyprice = 3;
+      if($('input[name=plan_id]:checked').val() < 3){
+        multiplyprice = 1;
       }else{
         multiplyprice = 12;
       }
@@ -386,8 +412,8 @@ jQuery.noConflict();
      $('.year_proprice').text(pro_year_unit[unencoded]);
      $('.year_propricespl').text(pro_year_unitspl[unencoded]);
      var radioObj = $('input[name=plan_id]:checked');
-     if($(".monthly-yearly-tabs-button-class.active").data('value') == 'month' && $('input[name=plan_id]:checked').val() < 3){
-      multiplyprice = 3;
+     if($('input[name=plan_id]:checked').val() < 3){
+      multiplyprice = 1;
      }else{
       multiplyprice = 12;
      }
