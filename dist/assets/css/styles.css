@@ -866,10 +866,6 @@
   .table-row-group {
     display: table-row-group;
   }
-  .\!size-52 {
-    width: calc(var(--spacing) * 52) !important;
-    height: calc(var(--spacing) * 52) !important;
-  }
   .\!size-\[52px\] {
     width: 52px !important;
     height: 52px !important;
@@ -2499,6 +2495,19 @@
   .empty\:hidden {
     &:empty {
       display: none;
+    }
+  }
+  .focus-within\:border-primary {
+    &:focus-within {
+      border-color: var(--primary);
+    }
+  }
+  .focus-within\:bg-primary\/10 {
+    &:focus-within {
+      background-color: var(--primary);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--primary) 10%, transparent);
+      }
     }
   }
   .hover\:-rotate-45 {

@@ -41,18 +41,19 @@
 					<div class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
 						<div class="digit-group flex justify-center gap-2 *:size-[52px] *:text-center">
 							<input type="text" id="digit-1" name="digit-1" data-next="digit-2"
-								class="kt-input !rounded-lg !size-[52px]" />
+								class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-2" name="digit-2" data-next="digit-3"
-								data-previous="digit-1" class="kt-input !rounded-lg !size-[52px]" />
+								data-previous="digit-1" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-3" name="digit-3" data-next="digit-4"
-								data-previous="digit-2" class="kt-input !rounded-lg !size-[52px]" />
+								data-previous="digit-2" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-4" name="digit-4" data-next="digit-5"
-								data-previous="digit-3" class="kt-input !rounded-lg !size-[52px]" />
+								data-previous="digit-3" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-5" name="digit-5" data-next="digit-6"
-								data-previous="digit-4" class="kt-input !rounded-lg !size-[52px]" />
+								data-previous="digit-4" class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 							<input type="text" id="digit-6" name="digit-6" data-previous="digit-5"
-								class="kt-input !rounded-lg !size-[52px]" />
+								class="kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
 						</div>
+						<button type="submit" name="submit" class="my-5 kt-btn kt-btn-primary w-full">Continue</button>
 						<div class="text-center text-gray-400 text-sm font-light">
 							Didn’t receive OTP code? <a href="%%DEFINE_li_resendotp%%" class="text-primary font-semibold">Resend Code</a>
 						</div>
