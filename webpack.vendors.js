@@ -1,6 +1,7 @@
 module.exports = {
 	output: 'dist/assets',
 	entry: {
+		
 		switzer: [
 			{
 				src: ['src/vendors/switzer/fonts.css'],
@@ -82,7 +83,7 @@ module.exports = {
 			  bundle: true,
 			}
 		  ],
-		  sweetalert: [
+		sweetalert: [
 			{
 				src: [
 				'node_modules/sweetalert2/dist/sweetalert2.min.css'
