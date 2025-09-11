@@ -3686,7 +3686,7 @@ section {
     text-align: left;
 } */
 
-.signature_previous_box .sin_dashboard_box.signature_layot {
+/* .signature_previous_box .sin_dashboard_box.signature_layot {
     max-width: 660px;
     margin-top: 0;
     box-shadow: none;
@@ -3698,7 +3698,7 @@ section {
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: thin;
-}
+} */
 
 .signature_previous_box .sin_dashboard_box.signature_layot:hover {
     -webkit-transform: scale(1);
@@ -5830,10 +5830,10 @@ section {
     justify-content: center;
 }
 
-.previous_top_bg_box {
+/* .previous_top_bg_box {
     width: 638px;
     text-align: left;
-}
+} */
 
 .previous_top_bg_box .previous_top_img {
     border-bottom: 0.87px solid #0000001A;
@@ -9937,10 +9937,10 @@ td.layout_border {
         line-height: 54px;
     } */
 
-    .hover_previous_right_bg .sign_previous_bg .signature_previous_box {
+    /* .hover_previous_right_bg .sign_previous_bg .signature_previous_box {
         overflow: inherit;
         height: inherit;
-    }
+    } */
 
     .new_signin_bg .signin_left_bg.video video {
         width: auto;
@@ -9985,10 +9985,10 @@ td.layout_border {
         right: 0;
     }
 
-    .signature_previous_box .sin_dashboard_box.signature_layot {
+    /* .signature_previous_box .sin_dashboard_box.signature_layot {
         overflow: inherit !important;
         max-height: inherit;
-    }
+    } */
 
     .bulk_upload_main .accordion-item .bottom_bg_btn .submit {
         margin-bottom: 0;

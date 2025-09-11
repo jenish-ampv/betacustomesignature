@@ -34,7 +34,7 @@
 	</div>
 </div> -->
 
-<div class="modal fade" id="upgrade-plan-popup">
+<!-- <div class="modal fade" id="upgrade-plan-popup">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,7 +48,23 @@
       </div>
 	  </div>
 	</div>
-</div>
+</div> -->
+
+ <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgrade-plan-popup">
+    <div class="kt-modal-content max-w-[400px]">
+      <div class="kt-modal-header">
+          <p class="kt-modal-title">7 Days Free Trial</p>
+          <button type="button" class="kt-modal-close" aria-label="Close modal"
+              data-kt-modal-dismiss="#upgrade-plan-popup">
+              <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+          </button>
+      </div>
+      <div class="kt-modal-body text-center" id="upgrade-plan-popupmodal-body">
+        <button class="kt-btn kt-btn-primary mt-5" id="load-upgrade-content">Start 7-day Free Trial</button>
+        <h5><span id="countdown">00:01:30</span></h5>
+      </div>
+    </div>
+  </div>
     
   <!-- Optional JavaScript; choose one of the two! --> 
 
@@ -249,16 +265,18 @@
       }, 1000);
     }
 
-    // Listen to Bootstrap modal open event
-    const modal = document.getElementById('upgrade-plan-popup');
-    modal.addEventListener('shown.bs.modal', () => {
-      startCountdown(90); // 90 seconds = 1 min 30 sec
-    });
+  
 
-    // Optional: stop countdown when modal closes
-    modal.addEventListener('hidden.bs.modal', () => {
-      clearInterval(countdownInterval);
-    });
+  const upgradePlanPopupEl = document.querySelector('#upgrade-plan-popup');
+  const upgradePlanPopup = KTModal.getInstance(upgradePlanPopupEl);
+  
+  upgradePlanPopup.on('shown', () => {
+    startCountdown(90); // 90 seconds = 1 min 30 sec
+  });
+  upgradePlanPopup.on('hide', () => {
+    clearInterval(countdownInterval);
+  });
+
     
 
     $('#load-upgrade-content').on('click', function () {
