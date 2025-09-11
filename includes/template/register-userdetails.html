@@ -1,223 +1,217 @@
 %%DEFINE_HEADER%%
 
 <div class="flex w-full">
-  <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10">
+  <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10 overflow-auto">
+      <div class="progress-boxes">
+        <button class="kt-btn kt-btn-ghost gap-2" id="back2">
+          <i class="fal fa-angle-left text-xl mt-0.5"></i> Back
+        </button>
+      </div>
+
     <div class="flex-1 flex flex-col">
-
-
-      <div class="flex-1 flex flex-col">
-        <div class="max-w-[600px] w-full mx-auto progress-boxes">
-          <div class="flex items-center gap-2 mb-8 cursor-pointer" id="back2">
-            <i class="fa-solid fa-angle-left"></i> Back
+      <form id="registerUserForm" method="POST">
+        <!-- STEP 1 -->
+        <div class="flex-1 step" data-step="1">
+          <div class="h-full flex flex-col">
+            <div class="flex-1 max-w-[600px] w-full mx-auto">
+              <div>
+                <h5 class="text-gray-950 text-2xl font-medium">Add Profile Details</h5>
+                <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
+                <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                <div class="h-[6px] rounded-full bg-gray-400"></div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="col-span-2">
+                  <label class="kt-form-label">First Name</label>
+                  <input class="kt-input" name="user_first_name" id="user_first_name" placeholder="Bob">
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label">Last Name</label>
+                  <input class="kt-input" name="user_last_name" id="user_last_name" placeholder="Smith">
+                </div>
+                <div class="col-span-2 fv-row">
+                  <label class="kt-form-label">Phone</label>
+                  <input class="kt-input" name="user_phone" id="user_phone" placeholder="(999) 999-9999" >
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label">Password</label>
+                  <input type="password" class="kt-input" name="user_password" id="user_password" placeholder="Password" %%DEFINE_signup_google_user_password_display_hide% >
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label">Company Name</label>
+                  <input class="kt-input" name="user_organization" id="user_organization" placeholder="Company Name">
+                </div>
+                <div>
+                  <label class="kt-form-label">Industry</label>
+                  <input class="kt-input" name="user_business" id="user_business" placeholder="IT Industry">
+                </div>
+                <div>
+                  <label class="kt-form-label">Company Size</label>
+                  <select class="kt-select" name="user_company_size" id="user_company_size" data-kt-select="true" data-kt-select-placeholder="Select a framework"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" selected disabled>Select company size</option>
+                    <option value="1-10">1-10</option>
+                    <option value="11-50">11-50</option>
+                    <option value="50-100">50-100</option>
+                    <option value="100+">100+</option>
+                  </select>
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label">Job Title</label>
+                  <input class="kt-input" name="user_job_title" id="user_job_title" placeholder="Design Manager">
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <button class="kt-btn kt-btn-primary" id="next1">Continue</button>
+            </div>
           </div>
         </div>
 
-        <form id="registerUserForm" class="flex-1 flex flex-col" method="POST">
-          <!-- STEP 1 -->
-          <div class="flex-1 step" data-step="1">
-
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto">
-                <div>
-                  <h5 class="text-gray-950 text-2xl font-medium">Add Profile Details</h5>
-                  <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
-                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
-                  <div class="h-[6px] rounded-full bg-gray-400"></div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="col-span-2">
-                    <label class="kt-form-label">First Name</label>
-                    <input class="kt-input" name="user_first_name" id="user_first_name" placeholder="Bob">
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Last Name</label>
-                    <input class="kt-input" name="user_last_name" id="user_last_name" placeholder="Smith">
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Phone</label>
-                    <input class="kt-input" name="user_phone" id="user_phone" placeholder="(999) 999-9999" >
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Password</label>
-                    <input type="password" class="kt-input" name="user_password" id="user_password" placeholder="Password" %%DEFINE_signup_google_user_password_display_hide% >
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Company Name</label>
-                    <input class="kt-input" name="user_organization" id="user_organization" placeholder="Company Name">
-                  </div>
-                  <div>
-                    <label class="kt-form-label">Industry</label>
-                    <input class="kt-input" name="user_business" id="user_business" placeholder="IT Industry">
-                  </div>
-                  <div>
-                    <label class="kt-form-label">Company Size</label>
-                    <select class="kt-select" name="user_company_size" id="user_company_size" data-kt-select="true" data-kt-select-placeholder="Select a framework"
-                      data-kt-select-config='{
-                          "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
-                        }'>
-                      <option value="" selected disabled>Select company size</option>
-                      <option value="1-10">1-10</option>
-                      <option value="11-50">11-50</option>
-                      <option value="50-100">50-100</option>
-                      <option value="100+">100+</option>
-                    </select>
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Job Title</label>
-                    <input class="kt-input" name="user_job_title" id="user_job_title" placeholder="Design Manager">
-                  </div>
-                </div>
+        <!-- STEP 2 -->
+        <div class="flex-1 step hidden" data-step="2">
+          <div class="h-full flex flex-col">
+            <div class="flex-1 max-w-[600px] w-full mx-auto">
+              <div>
+                <h5 class="text-gray-950 text-2xl font-medium">Just a couple more questions.</h5>
+                <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
               </div>
-              <div class="text-end">
-                <button class="kt-btn kt-btn-primary" id="next1">Continue</button>
+              <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
+                <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
               </div>
-            </div>
-          </div>
-
-          <!-- STEP 2 -->
-          <div class="flex-1 step hidden" data-step="2">
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto">
+              <div class="grid grid-cols-1 gap-4">
                 <div>
-                  <h5 class="text-gray-950 text-2xl font-medium">Just a couple more questions.</h5>
-                  <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
+                  <label class="kt-form-label">How many team members need a signature?</label>
+                  <input type="number" class="kt-input" name="user_team_size" id="user_team_size" placeholder="40">
                 </div>
-                <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
-                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
-                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                <div>
+                  <label class="kt-form-label">What Email Platform You Use?</label>
+                  <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }' multiple name="user_email_platform" id="user_email_platform">
+                    <option value="" selected disabled>Select Email Platform</option>
+                    <option value="gmail">Gmail</option>
+                    <option value="outlook">Outlook</option>
+                    <option value="yahoo">Yahoo Mail</option>
+                    <option value="icloud">Apple Mail (iCloud)</option>
+                    <option value="zoho" disabled>Zoho Mail</option>
+                    <option value="protonmail" disabled>ProtonMail</option>
+                  </select>
                 </div>
-                <div class="grid grid-cols-1 gap-4">
-                  <div>
-                    <label class="kt-form-label">How many team members need a signature?</label>
-                    <input type="number" class="kt-input" name="user_team_size" id="user_team_size" placeholder="40">
-                  </div>
-                  <div>
-                    <label class="kt-form-label">What Email Platform You Use?</label>
-                    <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
-                      data-kt-select-config='{
-                          "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
-                        }' multiple name="user_email_platform" id="user_email_platform">
-                      <option value="" selected disabled>Select Email Platform</option>
-                      <option value="gmail">Gmail</option>
-                      <option value="outlook">Outlook</option>
-                      <option value="yahoo">Yahoo Mail</option>
-                      <option value="icloud">Apple Mail (iCloud)</option>
-                      <option value="zoho" disabled>Zoho Mail</option>
-                      <option value="protonmail" disabled>ProtonMail</option>
-                    </select>
-                  </div>
-                  <div class="mt-5">
-                    <label class="kt-form-label">How did you hear about us?</label>
-                    <div class="flex flex-wrap *:h-10 *:rounded-2xl *:px-2 gap-[6px] *:font-normal">
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="facebook-instagram">
-                        <label for="facebook-instagram" class="peer-checked:bg-primary peer-checked:text-white">Facebook/Instagram</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="search-engine">
-                        <label for="search-engine" class="peer-checked:bg-primary peer-checked:text-white">Search Engine (Google, Bing, etc.)</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="word-of-mouth">
-                        <label for="word-of-mouth" class="peer-checked:bg-primary peer-checked:text-white">Word of mouth</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="ai-chat">
-                        <label for="ai-chat" class="peer-checked:bg-primary peer-checked:text-white">AI Chat</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="youtube">
-                        <label for="youtube" class="peer-checked:bg-primary peer-checked:text-white">Youtube</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="linkedIn">
-                        <label for="linkedIn" class="peer-checked:bg-primary peer-checked:text-white">LinkedIn</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="tiktok">
-                        <label for="tiktok" class="peer-checked:bg-primary peer-checked:text-white">Tik Tok</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="email-newsletter">
-                        <label for="email-newsletter" class="peer-checked:bg-primary peer-checked:text-white">Email Newsletter</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="review-website">
-                        <label for="review-website" class="peer-checked:bg-primary peer-checked:text-white">Review Website</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="how_did_you_hear_about_us_other">
-                        <label for="how_did_you_hear_about_us_other" class="peer-checked:bg-primary peer-checked:text-white">Other</label>
-                      </div>
+                <div class="mt-5">
+                  <label class="kt-form-label mb-2">How did you hear about us?</label>
+                  <div class="flex flex-wrap [&>*>label]:bg-gray-100 [&>*>label]:hover:bg-primary/10 [&>*>label]:hover:text-primary [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-primary [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-white gap-[6px] *:font-normal">
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="facebook-instagram">
+                      <label for="facebook-instagram" class="">Facebook/Instagram</label>
                     </div>
-                  </div>
-                  <div>
-                    <label class="kt-form-label">What brought you to Custom Esignature today?</label>
-                    <div class="flex flex-wrap *:h-10 *:rounded-2xl *:px-2 gap-[6px] *:font-normal">
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="the-interactive-design">
-                        <label for="the-interactive-design" class="peer-checked:bg-primary peer-checked:text-white">The Interactive Design</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="boost-your-replies">
-                        <label for="boost-your-replies" class="peer-checked:bg-primary peer-checked:text-white">Boost Your Replies</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="team-management">
-                        <label for="team-management" class="peer-checked:bg-primary peer-checked:text-white">Team Management</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="signature-analytics">
-                        <label for="signature-analytics" class="peer-checked:bg-primary peer-checked:text-white">Signature Analytics</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="update-old-signature">
-                        <label for="update-old-signature" class="peer-checked:bg-primary peer-checked:text-white">Update Old Signature</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="drive-traffic">
-                        <label for="drive-traffic" class="peer-checked:bg-primary peer-checked:text-white">Drive Traffic</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="promote-brand">
-                        <label for="promote-brand" class="peer-checked:bg-primary peer-checked:text-white">Promote Brand</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="what_brought_you_other">
-                        <label for="what_brought_you_other" class="peer-checked:bg-primary peer-checked:text-white">Other</label>
-                      </div>
-
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="search-engine">
+                      <label for="search-engine" class="">Search Engine (Google, Bing, etc.)</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="word-of-mouth">
+                      <label for="word-of-mouth" class="">Word of mouth</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="ai-chat">
+                      <label for="ai-chat" class="">AI Chat</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="youtube">
+                      <label for="youtube" class="">Youtube</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="linkedIn">
+                      <label for="linkedIn" class="">LinkedIn</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="tiktok">
+                      <label for="tiktok" class="">Tik Tok</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="email-newsletter">
+                      <label for="email-newsletter" class="">Email Newsletter</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="review-website">
+                      <label for="review-website" class="">Review Website</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="how_did_you_hear_about_us_other">
+                      <label for="how_did_you_hear_about_us_other" class="">Other</label>
                     </div>
                   </div>
                 </div>
+                <div>
+                  <label class="kt-form-label mb-2">What brought you to Custom Esignature today?</label>
+                  <div class="flex flex-wrap [&>*>label]:bg-gray-100 [&>*>label]:hover:bg-primary/10 [&>*>label]:hover:text-primary [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-primary [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-white gap-[6px] *:font-normal">
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="the-interactive-design">
+                      <label for="the-interactive-design" class="peer-checked:bg-primary peer-checked:text-white">The Interactive Design</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="boost-your-replies">
+                      <label for="boost-your-replies" class="peer-checked:bg-primary peer-checked:text-white">Boost Your Replies</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="team-management">
+                      <label for="team-management" class="peer-checked:bg-primary peer-checked:text-white">Team Management</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="signature-analytics">
+                      <label for="signature-analytics" class="peer-checked:bg-primary peer-checked:text-white">Signature Analytics</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="update-old-signature">
+                      <label for="update-old-signature" class="peer-checked:bg-primary peer-checked:text-white">Update Old Signature</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="drive-traffic">
+                      <label for="drive-traffic" class="peer-checked:bg-primary peer-checked:text-white">Drive Traffic</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="promote-brand">
+                      <label for="promote-brand" class="peer-checked:bg-primary peer-checked:text-white">Promote Brand</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" class="what_brought_you hidden peer" id="what_brought_you_other">
+                      <label for="what_brought_you_other" class="peer-checked:bg-primary peer-checked:text-white">Other</label>
+                    </div>
+
+                  </div>
+                </div>
               </div>
-              <div class="text-end">
-                <input type="hidden" id="register_url" value="%%DEFINE_linkModuleRegister%%/registerFormSubmit" />
-                <input type="hidden" id="register_user_email" name="register_user_email" value="%%DEFINE_USER_EMAIL%%" />
-                <button type="submit" class="kt-btn kt-btn-primary" id="userRegisterFormSubmit">Sign Up</button>
-              </div>
+            </div>
+            <div class="text-center">
+              <input type="hidden" id="register_url" value="%%DEFINE_linkModuleRegister%%/registerFormSubmit" />
+              <input type="hidden" id="register_user_email" name="register_user_email" value="%%DEFINE_USER_EMAIL%%" />
+              <button type="submit" class="kt-btn kt-btn-primary" id="userRegisterFormSubmit">Sign Up</button>
             </div>
           </div>
+        </div>
 
-          <!-- <div class="flex-1 step hidden" data-step="3">
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto font-normal text-gray-950 flex flex-col">
-                <div>
-                  <h2>Hey, Bob Smith<br>Welcome to<br><span class="font-medium bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom Esignature</span></h2>
-                  <button class="kt-btn kt-btn-primary w-full mt-8">Get Started</button>
-                </div>
-                <div class="flex-1 flex items-center justify-center">
-                <img src="%%DEFINE_IMAGE_LINK%%/images/welcome.png" alt="">
+        <!-- <div class="flex-1 step hidden" data-step="3">
+          <div class="h-full flex flex-col">
+            <div class="flex-1 max-w-[600px] w-full mx-auto font-normal text-gray-950 flex flex-col">
+              <div>
+                <h2>Hey, Bob Smith<br>Welcome to<br><span class="font-medium bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom Esignature</span></h2>
+                <button class="kt-btn kt-btn-primary w-full mt-8">Get Started</button>
               </div>
-              </div>
+              <div class="flex-1 flex items-center justify-center">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/welcome.png" alt="">
             </div>
-          </div> -->
+            </div>
+          </div>
+        </div> -->
 
-        </form>
-
-      </div>
+      </form>
     </div>
     <div class="flex text-sm items-center justify-between">
       <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
@@ -252,11 +246,9 @@
   </div>
 </div>
 
-<!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
 
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/intl-tel-input/js/intlTelInput.js"></script>
 <script>
   const input = document.querySelector("#user_phone");
 
@@ -265,7 +257,7 @@
     nationalMode: false,  // ensures full number includes country code
     formatOnDisplay: true,
     separateDialCode: true,
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js", // for validation/formatting
+    utilsScript: "%%DEFINE_ROOT_LINK%%/dist/assets/vendors/intl-tel-input/intlTelInput.js", // for validation/formatting
   });
 </script>
 
@@ -294,27 +286,73 @@
 
     let isValidFirstStep = true;
 
+
+
+    // function showError(input, message) {
+    //   isValidFirstStep = false;
+    //   let $input = $(input);
+
+    //   // Try to find any existing error message after the input or after a following div
+    //   let $existingError = $input.nextAll('.error-msg').first();
+    //   if ($existingError.length) {
+    //     // Update existing error message
+    //     $existingError.text(message);
+    //   } else {
+    //     // Add new error message
+    //     let $lastDiv = $input.nextAll('div').last();
+    //     let $errorMsg = $('<div class="error-msg" style="color: red; font-size: 12px;"></div>').text(message);
+
+    //     if ($lastDiv.length > 0) {
+    //       $lastDiv.after($errorMsg);
+    //     } else {
+    //       $input.after($errorMsg);
+    //     }
+    //   }
+    // }
+
     function showError(input, message) {
       isValidFirstStep = false;
       let $input = $(input);
 
-      // Try to find any existing error message after the input or after a following div
-      let $existingError = $input.nextAll('.error-msg').first();
-      if ($existingError.length) {
-        // Update existing error message
-        $existingError.text(message);
-      } else {
-        // Add new error message
-        let $lastDiv = $input.nextAll('div').last();
-        let $errorMsg = $('<div class="error-msg" style="color: red; font-size: 12px;"></div>').text(message);
+      // Check if input is inside .fw-row
+      let $fwRow = $input.closest('.fv-row');
 
-        if ($lastDiv.length > 0) {
-          $lastDiv.after($errorMsg);
+      // If parent .fw-row exists, insert error inside it
+      if ($fwRow.length) {
+        let $existingError = $fwRow.children('.error-msg').last();
+
+        if ($existingError.length) {
+          // Update existing error
+          $existingError.text(message);
         } else {
-          $input.after($errorMsg);
+          // Add new error at the end of .fw-row
+          let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+          $fwRow.append($errorMsg);
+        }
+
+      } else {
+        // Default: error message after input
+        let $existingError = $input.nextAll('.error-msg').first();
+
+        if ($existingError.length) {
+          $existingError.text(message);
+        } else {
+          let $lastDiv = $input.nextAll('div').last();
+          let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+
+          if ($lastDiv.length > 0) {
+            $lastDiv.after($errorMsg);
+          } else {
+            $input.after($errorMsg);
+          }
         }
       }
     }
+
+
+
+
+
 
     function removeError(input) {
       let $input = $(input);
