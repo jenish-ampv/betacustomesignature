@@ -32,7 +32,7 @@ $(document).ready(function(){
 					url: e.target.result
 				}).then(function(){
 					console.log('jQuery bind complete');
-	              	$(".profile_animation_section").addClass('section_disabled');
+	              	$(".profile_animation_section").addClass('cursor-not-allowed opacity-50');
 				});			
 			}
 		}
@@ -42,8 +42,8 @@ $(document).ready(function(){
 			$('.cropped_image').hide();
 			$('.cropped_image_change').hide();
 		}else{
-      		$(".profile_animation_section").addClass('section_disabled');
-      		$(".signature_profile_shape_section").removeClass('section_disabled');
+      		$(".profile_animation_section").addClass('cursor-not-allowed opacity-50');
+      		$(".signature_profile_shape_section").removeClass('cursor-not-allowed opacity-50');
 			$('.cropped_image').show();
 			$('.cropped_image_change').show();
 			if(!$('#upload-image').data('croppie')){
@@ -86,7 +86,7 @@ $(document).ready(function(){
 					url: e.target.result
 				}).then(function(){
 					console.log('jQuery bind complete');
-	              	$(".profile_animation_section").addClass('section_disabled');
+	              	$(".profile_animation_section").addClass('cursor-not-allowed opacity-50');
 				});			
 			}
 		}
@@ -96,8 +96,8 @@ $(document).ready(function(){
 			$('.cropped_image').hide();
 			$('.cropped_image_change').hide();
 		}else{
-      		$(".profile_animation_section").addClass('section_disabled');
-      		$(".signature_profile_shape_section").removeClass('section_disabled');
+      		$(".profile_animation_section").addClass('cursor-not-allowed opacity-50');
+      		$(".signature_profile_shape_section").removeClass('cursor-not-allowed opacity-50');
 			$('.cropped_image').show();
 			$('.cropped_image_change').show();
 			if(!$('#upload-image').data('croppie')){
@@ -156,8 +156,8 @@ $(document).ready(function(){
 		            $("#signature_profile_data").attr("data-circle-json",data.circleJsonName);
 		            $("#signature_profile_data").attr("data-square-json",data.squareJsonName);
 	              	$("#signature_profile_data").data("gifcreated", false);
-	              	$(".profile_animation_section").removeClass('section_disabled');
-	      			$(".signature_profile_shape_section").addClass('section_disabled');
+	              	$(".profile_animation_section").removeClass('cursor-not-allowed opacity-50');
+	      			$(".signature_profile_shape_section").addClass('cursor-not-allowed opacity-50');
 	            	$('#signature_profileanimation').prop('checked', false).trigger('change');
 					removeImage(path);
 					removeCropedImage();
