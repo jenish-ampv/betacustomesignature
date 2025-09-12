@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+
 @theme {
     --font-sans: "Switzer", sans-serif;
     --color-gray-950: #09090B;
@@ -20,6 +21,7 @@
     --text-xxl: 20px;
   }
 
+
 /* Tailwind core */
 @import 'tailwindcss';
 
@@ -28,6 +30,7 @@
 
 /* KTUI styles */
 @import '../../node_modules/@keenthemes/ktui/styles.css';
+
 
 /* Metronic components  */
 @import "./components/index";

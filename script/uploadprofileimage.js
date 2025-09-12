@@ -50,12 +50,9 @@ ui(function() {
     // file selected
     ui("#file").change(function(){
         var fd = new FormData();
-
         var files = ui('#file')[0].files[0];
-
         fd.append('file',files);
 		ui("#img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
-
         uploadData(fd);
     });
 	

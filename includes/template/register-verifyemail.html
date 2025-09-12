@@ -103,9 +103,8 @@
 	<div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
 		style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/loginbg.jpg);">
 		<div class="w-full flex-1 flex flex-col justify-center">
-			<h2 class="text-[40px] px-16 leading-[1.2] mb-4"><span
-					class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Exceptional
-					Service</span>
+			<h2 class="text-[40px] px-16 leading-[1.2] mb-4">
+				<span class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">ExceptionalService</span>
 				That Exceeds Expectations</h2>
 			<div class="swiper w-full" id="loginSlider">
 				<div class="swiper-wrapper">
@@ -194,39 +193,52 @@
 	</div>
 </div>
 
-
-
-
-	<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
-	<script>
-	$(document).ready(function(){
-		if($('.alert').length > 0){
-			setTimeout(function(){ $('.alert').hide(); }, 3000);
+<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	if($('.alert').length > 0){
+		setTimeout(function(){ $('.alert').hide(); }, 3000);
+	}
+	// Function to check if all OTP fields are filled
+	function checkOtpFields() {
+		let allFilled = true;
+		for (let i = 1; i <= 6; i++) {
+			if (!$(`#digit-${i}`).val()) {
+				allFilled = false;
+				break;
+			}
 		}
-		// Function to check if all OTP fields are filled
-        function checkOtpFields() {
-            let allFilled = true;
-            for (let i = 1; i <= 6; i++) {
-                if (!$(`#digit-${i}`).val()) {
-                    allFilled = false;
-                    break;
-                }
-            }
-            $('#verifyOTP').prop('disabled', !allFilled);
-        }
- 
-        // Handle input for each OTP field
-        $('.inputotp').on('input', function(e) {
-            // Get the current input value
-            let value = $(this).val().trim();
- 
-            // Error message on non-digit characters
-            if (value && !/^\d+$/.test(value)) {
-				e.preventDefault();
-				$('#verify_email_otp_error_message').html('<div class="alert alert-danger"><strong>Fail!</strong> Please enter numbers only.</div>');
-				setTimeout(function(){ $('#verify_email_otp_error_message').html(''); }, 3000);
-				$(this).val('');
-				return;
+		$('#verifyOTP').prop('disabled', !allFilled);
+	}
+
+	// Handle input for each OTP field
+	$('.inputotp').on('input', function(e) {
+		// Get the current input value
+		let value = $(this).val().trim();
+
+		// Error message on non-digit characters
+		if (value && !/^\d+$/.test(value)) {
+			e.preventDefault();
+			$('#verify_email_otp_error_message').html('<div class="alert alert-danger"><strong>Fail!</strong> Please enter numbers only.</div>');
+			setTimeout(function(){ $('#verify_email_otp_error_message').html(''); }, 3000);
+			$(this).val('');
+			return;
+		}
+
+		// Take only the first digit
+		value = value.slice(0, 1);
+
+		// Update the input value
+		$(this).val(value);
+
+		// Check if all fields are filled
+		checkOtpFields();
+
+		// If a digit was entered, move to next input
+		if (value.length === 1) {
+			let nextInput = $(this).next('.inputotp');
+			if (nextInput.length) {
+				nextInput.focus();
 			}
  
             // Take only the first digit
@@ -245,7 +257,7 @@
                     nextInput.focus();
                 }
             }
-        });
+        };
  
         // Handle backspace key
         $('.inputotp').on('keydown', function(e) {
@@ -375,8 +387,49 @@
 
 		});
 
-		
 	});
-	</script>
-</section>
+
+	// Handle backspace key
+	$('.inputotp').on('keydown', function(e) {
+		if (e.key === 'Backspace' && !$(this).val()) {
+			let prevInput = $(this).prev('.inputotp');
+			if (prevInput.length) {
+				prevInput.focus();
+			}
+		}
+	});
+
+	// Handle paste event
+	$('.inputotp').on('paste', function(e) {
+		e.preventDefault();
+		let pastedData = (e.originalEvent.clipboardData || window.clipboardData).getData('text').trim();
+		if (!/^\d+$/.test(pastedData)) {
+			$('#verify_email_otp_error_message').html('<div class="alert alert-danger"><strong>Fail!</strong> Please enter numbers only.</div>');
+			setTimeout(function(){ $('#verify_email_otp_error_message').html(''); }, 3000);
+			return;
+		}
+		pastedData = pastedData.replace(/[^0-9]/g, '').slice(0, 6);
+
+		// Fill the inputs with pasted data
+		for (let i = 0; i < pastedData.length; i++) {
+			$(`#digit-${i + 1}`).val(pastedData[i]);
+		}
+
+		// Check if all fields are filled
+		checkOtpFields();
+
+		// Focus the next empty input or the last input
+		let nextEmptyInput = $('.inputotp').filter(function() {
+			return !$(this).val();
+		}).first();
+
+		if (nextEmptyInput.length) {
+			nextEmptyInput.focus();
+		} else {
+			$('#digit-6').focus();
+		}
+	});
+});
+</script>
+
 %%DEFINE_FOOTER%%

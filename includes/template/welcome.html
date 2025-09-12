@@ -1,89 +1,77 @@
-%%DEFINE_HEADER%%  
-<section>
-<div class="new_signin_bg" style="background:#fff;">
-	<div class="row">
-        <div class="col-xl-5 col-lg-6 col-12">
-        	<div class="welcome_page_main">
-            	<div class="top_logo"><img src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt=""></div>
-                <div class="step">Step 1 of 2</div>
+%%DEFINE_HEADER%%
+
+<div class="flex w-full">
+    <div class="flex gap-3 w-7/12 flex-col p-8 lg:p-10 bg-primary">
+        <div>
+            <a href="%%DEFINE_ROOT_LINK%%/signin" class="kt-btn kt-btn-ghost inline-flex items-center gap-2">
+                <i class="fal fa-angle-left text-xl mt-0.5"></i> <span>Back</span>
+            </a>
+        </div>
+        <div class="flex-1 max-w-[600px] w-full mx-auto pt-14 flex flex-col">
+            <div>
                 <h2>Hey %%DEFINE_USERFIRSTNAME%%! <br>Welcome to</h2>
-                <h1>Custom Esignature</h1>
-                <div class="button_bg"><a href="%%DEFINE_linkModuleNewsignature%%">Create Your First Signature!</a></div>
-                <div class="sign_previous_bg">
-                    <div class="previous_top_bg_box">
-                    	<div class="previous_top_img">
-                    	<div class="previous_left">
-                        	<img src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
+                <h2 class="font-semibold bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom Esignature</h2>
+                <a class="kt-btn kt-btn-primary w-full mt-8" href="%%DEFINE_linkModuleNewsignature%%">Get Started</a>
+            </div>
+            <div class="flex items-center justify-center flex-1">
+                <img class="h-72" src="%%DEFINE_IMAGE_LINK%%/images/slide1.png" alt="">
+            </div>
+            <!-- <div class="sign_previous_bg">
+                <div class="previous_top_bg_box">
+                    <div class="previous_top_img">
+                        <div class="previous_left">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
                             <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
                         </div>
-                        <div class="previous_right_img"><img src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt=""></div>
+                        <div class="previous_right_img">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt="">
+                        </div>
                     </div>
-                    	<p>&nbsp;</p>
-                    	<p>Hey John,</p>
-                        <div class="line_one">&nbsp;</div>
-                        <div class="line_two">&nbsp;</div>
-                        <p>Best,</p>
-                        <p>&nbsp;</p>
-                    </div>
-                    <div class="signature_previous_box">
-                    	%%DEFINE_lauout_load%%
-                      %%DEFINE_signature_profilesize_hidden_input%%
-                    </div>
+                    <p>&nbsp;</p>
+                    <p>Hey John,</p>
+                    <div class="line_one">&nbsp;</div>
+                    <div class="line_two">&nbsp;</div>
+                    <p>Best,</p>
+                    <p>&nbsp;</p>
                 </div>
+                <div class="signature_previous_box">
+                    %%DEFINE_lauout_load%%
+                    %%DEFINE_signature_profilesize_hidden_input%%
+                </div>
+            </div> -->
+        </div>
+        <div class="flex text-sm items-center justify-between">
+            <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+            <div class="flex text-gray-700 items-center gap-2">
+                <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
+                <i class="fas fa-circle text-[6px] text-gray-400"></i>
+                <a href="https://www.customesignature.com/terms-of-use" target="_blank">Terms and Conditions</a>
             </div>
-         </div>   
-        <div class="col-xl-7 col-lg-6 col-12">
-        	<div class="signin_left_bg video">
-            	<video width="100%" border="0" autoplay muted loop>
-                    <source src="%%DEFINE_IMAGE_LINK%%/images/video/esign-signin-page.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>    
-       </div>
+        </div>
     </div>
-    
-  
-</section>
+    <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+    style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
+        <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
+        <div class="swiper w-full" id="loginSlider">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide text-center">
+                <img src="%%DEFINE_IMAGE_LINK%%/images/slide1.png" alt="">
+                <p class="text-2xl text-dark font-medium mb-2 mt-14">Select From multiple Template</p>
+                <p class="text-gray-600">Use the intuitive editor to create a personalized, professional signature with
+                AI-enhanced layout and branding options.</p>
+            </div>
+            <div class="swiper-slide text-center">
+                <img src="%%DEFINE_IMAGE_LINK%%/images/slide2.png" alt="">
+                <p class="text-2xl text-dark font-medium mb-2 mt-14">Select From multiple Template</p>
+                <p class="text-gray-600">Use the intuitive editor to create a personalized, professional signature with
+                AI-enhanced layout and branding options.</p>
+            </div>
+            </div>
+            <div class="swiper-pagination mt-8 !static px-16"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
 %%DEFINE_FOOTER%%
-  
-    
-  
-
- 
-
- 
-
- 
- 
-
-
- 
-              
-    
-
- 
-  
-</section>
-
-<footer>
-  
-</footer>
- 
-  
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-       
-  <script src="js/bootstrap.bundle.min.js"></script> 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--<script src="js/jquery-3.5.1.slim.min.js"></script>	
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>-->
-  
-
-
-    
-  </body>
-</html>
+<script src="js/bootstrap.bundle.min.js"></script>
