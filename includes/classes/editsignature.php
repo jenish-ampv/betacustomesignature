@@ -833,6 +833,32 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 		// for seleveting signature_fontfamily 
 
 
+		// Assign global CLA_HTML object to a local variable
+		$html = $GLOBALS['CLA_HTML'];
+
+		// Load the main template (signature editor sidebar)
+		$html->addMain($GLOBALS['WWW_TPL'] . '/signatureeditorsidebar.html');
+
+		// Add common page components
+		$GLOBALS['HEADER']  = $html->addSub($GLOBALS['WWW_TPL'] . '/page.header.html');
+		$GLOBALS['FOOTER']  = $html->addSub($GLOBALS['WWW_TPL'] . '/page.footer.html');
+		$GLOBALS['SIDEBAR'] = $html->addSub($GLOBALS['WWW_TPL'] . '/page.sidebar.html');
+
+		// Set loops for dynamic content
+		$html->SetLoop('SOCIALICONS', $GLOBALS['social_icons_arr']);
+		$html->SetLoop('SOCIALICONSLINK', $GLOBALS['social_icons_arr']);
+		$html->SetLoop('MARKETPLACEBTN', $GLOBALS['marketplace_btn_arr']);
+		$html->SetLoop('MARKETPLACEBTNLINK', $GLOBALS['marketplace_btn_arr']);
+
+
+		// Start output buffering
+		ob_start();
+		$html->display();
+		$renderedHtml = ob_get_clean(); // Get the buffered output and assign to a variable
+
+		// Assign it to the global variable without displaying it
+		$GLOBALS['EDITOR_SIDEBAR_EDIT_SIGNATURE'] = $renderedHtml;
+
 		
 
 		$GLOBALS['li_editurl'] = GetUrl(array('module'=>$_REQUEST['module'],'id'=>$signature_id));

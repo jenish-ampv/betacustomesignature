@@ -90,7 +90,8 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
         linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor; /* cuts inner area */
         mask-composite: exclude;
-        @apply rounded-[12px] absolute p-[1px] inset-0;
+        border-radius: calc(infinity * 1px);
+        @apply absolute p-[1px] inset-0;
       }
 }
 .kt-input,.kt-select{
