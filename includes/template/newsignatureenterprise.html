@@ -2,7 +2,7 @@
 
 IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
 <style>
-#logoProfileUploadContainer { display: none;}
+
 #msform {display:inline;}
 </style>
 {:IF}
@@ -10,7 +10,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
 <script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
 <section>
   <div class="loader-image" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
-  <div class="new_signin_bg" id="logoProfileUploadContainer">
+  <div class="new_signin_bg hidden" id="logoProfileUploadContainer">
  	<div class="row">
         <div class="col-xl-8 col-lg-8 col-12">
         	<form id="logoimageform">
@@ -115,7 +115,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                             </li>-->
                             <span class="back_btn"><a href="%%DEFINE_ROOT_LINK%%/dashboard"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/back_arrow.svg" alt=""> Back</a></span>
                           </ul>
-                          </div>
+                        </div>
              <div class="tab-content" id="myTabContent">
                <div class="tab-pane fade show active" id="template" role="tabpanel" aria-labelledby="template-tab">
                 <div class="add_details_bg tab_sign_box">
@@ -1789,7 +1789,7 @@ duration: 600
 
 //  New code for next step start
   $('#nxt2').click(function() {
-    $("#logoProfileUploadContainer").hide();
+    $("#logoProfileUploadContainer").removeClass('hidden');
     $("#msform").show();
   });
 //  New code for next step start
