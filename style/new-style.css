@@ -5814,13 +5814,13 @@ section {
     background-image: url(../images/previous-right-bg.png);
 }
 
-.hover_previous_right_bg .sign_previous_bg {
+/* .hover_previous_right_bg .sign_previous_bg {
     border: 1px solid #0000001A;
     border-radius: 10px;
     padding: 50px 50px 20px 50px;
     background: #fff;
     margin: 0 20px;
-}
+} */
 
 /* .hover_previous_right_bg .sign_previous_bg .signature_previous_box { overflow-y:scroll; height:380px; scrollbar-width: thin;}*/
 .hover_previous_right_bg .bottom_bg_btn {
@@ -9859,23 +9859,22 @@ td.layout_border {
         padding: 20px;
     } */
 
-    .ctabutton_main .tab-content>.tab-pane {
+    /* .ctabutton_main .tab-content>.tab-pane {
         padding: 0;
     }
 
     .custome_icon {
         margin-top: 15px;
-    }
+    } */
 
-    .hover_previous_right_bg {
+    /* .hover_previous_right_bg {
         padding: 30px 0;
-        /* height: inherit; */
         margin-bottom: 20px;
-    }
+    } */
 
-    .hover_previous_right_bg .sign_previous_bg {
+    /* .hover_previous_right_bg .sign_previous_bg {
         padding: 30px 30px 20px 30px
-    }
+    } */
 
     .button_box_main .custome_icon {
         padding: 0;
@@ -10168,12 +10167,12 @@ td.layout_border {
         padding-bottom: 30px;
     } */
 
-    .hover_previous_right_bg {
+    /* .hover_previous_right_bg {
         padding: 50px 0;
         background-size: cover;
-    }
+    } */
 
-    .signature_manager_top .left {
+    /* .signature_manager_top .left {
         width: 100%;
     }
 
@@ -10209,7 +10208,7 @@ td.layout_border {
     .new_dashboard_bg .new_dashboard_left {
         width: 70px;
         padding: 20px 15px;
-    }
+    } */
 
     .new_dashboard_bg .new_dashboard_left .top_logo {
         display: none;
@@ -10449,9 +10448,9 @@ td.layout_border {
         padding-bottom: clamp(20px, 3vw, 150px) !important;
     }
 
-    .hover_previous_right_bg {
+    /* .hover_previous_right_bg {
         margin-top: 20px;
-    }
+    } */
 
     .campoin-status-row {
         flex-wrap: wrap;
@@ -10663,15 +10662,15 @@ td.layout_border {
         margin-top: 0;
     }
 
-    .hover_previous_right_bg {
+    /* .hover_previous_right_bg {
         display: inherit;
         padding: 30px;
         margin-top: 0;
-    }
+    } */
 
-    #msformedit .hover_previous_right_bg {
+    /* #msformedit .hover_previous_right_bg {
         margin-top: 20px;
-    }
+    } */
 
     .pricing_table_bg .pricing_plan_box {
         padding: 0 0 20px 0;

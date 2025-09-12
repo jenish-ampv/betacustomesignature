@@ -12,17 +12,17 @@
     <div class="kt-container-fluid p-4 h-full">
       <form id="msformedit" class="h-full">
         <input type="hidden" name="signature_image" value="%%DEFINE_signature_image_nmae%%" />
-        <div class="flex flex-col md:flex-row gap-5 h-full">
+        <div class="flex flex-col lg:flex-row gap-5 h-full">
           <div class="w-full max-w-[700px] border border-gray-300 rounded-xl h-full flex hover_over_sign_bg">
-            <div class="w-52 flex-none flex flex-col">
-              <div class="pt-5 px-5 mb-12">
+            <div class="w-40 xl:w-52 flex-none flex flex-col p-3 md:p-4 xl:p-5">
+              <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-10 2xl:mb-12">
                 <a href="%%DEFINE_ROOT_LINK%%/dashboard">
                   <img class="h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10 inline-block" draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt="">
                 </a>
               </div>
 
               <div
-                class="flex flex-1 flex-col gap-2.5 px-5 *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:p-2 [&>*>*]:border [&>*>*]:border-transparent [&>*>*]:rounded-lg [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10"
+                class="flex flex-1 flex-col gap-2.5 *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:p-2 [&>*>*]:border [&>*>*]:border-transparent [&>*>*]:rounded-lg [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10"
                 data-kt-tabs="true">
                 <div class="group active" data-kt-tab-toggle="#template">
                   <div>
@@ -56,7 +56,7 @@
                 </div>
               </div>
 
-              <div class="p-5">
+              <div class="pt-5">
                 <a class="kt-btn kt-btn-primary w-full" href="%%DEFINE_ROOT_LINK%%/dashboard">
                   <i class="hgi hgi-stroke hgi-circle-arrow-left-02"></i> Back
                 </a>
@@ -2054,7 +2054,7 @@
                             for="signature_profileanimation">OFF/ON</label>
                         </div>
                       </div>
-                      <div class="flex items-center justify-between cursor-not-allowed opacity-50"
+                      <div class="flex items-center justify-between section_disabled"
                         id="signature_profile_select_animation_section">
                         <span class="text-nowrap">Select Animation</span>
                         <input type="hidden" name="signature_profileanimation_gif_name"
@@ -2199,13 +2199,13 @@
           </div>
 
           <div
-            class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-10 h-full overflow-auto">
+            class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 md:p-6 lg:p-8 2xl:p-10 h-full overflow-auto">
             <div class="flex-1 flex flex-col items-center justify-center">
               <div id="snackbar"></div>
               <div id="snackbar-error"></div>
               <div id="snackbar-info"></div>
               <div class="">
-                <div class="sign_previous_bg">
+                <div class="border border-gray-300 rounded-xl p-5 bg-white sign_previous_bg">
                   <div class="previous_top_bg_box">
                     <div class="previous_top_img">
                       <div class="previous_left">
