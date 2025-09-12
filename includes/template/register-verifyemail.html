@@ -15,19 +15,47 @@
 				%%DEFINE_Message%%
 				
 				IF("%%DEFINE_ve_step%%" == "1"){
-				<form name="resetpassword" method="post">
+				<form name="resetpassword" id="verify_email_form" method="post" class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
 					<h5 class="text-2xl text-center font-normal">Verify Email</h5>
-					<div class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
-						<p class="text-gray-600 text-sm">Please enter the email address you used to signup your account. You will receive a OTP to your email account.</p>
-						<div class="flex flex-col gap-6 mt-4">
+					<div class="flex flex-col gap-6">
+						<div>
 							<div>
-								<input type="email" class="kt-input" id="ve_email" name="ve_email"
-									id="ve_email" placeholder="Email Address" required="required"
-									value="%%DEFINE_VEEmail%%">
+								<label class="kt-form-label">Business email</label>
+								<div class="kt-form-control">
+									<input type="email" class="kt-input" id="ve_email" name="ve_email"
+										id="ve_email" placeholder="Business email" required="required">
+								</div>
 							</div>
-							<div>
-								<button type="submit" name="submit" class="kt-btn kt-btn-primary w-full">Send OTP</button>
+							<div class="my-3">
+								<label class="kt-form-label">Password</label>
+								<div class="kt-form-control">
+									<input type="password" class="kt-input" name="ve_password" id="ve_password"
+									placeholder="Password" required="required">
+								</div>
 							</div>
+						</div>
+						<div>
+							<div class="text-center relative">
+								<span class="border-t border-gray-300 absolute w-full top-1/2 left-0"></span>
+								<span class="bg-white px-3 relative z-1 text-gray-500">Or continue with email</span>
+							</div>
+							<div class="grid grid-cols-3 gap-2 mt-4">
+								<a href="%%DEFINE_GOOGLE_LOGIN_AUTHURL%%">
+								<img src="%%DEFINE_IMAGE_LINK%%/images/button-google.svg" alt="">
+								</a>
+								<a href="%%DEFINE_FACEBOOK_SIGNIN_AUTHURL%%">
+								<img src="%%DEFINE_IMAGE_LINK%%/images/button-facebook.svg" alt="">
+								</a>
+								<a href="%%DEFINE_X_SIGNIN_AUTHURL%%">
+								<img src="%%DEFINE_IMAGE_LINK%%/images/button-twitter.svg" alt="">
+								</a>
+							</div>
+						</div>
+						<div>
+							<button type="submit" name="signin" class="kt-btn kt-btn-primary w-full" id="verify_email_submit_button">Continue</button>
+						</div>
+						<div class="text-center text-gray-400 text-sm font-light">
+							Already have an account? <a class="text-primary font-semibold" href="%%DEFINE_moduleLinkLogin%%">Log in</a>
 						</div>
 					</div>
 				</form>
@@ -259,6 +287,95 @@
                 $('#digit-6').focus();
             }
         });
+
+
+		function showError(input, message) {
+			isValidFirstStep = false;
+			let $input = $(input);
+
+			// Check if input is inside .fw-row
+			let $fwRow = $input.closest('.fv-row');
+
+			// If parent .fw-row exists, insert error inside it
+			if ($fwRow.length) {
+				let $existingError = $fwRow.children('.error-msg').last();
+
+				if ($existingError.length) {
+					// Update existing error
+					$existingError.text(message);
+				} else {
+					// Add new error at the end of .fw-row
+					let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+					$fwRow.append($errorMsg);
+				}
+
+			} else {
+				// Default: error message after input
+				let $existingError = $input.nextAll('.error-msg').first();
+
+				if ($existingError.length) {
+					$existingError.text(message);
+				} else {
+					let $lastDiv = $input.nextAll('div').last();
+					let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+
+					if ($lastDiv.length > 0) {
+						$lastDiv.after($errorMsg);
+					} else {
+						$input.after($errorMsg);
+					}
+				}
+			}
+		}
+
+		function removeError(input) {
+			let $input = $(input);
+
+			// Remove the first error message found after the input
+			let $existingError = $input.nextAll('.error-msg').first();
+			if ($existingError.length) {
+				$existingError.remove();
+			}
+		}
+
+		$("#verify_email_submit_button").on("click", function (e){
+			e.preventDefault();
+
+			// Validate company name
+			let companyName = $('#ve_email').val().trim();
+			if (companyName === '') {
+				showError('#ve_email', 'Email is required.');
+			} else{
+				removeError('#ve_email');
+			}
+
+			// Validate password
+			var password = $('#ve_password').val();
+			var errorMessage = '';
+
+			if (password.length < 8) {
+				showError('#ve_password', 'Password must be at least 8 characters long.');
+			}
+			else if (!/[a-z]/.test(password)) {
+				showError('#ve_password', 'Password must contain at least one lowercase letter.');
+			}
+			else if (!/[A-Z]/.test(password)) {
+				showError('#ve_password', 'Password must contain at least one uppercase letter.');
+			}
+			else if (!/[0-9]/.test(password)) {
+				showError('#ve_password', 'Password must contain at least one number.');
+			}
+			else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+				showError('#ve_password', 'Password must contain at least one special character.');
+			}
+			else{
+				removeError('#ve_password');
+				$('#verify_email_form').submit();
+			}
+
+		});
+
+		
 	});
 	</script>
 </section>
