@@ -36,16 +36,43 @@
                   <input class="kt-input" name="user_phone" id="user_phone" placeholder="(999) 999-9999" >
                 </div>
                 <div class="col-span-2">
-                  <label class="kt-form-label">Password</label>
-                  <input type="password" class="kt-input" name="user_password" id="user_password" placeholder="Password" %%DEFINE_signup_google_user_password_display_hide% >
-                </div>
-                <div class="col-span-2">
                   <label class="kt-form-label">Company Name</label>
                   <input class="kt-input" name="user_organization" id="user_organization" placeholder="Company Name">
                 </div>
                 <div>
                   <label class="kt-form-label">Industry</label>
-                  <input class="kt-input" name="user_business" id="user_business" placeholder="IT Industry">
+                  <select class="kt-select" name="user_business" id="user_business" data-kt-select="true" data-kt-select-placeholder="IT Industry"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" selected disabled>Select industry</option>
+                    <option value="real_estate">Real Estate</option>
+                    <option value="automotive_sales">Automotive Sales / Car Dealerships</option>
+                    <option value="insurance">Insurance</option>
+                    <option value="financial_services">Financial Services / Advisors</option>
+                    <option value="marketing_advertising">Marketing & Advertising / Agencies</option>
+                    <option value="software_saas">Software / SaaS</option>
+                    <option value="technology_it">Technology / IT Services</option>
+                    <option value="consulting">Consulting / Business Services</option>
+                    <option value="legal">Legal / Law Firms</option>
+                    <option value="accounting_tax">Accounting / Tax Services</option>
+                    <option value="hr_recruiting">Human Resources / Recruiting</option>
+                    <option value="healthcare">Healthcare / Medical</option>
+                    <option value="fitness_training">Fitness / Personal Training</option>
+                    <option value="wellness_coaching">Wellness / Coaching</option>
+                    <option value="retail_ecommerce">Retail / E-commerce</option>
+                    <option value="hospitality_restaurants">Hospitality / Restaurants</option>
+                    <option value="travel_tourism">Travel & Tourism</option>
+                    <option value="events_entertainment">Events / Entertainment</option>
+                    <option value="construction_trades">Construction / Trades</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="logistics_transportation">Logistics / Transportation</option>
+                    <option value="energy_utilities">Energy / Utilities</option>
+                    <option value="education_training">Education / Training</option>
+                    <option value="nonprofit">Nonprofit / Community Organizations</option>
+                    <option value="government">Government / Public Sector</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
                 <div>
                   <label class="kt-form-label">Company Size</label>
@@ -54,15 +81,40 @@
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }'>
                     <option value="" selected disabled>Select company size</option>
-                    <option value="1-10">1-10</option>
-                    <option value="11-50">11-50</option>
-                    <option value="50-100">50-100</option>
-                    <option value="100+">100+</option>
+                    <option value="Just me (solo)">Just me (solo)</option>
+                    <option value="2–5 employees">2–5 employees</option>
+                    <option value="6–10 employees">6–10 employees</option>
+                    <option value="11–25 employees">11–25 employees</option>
+                    <option value="26–50 employees">26–50 employees</option>
+                    <option value="51–100 employees">51–100 employees</option>
+                    <option value="101–250 employees">101–250 employees</option>
+                    <option value="251–500 employees">251–500 employees</option>
+                    <option value="501–1,000 employees">501–1,000 employees</option>
+                    <option value="1,001–2,500 employees">1,001–2,500 employees</option>
+                    <option value="2,501–5,000 employees">2,501–5,000 employees</option>
+                    <option value="5,001–10,000 employees">5,001–10,000 employees</option>
+                    <option value="10,000+ employees">10,000+ employees</option>
                   </select>
                 </div>
                 <div class="col-span-2">
                   <label class="kt-form-label">Job Title</label>
-                  <input class="kt-input" name="user_job_title" id="user_job_title" placeholder="Design Manager">
+                  <select class="kt-select" name="user_job_title" id="user_job_title" data-kt-select="true" data-kt-select-placeholder="Design Manager"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" selected disabled>Select job title</option>
+                    <option value="Owner / Founder / CEO">Owner / Founder / CEO</option>
+                    <option value="President / Partner">President / Partner</option>
+                    <option value="VP / Director">VP / Director</option>
+                    <option value="Sales Manager">Sales Manager</option>
+                    <option value="Marketing Manager">Marketing Manager</option>
+                    <option value="IT Manager">IT Manager</option>
+                    <option value="Sales Rep / Account Executive">Sales Rep / Account Executive</option>
+                    <option value="Marketing Specialist">Marketing Specialist</option>
+                    <option value="Support / Customer Success">Support / Customer Success</option>
+                    <option value="Admin / Coordinator">Admin / Coordinator</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -87,7 +139,34 @@
               <div class="grid grid-cols-1 gap-4">
                 <div>
                   <label class="kt-form-label">How many team members need a signature?</label>
-                  <input type="number" class="kt-input" name="user_team_size" id="user_team_size" placeholder="40">
+                  <select class="kt-select" name="user_team_size" id="user_team_size" data-kt-select="true" data-kt-select-placeholder="40"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" selected disabled>Select team size</option>
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
+                    <option value="40">40</option>
+                    <option value="45">45</option>
+                    <option value="50">50</option>
+                    <option value="55">55</option>
+                    <option value="60">60</option>
+                    <option value="65">65</option>
+                    <option value="70">70</option>
+                    <option value="75">75</option>
+                    <option value="80">80</option>
+                    <option value="85">85</option>
+                    <option value="90">90</option>
+                    <option value="95">95</option>
+                    <option value="100+">100+</option>
+                  </select>
                 </div>
                 <div>
                   <label class="kt-form-label">What Email Platform You Use?</label>
@@ -96,12 +175,13 @@
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }' multiple name="user_email_platform" id="user_email_platform">
                     <option value="" selected disabled>Select Email Platform</option>
-                    <option value="gmail">Gmail</option>
-                    <option value="outlook">Outlook</option>
-                    <option value="yahoo">Yahoo Mail</option>
-                    <option value="icloud">Apple Mail (iCloud)</option>
-                    <option value="zoho" disabled>Zoho Mail</option>
-                    <option value="protonmail" disabled>ProtonMail</option>
+                    <option value="Gmail">Gmail</option>
+                    <option value="Outlook">Outlook</option>
+                    <option value="Apple Mail">Apple Mail</option>
+                    <option value="Yahoo Mail">Yahoo Mail</option>
+                    <option value="Productivity Email Apps">Productivity Email Apps</option>
+                    <option value="CRM Tool">CRM Tool</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div class="mt-5">
@@ -192,6 +272,7 @@
             <div class="text-center">
               <input type="hidden" id="register_url" value="%%DEFINE_linkModuleRegister%%/registerFormSubmit" />
               <input type="hidden" id="register_user_email" name="register_user_email" value="%%DEFINE_USER_EMAIL%%" />
+              <input type="hidden" id="register_user_password" name="register_user_password" value="%%DEFINE_USER_PASSWORD%%" />
               <button type="submit" class="kt-btn kt-btn-primary" id="userRegisterFormSubmit">Sign Up</button>
             </div>
           </div>
@@ -349,11 +430,6 @@
       }
     }
 
-
-
-
-
-
     function removeError(input) {
       let $input = $(input);
 
@@ -402,29 +478,6 @@
         removeError('#user_phone');
       }
 
-      // Validate password
-      var password = $('#user_password').val();
-      var errorMessage = '';
-
-      if (password.length < 8) {
-        showError('#user_password', 'Password must be at least 8 characters long.');
-      }
-      else if (!/[a-z]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one lowercase letter.');
-      }
-      else if (!/[A-Z]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one uppercase letter.');
-      }
-      else if (!/[0-9]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one number.');
-      }
-      else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one special character.');
-      }
-      else{
-        removeError('#user_password');
-      }
-
       // Validate company name
       let companyName = $('#user_organization').val().trim();
       if (companyName === '') {
@@ -434,8 +487,8 @@
       }
 
       // Validate industry
-      let industry = $('#user_business').val().trim();
-      if (industry === '') {
+      let industry = $('#user_business').val();
+      if (industry === null || industry === '') {
         showError('#user_business', 'Industry is required.');
       } else{
         removeError('#user_business');
@@ -450,8 +503,8 @@
       }
 
       // Validate job title
-      let jobTitle = $('#user_job_title').val().trim();
-      if (jobTitle === '') {
+      let jobTitle = $('#user_job_title').val();
+      if (jobTitle === null || jobTitle === '') {
         showError('#user_job_title', 'Job title is required.');
       } else{
         removeError('#user_job_title');
@@ -478,15 +531,12 @@
     $("#userRegisterFormSubmit").on("click", function (e){
       let isValidSecondStep = true;
 
-      // Validate user_team_size (required, positive integer)
-      const teamSize = $("#user_team_size").val().trim();
-      if (!teamSize) {
+      // Validate user_team_size 
+      let teamSize = $('#user_team_size').val();
+      if (teamSize === null || teamSize === '') {
         isValidSecondStep = false;
         showError('#user_team_size', 'Team size is required.');
-      } else if (!/^\d+$/.test(teamSize) || parseInt(teamSize) <= 0) {
-        isValidSecondStep = false;
-        showError('#user_team_size', 'Please enter a valid positive number.');
-      } else {
+      } else{
         removeError('#user_team_size');
       }
 
@@ -515,8 +565,6 @@
         removeError('.what_brought_you:first');
       }
 
-      
-      debugger;
       if(!isValidSecondStep){
         e.preventDefault();
       }else{
@@ -617,9 +665,12 @@
               // Push to dataLayer
               dataLayer.push(purchaseEvent);
 
-
               // Redirect to the URL from the server
               window.location.href = response.redirect_thnk;
+            }
+            
+            if(response.error === 1){
+              window.location.href = response.redirect_url;
             }
           },
           error: function(xhr, status, error) {
@@ -638,7 +689,7 @@
     $("#back2").on("click", function (e) {
       e.preventDefault();
       if($(`[data-step="1"]`).is(":visible")){
-        window.location.href = "%%DEFINE_ROOT_LINK%%/signin";
+        window.location.href = "%%DEFINE_ROOT_LINK%%/signup/verifyemail";
         return;
       }
       showStep(1);
