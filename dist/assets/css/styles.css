@@ -2501,6 +2501,11 @@
       padding: calc(var(--spacing) * 6);
     }
   }
+  .md\:\!text-left {
+    @media (width >= 48rem) {
+      text-align: left !important;
+    }
+  }
   .lg\:relative {
     @media (width >= 64rem) {
       position: relative;
