@@ -125,14 +125,13 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
   </div>
 </div>
 
-<form id="msform" class="w-full">
+<form id="msform" class="w-full overflow-hidden">
   <input type="hidden" name="signature_image" value="">
-  <div class="w-full flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
-    <main class="h-full" id="content" role="content">
+  <div class="w-full h-full flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    <main class="h-full overflow-hidden" id="content" role="content">
       <div class="kt-container-fluid p-4 h-full">
         <div class="flex flex-col lg:flex-row gap-5 h-full">
             %%DEFINE_EDITOR_SIDEBAR_NEW_SIGNATURE%%
-
           <div
             class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 md:p-6 lg:p-8 2xl:p-10 h-full overflow-auto">
             <div class="flex-1 flex flex-col items-center justify-center">
