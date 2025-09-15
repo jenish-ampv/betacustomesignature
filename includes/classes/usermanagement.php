@@ -66,13 +66,13 @@ class CIT_USERMANAGEMENT
         $GLOBALS['departmentUserTableBody'] = "";
 		foreach ($manageSubUsers as $row) {
             if($row['is_active'] == 1){
-                $status = "<span class='enabled-btn'>Enabled</span>";
+                $status = "<span class='kt-badge kt-badge-mono enabled-btn'>Enabled</span>";
                 $checked = "checked";
             }else if($row['is_active'] == 2){
-                $status = "<span class='pending-btn'>Pending</span>";
+                $status = "<span class='kt-badge kt-badge-warning pending-btn'>Pending</span>";
                 $checked = "checked";
             }else{
-                $status = "<span class='disabled-btn'>Disabled</span>";
+                $status = "<span class='kt-badge kt-badge-secondary disabled-btn'>Disabled</span>";
                 $checked = "";
             }
             if(!$row['permission']){
@@ -86,13 +86,22 @@ class CIT_USERMANAGEMENT
                 <td>".$row['email']."</td>
                 <td>".$status."</td>
                 <td>
-                    <div class='departmentUser-action-btn'>";
-                     if($row['is_active'] == 2){
-                        $GLOBALS['departmentUserTableBody'] .= "<a href='javascript:void(0);' onclick='sendInviteMail(\"".$GLOBALS['usermanagement']."/inviteuser?user_id=".$row['id']."\")' class='f-20 feather icon-edit invite_link' title='Send Password Link'></a>";
-                    }
-                    $GLOBALS['departmentUserTableBody'] .= "<a href='#' class='f-20 feather icon-edit edit_user' data-fname='".$row['user_firstname']."' data-lname='".$row['user_lastname']."' data-email='".$row['email']."' data-user_status='".$row['is_active']."' data-permission='".$row['permission']."' data-department_list='".$row['department_list']."' title='View' data-bs-toggle='modal' data-bs-target='#addUserModel'>&nbsp;</a><a href='".$GLOBALS['usermanagement']."/deleteuser?user_id=".$row['id']."' class='f-20 feather icon-trash delete_user' title='Delete'>&nbsp;</a> 
-                        <div class='form-check form-switch departmentUser-change-status'>
-                            <input class='form-check-input' type='checkbox' role='switch' id='departmentUser-action' name='user_status_button' value='1' data-sub_user_id='".$row['id']."' ".$checked.">
+                    <div class='flex items-center gap-3'>";
+                        if($row['is_active'] == 2){
+                            $GLOBALS['departmentUserTableBody'] .= "
+                            <a href='javascript:void(0);' onclick='sendInviteMail(\"".$GLOBALS['usermanagement']."/inviteuser?user_id=".$row['id']."\")' class='feather icon-edit invite_link' title='Send Password Link'>
+                                <i class='hgi hgi-stroke hgi-pencil-edit-02 text-xl'></i>
+                            </a>";
+                        }
+                        $GLOBALS['departmentUserTableBody'] .= "
+                        <a href='#' class='feather icon-edit edit_user' data-fname='".$row['user_firstname']."' data-lname='".$row['user_lastname']."' data-email='".$row['email']."' data-user_status='".$row['is_active']."' data-permission='".$row['permission']."' data-department_list='".$row['department_list']."' title='View' data-bs-toggle='modal' data-bs-target='#addUserModel'>
+                            <i class='hgi hgi-stroke hgi-pencil-edit-02 text-xl'></i>
+                        </a>
+                        <a href='".$GLOBALS['usermanagement']."/deleteuser?user_id=".$row['id']."' class='feather icon-trash delete_user' title='Delete'>
+                            <i class='text-danger hgi hgi-stroke hgi-delete-02 text-xl'></i>
+                        </a> 
+                        <div class='departmentUser-change-status'>
+                            <input class='kt-checkbox' type='checkbox' role='switch' id='departmentUser-action' name='user_status_button' value='1' data-sub_user_id='".$row['id']."' ".$checked.">
                         </div
                     </div>
                 </td>

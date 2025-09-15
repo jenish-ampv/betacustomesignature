@@ -106,11 +106,11 @@ class CIT_INTEGRATIONS
 		}
 		if($_REQUEST['category_id'] =='google' && $_REQUEST['id'] == 'connect'){ // google connect
 			$GLOBALS['PageView'] = 'googleconnect';
-			$GLOBALS['Gstep1'] ='d-none'; $GLOBALS['Gstep2'] ='d-none'; $GLOBALS['Gstep3'] ='d-none';
+			$GLOBALS['Gstep1'] ='hidden'; $GLOBALS['Gstep2'] ='hidden'; $GLOBALS['Gstep3'] ='hidden';
 			if($_REQUEST['subid'] == 2){
 				$GLOBALS['Gstep2'] ='';
-				$GLOBALS['contentclsyes'] = $_REQUEST['sid'] == 0 ? 'd-none' : '';
-				$GLOBALS['contentclsno'] = $_REQUEST['sid'] == 1 ? 'd-none' : '';
+				$GLOBALS['contentclsyes'] = $_REQUEST['sid'] == 0 ? 'hidden' : '';
+				$GLOBALS['contentclsno'] = $_REQUEST['sid'] == 1 ? 'hidden' : '';
 			}else if($_REQUEST['subid'] == 3){
 				$GLOBALS['Gstep3'] ='';
 			}else{
@@ -261,21 +261,21 @@ class CIT_INTEGRATIONS
 		$intROw = $GLOBALS['DB']->row("SELECT count(*) connected FROM registerusers_token WHERE user_id = ? AND token_platform = 0",array($GLOBALS['USERID']));
 		$msconnected = $intROw['connected'];
 		if($msconnected > 0){
-			$GLOBALS['connectbtncls'] ='d-none';
+			$GLOBALS['connectbtncls'] ='hidden';
 			$GLOBALS['connectedbtncls'] ='';
 		}else{
 			$GLOBALS['connectbtncls'] ='';
-			$GLOBALS['connectedbtncls'] ='d-none';
+			$GLOBALS['connectedbtncls'] ='hidden';
 		}
 		
 		$intROw = $GLOBALS['DB']->row("SELECT count(*) glconnected FROM registerusers_token WHERE user_id = ? AND token_platform = 1",array($GLOBALS['USERID']));
 		$glconnected = $intROw['glconnected'];
 		if($glconnected > 0){
-			$GLOBALS['glconnectbtncls'] ='d-none';
+			$GLOBALS['glconnectbtncls'] ='hidden';
 			$GLOBALS['glconnectedbtncls'] ='';
 		}else{
 			$GLOBALS['glconnectbtncls'] ='';
-			$GLOBALS['glconnectedbtncls'] ='d-none';
+			$GLOBALS['glconnectedbtncls'] ='hidden';
 		}
 		
 		

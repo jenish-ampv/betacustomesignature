@@ -1187,12 +1187,12 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 				}else{
 					$GLOBALS['signature_custom_fields'].='
 					<div class="flex items-center gap-4 inputbox mt-5">
-						<div class="flex items-center gap-2">
-							<div class="w-28 flex-none floting-input">
-								<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" placeholder="Title" data-class="'.$layout_labelclass.'">
+						<div class="flex items-center gap-2 flex-1">
+							<div class="w-20 flex-none floting-input">
+								<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" data-class="'.$layout_labelclass.'">
 								<label for="">Title</label>
 							</div>
-							<div class="flex-1 floting-input">
+							<div class="flex-1 min-w-28 floting-input">
 								<input type="text" class="kt-input" id="" name="custom_field[]" value="'.$fieldvalue.'" data-class="'.$layout_class.'">
 								<label for="">'.$fieldlabel.'</label>
 								<input type="hidden" name="custom_fieldtype[]" value="'.$fieldtype.'">
@@ -1369,9 +1369,9 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 					$GLOBALS['signature_dividerpadding'] = '0 0 0 15px';
 				}
 				 $GLOBALS['layout_list'] .= '
-				 <div class="relative block cursor-pointer">
+				 <div class="relative inline-block cursor-pointer">
 				 	'.$templateTitle.'
-					<label class="relative block cursor-pointer" for="layout_id'.$layout_id.'">
+					<label class="relative inline-block cursor-pointer" for="layout_id'.$layout_id.'">
 						<input type="radio" 
 							name="layout_id" 
 							id="layout_id'.$layout_id.'" 

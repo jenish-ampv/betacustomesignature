@@ -12,48 +12,41 @@
     <div class="kt-container-fluid p-4 h-full">
       <form id="msformedit" class="h-full">
         <input type="hidden" name="signature_image" value="%%DEFINE_signature_image_nmae%%" />
-        <div class="flex flex-col lg:flex-row gap-5 h-full">
+        <div class="flex flex-col lg:flex-row gap-5 lg:h-full">
           %%DEFINE_EDITOR_SIDEBAR_EDIT_SIGNATURE%%
 
           <div
-            class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 md:p-6 lg:p-8 2xl:p-10 h-full overflow-auto">
+            class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 h-full overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
             <div class="flex-1 flex flex-col items-center justify-center">
               <div id="snackbar"></div>
               <div id="snackbar-error"></div>
               <div id="snackbar-info"></div>
-              <div class="">
-                <div class="border border-gray-300 rounded-xl p-5 bg-white sign_previous_bg">
-                  <div class="previous_top_bg_box">
-                    <div class="previous_top_img">
-                      <div class="previous_left">
-                        <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
-                        <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
-                      </div>
-                      <div class="previous_right_img"><img draggable="false"
-                          src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt=""></div>
-                    </div>
-                    <p>&nbsp;</p>
-                    <p>Hey John,</p>
-                    <div class="line_one">&nbsp;</div>
-                    <div class="line_two">&nbsp;</div>
-                    <p>Best,</p>
-                    <p>&nbsp;</p>
+              <div class="lg:border border-gray-300 rounded-xl lg:p-5 lg:bg-white max-w-[740px] mx-auto w-full">
+                <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
+                  <div class="flex items-center gap-3">
+                    <img class="size-9 rounded-full object-cover" draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
+                    <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
                   </div>
-                  <div class="signature_previous_box">
-                    %%DEFINE_lauout_load%%
-                    %%DEFINE_signature_profilesize_hidden_input%%
-                  </div>
-                  <div class="signature_temp_preview_box">
-                  </div> <!-- 	// code is for saving signature html(to use in deploy)  -->
+                  <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt="">
                 </div>
-                <div class="flex justify-center gap-4 mt-5 md:mt-6 lg:mt-8 xl:mt-10">
-                  <a href="%%DEFINE_linkModuleDashboard%%?department_id=%%DEFINE_current_department_id%%"
-                    class="previous kt-btn kt-btn-outline action-button-previous opacity-10 border-gray-600">Go Back</a>
-                  <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button"
-                    value="Next Step">
-                    Save Signature <i class="hgi hgi-stroke hgi-arrow-right-double"></i>
-                  </button>
-                </div>
+                <p>&nbsp;</p>
+                <p class="text-gray-300">Hey John,</p>
+                <div class="h-2 bg-gray-200 rounded-full mt-3">&nbsp;</div>
+                <div class="h-2 bg-gray-200 rounded-full mt-3 mb-10 w-1/2">&nbsp;</div>
+                <p class="text-gray-300">Best,</p>
+                <p>&nbsp;</p>
+                %%DEFINE_lauout_load%%
+                %%DEFINE_signature_profilesize_hidden_input%%
+                <div class="signature_temp_preview_box">
+                </div> <!-- 	// code is for saving signature html(to use in deploy)  -->
+              </div>
+              <div class="flex justify-center gap-4 mt-5 md:mt-6 lg:mt-8 xl:mt-10">
+                <a href="%%DEFINE_linkModuleDashboard%%?department_id=%%DEFINE_current_department_id%%"
+                  class="previous kt-btn kt-btn-mono action-button-previous">Go Back</a>
+                <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button"
+                  value="Next Step">
+                  Save Signature <i class="hgi hgi-stroke hgi-arrow-right-double"></i>
+                </button>
               </div>
             </div>
             <div class="flex flex-wrap text-sm items-center justify-between px-4 text-center mt-5">
