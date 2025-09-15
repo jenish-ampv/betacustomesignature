@@ -465,7 +465,7 @@ class CIT_REGISTER
 			$otp = $_POST['digit-1'].$_POST['digit-2'].$_POST['digit-3'].$_POST['digit-4'].$_POST['digit-5'].$_POST['digit-6'];
 			if($otp == $_SESSION[GetSession('ve_otp')]){
 				$_SESSION[GetSession('ve_otpverify')] = $otp;
-				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'userdetails','email'=>bin2hex($_SESSION[GetSession('ve_email')]))));
+				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'userdetails','email'=>bin2hex($_SESSION[GetSession('ve_email')]),'password'=>bin2hex($_SESSION[GetSession('ve_password')]))));
 			}else{
 				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> code not match!.</div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
@@ -491,6 +491,7 @@ class CIT_REGISTER
 		// send otp
 		if($_POST['ve_email']){
 			$user_email = $_POST['ve_email'];
+			$user_password = $_POST['ve_password'];
 
 			$rowVE = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_email = ?",array($user_email));
 			$rowVESubUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers_sub_users` WHERE email = ?",array($user_email));
@@ -508,6 +509,7 @@ class CIT_REGISTER
 				$GLOBALS['veotp'] = rand(100000,999999);
 				$_SESSION[GetSession('ve_otp')] = $GLOBALS['veotp'];
 				$_SESSION[GetSession('ve_email')] = $user_email;
+				$_SESSION[GetSession('ve_password')] = $user_password;
 				$to = $user_email;
 				$message= _getEmailTemplate('register_verify_email');
 				$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
@@ -540,6 +542,7 @@ class CIT_REGISTER
 	public function userDetails() {
 		if(isset($_REQUEST['id'])){
 			$GLOBALS['USER_EMAIL'] = hex2bin($_REQUEST['id']);
+			$GLOBALS['USER_PASSWORD'] = hex2bin($_REQUEST['subid']);
 		}
 		else{
 			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> something went wrong, try again later.</div>';
@@ -563,14 +566,18 @@ class CIT_REGISTER
 		$rowSubUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers_sub_users` WHERE email = ?",array($postData['register_user_email']));
 		
 		if($rowUser){
-			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
-			GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+			$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			header('Content-Type: application/json');
+			echo json_encode($returnData);exit();
 		}
 		else if($rowSubUser){
-			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
-			GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+			$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			header('Content-Type: application/json');
+			echo json_encode($returnData);exit();
 		}
-		$user_password = md5($postData['user_password']);
+		$user_password = md5($postData['register_user_password']);
 		$data =array('user_firstname'=>trim($postData['user_first_name']),'user_lastname'=>trim($postData['user_last_name']),'user_email'=>trim(strtolower($postData['register_user_email'])),'user_phone'=>$postData['user_phone'],'user_password'=>$user_password,'user_organization'=>trim($postData['user_organization']),'user_business'=>$postData['user_business'],'user_company_size'=>$postData['user_company_size'],'user_job_title'=>$postData['user_job_title'],'user_team_size'=>$postData['user_team_size'],'user_email_platform'=>$postData['user_email_platform'],'heard_about_us'=>$postData['heard_about_us'],'what_brought_you'=>$postData['what_brought_you'],'user_ip'=>$_SERVER['REMOTE_ADDR'],'user_planactive'=>1);
 
 		$insert_id = $GLOBALS['DB']->insert("registerusers",$data);
@@ -579,12 +586,19 @@ class CIT_REGISTER
 			$GLOBALS['DB']->insert("registerusers_subscription",$dataSubscription);
 			if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$insert_id)) {
 				if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$insert_id)) {
-					die("\"temp\" folder not created. Permission problem.......");
+					die();
+					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> temp folder not created. Permission problem.</div>';
+					$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+					header('Content-Type: application/json');
+					echo json_encode($returnData);exit();
 				}
 			}
 			if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
 				if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
-					die("\"temp\" folder not created. Permission problem.......");
+					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> temp folder not created. Permission problem.</div>';
+					$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+					header('Content-Type: application/json');
+					echo json_encode($returnData);exit();
 				}
 			}
 			unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
