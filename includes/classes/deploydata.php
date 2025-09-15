@@ -16,8 +16,8 @@ class CIT_DEPLOYDATA
 		
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='hidden'; 
+		$GLOBALS['bulkuploadcls'] = 'hidden'; 
 		$GLOBALS['azurestep2'] ='';
 		if($_REQUEST['category_id'] == 'deployoutlooksubmit'){
 			$this->deployoutlooksubmit();exit();
@@ -115,13 +115,13 @@ class CIT_DEPLOYDATA
 			$mem_count = 0;
 			
 			foreach($getavailableGroups as $group){
-				$GLOBALS['group_list'] .='  <div class="accordion-item"><div class="accordion-body">';
+				$GLOBALS['group_list'] .='  <div class="accordion-item"><div class="accordion-body px-8">';
 				$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$group['signature_id'].'">';
 				if($group['signature_import_email'] != ""){
-						$GLOBALS['group_list'] .='<div class="member_list member_deploy"><span class="member_chek"><input class="form-check-input mem_checkbox" type="checkbox" name="members'.$mem_count.'" id="'.$group['signature_id'].'-'.$group['signature_id'].'" value="'.$group['signature_id'].'"  data-wrapper="wrapper-'.$group['signature_id'].'"
-	data-master="'.$group['signature_id'].'"><label for="'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label" style="margin-left: 10px;">'.$group['signature_import_email'].'</span><div class="deploy_mail" style="display:none;" value="'.$group['signature_import_email'].'"></div>';
+						$GLOBALS['group_list'] .='<div class="member_list member_deploy py-4 border-b border-gray-300"><span class="flex items-center gap-2 pb-2"><input class="kt-checkbox mem_checkbox" type="checkbox" name="members'.$mem_count.'" id="'.$group['signature_id'].'-'.$group['signature_id'].'" value="'.$group['signature_id'].'"  data-wrapper="wrapper-'.$group['signature_id'].'"
+	data-master="'.$group['signature_id'].'"><label for="'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label pl-7">'.$group['signature_import_email'].'</span><div class="deploy_mail" style="display:none;" value="'.$group['signature_import_email'].'"></div>';
 	
-					$GLOBALS['search_list'] .='<div class="member_list search-container" style="display:none;"><span class="member_chek"><input class="form-check-input mem_search_checkbox" type="checkbox" name="" id="search_'.$group['signature_id'].'-'.$group['signature_id'].'" value=""  data-master="'.$group['signature_id'].'"><label for="search_'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label" style="margin-left: 10px;">'.$group['signature_import_email'].'</span>'.$group['mail'].'</div>';
+					$GLOBALS['search_list'] .='<div class="member_list search-container" style="display:none;"><span class="flex items-center gap-2 pb-2"><input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$group['signature_id'].'-'.$group['signature_id'].'" value=""  data-master="'.$group['signature_id'].'"><label for="search_'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label pl-7">'.$group['signature_import_email'].'</span>'.$group['mail'].'</div>';
 					$mem_count++;
 				}
 				$GLOBALS['group_list'] .='</div></div>';
@@ -251,12 +251,12 @@ class CIT_DEPLOYDATA
 			$mem_count = 0;
 			
 			foreach($getavailableGroups as $group){
-				$GLOBALS['group_list'] .='  <div class="accordion-item"><div class="accordion-body">';
+				$GLOBALS['group_list'] .='  <div class="accordion-item"><div class="accordion-body px-8">';
 				$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$group['signature_id'].'">';
 				if($group['signature_import_email'] != ""){
-						$GLOBALS['group_list'] .='<div class="member_list member_deploy"><span class="member_chek"><input class="form-check-input mem_checkbox" type="checkbox" name="members'.$mem_count.'" id="'.$group['signature_id'].'-'.$group['signature_id'].'" value="'.$group['signature_id'].'"  data-wrapper="wrapper-'.$group['signature_id'].'" data-master="'.$group['signature_id'].'"><label for="'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label" style="margin-left: 10px;">'.$group['signature_import_email'].'</span><div class="deploy_mail" style="display:none;" value="'.$group['signature_import_email'].'"></div>';
+						$GLOBALS['group_list'] .='<div class="member_list member_deploy py-4 border-b border-gray-300"><span class="flex items-center gap-2 pb-2"><input class="kt-checkbox mem_checkbox" type="checkbox" name="members'.$mem_count.'" id="'.$group['signature_id'].'-'.$group['signature_id'].'" value="'.$group['signature_id'].'"  data-wrapper="wrapper-'.$group['signature_id'].'" data-master="'.$group['signature_id'].'"><label for="'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label pl-7">'.$group['signature_import_email'].'</span><div class="deploy_mail" style="display:none;" value="'.$group['signature_import_email'].'"></div>';
 	
-					$GLOBALS['search_list'] .='<div class="member_list search-container" style="display:none;"><span class="member_chek"><input class="form-check-input mem_search_checkbox" type="checkbox" name="" id="search_'.$group['signature_id'].'-'.$group['signature_id'].'" value=""  data-master="'.$group['signature_id'].'"><label for="search_'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label" style="margin-left: 10px;">'.$group['signature_import_email'].'</span>'.$group['mail'].'</div>';
+					$GLOBALS['search_list'] .='<div class="member_list search-container" style="display:none;"><span class="flex items-center gap-2 pb-2"><input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$group['signature_id'].'-'.$group['signature_id'].'" value=""  data-master="'.$group['signature_id'].'"><label for="search_'.$group['signature_id'].'-'.$group['signature_id'].'">'.$group['signature_firstname'].'</label></span><span class="deploy_mail_label pl-7">'.$group['signature_import_email'].'</span>'.$group['mail'].'</div>';
 					$mem_count++;
 				}
 				$GLOBALS['group_list'] .='</div></div>';
