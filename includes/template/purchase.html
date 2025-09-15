@@ -215,20 +215,20 @@ jQuery.noConflict();
       $("#yearly-tab-panel").removeClass('hidden');
       $("#monthly-tab-panel").addClass('hidden');
       $("#plan_id4").prop('checked', true);
-      $("#form_plan_id").val(4);
+      $("#form_plan_id").val(8);
     }else{
       if($('input[name="plan_id"]:checked').data('section') == 'monthly'){
         $('#plan_type').prop('checked', false);
         $("#monthly-tab-panel").removeClass('hidden');
         $("#yearly-tab-panel").addClass('hidden');
         $("#plan_id2").prop('checked', true);
-        $("#form_plan_id").val(2);
+        $("#form_plan_id").val(7);
       }else{
         $('#plan_type').prop('checked', true);
         $("#yearly-tab-panel").removeClass('hidden');
         $("#monthly-tab-panel").addClass('hidden');
         $("#plan_id4").prop('checked', true);
-        $("#form_plan_id").val(4);
+        $("#form_plan_id").val(8);
       }
     }
     $(document).ready(function(){
@@ -237,13 +237,13 @@ jQuery.noConflict();
           $("#yearly-tab-panel").removeClass('hidden');
           $("#monthly-tab-panel").addClass('hidden');
           $("#plan_id4").prop('checked', true);
-          $("#form_plan_id").val(4);
+          $("#form_plan_id").val(8);
         } else {
           $("#month-tab").click();
           $("#monthly-tab-panel").removeClass('hidden');
           $("#yearly-tab-panel").addClass('hidden');
           $("#plan_id2").prop('checked', true);
-          $("#form_plan_id").val(2);
+          $("#form_plan_id").val(7);
         }
         updateSelectPlan();
     });
@@ -418,12 +418,6 @@ jQuery.noConflict();
       multiplyprice = 12;
      }
      planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
-     
-    // month
-    // var basic_month_unit = JSON.parse('%%DEFINE_basic_month_unit%%');
-       //  var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
-    // $('.month_basicprice').text(basic_month_unit[unencoded]);
-    // $('.month_proprice').text(pro_month_unit[unencoded]);
    
      $(".rno").removeClass("active");
      $("#rno"+unencoded).addClass("active");

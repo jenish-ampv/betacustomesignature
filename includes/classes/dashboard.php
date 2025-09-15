@@ -9,7 +9,7 @@ class CIT_DASHBOARD
 		}
 
 		if($GLOBALS['plan_cancel'] == 1){
-			GetFrontRedirectUrl($GLOBALS['renewaccount']);
+			GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));
 		}
 		
 		if($GLOBALS['plan_type'] == 'FREE' && $GLOBALS['freeperiod_dayleft'] == 0){
@@ -18,7 +18,7 @@ class CIT_DASHBOARD
 		}
 		elseif($GLOBALS['PLAN_STATUS'] == 0){
 			if(!isset($_REQUEST['category_id']) && !isset($_REQUEST['uuid'])){
-				GetFrontRedirectUrl($GLOBALS['renewaccount']);
+				GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));
 			}
 		}
 

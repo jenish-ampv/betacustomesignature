@@ -66,7 +66,7 @@
                           <div class="price">$<div id="month_proprice">13</div> <span><div id="month_propricespl" style="display:none;">15</div><small style="color:#B0B0B0; font-weight:400; font-size:14px;"> / month</small></span></div>
                           <div class="price_mo"><span>Billed Monthly</span></div>
                           <div class="price_mo"><span>Full animation features with advanced layouts, interactive icons, team management and auto-deployment./span></div>
-                          <a class="getstarted" href="%%DEFINE_purchase%%/plan/2/1" id="gs_qpro">Get Started</a>
+                          <a class="getstarted" href="%%DEFINE_purchase%%/plan/7/1" id="gs_qpro">Get Started</a>
                       </div>	
                       <ul>
                     <li class="right" style="font-weight:600;">Interactive Signature</li>
@@ -122,7 +122,7 @@
                         <div class="price">$<div id="year_proprice">15</div>  <br /><small>/ mo</small></span></div>
                         <div class="price_mo"><span>Billed Annualy</span></div>
                         <div class="price_mo"><span>Full animation features with advanced layouts, interactive icons, team management and auto-deployment./span></div>
-                        <a class="getstarted" href="%%DEFINE_purchase%%/plan/4/1" id="gs_ypro">Get Started</a>
+                        <a class="getstarted" href="%%DEFINE_purchase%%/plan/8/1" id="gs_ypro">Get Started</a>
                     </div>	
                     <ul>
                     <li class="right" style="font-weight:600;">Interactive Signature</li>
@@ -191,16 +191,12 @@ var rangeSlider = $('#range')[0];
 	});
   rangeSlider.noUiSlider.on('update', function( values, handle,unencoded ) {
 
-    // var basic_month_unit = JSON.parse('%%DEFINE_basic_month_unit%%');
-    // var basic_month_unitspl = JSON.parse('%%DEFINE_basic_month_unitspl%%');
     var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
     var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
     unencoded = values;
     unencoded = parseInt(unencoded);
 
     $('.no_employee').text(unencoded);
-    // $('#month_basicprice').text(basic_month_unit[unencoded]);
-    // $('#month_basicpricespl').text(basic_month_unitspl[unencoded]);
     $('#month_proprice').text(pro_month_unit[unencoded]);
     $('#month_propricespl').text(pro_month_unitspl[unencoded]);
     $('#free_priceq').text((pro_month_unit[unencoded] * 3).toFixed(2));
@@ -215,13 +211,8 @@ var rangeSlider = $('#range')[0];
     $('#gs_qfree').attr('href',freeurl);
 
     // year
-
-    // var basic_year_unit = JSON.parse('%%DEFINE_basic_year_unit%%');
-    // var basic_year_unitspl = JSON.parse('%%DEFINE_basic_year_unitspl%%');
     var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
     var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
-    // $('#year_basicprice').text(basic_year_unit[unencoded]);
-    // $('#year_basicpricespl').text(basic_year_unitspl[unencoded]);
     $('#year_proprice').text(pro_year_unit[unencoded]);
     $('#year_propricespl').text(pro_year_unitspl[unencoded]);
     $('#free_pricey').text((pro_year_unit[unencoded] * 12).toFixed(2));
