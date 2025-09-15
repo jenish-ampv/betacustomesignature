@@ -8,8 +8,8 @@ class CIT_BULKUPLOAD
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
 		//$refid = $_REQUEST['refid'];
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='!hidden'; 
+		$GLOBALS['bulkuploadcls'] = '!hidden'; 
 		
 		$conuRow = $GLOBALS['DB']->row("SELECT count(signature_id) as mastersig FROM signature WHERE signature_master =1 AND user_id = ?",array($GLOBALS['USERID']));
 		

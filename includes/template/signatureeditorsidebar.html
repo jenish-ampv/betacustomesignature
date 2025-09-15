@@ -1,13 +1,18 @@
-<div class="w-full max-w-[700px] border border-gray-300 rounded-xl h-full flex hover_over_sign_bg">
-    <div class="w-40 xl:w-52 flex-none flex flex-col p-3 md:p-4 xl:p-5">
-        <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-10 2xl:mb-12">
+<div class="w-full lg:w-[500px] xl:w-[700px] flex-none border border-gray-300 rounded-xl h-full sm:flex hover_over_sign_bg">
+    <div class="sm:w-40 xl:w-52 flex-none flex flex-col p-3 md:p-4 xl:p-5 border-b sm:border-b-0 border-b-gray-200">
+        <div class="mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-10 2xl:mb-12 flex justify-between">
             <a href="%%DEFINE_ROOT_LINK%%/dashboard">
                 <img class="h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10 inline-block" draggable="false"
                     src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt="">
             </a>
+            <div class="sm:hidden">
+                <a class="kt-btn kt-btn-sm kt-btn-mono w-full" href="%%DEFINE_ROOT_LINK%%/dashboard">
+                    <i class="hgi hgi-stroke hgi-circle-arrow-left-02"></i> Back
+                </a>
+            </div>
         </div>
 
-        <div class="flex flex-1 flex-col gap-2.5 *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:p-2 [&>*>*]:border [&>*>*]:border-transparent [&>*>*]:rounded-lg [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10"
+        <div class="flex flex-1 flex-wrap sm:flex-col gap-1 sm:gap-2.5 *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:p-2 [&>*>*]:border [&>*>*]:border-transparent [&>*>*]:rounded-lg [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10"
             data-kt-tabs="true">
             <div class="group active" data-kt-tab-toggle="#template">
                 <div>
@@ -41,7 +46,7 @@
             </div>
         </div>
 
-        <div class="pt-5">
+        <div class="pt-5 hidden sm:block">
             <a class="kt-btn kt-btn-primary w-full" href="%%DEFINE_ROOT_LINK%%/dashboard">
                 <i class="hgi hgi-stroke hgi-circle-arrow-left-02"></i> Back
             </a>
@@ -49,7 +54,7 @@
 
     </div>
 
-    <div class="flex-1 border-l border-l-gray-300 p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 2xl:p-10 overflow-auto">
+    <div class="flex-1 sm:border-l sm:border-l-gray-300 p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 2xl:p-10 lg:overflow-auto h-full">
         <div class="" id="template">
             <h4 class="font-normal text-gray-950 flex items-center gap-4 mb-10">
                 <img class="h-8" draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/layout-title.svg" alt="">
@@ -59,7 +64,7 @@
                 <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/select-layout-title.svg" alt="">
                 <span>Select Layouts</span>
             </p>
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-3 overflow-hidden">
                 %%DEFINE_layout_list%%
             </div>
         </div>
