@@ -1,21 +1,21 @@
  %%DEFINE_HEADER%%
 	  
-      <div class="new_signin_bg">
-	<div class="row flex-column-reverse flex-md-row">
-    	<div class="col-xl-4 col-lg-4 col-12">
-        	<div class="signin_left_bg thank video">
-            	<video width="100%" border="0" autoplay muted loop>
+  <div class="new_signin_bg">
+	<div class="flex flex-col-reverse md:flex-row items-center w-full">
+    	<div class="flex-col w-full md:w-6/12 xl:w-4/12">
+        	<div class="relative after:absolute after:inset-0 after:bg-black/40">
+            	<video class="h-[100vh] object-cover" width="100%" border="0" autoplay muted loop>
                     <source src="%%DEFINE_IMAGE_LINK%%/images/video/esign-signin-page.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
-        <div class="col-xl-8 col-lg-8 col-12">
+        <div class="flex-col w-full md:w-6/12 xl:w-8/12">
         	<div class="thanks_main">
             	<div class="top_logo"><img src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt=""></div>
-                <h3>Thank You, <span id="user_name"></span></h3>
+                <h1 class="font-semibold pt-10">Thank You, <span id="user_name"></span></h1>
                 <p>Your account has been successfully created!</p>
-                <div class="button_bg">
-                   <a href="%%DEFINE_linkModuleLogin%%">Let’s Login</a></div>
+                <div class="kt-card-toolbar mt-8">
+                   <a class="kt-btn kt-btn-primary w-full" href="%%DEFINE_linkModuleLogin%%">Let’s Login</a></div>
                 </div>
             </div>
        </div>
