@@ -4,19 +4,17 @@
 <link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/script/litepicker/litepicker.css">
 <script src="%%DEFINE_ROOT_LINK%%/script/litepicker/litepicker.js"></script>
 
-<div class="container">
-    <div class="new_dashboard_bg">
-        <div class="new_dashboard_left">
-            %%DEFINE_SIDEBAR%%
-        </div>
-        <div class="new_dashboard_right">
-          <form id="bannerform" class="campaign-form">
-                <div class="row">
-              
-              <div class="col-xl-4 col-lg-6 col-12">
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    %%DEFINE_SIDEBAR%%
+    <main class="grow" id="content" role="content">
+        <div class="kt-container-fluid pb-4 h-full">
+            <div class="kt-card kt-card-accent w-full mx-auto">
+                <div class="kt-card-header">
+                    <div class="kt-card-heading">
+                        <h2 class="kt-card-title">Campaign Settings</h2>
+                    </div>
 
-                        <div class="campaign-container">
-                        <h1>Campaign Settings</h1>
+          <form id="bannerform" class="campaign-form">
                           <p class="campain-name-text">Campaign name</p>
                             <!-- <div class="campaign-name">
                                 <span>Campaign Name</span>

@@ -1,67 +1,72 @@
 %%DEFINE_HEADER%%
-<section>
 <script src="https://js.stripe.com/v3/"></script>
-<div class="container">
-    <div class="new_dashboard_bg">
-        <div class="new_dashboard_left">
-            %%DEFINE_SIDEBAR%%
-        </div>
-        <div class="new_dashboard_right">
-            <div id="snackbar"></div>
-            <div id="snackbar-error"></div>
-            <div id="snackbar-info"></div>
-            %%DEFINE_Message%%
-            <div class="dashboard_set_up_bg bannercampaign-page">
-                <div class="bannercampaign-heading">
-                    <h1>Campaigns list</h1>
-                    <div class="campoin-status-row">
-                        <div class="status-selector">
-                            <div class="select">
-                                <span>Status</span>
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    %%DEFINE_SIDEBAR%%
+    <div id="snackbar"></div>
+    <div id="snackbar-error"></div>
+    <div id="snackbar-info"></div>
+    %%DEFINE_Message%%
+    <main class="grow" id="content" role="content">
+        <div class="kt-container-fluid pb-4 h-full">
+            <div class="kt-card kt-card-accent w-full mx-auto">
+                <div class="kt-card-header">
+                    <div class="kt-card-heading">
+                        <h2 class="kt-card-title">Campaigns list</h2>
+                    </div>
+                    <div class="kt-card-toolbar">
+                        <div data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+                            data-kt-dropdown-placement="bottom-end" data-toggle-replace="true">
+                            <button class="kt-btn kt-btn-sm bg-white border border-gray-400 text-gray-600 !rounded-full"
+                                data-kt-dropdown-toggle="true">
+                                Status
+                                <span class="kt-dropdown-open:hidden">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                                <span class="hidden kt-dropdown-open:inline">
+                                    <i class="fas fa-caret-up"></i>
+                                </span>
+                            </button>
+                            <div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
+                                <ul>
+                                    <li class="kt-dropdown-menu-link" id="allcampaigns">All Campaign</li>
+                                    <li class="kt-dropdown-menu-link" id="scheduled">Scheduled</li>
+                                    <li class="kt-dropdown-menu-link" id="active">Active</li>
+                                    <li class="kt-dropdown-menu-link" id="completed">Completed</li>
+                                    <li class="kt-dropdown-menu-link" id="canceled">Canceled</li>
+                                    <li class="kt-dropdown-menu-link" id="pause">Pause</li>
+                                    <li class="kt-dropdown-menu-link" id="draft">Draft</li>
+                                </ul>
                             </div>
-                            <ul class="status-selector-menu">
-                                <li id="allcampaigns">All Campaign</li>
-                                <li id="scheduled">Scheduled</li>
-                                <li id="active">Active</li>
-                                <li id="completed">Completed</li>
-                                <li id="canceled">Canceled</li>
-                                <li id="pause">Pause</li>
-                                <li id="draft">Draft</li>
-                            </ul>
                         </div>
-                        <a href="%%DEFINE_ROOT_LINK%%/bannercampaign/addBanner" class="btn" id="add_banner">Create New Campaign</a>
+                        <a href="%%DEFINE_ROOT_LINK%%/bannercampaign/addBanner" class="kt-btn kt-btn-primary kt-btn-sm" id="add_banner">Create New Campaign</a>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col-xl-12 col-md-12">
-                        <div class="bannercampaign-detials-list">
-                            <table class="table table-hover mb-0" id="banner_table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <!-- <th>Clicks</th> -->
-                                        <!-- <th>Views</th> -->
-                                        <!-- <th>CTR</th> -->
-                                        <th>Division Name</th>
-                                        <th>Banner Preview</th>
-                                        <th>Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    %%DEFINE_bannerCampaignTableBody%%
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="kt-card-content">
+                    <table class="kt-table" id="banner_table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <!-- <th>Clicks</th> -->
+                                <!-- <th>Views</th> -->
+                                <!-- <th>CTR</th> -->
+                                <th>Division Name</th>
+                                <th>Banner Preview</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            %%DEFINE_bannerCampaignTableBody%%
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </div>
+                
 
 <input type="hidden" id="redirecturl" value="%%DEFINE_bannercampaign%%" />
 
