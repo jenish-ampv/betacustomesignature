@@ -109,6 +109,9 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 .kt-modal-header{
     @apply border-b-0;
 }
+.kt-card-header{
+    @apply py-2;
+}
 .kt-card-title{
     @apply text-xxl;
 }

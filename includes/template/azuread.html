@@ -1,389 +1,412 @@
- %%DEFINE_HEADER%%
- <div class="loader-image" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
- 	<div class="container">	
-	 <div class="new_dashboard_bg">
-     	
-        	<div class="new_dashboard_left">
-            	%%DEFINE_SIDEBAR%%
+%%DEFINE_HEADER%%
+<div class="loader-image" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif"
+    alt=""></div>
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+  %%DEFINE_SIDEBAR%%
+  %%DEFINE_Message%%
+  <main class="grow" id="content" role="content">
+    <div class="kt-container-fluid pb-4">
+      <div class="%%DEFINE_bulkuploadcls%% %%DEFINE_azurestep1%%">
+        <div class="kt-card kt-card-accent step" id="step1">
+          <div class="kt-card-header">
+            <h2 class="kt-card-title flex items-center gap-2">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/subtract-icon.svg" alt="">
+              <span>Microsoft Entra ID (formerly Azure Active Directory)</span>
+            </h2>
+          </div>
+          <div class="kt-card-content">
+            <div class="flex items-center gap-4">
+              <div class="text-gray-950 flex items-center gap-3">
+                <span
+                  class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-950 text-white">1</span>
+                Step
+              </div>
+              <div class="text-gray-200 flex items-center gap-3">
+                <span
+                  class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-200 text-white">2</span>
+                Step
+              </div>
             </div>
-            <div class="new_dashboard_right">
-                 %%DEFINE_Message%%              
-           <div class="azuread_upload_main text-center %%DEFINE_bulkuploadcls%% %%DEFINE_azurestep1%%">
-            <div class="signature_integration_withhead_box step" id="step1" style="border:none; padding:0; margin:0; max-width:100%;">
-            <h2><img src="%%DEFINE_IMAGE_LINK%%/images/subtract-icon.svg" alt=""> Microsoft Entra ID (formerly Azure Active Directory)</h2>
-                    <div class="step_box">
-                    	<ul>
-                        <li class="active"><span>1</span>Mapping</li>
-                        <li><span>2</span>Select Group(s)</li>
-                       <!--<li><span>3</span>Review</li>-->
-                        </ul>
+            <p class="my-3">Specify which data you would like to import from Microsoft Entra ID (formerly Azure Active
+              Directory) and
+              match the data with the fields in your Master Signature.</p>
+            <form id="mappingazure" method="post" action="" enctype="multipart/form-data">
+              <div class="grid gap-5 grid-cols-1 lg:grid-cols-2">
+                <div class="kt-card kt-card-accent">
+                  <div class="kt-card-header">
+                    <div class="kt-card-heading">
+                      <h2 class="kt-card-title">Master Signature Field</h2>
                     </div>
-            <div class="headbox_content">
-                <p>Specify which data you would like to import from Microsoft Entra ID (formerly Azure Active Directory) and match the data with the fields in your Master Signature.</p>
-                <p>&nbsp;</p>
-                 <form id="mappingazure" method="post" action="" enctype="multipart/form-data">
-                <div class="row">
-                <div class="col-md-6 col-12">
-                    <h5>Master Signature Field</h5>
-                    <h6 class="infotitle" style="text-align:left;">Personal Information</h6>
-                        %%DEFINE_master_fieldp%%
-                        <h6 class="infotitle"  style="text-align:left;">Contact Information</h6>
-                        %%DEFINE_master_fieldc%%
+                  </div>
+                  <div class="kt-card-content">
+                    <h6 class="font-semibold text-xl mb-2">Personal Information</h6>
+                    <div class="space-y-2">
+                      %%DEFINE_master_fieldp%%
+                    </div>
+                    <h6 class="font-semibold text-xl mt-5 mb-2">Contact Information</h6>
+                    <div class="space-y-2">
+                      %%DEFINE_master_fieldc%%
+                    </div>
+                  </div>
                 </div>
-                
-                <div class="col-md-6 col-12">
-                    <h5>Microsoft Entra ID (formerly Azure Active Directory) Attributes</h5>
-                      <h6 class="infotitle">&nbsp;</h6>
-                    %%DEFINE_dirattr_fieldp%%
-                     <h6 class="infotitle">&nbsp;</h6>
-                    %%DEFINE_dirattr_fieldc%%
+                <div class="kt-card kt-card-accent">
+                  <div class="kt-card-header">
+                    <div class="kt-card-heading">
+                      <h2 class="kt-card-title">Microsoft Entra ID (formerly Azure Active Directory) Attributes</h2>
+                    </div>
+                  </div>
+                  <div class="kt-card-content">
+                    <div class="space-y-2">
+                      %%DEFINE_dirattr_fieldp%%
+                      %%DEFINE_dirattr_fieldc%%
+                    </div>
+                  </div>
                 </div>
-                <div class="style_design_box">
-                  		<span>Import Photos from Microsoft Entra ID (formerly Azure Active Directory) <a href="javascript:void(0);" rel="tooltip"  data-bs-toggle="tooltip" data-bs-html="true" data-bs-title="Custom Esignature can export user photos from microsoft account and apply it to the respective signatures. Please note that the quality of the image in Microsoft Entra ID (formerly Azure Active Directory) is usually very low">
-<img src="%%DEFINE_IMAGE_LINK%%/images/info-icon.svg"></a></span>
-                        <div class="form-check form-switch">
-                              <input class="form-check-input verified" type="checkbox" role="switch" id="import_profile" name="import_profile" value="1" %%DEFINE_import_profilesel%%>
-                             <!-- <label class="form-check-label" for="signature_verified">OFF/ON</label>-->
-                		</div>
-                 </div>
-                <input type="hidden" name="azuread_savefield" value="1" />
-                <div class="bottom_bg_btn" style="margin-top:10px;"><button type="submit" name="next" id="firstNextBtn" class="submit btn next action-button" value="Next Step">Next </button></div>
-              </div> 
-              </form>
-            </div>
+              </div>
+              <div class="flex items-center gap-2 my-3">
+                <label class="kt-label">Import Photos from Microsoft Entra ID (formerly Azure Active Directory) <a
+                href="javascript:void(0);" rel="tooltip" data-bs-toggle="tooltip" data-bs-html="true"
+                data-bs-title="Custom Esignature can export user photos from microsoft account and apply it to the respective signatures. Please note that the quality of the image in Microsoft Entra ID (formerly Azure Active Directory) is usually very low">
+                <img src="%%DEFINE_IMAGE_LINK%%/images/info-icon.svg"></a></label>
+                <input class="kt-switch verified" type="checkbox" role="switch" id="import_profile" name="import_profile" value="1" %%DEFINE_import_profilesel%%>
+              </div>
+              <input type="hidden" name="azuread_savefield" value="1" />
+              <div class="text-right">
+                <button type="submit" name="next" id="firstNextBtn" class="submit kt-btn kt-btn-primary next action-button" value="Next Step">Next </button>
+              </div>
+            </form>
+          </div>
         </div>
-            
-           
-           </div>
-           
-                   <div class="azuread_upload_main %%DEFINE_bulkuploadcls%% %%DEFINE_azurestep2%%">
-                    <div class="signature_integration_withhead_box step" id="step1"  style="border:none; padding:0; margin:0; max-width:100%;">
-                    <div class="row">
-                   <div class="col-lg-7 col-md-12 col-12">
-                	<h2><img src="%%DEFINE_IMAGE_LINK%%/images/subtract-icon.svg" alt=""> Microsoft Entra ID (formerly Azure Active Directory)</h2>
-                    <div class="step_box">
-                    	<ul>
-                        <li><span>1</span>Mapping</li>
-                        <li class="active"><span>2</span>Select Group(s)</li>
-                        <li class="active">
-                          <input type="checkbox" name="showselectedazureaccount" id="showselectedazureaccount">
-                          <label for="showselectedazureaccount">Show Selected</label>
-                        </li>
-                       <!--<li><span>3</span>Review</li>-->
-                        </ul>
-                    </div>
-                    <div class="headbox_content">
-                    	<p>Select all or choose specific user groups to generate signatures for</p>
-                        <p>&nbsp;</p>
-                        <p> <input type="text" class="form-control" value="" id="search_member" placeholder="Search user"></p>
-                        <p id="notfound" style="display:none;">No results found</p>
-                        <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
-                        <form id="groupazure" method="post" action="" enctype="multipart/form-data">
-                        <div class="row">
-                        
+      </div>
 
-                        
-                        <div class="col-md-12">
-                        <div class="accordionbox">
-                         <ul class="main">
-                            	<li><input type="checkbox" class="form-check-input groupcbox" id="select_all" /> <label for="select_all">Select All</label> <div class="mem_right">Selected:<span id="selected_mem">0</span></div></li>
-                                
-                               
-                                
-                             </ul>
-                        <div class="accordion" id="accordionExample">
-                         %%DEFINE_group_list%%
-                        </div>
-                        </div>
-                        </div>
-                        <input type="hidden" name="azuread_group" value="1" />
-                        <div class="bottom_bg_btn" style="margin-top:10px;"><a href="%%DEFINE_azuread%%" class="submit btn next action-button" style="float:left;">Previous</a><button type="submit" name="next" class="submit btn next action-button" value="Next Step">Import </button></div>
-                      </div> 
-                      </form>
-                    </div>
-          		</div>
-                	</div>
-                   </div>
-                   </div>
-                   
-                   
-                   
-                   
-                   <div class="bulk_upload_main text-center %%DEFINE_bulkerrorcls%%">
-                   		<h2><a href="%%DEFINE_linkModuleDashboard%%">please select your Master Signature <br /> For bulk upload</a></h2>
-                        <p><a class="btn btn-primary" href="%%DEFINE_linkModuleDashboard%%">Dashboard <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a></p>
-                       
-                   </div>
-               
-            
-            	 
+      <div class="%%DEFINE_bulkuploadcls%% %%DEFINE_azurestep2%%">
+        <div class="kt-card kt-card-accent step" id="step1">
+          <div class="kt-card-header">
+            <h2 class="kt-card-title flex items-center gap-2">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/subtract-icon.svg" alt="">
+              <span>Microsoft Entra ID (formerly Azure Active Directory)</span>
+            </h2>
+          </div>
+          <div class="kt-card-content">
+            <div class="flex items-center gap-4">
+              <div class="text-gray-200 flex items-center gap-3">
+                <span
+                  class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-200 text-white">1</span>
+                Step
+              </div>
+              <div class="text-gray-950 flex items-center gap-3">
+                <span
+                  class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-950 text-white">2</span>
+                Step
+              </div>
             </div>
-        </div>
-     </div>
-	 
-    
- <!-- share Popup -->
- 
- <div class="modal fade" id="success-importmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="flex items-center gap-2">
+              <input class="kt-checkbox" type="checkbox" name="showselectedazureaccount" id="showselectedazureaccount">
+              <label class="kt-label" for="showselectedazureaccount">Show Selected</label>
+            </div>
+            <p>Select all or choose specific user groups to generate signatures for</p>
+            <input type="text" class="kt-input" value="" id="search_member" placeholder="Search user">
+            
+            <p id="notfound" style="display:none;">No results found</p>
+            <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
+
+            <form id="groupazure" method="post" action="" enctype="multipart/form-data">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" class="kt-checkbox groupcbox" id="select_all" />
+                  <label class="kt-label" for="select_all">Select All</label>
+                </div>
+                <div>Selected: <span id="selected_mem">0</span></div>
+              </div>
+              <div class="accordion" id="accordionExample">
+                %%DEFINE_group_list%%
+              </div>
+              <input type="hidden" name="azuread_group" value="1" />
+              <div class="bottom_bg_btn" style="margin-top:10px;">
+                <a href="%%DEFINE_azuread%%" class="submit btn next action-button" style="float:left;">Previous</a>
+                <button type="submit" name="next" class="submit btn next action-button" value="Next Step">Import </button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+
+      <div class="bulk_upload_main text-center %%DEFINE_bulkerrorcls%%">
+        <h2><a href="%%DEFINE_linkModuleDashboard%%">please select your Master Signature <br /> For bulk upload</a></h2>
+        <p><a class="btn btn-primary" href="%%DEFINE_linkModuleDashboard%%">Dashboard <img
+              src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a></p>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+<!-- share Popup -->
+
+<!-- <div class="modal fade" id="success-importmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border:none;">
-	<!--    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      	<div class="signature_ready_box">
-        	<img src="%%DEFINE_IMAGE_LINK%%/images/success-msg.png" />
-        	<h3>Congratulations!</h3>
-        	<p>The signatures you requested have been generated successfully</p>
+        <div class="signature_ready_box">
+          <img src="%%DEFINE_IMAGE_LINK%%/images/success-msg.png" />
+          <h3>Congratulations!</h3>
+          <p>The signatures you requested have been generated successfully</p>
         </div>
       </div>
       <div class="modal-footer">
-        <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" id="backreview" data-bs-target="#shareModalbulk">Share signature</a>
+        <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" id="backreview"
+          data-bs-target="#shareModalbulk">Share signature</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade sharemodal sharebulmodel" id="shareModalbulk" tabindex="-1" aria-labelledby="shareModalbulkLabel" aria-hidden="true">
+<div class="modal fade sharemodal sharebulmodel" id="shareModalbulk" tabindex="-1" aria-labelledby="shareModalbulkLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header" style="border:none;">
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	  <h5 class="modal-title" id="exampleModalLabel">Share Signature</h5>
-      <p>Enter email to share generated signature</p>
-      <span id="sahre_msg"></span>
-      <div class="border_bottom">
-        	<div class="left"><span>Name on Signature</span></div>
-            <div class="righ"><span>Enter email to share</span></div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">Share Signature</h5>
+        <p>Enter email to share generated signature</p>
+        <span id="sahre_msg"></span>
+        <div class="border_bottom">
+          <div class="left"><span>Name on Signature</span></div>
+          <div class="righ"><span>Enter email to share</span></div>
         </div>
 
       </div>
       <div class="modal-body">
-      		<form id="bulkshare" enctype="multipart/form-data">
-	  		%%DEFINE_signature_sharelists%%
-            	<input type="hidden" name="bulkshare" value="_bulksahre" />
-            </form>
-            <a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">Share</a>   
+        <form id="bulkshare" enctype="multipart/form-data">
+          %%DEFINE_signature_sharelists%%
+          <input type="hidden" name="bulkshare" value="_bulksahre" />
+        </form>
+        <a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0"
+          data-action="share">Share</a>
       </div>
-      
+
     </div>
   </div>
-</div>
- <input type="hidden" id="form_url" value="%%DEFINE_bulkupload%%" />
+</div> -->
+
+<input type="hidden" id="form_url" value="%%DEFINE_bulkupload%%" />
 
 <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
-<script src="%%DEFINE_JS_LINK%%/heapbox.min.js"></script>
+<!-- <script src="%%DEFINE_JS_LINK%%/heapbox.min.js"></script> -->
 <script type="text/javascript">
 
-$(document).ready(function(){
-    $('#groupazure').submit(function() {
-      if($('.mem_checkbox:checked').length == '0'){
+  $(document).ready(function () {
+    $('#groupazure').submit(function () {
+      if ($('.mem_checkbox:checked').length == '0') {
         alert("Please select atleast one signature to import");
         return false;
       }
     });
 
-    $('#select_all').on('click',function(){
-        if(this.checked){
-            $('.master_checkbox').each(function(){ this.checked = true;});
-			$('.mem_checkbox').each(function(){ this.checked = true;});
-			$('.mem_search_checkbox').each(function(){ this.checked = true;});
-        }else{
-             $('.master_checkbox').each(function(){ this.checked = false; });
-			 $('.mem_checkbox').each(function(){ this.checked = false; });
-			 $('.mem_search_checkbox').each(function(){ this.checked = false;});
-			  
-        }
-		var selectedmem = ($('.mem_checkbox:checked').length);
-		$('#selected_mem').text(selectedmem);
+    $('#select_all').on('click', function () {
+      if (this.checked) {
+        $('.master_checkbox').each(function () { this.checked = true; });
+        $('.mem_checkbox').each(function () { this.checked = true; });
+        $('.mem_search_checkbox').each(function () { this.checked = true; });
+      } else {
+        $('.master_checkbox').each(function () { this.checked = false; });
+        $('.mem_checkbox').each(function () { this.checked = false; });
+        $('.mem_search_checkbox').each(function () { this.checked = false; });
+
+      }
+      var selectedmem = ($('.mem_checkbox:checked').length);
+      $('#selected_mem').text(selectedmem);
     });
-    
-    $('.master_checkbox').on('click',function(){
-        if($('.master_checkbox:checked').length == $('.master_checkbox').length){
-            $('#select_all').prop('checked',true);
-        }else{
-            $('#select_all').prop('checked',false);
-        }
+
+    $('.master_checkbox').on('click', function () {
+      if ($('.master_checkbox:checked').length == $('.master_checkbox').length) {
+        $('#select_all').prop('checked', true);
+      } else {
+        $('#select_all').prop('checked', false);
+      }
     });
-	
-	
-	 $('.master_checkbox').change(function() {  // check box select all group
-		  	  var listCheckItemsid = $(this).attr('data-wrapper');
-		  	  var isMasterChecked = $(this).is(":checked");
-			  var listCheckItems = $("#"+listCheckItemsid+" :checkbox");
-			  var SearchlistCheckItems = $("#s"+listCheckItemsid+" :checkbox");
-         	  listCheckItems.prop("checked", isMasterChecked);
-			  SearchlistCheckItems.prop("checked", isMasterChecked);
-			  
-			 var selectedmem = ($('.mem_checkbox:checked').length);
-			$('#selected_mem').text(selectedmem);
-	});
-		
-	$('.mem_checkbox').change(function() {  // check box select all member
-		  var listCheckItemsid = $(this).attr('data-wrapper');
-		  var listCheckItems = $("#"+listCheckItemsid+" :checkbox");
-		  var masterCheckid =  $(this).attr('data-master');
-		  var masterCheck = $("#"+masterCheckid);
-		  var totalItems = listCheckItems.length;
-		  var checkedItems = listCheckItems.filter(":checked").length;
-		  
-		  if (totalItems == checkedItems) {
-			masterCheck.prop("checked", true);
-		  }else if (checkedItems > 0 && checkedItems < totalItems) {
-			masterCheck.prop("checked", false);
-			$('#select_all').prop('checked',false);
-		  }else {
-			masterCheck.prop("checked", false);
-			$('#select_all').prop('checked',false);
-		  }
-		  var selectedmem = ($('.mem_checkbox:checked').length);
-		  $('#selected_mem').text(selectedmem);
-		  
-		  // select search textbox
-		  var searchselid = 'search_'+$(this).attr('id');
-			 if($(this).prop('checked')==true){ 
-			 	$('#'+searchselid).prop("checked", true);
-    		 }else{
-				$('#'+searchselid).prop("checked", false);
-			 }
-		  
-	});
-	
-		
-	 // search memners
-		$("#search_member").keyup(function() {
-		  var filter = $(this).val(); var res =0;
-		  $('#search_result div.search-container').hide();
-		  $('#search_result').css('display','none');
-		  $('#notfound').css('display','none');
-		  if(filter.length < 3){ return false;}
-		  $('#search_result').css('display','block');
-		  $('#search_result div.search-container').each(function() {
-			if($(this).text().search(new RegExp(filter, "i")) < 0) {
-			  $(this).hide();
-			}else {
-			  res =1;
-			  $(this).show();
-			}
-		  });
-		  if(res == 0){
-			 $('#search_result').css('display','none');
-			 $('#notfound').css('display','block');
-		  }
-		});
-		
-		$('.mem_search_checkbox').change(function() {
-			var searchsel = $(this).attr('id');
-			searchselid = searchsel.replace("search_","");
-			groupid = $(this).attr('data-master');
-			 if($(this).prop('checked')==true){ 
-			 	$('#'+searchselid).prop("checked", true);
-    		 }else{
-				$('#'+searchselid).prop("checked", false);
-				$('#'+groupid).prop("checked", false);
-				$('#select_all').prop('checked',false);
-			 }
-			 var selectedmem = ($('.mem_checkbox:checked').length);
-		     $('#selected_mem').text(selectedmem);
-		});
+
+
+    $('.master_checkbox').change(function () {  // check box select all group
+      var listCheckItemsid = $(this).attr('data-wrapper');
+      var isMasterChecked = $(this).is(":checked");
+      var listCheckItems = $("#" + listCheckItemsid + " :checkbox");
+      var SearchlistCheckItems = $("#s" + listCheckItemsid + " :checkbox");
+      listCheckItems.prop("checked", isMasterChecked);
+      SearchlistCheckItems.prop("checked", isMasterChecked);
+
+      var selectedmem = ($('.mem_checkbox:checked').length);
+      $('#selected_mem').text(selectedmem);
+    });
+
+    $('.mem_checkbox').change(function () {  // check box select all member
+      var listCheckItemsid = $(this).attr('data-wrapper');
+      var listCheckItems = $("#" + listCheckItemsid + " :checkbox");
+      var masterCheckid = $(this).attr('data-master');
+      var masterCheck = $("#" + masterCheckid);
+      var totalItems = listCheckItems.length;
+      var checkedItems = listCheckItems.filter(":checked").length;
+
+      if (totalItems == checkedItems) {
+        masterCheck.prop("checked", true);
+      } else if (checkedItems > 0 && checkedItems < totalItems) {
+        masterCheck.prop("checked", false);
+        $('#select_all').prop('checked', false);
+      } else {
+        masterCheck.prop("checked", false);
+        $('#select_all').prop('checked', false);
+      }
+      var selectedmem = ($('.mem_checkbox:checked').length);
+      $('#selected_mem').text(selectedmem);
+
+      // select search textbox
+      var searchselid = 'search_' + $(this).attr('id');
+      if ($(this).prop('checked') == true) {
+        $('#' + searchselid).prop("checked", true);
+      } else {
+        $('#' + searchselid).prop("checked", false);
+      }
+
+    });
+
+
+    // search memners
+    $("#search_member").keyup(function () {
+      var filter = $(this).val(); var res = 0;
+      $('#search_result div.search-container').hide();
+      $('#search_result').css('display', 'none');
+      $('#notfound').css('display', 'none');
+      if (filter.length < 3) { return false; }
+      $('#search_result').css('display', 'block');
+      $('#search_result div.search-container').each(function () {
+        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+          $(this).hide();
+        } else {
+          res = 1;
+          $(this).show();
+        }
+      });
+      if (res == 0) {
+        $('#search_result').css('display', 'none');
+        $('#notfound').css('display', 'block');
+      }
+    });
+
+    $('.mem_search_checkbox').change(function () {
+      var searchsel = $(this).attr('id');
+      searchselid = searchsel.replace("search_", "");
+      groupid = $(this).attr('data-master');
+      if ($(this).prop('checked') == true) {
+        $('#' + searchselid).prop("checked", true);
+      } else {
+        $('#' + searchselid).prop("checked", false);
+        $('#' + groupid).prop("checked", false);
+        $('#select_all').prop('checked', false);
+      }
+      var selectedmem = ($('.mem_checkbox:checked').length);
+      $('#selected_mem').text(selectedmem);
+    });
 
 
     // Show selected user only
-    $('#showselectedazureaccount').on( "click", function() {
-      console.log("MAIN: "+$(this).is(":checked"))
-      if($(this).is(":checked")){ // only when show selected checkbox checked
-        $('input.mem_checkbox').each(function(){
-          console.log("SUB: "+$(this).is(":checked"))
-          if($(this).is(":checked")){
+    $('#showselectedazureaccount').on("click", function () {
+      console.log("MAIN: " + $(this).is(":checked"))
+      if ($(this).is(":checked")) { // only when show selected checkbox checked
+        $('input.mem_checkbox').each(function () {
+          console.log("SUB: " + $(this).is(":checked"))
+          if ($(this).is(":checked")) {
             $(this).closest('.member_list').show();
-          }else{
+          } else {
             $(this).closest('.member_list').hide();
           }
         });
-        $('div.accordion-item').each(function(){
-          $(this).find('input.mem_checkbox').each(function(){
-            if($(this).is(":checked")){
+        $('div.accordion-item').each(function () {
+          $(this).find('input.mem_checkbox').each(function () {
+            if ($(this).is(":checked")) {
               $(this).closest('.accordion-item').show();
               return false;
-            }else{
+            } else {
               $(this).closest('.accordion-item').hide();
             }
           });
         });
 
       }
-      else{
-        $('input.mem_checkbox').each(function(){
+      else {
+        $('input.mem_checkbox').each(function () {
           $(this).closest('.member_list').show();
         });
-        $('div.accordion-item').each(function(){
+        $('div.accordion-item').each(function () {
           $(this).show();
         });
       }
-	  });  
+    });
 
 
-     // Heapbox_selectbox 
-          $(".select_heap_box").heapbox();
+    // Heapbox_selectbox 
+    // $(".select_heap_box").heapbox();
 
-      $('.holder').click(function(){
-          $(this).toggleClass("active");
-      });
-});
+    $('.holder').click(function () {
+      $(this).toggleClass("active");
+    });
+  });
 </script>
- 
-IF("%%DEFINE_success_popup%%" == "1"){ 
-<script>
-$(document).ready(function(){
-    $("#success-importmodel").modal('show'); // show success message
 
-	$('.ajaxaction_share').on( "click", function() {
-		var form = $('#bulkshare');
-		var formdata = form.serialize();
-			$.ajax({
-			type: 'POST',
-			url: $('#form_url').val(),
-			data:  formdata,
-			dataType:'json',
-			}).done(function(data) {
-				$('#sahre_msg').html(data.msg);
-				 $("#shareModalbulk").modal('hide');
-			// Optionally alert the user of success here...
-			}).fail(function(data) {
-				return false;
-			// Optionally alert the user of an error here...
-			});
-			return false;
-	});	
-});
+IF("%%DEFINE_success_popup%%" == "1"){
+<script>
+  $(document).ready(function () {
+    // $("#success-importmodel").modal('show');
+
+    $('.ajaxaction_share').on("click", function () {
+      var form = $('#bulkshare');
+      var formdata = form.serialize();
+      $.ajax({
+        type: 'POST',
+        url: $('#form_url').val(),
+        data: formdata,
+        dataType: 'json',
+      }).done(function (data) {
+        $('#sahre_msg').html(data.msg);
+        $("#shareModalbulk").modal('hide');
+        // Optionally alert the user of success here...
+      }).fail(function (data) {
+        return false;
+        // Optionally alert the user of an error here...
+      });
+      return false;
+    });
+  });
 </script>
 {:IF}
 <script>
-  $(document).ready(function(){
-    $('#firstNextBtn').on( "click", function() {
+  $(document).ready(function () {
+    $('#firstNextBtn').on("click", function () {
       $(this).prop('disabled', true);
       $('.loader-image').show();
       $('#mappingazure').submit();
     });
   });
-  </script>
-  
-  IF("%%DEFINE_azurestep2%%" != "d-none"){ 
-  <script>
-  $(document).ready(function(){
+</script>
+
+IF("%%DEFINE_azurestep2%%" != "d-none"){
+<script>
+  $(document).ready(function () {
     $(this).prop('disabled', false);
     $('.loader-image').hide();
   });
-  </script>
-  {:IF}
-  <script>
-    jQuery.noConflict();
-    (function($) {
-      // To active/inactive in leftbar
-      $('.new_dashboard_left a').removeClass('active');
-      $('.new_dashboard_left .integrations').addClass('active');
-    })(jQuery);
-  </script>
+</script>
+{:IF}
+<script>
+  jQuery.noConflict();
+  (function ($) {
+    // To active/inactive in leftbar
+    $('.new_dashboard_left a').removeClass('active');
+    $('.new_dashboard_left .integrations').addClass('active');
+  })(jQuery);
+</script>
 
 %%DEFINE_FOOTER%%

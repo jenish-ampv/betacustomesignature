@@ -115,6 +115,7 @@ class CIT_INTEGRATIONS
 				$GLOBALS['Gstep3'] ='';
 			}else{
 				$GLOBALS['Gstep1'] ='';
+				$GLOBALS['contentclsno'] = 'hidden';
 			}
 			if($_POST['google_connect'] == 1){  // check connection
 				$response = $this->GsuiteConnect('connect',$GLOBALS['USEREMAIL']);

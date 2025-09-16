@@ -23,8 +23,8 @@ class CIT_AZUREAD
 		
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='hidden'; 
+		$GLOBALS['bulkuploadcls'] = 'hidden'; 
 
 		if(isset($_REQUEST['category_id']) && $_REQUEST['category_id'] == 'copyCtaButton'){
 			$this->copyCtaButton();
@@ -69,9 +69,9 @@ class CIT_AZUREAD
 			GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id']); exit;
 		}
 
-		$GLOBALS['azurestep1'] ='d-none';
-		$GLOBALS['azurestep2'] ='d-none';
-		$GLOBALS['azurestep3'] ='d-none';
+		$GLOBALS['azurestep1'] ='hidden';
+		$GLOBALS['azurestep2'] ='hidden';
+		$GLOBALS['azurestep3'] ='hidden';
 		
 			if($_POST['forcetoupdate'] == 1){
 				$members =  $GLOBALS['integrations']->getLastUpdatedUserData('',$getattRow['api_username'],$getattRow['api_password'],$getattRow['api_uniqid']);
@@ -372,38 +372,43 @@ class CIT_AZUREAD
 			}
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
-				$GLOBALS['master_fieldp'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
-  							<label for=" ">Full Name</label></div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control select_heap_box" name="dirattrp[]">
-                                    <option value="master" '.$signature_firstnamemaster.'>Take from Master Signature </option>
-                                    <option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
-                                    <option value="givenName" '.$signature_firstnamegivenName.'>Given Name</option>
-									<option value="surname" '.$signature_firstnamesurname.'>Surname</option>
-                                    <option value="jobTitle" '.$signature_firstnamejobTitle.'>job Title</option>
-                                    <option value="mail" '.$signature_firstnamemail.'>Mail</option>
-                                    <option value="mobilePhone" '.$signature_firstnamemobilePhone.'>Mobile Phone</option>
-								    <option value="businessPhones" '.$signature_firstnamebusinessPhones.'>Office Phones</option>
-								    <option value="faxNumber" '.$signature_firstnamefaxNumber.'>Fax Number</option>
-								    <option value="companyName" '.$signature_firstnamecompanyName.'>Company Name</option>
-								    <option value="department" '.$signature_firstnamedepartment.'>Department</option>
-								    <option value="officeLocation" '.$signature_firstnameofficeLocation.'>Office Location</option>
-								    <option value="streetAddress" '.$signature_firstnamestreetAddress.'>Street Address</option>
-									<option value="postalCode" '.$signature_firstnamepostalCode.'>Zipcode</option>
-								    <option value="city" '.$signature_firstnamecity.'>City</option>
-								    <option value="state" '.$signature_firstnamestate.'>State</option>
-								    <option value="country" '.$signature_firstnamecountry.'>Country</option>
-                                </select><label for=" ">Full Name</label>
-                                <input type="hidden" name="fieldp[]" value="signature_firstname" />
-                            </div>';
+				$GLOBALS['master_fieldp'] .='<div>
+						<label class="kt-label">Full Name</label>
+						<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
+					</div>';
+				$GLOBALS['dirattr_fieldp'] .='<div>
+					<label class="kt-label">Full Name</label>
+					<select class="kt-select" name="dirattrp[]">
+						<option value="master" '.$signature_firstnamemaster.'>Take from Master Signature </option>
+						<option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
+						<option value="givenName" '.$signature_firstnamegivenName.'>Given Name</option>
+						<option value="surname" '.$signature_firstnamesurname.'>Surname</option>
+						<option value="jobTitle" '.$signature_firstnamejobTitle.'>job Title</option>
+						<option value="mail" '.$signature_firstnamemail.'>Mail</option>
+						<option value="mobilePhone" '.$signature_firstnamemobilePhone.'>Mobile Phone</option>
+						<option value="businessPhones" '.$signature_firstnamebusinessPhones.'>Office Phones</option>
+						<option value="faxNumber" '.$signature_firstnamefaxNumber.'>Fax Number</option>
+						<option value="companyName" '.$signature_firstnamecompanyName.'>Company Name</option>
+						<option value="department" '.$signature_firstnamedepartment.'>Department</option>
+						<option value="officeLocation" '.$signature_firstnameofficeLocation.'>Office Location</option>
+						<option value="streetAddress" '.$signature_firstnamestreetAddress.'>Street Address</option>
+						<option value="postalCode" '.$signature_firstnamepostalCode.'>Zipcode</option>
+						<option value="city" '.$signature_firstnamecity.'>City</option>
+						<option value="state" '.$signature_firstnamestate.'>State</option>
+						<option value="country" '.$signature_firstnamecountry.'>Country</option>
+					</select>
+					<input type="hidden" name="fieldp[]" value="signature_firstname" />
+				</div>';
 				$mfield++;
 			}
 			if($data['signature_jobtitle'] != ""){
-				$GLOBALS['master_fieldp'] .='<div class="form-floating">
-  							<input type="text" class="form-control" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled"><label for=" ">Title / Sub Title</label>
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class>Title / Sub Title</label>
+  							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control select_heap_box" name="dirattrp[]">
+				$GLOBALS['dirattr_fieldp'] .='<div>
+								<label class="kt-label">Title / Sub Title</label>
+                                <select class="kt-select" name="dirattrp[]">
                                     <option value="master" '.$signature_jobtitlemaster.'>Take from Master Signature </option>
                                     <option value="displayName" '.$signature_jobtitledisplayName.'>Display Name</option>
                                     <option value="givenName" '.$signature_jobtitlegivenName.'>Given Name</option>
@@ -421,18 +426,20 @@ class CIT_AZUREAD
 								    <option value="city" '.$signature_jobtitlecity.'>City</option>
 								    <option value="state" '.$signature_jobtitlestate.'>State</option>
 								    <option value="country" '.$signature_jobtitlecountry.'>Country</option>
-                                </select><label for=" ">Title / Sub Title</label>
+                                </select>
                                 <input type="hidden" name="fieldp[]" value="signature_jobtitle" />
                             </div>';
 				$mfield++;
 			}
 			if($data['signature_company'] !=""){
 				$mfield++;
-				$GLOBALS['master_fieldp'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
-  							<label for=" ">Company Name</label>
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class="kt-label">Company Name</label>
+							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control select_heap_box" name="dirattrp[]">
+				$GLOBALS['dirattr_fieldp'] .='<div>
+								<label class="kt-label">Company Name</label>
+                                <select class="kt-select" name="dirattrp[]">
                                    <option value="master" '.$signature_companymaster.'>Take from Master Signature </option>
                                     <option value="displayName" '.$signature_companydisplayName.'>Display Name</option>
                                     <option value="givenName" '.$signature_companygivenName.'>Given Name</option>
@@ -450,7 +457,7 @@ class CIT_AZUREAD
 								    <option value="city" '.$signature_companycity.'>City</option>
 								    <option value="state" '.$signature_companystate.'>State</option>
 								    <option value="country" '.$signature_companycountry.'>Country</option>
-                                </select><label for=" ">Company Name</label>
+                                </select>
                                 <input type="hidden" name="fieldp[]" value="signature_company" />
                             </div>';
 			$mfield++;
@@ -475,12 +482,14 @@ class CIT_AZUREAD
 						$newfieldc[$fieldc.${$fieldc.'c'}] = 1;
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
-						$GLOBALS['master_fieldc'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$field_value.'" disabled="disabled">
-  							<label for=" ">'.$field_label.'</label>
+						$GLOBALS['master_fieldc'] .='<div>
+						<label class="kt-label">'.$field_label.'</label>
+						<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						
-						$GLOBALS['dirattr_fieldc'] .='<div class="form-floating">
-                                <select class="form-control select_heap_box" name="dirattrc[]">
+						$GLOBALS['dirattr_fieldc'] .='<div>
+								<label class="kt-label">'.$field_label.'</label>
+                                <select class="kt-select" name="dirattrc[]">
                                     <option value="master" '.${$fieldname.'master'}.'>Take from Master Signature </option>
                                     <option value="displayName" '.${$fieldname.'displayName'}.'>Display Name</option>
 									 <option value="surname" '.${$fieldname.'surname'}.'>Surname</option>
@@ -498,14 +507,11 @@ class CIT_AZUREAD
 								    <option value="city" '.${$fieldname.'city'}.'>City</option>
 								    <option value="state" '.${$fieldname.'state'}.'>State</option>
 								    <option value="country" '.${$fieldname.'country'}.'>Country</option>
-                                </select><label for=" ">'.$field_label.'</label>
+                                </select>
                                 <input type="hidden" name="fieldc[]" value="'.$customfield['field_type'].'" />
                             </div>'; 
 					 $fieldno++; $mfield++; }
 				}
-				
-								
-					
 
 				unset($data['signature_id']); unset($data['no']); // remove from csv file
 

@@ -2,14 +2,14 @@
 <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
-		<div class="kt-container-fluid pb-4">
+		<div class="kt-container-fluid pb-4 h-full">
             <div id="snackbar"></div>
             <div id="snackbar-error"></div>
             <div id="snackbar-info"></div>
 
-            <div class="w-full max-w-[700px] mx-auto">
+            IF("%%DEFINE_PageView%%" == "googleconnect"){
+            <div class="w-full max-w-[700px] mx-auto h-full flex items-center justify-center">
                 <div class="inline-flex flex-col gap-3">
-                    IF("%%DEFINE_PageView%%" == "googleconnect"){
                     <div class="%%DEFINE_Gstep1%%">
                         <div class="kt-card kt-card-accent step" id="step2">
                             <div class="kt-card-header">
@@ -25,10 +25,6 @@
                                     </div>
                                     <div class="text-gray-200 flex items-center gap-3">
                                         <span class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-200 text-white">2</span>
-                                        Step
-                                    </div>
-                                    <div class="text-gray-200 flex items-center gap-3">
-                                        <span class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-200 text-white">3</span>
                                         Step
                                     </div>
                                 </div>
@@ -164,9 +160,13 @@
                             <a class="kt-btn kt-btn-primary" href="%%DEFINE_google_connect%%">Complete</a>
                         </div>
                     </div>
-                    {:IF}
+                </div>
+            </div>
+            {:IF}
 
-                    IF("%%DEFINE_PageView%%" == "msconnect"){
+            IF("%%DEFINE_PageView%%" == "msconnect"){
+            <div class="w-full max-w-[700px] mx-auto h-full flex items-center justify-center">
+                <div class="inline-flex flex-col gap-3">
                     <div class="kt-card kt-card-accent signature_integration_withhead_box step" id="msstep1">
                         <div class="kt-card-header">
                             <h2 class="kt-card-title flex items-center gap-1">
@@ -217,7 +217,7 @@
                     </div>
                     <div class="kt-card kt-card-accent signature_integration_withhead_box step" id="msstep2" style="display:none;">
                         <div class="kt-card-header">
-                            <h2 class="kt-card-title">
+                            <h2 class="kt-card-title flex gap-2 items-center">
                                 <img src="%%DEFINE_IMAGE_LINK%%/images/subtract-icon.svg" alt=""> Microsoft 365 Demo
                             </h2>
                         </div>
@@ -233,7 +233,7 @@
                                 </div>
                             </div>
 
-                            <p>Watch a quick video demo on how to automate email signatures management after the integration has been set.</p>
+                            <p class="mb-2">Watch a quick video demo on how to automate email signatures management after the integration has been set.</p>
                             <p>Please note, that it may take some time before you are able to deploy signatures after the Add-in is installed.</p>
                             <p>&nbsp;</p>
                             <div class="bulkupload_video">
@@ -258,9 +258,10 @@
                             <p><a class="text-primary" target="_blank" href="%%DEFINE_IMAGE_LINK%%/images/file/Steps-for-Azure-AD-portal.pdf">Instructions here</a></p>
                         </div>
                     </div>
-                    {:IF}
                 </div>
             </div>
+            {:IF}
+                
             IF("%%DEFINE_PageView%%" == "integrations"){
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 <div class="signature_integration_box kt-card kt-card-accent">
