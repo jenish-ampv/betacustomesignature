@@ -23,8 +23,8 @@ class CIT_AZUREAD
 		
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='hidden'; 
+		$GLOBALS['bulkuploadcls'] = 'hidden'; 
 
 		if(isset($_REQUEST['category_id']) && $_REQUEST['category_id'] == 'copyCtaButton'){
 			$this->copyCtaButton();
@@ -69,9 +69,9 @@ class CIT_AZUREAD
 			GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id']); exit;
 		}
 
-		$GLOBALS['azurestep1'] ='d-none';
-		$GLOBALS['azurestep2'] ='d-none';
-		$GLOBALS['azurestep3'] ='d-none';
+		$GLOBALS['azurestep1'] ='hidden';
+		$GLOBALS['azurestep2'] ='hidden';
+		$GLOBALS['azurestep3'] ='hidden';
 		
 			if($_POST['forcetoupdate'] == 1){
 				$members =  $GLOBALS['integrations']->getLastUpdatedUserData('',$getattRow['api_username'],$getattRow['api_password'],$getattRow['api_uniqid']);

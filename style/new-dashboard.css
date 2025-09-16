@@ -1055,7 +1055,7 @@
         flex-direction: column-reverse;
     } */
 
-    .sin_dashboard_box.sin_process .progress_details_left {
+    /* .sin_dashboard_box.sin_process .progress_details_left {
         width: 100%;
         text-align: center;
     }
@@ -1064,17 +1064,17 @@
         bottom: auto;
         position: relative;
         margin-top: 15px;
-    }
+    } */
 
-    .signature_integration_box {
+    /* .signature_integration_box {
         padding: 15px;
-    }
+    } */
 
-    .bulk_upload_main {
+    /* .bulk_upload_main {
         padding: 15px;
-    }
+    } */
 
-    .sin_dashboard_box.sin_process .logo_right img{
+    /* .sin_dashboard_box.sin_process .logo_right img{
         height: 30px;
     }
     .new_dashboard_bg .signature_manager_top .button_right {
@@ -1099,7 +1099,7 @@
 
     .new_dashboard_right .signature_tbl{
             height: 190px;
-    }
+    } */
 }
 
 

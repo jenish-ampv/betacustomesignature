@@ -10476,9 +10476,9 @@ td.layout_border {
         padding: 20px 0 0 0;
     }
 
-    .hover_over_sign_bg {
+    /* .hover_over_sign_bg {
         position: relative;
-    }
+    } */
 
     .pricing_table_bg .pricing_col {
         width: 40%;
@@ -11361,9 +11361,9 @@ td.layout_border {
         padding: 10px 20px 10px 0;
     }
 
-    .bulk_upload_main {
+    /* .bulk_upload_main {
         display: flow-root;
-    }
+    } */
 
     .signature_integration_withhead_box .accordion .accordion-body {
         padding: 0;

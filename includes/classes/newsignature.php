@@ -745,8 +745,7 @@ class CIT_NEWSIGNATURE
 				$GLOBALS['signature_marketplacebtns'] = $GLOBALS['signature_appstorebtn_btn'].$GLOBALS['signature_playstorebtn_btn'].$GLOBALS['signature_amazonbtn_btn'].$GLOBALS['signature_ebaybtn_btn'];
 
 				if($GLOBALS['signature_layout'] == $layout_id){
-					$GLOBALS['lauout_load'] = '
-					<div class="sin_dashboard_box signature_layot">
+					$GLOBALS['lauout_load'] = '<div class="signature_previous_box">
 					<input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.'>
 					<table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0">
 					<tr>
