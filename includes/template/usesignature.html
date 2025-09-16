@@ -3,69 +3,61 @@
 table{ border:none; border-collapse: collapse;}
 tr, td{ border:none; border-collapse: collapse;}
 </style>
-<section>
-  <div class="container">
- 
-   <div class="use_signature_box_main">
-     <div class="use_header_top">
-     	<div class="top_logo"><img src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt=""></div>
-        <div class="tutorial_but"><a href="https://www.customesignature.com/tutorials" target="_blank"><img src="%%DEFINE_IMAGE_LINK%%/images/top-tutorial-icon.svg" alt="">Tutorial</a></div>
-     </div>
-    
-    <div class="use_center_box_bg"> 
-      <div class="warning_top_msg"><img src="%%DEFINE_IMAGE_LINK%%/images/warning-use-sign-symbol.svg" alt=""> <strong> Safari </strong>isn't supported. Use&nbsp;<strong>Chrome</strong> or other browser to integrate signature</div>
-      
-      <div id="snackbar"></div>
-      <div id="snackbar-error"></div>
-      <div id="snackbar-info"></div>
-    	<div class="signature_use_box">
-   			<div class="previous_top_bg_box">
-                    	<div class="previous_top_img">
-                    	<div class="previous_left">
-                        	<img src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
-                            <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
-                        </div>
-                        <div class="previous_right_img"><img src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt=""></div>
-                    </div>
-                    	<p>&nbsp;</p>
-                    	<p>Hey John,</p>
-                        <div class="line_one">&nbsp;</div>
-                        <div class="line_two">&nbsp;</div>
-                        <p>Best,</p>
-                        <p>&nbsp;</p>
-                    </div>
-                    <div  id="signature_source">
-   			 			%%DEFINE_signature_source%%
-             		</div>
-    	</div>
+
+<div class="kt-container-fluid p-4 h-full">
+  <div class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 h-auto md:h-full overflow-auto"
+    style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
+    <div class="flex justify-between items-center w-full mb-4">
+      <div class="max-w-[150px]">
+        <a href="%%DEFINE_ROOT_LINK%%">
+          <img class="hidden lg:block h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/logo.svg"/>
+          <img class="lg:hidden h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/domo-logo1.png"/></a>
+      </div>
+        <div>
+          <a class="kt-btn kt-btn-primary" href="https://www.customesignature.com/tutorials" target="_blank">
+          <img class="invert" src="%%DEFINE_IMAGE_LINK%%/images/top-tutorial-icon.svg" alt="">Tutorial</a>
+        </div>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center">
+      <div class="w-full max-w-[740px] mx-auto gap-8 mb-4 py-5 px-4 pl-11 border border-primary rounded-xl relative"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/warning-use-sign-symbol.svg" alt=""> <strong> Safari </strong>isn't supported. Use&nbsp;<strong>Chrome</strong> or other browser to integrate signature</div>
+      <div id="snackbar" class="mb-4 w-full"></div>
+      <div id="snackbar-error" class="mb-4 w-full"></div>
+      <div id="snackbar-info" class="mb-4"></div>
+      <div class="lg:border border-gray-300 rounded-xl lg:p-5 lg:bg-white max-w-[740px] mx-auto w-full">
+        <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
+          <div class="flex items-center gap-3">
+            <img class="size-9 rounded-full object-cover" draggable="false"
+              src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
+            <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
+          </div>
+          <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt="">
+        </div>
+        <p>&nbsp;</p>
+        <p class="text-gray-300">Hey John,</p>
+        <div class="h-2 bg-gray-200 rounded-full mt-3">&nbsp;</div>
+        <div class="h-2 bg-gray-200 rounded-full mt-3 mb-10 w-1/2">&nbsp;</div>
+        <p class="text-gray-300">Best,</p>
+        <p>&nbsp;</p>
+        <div id="signature_source">
+   			 	%%DEFINE_signature_source%%
+        </div>
+      </div>
       <div class="overlay-loader">
    		 <img class="loaderGif" style="display: block; margin-left: auto; margin-right: auto;" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif"/>
       </div>
-        
-      <div class="button_bg signature_use_button"> 
-        <a href="%%DEFINE_linkModuleDashboard%%" class="previous action-button-previous"><img src="%%DEFINE_IMAGE_LINK%%/images/goback.svg" alt="">Go Back</a>
+      <div class="flex flex-col w-full sm:flex-row justify-center items-center gap-4 mt-5 md:mt-6 lg:mt-8 xl:mt-10">
+        <a href="%%DEFINE_linkModuleDashboard%%" class="previous kt-btn kt-btn-mono action-button-previous w-full sm:w-auto"><i class="hgi hgi-stroke hgi-arrow-left-02"></i> Go Back</a>
         %%DEFINE_use_signature_buttons%%
       </div>
-     </div>
-    
     </div>
-    
-    <!--<div class="add_button_bottom">
-  
-         <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Gmail <img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon.svg" alt=""></a>
-        <span class="line">&nbsp;</span>
-         <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Outlook <img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon.svg" alt=""></a>
-        <span class="line">&nbsp;</span>
-        <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Yahoo Mail <img src="%%DEFINE_IMAGE_LINK%%/images/yahoo-icon.svg" alt=""></a>
-        <span class="line">&nbsp;</span>
-        <a href="https://www.customesignature.com/tutorials" target="_blank">Add to Apple Mail <img src="%%DEFINE_IMAGE_LINK%%/images/apple-icon.svg" alt=""></a>
-        
-    </div>-->
-    
   </div>
-</section>
+</div>
+
+
+
+
 <!-- Instruction Popup -->
-<div class="modal fade sigaddpopup" id="sigaddpopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade sigaddpopup hidden" id="sigaddpopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
@@ -226,7 +218,7 @@ function CopyToClipboard(element) {
 	window.getSelection().removeAllRanges();
 	$("#style1").removeAttr('disabled');
 	$("#style2").removeAttr('disabled');
-  $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied! </div>');
+  $('#snackbar').html('<div class="w-full max-w-[740px] mx-auto gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied!</div>');
   $('#snackbar').show();
   setTimeout(function(){ $('#snackbar').hide(); }, 2000);
 	//document.getElementById("btn").value="Copied";
@@ -251,7 +243,7 @@ $('#copy_sorcecode').on('click', function (event) {  // copy signature
   $temp.val(content).select();
   document.execCommand("copy");
   $temp.remove();
-  $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied! </div>');
+  $('#snackbar').html('<div class="w-full max-w-[740px] mx-auto gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied!</div>');
   $('#snackbar').show();
   setTimeout(function(){ $('#snackbar').hide(); }, 2000);
 	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
