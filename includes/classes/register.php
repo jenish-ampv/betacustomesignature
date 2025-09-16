@@ -1129,7 +1129,6 @@ class CIT_REGISTER
 		
 		$GLOBALS['DB']->insert("stripe_webhook",$data);
 		
-		
 		switch ($event->type) {
 			case 'invoice.payment_succeeded': // subscription create success
 			 	$paymentIntent = $event->data->object;	
@@ -1150,7 +1149,7 @@ class CIT_REGISTER
 				$invoice_no = $paymentIntent->id;
 				
 				$memRow = $GLOBALS['DB']->row("SELECT * FROM registerusers RU LEFT JOIN registerusers_subscription SU ON RU.user_id = SU.user_id WHERE RU.user_id=?",array($userId));
-					
+				
 				if($memRow['user_status'] == 0){
 					$updateResult = $GLOBALS['DB']->update('registerusers',array('user_status' => 1),array('user_id'=>$memRow['user_id']));
 					if($updateResult){
@@ -1250,7 +1249,7 @@ class CIT_REGISTER
 					}
 				}
 				if($memRow['user_id']){
-					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'period_start' => $start_time,'period_end' => $end_time,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
+					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'plan_signaturelimit' => $planUnit ,'period_start' => $start_time,'period_end' => $end_time,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
 					$where = array('user_id'=>$userId);
 					$add = $GLOBALS['DB']->update('registerusers_subscription',$data,$where);
 					

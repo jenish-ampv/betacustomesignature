@@ -6,8 +6,8 @@ class CIT_PURCHASE
 {
 	
 	public function __construct()
-	{	
-		
+	{
+
 	}
 	
 	public function displayPage(){
@@ -37,7 +37,7 @@ class CIT_PURCHASE
 
 			$rowUserCard = $GLOBALS['DB']->row("SELECT * FROM `registerusers_card` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
 			if($rowUserCard){
-				$rowUserSubscription = $GLOBALS['DB']->row("SELECT subscription_id,subscription_id FROM `registerusers_subscription` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+				$rowUserSubscription = $GLOBALS['DB']->row("SELECT subscription_id,customer_id FROM `registerusers_subscription` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
 				if($rowUserSubscription){
 
 					
@@ -53,6 +53,40 @@ class CIT_PURCHASE
 						$newQuantity    = $_POST['plan_unit'];
 						$customerId     = $rowUserSubscription['customer_id'];
 
+						$rowUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+
+						if(!$rowUser){
+							throw new Exception("No user found with your logged in id");
+						}
+						// Cancelling all other subsciption in stripe
+						$email = $rowUser['user_email']; // The email you want to search for
+
+						//Find customer(s) by email
+						$customers = \Stripe\Customer::all(['email' => $email, 'limit' => 1]);
+
+						if (count($customers->data) === 0) {
+							// echo "No customer found with email: $email";
+							// return;
+						}else{
+							$customer = $customers->data[0];
+
+							//Get all subscriptions for this customer
+							$subscriptions = \Stripe\Subscription::all([
+								'customer' => $customer->id,
+								'status' => 'all',
+								'limit' => 100
+							]);
+
+							//Cancel each subscription
+							foreach ($subscriptions->data as $subscription) {
+								if($subscription->status != 'canceled' && $subscription->status != 'incomplete_expired'){
+									$subscription->cancel();
+								}
+								// echo "Cancelled subscription: " . $subscription->id . "\n";
+							}
+						}
+						// Cancelling all other subsciption in stripe
+
 						$subscriptionExists = false;
 
 						// ✅ Try retrieving the subscription
@@ -66,27 +100,81 @@ class CIT_PURCHASE
 								$subscriptionExists = false;
 							}
 						}
-
+						
 						if ($subscriptionExists) {
 							// 🔁 Update existing subscription
 							$itemId = $subscription->items->data[0]->id;
 
-							$updatedSubscription = \Stripe\Subscription::update($subscriptionId, [
-								'items' => [[
-									'id'       => $itemId,
-									'price'    => $newPriceId,
-									'quantity' => $newQuantity,
-								]],
-								'proration_behavior' => 'none'
-							]);
+							// Retrieve the subscription
+							$subscription = \Stripe\Subscription::retrieve($subscriptionId);
 
-							// Create and finalize invoice (optional)
-							$invoice = \Stripe\Invoice::create([
-								'customer'     => $updatedSubscription->customer,
-								'subscription' => $updatedSubscription->id,
-								'auto_advance' => true,
-							]);
+							if ($subscription->status !== 'active') {
+								// The subscription is not active (could be 'canceled', 'incomplete', 'past_due', etc.) — create a new one
+								
+								// Check if latest_invoice exists
+								if (!empty($subscription->latest_invoice)) {
+									// Retrieve the invoice
+									$invoice = \Stripe\Invoice::retrieve($subscription->latest_invoice);
 
+									// Cancel the invoice if it's still open
+									if (in_array($invoice->status, ['open', 'draft'])) {
+										// Try voiding the invoice
+										\Stripe\Invoice::voidInvoice($invoice->id);
+									}
+								}
+								
+								$newSubscription = \Stripe\Subscription::create([
+									'customer' => $subscription->customer,
+									'items' => [[
+										'price'    => $newPriceId,
+										'quantity' => $newQuantity,
+									]],
+									'metadata' => array('user_id'=>$GLOBALS['USERID'],'plan_id'=>$_POST['plan_id'],'plan_unit'=>$newQuantity),
+									'proration_behavior' => 'none',
+									'collection_method' => 'charge_automatically',
+    								'payment_behavior' => 'default_incomplete'
+								]);
+
+								// Retrieve the latest invoice from the new subscription
+								$invoiceId = $newSubscription->latest_invoice;
+
+								if ($invoiceId) {
+									$invoice = \Stripe\Invoice::retrieve($invoiceId);
+
+									// pay the invoice immediately
+									if ($invoice->status === 'open') {
+										$invoice->pay();
+									}
+								}
+
+							} else {
+								// Subscription is active — update it
+								$updatedSubscription = \Stripe\Subscription::update($subscriptionId, [
+									'items' => [[
+										'id'       => $itemId,
+										'price'    => $newPriceId,
+										'quantity' => $newQuantity,
+									]],
+									'metadata' => array('user_id'=>$GLOBALS['USERID'],'plan_id'=>$_POST['plan_id'],'plan_unit'=>$newQuantity),
+									'proration_behavior' => 'none'
+								]);
+
+								// Create and finalize invoice for the updated subscription
+								$invoice = \Stripe\Invoice::create([
+									'customer'     => $updatedSubscription->customer,
+									'subscription' => $updatedSubscription->id,
+									'auto_advance' => true
+								]);
+
+								// Finalize the invoice (makes it payable)
+								$finalizedInvoice = \Stripe\Invoice::finalizeInvoice($invoice->id);
+
+								// Pay the invoice immediately
+								if ($finalizedInvoice->status === 'open') {
+									$finalizedInvoice->pay();
+								}
+							}
+							
 						} else {
 							
 							$customerExists = false;
@@ -147,7 +235,7 @@ class CIT_PURCHASE
 								]);
 							} else {
 								// Handle missing card
-								$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>Error:</strong> Saved card not found. Please add a new payment method.</div>';
+								$_SESSION[GetSession('Success')] = '<div class="alert alert-danger"><strong>Error:</strong> Saved card not found. Please add a new payment method.</div>';
 								GetFrontRedirectUrl(GetUrl(['module' => 'purchase','category_id'=>'renewaccount']));
 								exit;
 							}
@@ -159,6 +247,7 @@ class CIT_PURCHASE
 									'price'    => $newPriceId,
 									'quantity' => $newQuantity,
 								]],
+								'metadata' => array('user_id'=>$GLOBALS['USERID'],'plan_id'=>$_POST['plan_id'],'plan_unit'=>$newQuantity),
 								'expand' => ['latest_invoice.payment_intent'],
 							]);
 
@@ -167,20 +256,19 @@ class CIT_PURCHASE
 
 						}
 
-						$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong> Account updated successfully.</div>';
-						GetFrontRedirectUrl(GetUrl(['module' => 'dashboard']));
-						exit;
+						$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';
+						GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
 
 					} catch (\Stripe\Exception\CardException $e) {
-						$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>Card Error:</strong> ' . $e->getMessage() . '</div>';
+						$_SESSION[GetSession('Success')] = '<div class="alert alert-danger"><strong>Card Error:</strong> ' . $e->getMessage() . '</div>';
 					} catch (\Stripe\Exception\ApiErrorException $e) {
-						$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>API Error:</strong> ' . $e->getMessage() . '</div>';
+						$_SESSION[GetSession('Success')] = '<div class="alert alert-danger"><strong>API Error:</strong> ' . $e->getMessage() . '</div>';
 					} catch (Exception $e) {
-						$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>Unexpected Error:</strong> ' . $e->getMessage() . '</div>';
+						$_SESSION[GetSession('Success')] = '<div class="alert alert-danger"><strong>Unexpected Error:</strong> ' . $e->getMessage() . '</div>';
 					}
 				}
 			}else{
-				$GLOBALS['Message'] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>No saved card found for you account.</div>';
+				$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>No saved card found for you account.</div>';
 			}
 		}
 
@@ -194,40 +282,41 @@ class CIT_PURCHASE
 				$email = $rowUser['user_email']; // The email you want to search for
 
 				//Find customer(s) by email
-				// $customers = \Stripe\Customer::all(['email' => $email, 'limit' => 1]);
+				$customers = \Stripe\Customer::all(['email' => $email, 'limit' => 1]);
 
-				// if (count($customers->data) === 0) {
-				// 	// echo "No customer found with email: $email";
-				// 	// return;
-				// }else{
-				// 	$customer = $customers->data[0];
+				if (count($customers->data) === 0) {
+					// echo "No customer found with email: $email";
+					// return;
+				}else{
+					$customer = $customers->data[0];
 
-				// 	//Get all subscriptions for this customer
-				// 	$subscriptions = \Stripe\Subscription::all([
-				// 		'customer' => $customer->id,
-				// 		'status' => 'all',
-				// 		'limit' => 100
-				// 	]);
+					//Get all subscriptions for this customer
+					$subscriptions = \Stripe\Subscription::all([
+						'customer' => $customer->id,
+						'status' => 'all',
+						'limit' => 100
+					]);
 
-				// 	//Cancel each subscription
-				// 	foreach ($subscriptions->data as $subscription) {
-				// 		if($subscription->status != 'canceled' && $subscription->status != 'incomplete_expired'){
-				// 			$subscription->cancel();
-				// 		}
-				// 		// echo "Cancelled subscription: " . $subscription->id . "\n";
-				// 	}
-				// }
+					//Cancel each subscription
+					foreach ($subscriptions->data as $subscription) {
+						if($subscription->status != 'canceled' && $subscription->status != 'incomplete_expired'){
+							$subscription->cancel();
+						}
+						// echo "Cancelled subscription: " . $subscription->id . "\n";
+					}
+				}
 				// Cancelling all other subsciption in stripe
 
-				// $Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'], $rowUser['user_id'],$rowUser['user_email'],$rowUser['user_firstname'].' '.$rowUser['user_lastname']);
+				$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'], $rowUser['user_id'],$rowUser['user_email'],$rowUser['user_firstname'].' '.$rowUser['user_lastname']);
 				$Subscription = true;
 				if($Subscription){	
-					$GLOBALS['Message'] = '<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';;
+					$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';
+					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
 				}else{
-					$GLOBALS['Message'] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
+					$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
 				}
 			}else{
-				$GLOBALS['Message'] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
+				$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
 			}
 		}
 		
@@ -238,9 +327,13 @@ class CIT_PURCHASE
 			if($rowUserSubscription){
 				$plan_id = $rowUserSubscription['plan_id'];
 				$plan_unit = $rowUserSubscription['plan_signaturelimit'];
-				$this->getPlanDetail($plan_id,$plan_unit,1,true);
+				if($plan_id < 1 || $plan_unit < 1){
+					$this->getPlanDetail(8,1,1,false); // Default new yearly plan
+				}else{
+					$this->getPlanDetail($plan_id,$plan_unit,1,true);
+				}
 			}else{
-				$this->getPlanDetail(8,1,1,true); // Default new year plan
+				$this->getPlanDetail(8,1,1,false); // Default new yearly plan
 			}
 
 			$rowUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
@@ -287,19 +380,18 @@ class CIT_PURCHASE
 			if($_POST['stripeToken']!="" && $_POST['plan_id'] !="" && $_POST['plan_unit'] !="" && $_POST['user_id'] !="" && $_POST['user_email'] !="" && $_POST['user_name'] !=""){
 				$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'],$_POST['user_id'],$_POST['user_email'],$_POST['user_name']);
 				if($Subscription){				
-					$redirect_dashboard = GetUrl(array('module'=>'dashboard'));		
 					$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';
-					GetFrontRedirectUrl($redirect_dashboard);
+					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
 				}else{
 					if($GLOBALS['Error_code'] == 'subscription_payment_intent_requires_action'){
 						$this->checkStripe3D($_POST);
 					}
 					
-					$GLOBALS['Message']='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>'.$GLOBALS['Error'].' please contact administrator. if your payment debit from your account.</div>';	
+					$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>'.$GLOBALS['Error'].' please contact administrator. if your payment debit from your account.</div>';	
 				}
 				
 			 }else{
-			 	$GLOBALS['Message'] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>please enter all required field!</div>';
+			 	$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>please enter all required field!</div>';
 			 }
 		}
 
@@ -577,52 +669,30 @@ class CIT_PURCHASE
 				}
 			}
 			if($planRow['plan_id'] == $selplan_id){
-				$GLOBALS['selplan_'.$plan_id] ='';
 				$GLOBALS['plan_id'] = $plan_id;
-				$GLOBALS['plan_priceid'] = trim($planRow['plan_priceid']); 
 				$GLOBALS['plan_selunit'] = $selunit;
 				$GLOBALS['plan_selplan'.$selplan_id] = 'checked="checked"';
 				$mulperiod = $plantype == 'year' ? 12 : 3 ;
+				if($selplan_id > 5){
+					$mulperiod = $plantype == 'year' ? 12 : 1 ;
+				}
 				$GLOBALS['plan_format_price'] = GetPriceFormat($plan_selprice * $mulperiod);
 				$GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 				$GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 				$GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-				$GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-				$GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
-				$offper = $plantype == 'year' ? '<span class="offper">Saving 20%</span>' : '';
-				
-				if($selplan_id %2 == 0){ // pro plan
-					$plan_text ='<li>Advanced Logo Animation</li><li>Animated Icons</li><li>Pro Layouts</li><li>2 Day Logo Turnaround</li>';
-				}else{
-					$plan_text ='<li>Basic Logo Animation</li><li>Static Icons</li><li>Basic Layouts</li><li>5 Day Logo Turnaround</li>';
-				}
-				$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
-				if( $GLOBALS['free_trial'] == 1){
-					$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
-					<h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)  <b style="float:none;"><span class="offper">7 Day Free Trial</b></span><b><span class="month_basicprice">7 Day Free</span></b></h6>  
-					<div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice" style="text-decoration-line:none;"><span>Then $'.$GLOBALS['plan_price_hiden'].'/'.$plantype.' after trial</span></div></div>
-					<ul><li>Static Logo (Upgrade Trial to Animate)</li><li>Animated Icon</li><li>Pro Layouts</li><li>Full Dashboard Suite</li></ul>
-				</div>';
-				}else{
-				$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
-					<h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)  <b>'.$freetrial_text.' '. $offper.'$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h6>  
-					<div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
-					<ul>'.$plan_text.'</ul>
-				</div>';
-				}
 			}else{
 				$selected ='';
 			}
 		}
 
-		$GLOBALS['quartrly_enabled'] = false;
+		$GLOBALS['quartrly_enabled'] = 'false';
 		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
 		$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
 		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
 		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
 
 		if($renewAccount){
-			$GLOBALS['quartrly_enabled'] = true;
+			$GLOBALS['quartrly_enabled'] = 'true';
 			$GLOBALS['pro_month_unit'] = json_encode($pro_quarter_arr);
 			$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
 			$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
