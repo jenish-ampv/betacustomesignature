@@ -82,7 +82,7 @@ class CIT_USERMANAGEMENT
                 $row['department_list'] = " ";
             }
             $GLOBALS['departmentUserTableBody'] .= "<tr>
-                <td>".$row['user_firstname']." ".$row['user_lastname']."</td>
+                <td class='text-nowrap'>".$row['user_firstname']." ".$row['user_lastname']."</td>
                 <td>".$row['email']."</td>
                 <td>".$status."</td>
                 <td>
@@ -90,18 +90,18 @@ class CIT_USERMANAGEMENT
                         if($row['is_active'] == 2){
                             $GLOBALS['departmentUserTableBody'] .= "
                             <a href='javascript:void(0);' onclick='sendInviteMail(\"".$GLOBALS['usermanagement']."/inviteuser?user_id=".$row['id']."\")' class='feather icon-edit invite_link' title='Send Password Link'>
-                                <i class='hgi hgi-stroke hgi-pencil-edit-02 text-xl'></i>
+                                <i class='hgi hgi-stroke hgi-mail-01 text-xl'></i>
                             </a>";
                         }
                         $GLOBALS['departmentUserTableBody'] .= "
-                        <a href='#' class='feather icon-edit edit_user' data-fname='".$row['user_firstname']."' data-lname='".$row['user_lastname']."' data-email='".$row['email']."' data-user_status='".$row['is_active']."' data-permission='".$row['permission']."' data-department_list='".$row['department_list']."' title='View' data-bs-toggle='modal' data-bs-target='#addUserModel'>
+                        <a href='javascript:void(0);' class='feather icon-edit edit_user' data-fname='".$row['user_firstname']."' data-lname='".$row['user_lastname']."' data-email='".$row['email']."' data-user_status='".$row['is_active']."' data-permission='".$row['permission']."' data-department_list='".$row['department_list']."' title='View' data-kt-modal-toggle='#addUserModel'>
                             <i class='hgi hgi-stroke hgi-pencil-edit-02 text-xl'></i>
                         </a>
                         <a href='".$GLOBALS['usermanagement']."/deleteuser?user_id=".$row['id']."' class='feather icon-trash delete_user' title='Delete'>
                             <i class='text-danger hgi hgi-stroke hgi-delete-02 text-xl'></i>
                         </a> 
                         <div class='departmentUser-change-status'>
-                            <input class='kt-checkbox' type='checkbox' role='switch' id='departmentUser-action' name='user_status_button' value='1' data-sub_user_id='".$row['id']."' ".$checked.">
+                            <input class='kt-switch' type='checkbox' role='switch' id='departmentUser-action' name='user_status_button' value='1' data-sub_user_id='".$row['id']."' ".$checked.">
                         </div
                     </div>
                 </td>
