@@ -1,5 +1,4 @@
 %%DEFINE_HEADER%%
-<section>
 <script src="https://js.stripe.com/v3/"></script>
 <link rel="stylesheet" href="%%DEFINE_ROOT_LINK%%/script/litepicker/litepicker.css">
 <script src="%%DEFINE_ROOT_LINK%%/script/litepicker/litepicker.js"></script>
@@ -8,220 +7,149 @@
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
         <div class="kt-container-fluid pb-4 h-full">
-            <div class="kt-card kt-card-accent w-full mx-auto">
-                <div class="kt-card-header">
-                    <div class="kt-card-heading">
-                        <h2 class="kt-card-title">Campaign Settings</h2>
-                    </div>
-
-          <form id="bannerform" class="campaign-form">
-                          <p class="campain-name-text">Campaign name</p>
-                            <!-- <div class="campaign-name">
-                                <span>Campaign Name</span>
-                                <input type="text" class="form-control" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%" placeholder="Campaign Name">
-                                <label for="">Campaign Name</label>
-                            </div> -->
-
-                            <div class="form-floating banner_style_section">
-                                <input type="text" class="form-control" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%" placeholder="Campaign Name">
-                                <label for="">Campaign Name</label>
+            <div class="kt-card kt-card-accent w-full mx-auto h-full">
+                <form id="bannerform" class="campaign-form flex h-full">
+                    <div class="p-5 w-full max-w-[400px] lg:[--kt-drawer-enable:false] max-lg:bg-white h-full" data-kt-drawer="true"
+        data-kt-drawer-class="kt-drawer kt-drawer-start hidden" id="drawer">
+                        <h2 class="kt-card-title mb-4">Campaign Settings</h2>
+                        <div class="space-y-5">
+                            <div>
+                                <label class="kt-label">Campaign Name</label>
+                                <input type="text" class="kt-input" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%">
                             </div>
-                            <div class="departments">
-                                <span class="departments-text">Add departments and set a date range</span>
-                                <div class="form-check-list" id="division">   
+                            <div>
+                                <label class="kt-label">Add departments and set a date range</label>
+                                <div class="border border-gray-200 bg-white rounded-lg p-3 space-y-2" id="division">
                                     %%DEFINE_department_list%%
                                 </div>
                             </div>
-                            <div class="date-container">
-                                <span>Select Date Range</span>
-                                <div class="form-floating banner_style_section">
-                                <input type="text" class="form-control" id="datepicker" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
-                                <label for="">Select Date Range</label>
+                            <div>
+                                <label class="kt-label">Select Date Range</label>
+                                <input type="text" class="kt-input" id="datepicker" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
                             </div>
-                                <!-- <input type="text" id="datepicker" name="date_range" placeholder="Select date range" readonly /> -->
+                            <div>
+                                <label class="kt-label">Banner</label>
+                                <input type="file" name="banner" id="banner" class="banner" style="display: none;">
+                                <div id="img_preview3"></div>
+                                <div id="img_errormsg3"></div>
+                                <input type="text" id="banner_image" style="display: none;" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%">
+                                <div class="cursor-pointer text-center border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl %%DEFINE_BANNER_CAMPAIGN_IMAGE_SECTION%%" id="uploadfile3">
+                                    <div class="drag_your_image">
+                                        <img class="inline-block" draggable="false" src="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%" alt="">
+                                        <p class="text-[#063E76] font-semibold">Drag your image here, or <a class="text-primary" href="javascript:void(0);">browse</a></p>
+                                        <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+                                    </div>
+                                </div>
                             </div>
+                            <div>
+                                <div class="mb-3 font-semibold text-lg">Banner Style</div>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <span>Shape</span>
+                                        <div class="flex gap-2 *:relative *:cursor-pointer">
 
+                                            <label for="square" class="iconcheckbox">
+                                                <input type="radio" name="bannershape" id="square" class="hidden peer" value="0px" data-class="layout_banner" checked="checked" %%DEFINE_bannershape_0px_checked%%>
+                                                <div class="image-shape square border-2 border-gray-300 w-16 h-7"></div>
+                                                <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
+                                                    <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                                </span>
+                                            </label>
 
-                            <div class="banner-container">
-                                <!-- <div class="headers">
-                                   <span class="tab-link active" data-tab="banner-settings">Banner Settings</span>
-                                   <span class="tab-link" data-tab="banner-gallery">Banner Gallery</span>
-                                </div> -->
-                                <div class="tab-content">
-                                  <!-- Banner Settings Tab -->
-                                  <div id="banner-settings" class="tab-pane active">
-                                <div class="add_details_bg tab_sign_box">
+                                            <label for="rounded" class="iconcheckbox">
+                                                <input type="radio" name="bannershape" id="rounded" class="hidden peer" value="10px" data-class="layout_banner" %%DEFINE_bannershape_10px_checked%%>
+                                                <div class="image-shape rounded rounded-lg border-2 border-gray-300 w-16 h-7">
+                                                </div>
+                                                <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
+                                                    <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                                </span>
+                                            </label>
 
-                                    <!-- Banner Header and Toggle -->
-                                    <div class="banner_section_header banner-campain-style bottom-spacing">
-                                      <span class="campain-header-name">Banner</span>
-                                    </div>
+                                            <label for="circle" class="iconcheckbox">
+                                                <input type="radio" name="bannershape" id="circle" class="hidden peer" value="200px" data-class="layout_banner" %%DEFINE_bannershape_200px_checked%%>
+                                                <div class="image-shape circle rounded-full border-2 border-gray-300 w-16 h-7"></div>
+                                                <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
+                                                    <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                                </span>
+                                            </label>
 
-                                    <!-- Banner Image Upload -->
-                                    <input type="file" name="banner" id="banner" class="banner" style="display: none;">
-                                    <div id="img_preview3"></div>
-                                    <div id="img_errormsg3"></div>
-                                    <input type="text" id="banner_image" style="display: none;" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%">
-
-
-                                    <div class="upload-area2 banner_style_section %%DEFINE_BANNER_CAMPAIGN_IMAGE_SECTION%%" id="uploadfile3">
-                                      <div class="drag_your_image">
-                                        <img draggable="false" src="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%" alt="">
-                                        <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
-                                        <p>Supports: PNG, SVG, JPG, JPEG</p>
-                                      </div>
-                                    </div>
-
-                                    <!-- Banner Style / Design -->
-                                    <div class="banner_section_header banner-campain-style">
-                                      <span class="campain-header-name">Banner Style</span>
-                                    </div>
-
-                                    <!-- Shape Selection -->
-                                    <div class="style_design_box banner_style_section">
-                                      <span>Shape</span>
-                                      <div class="icon_style">
-
-                                        <!-- Square -->
-                                        <div class="custome_icon">
-                                          <input type="radio" name="bannershape" id="square" class="d-none imgbgchk" value="0px" data-class="layout_banner" checked="checked" %%DEFINE_bannershape_0px_checked%%>
-                                          <label for="square" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#square" role="button" aria-expanded="false" aria-controls="square">
-                                            <div class="image-shape square" style="width: 75px;"></div>
-                                            <div class="tick_container">
-                                              <div class="tick bold">
-                                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
-                                              </div>
-                                            </div>
-                                          </label>
                                         </div>
-
-                                        <!-- Rounded -->
-                                        <div class="custome_icon">
-                                          <input type="radio" name="bannershape" id="rounded" class="d-none imgbgchk" value="10px" data-class="layout_banner" %%DEFINE_bannershape_10px_checked%%>
-                                          <label for="rounded" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#rounded" role="button" aria-expanded="false" aria-controls="rounded">
-                                            <div class="image-shape rounded" style="width: 75px;"></div>
-                                            <div class="tick_container">
-                                              <div class="tick bold">
-                                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
-                                              </div>
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                        <!-- Circle -->
-                                        <div class="custome_icon">
-                                          <input type="radio" name="bannershape" id="circle" class="d-none imgbgchk" value="200px" data-class="layout_banner" %%DEFINE_bannershape_200px_checked%%>
-                                          <label for="circle" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#circle" role="button" aria-expanded="false" aria-controls="circle">
-                                            <div class="image-shape circle" style="width: 75px; border-radius: 20px;"></div>
-                                            <div class="tick_container">
-                                              <div class="tick bold">
-                                                <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
-                                              </div>
-                                            </div>
-                                          </label>
-                                        </div>
-
-                                      </div>
                                     </div>
-                                    <div class="style_design_box banner_style_section">
+                                    <div class="flex items-center justify-between">
                                         <span>Size</span>
-                                        <div class="pricing_employees_bg_main borderdevider">
-                                            <div class="range_slider">
-                                                <div id="rangebanner"  class="noUi-target noUi-ltr noUi-horizontal"></div>
-                                                <div class="banner_size"><span>150px</span> <span>600px</span></div>
+                                        <div class="w-52">
+                                            <div id="rangebanner" class="noUi-target noUi-ltr noUi-horizontal"></div>
+                                            <div class="text-xs flex justify-between mt-2">
+                                                <span>150px</span>
+                                                <span>600px</span>
                                             </div>
                                             <input type="hidden" id="bannersize" value="%%DEFINE_bannersize%%" name="bannersize" />
                                         </div>
                                     </div>
-
-                                    <!-- <div class="banner_section_header banner-campain-style">
-                                      <span class="campain-header-name">Link(mandatory field)</span>
-                                    </div> -->
-
-                                    <!-- Banner Link -->
-                                    <div class="form-floating banner_style_section">
-                                      <input type="text" name="bannerlink" id="banner_link" class="form-control" placeholder="" value="%%DEFINE_bannerlink%%">
-                                      <label for="banner_link">Banner Link</label>
-                                    </div>
-
-                                  </div>
-                                  </div>
-                                  <!-- Banner Gallery Tab (Placeholder) -->
-                                    <div id="banner-gallery" class="tab-pane">
-                                      <div class="add_details_bg tab_sign_box">
-                                        <div class="banner_section_header">
-                                          <span>Banner Gallery</span>
-                                        </div>
-                                        <p>This is the Banner Gallery section. Add your gallery content here.</p>
-                                        <!-- Add gallery-specific content here -->
-                                      </div>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div>        
-                    </div>  
-                    <div class="col-xl-8 col-lg-6 col-12">
-                        <div class="hover_previous_right_bg">
-                            <div id="snackbar"></div>
-                            <div id="snackbar-error"></div>
-                            <div id="snackbar-info"></div>
-                            <div class="">
-                                <div class="sign_previous_bg">
-                                    <!-- <div class="previous_top_bg_box">
-                                        <div class="previous_top_img">
-                                        <div class="previous_left">
-                                            <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
-                                            <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
-                                        </div>
-                                        <div class="previous_right_img"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt=""></div>
-                                    </div>
-                                        <p>&nbsp;</p>
-                                        <p>Hey John,</p>
-                                        <div class="line_one">&nbsp;</div>
-                                        <div class="line_two">&nbsp;</div>
-                                        <p>Best,</p>
-                                        <p>&nbsp;</p>
-                                    </div> -->
-                                    <div class="signature_previous_box">
-                                        %%DEFINE_bannercampaign_signature%%
-                                        <!-- <span class="no-signture-text">Select Department for a signature preview</span> -->
+                                    <div>
+                                        <label class="kt-label">Banner Link</label>
+                                        <input type="text" name="bannerlink" id="banner_link" class="kt-input" placeholder="" value="%%DEFINE_bannerlink%%">
                                     </div>
                                 </div>
-                                        
-                                <div class="bottom_bg_btn">
+                            </div>
+                        </div>
+                        <div id="banner-gallery" class="hidden">
+                            <div class="add_details_bg tab_sign_box">
+                                <div class="banner_section_header">
+                                    <span>Banner Gallery</span>
+                                </div>
+                                <p>This is the Banner Gallery section. Add your gallery content here.
+                                </p>
+                                <!-- Add gallery-specific content here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-card-content bg-no-repeat bg-cover flex flex-col overflow-hidden" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
+                        <div id="snackbar"></div>
+                        <div id="snackbar-error"></div>
+                        <div id="snackbar-info"></div>
+                        <div>
+                            <a href="#" class="kt-btn kt-btn-icon kt-btn-mono lg:hidden" data-kt-drawer-toggle="#drawer">
+                                <i class="hgi hgi-stroke hgi-sidebar-left"></i>
+                            </a>
+                        </div>
+                        <div class="flex items-center justify-center flex-1">
+                            <div class="w-full overflow-auto text-center">
+                                <div class="overflow-auto inline-block">
+                                    %%DEFINE_bannercampaign_signature%%
+                                </div>
+                                <div class="flex items-center justify-center gap-2">
                                     <input type="hidden" name="signature_banner" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE_NAME%%">
                                     <input type="hidden" id="edit_banner" name="edit_banner" value="%%DEFINE_EDIT_BANNER%%">
                                     <input type="hidden" name="edit_banner_id" value="%%DEFINE_EDIT_BANNER_ID%%">
                                     <input type="hidden" id="banner_campaign_start_date" value="%%DEFINE_BANNER_CAMPAIGN_START_DATE%%">
                                     <input type="hidden" id="banner_campaign_end_date" value="%%DEFINE_BANNER_CAMPAIGN_END_DATE%%">
-                                    <a href="%%DEFINE_bannercampaign%%" class="previous action-button-previous">Cancel</a>
+                                    <a href="%%DEFINE_bannercampaign%%" class="kt-btn kt-btn-mono previous action-button-previous">Cancel</a>
                                     <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button" value="Next Step">Schedule Campaign</button>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-              </div>
-
+            </div>
         </div>
-    </div>
+    </main>
 </div>
+
 <input type="hidden" id="redirecturl" value="%%DEFINE_bannercampaign%%" />
 <input type="hidden" id="form_url" value="%%DEFINE_bannercampaign%%" />
 <input type="hidden" id="save_banner_url" value="%%DEFINE_bannercampaign%%/saveBanner" />
-<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script> 
-<link href="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.css" rel="stylesheet">
+<!-- <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script> -->
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 
 <script>
     var start_date = new Date().toISOString().split('T')[0];
     var end_date = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0];
 
-    if($("#banner_campaign_start_date").val()){
+    if ($("#banner_campaign_start_date").val()) {
         start_date = $("#banner_campaign_start_date").val();
     }
-    if($("#banner_campaign_end_date").val()){
+    if ($("#banner_campaign_end_date").val()) {
         end_date = $("#banner_campaign_end_date").val();
     }
     const options = {
@@ -242,19 +170,26 @@
     const picker = new Litepicker(options);
 </script>
 <script language="javascript">
-	$(document).ready(function(){
-        setTimeout(function(){ 
+    $(document).ready(function () {
+
+        // $(".toggle_campaign_settings").on("click", function () {
+        //     if ($(window).width() >= 992) {
+        //         $("#campaign_settings").toggleClass("-translate-x-[110%]");
+        //     }
+        // });
+
+        setTimeout(function () {
             $('.selected-checkbox').click();
         }, 500);
-        $('#campaign_name').on('input', function() {
-            $('#campaign_name').css('border-color','');
+        $('#campaign_name').on('input', function () {
+            $('#campaign_name').css('border-color', '');
             $('#campaign_name').siblings('span').remove();
         });
-        $('#banner_link').on('input', function() {
-            $('#banner_link').css('border-color','');
+        $('#banner_link').on('input', function () {
+            $('#banner_link').css('border-color', '');
             $('#banner_link').siblings('span').remove();
         });
-		$(".submit").click(function(e){
+        $(".submit").click(function (e) {
             $(".submit").addClass('spinner');
             $('#campaign_name').siblings('span').remove();
             $('#banner_link').siblings('span').remove();
@@ -262,63 +197,63 @@
             $('.drag_your_image').siblings('span').remove();
             e.preventDefault();
             var redirecturl = $('#redirecturl').val();
-            var validate =1;
+            var validate = 1;
             $(".loader-image").show();
-            $('.form-control').css('border-bottom-color','');
+            $('.form-control').css('border-bottom-color', '');
             bannerImageUrl = $('#banner_image').val();
 
-            if($('#campaign_name').val() === ""){
+            if ($('#campaign_name').val() === "") {
                 // $('#campaign_name').css('border-color','#842029'); validate = 0;
                 // $('#campaign_name').after("<span style='color: #842029'>Please add valid campaign name</span>");
                 // $('#campaign_name').focus();
                 $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
                 $('#snackbar-error').show();
-                setTimeout(function(){ $('#snackbar-error').hide();}, 2000);
+                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
-            else if($('.department-checkbox:checked').length == 0){
+            else if ($('.department-checkbox:checked').length == 0) {
                 // $('#division').css('border-color','#842029'); validate = 0;
                 // $('#division').after("<span style='color: #842029'>Please select atleast one division</span>");
                 // $('#division').focus();
                 $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
                 $('#snackbar-error').show();
-                setTimeout(function(){ $('#snackbar-error').hide();}, 2000);
+                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if (!$('#datepicker').val()) {
                 // Show error message if no date range is selected
                 $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
                 $('#snackbar-error').show();
-                setTimeout(function(){ $('#snackbar-error').hide();}, 2000);
+                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
-            else if($('#banner')[0].files.length === 0 && !bannerImageUrl) {
+            else if ($('#banner')[0].files.length === 0 && !bannerImageUrl) {
                 // $('.drag_your_image').css('border-color','#842029'); validate = 0;
                 // $('.drag_your_image').after("<span style='color: #842029'>Please upload banner</span>");
                 // $('.drag_your_image').focus();
                 $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
                 $('#snackbar-error').show();
-                setTimeout(function(){ $('#snackbar-error').hide();}, 2000);
+                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
-            } 
-            else if($('#banner_link').val() === ""){
+            }
+            else if ($('#banner_link').val() === "") {
                 // $('#banner_link').css('border-color','#842029'); validate = 0;
                 // $('#banner_link').after("<span style='color: #842029'>Please add valid banner link</span>");
                 // $('#banner_link').focus();
                 $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
                 $('#snackbar-error').show();
-                setTimeout(function(){ $('#snackbar-error').hide();}, 2000);
+                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
 
-            if(validate != 1){
+            if (validate != 1) {
                 $(".submit").removeClass('spinner');
                 e.stopPropagation(); return false;
             }
 
             // Collect the checked departments as a comma-separated string
             var departmentList = [];
-            $("input.department-checkbox:checked").each(function() {
+            $("input.department-checkbox:checked").each(function () {
                 departmentList.push($(this).val());  // Add each checked department's value
             });
 
@@ -337,112 +272,112 @@
 
 
             $.ajax({
-              type: 'POST',
-              url: saveBannerUrl,
-              data: formData
-            }).done(function(data) {
-              var json = JSON.parse(data);
-              $(".loader-image").hide();
-              $(".submit").removeClass('spinner');
-              if(json.error != 1){
-                if($('#uploadlimit').val() === 1){
-                    // window.location = redirecturl;
-                }else{
-                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+json.msg+' </div>');
-                    $('#snackbar').show();
-                    setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturl; }, 2000);
-                }
-                }else{
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>'+json.msg+' </div>');
+                type: 'POST',
+                url: saveBannerUrl,
+                data: formData
+            }).done(function (data) {
+                var json = JSON.parse(data);
+                $(".loader-image").hide();
+                $(".submit").removeClass('spinner');
+                if (json.error != 1) {
+                    if ($('#uploadlimit').val() === 1) {
+                        // window.location = redirecturl;
+                    } else {
+                        $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + ' </div>');
+                        $('#snackbar').show();
+                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturl; }, 2000);
+                    }
+                } else {
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                     $('#snackbar-error').show();
-                    setTimeout(function(){ $('#snackbar-error').hide(); window.location = redirecturl; }, 2000);
+                    setTimeout(function () { $('#snackbar-error').hide(); window.location = redirecturl; }, 2000);
                     return false;
                 }
                 // Optionally alert the user of success here...
-            }).fail(function(data) {
-            return false;
-              // Optionally alert the user of an error here...
+            }).fail(function (data) {
+                return false;
+                // Optionally alert the user of an error here...
             });
             return false;
         });
-        $(".department-checkbox").click(function(e){
-            if($('.department-checkbox:checked').length > 0){
-                $('#division').css('border-color','');
+        $(".department-checkbox").click(function (e) {
+            if ($('.department-checkbox:checked').length > 0) {
+                $('#division').css('border-color', '');
                 $('#division').siblings('span').not('.departments-text').remove();
             }
-            ajaxUrl = $('#form_url').val()+'/getDepartmentSignature?department_id='+$(this).val();
-            if($(".department-checkbox:checked").length > 0){
+            ajaxUrl = $('#form_url').val() + '/getDepartmentSignature?department_id=' + $(this).val();
+            if ($(".department-checkbox:checked").length > 0) {
                 $("#uploadfile3").removeClass('section_disabled');
-            }else{
+            } else {
                 $("#uploadfile3").addClass('section_disabled');
             }
-            if($(this).is(":checked")){
+            if ($(this).is(":checked")) {
                 $.ajax({
                     url: ajaxUrl,
                     type: "GET",
-                    success: function(response) {
+                    success: function (response) {
                         var json = JSON.parse(response);
                         $('.signature_previous_box').html(json.signature);
                         banner_image = $('.drag_your_image').find('img').attr('src');
                         $('.layout_banner').attr('src', banner_image);
                         $('.layout_banner').show();
-                        $('.layout_banner').attr('width',$("#bannersize").val());
+                        $('.layout_banner').attr('width', $("#bannersize").val());
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                     }
                 });
-            }else{
+            } else {
                 // $('.signature_previous_box').html('<span class="no-signture-text">Select Department for a signature preview</span>');
             }
         });
 
-        $('input:radio[name="bannershape"]').change(function(){  // CTA Button Border Change
+        $('input:radio[name="bannershape"]').change(function () {  // CTA Button Border Change
             var radios = $(this).val();
-            $('.layout_banner').css('border-radius',radios);
+            $('.layout_banner').css('border-radius', radios);
         });
 
         var bannersize = '%%DEFINE_bannersize%%';
         $('#bannersize').val(bannersize);
         var rangeSlider = $('#rangebanner')[0];
-            noUiSlider.create(rangeSlider, {
-                start: [bannersize],
-                step: 5,
-                connect: [true, false],
-                range: {
-                    'min': [150],
-                    'max': [600]
-                },
-            });
+        noUiSlider.create(rangeSlider, {
+            start: [bannersize],
+            step: 5,
+            connect: [true, false],
+            range: {
+                'min': [150],
+                'max': [600]
+            },
+        });
 
-        rangeSlider.noUiSlider.on('update', function( values, handle,unencoded) {
+        rangeSlider.noUiSlider.on('update', function (values, handle, unencoded) {
 
-            if(unencoded == 0 ) {unencoded = 150;}
+            if (unencoded == 0) { unencoded = 150; }
             bannerwith = parseInt(unencoded);
             $('#banner_size').text(bannerwith);
-            $('.signature_tbl img.layout_banner').attr("width",bannerwith);
+            $('.signature_tbl img.layout_banner').attr("width", bannerwith);
             $('#bannersize').val(bannerwith);
         });
 
 
         $("#banner_department_select_all").change(function () {
             $(".department-checkbox").prop("checked", $(this).prop("checked"));
-            ajaxUrl = $('#form_url').val()+'/getDepartmentSignature?department_id='+$(".department-checkbox:checked").first().val();
-            if($(this).is(":checked")){
+            ajaxUrl = $('#form_url').val() + '/getDepartmentSignature?department_id=' + $(".department-checkbox:checked").first().val();
+            if ($(this).is(":checked")) {
                 $.ajax({
                     url: ajaxUrl,
                     type: "GET",
-                    success: function(response) {
+                    success: function (response) {
                         var json = JSON.parse(response);
                         $('.signature_previous_box').html(json.signature);
                         banner_image = $('.drag_your_image').find('img').attr('src');
                         $('.layout_banner').attr('src', banner_image);
                         $('.layout_banner').show();
-                        $('.layout_banner').attr('width',$("#bannersize").val());
+                        $('.layout_banner').attr('width', $("#bannersize").val());
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                     }
                 });
-            }else{
+            } else {
                 // $('.signature_previous_box').html('<span class="no-signture-text">Select Department for a signature preview</span>');
             }
         });
@@ -451,53 +386,50 @@
             const checked = $(".department-checkbox:checked").length;
             $("#banner_department_select_all").prop("checked", total === checked);
         });
-	});
+    });
 </script>
-
 <script>
     jQuery.noConflict();
-      (function($) {
+    (function ($) {
         // To active/inactive in leftbar
         $('.new_dashboard_left a').removeClass('active')
-        $('.new_dashboard_left .bannercampaign').addClass('active');  ;
+        $('.new_dashboard_left .bannercampaign').addClass('active');;
     })(jQuery);
 </script>
-
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-  const tabLinks = document.querySelectorAll('.tab-link');
-  const tabPanes = document.querySelectorAll('.tab-pane');
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabPanes = document.querySelectorAll('.tab-pane');
 
-    tabLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          // Remove active class from all links and panes
-          tabLinks.forEach(l => l.classList.remove('active'));
-          tabPanes.forEach(p => p.classList.remove('active'));
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Remove active class from all links and panes
+                tabLinks.forEach(l => l.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
 
-          // Add active class to clicked link and corresponding pane
-          link.classList.add('active');
-          const tabId = link.getAttribute('data-tab');
-          document.getElementById(tabId).classList.add('active');
-          });
+                // Add active class to clicked link and corresponding pane
+                link.classList.add('active');
+                const tabId = link.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
         });
     });
 </script>
-
 <script language="javascript">
     var ui = jQuery.noConflict();
     var upload_bannerurl = ui('#form_url').val();
     var root_link = ui('#root_link').val();
     var image_link = ui('#image_link').val();
-    ui(function() {
+    ui(function () {
 
         // preventing page from redirecting
-        ui("html").on("dragover", function(e) {
+        ui("html").on("dragover", function (e) {
             e.preventDefault();
             e.stopPropagation();
             // ui("h1").text("Drag here");
         });
 
-        ui("html").on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
+        ui("html").on("drop", function (e) { e.preventDefault(); e.stopPropagation(); });
 
         // Drag enter
         ui('.upload-area2').on('dragenter', function (e) {
@@ -529,30 +461,30 @@
         });
 
         // Open file selector on div click
-        ui("#uploadfile3").click(function(){
+        ui("#uploadfile3").click(function () {
             ui("#banner").click();
         });
 
         // file selected
-        ui("#banner").change(function(){
+        ui("#banner").change(function () {
             var fd = new FormData();
 
             var files = ui('#banner')[0].files[0];
 
-            fd.append('banner',files);
-            
-                // ui("#img_preview3").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+            fd.append('banner', files);
+
+            // ui("#img_preview3").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
 
             uploadData2(fd);
         });
-        
+
         // remove image;
-        
+
 
     });
 
     // Sending AJAX request and upload file
-    function uploadData2(formdata){
+    function uploadData2(formdata) {
 
         ui.ajax({
             url: upload_bannerurl,
@@ -561,12 +493,12 @@
             contentType: false,
             processData: false,
             dataType: 'json',
-            success: function(response){
-                if(response.error){
-                    ui("#img_errormsg3").html('<div class="alert alert-danger" role="alert">'+response.msg+'</div>');
+            success: function (response) {
+                if (response.error) {
+                    ui("#img_errormsg3").html('<div class="alert alert-danger" role="alert">' + response.msg + '</div>');
                     ui('#banner').val('');
-                    setTimeout(function(){ ui('#img_errormsg3').html(""); }, 3000);
-                }else{
+                    setTimeout(function () { ui('#img_errormsg3').html(""); }, 3000);
+                } else {
                     addThumbnail2(response);
                 }
             }
@@ -574,47 +506,52 @@
     }
 
     // Added thumbnail
-    function addThumbnail2(data){
-        if(data.error == 0){
+    function addThumbnail2(data) {
+        if (data.error == 0) {
             ui("#uploadfile3").empty();
             ui("#img_preview3").empty();
             var len = ui("#uploadfile3 div.thumbnail").length;
-        
+
             var num = Number(len);
             num = num + 1;
-        
+
             var name = data.name;
             var displayname = data.displayname;
             var size = convertSize2(data.size);
             var src = data.src;
             var number = Math.random() * 100;
             // Creating an thumbnail
-           // ui("#uploadfile3").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-            ui("#uploadfile3").append('<div class="drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%"></div>');
+            // ui("#uploadfile3").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
+            ui("#uploadfile3").append('<div class="drag_your_image text-center"><img class="inline-block size-52 object-cover" src="' + src + '?rand=' + number + '"></div>');
             ui('input[name="signature_banner"]').remove();
-            ui("#img_preview3").append(' <div class="img_preview_box"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage2()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="signature_banner" value="'+name+'"></div>');
+            ui("#img_preview3").append(' <div class="img_preview_box"><img src="' + image_link + '/images/applied-icon.png" alt=""> ' + displayname + ' &nbsp; (' + size + ') <a href="javascript:void(0);" onclick="removeImage2()"><img class="trash_icon" src="' + image_link + '/images/trash-icon.svg" alt=""></a><input type="hidden" name="signature_banner" value="' + name + '"></div>');
             ui("#nxt2").prop('disabled', false);
             ui('.layout_banner').show();
-            ui('.layout_banner').attr("src",src+'?rand='+number);
+            ui('.layout_banner').attr("src", src + '?rand=' + number);
             borderRadius = ui('input:radio[name="bannershape"]:checked').val();
-            ui('.layout_banner').css('border-radius',borderRadius);
+            ui('.layout_banner').css('border-radius', borderRadius);
             borderSize = ui('#bannersize').val();
-            ui('.layout_banner').attr('width',borderSize);
-            $('.drag_your_image').css('border-color',''); validate = 0;
+            ui('.layout_banner').attr('width', borderSize);
+            $('.drag_your_image').css('border-color', ''); validate = 0;
             $('.drag_your_image').siblings('span').remove();
             ui("#img_errormsg2").html('');
-        }else{
-            ui("#img_errormsg2").html('<div class="alert alert-danger" role="alert">'+data.msg+'</div>');
-            
+        } else {
+            ui("#img_errormsg2").html('<div class="alert alert-danger" role="alert">' + data.msg + '</div>');
+
         }
 
     }
 
-    function removeImage2(){
+    function removeImage2() {
         ui("#uploadfile3").empty();
         ui("#img_preview3").empty();
-        ui("#uploadfile3").append('<div class="drag_your_image"> <img src="'+image_link+'/images/img-icon.svg" alt=""><h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG, JPG, JPEG</p></div>');
-        ui(".layout_banner").attr("src",image_link+'/images/banner-img1.png');
+        ui("#uploadfile3").append(`
+        <div class="drag_your_image">
+            <img class="inline-block" src="${image_link}/images/img-icon.svg" alt="">
+            <p class="text-[#063E76] font-semibold">Drag your image here, or <a class="text-primary" href="#">browse</a></p>
+            <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+            </div>`);
+        ui(".layout_banner").attr("src", image_link + '/images/banner-img1.png');
         $("#banner").val('');
     }
 

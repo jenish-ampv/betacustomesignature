@@ -179,8 +179,9 @@ class CIT_BANNERCAMPAIGN
         $GLOBALS['bannerCampaignTableBody'] .= '<tr id="no_banner_row"><td colspan="9" style="text-align: center;">No Campaign Found</td></tr>';
         $departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
         foreach ($departments as $department) {
-            $GLOBALS['department_list'] .= "<div class='form-floating'>
-                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."</span>
+            $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+					   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."</label>
                     </div>
                 ";
         }
@@ -224,20 +225,23 @@ class CIT_BANNERCAMPAIGN
     		}
     		$departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
 	    	$GLOBALS['department_list'] = "";
-			$GLOBALS['department_list'] .= "<div class='form-floating'>
-				<input type='checkbox' class='form-control-checkbox' id='banner_department_select_all'><span>Select All</span>
+			$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+				<input type='checkbox' class='kt-checkbox kt-checkbox-sm' id='banner_department_select_all'>
+				<label for='banner_department_select_all' class='kt-label'>Select All</label>
 				</div>";
 	        foreach ($departments as $department) {
 	        	$totalRowData = $GLOBALS['DB']->row("SELECT count(`signature_id`) as totalsignature FROM `signature` WHERE `user_id` = ?  AND `department_id` = ?",array($GLOBALS['USERID'],$department['department_id']));
 	        	$totalRow = $totalRowData['totalsignature'];
 	        	if (isset($banner['department_id']) && str_contains($banner['department_id'],$department['department_id'])) {
-	        		$GLOBALS['department_list'] .= "<div class='form-floating'>
-	                       <input type='checkbox' class='form-control-checkbox department-checkbox selected-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."(".$totalRow.")</span>
+	        		$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+	                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox selected-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+						   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."(".$totalRow.")</label>
 	                    </div>
 	                ";
 				} else {
-					$GLOBALS['department_list'] .= "<div class='form-floating'>
-	                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."(".$totalRow.")</span>
+					$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+	                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+						   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."(".$totalRow.")</label>
 	                    </div>
 	                ";
 				}
@@ -265,14 +269,16 @@ class CIT_BANNERCAMPAIGN
     	}else{
     		$departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
 	    	$GLOBALS['department_list'] = "";
-			$GLOBALS['department_list'] .= "<div class='form-floating'>
-				<input type='checkbox' class='form-control-checkbox' id='banner_department_select_all'><span>Select All</span>
+			$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+				<input type='checkbox' class='kt-checkbox kt-checkbox-sm' id='banner_department_select_all'>
+				<label for='banner_department_select_all' class='kt-label'>Select All</label>
 				</div>";
 	        foreach ($departments as $department) {
 	        	$totalRowData = $GLOBALS['DB']->row("SELECT count(`signature_id`) as totalsignature FROM `signature` WHERE `user_id` = ?  AND `department_id` = ?",array($GLOBALS['USERID'],$department['department_id']));
 	        	$totalRow = $totalRowData['totalsignature'];
-	            $GLOBALS['department_list'] .= "<div class='form-floating'>
-	                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."(".$totalRow.")</span>
+	            $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+	                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+						   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."(".$totalRow.")</label>
 	                    </div>
 	                ";
 	        }
