@@ -31,6 +31,241 @@ class CIT_PURCHASE
 		} else {
 			$action = '';
 		}
+		if(isset($_POST['useSavedCard'] )&& $_POST['useSavedCard']){
+
+			\Stripe\Stripe::setApiKey(GetConfig('STRIPE_SECRET_KEY'));
+
+			$rowUserCard = $GLOBALS['DB']->row("SELECT * FROM `registerusers_card` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+			if($rowUserCard){
+				$rowUserSubscription = $GLOBALS['DB']->row("SELECT subscription_id,subscription_id FROM `registerusers_subscription` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+				if($rowUserSubscription){
+
+					
+					try {
+						// Inputs
+						$subscriptionId = $rowUserSubscription['subscription_id']; // May be null or empty
+						$planDetails = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE plan_id = ? LIMIT 0,1",array($_POST['plan_id']));
+						if($planDetails){
+							$newPriceId = $planDetails['plan_priceid'];
+						}else{
+							throw new Exception("No active plan found with your selection");
+						}
+						$newQuantity    = $_POST['plan_unit'];
+						$customerId     = $rowUserSubscription['customer_id'];
+
+						$subscriptionExists = false;
+
+						// ✅ Try retrieving the subscription
+						if (!empty($subscriptionId)) {
+							try {
+								$subscription = \Stripe\Subscription::retrieve($subscriptionId);
+								$subscriptionExists = true;
+							} catch (\Stripe\Exception\InvalidRequestException $e) {
+								// Log the exception if needed
+								// The subscription doesn't exist or was deleted
+								$subscriptionExists = false;
+							}
+						}
+
+						if ($subscriptionExists) {
+							// 🔁 Update existing subscription
+							$itemId = $subscription->items->data[0]->id;
+
+							$updatedSubscription = \Stripe\Subscription::update($subscriptionId, [
+								'items' => [[
+									'id'       => $itemId,
+									'price'    => $newPriceId,
+									'quantity' => $newQuantity,
+								]],
+								'proration_behavior' => 'none'
+							]);
+
+							// Create and finalize invoice (optional)
+							$invoice = \Stripe\Invoice::create([
+								'customer'     => $updatedSubscription->customer,
+								'subscription' => $updatedSubscription->id,
+								'auto_advance' => true,
+							]);
+
+						} else {
+							
+							$customerExists = false;
+
+							if (!empty($customerId)) {
+								try {
+									// Try fetching the customer from Stripe
+									$stripeCustomer = \Stripe\Customer::retrieve($customerId);
+									if (!empty($stripeCustomer) && empty($stripeCustomer->deleted)) {
+										$customerExists = true;
+									}
+								} catch (\Stripe\Exception\InvalidRequestException $e) {
+									// Customer doesn't exist or is invalid
+									$customerExists = false;
+								}
+							}
+							//Create new customer if not found
+							if (!$customerExists) {
+								$rowUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+								if($rowUser){
+									$stripeCustomer = \Stripe\Customer::create([
+										'email' => $rowUser['user_email'],             // Replace with actual field
+										'name'  => $rowUser['user_firstname'] . ' ' . $rowUser['user_lastname'],// Or use first/last name
+									]);
+									$customerId = $stripeCustomer->id;
+								}else{
+									throw new Exception("Your user is not found in stripe.");
+								}
+								
+
+								// 🔒 Optionally save this to DB for future use
+								// saveStripeCustomerIdToDB($userId, $customerId);
+							}
+
+							$cardId = $rowUserCard['id']; // example: 'card_1NfgC4Hp7DgNkCIvazpw309G'
+							$cardExists = false;
+
+							if (!empty($cardId) && strpos($cardId, 'card_') === 0) {
+								try {
+									// Try to retrieve the card source from Stripe
+									$card = \Stripe\Customer::retrieveSource($customerId, $cardId);
+
+									// Optional: Check card status (not deleted, etc.)
+									if (!empty($card) && empty($card->deleted)) {
+										$cardExists = true;
+									}
+								} catch (\Stripe\Exception\InvalidRequestException $e) {
+									// Card doesn't exist or not attached to the customer
+									$cardExists = false;
+								}
+							}
+
+
+							if ($cardExists) {
+								// Set it as the default source (legacy way)
+								\Stripe\Customer::update($customerId, [
+									'default_source' => $cardId,
+								]);
+							} else {
+								// Handle missing card
+								$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>Error:</strong> Saved card not found. Please add a new payment method.</div>';
+								GetFrontRedirectUrl(GetUrl(['module' => 'purchase','category_id'=>'renewaccount']));
+								exit;
+							}
+
+							//Create new subscription
+							$newSubscription = \Stripe\Subscription::create([
+								'customer' => $customerId,
+								'items'    => [[
+									'price'    => $newPriceId,
+									'quantity' => $newQuantity,
+								]],
+								'expand' => ['latest_invoice.payment_intent'],
+							]);
+
+							// 🔒 Optionally save the new subscription ID
+							// updateSubscriptionIdInDB($userId, $newSubscription->id);
+
+						}
+
+						$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong> Account updated successfully.</div>';
+						GetFrontRedirectUrl(GetUrl(['module' => 'dashboard']));
+						exit;
+
+					} catch (\Stripe\Exception\CardException $e) {
+						$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>Card Error:</strong> ' . $e->getMessage() . '</div>';
+					} catch (\Stripe\Exception\ApiErrorException $e) {
+						$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>API Error:</strong> ' . $e->getMessage() . '</div>';
+					} catch (Exception $e) {
+						$GLOBALS['Message'] = '<div class="alert alert-danger"><strong>Unexpected Error:</strong> ' . $e->getMessage() . '</div>';
+					}
+				}
+			}else{
+				$GLOBALS['Message'] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>No saved card found for you account.</div>';
+			}
+		}
+
+		if($_POST['stripeToken']!="" && $_POST['plan_id'] !="" && $_POST['plan_unit'] !=""){
+
+			\Stripe\Stripe::setApiKey(GetConfig('STRIPE_SECRET_KEY'));
+
+			$rowUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+			if($rowUser){
+				// Cancelling all other subsciption in stripe
+				$email = $rowUser['user_email']; // The email you want to search for
+
+				//Find customer(s) by email
+				// $customers = \Stripe\Customer::all(['email' => $email, 'limit' => 1]);
+
+				// if (count($customers->data) === 0) {
+				// 	// echo "No customer found with email: $email";
+				// 	// return;
+				// }else{
+				// 	$customer = $customers->data[0];
+
+				// 	//Get all subscriptions for this customer
+				// 	$subscriptions = \Stripe\Subscription::all([
+				// 		'customer' => $customer->id,
+				// 		'status' => 'all',
+				// 		'limit' => 100
+				// 	]);
+
+				// 	//Cancel each subscription
+				// 	foreach ($subscriptions->data as $subscription) {
+				// 		if($subscription->status != 'canceled' && $subscription->status != 'incomplete_expired'){
+				// 			$subscription->cancel();
+				// 		}
+				// 		// echo "Cancelled subscription: " . $subscription->id . "\n";
+				// 	}
+				// }
+				// Cancelling all other subsciption in stripe
+
+				// $Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'], $rowUser['user_id'],$rowUser['user_email'],$rowUser['user_firstname'].' '.$rowUser['user_lastname']);
+				$Subscription = true;
+				if($Subscription){	
+					$GLOBALS['Message'] = '<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';;
+				}else{
+					$GLOBALS['Message'] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
+				}
+			}else{
+				$GLOBALS['Message'] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
+			}
+		}
+		
+		
+		if($action == 'renewaccount'){
+			$this->getPage();
+			$rowUserSubscription = $GLOBALS['DB']->row("SELECT plan_id,plan_signaturelimit FROM `registerusers_subscription` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+			if($rowUserSubscription){
+				$plan_id = $rowUserSubscription['plan_id'];
+				$plan_unit = $rowUserSubscription['plan_signaturelimit'];
+				$this->getPlanDetail($plan_id,$plan_unit,1,true);
+			}else{
+				$this->getPlanDetail(8,1,1,true); // Default new year plan
+			}
+
+			$rowUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
+			if($rowUser){
+				$GLOBALS['RENEW_PAYMENT_USER_ID'] = $rowUser['user_id'];
+				$GLOBALS['RENEW_PAYMENT_USER_EMAIL'] = $rowUser['user_email'];
+				$GLOBALS['RENEW_PAYMENT_USER_NAME'] = $rowUser['user_firstname'] ." ". $rowUser['user_lastname'];
+			}else{
+				$GLOBALS['RENEW_PAYMENT_USER_ID'] = "";
+				$GLOBALS['RENEW_PAYMENT_USER_EMAIL'] = "";
+				$GLOBALS['RENEW_PAYMENT_USER_NAME'] = "";
+			}
+			
+			$GLOBALS['STRIPE_PUBLISHABLE_KEY'] = GetConfig('STRIPE_PUBLISHABLE_KEY');
+			$GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/pricing-renewaccount.html');	
+			$GLOBALS['HEADER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.header.html');			
+			$GLOBALS['FOOTER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.footer.html');
+			$GLOBALS['SIDEBAR'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.sidebar.html');
+			$GLOBALS['CLA_HTML']->display();
+			RemoveMessageInfo();
+			exit();
+		}
+
+
+		
 		
 		$this->getPage();
 		if(isset($_SESSION['plan_id']) && isset($_SESSION['plan_unit'])){ 
@@ -302,7 +537,7 @@ class CIT_PURCHASE
 		return false;
 	}
 	
-	public function getPlanDetail($selplan_id='',$selunit='',$getunit =1){
+	public function getPlanDetail($selplan_id='',$selunit='',$getunit =1, $renewAccount = false){
 		$planRows = $GLOBALS['DB']->query("SELECT * FROM `plan`  WHERE `plan_status` =1");
 		foreach($planRows as $planRow){
 			$plan_id = $planRow['plan_id'];
@@ -330,6 +565,14 @@ class CIT_PURCHASE
 					if($planRow['plan_id'] == $selplan_id && $selunit == $unit['plan_unit']){
 						$plan_selprice = $unit['plan_unitprice']; 
 						$plan_selpricespl = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
 					}
 				}
 			}
@@ -371,22 +614,21 @@ class CIT_PURCHASE
 				$selected ='';
 			}
 		}
-		
-		//$GLOBALS['basic_month_unit'] =  json_encode(array(1=>10,5=>15,10=>25,15=>35,20=>45,25=>50,30=>55,35=>60,40=>65,45=>70,50=>75)); 
-		//$GLOBALS['pro_month_unit'] =  json_encode(array(1=>15,5=>20,10=>30,15=>40,20=>50,25=>55,30=>60,35=>65,40=>70,45=>75,50=>80)); 
-		$GLOBALS['basic_quarter_unit'] = json_encode($basic_quarter_arr);
-		$GLOBALS['basic_quarter_unitspl'] = json_encode($basic_quarter_arrspl);
-		$GLOBALS['pro_quarter_unit'] = json_encode($pro_quarter_arr);
-		$GLOBALS['pro_quarter_unitspl'] = json_encode($pro_quarter_arrspl);
 
-		$GLOBALS['basic_month_unit'] = json_encode($basic_quarter_arr);
-		$GLOBALS['basic_month_unitspl'] = json_encode($basic_quarter_arrspl);
-		$GLOBALS['pro_month_unit'] = json_encode($pro_quarter_arr);
+		$GLOBALS['quartrly_enabled'] = false;
+		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
 		$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
-		$GLOBALS['basic_year_unit'] = json_encode($basic_year_arr);
-		$GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
-		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
-		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
+
+		if($renewAccount){
+			$GLOBALS['quartrly_enabled'] = true;
+			$GLOBALS['pro_month_unit'] = json_encode($pro_quarter_arr);
+			$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+			$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
+			$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+		}
+
 		return false;
 	}
 	
