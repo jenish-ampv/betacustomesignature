@@ -977,6 +977,9 @@
   .\!w-full {
     width: 100% !important;
   }
+  .w-0 {
+    width: calc(var(--spacing) * 0);
+  }
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }

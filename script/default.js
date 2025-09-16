@@ -1,7 +1,7 @@
 var root_link = $('#root_link').val();
 var image_link = $('#image_link').val();
 document.addEventListener("contextmenu", function (e){
-	$('#snackbar-error').html('<div class="w-full max-w-[740px] mx-auto gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Right click disable in this site! </div>');
+	$('#snackbar-error').html('<div class="w-full gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Right click disable in this site! </div>');
     $('#snackbar-error').show();
 	setTimeout(function(){ $('#snackbar-error').hide(); }, 2000);
     e.preventDefault();

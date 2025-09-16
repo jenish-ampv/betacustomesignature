@@ -10,7 +10,7 @@
         <main class="grow" id="content" role="content">
 		    <div class="kt-container-fluid pb-4">
                 <div id="snackbar"></div>
-                <div id="snackbar-error"></div>
+                <div id="snackbar-error" class="w-full mb-4"></div>
                 <div id="snackbar-info"></div>
                 %%DEFINE_Message%%
                 <div class="kt-card kt-card-accent">
@@ -29,7 +29,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th class="w-0">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -123,7 +123,7 @@
                 setTimeout(function () { $('#snackbar').hide(); }, 2000);
 
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Something went wrong! Please try again.</strong> Please try again later.</div>');
+                $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Something went wrong! Please try again.</strong> Please try again later.</div>');
                 $('#snackbar-error').show();
                 $(".loader-image").hide();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
@@ -239,7 +239,7 @@
                         $('#snackbar').show();
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 2000);
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                         $('.btn-close').click();
@@ -350,7 +350,7 @@
                     if (json.error != 1) {
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 500);
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                         $('.btn-close').click();
@@ -359,7 +359,7 @@
                     // Optionally alert the user of success here...
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     console.error("AJAX error:", textStatus, errorThrown);
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Request Failed!</strong> Please try again later.</div>');
+                    $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Request Failed!</strong> Please try again later.</div>');
                     $('#snackbar-error').show();
                     setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 });
