@@ -11,7 +11,8 @@ class CIT_PURCHASE
 	}
 	
 	public function displayPage(){
-		AddMessageInfo();	
+		AddMessageInfo();
+		$GLOBALS['free_trial'] = '0';
 		
 		if($_POST['coupon_code'] !="" && $_POST['coupon_apply'] ==1){
 			$coupon_code = trim($_POST['coupon_code']);
@@ -306,9 +307,16 @@ class CIT_PURCHASE
 					}
 				}
 				// Cancelling all other subsciption in stripe
-
-				$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'], $rowUser['user_id'],$rowUser['user_email'],$rowUser['user_firstname'].' '.$rowUser['user_lastname']);
-				$Subscription = true;
+				$planDetails = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE plan_id = ? LIMIT 0,1",array($_POST['plan_id']));
+				$Subscription = false;
+				if($planDetails){
+					$GLOBALS['plan_priceid'] = $planDetails['plan_priceid'];
+					$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'], $rowUser['user_id'],$rowUser['user_email'],$rowUser['user_firstname'].' '.$rowUser['user_lastname']);
+				}else{
+					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> Plan is not active!.</div>';
+					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));exit();
+				}
+				
 				if($Subscription){	
 					$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';
 					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
@@ -348,7 +356,7 @@ class CIT_PURCHASE
 			}
 			
 			$GLOBALS['STRIPE_PUBLISHABLE_KEY'] = GetConfig('STRIPE_PUBLISHABLE_KEY');
-			$GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/pricing-renewaccount.html');	
+			$GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/purchase-renewaccount.html');	
 			$GLOBALS['HEADER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.header.html');			
 			$GLOBALS['FOOTER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.footer.html');
 			$GLOBALS['SIDEBAR'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.sidebar.html');
@@ -370,7 +378,7 @@ class CIT_PURCHASE
 			 $GLOBALS['plan_unit'] = 1;
 		}
 		$GLOBALS['chnage_planlink'] = $GLOBALS['linkModulePricing'];
-		$GLOBALS['free_trial'] = '0';   // we are removing free trial plans
+		
 
 
 		if($_POST['paymentsubmit'] == 1){  // SUBMIT REGISTER 
@@ -378,7 +386,16 @@ class CIT_PURCHASE
 			//$_SESSION['plan_unit'] = $_POST['plan_unit'];
 			$GLOBALS['free_trial'] = '1';
 			if($_POST['stripeToken']!="" && $_POST['plan_id'] !="" && $_POST['plan_unit'] !="" && $_POST['user_id'] !="" && $_POST['user_email'] !="" && $_POST['user_name'] !=""){
-				$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'],$_POST['user_id'],$_POST['user_email'],$_POST['user_name']);
+				$planDetails = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE plan_id = ? LIMIT 0,1",array($_POST['plan_id']));
+				$Subscription = false;
+				if($planDetails){
+					$GLOBALS['plan_priceid'] = $planDetails['plan_priceid'];
+					$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'],$_POST['user_id'],$_POST['user_email'],$_POST['user_name']);
+				}else{
+					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> Plan is not active!.</div>';
+					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));exit();
+				}
+				
 				if($Subscription){				
 					$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Your user has been upgraded.</div>';
 					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
