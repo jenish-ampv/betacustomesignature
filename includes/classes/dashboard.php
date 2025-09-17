@@ -352,11 +352,15 @@ class CIT_DASHBOARD
 			}
  			if($GLOBALS['logo_process'] == 1){
 					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process">
-								<div class="flex-1">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/complete/'.$signature_logo['user_id'].'/'.$signature_logo['logo_animation'].'" alt="">
-									<p class="text-xl mt-3 text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
-									<p class="text-gray-600">Your Logo Animation ready! Please review it</p>
-									<a class="kt-btn kt-btn-primary my-4" id="reviewLogo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#reviewModal">Review Logo</a>
+								<div class="flex-1 flex justify-between">
+									<div>
+										<p class="text-xl mt-3 text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+										<p class="text-gray-600">Your Logo Animation ready! Please review it</p>
+										<a class="kt-btn kt-btn-primary my-4" id="reviewLogo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#reviewModal">Review Logo</a>
+									</div>
+									<div class="p-0.5 border border-gray-200 bg-white rounded-lg">
+										<img class="w-[150px]" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/complete/'.$signature_logo['user_id'].'/'.$signature_logo['logo_animation'].'" alt="">
+									</div>
 								</div>';
 						if($signature_logo['logo_change_process'] != 2){
 							$GLOBALS['signature_process'] .= '<p class="text-gray-400">Did you mistakenly upload the wrong logo? Please <a class="text-primary underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></p>';
@@ -374,10 +378,10 @@ class CIT_DASHBOARD
 								<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
 								</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="underline text-primary" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div></div>';
 					}
 					$GLOBALS['signature_process'] .= '<div class="pl-20"><div class="w-[150px] h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 								</div>';
 					if($signatureSubscription){
@@ -1376,9 +1380,8 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 		}
 
 		if($GLOBALS['master_signature'] == ''){
-			$GLOBALS['master_signature'] = '<div class="create_new_signature_bg">
-							<img src="%%DEFINE_IMAGE_LINK%%/images/plus-master-icon.svg" alt=""><br />
-  							<span>Please Select the Master<br /> Signature</span>
+			$GLOBALS['master_signature'] = '<div class="text-center h-full font-semibold text-gray-400 flex items-center justify-center">
+  							Please Select the Master<br /> Signature
                         </div>';
 		}
 		return $GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']); // for use signature

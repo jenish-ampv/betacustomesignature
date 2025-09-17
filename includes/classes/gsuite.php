@@ -167,13 +167,16 @@ class CIT_GSUITE
 						$grouped[$orgName][] = $user;
 					}
 					foreach ($grouped as $groupName => $users) {
-    					$GLOBALS['group_list'] .= "<li><strong>" . htmlspecialchars($groupName) . "</strong>&nbsp;&nbsp;<input type='checkbox' class='select_all_department form-check-input' id='select_all_".strtolower(htmlspecialchars($groupName))."' data-department-id='".strtolower(htmlspecialchars($groupName))."' >&nbsp;<label for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label></li>";
+    					$GLOBALS['group_list'] .= "<strong>" . htmlspecialchars($groupName) . "</strong>
+						<div class='flex items-center gap-2'>
+							<label class='kt-label' for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label>
+							<input type='checkbox' class='select_all_department kt-checkbox' id='select_all_".strtolower(htmlspecialchars($groupName))."' data-department-id='".strtolower(htmlspecialchars($groupName))."' >
+						</div>";
 						foreach ($users as $user) {
-							$GLOBALS['group_list'] .='<li>
-                              <input class="form-check-input groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).'" type="checkbox" name="addUsers[]" id="'.$group['id'].'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
-							  <label for="'.$group['id'].'">'.$user->name->fullName.'</label>
-							  <label for="'.$group['id'].'">'.$user->primaryEmail.'</label>
-							</li>';
+							$GLOBALS['group_list'] .='<div class="flex items-center gap-2">
+                              <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).'" type="checkbox" name="addUsers[]" id="'.$group['id'].'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
+							  <label for="'.$group['id'].'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
+							</div>';
 						}
 					}
 				}else{

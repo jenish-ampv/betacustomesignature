@@ -2482,7 +2482,7 @@ section {
 .sin_dashboard_box .menu_open ul {
     /*height: 162px; overflow-y: scroll; scrollbar-width: thin;*/
 }
-
+/* 
 .menu_open ul {
     list-style: none;
     border-radius: 5px;
@@ -2563,7 +2563,7 @@ section {
 .menu_open li.use_signature a:hover {
     background: linear-gradient(86.73deg, #1D4AFE 0.37%, #00CCFF 99.63%);
     opacity: 1;
-}
+} */
 /* 
 .create_new_signature_bg {
     border: 1px dashed #00000033;
@@ -5009,7 +5009,7 @@ section {
     width: 100%;
 } */
 
-.signature_integration_box .dot_icon {
+/* .signature_integration_box .dot_icon {
     position: absolute;
     top: 6px;
     right: 10px;
@@ -5047,7 +5047,7 @@ section {
     position: absolute;
     right: 11px;
     top: 15px;
-}
+} */
 /* 
 .signature_integration_withhead_box .form-floating .form-control {
     color: #A5A3A9;

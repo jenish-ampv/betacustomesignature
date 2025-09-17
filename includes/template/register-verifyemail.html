@@ -12,11 +12,11 @@
 				<div class="text-center mb-4">
 					<img class="inline-flex" src="%%DEFINE_IMAGE_LINK%%/images/logoThumb.svg" alt="">
 				</div>
-				<h5 class="text-2xl text-center font-normal f-w-5flex w-full00">Verify Email</h5>
 				%%DEFINE_Message%%
 				
 				IF("%%DEFINE_ve_step%%" == "1"){
 				<form name="resetpassword" id="verify_email_form" method="post" class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
+					<h5 class="text-2xl text-center font-normal flex w-full">Verify Email</h5>
 					<div class="flex flex-col gap-6">
 						<div>
 							<div>
@@ -63,7 +63,7 @@
 
 				IF("%%DEFINE_ve_step%%" == "2"){
 				<form name="resetpassword" method="post">
-					<h2 class="text-2xl text-center mb-3">Verify OTP</h2>
+					<h5 class="text-2xl text-center font-normal flex w-full">Verify OTP</h5>
 					<p class="text-center">Please enter the 6-digit code sent to you at<br><a href="mailto:%%DEFINE_otp_email%%" class="text-primary">%%DEFINE_otp_email%%</a></p>
 					<p class="text-center mt-1 text-gray-400">check spam folder if not in inbox</p>
 					<div class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
