@@ -121,7 +121,7 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
     }
 }
 .kt-form-label{
-    @apply mb-1;
+    @apply mb-2.5;
 }
 
 .masterSignature{

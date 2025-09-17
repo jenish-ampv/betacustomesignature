@@ -1,7 +1,7 @@
 %%DEFINE_HEADER%%
 
-<div class="flex w-full">
-  <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10 overflow-auto">
+<div class="flex flex-col md:flex-row w-full">
+  <div class="flex gap-10 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10 md:overflow-auto">
       <div class="progress-boxes">
         <button class="kt-btn kt-btn-ghost gap-2" id="back2">
           <i class="fal fa-angle-left text-xl mt-0.5"></i> Back
@@ -15,12 +15,12 @@
           <div class="h-full flex flex-col">
             <div class="flex-1 max-w-[600px] w-full mx-auto">
               <div>
-                <h5 class="text-gray-950 text-2xl font-medium">Add Profile Details</h5>
+                <h5 class="text-gray-950 text-2xl font-medium mb-2">Add Profile Details</h5>
                 <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
               </div>
               <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
                 <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
-                <div class="h-[6px] rounded-full bg-gray-400"></div>
+                <div class="h-[6px] rounded-full bg-[#E5E7EB]"></div>
               </div>
               <div class="grid grid-cols-2 gap-4">
                 <div class="col-span-2">
@@ -45,7 +45,6 @@
                     data-kt-select-config='{
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }'>
-                    <option value="" selected disabled>Select industry</option>
                     <option value="real_estate">Real Estate</option>
                     <option value="automotive_sales">Automotive Sales / Car Dealerships</option>
                     <option value="insurance">Insurance</option>
@@ -76,11 +75,10 @@
                 </div>
                 <div>
                   <label class="kt-form-label">Company Size</label>
-                  <select class="kt-select" name="user_company_size" id="user_company_size" data-kt-select="true" data-kt-select-placeholder="Select a framework"
+                  <select class="kt-select" name="user_company_size" id="user_company_size" data-kt-select="true" data-kt-select-placeholder="Company Size"
                     data-kt-select-config='{
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }'>
-                    <option value="" selected disabled>Select company size</option>
                     <option value="Just me (solo)">Just me (solo)</option>
                     <option value="2–5 employees">2–5 employees</option>
                     <option value="6–10 employees">6–10 employees</option>
@@ -102,7 +100,6 @@
                     data-kt-select-config='{
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }'>
-                    <option value="" selected disabled>Select job title</option>
                     <option value="Owner / Founder / CEO">Owner / Founder / CEO</option>
                     <option value="President / Partner">President / Partner</option>
                     <option value="VP / Director">VP / Director</option>
@@ -118,7 +115,7 @@
                 </div>
               </div>
             </div>
-            <div class="text-center mt-4">
+            <div class="text-center mt-7">
               <button class="kt-btn kt-btn-primary" id="next1">Continue</button>
             </div>
           </div>
@@ -273,7 +270,7 @@
               <input type="hidden" id="register_url" value="%%DEFINE_linkModuleRegister%%/registerFormSubmit" />
               <input type="hidden" id="register_user_email" name="register_user_email" value="%%DEFINE_USER_EMAIL%%" />
               <input type="hidden" id="register_user_password" name="register_user_password" value="%%DEFINE_USER_PASSWORD%%" />
-              <button type="submit" class="kt-btn kt-btn-primary" id="userRegisterFormSubmit">Sign Up</button>
+              <button type="submit" class="kt-btn kt-btn-primary mt-7" id="userRegisterFormSubmit">Sign Up</button>
             </div>
           </div>
         </div>
@@ -294,8 +291,8 @@
 
       </form>
     </div>
-    <div class="flex text-sm items-center justify-between">
-      <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+    <div class="flex flex-col gap-4 mt-4 text-sm items-center justify-between xl:flex-row">
+      <span class="text-gray-600 text-center">© 2025 Custom Esignature's Inc. All rights reserved.</span>
       <div class="flex text-gray-700 items-center gap-2">
         <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
         <i class="fas fa-circle text-[6px] text-gray-400"></i>
@@ -303,9 +300,9 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+  <div class="flex flex-col md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
     style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
-    <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
+    <div class="w-full max-w-[400px] mx-auto py-10 flex-1 flex flex-col justify-center">
       <div class="swiper w-full" id="loginSlider">
         <div class="swiper-wrapper">
           <div class="swiper-slide text-center">
