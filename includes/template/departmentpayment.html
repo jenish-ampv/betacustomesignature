@@ -119,8 +119,8 @@ function updateSelectPlan(){
     $('#promo_code').val('');
     $('#couponResponse').text('');
     $('#discount').text('$0.00 USD');
-    $("#apply_promocode").removeClass('d-none');
-    $("#applied_promocode").addClass('d-none');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
   };
 
   
@@ -321,8 +321,8 @@ $(document).ready(function(){
             if(freetrial == 0){
               $('#discount').text('$'+discount+' USD');
               $('#total').text('$'+totalpay+' USD');
-              $("#apply_promocode").addClass('d-none');
-              $("#applied_promocode").removeClass('d-none');
+              $("#apply_promocode").addClass('hidden');
+              $("#applied_promocode").removeClass('hidden');
             }else{
               $('#subtotal').text('$'+totalpay+' USD');
               $('#discount').text('$'+discount+' USD');
@@ -345,8 +345,8 @@ $(document).ready(function(){
     $('#discount').text('$0 USD');  
     $('#total').text('$'+totalPay+' USD');
     $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
-    $("#apply_promocode").removeClass('d-none');
-    $("#applied_promocode").addClass('d-none');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
   })  
 });  
 
@@ -487,8 +487,8 @@ $(document).ready(function(){
     $('#promo_code').val('');
     $('#couponResponse').text('');
     $('#discount').text('$0.00 USD');
-    $("#apply_promocode").removeClass('d-none');
-    $("#applied_promocode").addClass('d-none');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
   });
   
   $('#selectplan').on( "click", function() {  

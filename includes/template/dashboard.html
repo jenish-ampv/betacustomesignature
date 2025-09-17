@@ -208,14 +208,12 @@
 							</div>
 
 							IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%"
-								href="%%DEFINE_linkModuleNewsignature%%"><img
-									src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create
-								Signature</a>
-							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%"
-								href="%%DEFINE_billing%%?action=freetrial"><img
-									src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create
-								Signature</a>
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%" href="%%DEFINE_linkModuleNewsignature%%">
+								<i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
+							</a>
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%" href="%%DEFINE_billing%%?action=freetrial">
+								<i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
+							</a>
 							{:IF}
 							IF("%%DEFINE_integration_settings%%" == ""){
 							<style>
