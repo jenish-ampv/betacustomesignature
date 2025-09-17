@@ -23,8 +23,8 @@ class CIT_GSUITE
 		
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='hidden'; 
+		$GLOBALS['bulkuploadcls'] = 'hidden'; 
 		
 		$getattRow = $GLOBALS['DB']->row("SELECT * FROM registerusers_token WHERE token_platform = 1 AND user_id = ?",array($GLOBALS['USERID']));
 		if($getattRow['user_id'] == "" && $getattRow['api_username'] ==""){
@@ -42,9 +42,9 @@ class CIT_GSUITE
 			GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id']); exit;
 		}
 
-		$GLOBALS['azurestep1'] ='d-none';
-		$GLOBALS['azurestep2'] ='d-none';
-		$GLOBALS['azurestep3'] ='d-none';
+		$GLOBALS['azurestep1'] ='hidden';
+		$GLOBALS['azurestep2'] ='hidden';
+		$GLOBALS['azurestep3'] ='hidden';
 			
 			  // STEP2
 			 if($_REQUEST['step'] == 2){
@@ -156,6 +156,7 @@ class CIT_GSUITE
                 //               <input class="form-check-input groupcbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$orgunit->orgUnitPath.'" checked="checked"><label for="'.$group['id'].'">'.$orgunit->name.'</label></li>';
 				// 	}
 				// }
+				
 				$getUsers =  $GLOBALS['integrations']->GsuiteConnect('user',$GLOBALS['USEREMAIL']);
 				if($getUsers['error'] == 0){
 					$GLOBALS['group_list'] ='';
@@ -233,10 +234,12 @@ class CIT_GSUITE
 			}
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
-				$GLOBALS['master_fieldp'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
-  							<label for=" ">Full Name</label></div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control" name="dirattrp[]">
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class="kt-label">Full Name</label>
+							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
+							</div>';
+				$GLOBALS['dirattr_fieldp'] .='<div>
+                                <select  class="kt-select" name="dirattrp[]">
                                     <option value="master" '.$signature_firstnamemaster.'>Take From Master </option>
                                     <option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
                                     <option value="familyName" '.$signature_firstnamefamilyName.'>family Name</option>
@@ -254,11 +257,12 @@ class CIT_GSUITE
 				$mfield++;
 			}
 			if($data['signature_jobtitle'] != ""){
-				$GLOBALS['master_fieldp'] .='<div class="form-floating">
-  							<input type="text" class="form-control" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled"><label for=" ">Title / Sub Title</label>
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class="kt-label">Title / Sub Title</label>
+  							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control" name="dirattrp[]">
+				$GLOBALS['dirattr_fieldp'] .='<div>
+                                <select  class="kt-select" name="dirattrp[]">
                                     <option value="master" '.$signature_jobtitlemaster.'>Take From Master </option>
                                     <option value="displayName" '.$signature_jobtitledisplayName.'>Display Name</option>
                                     <option value="familyName" '.$signature_jobtitlefamilyName.'>family Name</option>
@@ -277,25 +281,26 @@ class CIT_GSUITE
 			}
 			if($data['signature_company'] !=""){
 				$mfield++;
-				$GLOBALS['master_fieldp'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
-  							<label for=" ">Company Name</label>
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class="kt-label">Company Name</label>
+							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control" name="dirattrp[]">
-                                   <option value="master" '.$signature_companymaster.'>Take From Master </option>
-                                    <option value="displayName" '.$signature_companydisplayName.'>Display Name</option>
-                                    <option value="familyName" '.$signature_companyfamilyName.'>Family Name</option>
-									<option value="fullName" '.$signature_companyfullName.'>Full Name</option>
-									<option value="givenName" '.$signature_companygivenName.'>Given Name</option>
-                                    <option value="primaryEmail" '.$signature_companyprimaryEmail.'>primaryEmail</option>
-                                    <option value="phones" '.$signature_companyphones.'>Phones</option>
-                                    <option value="organizations" '.$signature_companyorganizations.'>Organizations</option>
-                                    <option value="websites" '.$signature_companywebsites.'>Websites</option>
-									 <option value="addresses" '.$signature_companyaddresses.'>Address</option>
-                                    <option value="locations" '.$signature_companylocations.'>Locations</option>
-                                </select>
-                                <input type="hidden" name="fieldp[]" value="signature_company" />
-                            </div>';
+				$GLOBALS['dirattr_fieldp'] .='<div>
+						<select class="kt-select" name="dirattrp[]">
+							<option value="master" '.$signature_companymaster.'>Take From Master </option>
+							<option value="displayName" '.$signature_companydisplayName.'>Display Name</option>
+							<option value="familyName" '.$signature_companyfamilyName.'>Family Name</option>
+							<option value="fullName" '.$signature_companyfullName.'>Full Name</option>
+							<option value="givenName" '.$signature_companygivenName.'>Given Name</option>
+							<option value="primaryEmail" '.$signature_companyprimaryEmail.'>primaryEmail</option>
+							<option value="phones" '.$signature_companyphones.'>Phones</option>
+							<option value="organizations" '.$signature_companyorganizations.'>Organizations</option>
+							<option value="websites" '.$signature_companywebsites.'>Websites</option>
+								<option value="addresses" '.$signature_companyaddresses.'>Address</option>
+							<option value="locations" '.$signature_companylocations.'>Locations</option>
+						</select>
+						<input type="hidden" name="fieldp[]" value="signature_company" />
+					</div>';
 			$mfield++;
 			}
 			
@@ -318,12 +323,13 @@ class CIT_GSUITE
 						$newfieldc[$fieldc.${$fieldc.'c'}] = 1;
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
-						$GLOBALS['master_fieldc'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$field_value.'" disabled="disabled">
-  							<label for=" ">'.$field_label.'</label>
+						$GLOBALS['master_fieldc'] .='<div>
+							<label class="kt-label">'.$field_label.'</label>
+							<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						
-						$GLOBALS['dirattr_fieldc'] .='<div class="form-floating">
-                                <select class="form-control" name="dirattrc[]">
+						$GLOBALS['dirattr_fieldc'] .='<div>
+                                <select class="kt-select" name="dirattrc[]">
                                     <option value="master" '.${$fieldname.'master'}.'>Take From Master </option>
 									 <option value="displayName" '.${$fieldname.'displayName'}.'>Display Name</option>
                                     <option value="familyName" '.${$fieldname.'familyName'}.'>Family Name</option>

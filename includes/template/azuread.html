@@ -6,7 +6,7 @@
   %%DEFINE_Message%%
   <main class="grow" id="content" role="content">
     <div class="kt-container-fluid pb-4">
-      <div class="%%DEFINE_bulkuploadcls%% %%DEFINE_azurestep1%%">
+      <div class="w-full max-w-[800px] mx-auto %%DEFINE_bulkuploadcls%% %%DEFINE_azurestep1%%">
         <div class="kt-card kt-card-accent step" id="step1">
           <div class="kt-card-header">
             <h2 class="kt-card-title flex items-center gap-2">
@@ -65,21 +65,22 @@
               </div>
               <div class="flex items-center gap-2 my-3">
                 <label class="kt-label">Import Photos from Microsoft Entra ID (formerly Azure Active Directory) <a
-                href="javascript:void(0);" rel="tooltip" data-bs-toggle="tooltip" data-bs-html="true"
-                data-bs-title="Custom Esignature can export user photos from microsoft account and apply it to the respective signatures. Please note that the quality of the image in Microsoft Entra ID (formerly Azure Active Directory) is usually very low">
-                <img src="%%DEFINE_IMAGE_LINK%%/images/info-icon.svg"></a></label>
-                <input class="kt-switch verified" type="checkbox" role="switch" id="import_profile" name="import_profile" value="1" %%DEFINE_import_profilesel%%>
+                    href="javascript:void(0);" rel="tooltip" data-bs-toggle="tooltip" data-bs-html="true"
+                    data-bs-title="Custom Esignature can export user photos from microsoft account and apply it to the respective signatures. Please note that the quality of the image in Microsoft Entra ID (formerly Azure Active Directory) is usually very low">
+                    <img src="%%DEFINE_IMAGE_LINK%%/images/info-icon.svg"></a></label>
+                <input class="kt-switch verified" type="checkbox" role="switch" id="import_profile"
+                  name="import_profile" value="1" %%DEFINE_import_profilesel%%>
               </div>
               <input type="hidden" name="azuread_savefield" value="1" />
-              <div class="text-right">
-                <button type="submit" name="next" id="firstNextBtn" class="submit kt-btn kt-btn-primary next action-button" value="Next Step">Next </button>
+              <div class="text-center">
+                <button type="submit" name="next" id="firstNextBtn"
+                  class="submit kt-btn kt-btn-primary next action-button" value="Next Step">Next </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-
-      <div class="%%DEFINE_bulkuploadcls%% %%DEFINE_azurestep2%%">
+      <div class="w-full max-w-[800px] mx-auto %%DEFINE_bulkuploadcls%% %%DEFINE_azurestep2%%">
         <div class="kt-card kt-card-accent step" id="step1">
           <div class="kt-card-header">
             <h2 class="kt-card-title flex items-center gap-2">
@@ -100,37 +101,42 @@
                 Step
               </div>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 my-4">
               <input class="kt-checkbox" type="checkbox" name="showselectedazureaccount" id="showselectedazureaccount">
               <label class="kt-label" for="showselectedazureaccount">Show Selected</label>
             </div>
             <p>Select all or choose specific user groups to generate signatures for</p>
-            <input type="text" class="kt-input" value="" id="search_member" placeholder="Search user">
-            
-            <p id="notfound" style="display:none;">No results found</p>
-            <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
-
-            <form id="groupazure" method="post" action="" enctype="multipart/form-data">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <input type="checkbox" class="kt-checkbox groupcbox" id="select_all" />
-                  <label class="kt-label" for="select_all">Select All</label>
+            <div class="border border-gray-200 rounded-xl mt-4 p-5">
+              <input type="text" class="kt-input" value="" id="search_member" placeholder="Search user">
+              <p id="notfound" style="display:none;">No results found</p>
+              <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
+              <form id="groupazure" method="post" action="" enctype="multipart/form-data">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 my-3">
+                    <input type="checkbox" class="kt-checkbox groupcbox" id="select_all" />
+                    <label class="kt-label" for="select_all">Select All</label>
+                  </div>
+                  <div>Selected: <span id="selected_mem">0</span></div>
                 </div>
-                <div>Selected: <span id="selected_mem">0</span></div>
-              </div>
-              <div class="accordion" id="accordionExample">
-                %%DEFINE_group_list%%
-              </div>
-              <input type="hidden" name="azuread_group" value="1" />
-              <div class="bottom_bg_btn" style="margin-top:10px;">
-                <a href="%%DEFINE_azuread%%" class="submit btn next action-button" style="float:left;">Previous</a>
-                <button type="submit" name="next" class="submit btn next action-button" value="Next Step">Import </button>
-              </div>
-            </form>
+                <!-- <div class="accordion" id="accordionExample">
+                  %%DEFINE_group_list%%
+                </div> -->
+
+
+                <div data-kt-accordion="true" class="kt-accordion border border-gray-200 rounded-lg overflow-hidden">
+                  %%DEFINE_group_list%%
+                </div>
+
+                <input type="hidden" name="azuread_group" value="1" />
+                <div class="flex gap-2 justify-center mt-4">
+                  <a href="%%DEFINE_azuread%%" class="submit kt-btn kt-btn-mono next action-button">Previous</a>
+                  <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button"value="Next Step">Import </button>
+                </div>
+              </form>
+            </div>
           </div>
+        </div>
       </div>
-    </div>
-  </div>
 
       <div class="bulk_upload_main text-center %%DEFINE_bulkerrorcls%%">
         <h2><a href="%%DEFINE_linkModuleDashboard%%">please select your Master Signature <br /> For bulk upload</a></h2>
@@ -199,7 +205,13 @@
 <!-- <script src="%%DEFINE_JS_LINK%%/heapbox.min.js"></script> -->
 <script type="text/javascript">
 
+
   $(document).ready(function () {
+
+    $(document).on('click', '.master_checkbox', function (e) {
+      e.stopPropagation();
+    });
+
     $('#groupazure').submit(function () {
       if ($('.mem_checkbox:checked').length == '0') {
         alert("Please select atleast one signature to import");

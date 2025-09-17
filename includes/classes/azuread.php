@@ -282,24 +282,60 @@ class CIT_AZUREAD
 					$GLOBALS['group_list'] ='';
 					 $mem_count = 0;
 					foreach($getgroups['groups'] as $group){
-						$GLOBALS['group_list'] .='  <div class="accordion-item">
-						<h2 class="accordion-header">
-						<input class="form-check-input master_checkbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$group['id'].'" data-wrapper ="wrapper-'.$group['id'].'"><label for="'.$group['id'].'">'.$group['displayName'].'</label>
-							<div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse-'.$group['id'].'" aria-expanded="false" aria-controls="collapse-'.$group['id'].'"></div>
-							</h2><div id="collapse-'.$group['id'].'" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body" id="wrapper-'.$group['id'].'">';
-						$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$group['id'].'">';
-							  $azureadusers = $GLOBALS['integrations']->getUserGraph($group['id']);
+						$GLOBALS['group_list'] .='  <div data-kt-accordion-item="true" class="kt-accordion-item group relative" aria-expanded="false">
+							<div class="flex items-center gap-2 p-3 group-[.active]:bg-primary/10">
+								<input class="kt-checkbox master_checkbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$group['id'].'" data-wrapper ="wrapper-'.$group['id'].'">
+								<label class="kt-label" for="'.$group['id'].'">'.$group['displayName'].'</label>
+							</div>
+							<div class="size-[45px] cursor-pointer hover:bg-gray-100 flex items-center justify-center absolute right-0 top-0" data-kt-accordion-toggle="true" aria-controls="accordion_content_'.$group['id'].'" id="accordion_toggle_'.$group['id'].'">
+								<i  class="hgi hgi-stroke hgi-arrow-right-01 text-xl"></i>
+							</div>
+
+							<div class="kt-accordion-content hidden" aria-labelledby="accordion_toggle_'.$group['id'].'" id="accordion_content_'.$group['id'].'">
+							<div class="py-3 pl-5 pb-3 space-y-2" id="wrapper-'.$group['id'].'">';
+							$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$group['id'].'">';
+							  	$azureadusers = $GLOBALS['integrations']->getUserGraph($group['id']);
+								if(!count($azureadusers['users'])){
+									$GLOBALS['group_list'] .='<p class="text-gray-400">No User Found</p>';
+								}
 								foreach($azureadusers['users'] as  $members){
 									if($members['mail'] != ""){
-									$GLOBALS['group_list'] .='<div class="member_list" style="padding-left:20px;"><span class="member_chek"><input class="form-check-input mem_checkbox" type="checkbox" name="members['.$mem_count.']" id="'.$members['id'].'-'.$group['id'].'" value="'.$members['id'].'"  data-wrapper="wrapper-'.$group['id'].'"
-                data-master="'.$group['id'].'"><label for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'</label></span><span class="member-mail-id">'.$members['mail'].'</span><input type="hidden" name="displayName[]" value="'.$members['displayName'].'" ><input type="hidden" name="givenName[]" value="'.$members['givenName'].'" ><input type="hidden" name="surname[]" value="'.$members['surname'].'" ><input type="hidden" name="jobTitle[]" value="'.$members['jobTitle'].'" ><input type="hidden" name="mail[]" value="'.$members['mail'].'" ><input type="hidden" name="mobilePhone[]" value="'.$members['mobilePhone'].'" ><input type="hidden" name="officeLocation[]" value="'.$members['officeLocation'].'" ><input type="hidden" name="businessPhones[]" value="'.$members['businessPhones'][0].'" ><input type="hidden" name="faxNumber[]" value="'.$members['faxNumber'].'" ><input type="hidden" name="department[]" value="'.$members['department'].'" ><input type="hidden" name="companyName[]" value="'.$members['companyName'].'" ><input type="hidden" name="streetAddress[]" value="'.$members['streetAddress'].'" ><input type="hidden" name="city[]" value="'.$members['city'].'" ><input type="hidden" name="state[]" value="'.$members['state'].'" ><input type="hidden" name="country[]" value="'.$members['country'].'" ><input type="hidden" name="postalCode[]" value="'.$members['postalCode'].'"></div>';
-				
-								$GLOBALS['search_list'] .='<div class="member_list search-container" style="display:none;"><span class="member_chek"><input class="form-check-input mem_search_checkbox" type="checkbox" name="" id="search_'.$members['id'].'-'.$group['id'].'" value=""  data-master="'.$group['id'].'"><label for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'</label></span><span class="member-mail-id">'.$members['mail'].'</span></div>';
-								$mem_count++;
-								 }
+										$GLOBALS['group_list'] .='
+										<div class="member_list">
+											<div class="member_chek flex flex-wrap items-center gap-2">
+												<input class="kt-checkbox mem_checkbox" type="checkbox" name="members['.$mem_count.']" id="'.$members['id'].'-'.$group['id'].'" value="'.$members['id'].'"  data-wrapper="wrapper-'.$group['id'].'" data-master="'.$group['id'].'">
+												<label class="kt-label" for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'<span class="ml-2 text-gray-500 font-normal">('.$members['mail'].')</span></label>
+											</div>
+											<input type="hidden" name="displayName[]" value="'.$members['displayName'].'" >
+											<input type="hidden" name="givenName[]" value="'.$members['givenName'].'" >
+											<input type="hidden" name="surname[]" value="'.$members['surname'].'" >
+											<input type="hidden" name="jobTitle[]" value="'.$members['jobTitle'].'" >
+											<input type="hidden" name="mail[]" value="'.$members['mail'].'" >
+											<input type="hidden" name="mobilePhone[]" value="'.$members['mobilePhone'].'" >
+											<input type="hidden" name="officeLocation[]" value="'.$members['officeLocation'].'" >
+											<input type="hidden" name="businessPhones[]" value="'.$members['businessPhones'][0].'" >
+											<input type="hidden" name="faxNumber[]" value="'.$members['faxNumber'].'" >
+											<input type="hidden" name="department[]" value="'.$members['department'].'" >
+											<input type="hidden" name="companyName[]" value="'.$members['companyName'].'" >
+											<input type="hidden" name="streetAddress[]" value="'.$members['streetAddress'].'" >
+											<input type="hidden" name="city[]" value="'.$members['city'].'" >
+											<input type="hidden" name="state[]" value="'.$members['state'].'" >
+											<input type="hidden" name="country[]" value="'.$members['country'].'" >
+											<input type="hidden" name="postalCode[]" value="'.$members['postalCode'].'">
+										</div>';
+					
+										$GLOBALS['search_list'] .='
+										<div class="member_list search-container" style="display:none;">
+											<div class="flex items-center gap-2">
+												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$members['id'].'-'.$group['id'].'" value=""  data-master="'.$group['id'].'">
+												<label class="kt-label" for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'('.$members['mail'].')</label>
+											</div>
+										</div>';
+										$mem_count++;
+								 	}
 								} 
 	  						$GLOBALS['group_list'] .='</div></div></div>';
-							 $GLOBALS['search_list'] .='</div>';
+							$GLOBALS['search_list'] .='</div>';
 							$GLOBALS['memberr_selected']= $mem_count;
 					}
 				}else{
