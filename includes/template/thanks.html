@@ -1,28 +1,103 @@
  %%DEFINE_HEADER%%
-	  
-      <div class="new_signin_bg">
-	<div class="row flex-column-reverse flex-md-row">
-    	<div class="col-xl-4 col-lg-4 col-12">
-        	<div class="signin_left_bg thank video">
-            	<video width="100%" border="0" autoplay muted loop>
-                    <source src="%%DEFINE_IMAGE_LINK%%/images/video/esign-signin-page.mp4" type="video/mp4">
-                </video>
-            </div>
+<div class="flex flex-col md:flex-row w-full">
+  <div class="flex gap-10 w-full md:w-6/12 xl:w-7/12 flex-col p-8 lg:p-10">
+    <div class="flex-1 flex items-center justify-center xl:px-7">
+      <div class="max-w-[600px] w-full mx-auto">
+        <div class="text-center mb-4">
+          <img class="inline-flex" src="%%DEFINE_IMAGE_LINK%%/images/logoThumb.svg" alt="">
         </div>
-        <div class="col-xl-8 col-lg-8 col-12">
-        	<div class="thanks_main">
-            	<div class="top_logo"><img src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt=""></div>
-                <h3>Thank You, <span id="user_name"></span></h3>
-                <p>Your account has been successfully created!</p>
-                <div class="button_bg">
-                   <a href="%%DEFINE_linkModuleLogin%%">Let’s Login</a></div>
-                </div>
+        <div class="text-center">
+          <h1 class="font-semibold pt-8">Thank You, <span id="user_name"></span></h1>
+          <h5>Your account has been successfully created!</h5>
+          <div class="kt-card-toolbar mt-8">
+            <a class="kt-btn kt-btn-primary w-full" href="%%DEFINE_linkModuleLogin%%">Let’s Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 h-[100vh] bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
+    style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/loginbg.jpg);">
+    <div class="w-full flex-1 flex flex-col justify-center">
+      <h3 class=" px-5 xl:px-16  leading-[1.2] mb-4"><span
+          class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Exceptional Service</span>
+        That Exceeds Expectations</h3>
+      <div class="swiper w-full" id="loginSlider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide px-5 xl:px-16">
+            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i>I had a fantastic
+              experience
+              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
+              needs and went above and beyond.</p>
+            <div class="flex items-center gap-2 mt-6">
+              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
+              <div>
+                <p class="text-sm">Sage Miller</p>
+                <p class="text-xs text-gray-500">Founder - Awaken</p>
+              </div>
             </div>
-       </div>
-    </div>    
-      
-       
-   	   
+          </div>
+          <div class="swiper-slide px-5 xl:px-16">
+            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a fantastic
+              experience
+              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
+              needs and went above and beyond.</p>
+            <div class="flex items-center gap-2 mt-6">
+              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
+              <div>
+                <p class="text-sm">Sage Miller</p>
+                <p class="text-xs text-gray-500">Founder - Awaken</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide px-5 xl:px-16">
+            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a fantastic
+              experience
+              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
+              needs and went above and beyond.</p>
+            <div class="flex items-center gap-2 mt-6">
+              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
+              <div>
+                <p class="text-sm">Sage Miller</p>
+                <p class="text-xs text-gray-500">Founder - Awaken</p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide px-5 xl:px-16">
+            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a fantastic
+              experience
+              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
+              needs and went above and beyond.</p>
+            <div class="flex items-center gap-2 mt-6">
+              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
+              <div>
+                <p class="text-sm">Sage Miller</p>
+                <p class="text-xs text-gray-500">Founder - Awaken</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination mt-8 !static px-5 xl:px-16 text-center xl:!text-left md:!text-left"></div>
+      </div>
+    </div>
+    <div class="px-5 xl:px-16 mb-0 xl:mb-12 md:mb-8 mt-5">
+      <p class="text-black text-sm mb-4">Trusted by Industry Leading Companies</p>
+      <div class="flex flex-wrap items-center *:px-4 *:py-3">
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l1.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l2.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l3.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l4.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l5.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l6.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l7.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l8.png"></div>
+        <div><img src="%%DEFINE_IMAGE_LINK%%/images/l9.png"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
  
     <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>         
     <script>

@@ -5,21 +5,28 @@ class CIT_DASHBOARD
 	public function __construct()
 	{
 		if(!isset($_SESSION[GetSession('user_id')]) && !isset($_REQUEST['uuid'])){
-			GetFrontRedirectUrl(GetUrl(array('module'=>'signin')));
+			GetFrontRedirectUrl(GetUrl(array('module'=>'signin')));exit();
 		}
 
-		if($GLOBALS['plan_cancel'] == 1){
-			GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));
+		
+
+		if($_REQUEST['category_id'] != 'planrenewed' && $GLOBALS['plan_cancel'] == 1){
+			GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));exit();
 		}
 		
 		if($GLOBALS['plan_type'] == 'FREE' && $GLOBALS['freeperiod_dayleft'] == 0){
 			$redirect = $GLOBALS['billing'].'?action=freetrial';
-			GetFrontRedirectUrl($redirect);
+			GetFrontRedirectUrl($redirect);exit();
 		}
-		elseif($GLOBALS['PLAN_STATUS'] == 0){
+		elseif($_REQUEST['category_id'] != 'planrenewed' && $GLOBALS['PLAN_STATUS'] == 0){
 			if(!isset($_REQUEST['category_id']) && !isset($_REQUEST['uuid'])){
-				GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));
+				GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));exit();
 			}
+		}
+
+		if($_REQUEST['category_id'] == 'planrenewed'){
+			sleep(5);
+			GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));exit();
 		}
 
 		if(isset($_REQUEST['department_id'])){
@@ -33,13 +40,13 @@ class CIT_DASHBOARD
 				$department_ids = explode(",",$subUserDepartmentList['department_list']);
 				if(!in_array($GLOBALS['current_department_id'],$department_ids)){
 					$redirect = $GLOBALS['dashboard'].'?department_id='.$department_ids[0];
-					GetFrontRedirectUrl($redirect);
+					GetFrontRedirectUrl($redirect);exit();
 				}
 			}
 		}
 		$user = $GLOBALS['DB']->row("SELECT RU.user_id,RU.user_come_from_free_trial,count(*) as logo_count FROM `registerusers` as RU RIGHT JOIN signature_logo as SL ON SL.user_id = RU.user_id WHERE RU.user_id=? ",array($GLOBALS['USERID']));
 		if($user['user_come_from_free_trial'] && $user['logo_count'] == '0'){
-			GetFrontRedirectUrl($GLOBALS['uploadbrandlogo']);
+			GetFrontRedirectUrl($GLOBALS['uploadbrandlogo']);exit();
 		}
 	}
 

@@ -158,10 +158,6 @@
             <input type="text" class="form-control" value="%%DEFINE_RENEW_PAYMENT_USER_ID%%" id="user_id" placeholder="User ID" disabled>
             <label for="">User ID</label>
           </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" name="user_term" id="user_term" required="required">
-            <label class="form-check-label" for="user_term">By signup you agree to <a href="https://customesignature.com/terms-of-use" target="_blank">Terms & Conditions</a></label>
-          </div>
           <h3>Payment Method</h3>
           <span>Use saved payment details <input type="checkbox" name="user_payment" id="user_payment" checked></span>
           <div class="saved_card_section">
@@ -222,6 +218,7 @@
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 <script>
   $(document).ready(function() {
+    setTimeout(function(){ $('.alert').remove(); }, 3000);
     // Listen for changes on the checkbox
     $('#user_payment').change(function() {
       if ($(this).is(':checked')) {
@@ -296,9 +293,6 @@ jQuery.noConflict();
     planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
     planpricesplint = parseFloat(radioObj.parent().find('label span.cpricespl').text() * multiplyprice);
     totalsavings = parseFloat(planpricesplint - planpriceint);  
-    console.log(planpriceint)
-    console.log(planpricesplint)
-    console.log(totalsavings)
     $('#subtotal').text('$'+planpricesplint.toFixed(2)+' USD');
     $('#savings').text('$'+totalsavings.toFixed(2)+' USD');
     $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
