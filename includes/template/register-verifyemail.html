@@ -1,7 +1,7 @@
 %%DEFINE_HEADER%%
 
 <div class="flex flex-col md:flex-row w-full">
-	<div class="flex gap-3 w-full md:w-6/12 xl:w-7/12  flex-col p-8 lg:p-10">
+	<div class="flex gap-3 w-full md:w-6/12 xl:w-7/12  flex-col p-6 lg:p-10">
 		<div>
 			<a href="%%DEFINE_ROOT_LINK%%/signin" class="kt-btn kt-btn-ghost inline-flex items-center gap-2">
 				<i class="fal fa-angle-left text-xl mt-0.5"></i> <span>Back</span>
@@ -12,6 +12,10 @@
 				<div class="text-center mb-4">
 					<img class="inline-flex" src="%%DEFINE_IMAGE_LINK%%/images/logoThumb.svg" alt="">
 				</div>
+				IF("%%DEFINE_ve_step%%" == "1"){
+				<h5 class="text-2xl text-center font-normal f-w-5flex w-full00">Create Your Account</h5>
+				{:IF}
+
 				%%DEFINE_Message%%
 				
 				IF("%%DEFINE_ve_step%%" == "1"){
@@ -63,24 +67,24 @@
 
 				IF("%%DEFINE_ve_step%%" == "2"){
 				<form name="resetpassword" method="post">
-					<h5 class="text-2xl text-center font-normal flex w-full">Verify OTP</h5>
+					<h3 class="text-2xl text-center mb-3">Verify OTP</h3>
 					<p class="text-center">Please enter the 6-digit code sent to you at<br><a href="mailto:%%DEFINE_otp_email%%" class="text-primary">%%DEFINE_otp_email%%</a></p>
-					<p class="text-center mt-1 text-gray-400">check spam folder if not in inbox</p>
-					<div class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
+					<p class="text-center flex justify-center items-center gap-1.5 mt-1 text-gray-400"><i class="hgi hgi-stroke hgi-information-circle"></i> check spam folder if not in inbox</p>
+					<div class="kt-card p-5 lg:p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
 						<span id="verify_email_otp_error_message"></span>
-						<div class="digit-group flex justify-center gap-2 *:size-[52px] *:text-center">
-							<input type="text" id="digit-1" name="digit-1" data-next="digit-2"
-								class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
-							<input type="text" id="digit-2" name="digit-2" data-next="digit-3"
-								data-previous="digit-1" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
-							<input type="text" id="digit-3" name="digit-3" data-next="digit-4"
-								data-previous="digit-2" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
-							<input type="text" id="digit-4" name="digit-4" data-next="digit-5"
-								data-previous="digit-3" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
-							<input type="text" id="digit-5" name="digit-5" data-next="digit-6"
-								data-previous="digit-4" class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
-							<input type="text" id="digit-6" name="digit-6" data-previous="digit-5"
-								class="inputotp kt-input !rounded-lg !size-[52px] focus-within:bg-primary/10 focus-within:border-primary" />
+						<div class="digit-group flex justify-center gap-2 *:text-center">
+							<input type="text" id="digit-1" name="digit-1" data-next="digit-2" placeholder="0"
+								class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+							<input type="text" id="digit-2" name="digit-2" data-next="digit-3" placeholder="0"
+							data-previous="digit-1" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+							<input type="text" id="digit-3" name="digit-3" data-next="digit-4" placeholder="0"
+								data-previous="digit-2" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+							<input type="text" id="digit-4" name="digit-4" data-next="digit-5" placeholder="0"
+								data-previous="digit-3" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+							<input type="text" id="digit-5" name="digit-5" data-next="digit-6" placeholder="0"
+								data-previous="digit-4" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+							<input type="text" id="digit-6" name="digit-6" data-previous="digit-5" placeholder="0"
+								class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
 						</div>
 						<button type="submit" name="submit" class="my-5 kt-btn kt-btn-primary w-full" id="verifyOTP">Continue</button>
 						<div class="text-center text-gray-400 text-sm font-light">
@@ -92,7 +96,7 @@
 			</div>
 		</div>
 		<div class="flex flex-col gap-4 mt-4 text-sm items-center justify-between xl:flex-row">
-			<span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+			<span class="text-gray-600 text-center">© 2025 Custom Esignature's Inc. All rights reserved.</span>
 			<div class="flex text-gray-700 items-center gap-2">
 				<a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
 				<i class="fas fa-circle text-[6px] text-gray-400"></i>
@@ -100,7 +104,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+	<div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat bg-cover"
 		style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/loginbg.jpg);">
 		<div class="w-full flex-1 flex flex-col justify-center">
 			<h3 class=" px-5 xl:px-16  leading-[1.2] mb-4">
@@ -109,8 +113,7 @@
 			<div class="swiper w-full" id="loginSlider">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide px-5 xl:px-16">
-						<p class="text-gray-700 relative pt-4"><i
-								class="fas fa-quote-left absolute text-gray-900 top-3 -left-4 text-xl"></i> I had a
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a
 							fantastic
 							experience
 							with this service! The team was super helpful and really focused on my satisfaction. They
@@ -119,14 +122,13 @@
 						<div class="flex items-center gap-2 mt-6">
 							<img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
 							<div>
-								<p class="text-sm">Sage Miller</p>
+								<p class="text-sm flex items-center gap-1">Sage Miller <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
 								<p class="text-xs text-gray-500">Founder - Awaken</p>
 							</div>
 						</div>
 					</div>
 					<div class="swiper-slide px-5 xl:px-16">
-						<p class="text-gray-700 relative pt-4"><i
-								class="fas fa-quote-left absolute text-gray-900 top-3 -left-4 text-xl"></i> I had a
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a
 							fantastic
 							experience
 							with this service! The team was super helpful and really focused on my satisfaction. They
@@ -135,14 +137,13 @@
 						<div class="flex items-center gap-2 mt-6">
 							<img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
 							<div>
-								<p class="text-sm">Sage Miller</p>
+								<p class="text-sm flex items-center gap-1">Sage Miller <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
 								<p class="text-xs text-gray-500">Founder - Awaken</p>
 							</div>
 						</div>
 					</div>
 					<div class="swiper-slide px-5 xl:px-16">
-						<p class="text-gray-700 relative pt-4"><i
-								class="fas fa-quote-left absolute text-gray-900 top-3 -left-4 text-xl"></i> I had a
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a
 							fantastic
 							experience
 							with this service! The team was super helpful and really focused on my satisfaction. They
@@ -151,14 +152,13 @@
 						<div class="flex items-center gap-2 mt-6">
 							<img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
 							<div>
-								<p class="text-sm">Sage Miller</p>
+								<p class="text-sm flex items-center gap-1">Sage Miller <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
 								<p class="text-xs text-gray-500">Founder - Awaken</p>
 							</div>
 						</div>
 					</div>
 					<div class="swiper-slide px-5 xl:px-16">
-						<p class="text-gray-700 relative pt-4"><i
-								class="fas fa-quote-left absolute text-gray-900 top-3 -left-4 text-xl"></i> I had a
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a
 							fantastic
 							experience
 							with this service! The team was super helpful and really focused on my satisfaction. They
@@ -167,7 +167,7 @@
 						<div class="flex items-center gap-2 mt-6">
 							<img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
 							<div>
-								<p class="text-sm">Sage Miller</p>
+								<p class="text-sm flex items-center gap-1">Sage Miller <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
 								<p class="text-xs text-gray-500">Founder - Awaken</p>
 							</div>
 						</div>
@@ -178,7 +178,7 @@
 		</div>
 		<div class="px-5 xl:px-16 mb-0 xl:mb-12 md:mb-8 mt-5">
 			<p class="text-black text-sm mb-4">Trusted by Industry Leading Companies</p>
-			<div class="flex flex-wrap items-center *:px-4 *:py-3">
+			<div class="flex flex-wrap items-center *:py-3 gap-x-7 sm:gap-x-10">
 				<div><img src="%%DEFINE_IMAGE_LINK%%/images/l1.png"></div>
 				<div><img src="%%DEFINE_IMAGE_LINK%%/images/l2.png"></div>
 				<div><img src="%%DEFINE_IMAGE_LINK%%/images/l3.png"></div>
