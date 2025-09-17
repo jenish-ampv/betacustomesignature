@@ -66,6 +66,10 @@ module.exports = {
 				src: ['node_modules/@keenthemes/ktui/dist/ktui.min.js'],
 				dist: '/vendors/ktui/ktui.min.js',
 			},
+			{
+				src: ['node_modules/@keenthemes/ktui/dist/styles.css'],
+				dist: '/vendors/ktui/ktui.css',
+			},
 		],
 		swiper: [
 			{
