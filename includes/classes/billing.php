@@ -290,7 +290,7 @@ class CIT_BILLING
 					}
 					$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
 					$GLOBALS['selected_plan'] = '<div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
-						<div class="flex justify-between mt-5">
+						<div class="flex justify-between mt-5 flex-col sm:flex-row">
 							<h5 class="text-gray-950 font-semibold">'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)</h5>
 							<h5 class="text-gray-950 font-semibold">$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h5>
 						</div>

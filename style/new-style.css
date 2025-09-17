@@ -2483,7 +2483,7 @@ section {
     /*height: 162px; overflow-y: scroll; scrollbar-width: thin;*/
 }
 
-.menu_open ul {
+/* .menu_open ul {
     list-style: none;
     border-radius: 5px;
     max-width: 100%;
@@ -2563,7 +2563,7 @@ section {
 .menu_open li.use_signature a:hover {
     background: linear-gradient(86.73deg, #1D4AFE 0.37%, #00CCFF 99.63%);
     opacity: 1;
-}
+} */
 /* 
 .create_new_signature_bg {
     border: 1px dashed #00000033;
@@ -4929,7 +4929,7 @@ section {
     list-style: none;
 } */
 
-.signature_integration_box li {
+/* .signature_integration_box li {
     margin: 0;
     padding: 5px 0 0 17px;
     list-style: none;
@@ -4939,7 +4939,7 @@ section {
     line-height: 12.1px;
     text-align: left;
     color: #000000AD;
-}
+} */
 
 .signature_integration_box .button_bg a {
     background: #F4F7FC;
@@ -5036,18 +5036,18 @@ section {
     border-radius: 10px;
 }
 
-.signature_integration_box .menu_open li {
+/* .signature_integration_box .menu_open li {
     padding: 0 15px;
     margin: 0 5px;
     background: none;
-}
+} */
 
-.signature_integration_box .menu_open .close_icon {
+/* .signature_integration_box .menu_open .close_icon {
     z-index: 9;
     position: absolute;
     right: 11px;
     top: 15px;
-}
+} */
 /* 
 .signature_integration_withhead_box .form-floating .form-control {
     color: #A5A3A9;

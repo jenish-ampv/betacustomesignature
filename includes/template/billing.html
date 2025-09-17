@@ -26,10 +26,10 @@
                     {:IF}
                 </div>
                 <div class="kt-card-content p-1">
-                    <div class="table-responsive-md billing_table">
+                    <div class="table-responsive-md billing_table overflow-auto">
                         <table class="kt-table">
                             <thead>
-                                <tr>
+                                <tr class="*:text-nowrap">
                                     <th>Current Plan</th>
                                     <th>Signature</th>
                                     <th>Billing Period</th>
@@ -92,11 +92,11 @@
                         <h6 class="kt-card-title">Invoice History</h6>
                     </div>
                 </div>
-                <div class="kt-card-content p-1">
+                <div class="kt-card-content p-1 overflow-auto">
                     <div class="table-responsive-md billing_table">
                         <table class="kt-table">
                             <thead>
-                                <tr>
+                                <tr class="*:text-nowrap">
                                     <th>Date</th>
                                     <th>Invoice Number</th>
                                     <th>Amount</th>
@@ -154,7 +154,7 @@
                 </div>
 
                 <div class="dashboard_set_up_bg transition-[height] duration-300 hidden" id="selectplan-main">
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-center flex-col gap-4">
                         <div class="flex items-center gap-2">
                             <h5 class="font-semibold">Select Plan</h5>
                             <span class="kt-badge bg-gradient text-white rounded-full">Save 20%</span>
@@ -209,7 +209,7 @@
                             <input type="radio" name="plan_id" id="plan_id1" class="imgbgchk" value="1" required="required" %%DEFINE_plan_selplan1%%>
                             <label for="plan_id1" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
-                                    <div class="flex justify-between mt-5">
+                                    <div class="flex justify-between mt-5 flex-col sm:flex-row">
                                         <h5 class="text-gray-950 font-semibold">Basic (Quarterly)</h5>
                                         <h5 class="text-gray-950 font-semibold">$<span class="quarter_basicprice cprice">10</span> /mo</h5>
                                     </div>
@@ -227,7 +227,7 @@
                             <input type="radio" name="plan_id" id="plan_id2" class="hidden imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
                             <label for="plan_id2" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
-                                    <div class="flex justify-between">
+                                    <div class="flex justify-between flex-col sm:flex-row">
                                         <h5 class="text-gray-950 font-semibold">Pro (Quarterly)</h5>
                                         <h5 class="text-gray-950 font-semibold">$<span class="quarter_proprice cprice">15</span> /mo</h5>
                                     </div>
@@ -248,7 +248,7 @@
                             <label for="plan_id3" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
                                     <span class="kt-badge bg-gradient text-white rounded-full absolute left-2 top-2">Saving 20%</span>
-                                    <div class="flex justify-between mt-5">
+                                    <div class="flex justify-between mt-5 flex-col">
                                         <h5 class="text-gray-950 font-semibold">Basic (Yearly)</h5>
                                         <h5 class="text-gray-950 font-semibold">$<span class="year_basicprice cprice">10</span> /mo</h5>
                                     </div>
@@ -265,7 +265,7 @@
                             <label for="plan_id4" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
                                     <span class="kt-badge bg-gradient text-white rounded-full absolute left-2 top-2">Saving 20%</span>
-                                    <div class="flex justify-between mt-5">
+                                    <div class="flex justify-between mt-5 flex-col sm:flex-row">
                                         <h5 class="text-gray-950 font-semibold">Pro (Yearly)</h5>
                                         <h5 class="text-gray-950 font-semibold">$<span class="year_proprice cprice">15</span> /mo</b></h5>
                                     </div>
