@@ -1035,11 +1035,11 @@ class CIT_NEWSIGNATURE
 				$GLOBALS['signature_custom_fields'. $fieldvar].='
 					<div class="flex items-center gap-4 inputbox mt-5">
 						<div class="flex items-center gap-2">
-							<div class="flex-1 floting-input">
+							<div class="w-20 flex-none floting-input">
 								<input type="text" class="kt-input" name="field_label[]" id="" data-class="'.$layout_labelclass.'">
 								<label for="">Title</label>
 							</div>
-							<div class="w-28 flex-none floting-input">
+							<div class="flex-1 min-w-28 floting-input">
 								<input type="text" class="kt-input" id="" name="custom_field[]" value="'.$fieldvalue.'" data-class="'.$layout_class.'">
 								<label for="">'.$fieldlabel.'</label>
 								<input type="hidden" name="custom_fieldtype[]" value="'.$fieldtype.'">

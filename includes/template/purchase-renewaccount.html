@@ -7,26 +7,23 @@
 <script src="https://js.stripe.com/v3/"></script>
 <div class="container">
   <form action="" id="registerForm" method="post" data-rewardful style="padding:20px 0;">
-    <div class="row"> %%DEFINE_Message%%
-      <div class="col-md-6 col-12">
-        <div class="dashboard_set_up_bg" id="selectplan-main" style="display:block; border:none; padding:0;">
-          <div class="select_plan_title">
-            <div class="tab_box_left">
-              <span>Start Your 7-day Free Trial!</span>
-              <span class="riskfree">Choose Your Plan</span>
-              <span>Cancel Anytime</span>
-            </div>
-            <div class="tab_box_right">
-              <div class="nav nav-tabs" id="myTab" role="tablist">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      %%DEFINE_Message%%
+      <div>
+        <div id="selectplan-main" class="bg-gray-100 border-2 border-gray-300 p-5 rounded-4xl" style="display:block;">
+            <h4 class="font-bold">Start Your <span class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free Trial!</span></h4>
+            <h5>Choose Your Plan</h5>
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2">
                 <span id="nav-tabs-monthly">Monthly</span>
-                <input class="form-check-input" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
-                <span>Yearly <span>Save 20%</span></span>
+                <input class="kt-switch" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
+              </div>
+              <div class="flex items-center gap-2">
+                <span>Yearly</span>
+                <span class="kt-badge rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">Save 20%</span>
               </div>
             </div>
-            
-            
 
-              
             <div class="no_of_signatures">
               <p>How many signatures do you need?</p>
                 <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
@@ -59,8 +56,7 @@
               </div>
             </div>
               
-              <div class="tab-content" id="myTabContent">
-              <!--Monthly Plan -->  
+            <div class="tab-content" id="myTabContent">
               <div class="tab-pane hidden" id="monthly-tab-panel" tabindex="0">
                 <div class="signature_layot">
                   <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
@@ -95,7 +91,6 @@
                   </label>
                 </div>
               </div>
-              <!--Yearly Plan -->
               <div class="tab-pane" id="yearly-tab-panel" tabindex="0">
                 <div class="signature_layot">
                   <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
@@ -129,12 +124,9 @@
                   </label>
                 </div>  
               </div>
-              
-              </div>
-            
-              
+            </div>
+          
           </div>
-        </div>
         <div class="dashboard_set_up_bg">
           <h3>Renew Account</h3>
           <div class="sign_in_button"> 
@@ -176,7 +168,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-12">
+      <div>
         <div class="dashboard_set_up_bg" id="order-main">
           <h3>Order Summary</h3>
           <div class="form-floating">

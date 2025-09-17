@@ -125,16 +125,16 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
   </div>
 </div>
 
-<form id="msform" class="w-full">
+<form id="msform" class="w-full h-full overflow-hidden">
   <input type="hidden" name="signature_image" value="">
-  <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+  <div class="flex h-full flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     <main class="h-full" id="content" role="content">
       <div class="kt-container-fluid p-4 h-full">
         <div class="flex flex-col lg:flex-row gap-5 h-full">
           %%DEFINE_EDITOR_SIDEBAR_NEW_SIGNATURE%%
-          <div class="flex md:hidden items-center justify-between">
+          <div class="flex lg:hidden items-center justify-between">
             <a href="%%DEFINE_ROOT_LINK%%/dashboard">
-                <img class="h-5 sm:h-6 md:h-7 lg:h-8 xl:h-9 2xl:h-10 inline-block" draggable="false"
+                <img class="h-8 inline-block" draggable="false"
                     src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt="">
             </a>
              <span class="kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#drawer"><i class="hgi hgi-stroke hgi-sidebar-left"></i></span>
@@ -164,7 +164,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 <div class="signature_temp_preview_box">
                 </div> <!-- 	// code is for saving signature html(to use in deploy)  -->
               </div>
-              <div class="flex justify-center gap-4 mt-5 md:mt-6 lg:mt-8 xl:mt-10">
+              <div class="flex justify-center gap-4 mt-2 sm:mt-3 md:mt-4 lg:mt-8 xl:mt-10">
                 <a href="%%DEFINE_linkModuleDashboard%%" class="previous kt-btn kt-btn-mono action-button-previous">Go Back</a>
                 <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button" value="Next Step">
                   Save Signature <i class="hgi hgi-stroke hgi-arrow-right-double"></i>

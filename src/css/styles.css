@@ -59,12 +59,15 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
     i{
         @apply leading-none;
     }
-    &.kt-btn-sm{
-        @apply h-7 px-2.5;
-    }
+}
+.kt-btn-sm{
+    @apply h-7 px-2.5;
 }
 .kt-btn-icon{
     @apply w-10 p-0;
+    &.kt-btn-sm{
+        @apply w-7;
+    }
 }
 .kt-btn-primary{
     @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] hover:from-[#1D4AFE] hover:to-[#26B7FF] outline-white/40;

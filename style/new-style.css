@@ -5009,7 +5009,7 @@ section {
     width: 100%;
 } */
 
-.signature_integration_box .dot_icon {
+/* .signature_integration_box .dot_icon {
     position: absolute;
     top: 6px;
     right: 10px;
@@ -8469,10 +8469,10 @@ div[role="progressbar1"]::before {
 } */
 
 
-.signature_integration_withhead_box .accordion .accordion-body .member_list .member-mail-id {
+/* .signature_integration_withhead_box .accordion .accordion-body .member_list .member-mail-id {
     margin-left: 25px;
     display: block;
-}
+} */
 
 #snackbar,
 #snackbar-error,
@@ -11747,7 +11747,7 @@ td.layout_border {
         padding-bottom: 10px;
     } */
 
-    .new_dashboard_bg .signature_manager_top .left {
+    /* .new_dashboard_bg .signature_manager_top .left {
         justify-content: start;
     }
 
@@ -11762,11 +11762,11 @@ td.layout_border {
 
     .use_center_box_bg .signature_use_box #signature_source {
         overflow-x: auto !important;
-    }
-
+    } */
+/* 
     .signature_integration_withhead_box .accordion .accordion-body .member_list .member-mail-id {
         margin-left: 22px;
-    }
+    } */
 
     /* .hover_over_sign_bg .nav-tabs-head .tab_logo {
         max-width: 105px;
