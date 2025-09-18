@@ -45,7 +45,7 @@ class CIT_DEPARTMENTPAYMENT
 				$data = array("logo_animation_payment" => 1);
 				$where = array('department_id'=>$GLOBALS['current_department_id']);
 				$addSignature = $GLOBALS['DB']->update("registerusers_departments",$data,$where);
-				$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong> Success! </strong>Payment completed!</div>';
+				$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong> Success! </strong>Payment completed!</div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));
 			}else{
 			 	$GLOBALS['Message'] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>please enter all required field!</div>';

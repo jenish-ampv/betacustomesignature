@@ -56,7 +56,7 @@ class CIT_PLAN
 		if(is_numeric($plan_id)){
 			$addResult = $GLOBALS['DB']->update("plan",array('plan_status'=>$_REQUEST['status']),array('plan_id'=>$_REQUEST['id']));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Status Changed successfully!</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Status Changed successfully!</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to change status,please try again!</div>';
 			}
@@ -76,7 +76,7 @@ class CIT_PLAN
 		if(is_numeric($plan_id)){
 			$addResult = $GLOBALS['DB']->update("plan",array('plan_popular'=>$_REQUEST['status']),array('plan_id'=>$_REQUEST['id']));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Status Changed successfully!</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Status Changed successfully!</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to change status,please try again!</div>';
 			}
@@ -98,7 +98,7 @@ class CIT_PLAN
 		if(is_numeric($id)){		
 			$addResult = $GLOBALS['DB']->query("DELETE FROM `plan` WHERE `plan_id` = ?",array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Plan Deleted Successfully!</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Plan Deleted Successfully!</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'])));	
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete plan,Please try again!';
@@ -143,13 +143,13 @@ class CIT_PLAN
 							foreach($unit_arr as $value){
 								$GLOBALS['DB']->insert("plan_unit",array("plan_id"=>$id,"plan_unit"=>$value,"plan_unitprice"=>$_POST['plan_unitprice'][$u],"plan_unitsplprice"=>$_POST['plan_unitsplprice'][$u]));
 							$u++; }
-							$_SESSION['Success'] = '<div class="alert alert-success">Plan updated Successfully</div>';
+							$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Plan updated Successfully</div>';
 							GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module']),0));	
 						} else {
-							$_SESSION['Error'] = '<div class="alert alert-success">An error occurred while you trying to update plan, please try again.</div>';
+							$_SESSION['Error'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">An error occurred while you trying to update plan, please try again.</div>';
 						}				
 				} else {
-					$_SESSION['Error'] = '<div class="alert alert-success">Required field shoud not be blank!</div>';
+					$_SESSION['Error'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Required field shoud not be blank!</div>';
 				}					
 			}
 
@@ -181,7 +181,7 @@ class CIT_PLAN
 					$data = array('plan_name'=>$_POST['plan_name'],'plan_feature'=>$_POST['plan_feature'],'plan_type'=>$_POST['plan_type'],'plan_price'=>$_POST['plan_price'],'plan_priceid'=>$_POST['plan_priceid'],'plan_popular'=>$_POST['plan_popular']);
 					$addResult =  $GLOBALS['DB']->insert("plan",$data);				
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success">Plan added Successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Plan added Successfully</div>';
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module']),0));	
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to add plan, please try again.</div>';

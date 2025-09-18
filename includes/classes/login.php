@@ -308,7 +308,7 @@ class CIT_LOGIN
 							$newpassword = md5($_POST['password']);
 							$change_pass = $GLOBALS['DB']->update("registerusers",array('user_password'=>$newpassword),array('user_id' =>$user_id));
 							if($change_pass){	
-								$_SESSION[GetSession('Success')]='<div class="alert alert-success" id="success"><strong>Success!</strong> Your Password Reset successful!.</div>';
+								$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> Your Password Reset successful!.</div>';
 								GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 							}else{
 								$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong try again.</div>';

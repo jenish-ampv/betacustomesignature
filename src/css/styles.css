@@ -200,3 +200,7 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
         }
     }
 }
+
+.required{
+    @apply after:content-['*'] after:text-red-500
+}

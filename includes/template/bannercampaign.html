@@ -2,9 +2,9 @@
 <script src="https://js.stripe.com/v3/"></script>
 <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     %%DEFINE_SIDEBAR%%
-    <div id="snackbar"></div>
-    <div id="snackbar-error"></div>
-    <div id="snackbar-info"></div>
+    <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+    <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+    <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
     %%DEFINE_Message%%
     <main class="grow" id="content" role="content">
         <div class="kt-container-fluid pb-4 h-full">
@@ -86,13 +86,13 @@
             success: function(response) {
                 var json = JSON.parse(response);
                 if(json.error != 1){
-                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + '</div>');
+                    $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + '</div>');
                     $('#snackbar').show();
                     $('html, body').animate({
                       scrollTop: $('#snackbar').offset().top
                     }, 500);
                 }else{
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
                     $('#snackbar-error').show();
                     $('html, body').animate({
                       scrollTop: $('#snackbar-error').offset().top
@@ -102,7 +102,7 @@
             },
             error: function(xhr, status, error) {
                 // On error, populate the error snackbar with a message
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
                 $('#snackbar-error').show();
                 $('html, body').animate({
                   scrollTop: $('#snackbar-error').offset().top

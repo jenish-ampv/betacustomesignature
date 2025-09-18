@@ -1,9 +1,9 @@
 %%DEFINE_HEADER%%
 
 <section class="upload_brand-logo-page">
-  <div id="snackbar"></div>
-  <div id="snackbar-error"></div>
-  <div id="snackbar-info"></div>
+  <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+  <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+  <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
   <div class="loader-image" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
   <div class="new_signin_bg" id="logoContainer">
  	  <div class="row">
@@ -210,7 +210,7 @@ $(document).ready(function(){
     var redirecturld = $('#redirecturld').val();
     var fileInput = $('#logofile')[0]; // Get the DOM element
     if (fileInput.files.length === 0) {
-      $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select file</div>');
+      $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select file</div>');
       $('#snackbar-error').show();
       setTimeout(function(){ $('#snackbar-error').hide(); }, 2000);
       return false;
@@ -228,12 +228,12 @@ $(document).ready(function(){
         var json = JSON.parse(data);
         $(".loader-image").hide();
         if(json.error != 1){
-          $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+          $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
   			  $('#snackbar').show();
   			  setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturld; }, 2000);
           setTimeout(function(){ x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
         }else{
-          $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>'+json.msg+' </div>');
+          $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>'+json.msg+' </div>');
           $('#snackbar-error').show();
           $("#img_preview").empty();
           setTimeout(function(){ $('#snackbar-error').hide(); window.location = redirecturld; }, 2000);

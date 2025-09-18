@@ -52,7 +52,7 @@ class CIT_ADMINMODULES{
 			
 			$UpdateResult = $GLOBALS['DB']->update("admin_modules" ,array('status' => $status),array('module_id' => $id));
 			if($UpdateResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Status changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Status changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -72,7 +72,7 @@ class CIT_ADMINMODULES{
 		if(is_numeric($id)){		
 			$addResult = $GLOBALS['DB']->query("DELETE FROM admin_modules WHERE module_id =?", array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Page deleted successfully</div>';				
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Page deleted successfully</div>';				
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete user, please try again.</div>';				
 			}
@@ -166,7 +166,7 @@ class CIT_ADMINMODULES{
 					$_SESSION['Error'] .= '<div class="alert alert-danger" role="alert">Index id is not valid.</div>';
 				}
 				if($updateResult){
-					$_SESSION['Success'] = '<div class="alert alert-success">Page updated successfully</div>';
+					$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Page updated successfully</div>';
 					GetAdminRedirectUrl($GLOBALS['CURRENT_URL']);
 				} else {
 					
@@ -235,7 +235,7 @@ class CIT_ADMINMODULES{
 				$addresult = $GLOBALS['DB']->insert("admin_modules",$data);
 				
 				if($addresult){
-					$_SESSION['Success'] = '<div class="alert alert-success">Module added successfully</div>';
+					$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Module added successfully</div>';
 					GetAdminRedirectUrl($GLOBALS['CURRENT_URL']);
 				} else {
 					
