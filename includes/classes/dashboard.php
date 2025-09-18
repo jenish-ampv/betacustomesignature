@@ -264,30 +264,29 @@ class CIT_DASHBOARD
 						$GLOBALS['selected_department'] = $department['department_id'];
 						$defaultFirstSelectedSubUser = "department_selected";
 					}
-					$GLOBALS['department_list'] .= '<li class="department_container handle '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<div class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt=""></span>'.$department['department_name'].'</div>
-								<div class="text_center">'.$thisDepartmentSignatures.' Members</div>
-								<div class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
-								</div>
-							</li>';
+					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
+								<td class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt=""></span>'.$department['department_name'].'</td>
+								<td class="text_center">'.$thisDepartmentSignatures.' Members</td>
+								<td class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a></td>
+							</tr>';
 				}
 
 			}else{
 
 				if(sizeof($department_lists_arr) == 1){
-					$GLOBALS['department_list'] .= '<li class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<div class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</div>
-								<div class="text_center">'.$thisDepartmentSignatures.' Members</div>
-								<div class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
-								</div>
-							</li>';
+					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
+								<td class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</td>
+								<td class="text_center">'.$thisDepartmentSignatures.' Members</td>
+								<td class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
+								</td>
+							</tr>';
 				}else{
-					$GLOBALS['department_list'] .= '<li class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<div class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</div>
-								<div class="text_center">'.$thisDepartmentSignatures.' Members</div>
-								<div class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
-								<a class="mastersig delete_department" href="'.$GLOBALS['departmententerprise'].'/deleteDepartment?department_id='.$department['department_id'].'"><i class="hgi hgi-stroke hgi-delete-02"></i></a></div>
-							</li>';
+					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
+								<td class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</td>
+								<td class="text_center">'.$thisDepartmentSignatures.' Members</td>
+								<td class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
+								<a class="mastersig delete_department" href="'.$GLOBALS['departmententerprise'].'/deleteDepartment?department_id='.$department['department_id'].'"><i class="hgi hgi-stroke hgi-delete-02"></i></a></td>
+							</tr>';
 				}
 			}
 		}

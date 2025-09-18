@@ -203,8 +203,8 @@ class CIT_PROCESSPAYMENT
 					 $GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					  $GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					 $GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					 $offper = $plantype == 'year' ? '<span class="offper">Saving 20%</span>' : '';
 					 
 					 if($selplan_id %2 == 0){ // pro plan

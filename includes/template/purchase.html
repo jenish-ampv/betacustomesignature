@@ -2,202 +2,211 @@
 <style>
   .header_bg .icon_right_side a.tutorial{ display: none;}
 </style>
-<section>
 <script src="https://accounts.google.com/gsi/client" async defer></script> 
 <script src="https://js.stripe.com/v3/"></script>
 
-<div class="register_page_main">
-<div class="container">
-  <div class="register_top_logo"><img src="%%DEFINE_ROOT_LINK%%/images/logo.svg" alt=""></div>
-    <div class="row"> 
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+  <main class="h-full" id="content" role="content">
+    <div class="kt-container-fluid p-4 h-full">
       <div id="register-error">%%DEFINE_Message%%</div>
-      <div class="col-lg-6 col-12">
-        <div class="register_box_bg" style="background:#fff;" id="order-main">
-            
-          <div class="order_details_box">
-             <!-------- SELECT PLAN START--------------->
-
-            <div class="dashboard_set_up_bg" id="selectplan-main" style="display:block; border:none; padding:0;">
-              <div class="select_plan_title">
-                <div class="tab_box_left">
-                  <span>Start Your 7-day Free Trial!</span>
-                  <span class="riskfree">Choose Your Plan</span>
-                  <span>Cancel Anytime</span>
-                </div>
-                <div class="tab_box_right">
-                  <div class="nav nav-tabs" id="myTab" role="tablist">
-                    <span>Monthly</span>
-                    <input class="form-check-input" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
-                    <span>Yearly <span>Save 20%</span></span>
-                  </div>
-                </div>
-                
-                
-
-                 
-                <div class="no_of_signatures">
-                  <p>How many signatures do you need?</p>
-                   <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
-                </div>
-                <div class="range_slider">
-                  <div id="range" class="noUi-target noUi-ltr noUi-horizontal"></div>
-                  <div class="range_text">
-                    <span class="rno active" id="rno1">1</span>
-                    <span class="rno" id="rno3">3</span>
-                    <span class="rno" id="rno5">5</span>
-                    <span class="rno" id="rno10">10</span>
-                    <span class="rno" id="rno15">15</span>
-                    <span class="rno" id="rno20">20</span>
-                    <span class="rno" id="rno25">25</span>
-                    <span class="rno" id="rno30">30</span>
-                    <span class="rno" id="rno35">35</span>
-                    <span class="rno" id="rno40">40</span>
-                    <span class="rno" id="rno45">45</span>
-                    <span class="rno" id="rno50">50</span>
-                    <span class="rno" id="rno55">55</span>
-                    <span class="rno" id="rno60">60</span>
-                    <span class="rno" id="rno65">65</span>
-                    <span class="rno" id="rno70">70</span>
-                    <span class="rno" id="rno75">75</span>
-                    <span class="rno" id="rno80">80</span>
-                    <span class="rno" id="rno85">85</span>
-                    <span class="rno" id="rno90">90</span>
-                    <span class="rno" id="rno95">95</span>
-                    <span class="rno" id="rno100">100</span>
-                  </div>
-                </div>
-                 
-                 <div class="tab-content" id="myTabContent">
-                  <!--Monthly Plan -->  
-                  <div class="tab-pane hidden" id="monthly-tab-panel" tabindex="0">
-                    <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
-                      <label for="plan_id2" class="changeprice" data-price="20">
-                        <div class="order_details_box border-price">
-                          <h6>Pro Plan <span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="month_proprice cprice">15</span>/mo </b></h6>
-                          <div class="text_price">
-                            <span class="no_employee_qarter">5</span> Signature <div class="monthprice" style="display:none;">$<span class="month_propricespl cpricespl">60</span> USD </div>
-                          </div>
-                          <ul>
-                          <li><b>Interactive Signature</b></li>
-                          <li>AI - Logo Animation™</li>
-                          <li>Remove CES Watermark</li>
-                          <li>Team Dashboard</sup></li>
-                          <li>Interactive Social Icons</li>
-                          <li>Animated Profile</li>
-                          
-                          </ul>
-                          <ul>
-                          <li>Verification Badge<img src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
-                          <li>Pro Templates</li>
-                          <li>Team Dashboard</li>
-                          <li>Outlook and Gmail Sync<img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
-                          <li class="right">Instant Load Speed</li>
-                          </ul>
-                        </div>
-                        <div class="tick_container">
-                          <div class="tick">
-                            <img src="%%DEFINE_IMAGE_LINK%%/images/right-icon.png" alt="">
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                  <!--Yearly Plan -->
-                  <div class="tab-pane" id="yearly-tab-panel" tabindex="0">
-                    <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
-                      <label for="plan_id4" class="changeprice" data-price="20">
-                        <div class="order_details_box border-price">
-                          <h6>Pro Plan</h6>
-                          <div class="text_price">
-                            <span class="no_employee_qarter">5</span> Signature <div class="yearprice" style="display:none;">$<span class="year_propricespl cpricespl">60</span> USD </div>
-                          </div>
-                          <span>14-Day Risk-Free Guarantee</span>
-                          <span>$<div style="text-decoration:line-through;" class="year_propricespl">30</div>
-                          <b>$<span class="year_proprice cprice">15</span> /mo </b>
-                          <span>Billed Annualy</span>
-                          <span>Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</span>
-                          <ul>
-                            <li>Interactive Signature</li>
-                            <li>AI - Logo Animation™</li>
-                            <li>Remove CES Watermark</li>
-                            <li>Team Dashboard</sup></li>
-                            <li>Interactive Social Icons</li>
-                            <li>Animated Profile</li>
-                          </ul>
-                          <ul>
-                            <li>Verification Badge<img src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
-                            <li>Pro Templates</li>
-                            <li>Team Dashboard</li>
-                            <li>Outlook and Gmail Sync<img src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
-                            <li class="right">Instant Load Speed</li>
-                          </ul>
-                        </div>
-                      </label>
-                    </div>  
-                  </div>
-                 
-                 </div>
-               
-                  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 xl:gap-10">
+        <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn kt-btn-secondary kt-btn-icon absolute top-2 right-2">
+          <i class="hgi hgi-stroke hgi-cancel-01"></i>
+        </a>
+        <div class="bg-gray-100 border border-gray-300 p-5 rounded-4xl" id="order-main">
+          <div class="flex flex-wrap items-center justify-between mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 2xl:mb-10">
+            <div>
+              <h4 class="font-bold">Start Your <span
+                  class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free
+                  Trial!</span></h4>
+              <h5>Choose Your Plan</h5>
+              <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Cancel Anytime</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2">
+                <span>Monthly</span>
+                <input class="kt-switch" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
+              </div>
+              <div class="flex items-center gap-2">
+                <span>Yearly</span>
+                <span class="kt-badge rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">Save 20%</span>
               </div>
             </div>
-
-
-            <!-------- SELECT PLAN END--------------->
-
           </div>
-           
-          
+          <p>How many signatures do you need?</p>
+          <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
+          <div class="kt-card mt-3">
+            <div class="kt-card-content">
+              <div id="range" class="noUi-target noUi-ltr noUi-horizontal"></div>
+              <div class="lg:flex justify-between mt-5 hidden">
+                <span class="rno active" id="rno1">1</span>
+                <span class="rno" id="rno3">3</span>
+                <span class="rno" id="rno5">5</span>
+                <span class="rno" id="rno10">10</span>
+                <span class="rno" id="rno15">15</span>
+                <span class="rno" id="rno20">20</span>
+                <span class="rno" id="rno25">25</span>
+                <span class="rno" id="rno30">30</span>
+                <span class="rno" id="rno35">35</span>
+                <span class="rno" id="rno40">40</span>
+                <span class="rno" id="rno45">45</span>
+                <span class="rno" id="rno50">50</span>
+                <span class="rno" id="rno55">55</span>
+                <span class="rno" id="rno60">60</span>
+                <span class="rno" id="rno65">65</span>
+                <span class="rno" id="rno70">70</span>
+                <span class="rno" id="rno75">75</span>
+                <span class="rno" id="rno80">80</span>
+                <span class="rno" id="rno85">85</span>
+                <span class="rno" id="rno90">90</span>
+                <span class="rno" id="rno95">95</span>
+                <span class="rno" id="rno100">100</span>
+              </div>
+            </div>
+          </div>
+          <div class="hidden" id="monthly-tab-panel">
+            <div class="signature_layot">
+              <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="hidden imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
+              <label for="plan_id2" class="changeprice" data-price="20">
+                <div class="order_details_box border-price">
+                  <h5>Pro Plan</h5>
+                  <p><span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="month_proprice cprice">15</span>/mo </b></p>
+                  <p><span class="no_employee_qarter">5</span> Signature</p>
+                  <p class="monthprice" style="display:none;">$<span class="month_propricespl cpricespl">60</span> USD </p>
+                  <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
+                  <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$ 30</p>
+                  <div class="flex items-end gap-3">
+                    <h2>$15</h2>
+                    <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span>
+                  </div>
+                  <p class="text-gray-400 my-1">Billed Annualy</p>
+                  <p class="text-gray-400">Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
+                    <ul class="space-y-2">
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Signature</li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>AI - Logo Animation™</li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Remove CES Watermark</li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team Dashboard</sup></li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Social Icons</li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Animated Profile</li>
+                    </ul>
+                    <ul class="space-y-2">
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Verification Badge <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Pro Templates</li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team Dashboard</li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Outlook and Gmail Sync <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""> <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Instant Load Speed</li>
+                    </ul>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div id="yearly-tab-panel" class="kt-card mt-5">
+            <div class="kt-card-content">
+              <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+              <label for="plan_id4" class="changeprice" data-price="20">
+                <h5>Pro Plan</h5>
+                <p><span class="no_employee_qarter">5</span> Signature</p>
+                <p class="yearprice" style="display:none;">$<span class="year_propricespl cpricespl">60</span> USD</p>
+                <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
+                <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$30</p>
+                <b>$<span class="year_proprice cprice">15</span> /mo </b>
+                <div class="flex items-end gap-3">
+                  <h2>$15</h2>
+                  <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span>
+                </div>
+                <p class="text-gray-400 my-1">Billed Annualy</p>
+                <p class="text-gray-400">Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
+                  <ul class="space-y-2">
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Signature</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>AI - Logo Animation™</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Remove CES Watermark</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team Dashboard</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Social Icons</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Animated Profile</li>
+                  </ul>
+                  <ul class="space-y-2">
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Verification Badge<img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Pro Templates</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team Dashboard</li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Outlook and Gmail Sync <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                    <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Instant Load Speed</li>
+                  </ul>
+                </div>
+              </label>
+            </div>
+          </div>
         </div>
-        
-      </div>
 
-      <div class="col-lg-6 col-12">
+      <div class="space-y-4 pb-4">
         <form action="%%DEFINE_PAYMENT_FORM_ACTION_URL%%" id="paymentform" method="post" data-rewardful>
-          <div class="card-element-wrapper">
-            <div id="paymentResponse"></div>
-            <div class="form-floating card_info">
-              <div id="card-element"></div>
+
+          <div id="paymentResponse"></div>
+          <div class="flex flex-col gap-3">
+            <div>
+              <label class="kt-form-label">Card Number</label>
+              <div class="card_info kt-input">
+                <div id="card-element" class="w-full"></div>
+              </div>
             </div>
-            <div class="form-floating">
-              <input type="text" class="form-control" name="user_nameoncard" value="%%DEFINE_user_nameoncard%%" id="card_name" placeholder="Name on Card">
-              <label for="">Name on Card</label>
+            <div>
+              <label class="kt-form-label">Name on Card</label>
+              <input type="text" class="kt-input" name="user_nameoncard" value="%%DEFINE_user_nameoncard%%" id="card_name" placeholder="Name on Card">
+            </div>
+            <div>
+              <label class="kt-form-label">Discount Code</label>
+              <div class="flex gap-2">
+                <input type="text" id="promo_code" class="kt-input" id="" placeholder="">
+                <input type="hidden" id="coupon_id" name="coupon_id" value="" />
+                <button type="button" class="kt-btn kt-btn-primary applied" id="apply_promocode">Apply Now</button>
+                <button type="button" class="kt-btn kt-btn-icon kt-btn-destructive applied hidden" id="applied_promocode">
+                  <i class="hgi hgi-stroke hgi-delete-02"></i>
+                </button>
+              </div>
             </div>
           </div>
-          <div class="form-floating newbox">
-            <input type="text" id="promo_code" class="form-control" id="" placeholder="">
-            <input type="hidden" id="coupon_id" name="coupon_id" value="" />
-            <label for="">Discount Code</label>
-            <button type="button" class="btn applied" id="apply_promocode">Apply Now</button>
-            <button type="button" class="btn applied d-none" id="applied_promocode">Remove</button>
-          </div>
+
           <p class="special_offet" id="couponResponse"></p>
-          <div class="order_summary_box">
-            <h6>Order Summary</h6>
-            <p>Subtotal <span id="subtotal">%%DEFINE_plan_format_pricespl%% USD</span></p>
-            <p>Discount <span id="discount">$0 USD</span></p>
-            <p><span style="background: linear-gradient(90deg, #00CCFF 0%, #1D4AFE 100%); background-clip: border-box; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Saving</span> <span id="savings" style="background: linear-gradient(90deg, #00CCFF 0%, #1D4AFE 100%); background-clip: border-box; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">%%DEFINE_plan_format_savings%% USD</span></p>
-            <p>Total %%DEFINE_freetrialtext%% <span class="total" id="total">%%DEFINE_plan_format_price%% USD</span></p>
-            <input type="hidden" id="free_trial" value="0" />
-            <input type="hidden" name="totalpay" id="totalpay" value="%%DEFINE_plan_price_hiden%%"  />
+          <div class="mt-5">
+            <h5 class="mb-3">Order Summary</h5>
+            <div class="border border-gray-200 rounded-2xl p-4 space-y-3 text-gray-400">
+              <div class="flex items-center justify-between">
+                <span>Subtotal</span>
+                <span id="subtotal">%%DEFINE_plan_format_pricespl%% USD</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>Discount</span>
+                <span id="discount">$0 USD</span>
+              </div>
+              <div class="flex items-center justify-between text-primary">
+                <span>Saving</span>
+                <span id="savings">%%DEFINE_plan_format_savings%% USD</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-950 text-xl font-semibold border-t border-t-gray-200 pt-4 mt-4">
+                <span>Total %%DEFINE_freetrialtext%%</span>
+                <span class="total" id="total">%%DEFINE_plan_format_price%% USD</span>
+              </div>
+              <input type="hidden" id="free_trial" value="0" />
+              <input type="hidden" name="totalpay" id="totalpay" value="%%DEFINE_plan_price_hiden%%"  />
+            </div>
           </div>
             
-          <div class="back_button_bottom"> <a href="%%DEFINE_moduleLinkDashboard%%">Back</a>
+          <div class="flex flex-col justify-center gap-2 mt-4">
             <input type="hidden" name="paymentsubmit" value="1" />
             <input type="hidden" name="plan_id" id="form_plan_id" value="%%DEFINE_plan_id%%" />
             <input type="hidden" name="plan_unit" id="form_plan_unit" value="%%DEFINE_plan_unit%%" />
             <input type="hidden" name="user_id" value="%%DEFINE_PAYMENT_USER_ID%%" />
             <input type="hidden" name="user_email" value="%%DEFINE_PAYMENT_USER_EMAIL%%" />
             <input type="hidden" name="user_name" value="%%DEFINE_PAYMENT_USER_NAME%%" />
-            <button type="submit" id="payment_button" name="signin" class="btn btn-primary">Confirm Purchase</button>
+            <button type="submit" id="payment_button" name="signin" class="kt-btn kt-btn-primary">Confirm Purchase</button>
           </div>
             
-          <ul class="bottom_text">
-            <li><img src="%%DEFINE_IMAGE_LINK%%/images/ssl-icon.svg" alt="">SSL Secure Checkout</li>
-            <li><img src="%%DEFINE_IMAGE_LINK%%/images/cancel-anytime-icon.svg" alt="">Cancel anytime</li>
-            <li><img src="%%DEFINE_IMAGE_LINK%%/images/risk-free-icon.svg" alt="">14-Day Risk-Free Guarantee</li>
+          <ul class="flex items-center justify-between mt-5">
+            <li class="flex items-center gap-2"><img src="%%DEFINE_IMAGE_LINK%%/images/ssl-icon.svg" alt="">SSL Secure Checkout</li>
+            <li class="flex items-center gap-2"><img src="%%DEFINE_IMAGE_LINK%%/images/cancel-anytime-icon.svg" alt="">Cancel anytime</li>
+            <li class="flex items-center gap-2"><img src="%%DEFINE_IMAGE_LINK%%/images/risk-free-icon.svg" alt="">14-Day Risk-Free Guarantee</li>
           </ul>
         </form>
       </div>
@@ -282,8 +291,8 @@ jQuery.noConflict();
       $('#promo_code').val('');
       $('#couponResponse').text('');
       $('#discount').text('$0.00 USD');
-      $("#apply_promocode").removeClass('d-none');
-      $("#applied_promocode").addClass('d-none');
+      $("#apply_promocode").removeClass('hidden');
+      $("#applied_promocode").addClass('hidden');
     };
 
   
@@ -461,8 +470,8 @@ jQuery.noConflict();
               if(freetrial == 0){
                 $('#discount').text('$'+discount+' USD');
                 $('#total').text('$'+totalpay+' USD');
-                $("#apply_promocode").addClass('d-none');
-                $("#applied_promocode").removeClass('d-none');
+                $("#apply_promocode").addClass('hidden');
+                $("#applied_promocode").removeClass('hidden');
               }else{
                 $('#subtotal').text('$'+totalpay+' USD');
                 $('#discount').text('$'+discount+' USD');
@@ -485,8 +494,8 @@ jQuery.noConflict();
       $('#discount').text('$0 USD');  
       $('#total').text('$'+totalPay+' USD');
       $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
-      $("#apply_promocode").removeClass('d-none');
-      $("#applied_promocode").addClass('d-none');
+      $("#apply_promocode").removeClass('hidden');
+      $("#applied_promocode").addClass('hidden');
     })  
   });  
 

@@ -193,7 +193,7 @@ class CIT_BILLING
 		 $GLOBALS['Sigsel'.$planRow['nosignature']] ='selected';
 		 $GLOBALS['free_trial'] = $planRow['free_trial'];
 		 if($planRow['subscription_id'] == '_free' || $planRow['subscription_id'] == '_admin'){
-			 	 $GLOBALS['display_cardupdate'] = 'd-none';
+			 	 $GLOBALS['display_cardupdate'] = 'hidden';
 		 }else{
 			 $GLOBALS['display_cardupdate'] = '';
 		 }

@@ -189,7 +189,7 @@ class CIT_REGISTERDEV
 	// 		}else{
 	// 			$selected ='';
 	// 		}
-	// 		$GLOBALS['plan_list'] .='<div class="signature_layot"><input type="radio" name="plan_id" id="plan_id'.$plan_row['plan_id'].'" class="d-none imgbgchk" value="'.$plan_row['plan_id'].'" '.$selected.' required="required"><label for="plan_id'.$plan_row['plan_id'].'" class="changeprice" data-price="'.$plan_price.'"><div class="order_details_box border-price"> <div class="text"><h6>'.$plan_row['plan_name'].' ('.$plan_row['plan_type'].')</h6></div> <div class="text"><h6>'.$plan_price.' USD<br><span>'.$plan_price.' USD</span></h6> </div></div> <div class="tick_container"><div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div></div></label></div>';
+	// 		$GLOBALS['plan_list'] .='<div class="signature_layot"><input type="radio" name="plan_id" id="plan_id'.$plan_row['plan_id'].'" class="hidden imgbgchk" value="'.$plan_row['plan_id'].'" '.$selected.' required="required"><label for="plan_id'.$plan_row['plan_id'].'" class="changeprice" data-price="'.$plan_price.'"><div class="order_details_box border-price"> <div class="text"><h6>'.$plan_row['plan_name'].' ('.$plan_row['plan_type'].')</h6></div> <div class="text"><h6>'.$plan_price.' USD<br><span>'.$plan_price.' USD</span></h6> </div></div> <div class="tick_container"><div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div></div></label></div>';
 	// 	}
 	// }
 
@@ -243,8 +243,8 @@ class CIT_REGISTERDEV
 					 $GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					  $GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					 $GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					 $offper = $plantype == 'year' ? 50 : 15;
 					 
 					 if($selplan_id %2 == 0){ // pro plan

@@ -244,7 +244,7 @@
 
                     <div id="tab_year">
                         <div class="signature_layot hidden">
-                            <input type="radio" name="plan_id" id="plan_id3" class="d-none imgbgchk" value="3" required="required" %%DEFINE_plan_selplan3%%>
+                            <input type="radio" name="plan_id" id="plan_id3" class="hidden imgbgchk" value="3" required="required" %%DEFINE_plan_selplan3%%>
                             <label for="plan_id3" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
                                     <span class="kt-badge bg-gradient text-white rounded-full absolute left-2 top-2">Saving 20%</span>
@@ -261,7 +261,7 @@
                         </div>
 
                         <div class="signature_layot">
-                            <input type="radio" name="plan_id" id="plan_id4" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+                            <input type="radio" name="plan_id" id="plan_id4" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
                             <label for="plan_id4" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
                                     <span class="kt-badge bg-gradient text-white rounded-full absolute left-2 top-2">Saving 20%</span>
@@ -388,12 +388,12 @@
                 $('#plan_id2').prop('checked', true);
                 $('#tab_quarter').css('display', 'inline');
                 $('#tab_year').css('display', 'none');
-                $('.yearly_save').removeClass('d-none');
+                $('.yearly_save').removeClass('hidden');
             } else {
                 $('#plan_id4').prop('checked', true);
                 $('#tab_quarter').css('display', 'none');
                 $('#tab_year').css('display', 'inline');
-                $('.yearly_save').addClass('d-none');
+                $('.yearly_save').addClass('hidden');
             }
             // select pro plan if current purchased plan is basic
 
@@ -403,12 +403,12 @@
                     $('#plan_id2').prop('checked', true);
                     $('#tab_quarter').css('display', 'inline');
                     $('#tab_year').css('display', 'none');
-                    $('.yearly_save').removeClass('d-none');
+                    $('.yearly_save').removeClass('hidden');
                 } else {
                     $('#plan_id4').prop('checked', true);
                     $('#tab_quarter').css('display', 'none');
                     $('#tab_year').css('display', 'inline');
-                    $('.yearly_save').addClass('d-none');
+                    $('.yearly_save').addClass('hidden');
                 }
             });
 

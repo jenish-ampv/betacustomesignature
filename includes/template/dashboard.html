@@ -5,9 +5,6 @@
 	%%DEFINE_SIDEBAR%%
 	<main class="grow" id="content" role="content">
 		<div class="kt-container-fluid pb-4">
-			<div class="mb-4 font-medium">
-				<h3>Dashboard</h3>
-			</div>
 			<div class="grid grid-cols-12 gap-2 w-full">
 				IF("%%DEFINE_manage_signatures%%" == ""){
 				<style>
@@ -59,10 +56,10 @@
 								</div>
 
 								<div data-kt-dropdown="true" data-kt-dropdown-trigger="click"
-									data-kt-dropdown-placement="bottom-end" data-toggle-replace="true">
+									data-kt-dropdown-placement="bottom-end" data-kt-toggle-replace="true">
 									<button class="kt-btn bg-white border border-gray-400 text-gray-600 !rounded-full"
 										data-kt-dropdown-toggle="true">
-										This Month
+										<span>This Month</span>
 										<span class="kt-dropdown-open:hidden">
 											<i class="fas fa-caret-down"></i>
 										</span>
@@ -211,14 +208,12 @@
 							</div>
 
 							IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%"
-								href="%%DEFINE_linkModuleNewsignature%%"><img
-									src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create
-								Signature</a>
-							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%"
-								href="%%DEFINE_billing%%?action=freetrial"><img
-									src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create
-								Signature</a>
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%" href="%%DEFINE_linkModuleNewsignature%%">
+								<i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
+							</a>
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%" href="%%DEFINE_billing%%?action=freetrial">
+								<i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
+							</a>
 							{:IF}
 							IF("%%DEFINE_integration_settings%%" == ""){
 							<style>

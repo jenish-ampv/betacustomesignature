@@ -1,3 +1,5 @@
+
+
 <footer>
 	<input type="hidden" value="%%DEFINE_ROOT_LINK%%" id="root_link" />
 	<input type="hidden" value="%%DEFINE_UPLOAD_LINK%%" id="upload_link" />
@@ -51,17 +53,54 @@
 </div> -->
 
  <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgrade-plan-popup">
-    <div class="kt-modal-content max-w-[400px]">
-      <div class="kt-modal-header">
-          <p class="kt-modal-title">7 Days Free Trial</p>
-          <button type="button" class="kt-modal-close" aria-label="Close modal"
-              data-kt-modal-dismiss="#upgrade-plan-popup">
-              <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
-          </button>
-      </div>
-      <div class="kt-modal-body text-center" id="upgrade-plan-popupmodal-body">
-        <button class="kt-btn kt-btn-primary mt-5" id="load-upgrade-content">Start 7-day Free Trial</button>
-        <h5><span id="countdown">00:01:30</span></h5>
+    <div class="kt-modal-content border-white shadow-[0_0_20px_5px_rgba(77,127,255,0.4)] !p-0 max-w-[875px]">
+      <i class="hgi hgi-stroke hgi-cancel-circle !absolute top-2 right-2 text-xl cursor-pointer" data-kt-modal-dismiss="#upgrade-plan-popup"></i>
+      <div class="kt-modal-body p-0 flex" id="upgrade-plan-popupmodal-body">
+        <div class="flex-1 p-8">
+          <div class="flex gap-3 items-center mb-4">
+            <span class="kt-badge bg-gradient text-white"><i class="hgi hgi-stroke hgi-ai-magic"></i> Trial</span>
+            <span class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Cancel Anytime</span>
+          </div>
+          <h5 class="font-semibold mb-2">Start Your <span class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free Trial!</span></h5>
+          <p class="mb-2 text-gray-500">Here's how you've used premium features during your free trial.</p>
+          <div class="h-[133px] my-3"></div>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline">
+                <i class="hgi hgi-stroke hgi-ai-magic"></i>
+              </button>
+              <div>
+                <p class="text-gray-950">🚀 2X Your Reply Rate</p>
+                <p class="text-gray-500">Add your logo, links, banners, and team details to match your brand identity.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline">
+                <i class="hgi hgi-stroke hgi-ai-magic"></i>
+              </button>
+              <div>
+                <p class="text-gray-950">📊 Analytics Tracking</p>
+                <p class="text-gray-500">Add your logo, links, banners, and team details to match your brand identity.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline">
+                <i class="hgi hgi-stroke hgi-ai-magic"></i>
+              </button>
+              <div>
+                <p class="text-gray-950">⚡ Auto-Deployment & Team Dashboard</p>
+                <p class="text-gray-500">Add your logo, links, banners, and team details to match your brand identity.</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-400 mt-3 mb-5">View Full Features List</p>
+          <div class="flex gap-3">
+            <button class="kt-btn kt-btn-primary" id="load-upgrade-content">Start 7-day Free Trial</button>
+            <button class="kt-btn kt-btn-primary kt-btn-outline"><span id="countdown">00:01:30</span></button>
+          </div>
+          <p class="text-xs text-gray-400 mt-3">Cancel Anytime</p>
+        </div>
+        <div class="w-[460px] bg-cover" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/7day.jpg');"></div>
       </div>
     </div>
   </div>
