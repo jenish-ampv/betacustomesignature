@@ -156,7 +156,7 @@
                   <!--Quarterly Plan -->  
                   <div class="tab-pane fade" id="quarterly-tab-pane" role="tabpanel" aria-labelledby="quarterly-tab" tabindex="0">
                     <div class="signature_layot" style="display: none;">
-                      <input type="radio" name="plan_id" id="plan_id1" class="d-none imgbgchk" value="1" required="required" %%DEFINE_plan_selplan1%%>
+                      <input type="radio" name="plan_id" id="plan_id1" class="hidden imgbgchk" value="1" required="required" %%DEFINE_plan_selplan1%%>
                       <label for="plan_id1" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Basic (Quarterly) <span class="offper_box"><span>Change to yearly, save 20%</span></span><b>
@@ -184,7 +184,7 @@
                       </label>
                     </div>
                     <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id2" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
+                      <input type="radio" name="plan_id" id="plan_id2" class="hidden imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
                       <label for="plan_id2" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Pro Plan (Quarterly) <span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="quarter_proprice cprice">15</span>/mo </b></h6>
@@ -219,7 +219,7 @@
                   <!--Yearly Plan -->
                   <div class="tab-pane fade show active" id="yearly-tab-pane" role="tabpanel" aria-labelledby="yearly-tab" tabindex="0">
                     <div class="signature_layot" style="display: none;">
-                      <input type="radio" name="plan_id" id="plan_id3" class="d-none imgbgchk" value="3" required="required" %%DEFINE_plan_selplan3%%>
+                      <input type="radio" name="plan_id" id="plan_id3" class="hidden imgbgchk" value="3" required="required" %%DEFINE_plan_selplan3%%>
                       <label for="plan_id3" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Basic (Yearly) <span class="offper">Saving 20%</span> <b>
@@ -246,7 +246,7 @@
                       </label>
                     </div>
                     <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id4" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+                      <input type="radio" name="plan_id" id="plan_id4" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
                       <label for="plan_id4" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Pro Plan (Yearly) <span class="offper">Saving 20%</span><b>$<span class="year_proprice cprice">15</span> /mo </b>
@@ -296,7 +296,7 @@
             <input type="hidden" id="coupon_id" name="coupon_id" value="" />
             <label for="">Discount Code</label>
             <button type="button" class="btn applied" id="apply_promocode">Apply Now</button>
-            <button type="button" class="btn applied d-none" id="applied_promocode">Remove</button>
+            <button type="button" class="btn applied hidden" id="applied_promocode">Remove</button>
           </div>
           <p class="special_offet" id="couponResponse"></p>
           <div class="order_summary_box">
@@ -393,8 +393,8 @@ function updateSelectPlan(){
     $('#promo_code').val('');
     $('#couponResponse').text('');
     $('#discount').text('$0.00 USD');
-    $("#apply_promocode").removeClass('d-none');
-    $("#applied_promocode").addClass('d-none');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
   };
 
   
@@ -595,8 +595,8 @@ $(document).ready(function(){
             if(freetrial == 0){
               $('#discount').text('$'+discount+' USD');
               $('#total').text('$'+totalpay+' USD');
-              $("#apply_promocode").addClass('d-none');
-              $("#applied_promocode").removeClass('d-none');
+              $("#apply_promocode").addClass('hidden');
+              $("#applied_promocode").removeClass('hidden');
             }else{
               $('#subtotal').text('$'+totalpay+' USD');
               $('#discount').text('$'+discount+' USD');
@@ -619,8 +619,8 @@ $(document).ready(function(){
     $('#discount').text('$0 USD');  
     $('#total').text('$'+totalPay+' USD');
     $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
-    $("#apply_promocode").removeClass('d-none');
-    $("#applied_promocode").addClass('d-none');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
   })  
 });  
 
@@ -826,8 +826,8 @@ $(document).ready(function(){
     $('#promo_code').val('');
     $('#couponResponse').text('');
     $('#discount').text('$0.00 USD');
-    $("#apply_promocode").removeClass('d-none');
-    $("#applied_promocode").addClass('d-none');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
   });
   
   $('#selectplan').on( "click", function() {  

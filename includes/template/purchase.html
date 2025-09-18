@@ -71,7 +71,7 @@
                   <!--Monthly Plan -->  
                   <div class="tab-pane hidden" id="monthly-tab-panel" tabindex="0">
                     <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="d-none imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
+                      <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="hidden imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
                       <label for="plan_id2" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Pro Plan <span class="offper_box"><span>Change to yearly, save 20%</span></span> <b>$<span class="month_proprice cprice">15</span>/mo </b></h6>
@@ -106,7 +106,7 @@
                   <!--Yearly Plan -->
                   <div class="tab-pane" id="yearly-tab-panel" tabindex="0">
                     <div class="signature_layot">
-                      <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="d-none imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+                      <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
                       <label for="plan_id4" class="changeprice" data-price="20">
                         <div class="order_details_box border-price">
                           <h6>Pro Plan</h6>
@@ -171,7 +171,7 @@
             <input type="hidden" id="coupon_id" name="coupon_id" value="" />
             <label for="">Discount Code</label>
             <button type="button" class="btn applied" id="apply_promocode">Apply Now</button>
-            <button type="button" class="btn applied d-none" id="applied_promocode">Remove</button>
+            <button type="button" class="btn applied hidden" id="applied_promocode">Remove</button>
           </div>
           <p class="special_offet" id="couponResponse"></p>
           <div class="order_summary_box">
@@ -282,8 +282,8 @@ jQuery.noConflict();
       $('#promo_code').val('');
       $('#couponResponse').text('');
       $('#discount').text('$0.00 USD');
-      $("#apply_promocode").removeClass('d-none');
-      $("#applied_promocode").addClass('d-none');
+      $("#apply_promocode").removeClass('hidden');
+      $("#applied_promocode").addClass('hidden');
     };
 
   
@@ -461,8 +461,8 @@ jQuery.noConflict();
               if(freetrial == 0){
                 $('#discount').text('$'+discount+' USD');
                 $('#total').text('$'+totalpay+' USD');
-                $("#apply_promocode").addClass('d-none');
-                $("#applied_promocode").removeClass('d-none');
+                $("#apply_promocode").addClass('hidden');
+                $("#applied_promocode").removeClass('hidden');
               }else{
                 $('#subtotal').text('$'+totalpay+' USD');
                 $('#discount').text('$'+discount+' USD');
@@ -485,8 +485,8 @@ jQuery.noConflict();
       $('#discount').text('$0 USD');  
       $('#total').text('$'+totalPay+' USD');
       $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
-      $("#apply_promocode").removeClass('d-none');
-      $("#applied_promocode").addClass('d-none');
+      $("#apply_promocode").removeClass('hidden');
+      $("#applied_promocode").addClass('hidden');
     })  
   });  
 
