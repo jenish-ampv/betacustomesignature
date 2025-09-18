@@ -168,12 +168,12 @@ class CIT_GSUITE
 					}
 					foreach ($grouped as $groupName => $users) {
     					$GLOBALS['group_list'] .= "<strong>" . htmlspecialchars($groupName) . "</strong>
-						<div class='flex items-center gap-2'>
+						<div class='flex items-center gap-2 mb-4'>
 							<label class='kt-label' for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label>
 							<input type='checkbox' class='select_all_department kt-checkbox' id='select_all_".strtolower(htmlspecialchars($groupName))."' data-department-id='".strtolower(htmlspecialchars($groupName))."' >
 						</div>";
 						foreach ($users as $user) {
-							$GLOBALS['group_list'] .='<div class="flex items-center gap-2">
+							$GLOBALS['group_list'] .='<div class="flex items-center gap-2 mb-4">
                               <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).'" type="checkbox" name="addUsers[]" id="'.$group['id'].'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
 							  <label for="'.$group['id'].'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
 							</div>';
@@ -238,7 +238,7 @@ class CIT_GSUITE
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Full Name</label>
+							<label class="kt-label mb-3">Full Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
 							</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
@@ -261,7 +261,7 @@ class CIT_GSUITE
 			}
 			if($data['signature_jobtitle'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Title / Sub Title</label>
+							<label class="kt-label mb-3">Title / Sub Title</label>
   							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
@@ -285,7 +285,7 @@ class CIT_GSUITE
 			if($data['signature_company'] !=""){
 				$mfield++;
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Company Name</label>
+							<label class="kt-label mb-3">Company Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
@@ -327,7 +327,7 @@ class CIT_GSUITE
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
 						$GLOBALS['master_fieldc'] .='<div>
-							<label class="kt-label">'.$field_label.'</label>
+							<label class="kt-label mb-3">'.$field_label.'</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						
