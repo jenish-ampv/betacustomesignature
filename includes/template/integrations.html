@@ -65,7 +65,7 @@
                                 <p>2. Enable or disable Automatic Signature Update with Google Directory as needed.</p>
                                 <p>3. Once all settings are configured, click Start Connection.</p>
                                 <div class="flex items-center gap-2 mt-5 mb-2">
-                                    <label class="kt-label text-gray-950">Automatic Signature Update with Google Directory</label>
+                                    <label class="kt-label mb-4 text-gray-950">Automatic Signature Update with Google Directory</label>
                                     <input class="kt-switch autoupdateswitch" type="checkbox" role="switch" id="signature_auto_update" name="signature_auto_update" value="1" checked="">
                                 </div>
                                 <p>CustomEsignature can automatically update employee signatures whenever information (e.g., name, title, phone number) changes in Google Directory.</p>
@@ -110,17 +110,17 @@
                             <form id="inviteadmin">
                                 <div class="flex flex-col gap-3 my-5">
                                     <div>
-                                        <label class="kt-label" for="admin_firstname">First Name</label>
+                                        <label class="kt-label mb-4" for="admin_firstname">First Name</label>
                                         <input type="text" class="kt-input" id="admin_firstname" name="admin_firstname" placeholder="" required="required" value="">
                                         <span class="error hidden" id="ai">First Name is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label" for="admin_lastname">Last Name</label>
+                                        <label class="kt-label mb-4" for="admin_lastname">Last Name</label>
                                         <input type="text" class="kt-input" id="admin_lastname" name="admin_lastname" placeholder="" required="required" value="">
                                         <span class="error hidden" id="as">Last Name is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label" for="admin_email">Email</label>
+                                        <label class="kt-label mb-4" for="admin_email">Email</label>
                                         <input type="text" class="kt-input" id="admin_email" name="admin_email" placeholder="" required="required" value="">
                                         <span class="error hidden" id="at">Email is required field</span>
                                     </div>
@@ -168,8 +168,8 @@
             <div class="w-full max-w-[700px] mx-auto h-full flex items-center justify-center">
                 <div class="inline-flex flex-col gap-3">
                     <div class="kt-card kt-card-accent signature_integration_withhead_box step" id="msstep1">
-                        <div class="kt-card-header">
-                            <h2 class="kt-card-title flex items-center gap-1">
+                        <div class="kt-card-header p-0 sm:p-4">
+                            <h2 class="kt-card-title flex p-0 items-center gap-4 sm:gap-1 p-2">
                                 <img src="%%DEFINE_IMAGE_LINK%%/images/subtract-icon.svg" alt=""> Azure AD Application Credentials
                             </h2>
                         </div>
@@ -188,22 +188,22 @@
                             <form id="msazur">
                                 <div class="flex flex-col gap-3 my-5">
                                     <div>
-                                        <label class="kt-label" for="">Application ID</label>
+                                        <label class="kt-label mb-4" for="">Application ID</label>
                                         <input type="text" class="kt-input" id="application_id" name="application_id" placeholder="" required="required" value="">
                                         <span class="error hidden" id="ai">Application ID is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label" for="">Application Secret</label>
+                                        <label class="kt-label mb-4" for="">Application Secret</label>
                                         <input type="text" class="kt-input" id="application_secret" name="application_secret" placeholder="" required="required" value="">
                                         <span class="error hidden" id="as">Application Secret is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label" for="">Application Tenant ID</label>
+                                        <label class="kt-label mb-4" for="">Application Tenant ID</label>
                                         <input type="text" class="kt-input" id="application_tenant" name="application_tenant" placeholder="" required="required" value="">
                                         <span class="error hidden" id="at">Application Tenant ID is required field</span>
                                     </div>
                                     <div class="style_design_box" style="display:none;">
-                                        <label class="kt-label">Automatic Signature Update with Active Directory</label>
+                                        <label class="kt-label mb-4">Automatic Signature Update with Active Directory</label>
                                         <input class="kt-switch autoupdateswitch" type="checkbox" role="switch" id="signature_auto_update" name="signature_auto_update" value="1" checked>
                                     </div>
                                 </div>
@@ -297,23 +297,37 @@
                     </div>
                 </div>
                 <div class="signature_integration_box kt-card kt-card-accent">
-                    <div class="kt-card-content flex flex-col">
+                    <div class="kt-card-content flex flex-col relative">
                         <div class="dot_icon %%DEFINE_connectedbtncls%%"><a href="javascript:void(0);" onclick="myFunction(2)"><img src="%%DEFINE_IMAGE_LINK%%/images/dot-icon.svg" alt=""></a></div>
-                        <div id="myDIV2" class="menu_open" style="display:none;">
-                            <div class="close_icon"><a class="openPopupClass" href="javascript:void(0);" onclick="myFunction(2)"><img class="openPopupClass" src="https://betaapp.customesignature.com/images/close-signature-icon.svg" alt=""></a></div>
-                            <ul>
-                                <li>
-                                    <a href="javascript:void(0);" class="" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalMS" data-id="0">
-                                        <img src="%%DEFINE_IMAGE_LINK%%/images/disconnect-icon.svg" alt="">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" id="forcetoupdate" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Force Update" data-url="%%DEFINE_azuread%%"><img src="%%DEFINE_IMAGE_LINK%%/images/force-update.svg" alt=""></a>
-                                </li>
-                                <li>
-                                    <a href="%%DEFINE_integrations%%/installaddin" id="installaddin" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Install Add-in"><img src="%%DEFINE_IMAGE_LINK%%/images/outlook-install-addin.svg" alt=""></a>
-                                </li>
-                            </ul>
+                        <div id="myDIV2" class="menu_open absolute inset-0 bg-white/90 z-[2]" style="display:none;">
+                            <div class="close_icon">
+                                <a class="openPopupClass" href="javascript:void(0);" onclick="myFunction(2)">
+                                    <!-- <img class="openPopupClass" src="https://betaapp.customesignature.com/images/close-signature-icon.svg" alt=""> -->
+                                    <i class="fal fa-times-circle cursor-pointer absolute top-2 right-2"></i>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-3 items-center justify-center h-full">
+                                <ul class="flex gap-2">
+                                    <li>
+                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalMS" data-id="0">
+                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/disconnect-icon.svg" alt=""> -->
+                                             <i class="hgi hgi-stroke hgi-unlink-04"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" id="forcetoupdate" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Force Update" data-url="%%DEFINE_azuread%%">
+                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/force-update.svg" alt=""> -->
+                                                <i class="hgi hgi-stroke hgi-exchange-01"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="%%DEFINE_integrations%%/installaddin" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" id="installaddin" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Install Add-in">
+                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/outlook-install-addin.svg" alt=""> -->
+                                             <i class="hgi hgi-stroke hgi-view"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="flex items-center gap-3 text-lg font-semibold text-black">
                             <img class="h-9" src="%%DEFINE_IMAGE_LINK%%/images/ms-office.svg" alt="">
