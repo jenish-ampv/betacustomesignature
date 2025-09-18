@@ -265,9 +265,9 @@ class CIT_DASHBOARD
 						$defaultFirstSelectedSubUser = "department_selected";
 					}
 					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<td class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt=""></span>'.$department['department_name'].'</td>
-								<td class="text_center">'.$thisDepartmentSignatures.' Members</td>
-								<td class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a></td>
+								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
+								<td>'.$thisDepartmentSignatures.' Members</td>
+								<td><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a></td>
 							</tr>';
 				}
 
@@ -275,16 +275,16 @@ class CIT_DASHBOARD
 
 				if(sizeof($department_lists_arr) == 1){
 					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<td class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</td>
-								<td class="text_center">'.$thisDepartmentSignatures.' Members</td>
-								<td class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
+								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
+								<td>'.$thisDepartmentSignatures.' Members</td>
+								<td><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a>
 								</td>
 							</tr>';
 				}else{
 					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<td class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</td>
-								<td class="text_center">'.$thisDepartmentSignatures.' Members</td>
-								<td class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
+								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
+								<td>'.$thisDepartmentSignatures.' Members</td>
+								<td><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a>
 								<a class="mastersig delete_department" href="'.$GLOBALS['departmententerprise'].'/deleteDepartment?department_id='.$department['department_id'].'"><i class="hgi hgi-stroke hgi-delete-02"></i></a></td>
 							</tr>';
 				}
@@ -1354,12 +1354,10 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 		if($GLOBALS['current_department_id']){
 			
             if($GLOBALS['plan_signaturelimit'] == 1){
-				$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border border-dashed border-gray-300 rounded-2xl">
-  							<a href="'.$GLOBALS['newsignatureenterprise'].'?department_id='.$GLOBALS['current_department_id'].'">
-							<span>
-								<img src="%%DEFINE_IMAGE_LINK%%/images/new-adddepartment-icon.svg" alt="">
-							</span>
-							Create New Signature
+				$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl py-5">
+  							<a class="kt-btn kt-btn-primary" href="'.$GLOBALS['newsignatureenterprise'].'?department_id='.$GLOBALS['current_department_id'].'">
+								<i class="hgi hgi-stroke hgi-add-01"></i>
+								Create New Signature
 							</a>
                     </div>';
 			}else{

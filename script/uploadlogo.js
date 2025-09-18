@@ -167,7 +167,12 @@ function addThumbnaillogo(data){
 		var number = Math.random() * 100;
 		// Creating an thumbnail
     ui("#uploadfilelogo").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-		ui("#uploadfilelogo").append('<div class="drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%"><h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG, JPG, JPEG</p></div>');
+		ui("#uploadfilelogo").append(`
+      <div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+      <img src="${src+'?rand='+number}" class="max-w-36 max-h-36 object-cover">
+      <p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a href="#">browse</a></p>
+      <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+      </div>`);
     // if(ui("#logo_change_done").length == 0){
     //   ui('.change-logo-reason').after('<div id="logo_change_done" style="text-align: center;margin-top: 20px;"><button type="button" class="btn btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Done</button>');
     //   ui("#logo_change_done").parent(".modal-footer").css('display','grid')

@@ -526,10 +526,10 @@
 					if (data.error == '0') {
 						window.location = url;
 					} else {
-
-						$('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
-						$('#snackbar-error').show();
-						setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+						KTToast.show({
+							message: `<strong>Failure! </strong> ${data.msg}`,
+							variant: 'destructive',
+						});
 						return false;
 					}
 					this.bind('click', handler);

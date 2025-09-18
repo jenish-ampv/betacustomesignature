@@ -41,60 +41,21 @@ IF("%%DEFINE_manage_signatures%%" == ""){
     %%DEFINE_Message%%
     <input type="hidden" id="current_department" value="%%DEFINE_selected_department%%">
     <main class="grow" id="content" role="content">
-        <div class="kt-container-fluid pb-4">
-            <div class=" gap-2 w-full">
-                <div id="master_signature_box" class="%%DEFINE_master_inner_extra_class%%">
-                    <div class="signature_status_process">
-                        %%DEFINE_signature_process%%
-                    </div>
+        <div class="kt-container-fluid pb-4" id="master_signature_box">
+            <div class="grid grid-cols-12 gap-2 w-full %%DEFINE_master_inner_extra_class%%">
+                <div class="col-span-12 xl:col-span-6 2xl:col-span-5">
                     <div class="kt-card h-full">
-                        <div class="kt-card-header">
-                            <div class="kt-card-heading">
-                                <div class="kt-card-title">Master Signature</div>
+                        <div class="kt-card-header flex-col justify-start items-start">
+                            <div class="kt-card-heading pt-5">
+                                <div class="kt-card-title">Analytics Snapshot</div>
                             </div>
-                            <div class="kt-card-toolbar">
-                                IF("%%DEFINE_plan_signaturelimit%%" != "1"){
-                                <a class="mastersig" href="javascript:void(0);"
-                                    onclick="redirectUrlWithAjax('%%DEFINE_newsignatureenterprise%%?siganature_type=master&department_id=%%DEFINE_current_department_id%%')"><img
-                                        class="color" src="%%DEFINE_IMAGE_LINK%%/images/mastersig-icon.svg"
-                                        alt="">Create Master Signature</a>
-                                {:IF}
-                                IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-                                <a class="mastersig"
-                                    href="%%DEFINE_newsignatureenterprise%%?siganature_type=master&department_id=%%DEFINE_current_department_id%%"><img
-                                        class="color" src="%%DEFINE_IMAGE_LINK%%/images/mastersig-icon.svg"
-                                        alt="">Create Master Signature</a>
-                                {:IF}
-
-                            </div>
-                        </div>
-                        <div class="col-span-12 xl:col-span-6 2xl:col-span-7 grid grid-cols-12 gap-2">
-							<div class="line-chart-loader" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
-                            <div class="analytics-snapshot">
-                                <div class="chart-header-inner">
-                                    <h5>Analytics Snapshot</h5>
-                                    <div class="chart-header-wrapper">
-                                        <div class="total-contaner">
-                                            <img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
-                                            <div class="snapshot-data">
-                                                <span>Total Clicks</span>
-                                                <span id="total_clicks">0</span>
-                                            </div>
-                                        </div>
-                                        <div class="total-contaner">
-                                            <img src="%%DEFINE_IMAGE_LINK%%/images/analytics-snapshot-view-icon.svg">
-                                            <div class="snapshot-data">
-                                                <span>Total Impression</span>
-                                                <span id="total_impressions">0</span>
-                                            </div>
-                                        </div>
-                                        <div class="total-contaner">
-                                            <img src="%%DEFINE_IMAGE_LINK%%/images/unique-clicks-icon.svg">
-                                            <div class="snapshot-data">
-                                                <span>Unique Clicks</span>
-                                                <span id="total_unique_clicks">0</span>
-                                            </div>
-                                        </div>
+                            <div
+                                class="kt-card-toolbar w-full mb-4 *:bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 *:gap-4 *:border *:border-primary *:rounded-full *:flex *:items-center *:p-2">
+                                <div>
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
+                                    <div class="snapshot-data">
+                                        <span>Total Clicks</span>
+                                        <span id="total_clicks">0</span>
                                     </div>
                                 </div>
                                 <div>
@@ -112,332 +73,82 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                     </div>
                                 </div>
                             </div>
-                            <div class="master_signature_box">
-                                <div class="title_border">
-                                    <h5>Division List
-                                        <!-- (%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users) -->
-                                    </h5>
-
-                                    IF("%%DEFINE_ISSUBUSER%%" == ""){
-                                    <a href="javascript:void(0)" class="adddepartment" data-bs-toggle="modal"
-                                        data-bs-target="#departmentModel"><img class="color"
-                                            src="%%DEFINE_IMAGE_LINK%%/images/new-adddepartment-icon.svg" alt=""></a>
-                                    {:IF}
                         </div>
-                        <div class="department-head">
-                            <div class="text_left">Name</div>
-                            <div class="text_center">Total Member</div>
-                            <div class="text_right">Action</div>
-                        </div>
-                        <ul class="signature_box" id="sortable-list">
-                            %%DEFINE_department_list%%
-                        </ul>
-                    </div>
-                </div>
-                <!--<div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                	<div class="master_signature_box">
-                    	<div class="title_border">
-                            <h5>Department List</h5>
-                            <a class="adddepartment" href="#"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/adddepartment-icon.svg" alt="">Add Department</a>
-                        </div>
-                        <div class="signature_box">
-                        	 <div class="marketing_line active">
-                             	 <div class="text_left"><img src="%%DEFINE_IMAGE_LINK%%/images/dots-menu.svg" alt=""> Marketing</div>
-                                 <div class="icon_right"><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/edit-icon.svg" alt=""></a><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/delete-icon.svg" alt=""></a></div>
-                             </div>
-                             <div class="marketing_line">
-                             	 <div class="text_left"><img src="%%DEFINE_IMAGE_LINK%%/images/dots-menu.svg" alt=""> Sales</div>
-                                 <div class="icon_right"><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/edit-icon.svg" alt=""></a><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/delete-icon.svg" alt=""></a></div>
-                             </div>
-                             <div class="marketing_line">
-                             	 <div class="text_left"><img src="%%DEFINE_IMAGE_LINK%%/images/dots-menu.svg" alt=""> HR</div>
-                                 <div class="icon_right"><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/edit-icon.svg" alt=""></a><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/delete-icon.svg" alt=""></a></div>
-                             </div>
-                        </div>
-                    </div>
-                </div>-->
-            </div>
-            %%DEFINE_Message%%
-            <div class="dashboard_set_up_bg">
-                <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
-                <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
-                <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
-                <div class="signature_manager_top">
-                    <div class="left">
-                        <div class="search_left_box">
-                            <input type="text" id="search_input" placeholder="Type to Search...">
-                        </div>
-                        <div class="users">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
-                        <div class="invite"><a href="usermanagement/"><img src="%%DEFINE_IMAGE_LINK%%/images/invite-icon.svg" alt="">Invite New User</a></div>
-                    </div>
-                    <div class="button_right">
-                       <div class="status-selector">
-                                <div class="select">
-                                    <span>Status</span>
+                        <div class="kt-card-content">
+                            <div class="flex justify-between">
+                                <div id="typeCTRSection" class="ctr-metric">
+                                    <div>
+                                        <span class="rate" id="clickThroughRate">0 <span>%</span></span>
+                                        <span class="change kt-badge kt-badge-success" id="clickThroughChange"><span>▲</span>+0%</span>
+                                    </div>
+                                    <span class="text-xs text-gray-500">Click-Through Rate</span>
                                 </div>
-                                <ul class="status-selector-menu" id="signature-status-selector-menu">
-                                    <li id="all">All</li>
-                                    <li id="installed">Installed</li>
-                                    <li id="pending">Pending</li>
-                                </ul>
+                                <div data-kt-dropdown="true" data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end" data-kt-toggle-replace="true">
+                                    <button class="kt-btn bg-white border border-gray-400 text-gray-600 !rounded-full"
+                                        data-kt-dropdown-toggle="true">
+                                        <span>This Month</span>
+                                        <span class="kt-dropdown-open:hidden">
+                                            <i class="fas fa-caret-down"></i>
+                                        </span>
+                                        <span class="hidden kt-dropdown-open:inline">
+                                            <i class="fas fa-caret-up"></i>
+                                        </span>
+                                    </button>
+                                    <div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
+                                        <ul>
+                                            <li class="chart-range-option kt-dropdown-menu-link" data-range="today">Today</li>
+                                            <li class="chart-range-option kt-dropdown-menu-link" data-range="yesterday">Yesterday</li>
+                                            <li class="chart-range-option kt-dropdown-menu-link" data-range="this-week">This Week</li>
+                                            <li class="chart-range-option kt-dropdown-menu-link" data-range="last-week">Last Week</li>
+                                            <li class="chart-range-option kt-dropdown-menu-link" data-range="this-month">This Month</li>
+                                            <li class="chart-range-option kt-dropdown-menu-link" data-range="last-month">Last Month</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h-[300px]">
+                                <canvas id="dashboardAnalyticsChart"></canvas>
+                            </div>
                         </div>
-                        <a id="deploy_button" class="deploy_btn" href="javascript:void(0);" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Deploy <img src="%%DEFINE_IMAGE_LINK%%/images/new-deploy-icon.svg" alt=""></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="%%DEFINE_deployoutlook%%?department_id=%%DEFINE_current_department_id%%">Deploy to Outlook</a>
-                            <a class="dropdown-item" href="%%DEFINE_googledeploylink%%">Deploy to Gmail</a>
+                    </div>
+                </div>
+                <div class="col-span-12 xl:col-span-6 2xl:col-span-7 grid grid-cols-12 gap-2">
+                    <div class="kt-card col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-6 master_signature">
+                        <div class="kt-card-header">
+                            <div class="kt-card-heading">
+                                <div class="kt-card-title">Master Signature</div>
+                            </div>
+                            <div class="kt-card-toolbar">
+                                IF("%%DEFINE_plan_signaturelimit%%" != "1"){
+                                <a class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary" href="javascript:void(0);"
+                                    onclick="redirectUrlWithAjax('%%DEFINE_newsignatureenterprise%%?siganature_type=master&department_id=%%DEFINE_current_department_id%%')">
+                                    <i class="hgi hgi-stroke hgi-add-01"></i>
+                                </a>
+                                {:IF}
+                                IF("%%DEFINE_plan_signaturelimit%%" == "1"){
+                                <a class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary"
+                                    href="%%DEFINE_newsignatureenterprise%%?siganature_type=master&department_id=%%DEFINE_current_department_id%%">
+                                    <i class="hgi hgi-stroke hgi-add-01"></i>
+                                </a>
+                                {:IF}
+
+                            </div>
                         </div>
-                        <a id="import_button" class="deploy_btn" href="javascript:void(0);" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Import <img src="%%DEFINE_IMAGE_LINK%%/images/new-import-icon.svg" alt=""></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="%%DEFINE_bulkupload%%">CSV</a>
-                            <a id="import_integration" class="dropdown-item" href="%%DEFINE_azuread%%?department_id=%%DEFINE_current_department_id%%">Microsoft 365 Active Directory</a>
-                            <a id="import_integration_google" class="dropdown-item" href="%%DEFINE_gsuite%%?department_id=%%DEFINE_current_department_id%%">Google Workspace</a>
+                        <div class="kt-card-content relative text-center">
+                            %%DEFINE_master_signature%%
                         </div>
-
-                        IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-                        <a id="create_signature_btn" class="btn %%DEFINE_FTDN%%" href="%%DEFINE_newsignatureenterprise%%?department_id=%%DEFINE_current_department_id%%"><img src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create Signature</a>
-                        <a id="create_signature_btn" class="btn %%DEFINE_FTD%%" href="%%DEFINE_billing%%?action=freetrial&department_id=%%DEFINE_current_department_id%%"><img src="%%DEFINE_IMAGE_LINK%%/images/new-createsig-icon.svg" alt="">Create Signature</a>
-                        {:IF}
-                        IF("%%DEFINE_integration_settings%%" == ""){
-                        <style>
-                            #deploy_button {
-                                display: none;
-                            }
-                            #import_integration {
-                                display: none;
-                            }
-                            #import_integration_google {
-                                display: none;
-                            }
-                        </style>
-                        {:IF}
-                        IF("%%DEFINE_manage_signatures%%" == ""){
-                        <style>
-                            #create_signature_btn {
-                                display: none;
-                            }
-
-                            #import_button {
-                                display: none;
-                            }
-                        </style>
-                        {:IF}
                     </div>
-
-                </div>
-                <div class="signature_manager_top" style="margin-top:10px; display:none;" id="extratop">
-                    <div class="button_right">
-                        <input type="checkbox" value="" id="select_all" class="select_all" /> <label for="select_all">Select All</label> <a class="btn" href="javascript:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
-                    </div>
-                </div>
-
-                <div style="display:block"></div>
-                <div class="row" id="search_result">
-
-                    %%DEFINE_signature_list%%
-                    %%DEFINE_signature_create_upgrade%%
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<!-- review Logo Popup -->
-<div class="modal fade das_popup" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="border:none;">
-                <!--    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="preview-logo"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#feedbackModal">Would like to revise</button>
-                <a href="javascript:void(0);" class="btn btn-primary ajaxaction" id="looksgood" data-id="0" data-action="status">Look Goods! <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- change Logo Popup -->
-<div class="modal fade das_popup" id="changeLogoModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="border:none;">
-
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="upload_logo_bg">
-                <h2>Upload Brand Logo</h2>
-                <input class="signature_logo" type="file" name="signature_logo" id="signature_logo" style="display:none;">
-                <div id="img_preview_logo"></div>
-                <div id="img_errormsg_logo"></div>
-                <div class="upload-area-logo" id="uploadfilelogo">
-                    <input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
-                    <div class="drag_your_image"> <img class="signature_logo" src="%%DEFINE_signature_change_image%%" alt="">
-                        <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
-                        <p>Supports: PNG, SVG, JPG, JPEG</p>
-                    </div>
-                </div>
-                <p class="note"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for better animation quality.</p>
-                <div class="change-logo-reason">
-                    <div class="form-floating">
-                        <input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
-                        <input type="text" class="form-control" name="change_reason" placeholder="Reason for change logo">
-                        <label for="">Please add feedback</label>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="javascript:void(0);" class="btn btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Submit <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- <div class="modal fade das_popup" id="changeDepartmentLogoModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-		<div class="modal-header" style="border:none;">
-			
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="upload_logo_bg">
-		<h2>Upload Department Logo</h2>	
-		<input class="signature_department_logo" type="file" name="signature_department_logo" id="signature_department_logo" style="display:none;">
-				  <div id="img_preview_logo"></div>
-				  <div id="img_errormsg_logo"></div>
-				  <div class="upload-area-department-logo" id="uploadfiledepartmentlogo">
-				   <input type="hidden" value="%%DEFINE_signature_department_image_name%%" name="signature_department_image" >
-				   <div class="drag_your_image"> <img class="signature_department_logo" src="%%DEFINE_signature_department_change_image%%" alt="">
-					   <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
-					   <p>Supports: PNG, SVG, JPG, JPEG</p>
-				   </div>
-				  </div>
-		</div>          
-		<div class="modal-footer">
-		   <a href="javascript:void(0);" class="btn btn-primary" id="logo_change_done_btn" onclick="departmentLogoChanged();" >Submit <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-		  
-		 </div>
-	</div>
-   </div>
-  </div> -->
-
-<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header" style="border:none;">
-                <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!--<p>loren inspum dolaar loren inspum dolaar loren inspum dolaar loren inspum dolaar</p>-->
-                <textarea name="feedback" id="feedback" rows="5" class="form-control"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" id="backreview" data-bs-target="#reviewModal" data-img="" data-id="">Back</button>
-                <button type="button" class="btn btn-primary" id="sendfeedback">Send Feedback! <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="thanksModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="border:none;">
-                <!--    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="signature_ready_box">
-                    <h3>Thank You!</h3>
-                    <p>We will revert within 48hrs.</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end review Logo Popup -->
-
-<!-- share Popup -->
-<div class="modal fade sharemodal" id="shareModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><img src="%%DEFINE_IMAGE_LINK%%/images/send-icon.svg" alt="">Share Signature</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>You can share the signature by copying the installation link</p>
-                <div class="form-floating">
-                    <input style="margin:0;" type="text" class="form-control" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
-
-                    <div class="copy_icon_right"><a href="javascript:void(0);" id="copyshareurl"><img src="%%DEFINE_IMAGE_LINK%%/images/copy-icon1.svg" alt="">copy</a></div>
-                </div>
-
-
-                <h6>or send by email to your team member</h6>
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="share_email" name="share_email" placeholder="Email Address" required="required" value="">
-                    <label for=" ">Email id</label>
-                </div>
-                <a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">Send<img src="%%DEFINE_IMAGE_LINK%%/images/sendbtn.svg" alt=""></a>
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="modal fade sharemodal" id="upgradeFromFreeTrialPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header" style="border:none;">
-                <a href="%%DEFINE_dashboard%%" class="btn-close"></a>
-                <h5 class="modal-title" id="exampleModalLabel">Upgrade Your Plan</h5>
-                <p style="padding-bottom:0;">You have to upgrade your plan to make your logo animated</p>
-                <div style="padding-bottom:10px;">
-                    <a href="%%DEFINE_billing%%?action=freetrial" class="btn btn-primary">Upgrade <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Department popup -->
-<div class="modal fade sharemodal das_popup" id="departmentModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <div class="signin_right">
-                    <form action="" method="post" id="departmentForm">
-                        <!-- <div class="top_logo"><img src="https://betaapp.customesignature.com/images/logo.svg" alt=""></div> -->
-                        <!-- <h2>Department</h2> -->
-                        <div class="inputbox">
-                            <h3 class="lable" id="department_title">Add Company Division</h3>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" name="department_name" id="department_name" placeholder="Company Division Name" data-class="department_name">
-                                <label for="">Company Division Name</label>
-                                <span class="input-error-message"></span>
+                    <div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-6 kt-card">
+                        <div class="kt-card-header">
+                            <div class="kt-card-heading">
+                                <div class="kt-card-title">Division List</div>
+                            </div>
+                            <div class="kt-card-toolbar">
+                            IF("%%DEFINE_ISSUBUSER%%" == ""){
+                                <a href="javascript:void(0)" class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary" data-kt-modal-toggle="#departmentModel">
+                                    <i class="hgi hgi-stroke hgi-add-01"></i>
+                                </a>
+                            {:IF}
                             </div>
                         </div>
                         <table class="kt-table">
@@ -453,92 +164,97 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                             </tbody>
                         </table>
                     </div>
-                    <div class="kt-card h-full">
-                        <div id="snackbar"></div>
-                        <div id="snackbar-error"></div>
-                        <div id="snackbar-info"></div>
-                        <div class="kt-card-header flex-col justify-start items-start">
-                            <div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
-                                <div class="flex items-center gap-1">
-                                    <div class="kt-input">
-                                        <i class="hgi hgi-stroke hgi-search-01"></i>
-                                        <input type="text" class="kt-input" id="search_input" placeholder="Type to Search...">
-                                    </div>
-                                    <div class="text-nowrap text-xs text-gray-600">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
-                                </div>
-                                <div class="flex flex-wrap gap-1">
-                                    <a class="kt-btn kt-btn-primary" href="usermanagement/">
-                                        <i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
-                                    </a>
-                                    <div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end">
-                                        <button class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
-                                            Status
-                                        </button>
-                                        <div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
-                                            <ul class="kt-dropdown-menu-sub" id="signature-status-selector-menu">
-                                                <li class="kt-dropdown-menu-link" id="all">All</li>
-                                                <li class="kt-dropdown-menu-link" id="installed">Installed</li>
-                                                <li class="kt-dropdown-menu-link" id="pending">Pending</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
-                                        data-kt-dropdown-placement="bottom-end">
-                                        <button id="deploy_button" class="kt-btn kt-btn-primary kt-btn-outline"
-                                            data-kt-dropdown-toggle="true">
-                                            Deploy <i class="hgi hgi-stroke hgi-rocket-01"></i>
-                                        </button>
-                                        <div class="kt-dropdown-menu w-40" data-kt-dropdown-menu="true">
-                                            <ul class="kt-dropdown-menu-sub">
-                                                <li><a class="kt-dropdown-menu-link"
-                                                    href="%%DEFINE_deployoutlook%%?department_id=%%DEFINE_current_department_id%%">Deploy to Outlook</a></li>
-                                                <li><a class="kt-dropdown-menu-link" href="%%DEFINE_googledeploylink%%">Deploy to Gmail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
-                                    data-kt-dropdown-placement="bottom-end">
-                                        <button id="import_button" class="kt-btn kt-btn-primary kt-btn-outline"
-                                            data-kt-dropdown-toggle="true">
-                                            Import <i class="hgi hgi-stroke hgi-file-import"></i>
-                                        </button>
-                                        <div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
-                                            <ul class="kt-dropdown-menu-sub">
-                                                <li><a class="kt-dropdown-menu-link" href="%%DEFINE_bulkupload%%">CSV</a></li>
-                                                <li><a id="import_integration" class="kt-dropdown-menu-link"
-                                                    href="%%DEFINE_azuread%%?department_id=%%DEFINE_current_department_id%%">Microsoft
-                                                    365
-                                                    Active Directory</a></li>
-                                                <li><a id="import_integration_google" class="kt-dropdown-menu-link"
-                                                    href="%%DEFINE_gsuite%%?department_id=%%DEFINE_current_department_id%%">Google
-                                                    Workspace</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-                                    <a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%" href="%%DEFINE_newsignatureenterprise%%?department_id=%%DEFINE_current_department_id%%">
-                                        <i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
-                                    </a>
-                                    <a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%" href="%%DEFINE_billing%%?action=freetrial&department_id=%%DEFINE_current_department_id%%">
-                                        <i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
-                                    </a>
-                                    {:IF}
-                                    <div class="signature_manager_top" style="margin-top:10px; display:none;" id="extratop">
-                                        <input type="checkbox" value="" id="select_all" class="select_all" />
-                                        <label for="select_all">Select All</label>
-                                        <a class="kt-btn kt-btn-primary" href="javascript:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="search_result">
-                            %%DEFINE_signature_list%%
-                            %%DEFINE_signature_create_upgrade%%
+                    <div class="col-span-12">
+                        <div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+                            %%DEFINE_signature_process%%
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="kt-card mt-2">
+                <div id="snackbar"></div>
+                <div id="snackbar-error"></div>
+                <div id="snackbar-info"></div>
+                <div class="kt-card-header flex-col justify-start items-start">
+                    <div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
+                        <div class="flex items-center gap-1">
+                            <div class="kt-input">
+                                <i class="hgi hgi-stroke hgi-search-01"></i>
+                                <input type="text" class="kt-input" id="search_input" placeholder="Type to Search...">
+                            </div>
+                            <div class="text-nowrap text-xs text-gray-600">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
+                        </div>
+                        <div class="flex flex-wrap gap-1">
+                            <a class="kt-btn kt-btn-primary" href="usermanagement/">
+                                <i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
+                            </a>
+                            <div class="flex-none" data-kt-dropdown="true" data-kt-toggle-replace='true' data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end">
+                                <button class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
+                                    <span>Status</span>
+                                </button>
+                                <div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
+                                    <ul class="kt-dropdown-menu-sub" id="signature-status-selector-menu">
+                                        <li class="kt-dropdown-menu-link" id="all">All</li>
+                                        <li class="kt-dropdown-menu-link" id="installed">Installed</li>
+                                        <li class="kt-dropdown-menu-link" id="pending">Pending</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+                                data-kt-dropdown-placement="bottom-end">
+                                <button id="deploy_button" class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
+                                    <span>Deploy</span>
+                                    <i class="hgi hgi-stroke hgi-rocket-01"></i>
+                                </button>
+                                <div class="kt-dropdown-menu w-40" data-kt-dropdown-menu="true">
+                                    <ul class="kt-dropdown-menu-sub">
+                                        <li><a class="kt-dropdown-menu-link"
+                                            href="%%DEFINE_deployoutlook%%?department_id=%%DEFINE_current_department_id%%">Deploy to Outlook</a></li>
+                                        <li><a class="kt-dropdown-menu-link" href="%%DEFINE_googledeploylink%%">Deploy to Gmail</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+                            data-kt-dropdown-placement="bottom-end">
+                                <button id="import_button" class="kt-btn kt-btn-primary kt-btn-outline"
+                                    data-kt-dropdown-toggle="true">
+                                    Import <i class="hgi hgi-stroke hgi-file-import"></i>
+                                </button>
+                                <div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
+                                    <ul class="kt-dropdown-menu-sub">
+                                        <li><a class="kt-dropdown-menu-link" href="%%DEFINE_bulkupload%%">CSV</a></li>
+                                        <li><a id="import_integration" class="kt-dropdown-menu-link"
+                                            href="%%DEFINE_azuread%%?department_id=%%DEFINE_current_department_id%%">Microsoft
+                                            365
+                                            Active Directory</a></li>
+                                        <li><a id="import_integration_google" class="kt-dropdown-menu-link"
+                                            href="%%DEFINE_gsuite%%?department_id=%%DEFINE_current_department_id%%">Google
+                                            Workspace</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            IF("%%DEFINE_plan_signaturelimit%%" == "1"){
+                            <a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%" href="%%DEFINE_newsignatureenterprise%%?department_id=%%DEFINE_current_department_id%%">
+                                <i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
+                            </a>
+                            <a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%" href="%%DEFINE_billing%%?action=freetrial&department_id=%%DEFINE_current_department_id%%">
+                                <i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
+                            </a>
+                            {:IF}
+                            <div class="signature_manager_top" style="margin-top:10px; display:none;" id="extratop">
+                                <input type="checkbox" value="" id="select_all" class="select_all" />
+                                <label for="select_all">Select All</label>
+                                <a class="kt-btn kt-btn-primary" href="javascript:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-card-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="search_result">
+                    %%DEFINE_signature_list%%
+                    %%DEFINE_signature_create_upgrade%%
                 </div>
             </div>
         </div>
@@ -569,7 +285,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="changeLogoModel">
     <div class="kt-modal-content max-w-[400px]">
         <div class="kt-modal-header">
-            <h3 class="kt-modal-title">Upload Brand Logo</h3>
+            <p class="kt-modal-title">Upload Brand Logo</p>
             <button type="button" class="kt-modal-close" aria-label="Close modal"
                 data-kt-modal-dismiss="#changeLogoModel">
                 <i class="hgi hgi-stroke hgi-add-circle"></i>
@@ -581,25 +297,22 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             <div id="img_errormsg_logo"></div>
             <div class="upload-area-logo" id="uploadfilelogo">
                 <input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
-                <div class="drag_your_image"> <img class="signature_logo" src="%%DEFINE_signature_change_image%%"
-                        alt="">
-                    <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
-                    <p>Supports: PNG, SVG, JPG, JPEG</p>
+                <div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+                    <img class="max-w-36 max-h-36 object-cover" src="%%DEFINE_signature_change_image%%" alt="">
+                    <p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a class="text-primary" href="javascript:void(0);">browse</a></p>
+                    <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
                 </div>
             </div>
-            <p class="note"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
+            <div class="kt-alert kt-alert-outline kt-alert-primary my-3">
+                <p><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
                 better animation quality.</p>
-            <div class="change-logo-reason">
-                <div class="form-floating">
-                    <input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
-                    <input type="text" class="form-control" name="change_reason" placeholder="Reason for change logo">
-                    <label for="">Please add feedback</label>
-                </div>
             </div>
-        </div>
-        <div class="kt-modal-footer">
-            <a href="javascript:void(0);" class="btn btn-primary" id="logo_change_done_btn"
-                onclick="logoChanged();">Submit <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
+                <label class="kt-form-label">Please add feedback</label>
+                <div class="flex gap-2">
+                    <input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
+                    <input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
+                    <a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Submit</a>
+                </div>
         </div>
     </div>
 </div>
@@ -860,7 +573,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             }).done(function (data) {
                 var json = JSON.parse(data);
                 if (json.error != 1) {
-                    $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Division saved! </div>');
+                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Division saved! </div>');
                     $('.btn-close').click();
                     $('#snackbar').show();
                     setTimeout(function () {
@@ -872,7 +585,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         window.location = redirecturld;
                     }, 2000);
                 } else {
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                     $('#snackbar-error').show();
                     setTimeout(function () {
                         $('#snackbar-error').hide();
@@ -1090,7 +803,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                 }).done(function (data) {
                     if (data.error == '0') {
 
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
                         $('#snackbar').show();
                         setTimeout(function () {
                             $('#snackbar').hide();
@@ -1211,7 +924,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             console.log('should have copied ' + text);
             $('#shareModal').focus();
 
-            $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
+            $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
             $('#snackbar').show();
             setTimeout(function () {
                 $('#snackbar').hide();
@@ -1731,10 +1444,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
                         .removeClass('negative-change');
                 }
             })
-            .catch(error => console.error('Error loading chart data:', error))
-            .finally(() => {
-				$('.line-chart-loader').hide(); // Hide the loader after fetch is done (either success or failure)
-			});
+            .catch(error => console.error('Error loading chart data:', error));
     }
 
 
@@ -1794,15 +1504,9 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
     }
 
     chart = '';
-
-    $(document).ready(function () {
-		$('.line-chart-loader').show();
-		const { startDate, endDate } = getDateRange('this-month');
-        loadChartData('days', startDate, endDate);
-	});
-    
+    const { startDate, endDate } = getDateRange('this-month');
+    loadChartData('days', startDate, endDate);
     $('.chart-range-option').on('click', function () {
-        $('.line-chart-loader').show();
         const range = $(this).data('range');
         const { startDate, endDate } = getDateRange(range);
         loadChartData('days', startDate, endDate);

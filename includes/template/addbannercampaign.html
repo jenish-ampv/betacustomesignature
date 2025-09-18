@@ -9,98 +9,99 @@
         <div class="kt-container-fluid pb-4 h-full">
             <div class="kt-card kt-card-accent w-full mx-auto h-full">
                 <form id="bannerform" class="campaign-form flex h-full">
-                    <div class="p-5 w-full max-w-[400px] lg:[--kt-drawer-enable:false] max-lg:bg-white h-full" data-kt-drawer="true"
-        data-kt-drawer-class="kt-drawer kt-drawer-start hidden" id="drawer">
-                        <h2 class="kt-card-title mb-4">Campaign Settings</h2>
-                        <div class="space-y-5">
-                            <div>
-                                <label class="kt-label">Campaign Name</label>
-                                <input type="text" class="kt-input" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%">
-                            </div>
-                            <div>
-                                <label class="kt-label">Add departments and set a date range</label>
-                                <div class="border border-gray-200 bg-white rounded-lg p-3 space-y-2" id="division">
-                                    %%DEFINE_department_list%%
+                    <div class="p-4 max-w-[400px] lg:[--kt-drawer-enable:false] bg-transparent shadow-none" data-kt-drawer="true" data-kt-drawer-class="kt-drawer kt-drawer-start hidden" id="drawer">
+                        <div class="flex flex-col w-full rounded-xl h-full max-lg:bg-white">
+                            <h2 class="kt-card-title p-4 border-b border-b-gray-100">Campaign Settings</h2>
+                            <div class="space-y-5 flex-1 p-4 overflow-auto">
+                                <div>
+                                    <label class="kt-label">Campaign Name</label>
+                                    <input type="text" class="kt-input" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%">
                                 </div>
-                            </div>
-                            <div>
-                                <label class="kt-label">Select Date Range</label>
-                                <input type="text" class="kt-input" id="datepicker" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
-                            </div>
-                            <div>
-                                <label class="kt-label">Banner</label>
-                                <input type="file" name="banner" id="banner" class="banner" style="display: none;">
-                                <div id="img_preview3"></div>
-                                <div id="img_errormsg3"></div>
-                                <input type="text" id="banner_image" style="display: none;" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%">
-                                <div class="cursor-pointer text-center border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl %%DEFINE_BANNER_CAMPAIGN_IMAGE_SECTION%%" id="uploadfile3">
-                                    <div class="drag_your_image">
-                                        <img class="inline-block" draggable="false" src="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%" alt="">
-                                        <p class="text-[#063E76] font-semibold">Drag your image here, or <a class="text-primary" href="javascript:void(0);">browse</a></p>
-                                        <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+                                <div>
+                                    <label class="kt-label">Add departments and set a date range</label>
+                                    <div class="border border-gray-200 bg-white rounded-lg p-3 space-y-2" id="division">
+                                        %%DEFINE_department_list%%
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="mb-3 font-semibold text-lg">Banner Style</div>
-                                <div class="space-y-4">
-                                    <div class="flex items-center justify-between">
-                                        <span>Shape</span>
-                                        <div class="flex gap-2 *:relative *:cursor-pointer">
-
-                                            <label for="square" class="iconcheckbox">
-                                                <input type="radio" name="bannershape" id="square" class="hidden peer" value="0px" data-class="layout_banner" checked="checked" %%DEFINE_bannershape_0px_checked%%>
-                                                <div class="image-shape square border-2 border-gray-300 w-16 h-7"></div>
-                                                <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
-                                                    <i class="hgi hgi-stroke hgi-tick-02"></i>
-                                                </span>
-                                            </label>
-
-                                            <label for="rounded" class="iconcheckbox">
-                                                <input type="radio" name="bannershape" id="rounded" class="hidden peer" value="10px" data-class="layout_banner" %%DEFINE_bannershape_10px_checked%%>
-                                                <div class="image-shape rounded rounded-lg border-2 border-gray-300 w-16 h-7">
-                                                </div>
-                                                <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
-                                                    <i class="hgi hgi-stroke hgi-tick-02"></i>
-                                                </span>
-                                            </label>
-
-                                            <label for="circle" class="iconcheckbox">
-                                                <input type="radio" name="bannershape" id="circle" class="hidden peer" value="200px" data-class="layout_banner" %%DEFINE_bannershape_200px_checked%%>
-                                                <div class="image-shape circle rounded-full border-2 border-gray-300 w-16 h-7"></div>
-                                                <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
-                                                    <i class="hgi hgi-stroke hgi-tick-02"></i>
-                                                </span>
-                                            </label>
-
+                                <div>
+                                    <label class="kt-label">Select Date Range</label>
+                                    <input type="text" class="kt-input" id="datepicker" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
+                                </div>
+                                <div>
+                                    <label class="kt-label">Banner</label>
+                                    <input type="file" name="banner" id="banner" class="banner" style="display: none;">
+                                    <div id="img_preview3"></div>
+                                    <div id="img_errormsg3"></div>
+                                    <input type="text" id="banner_image" style="display: none;" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%">
+                                    <div class="cursor-pointer text-center border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl %%DEFINE_BANNER_CAMPAIGN_IMAGE_SECTION%%" id="uploadfile3">
+                                        <div class="drag_your_image">
+                                            <img class="inline-block" draggable="false" src="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%" alt="">
+                                            <p class="text-[#063E76] font-semibold">Drag your image here, or <a class="text-primary" href="javascript:void(0);">browse</a></p>
+                                            <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
                                         </div>
                                     </div>
-                                    <div class="flex items-center justify-between">
-                                        <span>Size</span>
-                                        <div class="w-52">
-                                            <div id="rangebanner" class="noUi-target noUi-ltr noUi-horizontal"></div>
-                                            <div class="text-xs flex justify-between mt-2">
-                                                <span>150px</span>
-                                                <span>600px</span>
+                                </div>
+                                <div>
+                                    <div class="mb-3 font-semibold text-lg">Banner Style</div>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <span>Shape</span>
+                                            <div class="flex gap-2 *:relative *:cursor-pointer">
+
+                                                <label for="square" class="iconcheckbox">
+                                                    <input type="radio" name="bannershape" id="square" class="hidden peer" value="0px" data-class="layout_banner" checked="checked" %%DEFINE_bannershape_0px_checked%%>
+                                                    <div class="image-shape square border-2 border-gray-300 w-16 h-7"></div>
+                                                    <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
+                                                        <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                                    </span>
+                                                </label>
+
+                                                <label for="rounded" class="iconcheckbox">
+                                                    <input type="radio" name="bannershape" id="rounded" class="hidden peer" value="10px" data-class="layout_banner" %%DEFINE_bannershape_10px_checked%%>
+                                                    <div class="image-shape rounded rounded-lg border-2 border-gray-300 w-16 h-7">
+                                                    </div>
+                                                    <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
+                                                        <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                                    </span>
+                                                </label>
+
+                                                <label for="circle" class="iconcheckbox">
+                                                    <input type="radio" name="bannershape" id="circle" class="hidden peer" value="200px" data-class="layout_banner" %%DEFINE_bannershape_200px_checked%%>
+                                                    <div class="image-shape circle rounded-full border-2 border-gray-300 w-16 h-7"></div>
+                                                    <span class="hidden top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-gradient size-4 text-white rounded-full absolute text-[6px] peer-checked:flex items-center justify-center">
+                                                        <i class="hgi hgi-stroke hgi-tick-02"></i>
+                                                    </span>
+                                                </label>
+
                                             </div>
-                                            <input type="hidden" id="bannersize" value="%%DEFINE_bannersize%%" name="bannersize" />
                                         </div>
-                                    </div>
-                                    <div>
-                                        <label class="kt-label">Banner Link</label>
-                                        <input type="text" name="bannerlink" id="banner_link" class="kt-input" placeholder="" value="%%DEFINE_bannerlink%%">
+                                        <div class="flex items-center justify-between">
+                                            <span>Size</span>
+                                            <div class="w-52">
+                                                <div id="rangebanner" class="noUi-target noUi-ltr noUi-horizontal"></div>
+                                                <div class="text-xs flex justify-between mt-2">
+                                                    <span>150px</span>
+                                                    <span>600px</span>
+                                                </div>
+                                                <input type="hidden" id="bannersize" value="%%DEFINE_bannersize%%" name="bannersize" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="kt-label">Banner Link</label>
+                                            <input type="text" name="bannerlink" id="banner_link" class="kt-input" placeholder="" value="%%DEFINE_bannerlink%%">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="banner-gallery" class="hidden">
-                            <div class="add_details_bg tab_sign_box">
-                                <div class="banner_section_header">
-                                    <span>Banner Gallery</span>
+                            <div id="banner-gallery" class="hidden">
+                                <div class="add_details_bg tab_sign_box">
+                                    <div class="banner_section_header">
+                                        <span>Banner Gallery</span>
+                                    </div>
+                                    <p>This is the Banner Gallery section. Add your gallery content here.
+                                    </p>
+                                    <!-- Add gallery-specific content here -->
                                 </div>
-                                <p>This is the Banner Gallery section. Add your gallery content here.
-                                </p>
-                                <!-- Add gallery-specific content here -->
                             </div>
                         </div>
                     </div>
@@ -115,10 +116,10 @@
                         </div>
                         <div class="flex items-center justify-center flex-1">
                             <div class="w-full overflow-auto text-center">
-                                <div class="overflow-auto inline-block">
+                                <div class="overflow-auto inline-block bg-white border border-gray-200 rounded-lg">
                                     %%DEFINE_bannercampaign_signature%%
                                 </div>
-                                <div class="flex items-center justify-center gap-2">
+                                <div class="flex items-center justify-center gap-2 mt-4">
                                     <input type="hidden" name="signature_banner" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE_NAME%%">
                                     <input type="hidden" id="edit_banner" name="edit_banner" value="%%DEFINE_EDIT_BANNER%%">
                                     <input type="hidden" name="edit_banner_id" value="%%DEFINE_EDIT_BANNER_ID%%">
