@@ -347,6 +347,12 @@ function showConfirmationAlert({
         customClass: swalClasses,
     });
 }
+
+$(document).on("click", "[data-kt-dropdown][data-kt-toggle-replace='true'] .kt-dropdown-menu-link", function () {
+    let $dropdown = $(this).closest("[data-kt-dropdown]");
+    let $button = $dropdown.find("[data-kt-dropdown-toggle='true']");
+    $button.find("span").first().text($(this).text());
+  });
     
 /*status-selector*/
 $('.status-selector').click(function () {

@@ -104,10 +104,10 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
     }
 }
 .kt-modal-content{
-    @apply bg-muted p-1 rounded-[12px];
+    @apply bg-muted p-1 rounded-3xl;
 }
 .kt-modal-body{
-    @apply bg-white rounded-[10px];
+    @apply bg-white rounded-3xl;
 }
 .kt-modal-header{
     @apply border-b-0;
