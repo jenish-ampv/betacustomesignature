@@ -57,7 +57,7 @@ class CIT_GSUITE
 							$mapper_field = $maping_fields['personal_field']; 
 							$mapcustom_field = $maping_fields['contact_field']; 
 							$gsuiteusers = $GLOBALS['integrations']->GsuiteConnect('user',$GLOBALS['USEREMAIL']);
-							if($azureadusers['error'] == 0 && is_array($gsuiteusers['data']['users']['users'])){
+							if($gsuiteusers['error'] == 0 && is_array($gsuiteusers['data']['users']['users'])){
 								
 								$refSigRow = $GLOBALS['DB']->row("SELECT * FROM signature WHERE signature_master=1 AND user_id= ?",array($GLOBALS['USERID']));
 								$user_id = $refSigRow['user_id'];
@@ -124,7 +124,7 @@ class CIT_GSUITE
 								}
 								
 								$_SESSION['import_items'] =  $import_item;
-								$_SESSION[GetSession('Success')] = '<div class="alert alert-success">File has been imported successfully.</div>';
+								$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">File has been imported successfully.</div>';
 					 			$redirect = GetUrl(array('module'=>'import')).'?success=1';
 							    GetFrontRedirectUrl($redirect); exit;
 							}else{
@@ -160,6 +160,7 @@ class CIT_GSUITE
 				$getUsers =  $GLOBALS['integrations']->GsuiteConnect('user',$GLOBALS['USEREMAIL']);
 				if($getUsers['error'] == 0){
 					$GLOBALS['group_list'] ='';
+					$GLOBALS['search_list'] ='';
 					$groupedUsers = [];
 					foreach($getUsers['data']['users']['users'] as $k => $user){
 						$orgPath = $user->getOrgUnitPath();
@@ -167,18 +168,27 @@ class CIT_GSUITE
 						$grouped[$orgName][] = $user;
 					}
 					foreach ($grouped as $groupName => $users) {
+						$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$groupName.'">';
     					$GLOBALS['group_list'] .= "<strong>" . htmlspecialchars($groupName) . "</strong>
-						<div class='flex items-center gap-2'>
+						<div class='flex items-center gap-2 mb-4'>
 							<label class='kt-label' for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label>
 							<input type='checkbox' class='select_all_department kt-checkbox' id='select_all_".strtolower(htmlspecialchars($groupName))."' data-department-id='".strtolower(htmlspecialchars($groupName))."' >
 						</div>";
 						foreach ($users as $user) {
 							$GLOBALS['group_list'] .='<div class="flex items-center gap-2">
-                              <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).'" type="checkbox" name="addUsers[]" id="'.$group['id'].'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
-							  <label for="'.$group['id'].'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
+                              <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).' mem_checkbox" type="checkbox" name="addUsers[]" id="'.$user->id.'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
+							  <label for="'.$user->id.'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
 							</div>';
+							$GLOBALS['search_list'] .='
+										<div class="member_list search-container" style="display:none;">
+											<div class="flex items-center gap-2">
+												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$user->id.'" value="" data-master="'.$user->id.'">
+												<label class="kt-label" for="search_'.$user->id.'">'.$user->name->fullName.'('.$user->primaryEmail.')</label>
+											</div>
+										</div>';
 						}
 					}
+					$GLOBALS['search_list'] .='</div>';
 				}else{
 						$_SESSION[GetSession('Error')] = '<div class="alert alert-danger">'.$getUsers['msg'].'.</div>';
 				}
@@ -238,7 +248,7 @@ class CIT_GSUITE
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Full Name</label>
+							<label class="kt-label mb-3">Full Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
 							</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
@@ -261,7 +271,7 @@ class CIT_GSUITE
 			}
 			if($data['signature_jobtitle'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Title / Sub Title</label>
+							<label class="kt-label mb-3">Title / Sub Title</label>
   							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
@@ -285,7 +295,7 @@ class CIT_GSUITE
 			if($data['signature_company'] !=""){
 				$mfield++;
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Company Name</label>
+							<label class="kt-label mb-3">Company Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
@@ -327,7 +337,7 @@ class CIT_GSUITE
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
 						$GLOBALS['master_fieldc'] .='<div>
-							<label class="kt-label">'.$field_label.'</label>
+							<label class="kt-label mb-3">'.$field_label.'</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						

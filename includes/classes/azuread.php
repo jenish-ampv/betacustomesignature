@@ -254,12 +254,12 @@ class CIT_AZUREAD
 									}
 									// manage import process queue with DB
 									// $this->previewImportedSignatureToSaveHtml();
-									$_SESSION[GetSession('Success')] = '<div class="alert alert-success">The signature has been created successfully.</div>';
+									$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
 									$redirect = GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id'];
 									GetFrontRedirectUrl($redirect); exit;
 								}
 								else{
-									$_SESSION[GetSession('Success')] = '<div class="alert alert-success">The signature has been created successfully.</div>';
+									$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
 									//$redirect = GetUrl(array('module'=>'import')).'?success=1';
 									$redirect = GetUrl(array('module'=>'azuread','category_id'=>'thanks'));
 									GetFrontRedirectUrl($redirect); exit;
@@ -285,7 +285,7 @@ class CIT_AZUREAD
 						$GLOBALS['group_list'] .='  <div data-kt-accordion-item="true" class="kt-accordion-item group relative" aria-expanded="false">
 							<div class="flex items-center gap-2 p-3 group-[.active]:bg-primary/10">
 								<input class="kt-checkbox master_checkbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$group['id'].'" data-wrapper ="wrapper-'.$group['id'].'">
-								<label class="kt-label" for="'.$group['id'].'">'.$group['displayName'].'</label>
+								<label class="kt-label mb-3" for="'.$group['id'].'">'.$group['displayName'].'</label>
 							</div>
 							<div class="size-[45px] cursor-pointer hover:bg-gray-100 flex items-center justify-center absolute right-0 top-0" data-kt-accordion-toggle="true" aria-controls="accordion_content_'.$group['id'].'" id="accordion_toggle_'.$group['id'].'">
 								<i  class="hgi hgi-stroke hgi-arrow-right-01 text-xl"></i>
@@ -304,7 +304,7 @@ class CIT_AZUREAD
 										<div class="member_list">
 											<div class="member_chek flex flex-wrap items-center gap-2">
 												<input class="kt-checkbox mem_checkbox" type="checkbox" name="members['.$mem_count.']" id="'.$members['id'].'-'.$group['id'].'" value="'.$members['id'].'"  data-wrapper="wrapper-'.$group['id'].'" data-master="'.$group['id'].'">
-												<label class="kt-label" for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'<span class="ml-2 text-gray-500 font-normal">('.$members['mail'].')</span></label>
+												<label class="kt-label mb-3" for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'<span class="ml-2 text-gray-500 font-normal">('.$members['mail'].')</span></label>
 											</div>
 											<input type="hidden" name="displayName[]" value="'.$members['displayName'].'" >
 											<input type="hidden" name="givenName[]" value="'.$members['givenName'].'" >
@@ -328,7 +328,7 @@ class CIT_AZUREAD
 										<div class="member_list search-container" style="display:none;">
 											<div class="flex items-center gap-2">
 												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$members['id'].'-'.$group['id'].'" value=""  data-master="'.$group['id'].'">
-												<label class="kt-label" for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'('.$members['mail'].')</label>
+												<label class="kt-label mb-3" for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'('.$members['mail'].')</label>
 											</div>
 										</div>';
 										$mem_count++;
@@ -409,11 +409,11 @@ class CIT_AZUREAD
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-						<label class="kt-label">Full Name</label>
+						<label class="kt-label mb-3">Full Name</label>
 						<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
 					</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
-					<label class="kt-label">Full Name</label>
+					<label class="kt-label mb-3">Full Name</label>
 					<select class="kt-select" name="dirattrp[]">
 						<option value="master" '.$signature_firstnamemaster.'>Take from Master Signature </option>
 						<option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
@@ -439,11 +439,11 @@ class CIT_AZUREAD
 			}
 			if($data['signature_jobtitle'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class>Title / Sub Title</label>
+							<label class="kt-label mb-3">Title / Sub Title</label>
   							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
-								<label class="kt-label">Title / Sub Title</label>
+								<label class="kt-label mb-3">Title / Sub Title</label>
                                 <select class="kt-select" name="dirattrp[]">
                                     <option value="master" '.$signature_jobtitlemaster.'>Take from Master Signature </option>
                                     <option value="displayName" '.$signature_jobtitledisplayName.'>Display Name</option>
@@ -470,11 +470,11 @@ class CIT_AZUREAD
 			if($data['signature_company'] !=""){
 				$mfield++;
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label">Company Name</label>
+							<label class="kt-label mb-3">Company Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
-								<label class="kt-label">Company Name</label>
+								<label class="kt-label mb-3">Company Name</label>
                                 <select class="kt-select" name="dirattrp[]">
                                    <option value="master" '.$signature_companymaster.'>Take from Master Signature </option>
                                     <option value="displayName" '.$signature_companydisplayName.'>Display Name</option>
@@ -519,12 +519,12 @@ class CIT_AZUREAD
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
 						$GLOBALS['master_fieldc'] .='<div>
-						<label class="kt-label">'.$field_label.'</label>
+						<label class="kt-label mb-3">'.$field_label.'</label>
 						<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						
 						$GLOBALS['dirattr_fieldc'] .='<div>
-								<label class="kt-label">'.$field_label.'</label>
+								<label class="kt-label mb-3">'.$field_label.'</label>
                                 <select class="kt-select" name="dirattrc[]">
                                     <option value="master" '.${$fieldname.'master'}.'>Take from Master Signature </option>
                                     <option value="displayName" '.${$fieldname.'displayName'}.'>Display Name</option>

@@ -105,9 +105,9 @@
                         </div>
                     </div>
                     <div class="kt-card-content bg-no-repeat bg-cover flex flex-col overflow-hidden" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
-                        <div id="snackbar"></div>
-                        <div id="snackbar-error"></div>
-                        <div id="snackbar-info"></div>
+                        <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+                        <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+                        <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
                         <div>
                             <a href="#" class="kt-btn kt-btn-icon kt-btn-mono lg:hidden" data-kt-drawer-toggle="#drawer">
                                 <i class="hgi hgi-stroke hgi-sidebar-left"></i>
@@ -206,7 +206,7 @@
                 // $('#campaign_name').css('border-color','#842029'); validate = 0;
                 // $('#campaign_name').after("<span style='color: #842029'>Please add valid campaign name</span>");
                 // $('#campaign_name').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -215,14 +215,14 @@
                 // $('#division').css('border-color','#842029'); validate = 0;
                 // $('#division').after("<span style='color: #842029'>Please select atleast one division</span>");
                 // $('#division').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if (!$('#datepicker').val()) {
                 // Show error message if no date range is selected
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -231,7 +231,7 @@
                 // $('.drag_your_image').css('border-color','#842029'); validate = 0;
                 // $('.drag_your_image').after("<span style='color: #842029'>Please upload banner</span>");
                 // $('.drag_your_image').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -240,7 +240,7 @@
                 // $('#banner_link').css('border-color','#842029'); validate = 0;
                 // $('#banner_link').after("<span style='color: #842029'>Please add valid banner link</span>");
                 // $('#banner_link').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -283,12 +283,12 @@
                     if ($('#uploadlimit').val() === 1) {
                         // window.location = redirecturl;
                     } else {
-                        $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturl; }, 2000);
                     }
                 } else {
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                     $('#snackbar-error').show();
                     setTimeout(function () { $('#snackbar-error').hide(); window.location = redirecturl; }, 2000);
                     return false;

@@ -1,7 +1,7 @@
 var root_link = $('#root_link').val();
 var image_link = $('#image_link').val();
 document.addEventListener("contextmenu", function (e){
-	$('#snackbar-error').html('<div class="w-full gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Right click disable in this site! </div>');
+	$('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Right click disable in this site! </div>');
     $('#snackbar-error').show();
 	setTimeout(function(){ $('#snackbar-error').hide(); }, 2000);
     e.preventDefault();
@@ -297,7 +297,7 @@ function redirectUrlWithAjax(url) {
         var data = jQuery.parseJSON(response);
 
 		if(data.error){
-			$('#snackbar-info').html('<div class="alert alert-warning"><img src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
+			$('#snackbar-info').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
             $('#snackbar-info').show();
             $('html, body').animate({
                 scrollTop: $("#snackbar-info").offset().top
@@ -309,7 +309,7 @@ function redirectUrlWithAjax(url) {
 
 		if(data.error){
             $('#snackbar-info').focus();
-			$('#snackbar-info').html('<div class="alert alert-warning"><img src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
+			$('#snackbar-info').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
             $('#snackbar-info').show();
             $('html, body').animate({
                 scrollTop: $("#snackbar-info").offset().top

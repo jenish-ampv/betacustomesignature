@@ -28,7 +28,7 @@ class CIT_EMAILSENDER
 				$data =array('site_id'=>$GLOBALS['SITE_ID'],'contact_name'=>$_POST['contact_name'],'contact_email'=>$_POST['contact_email'], 'sales_name'=>$_POST['sales_name'], 'sales_email'=>$_POST['sales_email'], 'support_name'=>$_POST['support_name'],'support_email'=>$_POST['support_email'],'custome_name'=>$_POST['custome_name'],'custome_email'=>$_POST['custome_email'], 'emailsender_from'=>$_POST['emailsender_from']);
 				$query = $GLOBALS['DB']->insert("emailsender",$data);
 				if($query){
-					$_SESSION['Success'] .= '<div class="alert alert-success">Emailsender inserted successfully</div>';
+					$_SESSION['Success'] .= '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Emailsender inserted successfully</div>';
 				} else {
 					$_SESSION['Error'] .= '<div class="alert alert-danger">An error occurred while you trying to added emailsender, please try again.</div>';
 				}	
@@ -38,7 +38,7 @@ class CIT_EMAILSENDER
 				$query = $GLOBALS['DB']->update("emailsender",$data,$where);
 			
 				if($query){
-					$_SESSION['Success'] .= '<div class="alert alert-success">Emailsender updated successfully</div>';
+					$_SESSION['Success'] .= '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Emailsender updated successfully</div>';
 				} else {
 					$_SESSION['Error'] .= '<div class="alert alert-danger">An error occurred while you trying to update emailsender, please try again.</div>';
 				}

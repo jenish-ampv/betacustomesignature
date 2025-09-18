@@ -53,5 +53,3 @@ foreach($rowgetConfig as $getConfigKey=>$getConfigValue)
 }
 $GLOBALS['CIT_CFG']['SITE_URL'] = 'http://localhost/betacustomesignature';
 $GLOBALS['CIT_CFG']['cit_dbdebug'] = 0;
-
-

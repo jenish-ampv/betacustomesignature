@@ -24,19 +24,19 @@
               </div>
               <div class="grid grid-cols-2 gap-4">
                 <div class="col-span-2">
-                  <label class="kt-form-label">First Name</label>
+                  <label class="kt-form-label required">First Name</label>
                   <input class="kt-input" name="user_first_name" id="user_first_name" placeholder="Bob">
                 </div>
                 <div class="col-span-2">
-                  <label class="kt-form-label">Last Name</label>
+                  <label class="kt-form-label required">Last Name</label>
                   <input class="kt-input" name="user_last_name" id="user_last_name" placeholder="Smith">
                 </div>
                 <div class="col-span-2 fv-row">
-                  <label class="kt-form-label">Phone</label>
+                  <label class="kt-form-label required">Phone</label>
                   <input class="kt-input" name="user_phone" id="user_phone" placeholder="(999) 999-9999" >
                 </div>
                 <div class="col-span-2">
-                  <label class="kt-form-label">Company Name</label>
+                  <label class="kt-form-label required">Company Name</label>
                   <input class="kt-input" name="user_organization" id="user_organization" placeholder="Company Name">
                 </div>
                 <div>
@@ -126,7 +126,7 @@
           <div class="h-full flex flex-col">
             <div class="flex-1 max-w-[600px] w-full mx-auto">
               <div>
-                <h5 class="text-gray-950 text-2xl font-medium">Just a couple more questions.</h5>
+                <h5 class="text-gray-950 text-2xl font-medium mb-2">Just a couple more questions.</h5>
                 <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
               </div>
               <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
@@ -136,11 +136,10 @@
               <div class="grid grid-cols-1 gap-4">
                 <div>
                   <label class="kt-form-label">How many team members need a signature?</label>
-                  <select class="kt-select" name="user_team_size" id="user_team_size" data-kt-select="true" data-kt-select-placeholder="40"
+                  <select class="kt-select" name="user_team_size" id="user_team_size" data-kt-select="true" data-kt-select-placeholder="Select team size"
                     data-kt-select-config='{
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }'>
-                    <option value="" selected disabled>Select team size</option>
                     <option value="1">1</option>
                     <option value="3">3</option>
                     <option value="5">5</option>
@@ -166,12 +165,11 @@
                   </select>
                 </div>
                 <div>
-                  <label class="kt-form-label">What Email Platform You Use?</label>
+                  <label class="kt-form-label required">What Email Platform You Use?</label>
                   <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
                     data-kt-select-config='{
                         "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
                       }' multiple name="user_email_platform" id="user_email_platform">
-                    <option value="" selected disabled>Select Email Platform</option>
                     <option value="Gmail">Gmail</option>
                     <option value="Outlook">Outlook</option>
                     <option value="Apple Mail">Apple Mail</option>
@@ -182,8 +180,8 @@
                   </select>
                 </div>
                 <div class="mt-5">
-                  <label class="kt-form-label mb-2">How did you hear about us?</label>
-                  <div class="flex flex-wrap [&>*>label]:bg-gray-100 [&>*>label]:hover:bg-primary/10 [&>*>label]:hover:text-primary [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-primary [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-white gap-[6px] *:font-normal">
+                  <label class="kt-form-label mb-2 required">How did you hear about us?</label>
+                  <div class="flex flex-wrap [&>*>label]:bg-white [&>*>label]:cursor-pointer [&>*>label]:hover:border-primary [&>*>label]:hover:bg-gradient-to-r [&>*>label]:hover:from-[#26B7FF]/10 [&>*>label]:hover:to-[#1D4AFE]/10 [&>*>label]:hover:text-black [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-gradient-to-r [&>*>label]:peer-checked:from-[#26B7FF]/10 [&>*>label]:peer-checked:to-[#1D4AFE]/10 [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-black gap-[6px] *:font-normal">
                     <div>
                       <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="facebook-instagram">
                       <label for="facebook-instagram" class="">Facebook/Instagram</label>
@@ -227,39 +225,39 @@
                   </div>
                 </div>
                 <div>
-                  <label class="kt-form-label mb-2">What brought you to Custom Esignature today?</label>
-                  <div class="flex flex-wrap [&>*>label]:bg-gray-100 [&>*>label]:hover:bg-primary/10 [&>*>label]:hover:text-primary [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-primary [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-white gap-[6px] *:font-normal">
+                  <label class="kt-form-label mb-2 required">What brought you to Custom Esignature today?</label>
+                  <div class="flex flex-wrap [&>*>label]:bg-white [&>*>label]:cursor-pointer [&>*>label]:hover:border-primary [&>*>label]:hover:bg-gradient-to-r [&>*>label]:hover:from-[#26B7FF]/10 [&>*>label]:hover:to-[#1D4AFE]/10 [&>*>label]:hover:text-black [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-gradient-to-r [&>*>label]:peer-checked:from-[#26B7FF]/10 [&>*>label]:peer-checked:to-[#1D4AFE]/10 [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-black gap-[6px] *:font-normal">
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="the-interactive-design">
-                      <label for="the-interactive-design" class="peer-checked:bg-primary peer-checked:text-white">The Interactive Design</label>
+                      <label for="the-interactive-design">The Interactive Design</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="boost-your-replies">
-                      <label for="boost-your-replies" class="peer-checked:bg-primary peer-checked:text-white">Boost Your Replies</label>
+                      <label for="boost-your-replies">Boost Your Replies</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="team-management">
-                      <label for="team-management" class="peer-checked:bg-primary peer-checked:text-white">Team Management</label>
+                      <label for="team-management">Team Management</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="signature-analytics">
-                      <label for="signature-analytics" class="peer-checked:bg-primary peer-checked:text-white">Signature Analytics</label>
+                      <label for="signature-analytics">Signature Analytics</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="update-old-signature">
-                      <label for="update-old-signature" class="peer-checked:bg-primary peer-checked:text-white">Update Old Signature</label>
+                      <label for="update-old-signature">Update Old Signature</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="drive-traffic">
-                      <label for="drive-traffic" class="peer-checked:bg-primary peer-checked:text-white">Drive Traffic</label>
+                      <label for="drive-traffic">Drive Traffic</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="promote-brand">
-                      <label for="promote-brand" class="peer-checked:bg-primary peer-checked:text-white">Promote Brand</label>
+                      <label for="promote-brand">Promote Brand</label>
                     </div>
                     <div>
                       <input type="checkbox" class="what_brought_you hidden peer" id="what_brought_you_other">
-                      <label for="what_brought_you_other" class="peer-checked:bg-primary peer-checked:text-white">Other</label>
+                      <label for="what_brought_you_other">Other</label>
                     </div>
 
                   </div>
@@ -549,17 +547,23 @@
       // Validate how_did_you_hear_about_us checkboxes (at least one checked)
       if ($("input.how_did_you_hear_about_us:checked").length === 0) {
         isValidSecondStep = false;
-        showError('.how_did_you_hear_about_us:first', 'Please select at least one option for how you heard about us.');
+        showError(
+          $('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'),
+          'Please select at least one option for how you heard about us.'
+        );
       } else {
-        removeError('.how_did_you_hear_about_us:first');
+        removeError($('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'));
       }
 
       // Validate what_brought_you checkboxes (at least one checked)
       if ($("input.what_brought_you:checked").length === 0) {
         isValidSecondStep = false;
-        showError('.what_brought_you:first', 'Please select at least one option for what brought you here.');
+        showError(
+          $('.what_brought_you:last').closest('.flex.flex-wrap'),
+          'Please select at least one option for what brought you here.'
+        );
       } else {
-        removeError('.what_brought_you:first');
+        removeError($('.what_brought_you:last').closest('.flex.flex-wrap'));
       }
 
       if(!isValidSecondStep){

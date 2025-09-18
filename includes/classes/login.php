@@ -63,7 +63,7 @@ class CIT_LOGIN
 		// Sign in with google
 		if($_REQUEST['category_id']=='signinwithgoogle'){
 			if(isset($_REQUEST['error']) && $_REQUEST['error']=='access_denied'){
-				$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>Access Denied, please try again!</div>';
+				$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>Access Denied, please try again!</div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 			}
 			$googleClient = $GLOBALS['GOOGLE_CLIENT_LOGIN_OBJECT'];
@@ -94,19 +94,19 @@ class CIT_LOGIN
 					GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));
 					exit();
 				}else{
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>your account is temporarily disabled!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>your account is temporarily disabled!</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 				}
 			}else{
 				$existRow = $GLOBALS['DB']->row("SELECT * FROM registerusers WHERE user_email = ? LIMIT 0,1",array($user_email));
 				if(isset($existRow['user_outhprovider']) && $existRow['user_outhprovider'] == 2){
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>Oops! Email address already used in facebook!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>Oops! Email address already used in facebook!</div>';
 				}
 				else if(isset($existRow['user_outhprovider']) && $existRow['user_outhprovider'] == 3){
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>Oops! Email address already used in x(twiter)!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>Oops! Email address already used in x(twiter)!</div>';
 				}
 				else{
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>No user associated with this email address!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>No user associated with this email address!</div>';
 				}
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 			}
@@ -144,19 +144,19 @@ class CIT_LOGIN
 					GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));
 					exit();
 				}else{
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>your account is temporarily disabled!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>your account is temporarily disabled!</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 				}
 			}else{
 				$existRow = $GLOBALS['DB']->row("SELECT * FROM registerusers WHERE user_email = ? LIMIT 0,1",array($user_email));
 				if(isset($existRow['user_outhprovider']) && $existRow['user_outhprovider'] == 1){
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>Oops! Email address already used in google!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>Oops! Email address already used in google!</div>';
 				}
 				else if(isset($existRow['user_outhprovider']) && $existRow['user_outhprovider'] == 3){
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>Oops! Email address already used in x(twiter)!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>Oops! Email address already used in x(twiter)!</div>';
 				}
 				else{
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>not found any user associate this email address!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>not found any user associate this email address!</div>';
 				}
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 			}
@@ -287,7 +287,7 @@ class CIT_LOGIN
 						GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));
 					
 					}else{
-						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>your account is temporarily disabled!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>your account is temporarily disabled!</div>';
 						GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 					}
 				}
@@ -308,10 +308,10 @@ class CIT_LOGIN
 							$newpassword = md5($_POST['password']);
 							$change_pass = $GLOBALS['DB']->update("registerusers",array('user_password'=>$newpassword),array('user_id' =>$user_id));
 							if($change_pass){	
-								$_SESSION[GetSession('Success')]='<div class="alert alert-success" id="success"><strong>Success!</strong> Your Password Reset successful!.</div>';
+								$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> Your Password Reset successful!.</div>';
 								GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 							}else{
-								$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong try again.</div>';
+								$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Fail! </strong>somthing wrong try again.</div>';
 							}
 					}
 					$this->getPage();
@@ -323,7 +323,7 @@ class CIT_LOGIN
 					RemoveMessageInfo();
 					exit();	
 				}else{
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>not a valid link try again!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>not a valid link try again!</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 				}
 			}
@@ -368,7 +368,7 @@ class CIT_LOGIN
 						//$GLOBALS['CLA_SESSION']->userSession();	
 						GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));
 					}else{
-						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>your account is temporarily disabled!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>your account is temporarily disabled!</div>';
 						GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 					}
 				}
@@ -405,19 +405,19 @@ class CIT_LOGIN
 						GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));
 					
 					}else{
-						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>your account is temporarily disabled!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>your account is temporarily disabled!</div>';
 						GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 					}
 				}
 				else{
 	
-					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>wrong username or password!</div>';
+					$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg" id="wrong"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong> Failure! </strong>wrong username or password!</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'])));
 
 				}
 				//$_SESSION[GetSession('Success')] = '';
 			}else{
-				$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> please enter username and password!</div>';	
+				$_SESSION[GetSession('Error')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> please enter username and password!</div>';	
 			}
 		}
 		

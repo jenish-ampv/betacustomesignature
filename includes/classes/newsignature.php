@@ -364,11 +364,14 @@ class CIT_NEWSIGNATURE
 				//$location = "upload-beta/".$filename;
 				$filename = $GLOBALS['USERID'].'.'.$ext;
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/profile/'.$filename ;
+				if (!file_exists(GetConfig('SITE_UPLOAD_PATH').'/profile/')) {
+					mkdir(GetConfig('SITE_UPLOAD_PATH').'/profile/', 0777, true);
+				}
 				$return_arr = array();
 				if(move_uploaded_file($_FILES['profileImage']['tmp_name'],$location)){
 					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
 						'Bucket'=>$GLOBALS['BUCKETNAME'],
-						'Key' =>  'upload-beta/signature/'.$GLOBALS['USERID'].'/'.$filename,
+						'Key' =>  'upload-beta/profile/'.$filename,
 						'SourceFile' => $location,
 						'StorageClass' => 'REDUCED_REDUNDANCY',
 						'ACL'   => 'public-read'

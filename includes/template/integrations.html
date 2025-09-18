@@ -3,9 +3,9 @@
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
 		<div class="kt-container-fluid pb-4 h-full">
-            <div id="snackbar"></div>
-            <div id="snackbar-error"></div>
-            <div id="snackbar-info"></div>
+            <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+            <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+            <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
 
             IF("%%DEFINE_PageView%%" == "googleconnect"){
             <div class="w-full max-w-[700px] mx-auto h-full flex items-center justify-center">
@@ -266,16 +266,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 <div class="signature_integration_box kt-card kt-card-accent">
                     <div class="kt-card-content flex flex-col relative">
-                        <div class="dot_icon %%DEFINE_glconnectedbtncls%%">
-                            <a href="javascript:void(0);" onclick="myFunction(1)">
-                                <img class="h-9" src="%%DEFINE_IMAGE_LINK%%/images/dot-icon.svg" alt="">
+                        <div class="dot_icon %%DEFINE_glconnectedbtncls%%" class="absolute top-3 right-3">
+                            <a href="javascript:void(0);" class="absolute top-3 right-3" onclick="myFunction(1)">
+                                <img  src="%%DEFINE_IMAGE_LINK%%/images/dot-icon.svg" alt="">
                             </a>
                         </div>
-                        <div id="myDIV1" class="menu_open" style="display:none;">
-                            <div class="close_icon"><a class="openPopupClass" href="javascript:void(0);" onclick="myFunction(1)"><img class="openPopupClass" src="https://betaapp.customesignature.com/images/close-signature-icon.svg" alt=""></a></div>
-                            <ul>
-                                <li><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalGL" data-id="1"><img src="%%DEFINE_IMAGE_LINK%%/images/disconnect-icon.svg" alt=""></a></li>
-                            </ul>
+                        <div id="myDIV1" class="menu_open absolute inset-0 bg-white/90 z-[2]" style="display:none;">
+                            <div class="close_icon"><a class="openPopupClass" href="javascript:void(0);" onclick="myFunction(1)">
+                                <!-- <img class="openPopupClass" src="https://betaapp.customesignature.com/images/close-signature-icon.svg" alt=""> -->
+                                 <i class="fal fa-times-circle cursor-pointer absolute top-2 right-2"></i>
+                            </a></div>
+                            <div class="flex flex-col gap-3 items-center justify-center h-full">
+                                <ul class="flex gap-2">
+                                    <li>
+                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalGL" data-id="1">
+                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/disconnect-icon.svg" alt=""> -->
+                                             <i class="hgi hgi-stroke hgi-unlink-04"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="flex items-center gap-3 text-lg font-semibold text-black">
                             <img class="h-9" src="%%DEFINE_IMAGE_LINK%%/images/g-suite.svg" alt="">
@@ -298,7 +308,7 @@
                 </div>
                 <div class="signature_integration_box kt-card kt-card-accent">
                     <div class="kt-card-content flex flex-col relative">
-                        <div class="dot_icon %%DEFINE_connectedbtncls%%"><a href="javascript:void(0);" onclick="myFunction(2)"><img src="%%DEFINE_IMAGE_LINK%%/images/dot-icon.svg" alt=""></a></div>
+                        <div class="dot_icon %%DEFINE_connectedbtncls%%"><a href="javascript:void(0);" class="absolute top-3 right-3" onclick="myFunction(2)"><img src="%%DEFINE_IMAGE_LINK%%/images/dot-icon.svg" alt=""></a></div>
                         <div id="myDIV2" class="menu_open absolute inset-0 bg-white/90 z-[2]" style="display:none;">
                             <div class="close_icon">
                                 <a class="openPopupClass" href="javascript:void(0);" onclick="myFunction(2)">
@@ -457,7 +467,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -493,7 +503,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -552,7 +562,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -589,7 +599,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -621,7 +631,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();

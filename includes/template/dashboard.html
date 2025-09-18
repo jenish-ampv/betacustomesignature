@@ -45,6 +45,7 @@
 							</div>
 						</div>
 						<div class="kt-card-content">
+							<div class="line-chart-loader" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
 							<div class="flex justify-between">
 								<div id="typeCTRSection">
 									<div>
@@ -127,6 +128,7 @@
 							</div>
 						</div>
 						<div class="kt-card-content py-1" id="chart-container">
+							<div class="performers-chart-loader" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
 							<canvas id="signature_chart"></canvas>
 						</div>
 					</div>
@@ -141,7 +143,7 @@
 			<div class="kt-card mt-2">
 				<div class="kt-card-header flex-col justify-start items-start">
 					<div class="kt-card-heading pt-5">
-						<div class="kt-card-title">Analytics Snapshot</div>
+						<div class="kt-card-title">Signature Manager</div>
 					</div>
 					<div class="kt-card-toolbar w-full mb-4 flex flex-wrap justify-between items-center">
 						<div class="flex items-center gap-1">
@@ -245,9 +247,9 @@
 					</div>
 				</div>
 				<div class="kt-card-content">
-					<div id="snackbar"></div>
-					<div id="snackbar-error"></div>
-					<div id="snackbar-info"></div>
+					<div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+					<div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+					<div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
 					<div class="signature_manager_top" style="display:none;" id="extratop">
 						<div class="button_right">
 							<input type="checkbox" value="" id="select_all" class="select_all" /> <label
@@ -525,7 +527,7 @@
 						window.location = url;
 					} else {
 
-						$('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+						$('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
 						$('#snackbar-error').show();
 						setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
 						return false;
@@ -602,7 +604,7 @@
 				}).done(function (data) {
 					if (data.error == '0') {
 
-						$('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+						$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
 						$('#snackbar').show();
 						setTimeout(function () { $('#snackbar').hide(); }, 2000);
 						// $('#shareModal').modal('hide');
@@ -755,7 +757,7 @@
 			console.log('should have copied ' + text);
 			// $('#shareModal').focus();
 
-			$('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
+			$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
 			$('#snackbar').show();
 			setTimeout(function () { $('#snackbar').hide(); }, 2000);
 			
@@ -1223,7 +1225,10 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 						.removeClass('negative-change');
 				}
 			})
-			.catch(error => console.error('Error loading chart data:', error));
+			.catch(error => console.error('Error loading chart data:', error))
+			.finally(() => {
+				$('.line-chart-loader').hide(); // Hide the loader after fetch is done (either success or failure)
+			});
 	}
 
 
@@ -1247,43 +1252,44 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 	};
 
 	async function drawSignatureChart(startDate, endDate) {
-		const res = await fetch(`/analytics/getDashboadSignatureChart?start=${startDate}&end=${endDate}`);
-		const data = await res.json();
+		try {
+			const res = await fetch(`%%DEFINE_ROOT_LINK%%/analytics/getDashboadSignatureChart?start=${startDate}&end=${endDate}`);
+			const data = await res.json();
 
-		$("#signature_total_clicks").html(data.total_clicks);
-		$("#signature_total_impressions").html(data.total_impressions);
-		$("#signature_total_unique_clicks").html(data.total_unique_clicks);
-		$("#signature_total_ctr").html(data.total_ctr);
+			$("#signature_total_clicks").html(data.total_clicks);
+			$("#signature_total_impressions").html(data.total_impressions);
+			$("#signature_total_unique_clicks").html(data.total_unique_clicks);
+			$("#signature_total_ctr").html(data.total_ctr);
 
-		const names = data.labels;
-		const values = data.allClicks;
-		const avatars = data.avatars || names.map(() => 'https://i.pravatar.cc/50');
+			const names = data.labels;
+			const values = data.allClicks;
+			const avatars = data.avatars || names.map(() => 'https://i.pravatar.cc/50');
 
-		const avatarImages = avatars.map(src => {
-			const img = new Image();
-			img.src = src;
-			return img;
-		});
+			const avatarImages = avatars.map(src => {
+				const img = new Image();
+				img.src = src;
+				return img;
+			});
 
-		const ctx = document.getElementById('signature_chart').getContext('2d');
+			const ctx = document.getElementById('signature_chart').getContext('2d');
 
-		// Get the parent container's dimensions
-		const chartContainer = document.getElementById('chart-container');
-		const parentHeight = chartContainer.clientHeight;
+			// Get the parent container's dimensions
+			const chartContainer = document.getElementById('chart-container');
+			const parentHeight = chartContainer.clientHeight;
 
-		// Set the canvas height and width based on parent container
-		const canvas = document.getElementById('signature_chart');
-		canvas.height = 420;  // Set height to parent div height
-		canvas.width = chartContainer.clientWidth; // Optionally, set the width too
+			// Set the canvas height and width based on parent container
+			const canvas = document.getElementById('signature_chart');
+			canvas.height = 420;  // Set height to parent div height
+			canvas.width = chartContainer.clientWidth; // Optionally, set the width too
 
-		if (signatureChart) signatureChart.destroy();
+			if (signatureChart) signatureChart.destroy();
 
-		const maxValue = Math.max(...values);
-		let stepSize = Math.ceil(maxValue / 3);
-		if (stepSize < 1) stepSize = 1;
-		const yAxisMax = stepSize * 4;
+			const maxValue = Math.max(...values);
+			let stepSize = Math.ceil(maxValue / 3);
+			if (stepSize < 1) stepSize = 1;
+			const yAxisMax = stepSize * 4;
 
-		signatureChart = new Chart(ctx, {
+			signatureChart = new Chart(ctx, {
 			type: 'bar',
 			data: {
 				labels: names,
@@ -1504,6 +1510,11 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 				}
 			}]
 		});
+		} catch (error) {
+			console.error('Error loading signature chart data:', error);
+		} finally {
+			$('.performers-chart-loader').hide(); // Hide the loader after the function completes
+		}
 	}
 
 
@@ -1560,11 +1571,20 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 		};
 	}
 
-	const { startDate, endDate } = getDateRange('this-month');
-	loadChartData('days', startDate, endDate);
-	drawSignatureChart(startDate, endDate);
+
+
+	$(document).ready(function () {
+		$('.line-chart-loader').show();
+		$('.performers-chart-loader').show();
+		const { startDate, endDate } = getDateRange('this-month');
+		loadChartData('days', startDate, endDate);
+		drawSignatureChart(startDate, endDate);
+	});
+
 
 	$('.chart-range-option').on('click', function () {
+		$('.line-chart-loader').show();
+		$('.performers-chart-loader').show();
 		const range = $(this).data('range');
 		const { startDate, endDate } = getDateRange(range);
 		loadChartData('days', startDate, endDate);

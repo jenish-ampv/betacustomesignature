@@ -36,6 +36,9 @@ ui(function() {
         // ui("h1").text("Upload");
 
         var file = e.originalEvent.dataTransfer.files;
+        if(!file){
+            return false;
+        }
         var fd = new FormData();
 
         fd.append('profileImage', file[0]);
@@ -43,10 +46,10 @@ ui(function() {
         uploadProfileData(fd);
     });
 
-    // Open profile file selector on div click
-    ui("#uploadProfileImage").click(function(){
-        ui("#profileImage").click();
-    });
+    // // Open profile file selector on div click
+    // ui("#uploadProfileImage").click(function(){
+    //     ui("#profileImage").click();
+    // });
 
     // profile file selected
     ui("#profileImage").change(function(){

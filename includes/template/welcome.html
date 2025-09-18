@@ -1,20 +1,15 @@
 %%DEFINE_HEADER%%
 
-<div class="flex w-full">
-    <div class="flex gap-3 w-7/12 flex-col p-8 lg:p-10">
-        <div>
-            <a href="%%DEFINE_ROOT_LINK%%/signin" class="kt-btn kt-btn-ghost inline-flex items-center gap-2">
-                <i class="fal fa-angle-left text-xl mt-0.5"></i> <span>Back</span>
-            </a>
-        </div>
+<div class="flex flex-col md:flex-row w-full">
+    <div class="flex gap-3 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10">
         %%DEFINE_Message%%
         <div class="flex-1 max-w-[600px] w-full mx-auto pt-14 flex flex-col">
             <div>
-                <h2>Hey %%DEFINE_USERFIRSTNAME%%! <br>Welcome to</h2>
+                <h2>Hey, %%DEFINE_USERFIRSTNAME%%! <br>Welcome to</h2>
                 <h2 class="font-semibold bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom Esignature</h2>
                 <a class="kt-btn kt-btn-primary w-full mt-8" href="%%DEFINE_linkModuleNewsignature%%">Get Started</a>
             </div>
-            <div class="flex items-center justify-center flex-1">
+            <div class="flex items-center justify-center flex-1 py-10">
                 <img class="h-72" src="%%DEFINE_IMAGE_LINK%%/images/slide1.png" alt="">
             </div>
             <!-- <div class="sign_previous_bg">
@@ -41,8 +36,8 @@
                 </div>
             </div> -->
         </div>
-        <div class="flex text-sm items-center justify-between">
-            <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+        <div class="flex flex-col gap-4 mt-4 text-sm items-center justify-between xl:flex-row">
+            <span class="text-gray-600 text-center">© 2025 Custom Esignature's Inc. All rights reserved.</span>
             <div class="flex text-gray-700 items-center gap-2">
                 <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
                 <i class="fas fa-circle text-[6px] text-gray-400"></i>
@@ -50,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+    <div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
     style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
         <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
         <div class="swiper w-full" id="loginSlider">
