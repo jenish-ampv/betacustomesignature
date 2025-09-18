@@ -92,7 +92,7 @@ class CIT_REGISTERUSERS{
 						$dataUserType = array('user_type'=>$_POST['user_type']);
 						$whereUserType = array('user_id'=>$userRow['user_id']);
 						$add = $GLOBALS['DB']->update('registerusers',$dataUserType,$whereUserType);
-						$_SESSION['Success'] = '<div class="alert alert-success">Plan upgrade success.</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Plan upgrade success.</div>';
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>'registerusers')));
 					}else{
 						$_SESSION['Error'] = '<div class="alert alert-danger">User not found.</div>';
@@ -162,7 +162,7 @@ class CIT_REGISTERUSERS{
 									'metadata' => array('user_id' =>$user_id,'plan_id' =>$plan_id,'plan_unit'=>$plan_unit),
 								)); 
 								
-								$_SESSION['Success'] = '<div class="alert alert-success">Plan upgrade success.</div>';
+								$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Plan upgrade success.</div>';
 								GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'],'action'=>'upgrade','id'=>$user_id)));
 							  }
 					}
@@ -221,9 +221,9 @@ class CIT_REGISTERUSERS{
 							}
 							unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
 							if($_POST['user_type'] == 1){
-								$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Free trial user created</div>';
+								$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Free trial user created</div>';
 							}else{
-								$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+								$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 							}
 						}
 					}else{
@@ -325,7 +325,7 @@ class CIT_REGISTERUSERS{
 					$rename_dir =  GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$_REQUEST['id'].'-expire';
 					rename($current_dir,$rename_dir);
 				}
-				$_SESSION['Success'] = '<div class="alert alert-success">Status changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Status changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -376,7 +376,7 @@ class CIT_REGISTERUSERS{
 			if($addResult){
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/'.$id;
 				$this->deleteDirectory($location);
-				$_SESSION['Success'] = '<div class="alert alert-success">Register User deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Register User deleted successfully</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'])));	
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete Register User, please try again.</div>';
@@ -794,7 +794,7 @@ class CIT_REGISTERUSERS{
 			$subUserDataBeforeDelete =  $GLOBALS['DB']->row("select * FROM `registerusers_sub_users` RSU WHERE RSU.parent_user_id!='0' AND RSU.id=?",array($id));
 			$addResult = $GLOBALS['DB']->query("DELETE FROM registerusers_sub_users WHERE id = ?", array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Register Sub User deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Register Sub User deleted successfully</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'],'action'=>'subusers','id'=>$subUserDataBeforeDelete['parent_user_id'])));	
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete Register User, please try again.</div>';

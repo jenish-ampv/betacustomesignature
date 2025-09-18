@@ -24,10 +24,10 @@
           <div
             class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 h-full overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
             <div class="flex-1 flex flex-col items-center justify-center">
-              <div id="snackbar"></div>
-              <div id="snackbar-error"></div>
-              <div id="snackbar-info"></div>
-              <div class="border border-gray-300 rounded-xl p-5 bg-white max-w-[740px] mx-auto w-full">
+              <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+              <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+              <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
+              <div class="lg:border border-gray-300 rounded-xl lg:p-5 lg:bg-white max-w-[740px] mx-auto w-full">
                 <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
                   <div class="flex items-center gap-3">
                     <img class="size-9 rounded-full object-cover" draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
@@ -108,7 +108,7 @@
           var json = JSON.parse(data);
           if (json.error != 1) {
 
-            // $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+            // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
             // $('#snackbar').show();
             // setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturl;}, 2000);
 
@@ -139,7 +139,7 @@
               $('.signature_temp_preview_box').hide();
               $(".loader-image").hide();
 
-              $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+              $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
               $('#snackbar').show();
               //setTimeout(function () { $('#snackbar').hide(); window.location = redirecturl; }, 2000);
             }
@@ -154,7 +154,7 @@
             $('.signature_previous_box').show();
             $('.signature_temp_preview_box').hide();
             $(".loader-image").hide();
-            $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>')
+            $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>')
             $('#snackbar-error').show();
             setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
             return false;
@@ -274,7 +274,7 @@
           $('.signature_temp_preview_box').hide();
           $(".loader-image").hide();
 
-          $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+          $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
           $('#snackbar').show();
           setTimeout(function () { $('#snackbar').hide(); window.location = redirecturl; }, 2000);
         }).fail(function (data) {

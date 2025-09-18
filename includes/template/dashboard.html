@@ -141,7 +141,7 @@
 			<div class="kt-card mt-2">
 				<div class="kt-card-header flex-col justify-start items-start">
 					<div class="kt-card-heading pt-5">
-						<div class="kt-card-title">Analytics Snapshot</div>
+						<div class="kt-card-title">Signature Manager</div>
 					</div>
 					<div class="kt-card-toolbar w-full mb-4 flex flex-wrap justify-between items-center">
 						<div class="flex items-center gap-1">
@@ -245,9 +245,9 @@
 					</div>
 				</div>
 				<div class="kt-card-content">
-					<div id="snackbar"></div>
-					<div id="snackbar-error"></div>
-					<div id="snackbar-info"></div>
+					<div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+					<div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+					<div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
 					<div class="signature_manager_top" style="display:none;" id="extratop">
 						<div class="button_right">
 							<input type="checkbox" value="" id="select_all" class="select_all" /> <label
@@ -525,7 +525,7 @@
 						window.location = url;
 					} else {
 
-						$('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+						$('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
 						$('#snackbar-error').show();
 						setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
 						return false;
@@ -602,7 +602,7 @@
 				}).done(function (data) {
 					if (data.error == '0') {
 
-						$('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+						$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
 						$('#snackbar').show();
 						setTimeout(function () { $('#snackbar').hide(); }, 2000);
 						// $('#shareModal').modal('hide');
@@ -755,7 +755,7 @@
 			console.log('should have copied ' + text);
 			// $('#shareModal').focus();
 
-			$('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
+			$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
 			$('#snackbar').show();
 			setTimeout(function () { $('#snackbar').hide(); }, 2000);
 			

@@ -112,7 +112,7 @@ class CIT_EMAILTEMPLATE
 				$where = array('template_id'=>$template_id);
 				$updateResult = $GLOBALS['DB']->update("emailtemplate",$data,$where); 
 				if($updateResult){	 	
-					$_SESSION['Success'] .= '<div class="alert alert-success" role="alert">Record updated successfully<br /></div>';
+					$_SESSION['Success'] .= '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Record updated successfully<br /></div>';
 					GetAdminRedirectUrl($GLOBALS['CURRENT_URL']);
 				}else{
 											
@@ -152,7 +152,7 @@ class CIT_EMAILTEMPLATE
 				  $data = array('site_id'=>$GLOBALS['SITE_ID'],'template_name'=>$_POST['template_name'],'template_url'=>$_POST['template_url'],'template_subject'=>$_POST['template_subject'],'template_content'=>$_POST['template_content'],'templatenote'=>$_POST['tempnote']);	
 				  $addResult = $GLOBALS['DB']->insert("emailtemplate",$data);
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Template Add successfully</div>';					
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Template Add successfully</div>';					
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>'emailtemplate','action'=>'add')));
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add template, please try again.</div>';	
@@ -182,7 +182,7 @@ class CIT_EMAILTEMPLATE
 		if(is_numeric($template_id)){
 			$addResult = $GLOBALS['DB']->query("DELETE FROM `emailtemplate` WHERE `template_id` = ?",array($template_id));
 			if($addResult== true){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Template deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Template deleted successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to delete emailtemplate, please try again.</div>';
 			}
@@ -239,7 +239,7 @@ class CIT_EMAILTEMPLATE
 		if(isset($_POST['template_header']) && isset($_POST['template_footer'])){
 			$result = $this->SaveTemplateDetail();
 			if($result){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Template Header and Footer Save  successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Template Header and Footer Save  successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">somthing wrong not save header and footer, please try again.</div>';
 			}
@@ -247,7 +247,7 @@ class CIT_EMAILTEMPLATE
 		if(isset($_POST['template_adminheader']) && isset($_POST['template_adminfooter'])){
 			$result = $this->SaveAdminTemplateDetail();
 			if($result){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Admin Template Header and Footer Save  successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Admin Template Header and Footer Save  successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">somthing wrong not save Admin header and footer, please try again.</div>';
 			}

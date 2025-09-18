@@ -21,8 +21,8 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
 </div>
 
 
-<div class="flex w-full" id="logoProfileUploadContainer">
-  <div class="flex gap-3 w-7/12 flex-col p-8 lg:p-10 overflow-auto">
+<div class="flex w-full flex flex-col md:flex-row w-full" id="logoProfileUploadContainer">
+  <div class="flex gap-3 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10 md:overflow-auto">
     <div class="flex-1 flex flex-col">
       <div>
         <a href="%%DEFINE_linkModuleDashboard%%" class="previous kt-btn kt-btn-ghost gap-2">
@@ -101,7 +101,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
       </div>
     </div>
   </div>
-  <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+  <div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
     style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
     <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
       <div class="swiper w-full" id="loginSlider">
@@ -142,9 +142,9 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
           <div
             class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 h-full overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
             <div class="flex-1 flex flex-col items-center justify-center">
-              <div id="snackbar"></div>
-              <div id="snackbar-error"></div>
-              <div id="snackbar-info"></div>
+              <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+              <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+              <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
               <div class="lg:border border-gray-300 rounded-xl lg:p-5 lg:bg-white max-w-[740px] mx-auto w-full">
                 <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
                   <div class="flex items-center gap-3">
@@ -370,13 +370,13 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 if ($('#uploadlimit').val() === 1) {
                   window.location = redirecturl;
                 } else {
-                  $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+                  $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
                   $('#snackbar').show();
                   setTimeout(function () { $('#snackbar').hide(); window.location = redirecturld; }, 2000);
                   setTimeout(function () { x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
                 }
               } else {
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); window.location = redirecturld; }, 2000);
                 return false;
@@ -461,7 +461,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
               url: saveSignatureUrl,
               data: { html: $('.signature_temp_preview_box').html() }
             }).done(function (data) {
-              $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+              $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
               $('#snackbar').show();
               setTimeout(function () { $('#snackbar').hide(); window.location = redirecturld; }, 2000);
             }).fail(function (data) {

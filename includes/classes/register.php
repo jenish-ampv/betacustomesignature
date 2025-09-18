@@ -268,7 +268,7 @@ class CIT_REGISTER
 					$message= _getEmailTemplate('forget_password');
 					$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					if($send_mail){
-						$_SESSION[GetSession('Error')] ='<div class="alert alert-success"><strong> Success! </strong>password reset link sent to your register email address!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong> Success! </strong>password reset link sent to your register email address!</div>';
 					}else{
 						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>please enter email address associate with your account!</div>';
 					}
@@ -332,7 +332,7 @@ class CIT_REGISTER
 									}
 								}
 							    unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-								$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+								$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 								$message= _getEmailTemplate('welcome');
 								$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 								$this->AddgohiLevelContact();
@@ -467,7 +467,7 @@ class CIT_REGISTER
 				$_SESSION[GetSession('ve_otpverify')] = $otp;
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'userdetails','email'=>bin2hex($_SESSION[GetSession('ve_email')]),'password'=>bin2hex($_SESSION[GetSession('ve_password')]))));
 			}else{
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> code not match!.</div>';
+				$_SESSION[GetSession('Error')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> code not match!.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}
 		}
@@ -480,10 +480,10 @@ class CIT_REGISTER
 			$message= _getEmailTemplate('register_verify_email');
 			$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			if($send_mail){
-				$_SESSION[GetSession('Success')]='<div class="alert alert-success" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
+				$_SESSION[GetSession('Success')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong> OTP sent to your email account!.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}else{
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again!.</div>';
+				$_SESSION[GetSession('Error')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> mail not sent try again!.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}
 		}
@@ -497,11 +497,11 @@ class CIT_REGISTER
 			$rowVESubUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers_sub_users` WHERE email = ?",array($user_email));
 			
 			if($rowVE){
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+				$_SESSION[GetSession('Error')]='<div class="fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));
 			}
 			else if($rowVESubUser){
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+				$_SESSION[GetSession('Error')]='<div class="fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));
 			}
 			else{
@@ -514,10 +514,10 @@ class CIT_REGISTER
 				$message= _getEmailTemplate('register_verify_email');
 				$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 				if($send_mail){
-					$_SESSION[GetSession('Success')]='<div class="alert alert-success" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
+					$_SESSION[GetSession('Success')]='<div class="fixed top-3 right-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong> OTP sent to your email account!.</div></div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 				}else{
-					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again!.</div>';
+					$_SESSION[GetSession('Error')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> mail not sent try again!.</div></div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));
 				}
 			}
@@ -545,7 +545,7 @@ class CIT_REGISTER
 			$GLOBALS['USER_PASSWORD'] = hex2bin($_REQUEST['subid']);
 		}
 		else{
-			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> something went wrong, try again later.</div>';
+			$_SESSION[GetSession('Error')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> something went wrong, try again later.</div></div>';
 			GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 		}
 		$GLOBALS['STRIPE_PUBLISHABLE_KEY'] = GetConfig('STRIPE_PUBLISHABLE_KEY');
@@ -566,13 +566,13 @@ class CIT_REGISTER
 		$rowSubUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers_sub_users` WHERE email = ?",array($postData['register_user_email']));
 		
 		if($rowUser){
-			$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+			$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
 			$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
 			header('Content-Type: application/json');
 			echo json_encode($returnData);exit();
 		}
 		else if($rowSubUser){
-			$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+			$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
 			$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
 			header('Content-Type: application/json');
 			echo json_encode($returnData);exit();
@@ -587,7 +587,7 @@ class CIT_REGISTER
 			if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$insert_id)) {
 				if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$insert_id)) {
 					die();
-					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> temp folder not created. Permission problem.</div>';
+					$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> temp folder not created. Permission problem.</div></div>';
 					$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
 					header('Content-Type: application/json');
 					echo json_encode($returnData);exit();
@@ -595,14 +595,14 @@ class CIT_REGISTER
 			}
 			if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
 				if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
-					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> temp folder not created. Permission problem.</div>';
+					$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> temp folder not created. Permission problem.</div></div>';
 					$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
 					header('Content-Type: application/json');
 					echo json_encode($returnData);exit();
 				}
 			}
 			unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-			$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+		$_SESSION[GetSession('Success')] ='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signup success signin to create new signature</div></div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			$this->AddgohiLevelContact();
@@ -718,7 +718,7 @@ class CIT_REGISTER
 				}
 			}
 				unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-			$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+			$_SESSION[GetSession('Success')] ='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signup success signin to create new signature</div></div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($postData->user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			$this->AddgohiLevelContact();

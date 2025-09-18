@@ -206,7 +206,7 @@ function logoChanged(){
       ui(".btn-close").click();
       var response = JSON.parse(response);
       if(response.success){
-        $('#snackbar').html('<div class="alert alert-success"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
+        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
 				$('#snackbar').show();
 				setTimeout(function(){ $('#snackbar').hide(); }, 2000);
       }
@@ -233,7 +233,7 @@ function departmentLogoChanged(){
       ui(".btn-close").click();
       var response = JSON.parse(response);
       if(response.success){
-        $('#snackbar').html('<div class="alert alert-success"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
+        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
 				$('#snackbar').show();
 				setTimeout(function(){ $('#snackbar').hide(); location.reload();}, 2000);
       }

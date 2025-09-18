@@ -55,7 +55,7 @@ class CIT_SIGNATURELAYOUT{
 			$addResult = $GLOBALS['DB']->update('signature_layout',array('layout_status' => $_REQUEST['status']),array('layout_id'=>$_REQUEST['id']));
 			
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Status changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Status changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -128,7 +128,7 @@ class CIT_SIGNATURELAYOUT{
 							$_SESSION['Error'] .= '<div class="alert alert-danger" role="alert">Index id is not valid.</div>';
 						}
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">layout Add successfully</div>';					
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">layout Add successfully</div>';					
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>'signaturelayout')));
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add layout, please try again.</div>';	
@@ -170,7 +170,7 @@ class CIT_SIGNATURELAYOUT{
 				  $data = array('index_id'=>$rowAI['Auto_increment'],'layout_name'=>$_POST['layout_name'],'layout_desc'=>$layout_desc,'layout_image'=>$image,'layout_socialstyle'=>$_POST['layout_socialstyle'],'profile_image_size'=>$_POST['profile_image_size'],'layout_custom_with_social'=>$_POST['layout_custom_with_social'],'layout_divider_padding_remove'=>$_POST['layout_divider_padding_remove']);	
 				  $addResult = $GLOBALS['DB']->insert("signature_layout",$data);
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">layout Add successfully</div>';					
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">layout Add successfully</div>';					
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>'signaturelayout','action'=>'add')));
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add layout, please try again.</div>';	
@@ -200,7 +200,7 @@ class CIT_SIGNATURELAYOUT{
 		if(is_numeric($id)){		
 			$addResult = $GLOBALS['DB']->query("DELETE FROM signature_layout WHERE layout_id = ?", array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Register User deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Register User deleted successfully</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'])));	
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete Register User, please try again.</div>';
