@@ -64,7 +64,7 @@ class CIT_FORGOTPASSWORD
 			$message= _getEmailTemplate('forget_password');
 			$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			if($send_mail){
-				$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account.</div>';
+				$_SESSION[GetSession('Success')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'id'=>'otp')));
 			}else{
 				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again.</div>';
@@ -92,7 +92,7 @@ class CIT_FORGOTPASSWORD
 					$message= _getEmailTemplate('forget_password');
 					$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					if($send_mail){
-						$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account.</div>';
+						$_SESSION[GetSession('Success')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account.</div></div>';
 						GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'id'=>'otp')));
 					}else{
 						$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again.</div>';
@@ -111,7 +111,7 @@ class CIT_FORGOTPASSWORD
 					$message= _getEmailTemplate('forget_password');
 					$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					if($send_mail){
-						$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account.</div>';
+						$_SESSION[GetSession('Success')]='<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account.</div></div>';
 						GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'id'=>'otp')));
 				}else{
 						$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again.</div>';
