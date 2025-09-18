@@ -6,7 +6,6 @@
             <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
             <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
             <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
-
             IF("%%DEFINE_PageView%%" == "googleconnect"){
             <div class="w-full max-w-[700px] mx-auto h-full flex items-center justify-center">
                 <div class="inline-flex flex-col gap-3">
@@ -33,8 +32,8 @@
                                     <p class="mb-5">To complete a domain-wide integration, you must be a Google Workspace Admin. Please choose your role below so we can provide the correct step-by-step setup instructions.</p>
 
                                     <div class="flex gap-2">
-                                        <a href="%%DEFINE_google_connect%%/2/0" class="kt-btn kt-btn-mono">No, i don't</a>
-                                        <a href="%%DEFINE_google_connect%%/2/1" class="kt-btn kt-btn-primary">Yes, i do</a>
+                                        <a href="%%DEFINE_google_connect%%/2/0" class="kt-btn kt-btn-mono">No, I don't</a>
+                                        <a href="%%DEFINE_google_connect%%/2/1" class="kt-btn kt-btn-primary">Yes, I do</a>
                                     </div>
                                 </div>
                             </div>
@@ -64,8 +63,8 @@
                                 <p>1. Follow the integration instructions provided in this guide <a class="text-primary" target="_blank" href="%%DEFINE_IMAGE_LINK%%/images/Google_Workspace_Integration_Guide.pdf">here.</a></p>
                                 <p>2. Enable or disable Automatic Signature Update with Google Directory as needed.</p>
                                 <p>3. Once all settings are configured, click Start Connection.</p>
-                                <div class="flex items-center gap-2 mt-5 mb-2">
-                                    <label class="kt-label mb-4 text-gray-950">Automatic Signature Update with Google Directory</label>
+                                <div class="flex items-center gap-2 mt-5 mb-4">
+                                    <label class="kt-label text-gray-950">Automatic Signature Update with Google Directory</label>
                                     <input class="kt-switch autoupdateswitch" type="checkbox" role="switch" id="signature_auto_update" name="signature_auto_update" value="1" checked="">
                                 </div>
                                 <p>CustomEsignature can automatically update employee signatures whenever information (e.g., name, title, phone number) changes in Google Directory.</p>
@@ -110,19 +109,19 @@
                             <form id="inviteadmin">
                                 <div class="flex flex-col gap-3 my-5">
                                     <div>
-                                        <label class="kt-label mb-4" for="admin_firstname">First Name</label>
-                                        <input type="text" class="kt-input" id="admin_firstname" name="admin_firstname" placeholder="" required="required" value="">
-                                        <span class="error hidden" id="ai">First Name is required field</span>
+                                        <label class="kt-form-label" for="admin_firstname">First Name</label>
+                                        <input type="text" class="kt-input" id="admin_firstname" name="admin_firstname" placeholder="First Name" required="required" value="">
+                                        <span class="error text-danger hidden" id="ai">First Name is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label mb-4" for="admin_lastname">Last Name</label>
-                                        <input type="text" class="kt-input" id="admin_lastname" name="admin_lastname" placeholder="" required="required" value="">
-                                        <span class="error hidden" id="as">Last Name is required field</span>
+                                        <label class="kt-form-label" for="admin_lastname">Last Name</label>
+                                        <input type="text" class="kt-input" id="admin_lastname" name="admin_lastname" placeholder="Last Name" required="required" value="">
+                                        <span class="error text-danger hidden" id="as">Last Name is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label mb-4" for="admin_email">Email</label>
+                                        <label class="kt-form-label" for="admin_email">Email</label>
                                         <input type="text" class="kt-input" id="admin_email" name="admin_email" placeholder="" required="required" value="">
-                                        <span class="error hidden" id="at">Email is required field</span>
+                                        <span class="error text-danger hidden" id="at">Email is required field</span>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-2">
@@ -175,12 +174,12 @@
                         </div>
                         <div class="kt-card-content">
                             <div class="flex items-center gap-4 mb-5">
-                                <div class="text-gray-200 flex items-center gap-3">
-                                    <span class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-200 text-white">1</span>
+                                <div class="text-gray-950 flex items-center gap-3">
+                                    <span class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-950 text-white">1</span>
                                     Step
                                 </div>
-                                <div class="text-gray-950 flex items-center gap-3">
-                                    <span class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-950 text-white">2</span>
+                                <div class="text-gray-200 flex items-center gap-3">
+                                    <span class="flex-none flex items-center justify-center rounded-lg size-8 bg-gray-200 text-white">2</span>
                                     Step
                                 </div>
                             </div>
@@ -188,27 +187,27 @@
                             <form id="msazur">
                                 <div class="flex flex-col gap-3 my-5">
                                     <div>
-                                        <label class="kt-label mb-4" for="">Application ID</label>
-                                        <input type="text" class="kt-input" id="application_id" name="application_id" placeholder="" required="required" value="">
-                                        <span class="error hidden" id="ai">Application ID is required field</span>
+                                        <label class="kt-form-label" for="">Application ID</label>
+                                        <input type="text" class="kt-input" id="application_id" name="application_id" placeholder="Application ID" required="required" value="">
+                                        <span class="error text-danger hidden" id="ai">Application ID is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label mb-4" for="">Application Secret</label>
-                                        <input type="text" class="kt-input" id="application_secret" name="application_secret" placeholder="" required="required" value="">
-                                        <span class="error hidden" id="as">Application Secret is required field</span>
+                                        <label class="kt-form-label" for="">Application Secret</label>
+                                        <input type="text" class="kt-input" id="application_secret" name="application_secret" placeholder="Application Secret" required="required" value="">
+                                        <span class="error text-danger hidden" id="as">Application Secret is required field</span>
                                     </div>
                                     <div>
-                                        <label class="kt-label mb-4" for="">Application Tenant ID</label>
-                                        <input type="text" class="kt-input" id="application_tenant" name="application_tenant" placeholder="" required="required" value="">
-                                        <span class="error hidden" id="at">Application Tenant ID is required field</span>
+                                        <label class="kt-form-label" for="">Application Tenant ID</label>
+                                        <input type="text" class="kt-input" id="application_tenant" name="application_tenant" placeholder="Application Tenant ID" required="required" value="">
+                                        <span class="error text-danger hidden" id="at">Application Tenant ID is required field</span>
                                     </div>
                                     <div class="style_design_box" style="display:none;">
-                                        <label class="kt-label mb-4">Automatic Signature Update with Active Directory</label>
+                                        <label class="kt-form-label">Automatic Signature Update with Active Directory</label>
                                         <input class="kt-switch autoupdateswitch" type="checkbox" role="switch" id="signature_auto_update" name="signature_auto_update" value="1" checked>
                                     </div>
                                 </div>
                                 <p>Custom Esignature can automatically update signatures if any information imported to the signature is changed in Outlook Directory. Automatic sync will occur every 24 hours. Manual signature updates can still be done at any point of time.</p>
-                                <div class="mt-3">
+                                <div class="mt-3 text-right">
                                     <a class="kt-btn kt-btn-primary" id="step1-btn" href="#">Continue </a>
                                 </div>
                                 <input type="hidden" name="azuread_connect" value="1" />
@@ -251,7 +250,7 @@
                                 Microsoft 365 Add-in instructions
                             </h2>
                         </div>
-                        <div class="kt-card-content">
+                        <div class="kt-card-content space-y-2">
                             <p>Custom Esignature integrates with your Microsoft 365 to help you automatically create and manage email signatures for the entire organization. Create and roll out branded email signatures with domain-wide Microsoft Add-in without having to neither set up email routing nor connect to a third-party server.</p>
                             <p>Custom Esignature connects to Microsoft 365 Active Directory with the help of Graph API which allows creating and updating email signatures based on the employee's information in Active Directory. The email signatures in Outlook are then managed by Microsoft Add-in that is centrally installed by the admin for the entire domain or specific group of employees.</p>
                             <p>The first step is to set up an integration with Microsoft 365 Active Directory. Please, follow the instructions below:</p>
@@ -475,7 +474,7 @@
                         $('#msstep1').css('display', 'none');
                         $('#msstep2').css('display', 'block');
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function() {
                             $('#snackbar-error').hide();
@@ -510,7 +509,7 @@
                             window.location = $('#redirectintegration').val();
                         }, 2000);
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function() {
                             $('#snackbar-error').hide();
@@ -569,7 +568,7 @@
                             window.location = $('#redirectgsuite_step3').val();
                         }, 2000);
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function() {
                             $('#snackbar-error').hide();
@@ -606,7 +605,7 @@
                             window.location = $('#form_url').val();
                         }, 2000);
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function() {
                             $('#snackbar-error').hide();
@@ -637,7 +636,7 @@
                             $('#snackbar').hide();
                         }, 2000);
                     } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
+                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
                         $('#snackbar-error').show();
                         setTimeout(function() {
                             $('#snackbar-error').hide();
