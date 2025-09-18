@@ -169,32 +169,28 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         <div id="snackbar"></div>
                         <div id="snackbar-error"></div>
                         <div id="snackbar-info"></div>
-						<div class="kt-card mt-2">
-				            <div class="kt-card-header flex-col justify-start items-start">
-					            <div class="kt-card-toolbar w-full mb-4 flex flex-wrap justify-between items-center">
-                                    <div class="flex items-center gap-1">
-                                        <div class="kt-input">
-                                            <i class="hgi hgi-stroke hgi-search-01"></i>
-                                            <input type="text" class="kt-input" id="search_input" placeholder="Type to Search...">
-                                        </div>
-                                        <div class="text-nowrap text-xs text-gray-600">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
-                                        <div class="invite">
-                                            <a href="usermanagement/">
-                                                <img src="%%DEFINE_IMAGE_LINK%%/images/invite-icon.svg" alt="">
-                                                Invite New User
-                                            </a>
-                                        </div>
+                        <div class="kt-card-header flex-col justify-start items-start">
+                            <div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
+                                <div class="flex items-center gap-1">
+                                    <div class="kt-input">
+                                        <i class="hgi hgi-stroke hgi-search-01"></i>
+                                        <input type="text" class="kt-input" id="search_input" placeholder="Type to Search...">
                                     </div>
-
+                                    <div class="text-nowrap text-xs text-gray-600">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
+                                </div>
+                                <div class="flex flex-wrap gap-1">
+                                    <a class="kt-btn kt-btn-primary" href="usermanagement/">
+                                        <i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
+                                    </a>
                                     <div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end">
                                         <button class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
                                             Status
                                         </button>
                                         <div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
                                             <ul class="kt-dropdown-menu-sub" id="signature-status-selector-menu">
-                                                <li id="all">All</li>
-                                                <li id="installed">Installed</li>
-                                                <li id="pending">Pending</li>
+                                                <li class="kt-dropdown-menu-link" id="all">All</li>
+                                                <li class="kt-dropdown-menu-link" id="installed">Installed</li>
+                                                <li class="kt-dropdown-menu-link" id="pending">Pending</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -242,21 +238,17 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                         <i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
                                     </a>
                                     {:IF}
+                                    <div class="signature_manager_top" style="margin-top:10px; display:none;" id="extratop">
+                                        <input type="checkbox" value="" id="select_all" class="select_all" />
+                                        <label for="select_all">Select All</label>
+                                        <a class="kt-btn kt-btn-primary" href="javascript:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="signature_manager_top" style="margin-top:10px; display:none;" id="extratop">
-                            <input type="checkbox" value="" id="select_all" class="select_all" />
-                            <label for="select_all">Select All</label>
-                            <a class="kt-btn kt-btn-primary" href="javascript:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
-                        </div>
-
-                        <div style="display:block"></div>
-                        <div class="row" id="search_result">
-
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="search_result">
                             %%DEFINE_signature_list%%
                             %%DEFINE_signature_create_upgrade%%
-
                         </div>
                     </div>
                 </div>

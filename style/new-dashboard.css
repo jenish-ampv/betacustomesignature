@@ -290,7 +290,7 @@
 .sin_dashboard_box .installed_pending_btn .installed {
     display: inline-block;
 } */
-
+/* 
 #master_signature_box .master_signature_table {
     padding: 1px;
     border-radius: 12px;
@@ -302,7 +302,6 @@
     padding: 6px;
     background: #fff;
     border-radius: 11px;
-    /* box-shadow: 0 0 38px 0px rgba(0, 204, 255, 0.1), 0 0 45px 5px rgba(29, 74, 254, 0.1); */
     backdrop-filter: blur(30px);
     line-height: 0;
 }
@@ -324,7 +323,7 @@
     border-radius: 7px;
     padding: 20px;
     
-}
+} */
 
 .new_dashboard_right .signature_tbl{
     display: inline-block;
@@ -1103,7 +1102,7 @@
 }
 
 
-@media only screen and (max-width: 400px) {
+/* @media only screen and (max-width: 400px) {
     .new_dashboard_bg .new_dashboard_left .top_menu li a {
         font-size: 12px;
         justify-content: center;
@@ -1115,4 +1114,4 @@
     .new_dashboard_bg .new_dashboard_left ul{gap: 5px;}
     .master_signature_box .title_border a.mastersig{text-indent: -999em;padding: 8px;}
     .master_signature_box .title_border a.mastersig img{margin: 0;}
-}
+} */
