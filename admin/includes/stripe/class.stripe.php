@@ -318,7 +318,7 @@ class CIT_STRIPE{
 				// refund is succeeded
 				$status = "succeeded";
 				echo('Refund succeess');
-				$_SESSION['Success'] = '<div class="alert alert-success">Plan upgrade success.</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Plan upgrade success.</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'],'action'=>'showpayments')));
 			}
 			$refundData = array(

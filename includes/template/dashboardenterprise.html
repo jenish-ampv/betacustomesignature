@@ -133,6 +133,57 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                         data-bs-target="#departmentModel"><img class="color"
                                             src="%%DEFINE_IMAGE_LINK%%/images/new-adddepartment-icon.svg" alt=""></a>
                                     {:IF}
+                        </div>
+                        <div class="department-head">
+                            <div class="text_left">Name</div>
+                            <div class="text_center">Total Member</div>
+                            <div class="text_right">Action</div>
+                        </div>
+                        <ul class="signature_box" id="sortable-list">
+                            %%DEFINE_department_list%%
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="col-xl-4 col-lg-6 col-md-6 col-12">
+                	<div class="master_signature_box">
+                    	<div class="title_border">
+                            <h5>Department List</h5>
+                            <a class="adddepartment" href="#"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/adddepartment-icon.svg" alt="">Add Department</a>
+                        </div>
+                        <div class="signature_box">
+                        	 <div class="marketing_line active">
+                             	 <div class="text_left"><img src="%%DEFINE_IMAGE_LINK%%/images/dots-menu.svg" alt=""> Marketing</div>
+                                 <div class="icon_right"><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/edit-icon.svg" alt=""></a><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/delete-icon.svg" alt=""></a></div>
+                             </div>
+                             <div class="marketing_line">
+                             	 <div class="text_left"><img src="%%DEFINE_IMAGE_LINK%%/images/dots-menu.svg" alt=""> Sales</div>
+                                 <div class="icon_right"><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/edit-icon.svg" alt=""></a><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/delete-icon.svg" alt=""></a></div>
+                             </div>
+                             <div class="marketing_line">
+                             	 <div class="text_left"><img src="%%DEFINE_IMAGE_LINK%%/images/dots-menu.svg" alt=""> HR</div>
+                                 <div class="icon_right"><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/edit-icon.svg" alt=""></a><a href="#"><img src="%%DEFINE_IMAGE_LINK%%/images/delete-icon.svg" alt=""></a></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            %%DEFINE_Message%%
+            <div class="dashboard_set_up_bg">
+                <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+                <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+                <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
+                <div class="signature_manager_top">
+                    <div class="left">
+                        <div class="search_left_box">
+                            <input type="text" id="search_input" placeholder="Type to Search...">
+                        </div>
+                        <div class="users">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
+                        <div class="invite"><a href="usermanagement/"><img src="%%DEFINE_IMAGE_LINK%%/images/invite-icon.svg" alt="">Invite New User</a></div>
+                    </div>
+                    <div class="button_right">
+                       <div class="status-selector">
+                                <div class="select">
+                                    <span>Status</span>
                                 </div>
                                 <div class="department-head">
                                     <div class="text_left">Name</div>
@@ -574,7 +625,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             }).done(function (data) {
                 var json = JSON.parse(data);
                 if (json.error != 1) {
-                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Division saved! </div>');
+                    $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Division saved! </div>');
                     $('.btn-close').click();
                     $('#snackbar').show();
                     setTimeout(function () {
@@ -586,7 +637,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         window.location = redirecturld;
                     }, 2000);
                 } else {
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                     $('#snackbar-error').show();
                     setTimeout(function () {
                         $('#snackbar-error').hide();
@@ -804,7 +855,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                 }).done(function (data) {
                     if (data.error == '0') {
 
-                        $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
                         $('#snackbar').show();
                         setTimeout(function () {
                             $('#snackbar').hide();
@@ -925,7 +976,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             console.log('should have copied ' + text);
             $('#shareModal').focus();
 
-            $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
+            $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
             $('#snackbar').show();
             setTimeout(function () {
                 $('#snackbar').hide();

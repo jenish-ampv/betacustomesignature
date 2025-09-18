@@ -129,7 +129,7 @@ class CIT_BILLING
 				$cardData = $customerCard->jsonSerialize();
 				$updatecard = $this->saveUserCard($cardData);
 				if($updatecard){
-					$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>card detail updated!</div>';
+					$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>card detail updated!</div>';
 				}else{
 					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment detail not updated.</div>';
 				}
@@ -521,7 +521,7 @@ class CIT_BILLING
 								 }
 								
 								if($add == 1){
-									 return array('error'=>0,'message'=>'<div class="alert alert-success">You Plan has been updated.</div>');
+									 return array('error'=>0,'message'=>'<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">You Plan has been updated.</div>');
 								}else{
 									return array('error'=>1,'message'=>'<div class="alert alert-danger">somthing wrong if your payment is debit from your account please contact support team.</div>');
 								}
@@ -568,7 +568,7 @@ class CIT_BILLING
 								$message= _getEmailTemplate('animation_process'); 	// send mail
 								$send_mail = _SendMail($GLOBALS['USEREMAIL'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 							}
-							 return array('error'=>0,'message'=>'<div class="alert alert-success">You Plan has been updated.</div>');
+							 return array('error'=>0,'message'=>'<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">You Plan has been updated.</div>');
 						 }catch(Exception $e) { 
 							 return array('error'=>1,'message'=>'<div class="alert alert-danger">'.$e->getMessage().'.</div>'); 
 						} 
@@ -613,7 +613,7 @@ class CIT_BILLING
 					$message= _getEmailTemplate('cancel_subscription');
 					$send_mail = _SendMail($user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 
-					$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong>Plan cancelled.</div>';
+					$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong>Plan cancelled.</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>'renewaccount')));
 				}else{
 					$_SESSION[GetSession('Error')] = '<div class="alert alert-info"><strong>Failed!</strong> '.$api_error.'</div>';
@@ -692,7 +692,7 @@ class CIT_BILLING
 					 $trdata =array('trn_userid'=>$userId,'trn_planid'=>$planId,'trn_invoiceno'=>$invoice_no,'trn_invoicefile'=>$invoice_link,'trn_total'=>$amount_paid);
 					$insert_tr =  $GLOBALS['DB']->insert("registerusers_transaction",$trdata);
 				}
-				 return array('error'=>0,'message'=>'<div class="alert alert-success">You Plan has been updated.</div>');
+				 return array('error'=>0,'message'=>'<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">You Plan has been updated.</div>');
 				
 			}
 		}else{

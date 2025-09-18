@@ -101,7 +101,7 @@ class CIT_PROMOTIONALCODE{
 			
 			$addResult = $GLOBALS['DB']->update("promotionalcode",array('status'=>$_REQUEST['status']),array('id'=>$_REQUEST['id'])); 
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Status changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Status changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -121,7 +121,7 @@ class CIT_PROMOTIONALCODE{
 		if(is_numeric($id)){		
 			$addResult = $GLOBALS['DB']->query("DELETE FROM `promotionalcode` WHERE `id` = ?",array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Promotionalcode deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Promotionalcode deleted successfully</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'])));	
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to delete promotionalcode, please try again.</div>';
@@ -152,7 +152,7 @@ class CIT_PROMOTIONALCODE{
 					$where = array('id'=>$id);
 					$updateResult = $GLOBALS['DB']->update("promotionalcode",$data,$where);
 					if($updateResult){
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Promotionalcode updated successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Promotionalcode updated successfully</div>';
 					} else {
 						
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to update promotionalcode, please try again.</div>';
@@ -207,7 +207,7 @@ class CIT_PROMOTIONALCODE{
 			$data =array('status'=>1,'name'=>$_POST['name'],'code'=>$_POST['code'],'amount'=>$_POST['amount'],'amount_type'=>$_POST['amount_type'],'type'=>0,'website'=>$display_website,'expdate'=>$expdate);
 			$addResult = $GLOBALS['DB']->insert("promotionalcode",$data);
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Promotionalcode added successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Promotionalcode added successfully</div>';
 			} else {
 				
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add promotionalcode, please try again.</div>';

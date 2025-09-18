@@ -81,7 +81,7 @@ class CIT_SIGNATURE{
 			//$addResult = $GLOBALS['DB']->update('signature',array('signature_process' => $_REQUEST['status']),array('signature_id'=>$_REQUEST['id']));
 
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Process changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Process changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -105,7 +105,7 @@ class CIT_SIGNATURE{
 			$addResult = $GLOBALS['DB']->update('signature',array('signature_status' => $_REQUEST['status']),array('signature_id'=>$_REQUEST['id']));
 
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Status changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Status changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -148,7 +148,7 @@ class CIT_SIGNATURE{
 				  $where = array('signature_id'=>$signature_id);
 				  $addResult = $GLOBALS['DB']->update("signature",$data,$where);
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">layout Add successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">layout Add successfully</div>';
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>'signature')));
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add layout, please try again.</div>';
@@ -189,7 +189,7 @@ class CIT_SIGNATURE{
 				  $data = array('layout_name'=>$_POST['layout_name'],'layout_desc'=>$_POST['layout_desc'],'layout_image'=>$image);
 				  $addResult = $GLOBALS['DB']->insert("signature",$data);
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">layout Add successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">layout Add successfully</div>';
 						GetAdminRedirectUrl(GetAdminUrl(array('module'=>'signature','action'=>'add')));
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add layout, please try again.</div>';
@@ -219,7 +219,7 @@ class CIT_SIGNATURE{
 		if(is_numeric($id)){
 			$addResult = $GLOBALS['DB']->query("DELETE FROM signature WHERE signature_id = ?", array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Register User deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Register User deleted successfully</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'])));
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete Register User, please try again.</div>';
@@ -267,7 +267,7 @@ class CIT_SIGNATURE{
 
 							$update = $GLOBALS['DB']->update("signature_logo",array('logo_animation'=>$imagename),array('id'=>$id));
 							if($update){
-								$_SESSION['Success'] = '<div class="alert alert-success">signature logo upload successfully</div>';
+								$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">signature logo upload successfully</div>';
 							}else{
 								$_SESSION['Error'] = '<div class="alert alert-danger">somthing wrong try again record not updated.</div>';
 							}
@@ -575,7 +575,7 @@ class CIT_SIGNATURE{
 							}
 						}
 						$GLOBALS['DB']->update("signature_logo",$updateDataArray,array('id'=>$id));
-						$_SESSION['Success'] = '<div class="alert alert-success">signature logo change proocess status updated successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">signature logo change proocess status updated successfully</div>';
 					}
 					else{
 						$_SESSION['Error'] = '<div class="alert alert-danger">please select signature image.</div>';
@@ -697,7 +697,7 @@ class CIT_SIGNATURE{
 						// Add attachments to created API END
 					}
 					if($_POST['logo_change_process'] == 3){
-						$_SESSION['Success'] = '<div class="alert alert-success">Logo has been rejected and feedback assign to client</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Logo has been rejected and feedback assign to client</div>';
 					}
 					$redUrl = GetAdminUrl(array('module'=>$_REQUEST['module']));
 					GetAdminRedirectUrl($redUrl);

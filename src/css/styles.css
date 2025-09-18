@@ -215,4 +215,7 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 @keyframes width2 {
   0%, 100% { width: 4rem; }
   50% { width: 2.5rem; }
+
+.required{
+    @apply after:content-['*'] after:text-red-500
 }

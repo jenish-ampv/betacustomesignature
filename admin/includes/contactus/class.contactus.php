@@ -42,7 +42,7 @@ class CIT_CONTACTUS{
 			$addResult = $GLOBALS['DB']->query("DELETE FROM `contactus` WHERE `id` = ?", array($id));		
 			$altResult = $GLOBALS['DB']->query("ALTER TABLE `contactus` AUTO_INCREMENT = 1");
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Contact us deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Contact us deleted successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to delete auto locator, please try again.</div>';
 			}

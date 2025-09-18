@@ -44,7 +44,7 @@ class CIT_PAGES{
 		if(is_numeric($id)){		
 			$addResult = $GLOBALS['DB']->query("DELETE FROM `pages` WHERE id = ?",array($id));
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success">Page deleted successfully</div>';				
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Page deleted successfully</div>';				
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to delete user, please try again.</div>';				
 			}
@@ -103,7 +103,7 @@ class CIT_PAGES{
 						$imageDestination = GetConfig('SITE_UPLOAD_PATH').'/cmspage/'.$id;
 						$image = $objImage->imageUpload($imageSourcefile,$imageDestination,'image'); 
 						if($image['msg'] == "success"){
-							$_SESSION['Success'] .= sprintf('<div class="alert alert-success">Image uploaded successfully<br /></div>');
+							$_SESSION['Success'] .= sprintf('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Image uploaded successfully<br /></div>');
 						}
 						if($image['msg'] == "error"){
 							$_SESSION['Error'] .= sprintf('<div class="alert alert-danger">Image not valid<br /></div>');						
@@ -120,7 +120,7 @@ class CIT_PAGES{
 					$updateResult = $GLOBALS['DB']->query("UPDATE `pages` SET `site_id`=".$GLOBALS['SITE_ID'].",`name`='".$_POST['name']."',`desc`='".$_POST['desc']."',`seourl`='".$seourl."',`type`=".$_POST['type'].",`modulename`='".$_POST['modulename']."',`metatitle`='".$_POST['metatitle']."',`metakeywords`='".$_POST['metakeywords']."',`metadescription`='".$_POST['metadescription']."',`image`='".$imagename."',`sortdesc`='".$descContent."' WHERE id=$id");	
 										
 						if($updateResult){
-							$_SESSION['Success'] = '<div class="alert alert-success">Page updated successfully</div>';
+							$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Page updated successfully</div>';
 							GetAdminRedirectUrl($GLOBALS['CURRENT_URL']);
 						} else {
 							$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to update page, please try again.</div>';
@@ -228,7 +228,7 @@ class CIT_PAGES{
 						$imageDestination = GetConfig('SITE_UPLOAD_PATH').'/cmspage/'.$rowAI['Auto_increment']; 
 						$image = $objImage->imageUploadResize($imageSourcefile,$imageDestination,'image');	 						
 						if($image['msg'] == "success"){ 
-							$_SESSION['Success'] .= sprintf('<div class="alert alert-success">Image uploaded successfully<br /></div>');		
+							$_SESSION['Success'] .= sprintf('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Image uploaded successfully<br /></div>');		
 						}
 						if($image['msg'] == "error"){
 							$_SESSION['Error'] .= sprintf('<div class="alert alert-danger">Image not valid<br /></div>');						
@@ -249,7 +249,7 @@ class CIT_PAGES{
 					$addResult = $GLOBALS['DB']->insert("pages",$data);	
 					
 					if($addResult){
-						$_SESSION['Success'] = '<div class="alert alert-success">Page added successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Page added successfully</div>';
 						GetAdminRedirectUrl($GLOBALS['CURRENT_URL']);
 					} else {
 						$_SESSION['Error'] = '<div class="alert alert-danger">An error occurred while you trying to add new page, please try again.</div>';
