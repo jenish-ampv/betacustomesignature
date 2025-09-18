@@ -84,13 +84,11 @@
                         <form id="groupazure" method="post" action="" enctype="multipart/form-data">
                             <div class="flex items-center justify-between flex-wrap mb-4">
                                 <p class="font-semibold">Google Workspace Organisation Units</p>
-                                <div class="flex items-center gap-2">
-                                    <input class="kt-checkbox kt-checkbox-sm" type="checkbox" id="select_all"
-                                        name="selectall" value="1" />
-                                    <label class="kt-label" for="select_all">Select All</label>
-                                </div>
                             </div>
                             <ul class="group_list">
+                                <input type='text' class='kt-input' value='' id='search_member_gsuite' placeholder='Search user'>
+                                <p id='notfound_gsuite' style='display:none;'>No results found</p>
+                                <div id='search_result_gsuite' class='search_result_gsuite accordion' style='display:none;'>%%DEFINE_search_list%%</div>
                                 %%DEFINE_group_list%%
                             </ul>
                             <input type="hidden" name="gsuite_group" value="1" />
@@ -212,6 +210,72 @@
             } else {
                 $('#select_all_' + department_id).prop('checked', false);
             }
+        });
+
+        $('.mem_checkbox').change(function () {  // check box select all member
+            var listCheckItemsid = $(this).attr('data-wrapper');
+            var listCheckItems = $("#" + listCheckItemsid + " :checkbox");
+            var masterCheckid = $(this).attr('data-master');
+            var masterCheck = $("#" + masterCheckid);
+            var totalItems = listCheckItems.length;
+            var checkedItems = listCheckItems.filter(":checked").length;
+
+            if (totalItems == checkedItems) {
+                masterCheck.prop("checked", true);
+            } else if (checkedItems > 0 && checkedItems < totalItems) {
+                masterCheck.prop("checked", false);
+                $('#select_all').prop('checked', false);
+            } else {
+                masterCheck.prop("checked", false);
+                $('#select_all').prop('checked', false);
+            }
+            var selectedmem = ($('.mem_checkbox:checked').length);
+            $('#selected_mem').text(selectedmem);
+
+            // select search textbox
+            var searchselid = 'search_' + $(this).attr('id');
+            if ($(this).prop('checked') == true) {
+                $('#' + searchselid).prop("checked", true);
+            } else {
+                $('#' + searchselid).prop("checked", false);
+            }
+
+            });
+
+        $('.mem_search_checkbox').change(function () {
+            var searchsel = $(this).attr('id');
+            searchselid = searchsel.replace("search_", "");
+            groupid = $(this).attr('data-master');
+            if ($(this).prop('checked') == true) {
+                $('#' + searchselid).prop("checked", true);
+            } else {
+                $('#' + searchselid).prop("checked", false);
+                $('#' + groupid).prop("checked", false);
+                $('#select_all').prop('checked', false);
+            }
+            var selectedmem = ($('.mem_checkbox:checked').length);
+            $('#selected_mem').text(selectedmem);
+        });
+
+        // search memners
+        $("#search_member_gsuite").keyup(function () {
+        var filter = $(this).val(); var res = 0;
+        $('#search_result_gsuite div.search-container').hide();
+        $('#search_result_gsuite').css('display', 'none');
+        $('#notfound_gsuite').css('display', 'none');
+        $('#search_result_gsuite').css('display', 'block');
+        $('#search_result_gsuite div.search-container').each(function () {
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).hide();
+            } else {
+                res = 1;
+                $(this).show();
+            }
+        });
+        if (res == 0) {
+            $('#search_result').css('display', 'none');
+            $('#notfound').css('display', 'block');
+        }
         });
     });
 </script>

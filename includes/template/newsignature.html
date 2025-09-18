@@ -1,17 +1,5 @@
 %%DEFINE_HEADER%%
 
-IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
-<style>
-  #logoProfileUploadContainer {
-    display: none;
-  }
-
-  #msform {
-    display: inline;
-  }
-</style>
-{:IF}
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
 
@@ -20,6 +8,9 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
   <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
 </div>
 
+<div id="snackbar" class="fixed top-0 right-0 p-3"></div>
+<div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
+<div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
 
 <div class="flex w-full flex flex-col md:flex-row w-full" id="logoProfileUploadContainer">
   <div class="flex gap-3 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10 md:overflow-auto">
@@ -45,10 +36,10 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 <label class="kt-form-label !mb-3">Company Logo</label>
                 <input type="file" name="file" id="file" class="hidden">
                 <label for="file"
-                  class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px]">
-                  <div class="cursor-pointer p-6 upload-box">
+                  class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px] upload-area" id="uploadfile">
+                  <div class="cursor-pointer p-6 upload-box drag_your_image">
                     <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
-                    <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or SVG</p>
+                    <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG or SVG</p>
                     <span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span>
                   </div>
                   <div class="preview size-full absolute z-[1] hidden">
@@ -66,29 +57,34 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 <div id="img_errormsg"></div>
               </div>
               <div>
-                <label class="kt-form-label !mb-3">Profile Photo</label>
-                <input class="hidden" type="file" id="profileImage">
-                <label
-                  class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px]"
-                  for="profileImage">
-                  <div class="cursor-pointer p-6 upload-box">
-                    <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
-                    <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or SVG</p>
-                    <span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span>
-                  </div>
-                  <div class="preview size-full absolute z-[1] hidden">
-                    <div class="size-full flex items-center justify-center">
-                      <img class="size-[200px] object-cover object-center" src="">
+                <div class="flex">
+                  <label class="kt-form-label !mb-3">Profile Photo</label>
+                  <input class="kt-switch" type="checkbox" id="profileImageCheck" checked>
+                </div>
+                <div id="profileUploadContainer">
+                  <input class="hidden" type="file" name="profileImage" id="profileImage">
+                  <label
+                    class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px] upload-area-profile"
+                    for="profileImage" id="uploadProfileImage">
+                    <div class="cursor-pointer p-6 upload-box drag_your_image">
+                      <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
+                      <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or SVG</p>
+                      <span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span>
                     </div>
-                    <button class="!absolute right-1 top-1 kt-btn kt-btn-white !text-gray-950"><i
-                        class="fas fa-pen"></i> Edit Profile</button>
-                  </div>
-                </label>
-                <p class="text-gray-600 text-xs mt-2"><span class="text-gray-950">Notes:</span> Please upload a logo
-                  with dimension <span class="text-gray-950">500*500 and above pixel</span> for better animation
-                  quality.</p>
-                <div id="profile_img_preview"></div>
-                <div id="profile_img_errormsg"></div>
+                    <div class="preview size-full absolute z-[1] hidden">
+                      <div class="size-full flex items-center justify-center">
+                        <img class="size-[200px] object-cover object-center" src="">
+                      </div>
+                      <button class="!absolute right-1 top-1 kt-btn kt-btn-white !text-gray-950"><i
+                          class="fas fa-pen"></i> Edit Profile</button>
+                    </div>
+                  </label>
+                  <p class="text-gray-600 text-xs mt-2"><span class="text-gray-950">Notes:</span> Please upload a logo
+                    with dimension <span class="text-gray-950">500*500 and above pixel</span> for better animation
+                    quality.</p>
+                  <div id="profile_img_preview"></div>
+                  <div id="profile_img_errormsg"></div>
+                </div>
               </div>
             </div>
             <input type="hidden" value="%%DEFINE_USERUPLOADLIMIT%%" id="uploadlimit" />
@@ -125,7 +121,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
   </div>
 </div>
 
-<form id="msform" class="w-full h-full overflow-hidden">
+<form id="msform" class="w-full h-full overflow-hidden" style="display: none;">
   <input type="hidden" name="signature_image" value="">
   <div class="flex h-full flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     <main class="h-full" id="content" role="content">
@@ -142,9 +138,6 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
           <div
             class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 h-full overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
             <div class="flex-1 flex flex-col items-center justify-center">
-              <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
-              <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
-              <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
               <div class="lg:border border-gray-300 rounded-xl lg:p-5 lg:bg-white max-w-[740px] mx-auto w-full">
                 <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
                   <div class="flex items-center gap-3">
@@ -187,6 +180,18 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
 </form>
 
 
+IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
+<style>
+  #logoProfileUploadContainer {
+    display: none !important;
+  }
+
+  #msform {
+    display: inline !important;
+  }
+</style>
+{:IF}
+
     <input type="hidden" id="upload_url" value="%%DEFINE_linkModuleNewsignature%%/uploadimg" />
     <input type="hidden" id="upload_profile_url" value="%%DEFINE_linkModuleNewsignature%%/uploadprofileimg" />
     <input type="hidden" id="form_url" value="%%DEFINE_linkModuleNewsignature%%" />
@@ -200,7 +205,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
     <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
     <script src="%%DEFINE_JS_LINK%%/uploadimage.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
     <script src="%%DEFINE_JS_LINK%%/uploadsigprofile.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
-    <!-- <script src="%%DEFINE_JS_LINK%%/uploadprofileimagefirsttime.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script> -->
+    <script src="%%DEFINE_JS_LINK%%/uploadprofileimagefirsttime.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
     <!-- Js for first time profile upload for new user  -->
     <script src="%%DEFINE_JS_LINK%%/uploadbanner.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
     <script src="%%DEFINE_JS_LINK%%/sigeditor.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
@@ -330,6 +335,15 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
 
           //  New code for next step start
           $('#nxt2').click(function () {
+            if ($("#profileImageCheck").is(":checked")) {
+              var fileInput = $("#profileImage")[0];
+              if (!(fileInput.files && fileInput.files[0])) {
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong> Please upload your profile image. </div>');
+                $('#snackbar-error').show();
+                setTimeout(function () { $('#snackbar-error').hide();}, 2000);
+                return false;
+              }
+            }
             $("#logoProfileUploadContainer").hide();
             $("#msform").show();
           });
@@ -480,6 +494,9 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
       jQuery.noConflict();
       (function ($) {
         $(document).ready(function () {
+          $('#profileImageCheck').change(function() {
+            $('#profileUploadContainer').toggle(this.checked);
+          });
           // logo size
           var logosize = 100;
           $('#signature_logosize').val(logosize);

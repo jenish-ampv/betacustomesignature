@@ -57,7 +57,7 @@ class CIT_GSUITE
 							$mapper_field = $maping_fields['personal_field']; 
 							$mapcustom_field = $maping_fields['contact_field']; 
 							$gsuiteusers = $GLOBALS['integrations']->GsuiteConnect('user',$GLOBALS['USEREMAIL']);
-							if($azureadusers['error'] == 0 && is_array($gsuiteusers['data']['users']['users'])){
+							if($gsuiteusers['error'] == 0 && is_array($gsuiteusers['data']['users']['users'])){
 								
 								$refSigRow = $GLOBALS['DB']->row("SELECT * FROM signature WHERE signature_master=1 AND user_id= ?",array($GLOBALS['USERID']));
 								$user_id = $refSigRow['user_id'];
@@ -160,6 +160,7 @@ class CIT_GSUITE
 				$getUsers =  $GLOBALS['integrations']->GsuiteConnect('user',$GLOBALS['USEREMAIL']);
 				if($getUsers['error'] == 0){
 					$GLOBALS['group_list'] ='';
+					$GLOBALS['search_list'] ='';
 					$groupedUsers = [];
 					foreach($getUsers['data']['users']['users'] as $k => $user){
 						$orgPath = $user->getOrgUnitPath();
@@ -167,18 +168,27 @@ class CIT_GSUITE
 						$grouped[$orgName][] = $user;
 					}
 					foreach ($grouped as $groupName => $users) {
+						$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$groupName.'">';
     					$GLOBALS['group_list'] .= "<strong>" . htmlspecialchars($groupName) . "</strong>
 						<div class='flex items-center gap-2 mb-4'>
 							<label class='kt-label' for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label>
 							<input type='checkbox' class='select_all_department kt-checkbox' id='select_all_".strtolower(htmlspecialchars($groupName))."' data-department-id='".strtolower(htmlspecialchars($groupName))."' >
 						</div>";
 						foreach ($users as $user) {
-							$GLOBALS['group_list'] .='<div class="flex items-center gap-2 mb-4">
-                              <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).'" type="checkbox" name="addUsers[]" id="'.$group['id'].'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
-							  <label for="'.$group['id'].'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
+							$GLOBALS['group_list'] .='<div class="flex items-center gap-2">
+                              <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).' mem_checkbox" type="checkbox" name="addUsers[]" id="'.$user->id.'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
+							  <label for="'.$user->id.'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
 							</div>';
+							$GLOBALS['search_list'] .='
+										<div class="member_list search-container" style="display:none;">
+											<div class="flex items-center gap-2">
+												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$user->id.'" value="" data-master="'.$user->id.'">
+												<label class="kt-label" for="search_'.$user->id.'">'.$user->name->fullName.'('.$user->primaryEmail.')</label>
+											</div>
+										</div>';
 						}
 					}
+					$GLOBALS['search_list'] .='</div>';
 				}else{
 						$_SESSION[GetSession('Error')] = '<div class="alert alert-danger">'.$getUsers['msg'].'.</div>';
 				}

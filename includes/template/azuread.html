@@ -292,7 +292,6 @@
       $('#search_result div.search-container').hide();
       $('#search_result').css('display', 'none');
       $('#notfound').css('display', 'none');
-      if (filter.length < 3) { return false; }
       $('#search_result').css('display', 'block');
       $('#search_result div.search-container').each(function () {
         if ($(this).text().search(new RegExp(filter, "i")) < 0) {

@@ -40,19 +40,21 @@ ui(function() {
         uploadData(fd);
     });
 
-    // Open file selector on div click
-    ui("#uploadfile").click(function(){
-        ui("#file").click();
-    });
+    // // Open file selector on div click
+    // ui("#uploadfile").click(function(){
+    //     ui("#file").click();
+    // });
 
     // file selected
     ui("#file").change(function(){
         var fd = new FormData();
 
         var files = ui('#file')[0].files[0];
-
+        if(!files){
+            return false;
+        }
         fd.append('file',files);
-			ui("#img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+        ui("#img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
 
         uploadData(fd);
     });
@@ -127,7 +129,7 @@ function addThumbnail(data){
 		var number = Math.random() * 100;
 		// Creating an thumbnail
 	   // ui("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-		ui("#uploadfile").append('<div class="drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%"></div>');
+		ui("#uploadfile").append('<div class="cursor-pointer p-6 upload-box flex item-center justify-center min-h-[225px] drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%" class="h-auto"></div>');
 		ui("#img_preview").append(' <div class="img_preview_box"><img src="%%DEFINE_IMAGE_LINK%%/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage()"><img class="trash_icon" src="%%DEFINE_IMAGE_LINK%%/images/trash-icon.svg" alt=""></a><input type="hidden" name="signature_image" value="'+name+'"></div>');
         ui('input[name=signature_image]').val(name);
 		ui("#nxt2").prop('disabled', false);
@@ -145,7 +147,7 @@ function removeImage(){
 	ui("#nxt2").prop('disabled', true);
 	ui("#uploadfile").empty();
 	ui("#img_preview").empty();
-	ui("#uploadfile").append('<div class="drag_your_image"> <h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG</p><img src="%%DEFINE_IMAGE_LINK%%/images/img-icon.svg" alt=""></div>');
+	ui("#uploadfile").append('<div class="cursor-pointer p-6 upload-box drag_your_image"> <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span><p class="text-gray-500 my-4">Choose a file or drag &amp; drop it here.<br>PNG, JPG or SVG</p><span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span></div>');
 }
 
 // Bytes conversion
