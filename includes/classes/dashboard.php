@@ -267,7 +267,7 @@ class CIT_DASHBOARD
 					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
 								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
 								<td>'.$thisDepartmentSignatures.' Members</td>
-								<td><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a></td>
+								<td><span class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></span></td>
 							</tr>';
 				}
 
@@ -277,14 +277,14 @@ class CIT_DASHBOARD
 					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
 								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
 								<td>'.$thisDepartmentSignatures.' Members</td>
-								<td><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a>
+								<td><span class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></span>
 								</td>
 							</tr>';
 				}else{
 					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
 								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
 								<td>'.$thisDepartmentSignatures.' Members</td>
-								<td><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a>
+								<td><span class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></span>
 								<a class="mastersig delete_department" href="'.$GLOBALS['departmententerprise'].'/deleteDepartment?department_id='.$department['department_id'].'"><i class="hgi hgi-stroke hgi-delete-02"></i></a></td>
 							</tr>';
 				}
