@@ -294,7 +294,6 @@ IF("%%DEFINE_manage_signatures%%" == ""){
         <div class="kt-modal-body">
             <input class="signature_logo" type="file" name="signature_logo" id="signature_logo" style="display:none;">
             <div id="img_preview_logo"></div>
-            <div id="img_errormsg_logo"></div>
             <div class="upload-area-logo" id="uploadfilelogo">
                 <input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
                 <div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
@@ -303,6 +302,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                     <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
                 </div>
             </div>
+            <div id="img_errormsg_logo"></div>
             <div class="kt-alert kt-alert-outline kt-alert-primary my-3">
                 <p><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
                 better animation quality.</p>
@@ -430,7 +430,6 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         <input class="signature_department_logo" type="file" name="signature_department_logo"
                             id="signature_department_logo" style="display:none;">
                         <div id="img_preview_logo"></div>
-                        <div id="img_errormsg_logo"></div>
                         <div class="upload-area-department-logo" id="uploadfiledepartmentlogo">
                             <input type="hidden" value="%%DEFINE_signature_department_image_name%%"
                                 name="signature_department_image" id="signature_department_image">
@@ -440,6 +439,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                 <p>Supports: PNG, SVG, JPG, JPEG</p>
                             </div>
                         </div>
+                        <div id="img_errormsg_logo"></div>
                     </div>
                 </div>
                 <div class="mt-4 text-center">

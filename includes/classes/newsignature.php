@@ -760,9 +760,9 @@ class CIT_NEWSIGNATURE
 				$selected = $GLOBALS['signature_layout'] == $layout_id ? 'checked="checked"' :'';
 				$templateTitle = "<p>Template ".$templet_no."</p>";
 				if($layout_id >= 13){
-					$templateTitle = "<div class='flex items-center justify-between mb-3'>
+					$templateTitle = "<div class='flex items-center gap-5 mb-3'>
 					<p class='text-gray-400'>Template ".$templet_no."</p>
-					<div class='px-2 py-1 bg-gradient text-xs text-white rounded-full'>New Layout</div>
+					<div class='px-2 py-1 bg-gradient text-xs text-white rounded-full'>AI Animated</div>
 					</div>";
 				}
 				$GLOBALS['signature_profilesize'] = $layoutRow['profile_image_size'];
@@ -914,10 +914,11 @@ class CIT_NEWSIGNATURE
 			}
 		}else{
 			if($style){
-				$GLOBALS['verified_display'] = 'checked'; $GLOBALS['verified_display_sel'] = 'checked'; $GLOBALS['signature_bannershape'] = '0px';  $GLOBALS['signature_bordercolor'] = '#E2E2E2'; $GLOBALS['signature_dividercolor'] = '#E2E2E2'; $GLOBALS['signature_profileanimation_gif_zindex'] = '-1';
+				$GLOBALS['verified_display'] = 'checked'; $GLOBALS['verified_display_sel'] = 'checked'; $GLOBALS['signature_bannershape'] = '0px'; $GLOBALS['signature_border_1_chk'] = 'checked'; $GLOBALS['signature_bordercolor'] = '#E2E2E2'; $GLOBALS['signature_dividercolor'] = '#E2E2E2'; $GLOBALS['signature_profileanimation_gif_zindex'] = '-1';
 				$GLOBALS['signature_profileanimation_maxheight'] = "inherit";
 				$GLOBALS['signature_profileanimation_gif_display'] = "none"; $GLOBALS['signature_profileanimation_gif_src']= $GLOBALS['signature_profile'] = $GLOBALS['UPLOAD_LINK'].'/signature/gifs/giphyy-1.gif';$GLOBALS['signature_banner_display_sel'] = "";$GLOBALS['signature_profileshape'] = '0px';$GLOBALS['signature_banner_display'] = "none";  $GLOBALS['signature_borderpadding'] = "25px"; 						
 				$GLOBALS['signature_dividerpadding'] = '0 0 0 15px';
+				$GLOBALS['profile_disply_sel'] = 'checked';
 				$styles = unserialize($style);
 				foreach($styles as $key1=>$cs){
 					// signature css

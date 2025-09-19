@@ -258,6 +258,16 @@ function initCustomSlider(
 
     customThumb.style.left = posX + "px";
     rangeBg.style.width = percent + "%";
+
+    if (typeof updatePlanDetails === 'function') {
+        updatePlanDetails(value);
+    }
+    if (typeof updateRenewaccountPlanDetails === 'function') {
+        updateRenewaccountPlanDetails(value);
+    }
+    if (typeof updatePurchasePlanDetails === 'function') {
+        updatePurchasePlanDetails(value);
+    }
   }
 
   slider.addEventListener("input", updateUI);
@@ -465,9 +475,8 @@ $(document).ready(function () {
     });
 
 	
-    let currentPath = window.location.pathname.split("/").filter(Boolean).pop();
+    let currentPath = window.location.pathname.split("/").filter(Boolean)[1];
     if (!currentPath) currentPath = "dashboard";
-
     // reset all li
     $("#mega_menu li").removeClass("active");
     // mark the current path li as active

@@ -86,7 +86,7 @@ class CIT_USERMANAGEMENT
                 <td>".$row['email']."</td>
                 <td>".$status."</td>
                 <td>
-                    <div class='flex items-center gap-3'>";
+                    <div class='flex items-center justify-end gap-3'>";
                         if($row['is_active'] == 2){
                             $GLOBALS['departmentUserTableBody'] .= "
                             <a href='javascript:void(0);' onclick='sendInviteMail(\"".$GLOBALS['usermanagement']."/inviteuser?user_id=".$row['id']."\")' class='feather icon-edit invite_link' title='Send Password Link'>
@@ -108,7 +108,7 @@ class CIT_USERMANAGEMENT
                 </tr>";
         }
         if($GLOBALS['departmentUserTableBody'] == ""){
-            $GLOBALS['departmentUserTableBody'] = '<td colspan="4">No user found</td>';
+            $GLOBALS['departmentUserTableBody'] = '<td class="text-center" colspan="4">No user found</td>';
         }
         $departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
         foreach ($departments as $department) {

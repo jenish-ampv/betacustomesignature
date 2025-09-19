@@ -54,7 +54,7 @@ ui(function() {
 
       fd.append('signature_logo',files);
 
-      ui("#img_preview_logo").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+      ui("#img_preview_logo").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
       setTimeout(function(){ ui("#img_preview_logo").html(""); }, 3000);
 
       uploadDatalogo(fd);
@@ -101,7 +101,7 @@ ui(function() {
 
       fd.append('signature_department_logo',files);
 
-			ui("#img_preview_logo").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+			ui("#img_preview_logo").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
       setTimeout(function(){ ui("#img_preview_logo").html(""); }, 3000);
       uploadDatalogo(fd);
     });
@@ -131,7 +131,6 @@ ui(function() {
 
 // Sending AJAX request and upload file
 function uploadDatalogo(formdata){
-  console.log('fdggfg');
 
     ui.ajax({
         url: upload_signature_logourl,
@@ -184,7 +183,7 @@ function addThumbnaillogo(data){
     ui('.signature_department_logo').attr("data-logo-name",name);
 		ui("#img_errormsg_logo").html('');
 	}else{
-		ui("#img_errormsg_logo").html('<div class="alert alert-danger" role="alert">'+data.msg+'</div>');
+		ui("#img_errormsg_logo").html('<div class="alert text-danger mt-2 text-[12px]" role="alert">'+data.msg+'</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
 	}
 
@@ -193,13 +192,13 @@ function logoChanged(){
   var reason = ui("input[name=change_reason]").val();
   var logo_id = ui("input[name=logo_id]").val();
   if(!reason){
-    ui("#img_errormsg_logo").html('<div class="alert alert-danger" role="alert">Please enter feedback to change logo</div>');
+    ui("#img_errormsg_logo").html('<div class="alert text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
     
     return false;
   }
-  console.log('bdf');
 
+  $("#logo_change_done_btn").addClass('cursor-not-allowed opacity-50').text('Processing...');
   ui.ajax({
     type: 'POST',
     url: upload_signature_logourl,
@@ -208,16 +207,18 @@ function logoChanged(){
     success: function(response){
       // window.location.replace(upload_signature_logourl);
       // console.log('success');
-      ui(".btn-close").click();
+      ui(".kt-modal-close").click();
       var response = JSON.parse(response);
       if(response.success){
         $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
 				$('#snackbar').show();
 				setTimeout(function(){ $('#snackbar').hide(); }, 2000);
       }
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
     },
     failure: function (response) {
       console.log('failed');
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
     }
   });
 };

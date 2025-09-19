@@ -859,7 +859,7 @@ jQuery.noConflict();
       <div class="flex items-center gap-4 inputbox mt-5">
         <div class="flex items-center gap-2">
           <div class="w-20 flex-none floting-input">
-            <input type="text" class="kt-input" name="field_label[]" id="" value="" placeholder="Title" data-class="${layout_labelclass}">
+            <input type="text" class="kt-input" name="field_label[]" id="" value="" data-class="${layout_labelclass}">
             <label for="">Title</label>
           </div>
           <div class="flex-1 min-w-28 floting-input">

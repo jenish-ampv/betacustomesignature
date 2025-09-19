@@ -85,8 +85,7 @@
                 </div>
                 <span class="kt-badge rounded-full bg-primary text-white">Most Popular</span>
               </div>
-              <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$<span
-                  id="month_proprice">13</span></p>
+              <h2 class="mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$<span id="month_proprice">13</span></h2>
               <h2 id="month_propricespl" style="display:none;">15</h2>
 
               <p class="text-gray-400 my-1">Billed Monthly</p>
@@ -250,6 +249,42 @@
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 
 <script>
+
+  function updatePlanDetails(value) {
+    var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+    var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
+    unencoded = value;
+    unencoded = parseInt(unencoded);
+
+    $('.no_employee').text(unencoded);
+    $('#month_proprice').text(pro_month_unit[unencoded]);
+    $('#month_propricespl').text(pro_month_unitspl[unencoded]);
+    $('#free_priceq').text((pro_month_unit[unencoded] * 3).toFixed(2));
+
+    var basicurl = $('#gs_qbasic').attr('href');
+    var prourl = $('#gs_qpro').attr('href');
+    newprourl = prourl.substr(0, prourl.lastIndexOf("/"));
+    newprourl += "/" + unencoded;
+    $('#gs_qpro').attr('href', newprourl);
+
+    var freeurl = newprourl + '&trial=1';
+    $('#gs_qfree').attr('href', freeurl);
+
+    // year
+    var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+    var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+    $('#year_proprice').text(pro_year_unit[unencoded]);
+    $('#year_propricespl').text(pro_year_unitspl[unencoded]);
+    $('#free_pricey').text((pro_year_unit[unencoded] * 12).toFixed(2));
+
+    var prourl = $('#gs_ypro').attr('href');
+    newprourl = prourl.substr(0, prourl.lastIndexOf("/"));
+    newprourl += "/" + unencoded;
+    $('#gs_ypro').attr('href', newprourl);
+
+    var freeurl = newprourl + '&trial=1';
+    $('#gs_yfree').attr('href', freeurl);
+  }
 
   initCustomSlider();
   

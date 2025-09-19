@@ -135,7 +135,7 @@
                   <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
                   <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$ 30</p>
                   <div class="flex items-end gap-3">
-                    <h2>$15</h2>
+                    <h2>$<span class="year_proprice cprice">15</span></h2>
                     <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span>
                   </div>
                   <p class="text-gray-400 my-1">Billed Annualy</p>
@@ -257,6 +257,80 @@
   <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
   <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
   <script>
+    var quartlyEnabled = %%DEFINE_quartrly_enabled%%;
+
+    function updateSelectPlan() {
+
+      // if(isFreeTrial){
+      //   return false;
+      // }
+      if (quartlyEnabled) {
+        $("#nav-tabs-monthly").text("Quarterly");
+      }
+      if ($('input[name=plan_id]:checked').val() < 3) {
+        multiplyprice = 1;
+        if (quartlyEnabled) {
+          multiplyprice = 3;
+        }
+      } else {
+        multiplyprice = 12;
+      }
+      var radioObj = $('input[name=plan_id]:checked');
+      planpriceint = parseFloat(radioObj.parent().find('span.cprice').text() * multiplyprice);
+      planpricesplint = parseFloat(radioObj.parent().find('span.cpricespl').text() * multiplyprice);
+      totalsavings = parseFloat(planpricesplint - planpriceint);
+      console.log(planpriceint)
+      console.log(planpricesplint)
+      $('#subtotal').text('$' + planpricesplint.toFixed(2) + ' USD');
+      $('#savings').text('$' + totalsavings.toFixed(2) + ' USD');
+      $('#total').text('$' + planpriceint.toFixed(2) + ' USD');
+      // $('#selectplan-main').toggle();
+      // $('#order-main').toggle();
+      //for discount calcultion
+      $('#totalpay').val(planpriceint);
+
+      $('#coupon_id').val('');
+      $('#promo_code').val('');
+      $('#couponResponse').text('');
+      $('#discount').text('$0.00 USD');
+      $("#apply_promocode").removeClass('hidden');
+      $("#applied_promocode").addClass('hidden');
+    };
+
+    function updateRenewaccountPlanDetails(value) {
+      unencoded = value;
+      unencoded = parseInt(unencoded);
+      if (unencoded == 0) { unencoded = [1]; }
+      $("#form_plan_unit").val(unencoded);
+
+      $('#plan_unit').val(unencoded);
+      $('.no_employee_qarter').text(unencoded);
+      // month price changhe
+      var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+      var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
+      $('.month_proprice').text(pro_month_unit[unencoded]);
+      $('.month_propricespl').text(pro_month_unitspl[unencoded]);
+      // year price changhe
+      var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+      var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+      $('.year_proprice').text(pro_year_unit[unencoded]);
+      $('.year_propricespl').text(pro_year_unitspl[unencoded]);
+      var radioObj = $('input[name=plan_id]:checked');
+      if ($('input[name=plan_id]:checked').val() < 3) {
+        multiplyprice = 1;
+        if (quartlyEnabled) {
+          multiplyprice = 3;
+        }
+      } else {
+        multiplyprice = 12;
+      }
+      planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+
+      $(".rno").removeClass("active");
+      $("#rno" + unencoded).addClass("active");
+
+      updateSelectPlan();
+    }
 
     initCustomSlider();
 
@@ -315,44 +389,7 @@
     })(jQuery);
   </script>
   <script>
-    var quartlyEnabled = %%DEFINE_quartrly_enabled%%;
-    function updateSelectPlan() {
-
-      // if(isFreeTrial){
-      //   return false;
-      // }
-      if (quartlyEnabled) {
-        $("#nav-tabs-monthly").text("Quarterly");
-      }
-      if ($('input[name=plan_id]:checked').val() < 3) {
-        multiplyprice = 1;
-        if (quartlyEnabled) {
-          multiplyprice = 3;
-        }
-      } else {
-        multiplyprice = 12;
-      }
-      var radioObj = $('input[name=plan_id]:checked');
-      planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
-      planpricesplint = parseFloat(radioObj.parent().find('label span.cpricespl').text() * multiplyprice);
-      totalsavings = parseFloat(planpricesplint - planpriceint);
-      $('#subtotal').text('$' + planpricesplint.toFixed(2) + ' USD');
-      $('#savings').text('$' + totalsavings.toFixed(2) + ' USD');
-      $('#total').text('$' + planpriceint.toFixed(2) + ' USD');
-      // $('#selectplan-main').toggle();
-      // $('#order-main').toggle();
-      //for discount calcultion
-      $('#totalpay').val(planpriceint);
-
-      $('#coupon_id').val('');
-      $('#promo_code').val('');
-      $('#couponResponse').text('');
-      $('#discount').text('$0.00 USD');
-      $("#apply_promocode").removeClass('hidden');
-      $("#applied_promocode").addClass('hidden');
-    };
-
-
+    /*
     start = $('#plan_unit').val();
     var rangeSlider = $('#range')[0];
     noUiSlider.create(rangeSlider, {
@@ -408,6 +445,7 @@
       updateSelectPlan();
     });
 
+    */
     $(document).ready(function () {
       $("input[name$='plan_type']").click(function () {
         var tab = $(this).val();

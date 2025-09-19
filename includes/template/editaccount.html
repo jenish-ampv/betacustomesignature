@@ -18,7 +18,7 @@
             <div id="img_errormsg"></div>
             <input type="file" name="file" id="file" style="display:none;">
 
-            <div class="upload-area" id="uploadfile">
+            <div class="upload-area mb-4" id="uploadfile">
               <div class="size-24 relative overflow-hidden mx-auto rounded-full edit_profile_img cursor-pointer">
                 <img src="%%DEFINE_user_profilepic%%" alt="">
                 <div class="icon absolute w-full h-full top-0  flex items-center justify-center bg-black/50 text-white text-2xl">
@@ -31,12 +31,12 @@
               <div>
                 <label class="kt-form-label">First Name</label>
                 <input type="text" name="user_firstname" value="%%DEFINE_user_firstname%%" class="kt-input" id=""
-                  placeholder="First Name" required="required">
+                  placeholder="First Name" required="required" pattern="^(?!.*\s{2,})[A-Za-z]+(?: [A-Za-z]+)*$" title="Spaces only between words are allowed, no leading or trailing spaces, and no consecutive spaces.">
               </div>
               <div>
                 <label class="kt-form-label">Last Name</label>
                 <input type="text" name="user_lastname" value="%%DEFINE_user_lastname%%" class="kt-input" id=""
-                  placeholder="Last Name" required="required">
+                  placeholder="Last Name" required="required" pattern="^(?!.*\s{2,})[A-Za-z]+(?: [A-Za-z]+)*$" title="Spaces only between words are allowed, no leading or trailing spaces, and no consecutive spaces.">
               </div>
               <div>
                 <label class="kt-form-label">Email</label>

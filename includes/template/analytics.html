@@ -343,20 +343,20 @@
                             <div class="flex items-center gap-2">
                                 <div class="size-7 relative -top-1 rounded-lg bg-[linear-gradient(178.19deg,#E5F6FF_6.15%,#E4EAFF_98.35%)]"></div>
                                 <div>
-                                    <p id="totalTypeClicks" class="total-count-click-number leading-none">0</p>
+                                    <h5 id="totalTypeClicks" class="total-count-click-number leading-none">0</h5>
                                     <p class="text-gray-400">All Clicks</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
-                                <div class="size-7 relative -top-1 bg-[repeating-linear-gradient(135deg,rgba(219,237,255,0.7),rgba(219,237,255,0.7)_2px,transparent_2px,transparent_4px)]"></div>
+                                <div class="size-7 relative -top-1 rounded-lg bg-[repeating-linear-gradient(135deg,rgba(219,237,255,0.7),rgba(219,237,255,0.7)_2px,transparent_2px,transparent_4px)]"></div>
                                 <div>
-                                    <p id="totalTypeUniqueClicks" class="size-7 total-count-click-number leading-none">0</p>
+                                    <h5 id="totalTypeUniqueClicks" class="total-count-click-number leading-none">0</h5>
                                     <p class="text-gray-400">Unique Clicks</p>
                                 </div>
                             </div>
                             <div id="typeCTRSection" class="mt-auto">
                                 <div class="flex items-center gap-2">
-                                    <h5 class="text-2xl" id="clickThroughRate">0 <span>%</span></h5>
+                                    <h3 class="text-2xl" id="clickThroughRate">0 <span>%</span></h3>
                                     <span class="kt-badge kt-badge-success" id="clickThroughChange"><span>▲</span> +0%</span>
                                 </div>
                                 <span class="text-gray-400 text-xs">Click-Through Rate</span>
@@ -507,7 +507,7 @@
                     </div>
                     <div class="kt-card-content relative">
                         <div id="statsBox" class="absolute top-5 right-5"></div>
-                        <canvas id="worldMap"></canvas>
+                        <canvas id="worldMap" class="!w-full"></canvas>
                     </div>
                 </div>
                 <div class="kt-card">
@@ -557,7 +557,7 @@
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/windows.svg" alt="" />Windows
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_windows_clicks_percentage_style"></div>
+                                    <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] after:border-2 after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_windows_clicks_percentage_style"></div>
                                 </div>
                                 <span class="ml-5" id="total_windows_clicks_percentage">0%</span>
                             </div>
@@ -566,7 +566,7 @@
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/macos.svg" alt="" />MacOS
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_macos_clicks_percentage_style"></div>
+                                    <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] after:border-2 after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_macos_clicks_percentage_style"></div>
                                 </div>
                                 <span class="ml-5" id="total_macos_clicks_percentage">0%</span>
                             </div>
@@ -575,7 +575,7 @@
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/linux.svg" alt="" />Linux
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_linux_clicks_percentage_style"></div>
+                                    <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] after:border-2 after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_linux_clicks_percentage_style"></div>
                                 </div>
                                 <span class="ml-5" id="total_linux_clicks_percentage">0%</span>
                             </div>
@@ -584,7 +584,7 @@
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/ios.svg" alt="" />iOS
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_ios_clicks_percentage_style"></div>
+                                    <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] after:border-2 after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_ios_clicks_percentage_style"></div>
                                 </div>
                                 <span class="ml-5" id="total_ios_clicks_percentage">0%</span>
                             </div>
@@ -593,7 +593,7 @@
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/android.svg" alt="" />Android
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_android_clicks_percentage_style"></div>
+                                    <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] after:border-2 after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_android_clicks_percentage_style"></div>
                                 </div>
                                 <span class="ml-5" id="total_android_clicks_percentage">0%</span>
                             </div>

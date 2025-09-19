@@ -28,7 +28,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th class="w-0">Action</th>
+                                    <th class="w-0 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +45,7 @@
     <div class="kt-modal kt-modal-center" data-kt-modal="true" id="addUserModel">
         <div class="kt-modal-content max-w-[400px]">
             <div class="kt-modal-header">
-                <p class="kt-modal-title">Invite Admin</p>
+                <p class="kt-modal-title">Invite User</p>
                 <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#addUserModel">
                     <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
                 </button>
@@ -53,22 +53,22 @@
             <div class="kt-modal-body">
                 <form action="" method="post" id="addUserForm" class="flex flex-col gap-3">
                     <div>
-                        <label for="" class="kt-label">First Name</label>
+                        <label for="" class="kt-form-label">First Name</label>
                         <input type="text" class="kt-input" name="user_firstname" id="user_firstname"
                             placeholder="First Name" data-class="user_firstname">
                     </div>
                     <div>
-                        <label for="" class="kt-label">Last Name</label>
+                        <label for="" class="kt-form-label">Last Name</label>
                         <input type="text" class="kt-input" name="user_lastname" id="user_lastname"
                             placeholder="Last Name" data-class="user_lastname">
                     </div>
                     <div>
-                        <label for="" class="kt-label">Email</label>
+                        <label for="" class="kt-form-label">Email</label>
                         <input type="text" class="kt-input" name="email" id="email" placeholder="Email"
                             data-class="email">
                     </div>
                     <div id="permission">
-                        <p class="kt-label mb-3">Permissions</p>
+                        <p class="kt-form-label">Permissions</p>
                         <div class="space-y-2">
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="manage_signatures" id="manage_signatures">
@@ -186,22 +186,22 @@
 
 
                 if (validate != 1) {
-                    setTimeout(function () {
-                        $('#user_firstname').css('border-color', '');
-                        $('#user_lastname').css('border-color', '');
-                        $('#email').css('border-color', '');
-                        $('.first-name-text').remove();
-                        $('.last-name-text').remove();
-                        $('.email-text').remove();
-                        $('#permission').css('border', '');
-                        $('#permission').css('padding', '');
-                        $('#permission').css('border-color', '');
-                        $('.permission-text').remove();
-                        $('#department').css('border', '');
-                        $('#department').css('padding', '');
-                        $('#department').css('border-color', '');
-                        $('.department-text').remove();
-                    }, 2000);
+                    // setTimeout(function () {
+                    //     $('#user_firstname').css('border-color', '');
+                    //     $('#user_lastname').css('border-color', '');
+                    //     $('#email').css('border-color', '');
+                    //     $('.first-name-text').remove();
+                    //     $('.last-name-text').remove();
+                    //     $('.email-text').remove();
+                    //     $('#permission').css('border', '');
+                    //     $('#permission').css('padding', '');
+                    //     $('#permission').css('border-color', '');
+                    //     $('.permission-text').remove();
+                    //     $('#department').css('border', '');
+                    //     $('#department').css('padding', '');
+                    //     $('#department').css('border-color', '');
+                    //     $('.department-text').remove();
+                    // }, 2000);
                     event.stopPropagation(); return false;
                 }
                 $('#user_firstname').removeAttr('disabled');
@@ -210,7 +210,6 @@
 
                 $(".userSubmit").prop('disabled', true);
                 $(".userSubmit").text('Processing...');
-                $(".userSubmit").addClass('spinner');
 
 
                 var form = $('#addUserForm');
@@ -239,7 +238,7 @@
                     var json = JSON.parse(data);
                     if (json.error != 1) {
                         $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
-                        $('.btn-close').click();
+                        $('.kt-modal-close').click();
                         $('#snackbar').show();
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 2000);
                     } else {
@@ -250,10 +249,9 @@
                         // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""> </div>');
                         // $('#snackbar-error').show();
                         setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                        $('.btn-close').click();
+                        $('.kt-modal-close').click();
                         $(".userSubmit").prop('disabled', false);
                         $(".userSubmit").text('Invite');
-                        $(".userSubmit").removeClass('spinner');
                         return false;
                     }
                     // Optionally alert the user of success here...
@@ -264,49 +262,59 @@
                 return false;
             });
 
+            function simulateUserInput(selector, value) {
+                const input = $(selector)[0];
+                input.value = value;
+
+                // Trigger input event (works with React or vanilla JS listeners)
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+            }
+
             $(".edit_user").click(function (e) {
-                e.stopPropagation();
-                $("#edit_user").val(1);
-                $('#user_firstname').val($(this).data('fname'));
-                // $('#user_firstname').attr('disabled',true);
-                $('#user_lastname').val($(this).data('lname'));
-                // $('#user_lastname').attr('disabled',true);
-                $('#email').val($(this).data('email'));
-                $('#email').attr('disabled', true);
-                $('#email').addClass('disabled-input');
-                if ($(this).data('user_status')) {
-                    $("#status-action").prop('checked', true);
-                } else {
-                    $("#status-action").prop('checked', false);
-                }
-
-                $('.permission-checkbox').prop('checked', false);
-                var permission = $(this).data('permission').toString();
-                if ($.trim(permission) !== '') {
-                    if (permission.indexOf(",") !== -1) {
-                        permission = $(this).data('permission').split(",");
-                        $.each(permission, function (index, value) {
-                            $("#" + value).prop('checked', true);
-                        });
+                element = $(this);
+                setTimeout(function () { $('#snackbar-error').hide(); 
+                    // e.stopPropagation();
+                    $("#edit_user").val(1);
+                    simulateUserInput('#user_firstname', $(element).data('fname'));
+                    simulateUserInput('#user_lastname', $(element).data('lname'));
+                    simulateUserInput('#email', $(element).data('email'));
+                    $('#email').attr('disabled', true);
+                    $('#email').addClass('disabled-input');
+                    if ($(element).data('user_status')) {
+                        $("#status-action").prop('checked', true);
                     } else {
-                        $("#" + permission).prop('checked', true);
+                        $("#status-action").prop('checked', false);
                     }
-                }
+
+                    $('.permission-checkbox').prop('checked', false);
+                    var permission = $(element).data('permission').toString();
+                    if ($.trim(permission) !== '') {
+                        if (permission.indexOf(",") !== -1) {
+                            permission = $(element).data('permission').split(",");
+                            $.each(permission, function (index, value) {
+                                $("#" + value).prop('checked', true);
+                            });
+                        } else {
+                            $("#" + permission).prop('checked', true);
+                        }
+                    }
 
 
-                $('.department-checkbox').prop('checked', false);
-                var department = $(this).data('department_list').toString();
-                if ($.trim(department) !== '') {
-                    if (department.indexOf(",") !== -1) {
-                        department = $(this).data('department_list').split(",");
-                        $.each(department, function (index, value) {
-                            $("#department_" + value).prop('checked', true);
-                        });
-                    } else {
-                        $("#department_" + department).prop('checked', true);
+                    $('.department-checkbox').prop('checked', false);
+                    var department = $(element).data('department_list').toString();
+                    if ($.trim(department) !== '') {
+                        if (department.indexOf(",") !== -1) {
+                            department = $(element).data('department_list').split(",");
+                            $.each(department, function (index, value) {
+                                $("#department_" + value).prop('checked', true);
+                            });
+                        } else {
+                            $("#department_" + department).prop('checked', true);
+                        }
                     }
-                }
-                $(".userSubmit").html('Save');
+                    $(".userSubmit").html('Save');
+                }, 10);
             });
             $('[data-kt-modal-toggle="#addUserModel"]').click(function (e) {
                 // e.stopPropagation();
@@ -325,8 +333,8 @@
             });
 
             $('.delete_user').on( "click", function() {
-            if(!$(this).hasClass('clickedFromDeleteConfirmationPopup')){
-                openDeleteModal($(this));
+                if(!$(this).hasClass('clickedFromDeleteConfirmationPopup')){
+                    openDeleteModal($(this));
                     return false;
                 }
                 // var text = "Do you really want to delete user.";
@@ -347,16 +355,20 @@
                     'sub_user_id': sub_user_id,
                     'user_status': valueStatus
                 };
-
+                $('.loader-image').show();
                 $.ajax({
                     type: 'POST',
                     url: formUrl,
                     contentType: 'application/json',
                     data: JSON.stringify(formData)
                 }).done(function (data) {
+                    $('.loader-image').hide();
+
                     var json = JSON.parse(data);
                     if (json.error != 1) {
-                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 500);
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""> User status changed successfully.</div>');
+                        $('#snackbar').show();
+                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 3000);
                     } else {
                         KTToast.show({
                             message: `<strong>Failure! </strong>${json.msg}`,
@@ -365,7 +377,7 @@
                         // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
                         // $('#snackbar-error').show();
                         // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                        $('.btn-close').click();
+                        $('.kt-modal-close').click();
                         return false;
                     }
                     // Optionally alert the user of success here...
@@ -402,7 +414,7 @@
             // To active/inactive in leftbar
             $('.new_dashboard_left a').removeClass('active');
             $(document).on("contextmenu", function (e) {
-                $('.btn-close').click();
+                $('.kt-modal-close').click();
             });
         })(jQuery);
     </script>

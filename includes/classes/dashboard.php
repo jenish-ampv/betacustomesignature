@@ -153,9 +153,13 @@ class CIT_DASHBOARD
 				// $filename = $GLOBALS['USERID'].'.png';
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/'.$GLOBALS['USERID'].'/'.$filename ;
 				$uploadFolder =  GetConfig('SITE_UPLOAD_PATH').'/signature/';
+				$uploadFolderForUser =  GetConfig('SITE_UPLOAD_PATH').'/signature/'.$GLOBALS['USERID'].'/';
 				$return_arr = array();
 				if (!file_exists($uploadFolder)) {
 				    mkdir($uploadFolder, 0777, true);
+				}
+				if (!file_exists($uploadFolderForUser)) {
+				    mkdir($uploadFolderForUser, 0777, true);
 				}
 				if(move_uploaded_file($_FILES['signature_logo']['tmp_name'],$location)){
 					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
