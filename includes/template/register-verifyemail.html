@@ -88,7 +88,7 @@
 						</div>
 						<button type="submit" name="submit" class="my-5 kt-btn kt-btn-primary w-full" id="verifyOTP">Continue</button>
 						<div class="text-center text-gray-400 text-sm font-light">
-							Didn’t receive OTP code? <a href="%%DEFINE_li_resendotp%%" class="text-primary font-semibold">Resend Code</a>
+							Didn’t receive OTP code? <a href="%%DEFINE_li_resendotp%%" class="text-primary font-semibold" id="resend_otp_link">Resend Code</a>
 						</div>
 					</div>
 				</form>
@@ -429,6 +429,41 @@ $(document).ready(function(){
 			$('#digit-6').focus();
 		}
 	});
+
+	var countdownTimer;
+	var timeRemaining = 60;
+	var isProcessing = false;
+
+	$("#resend_otp_link").click(function(e) {
+		e.preventDefault();
+
+		if (isProcessing) return;
+		isProcessing = true;
+
+		var url = $(this).attr('href');
+		$("#resend_otp_link").addClass("cursor-not-allowed");
+		$("#resend_otp_link").text("sending...");
+		$.ajax({
+			url: url,
+			type: "GET",
+			success: function() {
+				$("#resend_otp_link").text("Resend in " + timeRemaining + "s");
+				$("#resend_otp_link").text("sent");
+				countdownTimer = setInterval(function() {
+					timeRemaining--;
+					$("#resend_otp_link").text("Resend in " + timeRemaining + "s");
+					if (timeRemaining <= 0) {
+						clearInterval(countdownTimer);
+						$("#resend_otp_link").text("Resend Code");
+						$("#resend_otp_link").removeClass("cursor-not-allowed");
+						isProcessing = false;
+						timeRemaining = 60;
+					}
+				}, 1000);
+			}
+		});
+	});
+
 });
 </script>
 
