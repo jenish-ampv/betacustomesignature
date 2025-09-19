@@ -407,9 +407,8 @@ $(document).ready(function () {
     });
 
 	
-    let currentPath = window.location.pathname.split("/").filter(Boolean).pop();
+    let currentPath = window.location.pathname.split("/").filter(Boolean)[1];
     if (!currentPath) currentPath = "dashboard";
-
     // reset all li
     $("#mega_menu li").removeClass("active");
     // mark the current path li as active

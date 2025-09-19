@@ -133,7 +133,7 @@
                         </div>
                     </div>
 
-                    <div class="kt-card kt-card-accent %%DEFINE_Gstep3%%" id="step2">
+                    <div class="kt-card kt-card-accent %%DEFINE_Gstep3%%" id="step2" style="display: none;">
                         <div class="kt-card-header">
                             <h2 class="kt-card-title">
                                 <img src="%%DEFINE_IMAGE_LINK%%/images/google-workspace-icon.svg" alt=""> Google Workspace Integration
@@ -422,6 +422,7 @@
     <input type="hidden" id="redirectazuread" value="%%DEFINE_azuread%%" />
     <input type="hidden" id="redirectgsuite" value="%%DEFINE_gsuite%%" />
     <input type="hidden" id="redirectgsuite_step3" value="%%DEFINE_google_connect%%/3" />
+    <input type="hidden" id="redirectroot" value="%%DEFINE_ROOT_LINK%%" />
     <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
     <script>
         function myFunction(objid) {
@@ -565,7 +566,7 @@
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
-                            window.location = $('#redirectgsuite_step3').val();
+                            window.location = $('#redirectroot').val();
                         }, 2000);
                     } else {
                         $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + data.msg + ' </div>');
