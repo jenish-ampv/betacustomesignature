@@ -31,12 +31,12 @@
               <div>
                 <label class="kt-form-label">First Name</label>
                 <input type="text" name="user_firstname" value="%%DEFINE_user_firstname%%" class="kt-input" id=""
-                  placeholder="First Name" required="required">
+                  placeholder="First Name" required="required" pattern="^(?!.*\s{2,})[A-Za-z]+(?: [A-Za-z]+)*$" title="Spaces only between words are allowed, no leading or trailing spaces, and no consecutive spaces.">
               </div>
               <div>
                 <label class="kt-form-label">Last Name</label>
                 <input type="text" name="user_lastname" value="%%DEFINE_user_lastname%%" class="kt-input" id=""
-                  placeholder="Last Name" required="required">
+                  placeholder="Last Name" required="required" pattern="^(?!.*\s{2,})[A-Za-z]+(?: [A-Za-z]+)*$" title="Spaces only between words are allowed, no leading or trailing spaces, and no consecutive spaces.">
               </div>
               <div>
                 <label class="kt-form-label">Email</label>

@@ -538,10 +538,9 @@ class CIT_INDEX
 	private function GetUserProfilePic(){
 		if(is_numeric($GLOBALS['USERID'])){
 			$usrRes = $GLOBALS['DB']->row("SELECT user_status,user_image FROM `registerusers` WHERE `user_id`=? and user_status=1",array($GLOBALS['USERID']));
-			$filepath = $GLOBALS['UPLOAD_LINK'].'/profile/'.$usrRes['user_image']; 
-			if(file_exists($filepath) && $usrRes['user_image'] != 'default.png' ){
+			if($usrRes['user_image'] != 'default.png' ){
 				$profile_img = $GLOBALS['UPLOAD_LINK'].'/profile/'.$usrRes['user_image'];
-				$GLOBALS['USERPROFILEIMG'] = '<img src="'.$profile_img.'" alt="">';
+				$GLOBALS['USERPROFILEIMG'] = '<img src="'.$profile_img.'?'.time().'" alt="">';
 			}else{
 				$profile_txt = substr($GLOBALS['USERNAME'],0,1);
 				$GLOBALS['USERPROFILEIMG'] = '<span class="profiletxt">'.$profile_txt.'</span>';
