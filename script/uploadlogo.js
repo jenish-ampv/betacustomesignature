@@ -131,7 +131,6 @@ ui(function() {
 
 // Sending AJAX request and upload file
 function uploadDatalogo(formdata){
-  console.log('fdggfg');
 
     ui.ajax({
         url: upload_signature_logourl,
@@ -198,8 +197,8 @@ function logoChanged(){
     
     return false;
   }
-  console.log('bdf');
 
+  $("#logo_change_done_btn").addClass('cursor-not-allowed opacity-50').text('Processing...');
   ui.ajax({
     type: 'POST',
     url: upload_signature_logourl,
@@ -208,16 +207,18 @@ function logoChanged(){
     success: function(response){
       // window.location.replace(upload_signature_logourl);
       // console.log('success');
-      ui(".btn-close").click();
+      ui(".kt-modal-close").click();
       var response = JSON.parse(response);
       if(response.success){
         $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
 				$('#snackbar').show();
 				setTimeout(function(){ $('#snackbar').hide(); }, 2000);
       }
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
     },
     failure: function (response) {
       console.log('failed');
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
     }
   });
 };
