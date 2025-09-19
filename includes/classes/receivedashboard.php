@@ -117,7 +117,7 @@ class CIT_RECEIVEDASHBOARD
 								<p>kindly review it.</p>
 								<div class="review_btn"><a class="btn btn-primary" id="reviewLogo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#reviewModal">Review Logo</a></div>';
 						if($signature_logo['logo_change_process'] != 2){
-							$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
+							$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
 						}
 					$GLOBALS['signature_process'] .= '</div>
 					                               </div>';
@@ -134,7 +134,7 @@ class CIT_RECEIVEDASHBOARD
 								<span>1/2 Days</span>
 								</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 						</div>';
@@ -145,7 +145,7 @@ class CIT_RECEIVEDASHBOARD
 								<h2>'.$GLOBALS['USERNAME'].'!</h2>
 								<h3>Your Logo is Under Review</h3>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 						</div>';
@@ -173,7 +173,7 @@ class CIT_RECEIVEDASHBOARD
 								<span>1/2 Days</span>
 								</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 						</div>';
@@ -191,7 +191,7 @@ class CIT_RECEIVEDASHBOARD
 								<span>1/2 Days</span>
 								</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$GLOBALS['signature_image'].'" data-id="'.$GLOBALS['logo_id'].'" data-bs-toggle="modal" data-bs-target="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 						</div>';
