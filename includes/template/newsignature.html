@@ -3,16 +3,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
 
-
-<!-- <div class="loader-image" style="display: none;">
-  <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
-</div> -->
-
 <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
 <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
 <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
 
-<div class="flex w-full flex flex-col md:flex-row w-full" id="logoProfileUploadContainer">
+<div class="flex flex-col md:flex-row w-full" id="logoProfileUploadContainer">
   <div class="flex gap-3 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10 md:overflow-auto">
     <div class="flex-1 flex flex-col">
       <div>
@@ -20,11 +15,11 @@
           <i class="fal fa-angle-left text-xl mt-0.5"></i> Back
         </a>
       </div>
-      <div class="flex-1 max-w-[600px] mx-auto flex items-center justify-center">
-        <form id="logoimageform">
+      <div class="flex-1 flex items-center justify-center">
+        <form id="logoimageform" class="w-full max-w-[600px] mx-auto ">
           <fieldset>
             <div>
-              <h5 class="text-gray-950 text-2xl font-medium">Upload Company Logo</h5>
+              <h5 class="text-gray-950 text-2xl font-medium mb-3">Upload Company Logo</h5>
               <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
             </div>
             <div class="flex flex-col gap-10">
@@ -36,7 +31,7 @@
                 <label class="kt-form-label !mb-3">Company Logo</label>
                 <input type="file" name="file" id="file" class="hidden">
                 <label for="file"
-                  class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px] upload-area" id="uploadfile">
+                  class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[206px] upload-area" id="uploadfile">
                   <div class="cursor-pointer p-6 upload-box drag_your_image">
                     <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
                     <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG or SVG</p>
@@ -57,14 +52,14 @@
                 <div id="img_errormsg"></div>
               </div>
               <div>
-                <div class="flex">
-                  <label class="kt-form-label !mb-3">Profile Photo</label>
+                <div class="flex items-center mb-3">
+                  <label class="kt-form-label !mb-0">Profile Photo</label>
                   <input class="kt-switch" type="checkbox" id="profileImageCheck" checked>
                 </div>
                 <div id="profileUploadContainer">
                   <input class="hidden" type="file" name="profileImage" id="profileImage">
                   <label
-                    class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px] upload-area-profile"
+                    class="w-full block bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[206px] upload-area-profile"
                     for="profileImage" id="uploadProfileImage">
                     <div class="cursor-pointer p-6 upload-box drag_your_image">
                       <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
@@ -94,6 +89,14 @@
             </div>
           </fieldset>
         </form>
+      </div>
+    </div>
+    <div class="flex flex-col gap-4 mt-4 text-sm items-center justify-between xl:flex-row">
+      <span class="text-gray-600 text-center">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+      <div class="flex text-gray-700 items-center gap-2">
+        <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
+        <i class="fas fa-circle text-[6px] text-gray-400"></i>
+        <a href="https://www.customesignature.com/terms-of-use" target="_blank">Terms and Conditions</a>
       </div>
     </div>
   </div>

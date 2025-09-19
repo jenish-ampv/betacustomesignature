@@ -28,7 +28,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th class="w-0">Action</th>
+                                    <th class="w-0 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +45,7 @@
     <div class="kt-modal kt-modal-center" data-kt-modal="true" id="addUserModel">
         <div class="kt-modal-content max-w-[400px]">
             <div class="kt-modal-header">
-                <p class="kt-modal-title">Invite Admin</p>
+                <p class="kt-modal-title">Invite User</p>
                 <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#addUserModel">
                     <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
                 </button>
@@ -53,22 +53,22 @@
             <div class="kt-modal-body">
                 <form action="" method="post" id="addUserForm" class="flex flex-col gap-3">
                     <div>
-                        <label for="" class="kt-label">First Name</label>
+                        <label for="" class="kt-form-label">First Name</label>
                         <input type="text" class="kt-input" name="user_firstname" id="user_firstname"
                             placeholder="First Name" data-class="user_firstname">
                     </div>
                     <div>
-                        <label for="" class="kt-label">Last Name</label>
+                        <label for="" class="kt-form-label">Last Name</label>
                         <input type="text" class="kt-input" name="user_lastname" id="user_lastname"
                             placeholder="Last Name" data-class="user_lastname">
                     </div>
                     <div>
-                        <label for="" class="kt-label">Email</label>
+                        <label for="" class="kt-form-label">Email</label>
                         <input type="text" class="kt-input" name="email" id="email" placeholder="Email"
                             data-class="email">
                     </div>
                     <div id="permission">
-                        <p class="kt-label mb-3">Permissions</p>
+                        <p class="kt-form-label">Permissions</p>
                         <div class="space-y-2">
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="manage_signatures" id="manage_signatures">

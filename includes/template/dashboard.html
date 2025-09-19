@@ -318,15 +318,15 @@
 		<div class="kt-modal-body">
 			<input class="signature_logo" type="file" name="signature_logo" id="signature_logo" style="display:none;">
 			<div id="img_preview_logo"></div>
-			<div id="img_errormsg_logo"></div>
 			<div class="upload-area-logo" id="uploadfilelogo">
 				<input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
-				<div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+				<div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl cursor-pointer">
 					<img class="signature_logo" src="%%DEFINE_signature_change_image%%" alt="">
 					<p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a href="javascript:void(0);">browse</a></p>
 					<p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
 				</div>
 			</div>
+			<div id="img_errormsg_logo"></div>
 			<div class="kt-alert kt-alert-light kt-alert-warning my-5">
 				<div class="kt-alert-icon">
 				<i class="hgi hgi-stroke hgi-alert-01"></i>

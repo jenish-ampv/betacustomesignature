@@ -1154,7 +1154,7 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 					$GLOBALS['signature_custom_fields'. $fieldvar].='
 						<div class="flex items-center gap-4 inputbox mt-5">
 							<div class="flex-1 floting-input">
-								<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" placeholder="Title" data-class="'.$layout_labelclass.'">
+								<input type="text" class="kt-input" name="field_label[]" id="" value="'.$fieldlabelval.'" data-class="'.$layout_labelclass.'">
 								<label for="">Title</label>
 							</div>
 							<div class="floting-input">
@@ -1350,7 +1350,7 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 				$selected = $GLOBALS['signature_layout'] == $layout_id ? 'checked="checked"' :'';
 				$templateTitle = "<p>Template ".$templet_no."</p>";
 				if($layout_id >= 13){
-					$templateTitle = "<div class='flex items-center justify-between mb-3'>
+					$templateTitle = "<div class='flex items-center gap-5 mb-3'>
 					<p class='text-gray-400'>Template ".$templet_no."</p>
 					<span class='px-2 py-1 bg-gradient text-xs text-white rounded-full'>AI Animated</span></div>";
 				}
