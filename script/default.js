@@ -258,6 +258,16 @@ function initCustomSlider(
 
     customThumb.style.left = posX + "px";
     rangeBg.style.width = percent + "%";
+
+    if (typeof updatePlanDetails === 'function') {
+        updatePlanDetails(value);
+    }
+    if (typeof updateRenewaccountPlanDetails === 'function') {
+        updateRenewaccountPlanDetails(value);
+    }
+    if (typeof updatePurchasePlanDetails === 'function') {
+        updatePurchasePlanDetails(value);
+    }
   }
 
   slider.addEventListener("input", updateUI);
