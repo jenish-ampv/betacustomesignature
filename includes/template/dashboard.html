@@ -487,14 +487,16 @@
 			x.style.display = "none";
 		}
 	}
-	$(document).on('click', function (event) {
+	jQuery.noConflict();
+  	(function( $ ) {
+		$(document).on('click', function (event) {
 		if (!$(event.target).closest('.menu_open').length && !$(event.target).is('.openPopupClass')) {
 			$('.menu_open').hide();
 		}
 	});
 
 
-	$(document).ready(function () {
+		$(document).ready(function () {
 		setTimeout(function(){ $('.alert').remove(); }, 3000);
 		const feedbackModalEl = document.querySelector('#feedbackModal');
 		const feedbackModal = KTModal.getInstance(feedbackModalEl);
@@ -679,76 +681,76 @@
 
 	});
 
-	// review logo popup event and redirect
-	// review lgo popup event and redirect
-	// var reviewModal = document.getElementById('reviewModal');
-	// reviewModal.addEventListener('show.bs.modal', function (event) {
-	// 	// Button that triggered the modal
-	// 	var button = event.relatedTarget
-	// 	var reviewlogo = button.getAttribute('data-img');
-	// 	var signatureId = button.getAttribute('data-id');
-	// 	document.getElementById("looksgood").setAttribute('data-id', signatureId);
+		// review logo popup event and redirect
+		// review lgo popup event and redirect
+		// var reviewModal = document.getElementById('reviewModal');
+		// reviewModal.addEventListener('show.bs.modal', function (event) {
+		// 	// Button that triggered the modal
+		// 	var button = event.relatedTarget
+		// 	var reviewlogo = button.getAttribute('data-img');
+		// 	var signatureId = button.getAttribute('data-id');
+		// 	document.getElementById("looksgood").setAttribute('data-id', signatureId);
 
-	// 	document.getElementById("backreview").setAttribute('data-id', signatureId);
-	// 	document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+		// 	document.getElementById("backreview").setAttribute('data-id', signatureId);
+		// 	document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
-	// 	var imgBody = reviewModal.querySelector('.preview-logo');
-	// 	imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
+		// 	var imgBody = reviewModal.querySelector('.preview-logo');
+		// 	imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
 
-	// });
+		// });
 
-	const reviewModalEl = document.querySelector('#reviewModal');
-	const reviewModal = KTModal.getInstance(reviewModalEl);
+		const reviewModalEl = document.querySelector('#reviewModal');
+		const reviewModal = KTModal.getInstance(reviewModalEl);
 
-	const reviewLogo = document.getElementById('reviewLogo');
-	reviewLogo.addEventListener('click', function() {
-		var reviewlogo = button.getAttribute('data-img');
-		var signatureId = button.getAttribute('data-id');
-		document.getElementById("looksgood").setAttribute('data-id', signatureId);
+		const reviewLogo = document.getElementById('reviewLogo');
+		reviewLogo.addEventListener('click', function() {
+			var reviewlogo = button.getAttribute('data-img');
+			var signatureId = button.getAttribute('data-id');
+			document.getElementById("looksgood").setAttribute('data-id', signatureId);
 
-		document.getElementById("backreview").setAttribute('data-id', signatureId);
-		document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+			document.getElementById("backreview").setAttribute('data-id', signatureId);
+			document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
-		var imgBody = reviewModal.querySelector('.preview-logo');
-		imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
-		reviewModal.show();
-	});
+			var imgBody = reviewModal.querySelector('.preview-logo');
+			imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
+			reviewModal.show();
+		});
 
 
-	const changeLogoModelEl = document.querySelector('#changeLogoModel');
-	const changeLogoModel = KTModal.getInstance(changeLogoModelEl);
+		const changeLogoModelEl = document.querySelector('#changeLogoModel');
+		const changeLogoModel = KTModal.getInstance(changeLogoModelEl);
 
-	const backButton = document.getElementById('backreview');
-	backButton.addEventListener('click', function() {
-		const reviewlogo = this.getAttribute('data-img');
-		const signatureId = this.getAttribute('data-id');
+		const backButton = document.getElementById('backreview');
+		backButton.addEventListener('click', function() {
+			const reviewlogo = this.getAttribute('data-img');
+			const signatureId = this.getAttribute('data-id');
 
-		// Update modal content
-		document.getElementById("looksgood").setAttribute('data-id', signatureId);
-		document.getElementById("backreview").setAttribute('data-id', signatureId);
-		document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+			// Update modal content
+			document.getElementById("looksgood").setAttribute('data-id', signatureId);
+			document.getElementById("backreview").setAttribute('data-id', signatureId);
+			document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
-		const imgBody = reviewModalEl.querySelector('.preview-logo');
-		imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
+			const imgBody = reviewModalEl.querySelector('.preview-logo');
+			imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
 
-		// Show the modal
-		reviewModal.show();
-	});
+			// Show the modal
+			reviewModal.show();
+		});
 
-	const shareModalEl = document.querySelector('#shareModal');
-	const shareModal = KTModal.getInstance(shareModalEl);
+		const shareModalEl = document.querySelector('#shareModal');
+		const shareModal = KTModal.getInstance(shareModalEl);
 
-	shareModal.on('show', () => {
-		var button = event.relatedTarget
-		var signatureId = button.getAttribute('data-id');
-		var shareUrl = button.getAttribute('data-url');
-		var shareEmail = button.getAttribute('data-email');
-		document.getElementById("share_url").value = shareUrl;
-		document.getElementById("share_email").value = shareEmail;
-		document.getElementById("sharesig").setAttribute('data-id', signatureId);
-	});
+		shareModal.on('show', () => {
+			var button = event.relatedTarget
+			var signatureId = button.getAttribute('data-id');
+			var shareUrl = button.getAttribute('data-url');
+			var shareEmail = button.getAttribute('data-email');
+			document.getElementById("share_url").value = shareUrl;
+			document.getElementById("share_email").value = shareEmail;
+			document.getElementById("sharesig").setAttribute('data-id', signatureId);
+		});
 
-	$(document).ready(function () { // copy signature share url
+		$(document).ready(function () { // copy signature share url
 		$('#copyshareurl').on('click', function (event) {  // copy signature
 			text = $('#share_url').val();
 			var textField = $('#share_url');
@@ -765,12 +767,14 @@
 			shareModal.hide();
 		});
 	});
-
+})(jQuery);
 
 </script>
 
 <script language="javascript">
-	$(document).ready(function () {
+	jQuery.noConflict();
+  	(function( $ ) {
+		$(document).ready(function () {
 		$('#select_all').on('click', function () {
 			if (this.checked) {
 				$('.del_chekbox').each(function () {
@@ -802,7 +806,7 @@
 			}
 		});
 	});
-
+	})(jQuery);
 
 </script>
 IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
@@ -1573,24 +1577,25 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 	}
 
 
+	jQuery.noConflict();
+  	(function( $ ) {
+		$(document).ready(function () {
+			$('.line-chart-loader').show();
+			$('.performers-chart-loader').show();
+			const { startDate, endDate } = getDateRange('this-month');
+			loadChartData('days', startDate, endDate);
+			drawSignatureChart(startDate, endDate);
+		});
 
-	$(document).ready(function () {
-		$('.line-chart-loader').show();
-		$('.performers-chart-loader').show();
-		const { startDate, endDate } = getDateRange('this-month');
-		loadChartData('days', startDate, endDate);
-		drawSignatureChart(startDate, endDate);
-	});
 
-
-	$('.chart-range-option').on('click', function () {
-		$('.line-chart-loader').show();
-		$('.performers-chart-loader').show();
-		const range = $(this).data('range');
-		const { startDate, endDate } = getDateRange(range);
-		loadChartData('days', startDate, endDate);
-		drawSignatureChart(startDate, endDate);
-	});
-
+		$('.chart-range-option').on('click', function () {
+			$('.line-chart-loader').show();
+			$('.performers-chart-loader').show();
+			const range = $(this).data('range');
+			const { startDate, endDate } = getDateRange(range);
+			loadChartData('days', startDate, endDate);
+			drawSignatureChart(startDate, endDate);
+		});
+	})(jQuery);
 </script>
 %%DEFINE_FOOTER%%

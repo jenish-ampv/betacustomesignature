@@ -213,25 +213,26 @@
     $(function() {
           $("[rel='tooltip']").tooltip();
     });
-  })(jQuery);
-  $(document).ready(function(){
-    const swiper = new Swiper('#loginSlider', {
-      loop: true,              // enable infinite loop
-      slidesPerView: 1,        // number of slides visible
-      spaceBetween: 10,        // gap between slides
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      autoplay: {
-        delay: 3000,
-      },
+  
+    $(document).ready(function(){
+      const swiper = new Swiper('#loginSlider', {
+        loop: true,              // enable infinite loop
+        slidesPerView: 1,        // number of slides visible
+        spaceBetween: 10,        // gap between slides
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+          delay: 3000,
+        },
+      });
     });
-  });
+  })(jQuery);
 </script>
 
 <script>
@@ -277,51 +278,55 @@
 
 
 <script>
-    const countdownEl = document.getElementById('countdown');
-    const redirectUrl = $('#root_link').val();
-    let countdownInterval;
+    jQuery.noConflict();
+    (function( $ ) {
+      
+  
+      const countdownEl = document.getElementById('countdown');
+      const redirectUrl = $('#root_link').val();
+      let countdownInterval;
 
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = seconds % 60;
-      return `00:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    }
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `00:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
 
-    function startCountdown(duration) {
-      let timeLeft = duration;
+      function startCountdown(duration) {
+        let timeLeft = duration;
 
-      // Show initial time
-      countdownEl.textContent = formatTime(timeLeft);
-
-      // Clear any existing interval
-      clearInterval(countdownInterval);
-
-      countdownInterval = setInterval(() => {
-        timeLeft--;
+        // Show initial time
         countdownEl.textContent = formatTime(timeLeft);
 
-        if (timeLeft <= 0) {
-          clearInterval(countdownInterval);
-          window.location.href = redirectUrl;
-        }
-      }, 1000);
-    }
+        // Clear any existing interval
+        clearInterval(countdownInterval);
+
+        countdownInterval = setInterval(() => {
+          timeLeft--;
+          countdownEl.textContent = formatTime(timeLeft);
+
+          if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            window.location.href = redirectUrl;
+          }
+        }, 1000);
+      }
 
   
 
-  const upgradePlanPopupEl = document.querySelector('#upgrade-plan-popup');
-  const upgradePlanPopup = KTModal.getInstance(upgradePlanPopupEl);
-  
-  upgradePlanPopup.on('shown', () => {
-    startCountdown(90); // 90 seconds = 1 min 30 sec
-  });
-  upgradePlanPopup.on('hide', () => {
-    clearInterval(countdownInterval);
-  });
+      const upgradePlanPopupEl = document.querySelector('#upgrade-plan-popup');
+      const upgradePlanPopup = KTModal.getInstance(upgradePlanPopupEl);
+      
+      upgradePlanPopup.on('shown', () => {
+        startCountdown(90); // 90 seconds = 1 min 30 sec
+      });
+      upgradePlanPopup.on('hide', () => {
+        clearInterval(countdownInterval);
+      });
 
     
 
-    $('#load-upgrade-content').on('click', function () {
+      $('#load-upgrade-content').on('click', function () {
       clearInterval(countdownInterval);
       const $button = $(this);
       const $target = $('#upgrade-plan-popupmodal-body');
@@ -343,8 +348,7 @@
         }
       });
     });
-
-
+    })(jQuery);
 
   </script>
   </body>

@@ -422,132 +422,137 @@ function showConfirmationAlert({
     });
 }
 
-$(document).on("click", "[data-kt-dropdown][data-kt-toggle-replace='true'] .kt-dropdown-menu-link", function () {
-    let $dropdown = $(this).closest("[data-kt-dropdown]");
-    let $button = $dropdown.find("[data-kt-dropdown-toggle='true']");
-    $button.find("span").first().text($(this).text());
-  });
-    
-/*status-selector*/
-$('.status-selector').click(function () {
-    $(this).attr('tabindex', 1).focus();
-    $(this).toggleClass('active');
-    $(this).find('.status-selector-menu').slideToggle(300);
-});
-$('.status-selector').focusout(function () {
-    $(this).removeClass('active');
-    $(this).find('.status-selector-menu').slideUp(300);
-});
-$('.status-selector .status-selector-menu li').click(function () {
-    $(this).parents('.status-selector').find('span').text($(this).text());
-    $(this).parents('.status-selector').find('input').attr('value', $(this).attr('id'));
-});
-/*End status-selector Menu*/
-$('#signature-status-selector-menu li').on('click', function() {
-    const status = $(this).attr('id');
-    console.log(status)
-    $('.search-container ').hide();
-    $('.search-container.' + status).show();
-});
+jQuery.noConflict();
+  (function( $ ) {
 
-
-$(document).ready(function () {
-    let scrollTrigger = $('.hover_previous_right_bg').outerHeight();
-    // Real-time resize tracking using requestAnimationFrame
-    let lastHeight = scrollTrigger;
-    function updateHeight() {
-        const currentHeight = $('.hover_previous_right_bg').outerHeight();
-        if (currentHeight !== lastHeight) {
-            scrollTrigger = currentHeight;
-            lastHeight = currentHeight;
-        }
-        requestAnimationFrame(updateHeight);
-    }
-    requestAnimationFrame(updateHeight); // start tracking height
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > scrollTrigger) {
-            $('.nav-tabs-head').addClass("menutop");
-            $('#myTabContent').addClass("padding30");
-        } else {
-            $('.nav-tabs-head').removeClass("menutop");
-            $('#myTabContent').removeClass("padding30");
-        }
+    $(document).on("click", "[data-kt-dropdown][data-kt-toggle-replace='true'] .kt-dropdown-menu-link", function () {
+        let $dropdown = $(this).closest("[data-kt-dropdown]");
+        let $button = $dropdown.find("[data-kt-dropdown-toggle='true']");
+        $button.find("span").first().text($(this).text());
+    });
+        
+    /*status-selector*/
+    $('.status-selector').click(function () {
+        $(this).attr('tabindex', 1).focus();
+        $(this).toggleClass('active');
+        $(this).find('.status-selector-menu').slideToggle(300);
+    });
+    $('.status-selector').focusout(function () {
+        $(this).removeClass('active');
+        $(this).find('.status-selector-menu').slideUp(300);
+    });
+    $('.status-selector .status-selector-menu li').click(function () {
+        $(this).parents('.status-selector').find('span').text($(this).text());
+        $(this).parents('.status-selector').find('input').attr('value', $(this).attr('id'));
+    });
+    /*End status-selector Menu*/
+    $('#signature-status-selector-menu li').on('click', function() {
+        const status = $(this).attr('id');
+        console.log(status)
+        $('.search-container ').hide();
+        $('.search-container.' + status).show();
     });
 
-	
-    let currentPath = window.location.pathname.split("/").filter(Boolean)[1];
-    if (!currentPath) currentPath = "dashboard";
-    // reset all li
-    $("#mega_menu li").removeClass("active");
-    // mark the current path li as active
-    $("#mega_menu li." + currentPath).addClass("active");
 
-    var $menu = $("#mega_menu");
-    var $links = $menu.find("li > a");
-    var $indicator = $("#mainMenuActive");
-
-    // run only if screen width > 1080
-    function initMenuIndicator() {
-        function moveIndicator($el) {
-            if (!$el.length) return;
-            var pos = $el.position();
-            var width = $el.outerWidth();
-            var height = $el.outerHeight();
-            $indicator.stop().animate({
-                left: pos.left,
-                top: pos.top,
-                width: width,
-                height: height
-            }, 300);
+    $(document).ready(function () {
+        let scrollTrigger = $('.hover_previous_right_bg').outerHeight();
+        // Real-time resize tracking using requestAnimationFrame
+        let lastHeight = scrollTrigger;
+        function updateHeight() {
+            const currentHeight = $('.hover_previous_right_bg').outerHeight();
+            if (currentHeight !== lastHeight) {
+                scrollTrigger = currentHeight;
+                lastHeight = currentHeight;
+            }
+            requestAnimationFrame(updateHeight);
         }
-
-        // function to get the current active link
-        function getActiveLink() {
-            return $menu.find("li.active > a").last(); // if multiple, pick the last one
-        }
-
-        // initial position
-        var $active = getActiveLink();
-        if ($active.length) {
-            moveIndicator($active);
-        }
-
-        // hover effect
-        $links.on("mouseenter", function () {
-            moveIndicator($(this));
+        requestAnimationFrame(updateHeight); // start tracking height
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > scrollTrigger) {
+                $('.nav-tabs-head').addClass("menutop");
+                $('#myTabContent').addClass("padding30");
+            } else {
+                $('.nav-tabs-head').removeClass("menutop");
+                $('#myTabContent').removeClass("padding30");
+            }
         });
 
-        // restore to active on leave
-        $menu.on("mouseleave", function () {
+        
+        let currentPath = window.location.pathname.split("/").filter(Boolean)[1];
+        if (!currentPath) currentPath = "dashboard";
+        // reset all li
+        $("#mega_menu li").removeClass("active");
+        // mark the current path li as active
+        $("#mega_menu li." + currentPath).addClass("active");
+
+        var $menu = $("#mega_menu");
+        var $links = $menu.find("li > a");
+        var $indicator = $("#mainMenuActive");
+
+        // run only if screen width > 1080
+        function initMenuIndicator() {
+            function moveIndicator($el) {
+                if (!$el.length) return;
+                var pos = $el.position();
+                var width = $el.outerWidth();
+                var height = $el.outerHeight();
+                $indicator.stop().animate({
+                    left: pos.left,
+                    top: pos.top,
+                    width: width,
+                    height: height
+                }, 300);
+            }
+
+            // function to get the current active link
+            function getActiveLink() {
+                return $menu.find("li.active > a").last(); // if multiple, pick the last one
+            }
+
+            // initial position
             var $active = getActiveLink();
             if ($active.length) {
                 moveIndicator($active);
             }
-        });
 
-        // optional: watch for dynamic active changes
-        const observer = new MutationObserver(() => {
-            var $active = getActiveLink();
-            if ($active.length) {
-                moveIndicator($active);
-            }
-        });
+            // hover effect
+            $links.on("mouseenter", function () {
+                moveIndicator($(this));
+            });
 
-        observer.observe($menu[0], { attributes: true, subtree: true, attributeFilter: ["class"] });
-    }
+            // restore to active on leave
+            $menu.on("mouseleave", function () {
+                var $active = getActiveLink();
+                if ($active.length) {
+                    moveIndicator($active);
+                }
+            });
 
-    // // check screen size
-    // if (window.innerWidth > 1080) {
-    //     initMenuIndicator();
-    // }
+            // optional: watch for dynamic active changes
+            const observer = new MutationObserver(() => {
+                var $active = getActiveLink();
+                if ($active.length) {
+                    moveIndicator($active);
+                }
+            });
 
-    // // also handle window resize (optional)
-    // $(window).on("resize", function () {
-    //     if (window.innerWidth > 1080 && !$menu.data("indicator-init")) {
-    //         initMenuIndicator();
-    //         $menu.data("indicator-init", true);
-    //     }
-    // });
+            observer.observe($menu[0], { attributes: true, subtree: true, attributeFilter: ["class"] });
+        }
 
-});
+        // // check screen size
+        // if (window.innerWidth > 1080) {
+        //     initMenuIndicator();
+        // }
+
+        // // also handle window resize (optional)
+        // $(window).on("resize", function () {
+        //     if (window.innerWidth > 1080 && !$menu.data("indicator-init")) {
+        //         initMenuIndicator();
+        //         $menu.data("indicator-init", true);
+        //     }
+        // });
+
+    });
+
+})(jQuery);
 
