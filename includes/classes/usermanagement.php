@@ -112,8 +112,9 @@ class CIT_USERMANAGEMENT
         }
         $departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
         foreach ($departments as $department) {
-            $GLOBALS['department_list'] .= "<div class='form-floating'>
-                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."</span>
+            $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+                       <input type='checkbox' class='kt-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+                       <label class='kt-label' for='department_".$department['department_id']."'>".$department['department_name']."</label>
                     </div>
                 ";
         }

@@ -6,12 +6,12 @@
     </div> -->
     <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
         %%DEFINE_SIDEBAR%%
+        %%DEFINE_Message%%
         <main class="grow" id="content" role="content">
 		    <div class="kt-container-fluid pb-4">
                 <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
                 <div id="snackbar-error" class="w-full mb-4"></div>
                 <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
-                %%DEFINE_Message%%
                 <div class="kt-card kt-card-accent">
                     <div class="kt-card-header mb-1">
                         <div class="kt-card-heading">
@@ -72,25 +72,25 @@
                         <div class="space-y-2">
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="manage_signatures" id="manage_signatures">
-                                <span class="kt-label">Manage signatures</span>
+                                <label for="manage_signatures" class="kt-label">Manage signatures</label>
                             </div>
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="billing_settings" id="billing_settings">
-                                <span class="kt-label">Billing</span>
+                                <label for="billing_settings" class="kt-label">Billing</label>
                             </div>
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="integration_settings" id="integration_settings">
-                                <span class="kt-label">Integrations</span>
+                                <label for="integration_settings" class="kt-label">Integrations</label>
                             </div>
                         </div>
                     </div>
 
                     IF("%%DEFINE_USERTYPE%%" == "enterprise"){
                     <div class="form-check-list" id="department">
-                        <div class="form-check-list-lable">
-                            <span class="lable">Divisions</span>
+                        <label class="kt-label mb-3">Divisions</label>
+                        <div class="space-y-2">
+                            %%DEFINE_department_list%%
                         </div>
-                        %%DEFINE_department_list%%
                     </div>
                     {:IF}
 
@@ -122,10 +122,15 @@
                 setTimeout(function () { $('#snackbar').hide(); }, 2000);
 
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Something went wrong! Please try again.</strong> Please try again later.</div>');
-                $('#snackbar-error').show();
+                KTToast.show({
+                    message: `<strong>Something went wrong! Please try again.</strong> Please try again later.`,
+                    variant: 'destructive',
+                });
+
+                // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 $(".loader-image").hide();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
             });
         };
         $(document).ready(function () {
@@ -238,8 +243,12 @@
                         $('#snackbar').show();
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 2000);
                     } else {
-                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
-                        $('#snackbar-error').show();
+                        KTToast.show({
+                            message: `<strong>Failure! </strong>${json.msg}`,
+                            variant: 'destructive',
+                        });
+                        // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""> </div>');
+                        // $('#snackbar-error').show();
                         setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                         $('.btn-close').click();
                         $(".userSubmit").prop('disabled', false);
@@ -349,18 +358,26 @@
                     if (json.error != 1) {
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 500);
                     } else {
-                        $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
-                        $('#snackbar-error').show();
-                        setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                        KTToast.show({
+                            message: `<strong>Failure! </strong>${json.msg}`,
+                            variant: 'destructive',
+                        });
+                        // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                        // $('#snackbar-error').show();
+                        // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                         $('.btn-close').click();
                         return false;
                     }
                     // Optionally alert the user of success here...
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     console.error("AJAX error:", textStatus, errorThrown);
-                    $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Request Failed!</strong> Please try again later.</div>');
-                    $('#snackbar-error').show();
-                    setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                    KTToast.show({
+                        message: `<strong>Request Failed!</strong> Please try again later.`,
+                        variant: 'destructive',
+                    });
+                    // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                    // $('#snackbar-error').show();
+                    // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 });
             });
 
