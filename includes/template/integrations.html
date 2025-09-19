@@ -32,7 +32,7 @@
                                     <p class="mb-5">To complete a domain-wide integration, you must be a Google Workspace Admin. Please choose your role below so we can provide the correct step-by-step setup instructions.</p>
 
                                     <div class="flex gap-2">
-                                        <a href="%%DEFINE_google_connect%%/2/0" class="kt-btn kt-btn-mono">No, I don't</a>
+                                        <a href="%%DEFINE_google_connect%%/2/0" class="kt-btn kt-btn-mono bg-gray-300 text-black">No, I don't</a>
                                         <a href="%%DEFINE_google_connect%%/2/1" class="kt-btn kt-btn-primary">Yes, I do</a>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                                     </div>
                                     <div>
                                         <label class="kt-form-label" for="admin_email">Email</label>
-                                        <input type="text" class="kt-input" id="admin_email" name="admin_email" placeholder="" required="required" value="">
+                                        <input type="text" class="kt-input" id="admin_email" name="admin_email" placeholder="Email" required="required" value="">
                                         <span class="error text-danger hidden" id="at">Email is required field</span>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
                             <span>Google Workspace</span>
                         </div>
                         <div class="flex-1 mb-5">
-                            <p class="my-3 max-w-[280px] font-medium text-black text-xs">Seamlessly integrate your Google Workspace with Custom Esignature to effortlessly manage and deploy email signatures across your organization.</p>
+                            <p class="my-3 font-medium text-black text-xs">Seamlessly integrate your Google Workspace with Custom Esignature to effortlessly manage and deploy email signatures across your organization.</p>
                             <ul>
                                 <li class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent"></i> Sync with Google Contacts</li>
                                 <li class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent"></i> 2-way Sync from Custom Esignature to Gmail</li>
@@ -343,12 +343,11 @@
                             <span>Outlook</span>
                         </div>
                         <div class="flex-1 mb-5">
-                            <p class="my-3 max-w-[280px] font-medium text-black text-xs">Outlook email communications with the added advantage of Custom Esignature. With direct integration, unify your signature experience.</p>
+                            <p class="my-3 font-medium text-black text-xs">Outlook email communications with the added advantage of Custom Esignature. With direct integration, unify your signature experience.</p>
                             <ul class="*:flex *:items-center *:gap-1">
                                 <li><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent"></i> 2-way Sync from Custom Esignature to Outlook</li>
                                 <li><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent"></i> Template Assignment based on user roles or departments</li>
                                 <li><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent"></i> Easy Deployment</li>
-                                <li><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent"></i> OAuth2.0 Security</li>
                             </ul>
                         </div>
                         <div class="flex gap-3">
@@ -466,7 +465,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -502,7 +501,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -561,7 +560,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -598,7 +597,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();
@@ -630,7 +629,7 @@
                     dataType: 'json',
                 }).done(function(data) {
                     if (data.error == 0) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
+                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function() {
                             $('#snackbar').hide();

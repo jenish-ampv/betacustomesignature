@@ -54,7 +54,7 @@ ui(function() {
 
       fd.append('signature_logo',files);
 
-      ui("#img_preview_logo").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+      ui("#img_preview_logo").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
       setTimeout(function(){ ui("#img_preview_logo").html(""); }, 3000);
 
       uploadDatalogo(fd);
@@ -101,7 +101,7 @@ ui(function() {
 
       fd.append('signature_department_logo',files);
 
-			ui("#img_preview_logo").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+			ui("#img_preview_logo").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
       setTimeout(function(){ ui("#img_preview_logo").html(""); }, 3000);
       uploadDatalogo(fd);
     });
@@ -184,7 +184,7 @@ function addThumbnaillogo(data){
     ui('.signature_department_logo').attr("data-logo-name",name);
 		ui("#img_errormsg_logo").html('');
 	}else{
-		ui("#img_errormsg_logo").html('<div class="alert alert-danger" role="alert">'+data.msg+'</div>');
+		ui("#img_errormsg_logo").html('<div class="alert text-danger mt-2 text-[12px]" role="alert">'+data.msg+'</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
 	}
 
@@ -193,7 +193,7 @@ function logoChanged(){
   var reason = ui("input[name=change_reason]").val();
   var logo_id = ui("input[name=logo_id]").val();
   if(!reason){
-    ui("#img_errormsg_logo").html('<div class="alert alert-danger" role="alert">Please enter feedback to change logo</div>');
+    ui("#img_errormsg_logo").html('<div class="alert text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
     
     return false;
