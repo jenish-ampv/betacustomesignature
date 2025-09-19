@@ -51,6 +51,9 @@ h3{font-size: calc( 32px + (40 - 32) * (100vw - 400px) / (1920 - 400) );}
 h4{font-size: calc( 24px + (32 - 24) * (100vw - 400px) / (1920 - 400) );}
 h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: transparent; /* invisible */ cursor: pointer; position: relative; z-index: 3; }
+
+
 .bg-gradient{
     @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
 }
@@ -218,4 +221,25 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 }
 .required{
     @apply after:content-['*'] after:text-red-500
+}
+
+.list-check{
+    li{
+        @apply relative pl-6;
+        &:before{
+            font-family: "Font Awesome 5 Pro";
+            content: "\f00c";
+            @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg absolute left-0;
+        }
+    }
+}
+.list-minus{
+    li{
+        @apply relative pl-6;
+        &:before{
+            font-family: "Font Awesome 5 Pro";
+            content: "\f068";
+            @apply text-lg absolute left-0;
+        }
+    }
 }
