@@ -846,7 +846,7 @@
 
                 // Create buttons container
                 const btnContainer = document.createElement('div');
-                btnContainer.classList.add('litepicker-preset-buttons');
+                btnContainer.classList.add('litepicker-preset-buttons', 'flex', 'flex-wrap', 'sm:absolute', 'sm:left-[-95px]', 'sm:flex-col',  'items-start', 'gap-2', 'p-5', 'bg-white', 'h-full', 'border-r', 'border-gray-200', '*:cursor-pointer', '*:text-gray-400', 'shadow-[-2px_0px_10px_0px_#ddd]', 'rounded-sm',);
                 btnContainer.innerHTML = `
                     <button data-range="today">Today</button>
                     <button data-range="yesterday">Yesterday</button>

@@ -339,7 +339,7 @@ class CIT_AZUREAD
 							$GLOBALS['memberr_selected']= $mem_count;
 					}
 				}else{
-						$_SESSION[GetSession('Error')] = '<div class="alert alert-danger">'.$getgroups['msg'].'.</div>';
+						$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt="">'.$getgroups['msg'].'.</div></div>';
 				}
 				 
 				 

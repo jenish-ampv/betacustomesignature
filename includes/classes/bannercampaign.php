@@ -153,23 +153,22 @@ class CIT_BANNERCAMPAIGN
                 </td>
                 <td>
                 	<div class='signature_manager_top'>
-                		<div class='campaign_option_btns'>
-							<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Duplicate' data-toggle='tooltip' data-placement='top' title='Duplicate' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-copy-02'></i></a>";
+                		<div class='campaign_option_btns flex gap-1 items-center'>
+							<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Duplicate' data-kt-tooltip='true' data-kt-tooltip-placement='top' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-copy-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Duplicate</span></a>";
 							if($fieldtype == 'pause'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Resume' data-toggle='tooltip' data-placement='top' title='Resume' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'> <img src='".$GLOBALS['IMAGE_LINK']."/images/resume.svg'/></a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Resume' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'><i class='hgi hgi-solid hgi-sharp hgi-play'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Resume</span></a>";
 							}
 							else if($fieldtype == 'active'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Pause' data-toggle='tooltip' data-placement='top' title='Pause' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'> <img src='".$GLOBALS['IMAGE_LINK']."/images/pause.svg'/></a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Pause' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-pause-circle'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Pause</span></a>";
 							}
 							if($fieldtype == 'scheduled' || $fieldtype == 'draft'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Edit' data-toggle='tooltip' data-placement='top' title='Edit' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."/edit'><i class='hgi hgi-stroke hgi-pencil-edit-02'></i></a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Edit' data-kt-tooltip='true' data-kt-tooltip-placement='top' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."/edit'><i class='hgi hgi-stroke hgi-pencil-edit-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Edit</span></a>";
 							}
 							if($fieldtype == 'draft'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='start' data-toggle='tooltip' data-placement='top' title='Start Campaign' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/startBanner/".$row['banner_id']."'> <img src='".$GLOBALS['IMAGE_LINK']."/images/start.svg'/></a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='start' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/startBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-start-up-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Start Campaign</span></a>";
 							}
-							
-							$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Cancel' data-toggle='tooltip' data-placement='top' title='Cancel' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/cancelBanner/".$row['banner_id']."' ".$cancelButtonVisibility."' > <img src='".$GLOBALS['IMAGE_LINK']."/images/cancel.svg'/></a>
-							<a href='javascript:void(0);' class='kt-btn kt-btn-destructive kt-btn-icon' data-action='Delete' data-toggle='tooltip' data-placement='top' title='Delete' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/deleteBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-delete-02'></i></a>
+							$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Cancel' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/cancelBanner/".$row['banner_id']."' ".$cancelButtonVisibility."' ><i class='hgi hgi-stroke hgi-cancel-circle'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Cancel</span></a></a>
+							<a href='javascript:void(0);' class='kt-btn kt-btn-destructive kt-btn-icon' data-action='Delete' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/deleteBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-delete-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Delete</span></a>
 						</div>
 					</div>
                 </td>

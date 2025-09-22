@@ -1,62 +1,9 @@
 %%DEFINE_HEADER%%
-<div class="container">	
-	 <div class="new_dashboard_bg">
-     	
-        	<div class="new_dashboard_left">
-            	%%DEFINE_SIDEBAR%%
-            </div>
-            <div class="new_dashboard_right">
-              
-              <div class="bulk_upload_main deploy_data_main">
-               <div class="deploy-signature-wrapper">
-                <a class="backarrow" href="%%DEFINE_ROOT_LINK%%"><img src="%%DEFINE_IMAGE_LINK%%/images/back-arrow.svg" alt="">Back</a>	
-                <div class="signature_integration_withhead_box step" id="step1" style="float:left;">
-                    <div class="headbox_content">
-                        <h5>Deploy the Signature to Google</h5>
-                        <p>&nbsp;</p>
-                        <p>Select the accounts to which the signatures will be applied. Once deployed, the signatures will be automatically installed into the users' respective email inboxes.</p>
-                        <p>&nbsp;</p>
-                        <p>%%DEFINE_google_signature_data_last_updated_message%% If you see outdated data <a href="%%DEFINE_ROOT_LINK%%/integrations">Update Now</a></p>
-                        <p>&nbsp;</p>
-                        <p> <input type="text" class="form-control" value="" id="search_member" placeholder="Search username or email"></p>
-                        <p id="notfound" style="display:none;">No results found</p>
-                        <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
-                        <form id="groupdeploygoogle" method="post" action="" enctype="multipart/form-data">
-                             
-                                    <div class="accordionbox">
-                                        <ul class="main">
-                                            <li><input type="checkbox" class="form-check-input groupcbox" id="select_all" /> <label for="select_all">Select All</label> 
-                                            <div class="mem_right">Selected:<span id="selected_mem">0</span></div></li>
-                                        </ul>
-                                        <div class="accordion" id="accordionExample">
-                                            %%DEFINE_group_list%%
-                                        </div>
-                                    </div>
-                              
-                            <input type="hidden" name="groupdeploygoogle_submit" value="1" />
-                                <div class="bottom_bg_btn" style="padding:30px 0 0 0 !important; float:right;">
-                                    <button type="submit" name="next" class="submit btn next action-button"  value="Next Step">Deploy </button>
-                                </div>
-                        </form>
-                    </div>
-             </div>
-                </div>
-            </div>
-            
-            	<div class="bulk_upload_main text-center %%DEFINE_bulkerrorcls%%">
-            <h2><a href="%%DEFINE_linkModuleDashboard%%">please select your Master Signature <br /> For bulk upload</a></h2>
-        <p><a class="btn btn-primary" href="%%DEFINE_linkModuleDashboard%%">Dashboard <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a></p>
-        
-    </div>
-            </div>
-        </div>
-     </div>
-
  <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
         <div class="kt-container-fluid pb-4 flex flex-col h-auto md:h-[90vh] items-center justify-center">
-            <div class="kt-card kt-card-accent max-w-[830px] %%DEFINE_bulkuploadcls%%">
+            <div class="kt-card kt-card-accent max-w-[830px]">
                 <div class="kt-card-header">
                     <div class="kt-card-heading">
                         <h2 class="kt-card-title">Deploy the Signature to Google</h2>
@@ -81,13 +28,13 @@
                                     </div>
                                     <div class="mem_right">Selected:<span id="selected_mem">0</span></div>
                                 </div>
-                                <div class="accordion pb-4 max-h-80 overflow-y-auto" id="accordionExample">
+                                <div class="accordion max-h-80 overflow-y-auto" id="accordionExample">
                                     %%DEFINE_group_list%%
                                 </div>
                             </div>
-                            <input type="hidden" name="groupdeployoutlook_submit" value="1" />
+                            <input type="hidden" name="groupdeploygoogle_submit" value="1" />
                             <div class="flex gap-2 mt-7 px-5">
-                                <a class="kt-btn kt-btn-mono" href="%%DEFINE_backArrowlink%%">
+                                <a class="kt-btn kt-btn-mono" href="%%DEFINE_ROOT_LINK%%">
                                     <i class="hgi hgi-stroke hgi-arrow-left-02"></i> Back
                                 </a>
                                 <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button" value="Next Step">Deploy</button>
