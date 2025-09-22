@@ -14,14 +14,14 @@
                         <h6 class="kt-card-title">Billing Overview</h6>
                     </div>
                     IF("%%DEFINE_free_trial%%" == "0"){
-                    <a href="#" data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
+                    <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
                         <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
-                    </a>
+                    </button>
                     {:IF}
                     IF("%%DEFINE_free_trial%%" == "1"){
-                    <a href="#" data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
+                    <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
                         <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
-                    </a>
+                    </button>
                     <a href="%%DEFINE_li_cancelsubscription%%" class="kt-btn kt-btn-outline">Cancel</a>
                     {:IF}
                 </div>
@@ -659,6 +659,20 @@ IF("%%DEFINE_upgrade_freetrial%%" == "1"){
     }
 </script>
 
+
+<script type="text/javascript">
+    jQuery.noConflict();
+    (function ($) {
+        $(document).ready(function () {
+            var subscription_id = "%%DEFINE_subscription_id%%";
+            if(!subscription_id){
+                $('[data-kt-modal-toggle="#upgradeplanModal"]').attr('disabled', 'disabled');
+            }else{
+                $('[data-kt-modal-toggle="#upgradeplanModal"]').removeAttr('disabled');
+            }
+        });
+    })(jQuery);
+</script>
 
 
 %%DEFINE_FOOTER%%
