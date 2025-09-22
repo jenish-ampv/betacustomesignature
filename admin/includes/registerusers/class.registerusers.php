@@ -519,11 +519,14 @@ class CIT_REGISTERUSERS{
 			// }else{
 			// 	$logoprocess = 'Not Uploaded';
 			// }
-			
 			if($row['free_trial'] == 1){
 				$userlable ='<label class="badge badge-light-primary" style="cursor:pointer;">Free</label>';
 			}else{
 				$userlable ='';
+			}
+
+			if(isset($row['subscription_id']) && !$row['subscription_id']){
+				$userlable = '<label class="badge badge-light-primary" style="cursor:pointer;">New Signup</label>';
 			}
 			
 			
