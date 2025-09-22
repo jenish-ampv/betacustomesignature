@@ -5,9 +5,9 @@
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
         <div class="kt-container-fluid pb-4">
-            <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
-            <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
-            <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div>
+            <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
+            <div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
+            <div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
 
             <div class="flex gap-2 flex-wrap justify-between items-center mb-4">
                 <h5 class="text-xl text-nowrap">Analytics Overview</h5>
@@ -846,7 +846,7 @@
 
                 // Create buttons container
                 const btnContainer = document.createElement('div');
-                btnContainer.classList.add('litepicker-preset-buttons');
+                btnContainer.classList.add('litepicker-preset-buttons', 'flex', 'flex-wrap', 'sm:absolute', 'sm:left-[-95px]', 'sm:flex-col',  'items-start', 'gap-2', 'p-5', 'bg-white', 'h-full', 'border-r', 'border-gray-200', '*:cursor-pointer', '*:text-gray-400', 'shadow-[-2px_0px_10px_0px_#ddd]', 'rounded-sm',);
                 btnContainer.innerHTML = `
                     <button data-range="today">Today</button>
                     <button data-range="yesterday">Yesterday</button>

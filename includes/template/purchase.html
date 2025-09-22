@@ -132,7 +132,7 @@
                 <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$<span class="year_propricespl">30</span></p>
                 <div class="flex items-end gap-3">
                   <h2>$<span class="year_proprice cprice">15</span> /mo </h2>
-                  <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span>
+                  <!-- <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span> -->
                 </div>
                 <p class="text-gray-400 my-1">Billed Annualy</p>
                 <p class="text-gray-400">Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</p>
@@ -235,6 +235,71 @@
 <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>         
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 <script type="text/javascript">
+
+  
+
+  function initCustomSlider(
+    values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+    sliderId = "rangeSlider",
+    tooltipId = "tooltip",
+    labelsId = "labels",
+    thumbId = "customThumb",
+    fillId = "fillTreck"
+  ) {
+    const slider = document.getElementById(sliderId);
+    const tooltip = document.getElementById(tooltipId);
+    const labelsContainer = document.getElementById(labelsId);
+    const customThumb = document.getElementById(thumbId);
+    const rangeBg = document.getElementById(fillId);
+
+    const thumbWidth = customThumb.offsetWidth;
+    const halfThumb = thumbWidth / 2;
+
+    // Set slider max
+    slider.max = values.length - 1;
+
+    // Apply negative margin to labels container
+    labelsContainer.style.marginLeft = `-${halfThumb}px`;
+    labelsContainer.style.marginRight = `-${halfThumb}px`;
+
+    // Add labels
+    labelsContainer.innerHTML = "";
+    values.forEach(val => {
+      const span = document.createElement("span");
+      span.textContent = val;
+      labelsContainer.appendChild(span);
+    });
+
+    function updateUI() {
+      const index = parseInt(slider.value);
+      const value = values[index];
+      const percent = (index / (values.length - 1)) * 100;
+      const sliderWidth = slider.offsetWidth;
+      const posX = (percent / 100) * sliderWidth;
+
+      tooltip.style.left = posX + "px";
+      tooltip.textContent = `${value} signature`;
+
+      customThumb.style.left = posX + "px";
+      rangeBg.style.width = percent + "%";
+
+      if (typeof updatePlanDetails === 'function') {
+          updatePlanDetails(value);
+      }
+      if (typeof updateRenewaccountPlanDetails === 'function') {
+          updateRenewaccountPlanDetails(value);
+      }
+      if (typeof updatePurchasePlanDetails === 'function') {
+          updatePurchasePlanDetails(value);
+      }
+    }
+
+    slider.addEventListener("input", updateUI);
+    window.addEventListener("resize", updateUI);
+
+    updateUI(); // initialize
+  }
+
 
   function updateSelectPlan(){
       

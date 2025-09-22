@@ -1354,13 +1354,13 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 				$GLOBALS['signature_count']++;
 		}
 		if($GLOBALS['plan_signaturelimit'] == 1){
-			$GLOBALS['signature_create_upgrade'] ='<div class="border-2 border-dashed border-gray-300 p-5 rounded-lg flex items-center justify-center">
+			$GLOBALS['signature_create_upgrade'] = '<div class="border-2 border-dashed border-gray-300 p-5 rounded-lg flex items-center justify-center">
 						<a class="kt-btn kt-btn-primary" href="'.$GLOBALS['linkModuleNewsignature'].'">
 						<i class="hgi hgi-stroke hgi-plus-sign-circle"></i>Create New Signature
 						</a>
                     </div>';
 		}else{
-			$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
+			$GLOBALS['signature_create_upgrade'] = '<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
   							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
@@ -1369,6 +1369,18 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								<i class="hgi hgi-stroke hgi-circle-arrow-up-02"></i> Upgrade
 							</a>
                         </div>';
+			$signatureSubscription = $GLOBALS['DB']->row("SELECT subscription_id FROM `registerusers_subscription` WHERE user_id = ? ",array($GLOBALS['USERID']));
+			if($signatureSubscription){
+				if($signatureSubscription['subscription_id'] == ""){
+					$GLOBALS['signature_create_upgrade'] = '<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+								<i class="hgi hgi-stroke hgi-add-01"></i>
+							</button>
+							<p>Upgrade to create more signatures</p>
+							<button class="kt-btn kt-btn-primary mt-5" data-kt-modal-toggle="#upgrade-plan-popup">Upgrade</button>
+                        </div>';
+				}
+			}
 		}
 
 

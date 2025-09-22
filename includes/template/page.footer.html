@@ -4,9 +4,9 @@
 	<input type="hidden" value="%%DEFINE_ROOT_LINK%%" id="root_link" />
 	<input type="hidden" value="%%DEFINE_UPLOAD_LINK%%" id="upload_link" />
 	<input type="hidden" value="%%DEFINE_IMAGE_LINK%%" id="image_link" />
-    <!-- <div id="snackbar" class="fixed top-0 right-0 p-3"></div>
-    <div id="snackbar-error" class="fixed top-0 right-0 p-3"></div>
-    <div id="snackbar-info" class="fixed top-0 right-0 p-3"></div> -->
+    <!-- <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
+    <div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
+    <div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div> -->
 </footer>
 
   <!-- <a href="javascript:void(0)" class="btn" id="delet-confirmation" data-bs-toggle="modal" data-bs-target="#delet-confirmation-popup">Open</a> -->
@@ -125,7 +125,15 @@
 <script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
 <script src="%%DEFINE_JS_LINK%%/default.js"></script> 
 
+<script type="text/javascript">
+  const intervalId = setInterval(function () {
+    if ($('.success-error-message').is(':visible')) {
+      $('.success-error-message').css('display', 'none');
+      clearInterval(intervalId);  // stop the interval once hidden
+    }
+  }, 3000);
 
+</script>
 
   %%DEFINE_LOTTIE_JS_BASEON_SIGNATURELOGOPROCESSPENDING%%
   <script type="text/javascript">

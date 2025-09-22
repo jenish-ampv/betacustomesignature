@@ -66,7 +66,7 @@ class CIT_account
 						$update = $GLOBALS['DB']->update("registerusers",$data,$where);
 					}
 					$_SESSION[GetSession('user_name')] = $_POST['user_firstname'] ." ".$_POST['user_lastname'];
-					$_SESSION[GetSession('Success')] = '<div class="fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> Detail update!</div></div>';
+					$_SESSION[GetSession('Success')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> Detail update!</div>';
 					$usrRes = $GLOBALS['DB']->row("SELECT user_status,user_image FROM `registerusers` WHERE `user_id`=? and user_status=1",array($GLOBALS['USERID']));
 					if($usrRes['user_image'] != 'default.png'){
 						$profile_img = $GLOBALS['UPLOAD_LINK'].'/profile/'.$usrRes['user_image'];
