@@ -64,23 +64,23 @@
 				IF("%%DEFINE_ve_step%%" == "2"){
 				<form name="resetpassword" method="post">
 					<h3 class="text-2xl text-center mb-3">Verify OTP</h3>
-					<p class="text-center">Please enter the 6-digit code sent to you at<br><a href="mailto:%%DEFINE_otp_email%%" class="text-primary">%%DEFINE_otp_email%%</a></p>
+					<p class="text-center">Please enter the OTP code that will be sent to your email address.<br><a href="mailto:%%DEFINE_otp_email%%" class="text-primary">%%DEFINE_otp_email%%</a></p>
 					<p class="text-center flex justify-center items-center gap-1.5 mt-1 text-gray-400"><i class="hgi hgi-stroke hgi-information-circle"></i> check spam folder if not in inbox</p>
 					<div class="kt-card p-5 lg:p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]">
 						<span id="verify_email_otp_error_message"></span>
 						<div class="digit-group flex justify-center gap-2 *:text-center">
 							<input type="text" id="digit-1" name="digit-1" data-next="digit-2" placeholder="0"
-								class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+								class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" required/>
 							<input type="text" id="digit-2" name="digit-2" data-next="digit-3" placeholder="0"
-							data-previous="digit-1" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+							data-previous="digit-1" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" required/>
 							<input type="text" id="digit-3" name="digit-3" data-next="digit-4" placeholder="0"
-								data-previous="digit-2" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-2" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" required/>
 							<input type="text" id="digit-4" name="digit-4" data-next="digit-5" placeholder="0"
-								data-previous="digit-3" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-3" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" required/>
 							<input type="text" id="digit-5" name="digit-5" data-next="digit-6" placeholder="0"
-								data-previous="digit-4" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+								data-previous="digit-4" class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" required/>
 							<input type="text" id="digit-6" name="digit-6" data-previous="digit-5" placeholder="0"
-								class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" />
+								class="inputotp kt-input !rounded-xl !p-0 !size-[35px] lg:!size-[52px] md:!size-[40px] focus-within:bg-primary/10 focus-within:border-primary" required/>
 						</div>
 						<button type="submit" name="submit" class="my-5 kt-btn kt-btn-primary w-full" id="verifyOTP">Continue</button>
 						<div class="text-center text-gray-400 text-sm font-light">
