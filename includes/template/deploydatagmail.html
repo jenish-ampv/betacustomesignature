@@ -25,7 +25,8 @@
                              
                                     <div class="accordionbox">
                                         <ul class="main">
-                                            <li><input type="checkbox" class="form-check-input groupcbox" id="select_all" /> <label for="select_all">Select All</label> <div class="mem_right">Selected:<span id="selected_mem">0</span></div></li>
+                                            <li><input type="checkbox" class="form-check-input groupcbox" id="select_all" /> <label for="select_all">Select All</label> 
+                                            <div class="mem_right">Selected:<span id="selected_mem">0</span></div></li>
                                         </ul>
                                         <div class="accordion" id="accordionExample">
                                             %%DEFINE_group_list%%
@@ -51,7 +52,59 @@
         </div>
      </div>
 
- 
+ <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    %%DEFINE_SIDEBAR%%
+    <main class="grow" id="content" role="content">
+        <div class="kt-container-fluid pb-4 flex flex-col h-auto md:h-[90vh] items-center justify-center">
+            <div class="kt-card kt-card-accent max-w-[830px] %%DEFINE_bulkuploadcls%%">
+                <div class="kt-card-header">
+                    <div class="kt-card-heading">
+                        <h2 class="kt-card-title">Deploy the Signature to Google</h2>
+                    </div>
+                </div>
+                <div class="kt-card-content" id="step1">
+                    <div class="headbox_content">
+                        <p>Select the accounts to which the signatures will be applied. Once deployed, the signatures will be automatically installed into the users' respective email inboxes.</p>
+                        <p class="mt-5">
+                            %%DEFINE_google_signature_data_last_updated_message%% If you see outdated data <a class="text-primary underline" href="%%DEFINE_ROOT_LINK%%/integrations">Update Now</a>
+                        </p>
+                        
+                        <input type="text" class="form-control" value="" id="search_member" placeholder="Search username or email">
+                        <p id="notfound" style="display:none;">No results found</p>
+                        <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
+                        <form id="groupdeploygoogle" class="mt-5" method="post" action="" enctype="multipart/form-data">
+                            <div class="accordionbox border border-gray-300 rounded-lg overflow-hidden">
+                                <div class="flex flex-wrap py-4 px-5 items-center justify-between bg-gray-200">
+                                    <div class="flex items-center gap-2">
+                                        <input type="checkbox" class="kt-checkbox groupcbox" id="select_all" /> 
+                                        <label class="kt-label" for="select_all">Select All</label>
+                                    </div>
+                                    <div class="mem_right">Selected:<span id="selected_mem">0</span></div>
+                                </div>
+                                <div class="accordion pb-4 max-h-80 overflow-y-auto" id="accordionExample">
+                                    %%DEFINE_group_list%%
+                                </div>
+                            </div>
+                            <input type="hidden" name="groupdeployoutlook_submit" value="1" />
+                            <div class="flex gap-2 mt-7 px-5">
+                                <a class="kt-btn kt-btn-mono" href="%%DEFINE_backArrowlink%%">
+                                    <i class="hgi hgi-stroke hgi-arrow-left-02"></i> Back
+                                </a>
+                                <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button" value="Next Step">Deploy</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center %%DEFINE_bulkerrorcls%%">
+                <h2 class="font-semibold"><a class="hover:text-primary" href="%%DEFINE_linkModuleDashboard%%">please select your Master Signature <br /> For bulk upload</a></h2>
+                <p class="flex items-center justify-center mt-7"><a class="kt-btn kt-btn-primary" href="%%DEFINE_linkModuleDashboard%%">Dashboard <i class="hgi hgi-stroke hgi-arrow-right-02"></i></a></p>
+            </div>
+        </div>
+    </main>
+</div>
+
+
 <script type="text/javascript">
     $(document).ready(function(){
         var members = [];
