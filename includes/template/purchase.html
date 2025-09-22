@@ -129,7 +129,7 @@
                 <p><span class="no_employee_qarter">5</span> Signature</p>
                 <p class="yearprice" style="display:none;">$<span class="year_propricespl cpricespl">60</span> USD</p>
                 <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
-                <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$30</p>
+                <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$<span class="year_propricespl">30</span></p>
                 <div class="flex items-end gap-3">
                   <h2>$<span class="year_proprice cprice">15</span> /mo </h2>
                   <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span>
@@ -198,7 +198,7 @@
                 <span>Discount</span>
                 <span id="discount">$0 USD</span>
               </div>
-              <div class="flex items-center justify-between text-primary">
+              <div class="flex items-center justify-between text-primary" id="savings-main-div">
                 <span>Saving</span>
                 <span id="savings">%%DEFINE_plan_format_savings%% USD</span>
               </div>
@@ -251,9 +251,18 @@
       planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
       planpricesplint = parseFloat(radioObj.parent().find('label span.cpricespl').text() * multiplyprice);
       totalsavings = parseFloat(planpricesplint - planpriceint);  
-      $('#subtotal').text('$'+planpricesplint.toFixed(2)+' USD');
-      $('#savings').text('$'+totalsavings.toFixed(2)+' USD');
-      $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
+
+      if(multiplyprice == 1){
+        $('#savings-main-div').hide();
+        $('#subtotal').text('$'+planpriceint.toFixed(2)+' USD');
+        $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
+      }else{
+        $('#savings-main-div').show();
+        $('#subtotal').text('$'+planpricesplint.toFixed(2)+' USD');
+        $('#savings').text('$'+totalsavings.toFixed(2)+' USD');
+        $('#total').text('$'+planpriceint.toFixed(2)+' USD'); 
+      }
+      
       var selectedplan = radioObj.parent().find('label').html();
       $('#selected-plan').html(selectedplan);
       // $('#selectplan-main').toggle();
