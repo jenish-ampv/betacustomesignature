@@ -263,7 +263,7 @@
                 
             IF("%%DEFINE_PageView%%" == "integrations"){
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                <div class="signature_integration_box kt-card kt-card-accent">
+                <div class="signature_integration_box kt-card kt-card-accent overflow-hidden">
                     <div class="kt-card-content flex flex-col relative">
                         <div class="dot_icon %%DEFINE_glconnectedbtncls%%" class="absolute top-3 right-3">
                             <a href="javascript:void(0);" class="absolute top-3 right-3" onclick="myFunction(1)">
@@ -278,9 +278,9 @@
                             <div class="flex flex-col gap-3 items-center justify-center h-full">
                                 <ul class="flex gap-2">
                                     <li>
-                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalGL" data-id="1">
-                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/disconnect-icon.svg" alt=""> -->
+                                        <a data-kt-tooltip="true" data-kt-tooltip-placement="top" href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalGL" data-id="1">
                                              <i class="hgi hgi-stroke hgi-unlink-04"></i>
+                                             <span data-kt-tooltip-content="true" class="kt-tooltip">Disconnect</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -305,7 +305,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="signature_integration_box kt-card kt-card-accent">
+                <div class="signature_integration_box kt-card kt-card-accent overflow-hidden">
                     <div class="kt-card-content flex flex-col relative">
                         <div class="dot_icon %%DEFINE_connectedbtncls%%"><a href="javascript:void(0);" class="absolute top-3 right-3" onclick="myFunction(2)"><img src="%%DEFINE_IMAGE_LINK%%/images/dot-icon.svg" alt=""></a></div>
                         <div id="myDIV2" class="menu_open absolute inset-0 bg-white/90 z-[2]" style="display:none;">
@@ -318,21 +318,21 @@
                             <div class="flex flex-col gap-3 items-center justify-center h-full">
                                 <ul class="flex gap-2">
                                     <li>
-                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalMS" data-id="0">
-                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/disconnect-icon.svg" alt=""> -->
-                                             <i class="hgi hgi-stroke hgi-unlink-04"></i>
+                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-kt-tooltip="true" data-kt-tooltip-placement="top" title data-bs-original-title="Disconnect" data-kt-modal-toggle="#DisconnectModalMS" data-id="0">
+                                            <i class="hgi hgi-stroke hgi-unlink-04"></i>
+                                            <span data-kt-tooltip-content="true" class="kt-tooltip">Disconnect</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" id="forcetoupdate" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Force Update" data-url="%%DEFINE_azuread%%">
-                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/force-update.svg" alt=""> -->
-                                                <i class="hgi hgi-stroke hgi-exchange-01"></i>
+                                        <a href="javascript:void(0);" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" id="forcetoupdate" data-kt-tooltip="true" data-kt-tooltip-placement="top" title data-bs-original-title="Force Update" data-url="%%DEFINE_azuread%%">
+                                            <i class="hgi hgi-stroke hgi-exchange-01"></i>
+                                            <span data-kt-tooltip-content="true" class="kt-tooltip">Force Update</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="%%DEFINE_integrations%%/installaddin" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" id="installaddin" data-toggle="tooltip" data-placement="top" title data-bs-original-title="Install Add-in">
-                                            <!-- <img src="%%DEFINE_IMAGE_LINK%%/images/outlook-install-addin.svg" alt=""> -->
-                                             <i class="hgi hgi-stroke hgi-view"></i>
+                                        <a href="%%DEFINE_integrations%%/installaddin" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" id="installaddin" data-kt-tooltip="true" data-kt-tooltip-placement="top" title data-bs-original-title="Install Add-in">
+                                            <i class="hgi hgi-stroke hgi-view"></i>
+                                            <span data-kt-tooltip-content="true" class="kt-tooltip">Install Add-in</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -381,7 +381,7 @@
     <div class="kt-modal kt-modal-center" data-kt-modal="true" id="DisconnectModalMS">
         <div class="kt-modal-content max-w-[400px]">
             <div class="kt-modal-header">
-                <h3 class="kt-modal-title">Disconnect Custom eSignature from Outlook</h3>
+                <p class="kt-modal-title">Disconnect Custom eSignature from Outlook</p>
                 <button type="button" class="kt-modal-close" aria-label="Close modal"
                     data-kt-modal-dismiss="#DisconnectModalMS">
                     <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
@@ -389,10 +389,10 @@
             </div>
             <div class="kt-modal-body">
                 <p>All the signatures will be removed from the email accounts after the integration is disconnected. Are you sure you want to proceed?</p>
-            </div>
-            <div class="kt-modal-footer">
-                <button type="button" class="kt-btn kt-btn-secondary" data-kt-modal-dismiss="#DisconnectModalMS">Cancel</button>
-                <button type="button" class="kt-btn kt-btn-primary disconnect" id="sendfeedback" data-id="0">Disconnect</button>
+                <div class="flex justify-end gap-2 mt-4">
+                    <button type="button" class="kt-btn kt-btn-mono" data-kt-modal-dismiss="#DisconnectModalMS">Cancel</button>
+                    <button type="button" class="kt-btn kt-btn-primary disconnect" id="sendfeedback" data-id="0">Disconnect</button>
+                </div>
             </div>
         </div>
     </div>

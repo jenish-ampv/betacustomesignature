@@ -341,359 +341,360 @@
 %%DEFINE_FOOTER%%
 
 <script>
-  $(function () {
-    const $steps = $(".step");
-    const $boxes = $(".progress-box");
-    const $titles = $("[data-title]");
-    let current = 1;
+  jQuery.noConflict();
+  	(function( $ ) {
+      const $steps = $(".step");
+      const $boxes = $(".progress-box");
+      const $titles = $("[data-title]");
+      let current = 1;
 
-    function showStep(n) {
-      current = n;
+      function showStep(n) {
+        current = n;
 
-      // show current step only
-      $steps.addClass("hidden").filter(`[data-step="${n}"]`).removeClass("hidden");
+        // show current step only
+        $steps.addClass("hidden").filter(`[data-step="${n}"]`).removeClass("hidden");
 
-    }
+      }
 
-    // validation (optional, right now no error divs in your form)
-    function validateStep(n) {
-      return true; // skip for now
-    }
+      // validation (optional, right now no error divs in your form)
+      function validateStep(n) {
+        return true; // skip for now
+      }
 
-    let isValidFirstStep = true;
+      let isValidFirstStep = true;
 
 
 
-    // function showError(input, message) {
-    //   isValidFirstStep = false;
-    //   let $input = $(input);
+      // function showError(input, message) {
+      //   isValidFirstStep = false;
+      //   let $input = $(input);
 
-    //   // Try to find any existing error message after the input or after a following div
-    //   let $existingError = $input.nextAll('.error-msg').first();
-    //   if ($existingError.length) {
-    //     // Update existing error message
-    //     $existingError.text(message);
-    //   } else {
-    //     // Add new error message
-    //     let $lastDiv = $input.nextAll('div').last();
-    //     let $errorMsg = $('<div class="error-msg" style="color: red; font-size: 12px;"></div>').text(message);
+      //   // Try to find any existing error message after the input or after a following div
+      //   let $existingError = $input.nextAll('.error-msg').first();
+      //   if ($existingError.length) {
+      //     // Update existing error message
+      //     $existingError.text(message);
+      //   } else {
+      //     // Add new error message
+      //     let $lastDiv = $input.nextAll('div').last();
+      //     let $errorMsg = $('<div class="error-msg" style="color: red; font-size: 12px;"></div>').text(message);
 
-    //     if ($lastDiv.length > 0) {
-    //       $lastDiv.after($errorMsg);
-    //     } else {
-    //       $input.after($errorMsg);
-    //     }
-    //   }
-    // }
+      //     if ($lastDiv.length > 0) {
+      //       $lastDiv.after($errorMsg);
+      //     } else {
+      //       $input.after($errorMsg);
+      //     }
+      //   }
+      // }
 
-    function showError(input, message) {
-      isValidFirstStep = false;
-      let $input = $(input);
+      function showError(input, message) {
+        isValidFirstStep = false;
+        let $input = $(input);
 
-      // Check if input is inside .fw-row
-      let $fwRow = $input.closest('.fv-row');
+        // Check if input is inside .fw-row
+        let $fwRow = $input.closest('.fv-row');
 
-      // If parent .fw-row exists, insert error inside it
-      if ($fwRow.length) {
-        let $existingError = $fwRow.children('.error-msg').last();
+        // If parent .fw-row exists, insert error inside it
+        if ($fwRow.length) {
+          let $existingError = $fwRow.children('.error-msg').last();
 
-        if ($existingError.length) {
-          // Update existing error
-          $existingError.text(message);
-        } else {
-          // Add new error at the end of .fw-row
-          let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
-          $fwRow.append($errorMsg);
-        }
-
-      } else {
-        // Default: error message after input
-        let $existingError = $input.nextAll('.error-msg').first();
-
-        if ($existingError.length) {
-          $existingError.text(message);
-        } else {
-          let $lastDiv = $input.nextAll('div').last();
-          let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
-
-          if ($lastDiv.length > 0) {
-            $lastDiv.after($errorMsg);
+          if ($existingError.length) {
+            // Update existing error
+            $existingError.text(message);
           } else {
-            $input.after($errorMsg);
+            // Add new error at the end of .fw-row
+            let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+            $fwRow.append($errorMsg);
+          }
+
+        } else {
+          // Default: error message after input
+          let $existingError = $input.nextAll('.error-msg').first();
+
+          if ($existingError.length) {
+            $existingError.text(message);
+          } else {
+            let $lastDiv = $input.nextAll('div').last();
+            let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+
+            if ($lastDiv.length > 0) {
+              $lastDiv.after($errorMsg);
+            } else {
+              $input.after($errorMsg);
+            }
           }
         }
       }
-    }
 
-    function removeError(input) {
-      let $input = $(input);
+      function removeError(input) {
+        let $input = $(input);
 
-      // Remove the first error message found after the input
-      let $existingError = $input.nextAll('.error-msg').first();
-      if ($existingError.length) {
-        $existingError.remove();
+        // Remove the first error message found after the input
+        let $existingError = $input.nextAll('.error-msg').first();
+        if ($existingError.length) {
+          $existingError.remove();
+        }
       }
-    }
-    $('#user_phone').on('input', function() {
-      // Remove any character that is NOT a digit
-      this.value = this.value.replace(/\D/g, '');
-    });
-    $("#next1").on("click", function (e) {
-      e.preventDefault();
-
-      isValidFirstStep = true
-      // Validate first name
-      let firstName = $('#user_first_name').val().trim();
-      if (firstName === '') {
-        showError('#user_first_name', 'First name is required.');
-      } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
-        showError('#user_first_name', 'First name can only contain letters and spaces.');
-      } else{
-        removeError('#user_first_name');
-      }
-
-      // Validate last name
-      let lastName = $('#user_last_name').val().trim();
-      if (lastName === '') {
-        showError('#user_last_name', 'Last name is required.');
-      } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
-        showError('#user_last_name', 'Last name can only contain letters and spaces.');
-      } else{
-        removeError('#user_last_name');
-      }
-
-      // Validate phone
-      let phonePattern = /^(\+?\d{1,3}[-.\s()]*)?(\d{3})[-.\s()]*(\d{3})[-.\s()]*(\d{4})$/;
-      let phone = $('#user_phone').val().trim();
-      if (phone === '') {
-        showError('#user_phone', 'Phone number is required.');
-      } else if (!phonePattern.test(phone)) {
-        showError('#user_phone', 'Enter a valid phone number.');
-      } else{
-        removeError('#user_phone');
-      }
-
-      // Validate company name
-      let companyName = $('#user_organization').val().trim();
-      if (companyName === '') {
-        showError('#user_organization', 'Company name is required.');
-      } else{
-        removeError('#user_organization');
-      }
-
-      // Validate industry
-      let industry = $('#user_business').val();
-      if (industry === null || industry === '') {
-        showError('#user_business', 'Industry is required.');
-      } else{
-        removeError('#user_business');
-      }
-
-      // Validate company size
-      let companySize = $('#user_company_size').val();
-      if (companySize === null || companySize === '') {
-        showError('#user_company_size', 'Please select company size.');
-      } else{
-        removeError('#user_company_size');
-      }
-
-      // Validate job title
-      let jobTitle = $('#user_job_title').val();
-      if (jobTitle === null || jobTitle === '') {
-        showError('#user_job_title', 'Job title is required.');
-      } else{
-        removeError('#user_job_title');
-      }
-
-      // Prevent form submission if invalid
-      if (isValidFirstStep) {
-        console.log('Form is valid. Proceeding to next step.');
-        if (validateStep(1)) showStep(2);
-      }
-      
-    });
-    
-
-    function getCheckedValuesAsCSV(className) {
-      let values = [];
-      $('.' + className + ':checked').each(function () {
-        let label = $('label[for="' + $(this).attr('id') + '"]').text().trim();
-        values.push(label);
+      $('#user_phone').on('input', function() {
+        // Remove any character that is NOT a digit
+        this.value = this.value.replace(/\D/g, '');
       });
-      return values.join(', ');
-    }
-
-    $("#userRegisterFormSubmit").on("click", function (e){
-      let isValidSecondStep = true;
-
-      // Validate user_team_size 
-      let teamSize = $('#user_team_size').val();
-      if (teamSize === null || teamSize === '') {
-        isValidSecondStep = false;
-        showError('#user_team_size', 'Team size is required.');
-      } else{
-        removeError('#user_team_size');
-      }
-
-      // Validate user_email_platform (at least one selected)
-      const selectedEmailPlatforms = $("#user_email_platform").val();
-      if (!selectedEmailPlatforms || selectedEmailPlatforms.length === 0) {
-        isValidSecondStep = false;
-        showError('#user_email_platform', 'Please select at least one Email Platform.');
-      } else {
-        removeError('#user_email_platform');
-      }
-
-      // Validate how_did_you_hear_about_us checkboxes (at least one checked)
-      if ($("input.how_did_you_hear_about_us:checked").length === 0) {
-        isValidSecondStep = false;
-        showError(
-          $('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'),
-          'Please select at least one option for how you heard about us.'
-        );
-      } else {
-        removeError($('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'));
-      }
-
-      // Validate what_brought_you checkboxes (at least one checked)
-      if ($("input.what_brought_you:checked").length === 0) {
-        isValidSecondStep = false;
-        showError(
-          $('.what_brought_you:last').closest('.flex.flex-wrap'),
-          'Please select at least one option for what brought you here.'
-        );
-      } else {
-        removeError($('.what_brought_you:last').closest('.flex.flex-wrap'));
-      }
-
-      if(!isValidSecondStep){
+      $("#next1").on("click", function (e) {
         e.preventDefault();
-      }else{
-        e.preventDefault(); // prevent default form submission
-        $("#userRegisterFormSubmit").prop('disabled', true).text('Processing...').addClass('spinner');
-        $.ajax({
-          type: 'POST',
-          url: $('#register_url').val(),
-          data: $('#registerUserForm').serialize()
-                + '&heard_about_us=' + encodeURIComponent(getCheckedValuesAsCSV('how_did_you_hear_about_us'))
-                + '&what_brought_you=' + encodeURIComponent(getCheckedValuesAsCSV('what_brought_you')),
-          dataType: 'json',
-          success: function(response) {
-            
-            if (response.error === 0 && response.redirect_thnk) {
-              
-              var datalayerRawData = response.datalayer;
-              var datalayer = JSON.parse(datalayerRawData);
-              var transaction_id = datalayer['subscription_id'];
-              var plan_id = datalayer['plan_id'];
-              var plan_name = datalayer['plan_name'];
-              var plan_status = datalayer['plan_status'];
-              var customer_id = datalayer['customer_id'];
-              var subscription_id = datalayer['subscription_id'];
-              var price_id = datalayer['price_id'];
-              var plan_interval = datalayer['plan_interval'];
-              var plan_signaturelimit = datalayer['plan_signaturelimit'];
-              var period_start = datalayer['period_start'];
-              var period_end = datalayer['period_end'];
-              var invoice_amount = datalayer['invoice_amount'];
-              var invoice_link = datalayer['invoice_link'];
-              var apply_coupon = datalayer['apply_coupon'];
-              var auto_renew = datalayer['auto_renew'];
-              var free_trial = datalayer['free_trial'];
-              var plan_cancel = datalayer['plan_cancel'];
-              var item_variant = 'quarterly';
-              if(plan_interval == 'month'){
-                var item_variant = 'quarterly';
-              }
-              else if(plan_interval == 'year'){
-                var item_variant = 'yearly';
-              }
 
-              var user_first_name = datalayer['user_data']['user_firstname'];
-              var user_last_name = datalayer['user_data']['user_lastname'];
-              var user_email = datalayer['user_data']['user_email'];
-              var user_phone = datalayer['user_data']['user_phone'];
-              var user_organization = datalayer['user_data']['user_organization'];
+        isValidFirstStep = true
+        // Validate first name
+        let firstName = $('#user_first_name').val().trim();
+        if (firstName === '') {
+          showError('#user_first_name', 'First name is required.');
+        } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
+          showError('#user_first_name', 'First name can only contain letters and spaces.');
+        } else{
+          removeError('#user_first_name');
+        }
 
-              $('#user_name').html(datalayer['user_name'])
-              const purchaseEvent = {
-                event: "purchase",
-                ecommerce: {
-                  currency: "USD",
-                  value: invoice_amount,
-                  tax: "0.00",
-                  shipping: "0.00",
-                  transaction_id: transaction_id,
-                  affiliation: user_organization,
-                  coupon: "",
-                  items: [
-                    {
-                      item_id : plan_id,
-                      item_name : plan_name,
-                      price : invoice_amount,
-                      quantity: plan_signaturelimit,
-                      item_brand: user_organization,
-                      item_category: 'subscription',
-                      item_variant: item_variant
-                    }
-                  ],
-                  plan_status : plan_status,
-                  customer_id : customer_id,
-                  subscription_id : subscription_id,
-                  price_id : price_id,
-                  plan_interval : plan_interval,
-                  plan_signaturelimit : plan_signaturelimit,
-                  period_start : period_start,
-                  period_end : period_end,
-                  invoice_link : invoice_link,
-                  apply_coupon : apply_coupon,
-                  auto_renew : auto_renew,
-                  free_trial : free_trial,
-                  plan_cancel : plan_cancel
-                },
-                user_data: {
-                  first_name: user_first_name,
-                  last_name: user_last_name,
-                  email_hash: user_email,
-                  phone_number_hash: user_phone
-                },
-                ga4_event_parameters: {
-                  signature_limit: plan_signaturelimit,
-                  plan_interval: plan_interval
-                }
-              };
+        // Validate last name
+        let lastName = $('#user_last_name').val().trim();
+        if (lastName === '') {
+          showError('#user_last_name', 'Last name is required.');
+        } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
+          showError('#user_last_name', 'Last name can only contain letters and spaces.');
+        } else{
+          removeError('#user_last_name');
+        }
 
-              // Push to dataLayer
-              dataLayer.push(purchaseEvent);
+        // Validate phone
+        let phonePattern = /^(\+?\d{1,3}[-.\s()]*)?(\d{3})[-.\s()]*(\d{3})[-.\s()]*(\d{4})$/;
+        let phone = $('#user_phone').val().trim();
+        if (phone === '') {
+          showError('#user_phone', 'Phone number is required.');
+        } else if (!phonePattern.test(phone)) {
+          showError('#user_phone', 'Enter a valid phone number.');
+        } else{
+          removeError('#user_phone');
+        }
 
-              // Redirect to the URL from the server
-              window.location.href = response.redirect_thnk;
-            }
-            
-            if(response.error === 1){
-              window.location.href = response.redirect_url;
-            }
-          },
-          error: function(xhr, status, error) {
-            console.error('Error:', error);
-          }
+        // Validate company name
+        let companyName = $('#user_organization').val().trim();
+        if (companyName === '') {
+          showError('#user_organization', 'Company name is required.');
+        } else{
+          removeError('#user_organization');
+        }
+
+        // Validate industry
+        let industry = $('#user_business').val();
+        if (industry === null || industry === '') {
+          showError('#user_business', 'Industry is required.');
+        } else{
+          removeError('#user_business');
+        }
+
+        // Validate company size
+        let companySize = $('#user_company_size').val();
+        if (companySize === null || companySize === '') {
+          showError('#user_company_size', 'Please select company size.');
+        } else{
+          removeError('#user_company_size');
+        }
+
+        // Validate job title
+        let jobTitle = $('#user_job_title').val();
+        if (jobTitle === null || jobTitle === '') {
+          showError('#user_job_title', 'Job title is required.');
+        } else{
+          removeError('#user_job_title');
+        }
+
+        // Prevent form submission if invalid
+        if (isValidFirstStep) {
+          console.log('Form is valid. Proceeding to next step.');
+          if (validateStep(1)) showStep(2);
+        }
+        
+      });
+      
+
+      function getCheckedValuesAsCSV(className) {
+        let values = [];
+        $('.' + className + ':checked').each(function () {
+          let label = $('label[for="' + $(this).attr('id') + '"]').text().trim();
+          values.push(label);
         });
+        return values.join(', ');
       }
-    });
 
-    
-    $("#next2").on("click", function (e) {
-      e.preventDefault();
-      if (validateStep(2)) showStep(3);
-    });
+      $("#userRegisterFormSubmit").on("click", function (e){
+        let isValidSecondStep = true;
 
-    $("#back2").on("click", function (e) {
-      e.preventDefault();
-      if($(`[data-step="1"]`).is(":visible")){
-        window.location.href = "%%DEFINE_ROOT_LINK%%/signup/verifyemail";
-        return;
-      }
-      showStep(1);
+        // Validate user_team_size 
+        let teamSize = $('#user_team_size').val();
+        if (teamSize === null || teamSize === '') {
+          isValidSecondStep = false;
+          showError('#user_team_size', 'Team size is required.');
+        } else{
+          removeError('#user_team_size');
+        }
+
+        // Validate user_email_platform (at least one selected)
+        const selectedEmailPlatforms = $("#user_email_platform").val();
+        if (!selectedEmailPlatforms || selectedEmailPlatforms.length === 0) {
+          isValidSecondStep = false;
+          showError('#user_email_platform', 'Please select at least one Email Platform.');
+        } else {
+          removeError('#user_email_platform');
+        }
+
+        // Validate how_did_you_hear_about_us checkboxes (at least one checked)
+        if ($("input.how_did_you_hear_about_us:checked").length === 0) {
+          isValidSecondStep = false;
+          showError(
+            $('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'),
+            'Please select at least one option for how you heard about us.'
+          );
+        } else {
+          removeError($('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'));
+        }
+
+        // Validate what_brought_you checkboxes (at least one checked)
+        if ($("input.what_brought_you:checked").length === 0) {
+          isValidSecondStep = false;
+          showError(
+            $('.what_brought_you:last').closest('.flex.flex-wrap'),
+            'Please select at least one option for what brought you here.'
+          );
+        } else {
+          removeError($('.what_brought_you:last').closest('.flex.flex-wrap'));
+        }
+
+        if(!isValidSecondStep){
+          e.preventDefault();
+        }else{
+          e.preventDefault(); // prevent default form submission
+          $("#userRegisterFormSubmit").prop('disabled', true).text('Processing...').addClass('spinner');
+          $.ajax({
+            type: 'POST',
+            url: $('#register_url').val(),
+            data: $('#registerUserForm').serialize()
+                  + '&heard_about_us=' + encodeURIComponent(getCheckedValuesAsCSV('how_did_you_hear_about_us'))
+                  + '&what_brought_you=' + encodeURIComponent(getCheckedValuesAsCSV('what_brought_you')),
+            dataType: 'json',
+            success: function(response) {
+              
+              if (response.error === 0 && response.redirect_thnk) {
+                
+                var datalayerRawData = response.datalayer;
+                var datalayer = JSON.parse(datalayerRawData);
+                var transaction_id = datalayer['subscription_id'];
+                var plan_id = datalayer['plan_id'];
+                var plan_name = datalayer['plan_name'];
+                var plan_status = datalayer['plan_status'];
+                var customer_id = datalayer['customer_id'];
+                var subscription_id = datalayer['subscription_id'];
+                var price_id = datalayer['price_id'];
+                var plan_interval = datalayer['plan_interval'];
+                var plan_signaturelimit = datalayer['plan_signaturelimit'];
+                var period_start = datalayer['period_start'];
+                var period_end = datalayer['period_end'];
+                var invoice_amount = datalayer['invoice_amount'];
+                var invoice_link = datalayer['invoice_link'];
+                var apply_coupon = datalayer['apply_coupon'];
+                var auto_renew = datalayer['auto_renew'];
+                var free_trial = datalayer['free_trial'];
+                var plan_cancel = datalayer['plan_cancel'];
+                var item_variant = 'quarterly';
+                if(plan_interval == 'month'){
+                  var item_variant = 'quarterly';
+                }
+                else if(plan_interval == 'year'){
+                  var item_variant = 'yearly';
+                }
+
+                var user_first_name = datalayer['user_data']['user_firstname'];
+                var user_last_name = datalayer['user_data']['user_lastname'];
+                var user_email = datalayer['user_data']['user_email'];
+                var user_phone = datalayer['user_data']['user_phone'];
+                var user_organization = datalayer['user_data']['user_organization'];
+
+                $('#user_name').html(datalayer['user_name'])
+                const purchaseEvent = {
+                  event: "purchase",
+                  ecommerce: {
+                    currency: "USD",
+                    value: invoice_amount,
+                    tax: "0.00",
+                    shipping: "0.00",
+                    transaction_id: transaction_id,
+                    affiliation: user_organization,
+                    coupon: "",
+                    items: [
+                      {
+                        item_id : plan_id,
+                        item_name : plan_name,
+                        price : invoice_amount,
+                        quantity: plan_signaturelimit,
+                        item_brand: user_organization,
+                        item_category: 'subscription',
+                        item_variant: item_variant
+                      }
+                    ],
+                    plan_status : plan_status,
+                    customer_id : customer_id,
+                    subscription_id : subscription_id,
+                    price_id : price_id,
+                    plan_interval : plan_interval,
+                    plan_signaturelimit : plan_signaturelimit,
+                    period_start : period_start,
+                    period_end : period_end,
+                    invoice_link : invoice_link,
+                    apply_coupon : apply_coupon,
+                    auto_renew : auto_renew,
+                    free_trial : free_trial,
+                    plan_cancel : plan_cancel
+                  },
+                  user_data: {
+                    first_name: user_first_name,
+                    last_name: user_last_name,
+                    email_hash: user_email,
+                    phone_number_hash: user_phone
+                  },
+                  ga4_event_parameters: {
+                    signature_limit: plan_signaturelimit,
+                    plan_interval: plan_interval
+                  }
+                };
+
+                // Push to dataLayer
+                dataLayer.push(purchaseEvent);
+
+                // Redirect to the URL from the server
+                window.location.href = response.redirect_thnk;
+              }
+              
+              if(response.error === 1){
+                window.location.href = response.redirect_url;
+              }
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', error);
+            }
+          });
+        }
+      });
+
+      
+      $("#next2").on("click", function (e) {
+        e.preventDefault();
+        if (validateStep(2)) showStep(3);
+      });
+
+      $("#back2").on("click", function (e) {
+        e.preventDefault();
+        if($(`[data-step="1"]`).is(":visible")){
+          window.location.href = "%%DEFINE_ROOT_LINK%%/signup/verifyemail";
+          return;
+        }
+        showStep(1);
+      });
     });
-  });
 </script>

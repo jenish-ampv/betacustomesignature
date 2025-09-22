@@ -193,7 +193,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                     <span>Status</span>
                                 </button>
                                 <div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
-                                    <ul class="kt-dropdown-menu-sub" id="signature-status-selector-menu">
+                                    <ul class="kt-dropdown-menu-sub" id="signature-status-selector-menu" data-kt-dropdown-dismiss="true">
                                         <li class="kt-dropdown-menu-link" id="all">All</li>
                                         <li class="kt-dropdown-menu-link" id="installed">Installed</li>
                                         <li class="kt-dropdown-menu-link" id="pending">Pending</li>
@@ -223,7 +223,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                     Import <i class="hgi hgi-stroke hgi-file-import"></i>
                                 </button>
                                 <div class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
-                                    <ul class="kt-dropdown-menu-sub">
+                                    <ul class="kt-dropdown-menu-sub" data-kt-dropdown-dismiss="true">
                                         <li><a class="kt-dropdown-menu-link" href="%%DEFINE_bulkupload%%">CSV</a></li>
                                         <li><a id="import_integration" class="kt-dropdown-menu-link"
                                             href="%%DEFINE_azuread%%?department_id=%%DEFINE_current_department_id%%">Microsoft
@@ -244,9 +244,9 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                 <i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
                             </a>
                             {:IF}
-                            <div class="signature_manager_top" style="margin-top:10px; display:none;" id="extratop">
-                                <input type="checkbox" value="" id="select_all" class="select_all" />
-                                <label for="select_all">Select All</label>
+                            <div class="flex items-center gap-2" style="display:none;" id="extratop">
+                                <label class="kt-label" for="select_all">Select All</label>
+                                <input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
                                 <a class="kt-btn kt-btn-primary" href="javascript:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
                             </div>
                         </div>
@@ -405,26 +405,24 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="departmentModel">
     <div class="kt-modal-content max-w-[400px]">
         <div class="kt-modal-header">
+            <p class="kt-card-title" id="department_title">Add Company Division</p>
             <button type="button" class="kt-modal-close" aria-label="Close modal"
                 data-kt-modal-dismiss="#departmentModel">
-                <i class="hgi hgi-stroke hgi-add-circle"></i>
+                <i class="hgi hgi-stroke hgi-cancel-circle"></i>
             </button>
         </div>
         <div class="kt-modal-body">
             <form action="" method="post" id="departmentForm">
                 <div class="inputbox">
-                    <h3 class="lable" id="department_title">Add Company Division</h3>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="department_name" id="department_name"
-                            placeholder="Company Division Name" data-class="department_name">
-                        <label for="">Company Division Name</label>
-                        <span class="input-error-message"></span>
-                    </div>
+                    <label class="kt-form-label">Company Division Name</label>
+                    <input type="text" class="kt-input" name="department_name" id="department_name"
+                        placeholder="Company Division Name" data-class="department_name">
+                    <span class="input-error-message"></span>
                 </div>
                 <div class="inputbox department-logo-container" style="display:none;">
-                    <div class="toggleCheckbox-title">
-                        <label for="toggleCheckbox">Do you want to use same logo?</label>
-                        <input type="checkbox" id="toggleCheckbox" checked>
+                    <div class="flex items-center gap-2 toggleCheckbox-title">
+                        <label class="kt-label" for="toggleCheckbox">Do you want to use same logo?</label>
+                        <input class="kt-checkbox" type="checkbox" id="toggleCheckbox" checked>
                     </div>
 
                     <div class="upload_logo_bg" id="hiddenDepartmentLogoDiv" style="display: none;">
@@ -444,8 +442,8 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         <div id="img_errormsg_logo"></div>
                     </div>
                 </div>
-                <div class="sign_in_button">
-                    <button type="submit" name="next" class="departmentSubmit btn next action-button"
+                <div class="mt-4 text-center">
+                    <button type="submit" name="next" class="departmentSubmit kt-btn kt-btn-primary next action-button"
                         value="Next Step">Save Division</button>
                 </div>
             </form>
