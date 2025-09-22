@@ -1079,7 +1079,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 					$isGSuiteConnected =false;
 				}
 				if($sRow['signature_master'] == 1){
-				$GLOBALS['master_signature'] = '<div class="inline-block mx-auto masterSignature relative">
+				$GLOBALS['master_signature'] = '<div class="inline-block mx-auto masterSignature relative mt-5">
 				 		 <div class="size-11 rounded-full p-[2px] bg-gradient absolute top-0 -translate-y-1/2 -translate-x-1/2 left-1/2 z-[1]">
 							<div class="size-full rounded-full bg-white flex items-center justify-center">
 								<img src="'.$GLOBALS['IMAGE_LINK'].'/images/crown.svg" alt="">

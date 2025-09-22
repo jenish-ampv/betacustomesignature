@@ -15,7 +15,7 @@
                             <div class="space-y-5 flex-1 p-4 overflow-auto">
                                 <div>
                                     <label class="kt-label">Campaign Name</label>
-                                    <input type="text" class="kt-input" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%">
+                                    <input type="text" class="kt-input" name="campaign_name" id="campaign_name" placeholder="Add Campaign Name" value="%%DEFINE_campaign_name%%">
                                 </div>
                                 <div>
                                     <label class="kt-label">Add departments and set a date range</label>
@@ -25,7 +25,7 @@
                                 </div>
                                 <div>
                                     <label class="kt-label">Select Date Range</label>
-                                    <input type="text" class="kt-input" id="datepicker" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
+                                    <input type="text" class="kt-input !bg-white" id="datepicker" placeholder="Select Date Range" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
                                 </div>
                                 <div>
                                     <label class="kt-label">Banner</label>
@@ -33,7 +33,7 @@
                                     <div id="img_preview3"></div>
                                     <div id="img_errormsg3"></div>
                                     <input type="text" id="banner_image" style="display: none;" value="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%">
-                                    <div class="cursor-pointer text-center border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl %%DEFINE_BANNER_CAMPAIGN_IMAGE_SECTION%%" id="uploadfile3">
+                                    <div class="cursor-pointer text-center border border-dashed bg-white border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl %%DEFINE_BANNER_CAMPAIGN_IMAGE_SECTION%%" id="uploadfile3">
                                         <div class="drag_your_image">
                                             <img class="inline-block" draggable="false" src="%%DEFINE_BANNER_CAMPAIGN_IMAGE%%" alt="">
                                             <p class="text-[#063E76] font-semibold">Drag your image here, or <a class="text-primary" href="javascript:void(0);">browse</a></p>
@@ -88,7 +88,7 @@
                                         </div>
                                         <div>
                                             <label class="kt-label">Banner Link</label>
-                                            <input type="text" name="bannerlink" id="banner_link" class="kt-input" placeholder="" value="%%DEFINE_bannerlink%%">
+                                            <input type="text" name="bannerlink" id="banner_link" class="kt-input" placeholder="Add Banner Link" value="%%DEFINE_bannerlink%%">
                                         </div>
                                     </div>
                                 </div>
