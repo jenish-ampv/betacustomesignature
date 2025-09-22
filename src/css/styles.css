@@ -219,10 +219,24 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24p
   0%, 100% { width: 4rem; }
   50% { width: 2.5rem; }
 }
+
+@keyframes barPulse {
+  0%   { transform: scaleY(1); opacity: 1; }
+  25%  { transform: scaleY(0.85); opacity: 0.85; }
+  50%  { transform: scaleY(1.05); opacity: 1; }
+  75%  { transform: scaleY(0.95); opacity: 0.95; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Tailwind plugin shortcut replacement */
+.animate-bar {
+  transform-origin: bottom center;
+  animation: barPulse 1.6s linear infinite;
+}
+
 .required{
     @apply after:content-['*'] after:text-red-500
 }
-
 .list-check{
     li{
         @apply relative pl-6;

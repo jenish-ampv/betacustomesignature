@@ -544,7 +544,7 @@ class CIT_RECEIVEDASHBOARD
                                  <li><a href="javascript:void(0);" class="ajaxaction" data-id="'.$signature_id.'" data-action="duplicate"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/duplicate.svg" alt=""> Duplicate</a></li>
 								  <li style="display:'.$master_linkstyle.'"><a href="javascript:void(0);" class="ajaxaction" data-id="'.$signature_id.'" data-action="master"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/master.svg" alt="">Set as Master</a></li>
                                  <li><a href="'.$usesignature_link.'"><i class="hgi hgi-stroke hgi-sharp hgi-mail-edit-01"></i> Use Signature</a></li>
-								 <li><a  href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/share-signature.svg" alt=""> Share Signature</a></li>
+								 <li><a  href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/share-signature.svg" alt=""> Share Signature</a></li>
                                  <li><a href="javascript:void(0);" class="delete ajaxaction" data-id="'.$signature_id.'" data-action="delete"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/delete.svg" alt=""> Delete</a></li>
                                  </ul>
                                 </div>'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'<div class="sigshadow_box"></div></div></div>';

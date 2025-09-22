@@ -23,23 +23,23 @@
 								class="kt-card-toolbar w-full mb-4 *:bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 *:gap-4 *:border *:border-primary *:rounded-full *:flex *:items-center *:p-2">
 								<div>
 									<img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
-									<div class="snapshot-data">
+									<div class="snapshot-data flex items-center gap-1">
 										<span>Total Clicks</span>
-										<span id="total_clicks">0</span>
+										<span class="kt-badge rounded-full flex items-center justify-center bg-black text-white text-xs" id="total_clicks">0</span>
 									</div>
 								</div>
 								<div>
 									<img src="%%DEFINE_IMAGE_LINK%%/images/analytics-snapshot-view-icon.svg">
-									<div class="snapshot-data">
+									<div class="snapshot-data flex items-center gap-1">
 										<span>Total Impression</span>
-										<span id="total_impressions">0</span>
+										<span class="kt-badge rounded-full flex items-center justify-center bg-black text-white text-xs" id="total_impressions">0</span>
 									</div>
 								</div>
 								<div>
 									<img src="%%DEFINE_IMAGE_LINK%%/images/unique-clicks-icon.svg">
-									<div class="snapshot-data">
+									<div class="snapshot-data flex items-center gap-1">
 										<span>Unique Clicks</span>
-										<span id="total_unique_clicks">0</span>
+										<span class="kt-badge rounded-full flex items-center justify-center bg-black text-white text-xs" id="total_unique_clicks">0</span>
 									</div>
 								</div>
 							</div>
@@ -394,7 +394,7 @@
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="shareModal">
 	<div class="kt-modal-content max-w-[400px]">
 		<div class="kt-modal-header">
-			<h3 class="kt-modal-title">Share Signature</h3>
+			<p class="kt-modal-title">Share Signature</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModal">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
 					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -406,23 +406,17 @@
 		</div>
 		<div class="kt-modal-body">
 			<p>You can share the signature by copying the installation link</p>
-				<div class="form-floating">
-					<input style="margin:0;" type="text" class="form-control" id="share_url" name="share_url"
-						placeholder="Email Address" required="required" value="">
-
-					<div class="copy_icon_right"><a href="javascript:void(0);" id="copyshareurl"><img
-								src="%%DEFINE_IMAGE_LINK%%/images/copy-icon1.svg" alt="">copy</a></div>
+				<div class="flex gap-2">
+					<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
+					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="copyshareurl">
+						<i class="hgi hgi-stroke hgi-copy-01"></i>copy
+					</a>
 				</div>
-
 
 				<h6>or send by email to your team member</h6>
-				<div class="form-floating">
-					<input type="text" class="form-control" id="share_email" name="share_email"
-						placeholder="Email Address" required="required" value="">
-					<label for=" ">Email id</label>
-				</div>
-				<a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0"
-					data-action="share">Send<img src="%%DEFINE_IMAGE_LINK%%/images/sendbtn.svg" alt=""></a>
+				<label class="kt-form-label" for="">Email id</label>
+				<input type="text" class="kt-input" id="share_email" name="share_email" placeholder="Email Address" required="required" value="">
+				<a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">Send<img src="%%DEFINE_IMAGE_LINK%%/images/sendbtn.svg" alt=""></a>
 		</div>
 	</div>
 </div>

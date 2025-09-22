@@ -370,13 +370,13 @@ class CIT_DASHBOARD
 						}
 					$GLOBALS['signature_process'] .= '</div></div>';
 				}else if($GLOBALS['logo_process'] == 0 || $GLOBALS['logo_process'] == 3 ){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex">
+					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex items-center">
 								<div class="flex-1">
 								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo Animation is Processing</p>
  								<div class="flex items-center mt-6 mb-5 gap-4">
 								<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
-								  <div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-[50px]" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+								  <div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-1/2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
 								<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
 								</div>';
@@ -1128,7 +1128,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 											<i class="hgi hgi-stroke hgi-user"></i>
 											<span data-kt-tooltip-content="true" class="kt-tooltip">Remove Master</span>
 										</a>
-										<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" title="Share">
+										<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal" title="Share">
 											<i class="hgi hgi-stroke hgi-sent"></i>
 											<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 										</a>
@@ -1259,7 +1259,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 															<i class="hgi hgi-stroke hgi-copy-02"></i>
 															<span data-kt-tooltip-content="true" class="kt-tooltip">Duplicate</span>
 															</a>
-															<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
+															<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
 															<i class="hgi hgi-stroke hgi-sent"></i>
 															<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 															</a>
@@ -1319,7 +1319,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 																	<span data-kt-tooltip-content="true" class="kt-tooltip">Master</span>
 																</a>
 															</span>
-															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
+															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
 																<i class="hgi hgi-stroke hgi-sent"></i>
 																<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 															</a>
