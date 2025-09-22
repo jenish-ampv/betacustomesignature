@@ -105,7 +105,7 @@ function addProfileThumbnail(data){
 	   // ui("#uploadProfileImage").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
 		ui("#uploadProfileImage").append('<div class="edit_profile_img"> <img src="'+src+'?rand='+number+'"></div>');
 		ui("#profile_img_preview").append(' <div class="img_preview_box flex items-center gap-2 mt-2"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeProfileImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
-		ui("#nxt2").prop('disabled', false);
+		// ui("#nxt2").prop('disabled', false);
 		ui("#profile_img_errormsg").html('');
 	}else{
 		ui("#profile_img_errormsg").html('<div class="alert alert-danger" role="alert">'+data.msg+'</div>');
@@ -116,10 +116,10 @@ function addProfileThumbnail(data){
 }
 
 function removeProfileImage(){
-	ui("#nxt2").prop('disabled', true);
+	// ui("#nxt2").prop('disabled', true);
 	ui("#uploadProfileImage").empty();
 	ui("#profile_img_preview").empty();
-	ui("#uploadProfileImage").append('<div class="edit_profile_img"><img src="'+image_link+'/images/profile-img.png" alt=""><div class="icon"><a href="javascript:void(0);"><img src="'+image_link+'/images/edit-profile-icon.svg" width="24" alt=""></a></div></div>');
+	ui("#uploadProfileImage").append('<div class="cursor-pointer p-6 upload-box drag_your_image"><span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span><p class="text-gray-500 my-4">Choose a file or drag &amp; drop it here.<br>PNG, JPG or SVG</p><span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span></div>');
 }
 
 // Bytes conversion
