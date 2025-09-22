@@ -392,7 +392,7 @@
 </div>
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="shareModal">
-	<div class="kt-modal-content max-w-[400px]">
+	<div class="kt-modal-content max-w-[600px]">
 		<div class="kt-modal-header">
 			<p class="kt-modal-title">Share Signature</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModal">
@@ -405,18 +405,20 @@
 			</button>
 		</div>
 		<div class="kt-modal-body">
-			<p>You can share the signature by copying the installation link</p>
+			<p class="text-lg mb-2 mt-4">You can share the signature by copying the installation link</p>
 				<div class="flex gap-2">
+					<label class="kt-form-label" for="">Url</label>
 					<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
 					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="copyshareurl">
-						<i class="hgi hgi-stroke hgi-copy-01"></i>copy
+						<i class="hgi hgi-stroke hgi-copy-01"></i> copy
 					</a>
 				</div>
 
-				<h6>or send by email to your team member</h6>
+				<p class="text-lg mb-2 mt-4">or send by email to your team member</p>
 				<label class="kt-form-label" for="">Email id</label>
 				<input type="text" class="kt-input" id="share_email" name="share_email" placeholder="Email Address" required="required" value="">
-				<a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">Send<img src="%%DEFINE_IMAGE_LINK%%/images/sendbtn.svg" alt=""></a>
+				<a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">
+					<i class="hgi hgi-stroke hgi-sent"></i> Send</a>
 		</div>
 	</div>
 </div>
