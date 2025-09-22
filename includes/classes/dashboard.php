@@ -370,7 +370,7 @@ class CIT_DASHBOARD
 						}
 					$GLOBALS['signature_process'] .= '</div></div>';
 				}else if($GLOBALS['logo_process'] == 0 || $GLOBALS['logo_process'] == 3 ){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex items-center">
+					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo Animation is Processing</p>
@@ -383,7 +383,7 @@ class CIT_DASHBOARD
 					if($signature_logo['logo_change_process'] != 2){
 						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="underline text-primary cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div></div>';
 					}
-					$GLOBALS['signature_process'] .= '<div class="pl-20"><div class="w-[150px] h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+					$GLOBALS['signature_process'] .= '<div class="sm:pl-20"><div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
 									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 								</div>';
@@ -1360,7 +1360,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 						</a>
                     </div>';
 		}else{
-			$GLOBALS['signature_create_upgrade'] = '<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
+			$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
   							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
@@ -1372,7 +1372,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 			$signatureSubscription = $GLOBALS['DB']->row("SELECT subscription_id FROM `registerusers_subscription` WHERE user_id = ? ",array($GLOBALS['USERID']));
 			if($signatureSubscription){
 				if($signatureSubscription['subscription_id'] == ""){
-					$GLOBALS['signature_create_upgrade'] = '<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
+					$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
   							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
@@ -1394,7 +1394,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 							</a>
                     </div>';
 			}else{
-				$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border border-dashed border-primary rounded-2xl bg-primary/5">
+				$GLOBALS['signature_create_upgrade'] ='<div class="p-4 flex flex-col gap-4 items-center justify-center border border-dashed border-primary rounded-2xl bg-primary/5">
 	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 									<i class="hgi hgi-stroke hgi-add-01"></i>
 								</button>

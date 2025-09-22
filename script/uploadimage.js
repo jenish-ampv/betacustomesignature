@@ -129,7 +129,7 @@ function addThumbnail(data){
 		var number = Math.random() * 100;
 		// Creating an thumbnail
 	   // ui("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-		ui("#uploadfile").append('<div class="cursor-pointer p-6 upload-box flex item-center justify-center min-h-[225px] drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%" class="h-auto"></div>');
+		ui("#uploadfile").append('<div class="cursor-pointer p-6 upload-box flex item-center justify-center min-h-[225px] drag_your_image"> <img src="'+src+'?rand='+number+'" class="max-w-[150px] object-contain max-h-[150px]"></div>');
 		ui("#img_preview").append(' <div class="img_preview_box"><img src="%%DEFINE_IMAGE_LINK%%/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage()"><img class="trash_icon" src="%%DEFINE_IMAGE_LINK%%/images/trash-icon.svg" alt=""></a><input type="hidden" name="signature_image" value="'+name+'"></div>');
         ui('input[name=signature_image]').val(name);
 		ui("#nxt2").prop('disabled', false);

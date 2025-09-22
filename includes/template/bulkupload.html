@@ -5,7 +5,7 @@
         <div class="kt-container-fluid pb-4 h-full flex flex-col gap-2">
             %%DEFINE_Message%%
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 %%DEFINE_bulkuploadcls%%">
-                <div class=" overflow-hidden">
+                <div class="overflow-hidden cursor-pointer">
                     <video width="100%" border="0" controls disablePictureInPicture controlsList="nodownload" poster="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png" class="rounded-2xl">
                         <source src="%%DEFINE_IMAGE_LINK%%/images/video/bulk-signature-tutorial.mp4" type="video/mp4">
                     </video>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="up_form">
                             <form action="" method="post" id="bulkUpload" name="bulkUpload" enctype="multipart/form-data">
-                                <input class="kt-input" name="csv_file" id="csv_file" type="file" onchange="form.submit()" />
+                                <input class="kt-input cursor-pointer" name="csv_file" id="csv_file" type="file" onchange="form.submit()" />
                             </form>
                         </div>
                     </div>

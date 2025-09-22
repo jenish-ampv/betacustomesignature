@@ -53,23 +53,23 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                 class="kt-card-toolbar w-full mb-4 *:bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 *:gap-4 *:border *:border-primary *:rounded-full *:flex *:items-center *:p-2">
                                 <div>
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
-                                    <div class="snapshot-data flex items-center gap-1">
+                                    <div class="snapshot-data flex flex-col">
                                         <span>Total Clicks</span>
-                                        <span class="kt-badge rounded-full flex items-center justify-center bg-black text-white text-xs" id="total_clicks">0</span>
+                                        <span id="total_clicks">0</span>
                                     </div>
                                 </div>
                                 <div>
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/analytics-snapshot-view-icon.svg">
-                                    <div class="snapshot-data flex items-center gap-1">
+                                    <div class="snapshot-data flex flex-col">
                                         <span>Total Impression</span>
-                                        <span class="kt-badge rounded-full flex items-center justify-center bg-black text-white text-xs" id="total_impressions">0</span>
+                                        <span id="total_impressions">0</span>
                                     </div>
                                 </div>
                                 <div>
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/unique-clicks-icon.svg">
-                                    <div class="snapshot-data flex items-center gap-1">
+                                    <div class="snapshot-data flex flex-col">
                                         <span>Unique Clicks</span>
-                                        <span class="kt-badge rounded-full flex items-center justify-center bg-black text-white text-xs" id="total_unique_clicks">0</span>
+                                        <span id="total_unique_clicks">0</span>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                             </a>
                             <div class="flex-none" data-kt-dropdown="true" data-kt-toggle-replace='true' data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end">
                                 <button class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
-                                    <span>Status</span>
+                                    <span>Status</span> <i class="!hidden md:!block fas fa-caret-down ml-1"></i>
                                 </button>
                                 <div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
                                     <ul class="kt-dropdown-menu-sub" id="signature-status-selector-menu" data-kt-dropdown-dismiss="true">
@@ -459,7 +459,20 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 
 
 <script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
+
 <script>
+    const swalClasses = {
+        htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
+        popup: '!p-8 rounded-xl border-none w-full max-w-[350px] dark:bg-black',
+        title: 'font-bold text-xl text-gray-900 p-0',
+        closeButton: 'btn btn-xl btn-icon btn-light absolute top-2 right-2',
+        confirmButton: 'btn btn-sm btn-primary',
+        cancelButton: 'btn btn-sm btn-dark',
+        denyButton: 'btn btn-sm btn-light',
+        icon:'mt-0 w-10 h-10 border-none bg-danger-20 text-danger mb-6',
+    };
+
     const list = document.getElementById('sortable-list');
     let draggingItem = null;
 
