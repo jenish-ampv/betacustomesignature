@@ -438,11 +438,9 @@ jQuery.noConflict();
     $('.status-selector').click(function () {
         $(this).attr('tabindex', 1).focus();
         $(this).toggleClass('active');
-        $(this).find('.status-selector-menu').slideToggle(300);
     });
     $('.status-selector').focusout(function () {
         $(this).removeClass('active');
-        $(this).find('.status-selector-menu').slideUp(300);
     });
     $('.status-selector .status-selector-menu li').click(function () {
         $(this).parents('.status-selector').find('span').text($(this).text());
