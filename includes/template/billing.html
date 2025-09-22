@@ -38,8 +38,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <td>%%DEFINE_plan_name%% <a href="javascript:void(0);"><img
-                                            src="%%DEFINE_IMAGE_LINK%%/images/info-icon.svg" alt=""></a></td>
+                                <td><div class="flex items-center">%%DEFINE_plan_name%% <a href="javascript:void(0);"><img
+                                            src="%%DEFINE_IMAGE_LINK%%/images/info-icon.svg" alt=""></a></div></td>
                                 <td>%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%%</td>
                                 <td>%%DEFINE_plan_interval%%</td>
                                 <td>%%DEFINE_plan_enddate%%</td>
@@ -139,7 +139,7 @@
                     <div class="flex items-center justify-between mb-2 mt-4">
                         <p class="text-gray-950 font-semibold text-lg">Selected Plan</p>
                         <div class="%%DEFINE_save_year_label%%">Change to Yearly <span>Save +20%</span></div>
-                        <span class="text-primary underline" id="changeplan">Change Plan</span>
+                        <span class="text-primary underline cursor-pointer" id="changeplan">Change Plan</span>
                     </div>
                     <div id="selected-plan">
                         %%DEFINE_selected_plan%%
