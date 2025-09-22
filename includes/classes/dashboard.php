@@ -1109,26 +1109,32 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								<div class="flex flex-col gap-3 items-center justify-center h-full">
 									<div class="flex gap-2">';
 										if($GLOBALS['current_department_id'] != '0'){
-										$GLOBALS['master_signature'] .= '<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-toggle="tooltip" data-placement="top" title="Edit">
+										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'">
 											<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 										</a>';
 										}else{
-										$GLOBALS['master_signature'] .= '<a  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'" data-toggle="tooltip" data-placement="top" title="Edit">
+										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'">
 											<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 										</a>';
 										}
 
-										$GLOBALS['master_signature'] .= '<a href="javascript:void(0);"  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="duplicate" data-toggle="tooltip" data-placement="top" title="Duplicate">
+										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" href="javascript:void(0);" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="duplicate">
 											<i class="hgi hgi-stroke hgi-copy-02"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Duplicate</span>
 										</a>
-										<a href="javascript:void(0);"  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="remove-master" data-toggle="tooltip" data-placement="top" title="Remove Master">
+										<a href="javascript:void(0);" data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="remove-master" title="Remove Master">
 											<i class="hgi hgi-stroke hgi-user"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Remove Master</span>
 										</a>
-										<a  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-toggle="tooltip" data-placement="top" title="Share">
+										<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" title="Share">
 											<i class="hgi hgi-stroke hgi-sent"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 										</a>
-										<a  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline delete ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="delete" data-toggle="tooltip" data-placement="top" title="Delete">
+										<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline delete ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="delete" title="Delete">
 											<i class="hgi hgi-stroke hgi-delete-02"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Delete</span>
 										</a>
 									</div>';
 
@@ -1234,27 +1240,32 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 													<div class="flex flex-col gap-3 items-center justify-center h-full">
 														<div class="flex gap-2">';
 															if($GLOBALS['current_department_id'] != '0'){
-																$GLOBALS['signature_list'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-toggle="tooltip" data-placement="top" title="Edit">
+																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Edit">
 																<i class="hgi hgi-stroke hgi-edit-02"></i>
 																<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 																</a>';
 															}else{
-																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'" data-toggle="tooltip" data-placement="top" title="Edit">
+																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Edit">
 																<i class="hgi hgi-stroke hgi-edit-02"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 																</a>';
 															}
-															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="remove-master" data-toggle="tooltip" data-placement="top" title="Remove Master">
+															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="remove-master" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Remove Master">
 															<i class="hgi hgi-stroke hgi-user-remove-01"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Remove Master</span>
 															</a>';
 
-															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="duplicate" data-toggle="tooltip" data-placement="top" title="Duplicate">
+															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="duplicate" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Duplicate">
 															<i class="hgi hgi-stroke hgi-copy-02"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Duplicate</span>
 															</a>
-															<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-toggle="tooltip" data-placement="top" title="Share">
+															<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
 															<i class="hgi hgi-stroke hgi-sent"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 															</a>
-															<a href="javascript:void(0);" class="delete ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="delete" data-toggle="tooltip" data-placement="top" title="Delete">
+															<a href="javascript:void(0);" class="delete ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="delete" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Delete">
 															<i class="hgi hgi-stroke hgi-delete-02"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Delete</span>
 															</a>
 														</div>
 														<div class="text-center">';

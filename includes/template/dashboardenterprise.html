@@ -83,7 +83,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                     </div>
                                     <span class="text-xs text-gray-500">Click-Through Rate</span>
                                 </div>
-                                <div data-kt-dropdown="true" data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end" data-kt-toggle-replace="true">
+                                <div class="status-selector" data-kt-dropdown="true" data-kt-dropdown-trigger="click" data-kt-dropdown-placement="bottom-end" data-kt-toggle-replace="true">
                                     <button class="kt-btn bg-white border border-gray-400 text-gray-600 !rounded-full"
                                         data-kt-dropdown-toggle="true">
                                         <span>This Month</span>
@@ -95,7 +95,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                         </span>
                                     </button>
                                     <div class="kt-dropdown-menu w-36" data-kt-dropdown-menu="true">
-                                        <ul data-kt-dropdown-dismiss="true">
+                                        <ul class="status-selector-menu" data-kt-dropdown-dismiss="true">
                                             <li class="chart-range-option kt-dropdown-menu-link" data-range="today">Today</li>
                                             <li class="chart-range-option kt-dropdown-menu-link" data-range="yesterday">Yesterday</li>
                                             <li class="chart-range-option kt-dropdown-menu-link" data-range="this-week">This Week</li>
@@ -159,7 +159,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="sortable-list">
+                            <tbody class="signature_box" id="sortable-list">
                                 %%DEFINE_department_list%%
                             </tbody>
                         </table>
@@ -468,7 +468,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
     // Set up drag events for <li> elements
     list.addEventListener('dragstart', (e) => {
         if (e.target.classList.contains('handle')) {
-            draggingItem = e.target.closest('li');
+            draggingItem = e.target.closest('tr');
             draggingItem.classList.add('dragging');
         }
     });
@@ -493,7 +493,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
     });
 
     function getDragAfterElement(list, y) {
-        const listItems = [...list.querySelectorAll('li:not(.dragging)')];
+        const listItems = [...list.querySelectorAll('tr:not(.dragging)')];
         return listItems.reduce((closest, child) => {
             const box = child.getBoundingClientRect();
             const offset = y - box.top - box.height / 2;
@@ -512,7 +512,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 
     // Function to send AJAX request with new positions
     function sendPositionUpdate() {
-        const items = [...list.querySelectorAll('li')];
+        const items = [...list.querySelectorAll('tr')];
         const positions = items.map((item, index) => ({
             id: $(item).data('department-id'), // Use the text content or an ID if available
             position: index + 1
