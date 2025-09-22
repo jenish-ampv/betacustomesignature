@@ -162,10 +162,9 @@
         text: description,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#6c757d',
         confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'Cancel'
+        cancelButtonText: 'Cancel',
+        customClass: swalClasses,
       }).then((result) => {
         if (result.isConfirmed) {
           isDeleteConfirmed = true;
