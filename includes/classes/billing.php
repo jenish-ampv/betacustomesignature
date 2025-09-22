@@ -173,11 +173,25 @@ class CIT_BILLING
 		$GLOBALS['plan_autorenew'] = $planRow['auto_renew'] == 0 ? 'ON' : 'OFF';
 		$GLOBALS['plan_autorenewbtn'] = $planRow['auto_renew'] == 0 ? 'off' : 'on';
 		$GLOBALS['plan_autorenewvalue'] = $planRow['auto_renew'];
-		$GLOBALS['plan_interval'] = $planRow['plan_interval'] == 'month' ? 'Quarterly' : 'Yearly';
+		if(('month' && $planRow['plan_id'] < 5)){
+			$GLOBALS['plan_interval'] = $planRow['plan_interval'] == 'year' ? 'Yearly' : 'Quarterly';
+		}else{
+			$GLOBALS['plan_interval'] = $planRow['plan_interval'] == 'year' ? 'Yearly' : 'Monthly';
+		}
 		$GLOBALS['plan_enddate'] = $planRow['period_end'] != '' ? date('M d, Y', $planRow['period_end']) : '';
 		$GLOBALS['plan_signature'] = $planRow['nosignature'];
 		$GLOBALS['plan_upgradebtnd'] = $planRow['free_trial'] == 0 ? 'disabled="disabled"' : '';
 		$GLOBALS['plan_popuptitle'] = $planRow['free_trial'] == 0 ? 'Upgrade Plan' : 'Confirm Your Plan';
+
+		if(!$GLOBALS['subscription_id']){
+			$GLOBALS['plan_name'] = "Free Plan";
+			$GLOBALS['total_sigcreated'] = "1";
+			$GLOBALS['plan_signature'] = "1";
+			$GLOBALS['plan_interval'] = "Lifetime";
+			$GLOBALS['plan_enddate'] = "Never";
+			$GLOBALS['plan_invoiceamount'] = "0";
+		}
+
 		if($planRow['invoice_amount']){
 			$invoice_amount = ($planRow['invoice_amount'] / 100);
 			$GLOBALS['plan_invoiceamount'] =  GetPriceFormat($invoice_amount);
