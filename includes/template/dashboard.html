@@ -466,8 +466,8 @@
 </div>
 
 
-<!-- <script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
-<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script> -->
+<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
 <!-- <script src="%%DEFINE_JS_LINK%%/htmltoimage/html2canvas.js"></script> 
 <script src="%%DEFINE_JS_LINK%%/htmltoimage/htmltoimage.js"></script>  -->
 
@@ -483,13 +483,11 @@
 			x.style.display = "none";
 		}
 	}
-	jQuery.noConflict();
-  	(function( $ ) {
-		$(document).on('click', function (event) {
+	
+	$(document).on('click', function (event) {
 		if (!$(event.target).closest('.menu_open').length && !$(event.target).is('.openPopupClass')) {
 			$('.menu_open').hide();
 		}
-	});
 
 
 		$(document).ready(function () {
@@ -763,14 +761,13 @@
 			shareModal.hide();
 		});
 	});
-})(jQuery);
+});
 
 </script>
 
 <script language="javascript">
-	jQuery.noConflict();
-  	(function( $ ) {
-		$(document).ready(function () {
+	
+	$(document).ready(function () {
 		$('#select_all').on('click', function () {
 			if (this.checked) {
 				$('.del_chekbox').each(function () {
@@ -802,7 +799,6 @@
 			}
 		});
 	});
-	})(jQuery);
 
 </script>
 IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
@@ -1573,25 +1569,23 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 	}
 
 
-	jQuery.noConflict();
-  	(function( $ ) {
-		$(document).ready(function () {
-			$('.line-chart-loader').show();
-			$('.performers-chart-loader').show();
-			const { startDate, endDate } = getDateRange('this-month');
-			loadChartData('days', startDate, endDate);
-			drawSignatureChart(startDate, endDate);
-		});
+	
+	$(document).ready(function () {
+		$('.line-chart-loader').show();
+		$('.performers-chart-loader').show();
+		const { startDate, endDate } = getDateRange('this-month');
+		loadChartData('days', startDate, endDate);
+		drawSignatureChart(startDate, endDate);
+	});
 
 
-		$('.chart-range-option').on('click', function () {
-			$('.line-chart-loader').show();
-			$('.performers-chart-loader').show();
-			const range = $(this).data('range');
-			const { startDate, endDate } = getDateRange(range);
-			loadChartData('days', startDate, endDate);
-			drawSignatureChart(startDate, endDate);
-		});
-	})(jQuery);
+	$('.chart-range-option').on('click', function () {
+		$('.line-chart-loader').show();
+		$('.performers-chart-loader').show();
+		const range = $(this).data('range');
+		const { startDate, endDate } = getDateRange(range);
+		loadChartData('days', startDate, endDate);
+		drawSignatureChart(startDate, endDate);
+	});
 </script>
 %%DEFINE_FOOTER%%
