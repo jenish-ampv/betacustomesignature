@@ -14,21 +14,21 @@
                             <h2 class="kt-card-title p-4 border-b border-b-gray-100">Campaign Settings</h2>
                             <div class="space-y-5 flex-1 p-4 overflow-auto">
                                 <div>
-                                    <label class="kt-label">Campaign Name</label>
+                                    <label class="kt-form-label">Campaign Name</label>
                                     <input type="text" class="kt-input" name="campaign_name" id="campaign_name" value="%%DEFINE_campaign_name%%">
                                 </div>
                                 <div>
-                                    <label class="kt-label">Add departments and set a date range</label>
+                                    <label class="kt-form-label">Add departments and set a date range</label>
                                     <div class="border border-gray-200 bg-white rounded-lg p-3 space-y-2" id="division">
                                         %%DEFINE_department_list%%
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="kt-label">Select Date Range</label>
+                                    <label class="kt-form-label">Select Date Range</label>
                                     <input type="text" class="kt-input" id="datepicker" name="date_range" value="%%DEFINE_campaign_name%%" readonly>
                                 </div>
                                 <div>
-                                    <label class="kt-label">Banner</label>
+                                    <label class="kt-form-label">Banner</label>
                                     <input type="file" name="banner" id="banner" class="banner" style="display: none;">
                                     <div id="img_preview3"></div>
                                     <div id="img_errormsg3"></div>
@@ -87,7 +87,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="kt-label">Banner Link</label>
+                                            <label class="kt-form-label">Banner Link</label>
                                             <input type="text" name="bannerlink" id="banner_link" class="kt-input" placeholder="" value="%%DEFINE_bannerlink%%">
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="flex items-center justify-center flex-1">
                             <div class="w-full overflow-auto text-center">
-                                <div class="overflow-auto inline-block bg-white border border-gray-200 rounded-lg p-6">
+                                <div class="signature_previous_box overflow-auto inline-block bg-white border border-gray-200 rounded-lg p-6">
                                     %%DEFINE_bannercampaign_signature%%
                                 </div>
                                 <div class="flex items-center justify-center gap-2 mt-4">
@@ -207,7 +207,7 @@
                 // $('#campaign_name').css('border-color','#842029'); validate = 0;
                 // $('#campaign_name').after("<span style='color: #842029'>Please add valid campaign name</span>");
                 // $('#campaign_name').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -216,14 +216,14 @@
                 // $('#division').css('border-color','#842029'); validate = 0;
                 // $('#division').after("<span style='color: #842029'>Please select atleast one division</span>");
                 // $('#division').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if (!$('#datepicker').val()) {
                 // Show error message if no date range is selected
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -232,7 +232,7 @@
                 // $('.drag_your_image').css('border-color','#842029'); validate = 0;
                 // $('.drag_your_image').after("<span style='color: #842029'>Please upload banner</span>");
                 // $('.drag_your_image').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -241,7 +241,7 @@
                 // $('#banner_link').css('border-color','#842029'); validate = 0;
                 // $('#banner_link').after("<span style='color: #842029'>Please add valid banner link</span>");
                 // $('#banner_link').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
@@ -284,12 +284,12 @@
                     if ($('#uploadlimit').val() === 1) {
                         // window.location = redirecturl;
                     } else {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + ' </div>');
+                        $('#snackbar').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + ' </div>');
                         $('#snackbar').show();
                         setTimeout(function () { $('#snackbar').hide(); window.location = redirecturl; }, 2000);
                     }
                 } else {
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
                     $('#snackbar-error').show();
                     setTimeout(function () { $('#snackbar-error').hide(); window.location = redirecturl; }, 2000);
                     return false;
