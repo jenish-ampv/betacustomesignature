@@ -99,10 +99,10 @@
  </div> -->
 
 
- <div class="kt-modal kt-modal-center" data-kt-modal="true" id="successImportmodel1">
+ <div class="kt-modal kt-modal-center" data-kt-modal="true" id="successImportmodel">
     <div class="kt-modal-content max-w-[400px]">
       <div class="kt-modal-body text-center">
-        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#successImportmodel1">
+        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#successImportmodel">
             <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
         </button> 
         <img class="inline-block" src="%%DEFINE_IMAGE_LINK%%/images/success-msg.png" />
@@ -167,6 +167,7 @@
         //  });
 
          $('#bulkUpload').submit(function() {
+            alert('asdasdsd');
              $('#loaderImg').show();
              return true;
          });

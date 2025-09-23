@@ -101,7 +101,7 @@ class CIT_USESIGNATURE
 		}
 
 		$signatureSubscription = $GLOBALS['DB']->row("SELECT subscription_id FROM `registerusers_subscription` WHERE user_id = ? ",array($GLOBALS['USERID']));
-		$GLOBALS['use_signature_buttons'] = '<a class="kt-btn kt-btn-primary w-full sm:w-auto" href="javascript:void(0);" onclick="CopyToClipboard("signature_source");"><i class="hgi hgi-stroke hgi-mail-edit-02"></i>Copy signature</a>
+		$GLOBALS['use_signature_buttons'] = '<a class="kt-btn kt-btn-primary w-full sm:w-auto" href="javascript:void(0);" onclick="CopyToClipboard(\'signature_source\');"><i class="hgi hgi-stroke hgi-mail-edit-02"></i>Copy signature</a>
         		<a href="javascript:void(0);" id="copy_sorcecode" class="kt-btn border border-primary bg-white text-gray-500 w-full sm:w-auto"><i class="hgi hgi-stroke hgi-source-code"></i>Copy source code</a>';
 		if($signatureSubscription){
 			if($signatureSubscription['subscription_id'] == ""){

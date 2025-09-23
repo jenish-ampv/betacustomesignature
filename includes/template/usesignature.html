@@ -140,9 +140,18 @@ function CopyToClipboard(element) {
 	window.getSelection().removeAllRanges();
 	$("#style1").removeAttr('disabled');
 	$("#style2").removeAttr('disabled');
-  $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"></div><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied!</div>');
-  $('#snackbar').show();
-  setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+
+  KTToast.show({
+    message: '<b>Success!</b> Copied!',
+    variant: 'success',
+    icon: '<i class="fas fa-check-circle text-success"></i>',
+  });
+
+
+  // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"></div><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied!</div>');
+  // $('#snackbar').show();
+  // setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+  
 	//document.getElementById("btn").value="Copied";
 }
 
@@ -153,9 +162,14 @@ $('#copy_sorcecode').on('click', function (event) {  // copy signature
   $temp.val(content).select();
   document.execCommand("copy");
   $temp.remove();
-  $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"></div><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied!</div>');
-  $('#snackbar').show();
-  setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+  KTToast.show({
+    message: '<b>Success!</b> Copied!',
+    variant: 'success',
+    icon: '<i class="fas fa-check-circle text-success"></i>',
+  });
+  // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"></div><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Copied!</div>');
+  // $('#snackbar').show();
+  // setTimeout(function(){ $('#snackbar').hide(); }, 2000);
 	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 });
 
@@ -175,8 +189,6 @@ $('#copy_sorcecode').on('click', function (event) {  // copy signature
 // }, false);
 
 
-
-});
 </script>
 
 

@@ -63,7 +63,9 @@
           </div>
           <h5 class="font-semibold mb-2">Start Your <span class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free Trial!</span></h5>
           <p class="mb-2 text-gray-500">Here's how you've used premium features during your free trial.</p>
-          <div class="h-[133px] my-3"></div>
+          <div class="my-3">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/trialSignature.jpg">
+          </div>
           <div class="space-y-4">
             <div class="flex items-start gap-3">
               <button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline">
@@ -385,6 +387,7 @@
               $target
                 .html($suggested)        // inject only the div
                 $suggested.addClass('h-full overflow-auto'); // ensure classes are applied
+                initCustomSlider();
             } else {
               $target.html('<p>Content not found.</p>');
             }

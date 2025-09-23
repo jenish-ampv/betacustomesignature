@@ -183,7 +183,7 @@ function addThumbnaillogo(data){
     ui('.signature_department_logo').attr("data-logo-name",name);
 		ui("#img_errormsg_logo").html('');
 	}else{
-		ui("#img_errormsg_logo").html('<div class="alert text-danger mt-2 text-[12px]" role="alert">'+data.msg+'</div>');
+		ui("#img_errormsg_logo").html('<div class="text-danger mt-2 text-[12px]" role="alert">'+data.msg+'</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
 	}
 
@@ -192,7 +192,7 @@ function logoChanged(){
   var reason = ui("input[name=change_reason]").val();
   var logo_id = ui("input[name=logo_id]").val();
   if(!reason){
-    ui("#img_errormsg_logo").html('<div class="alert text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
+    ui("#img_errormsg_logo").html('<div class="text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
     
     return false;
@@ -210,9 +210,15 @@ function logoChanged(){
       ui(".kt-modal-close").click();
       var response = JSON.parse(response);
       if(response.success){
-        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
-				$('#snackbar').show();
-				setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+        KTToast.show({
+					message: `<b>Success!</b> ${response.msg}`,
+					variant: 'success',
+					icon: '<i class="fas fa-check-circle text-success"></i>',
+				});
+
+        // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
+				// $('#snackbar').show();
+				// setTimeout(function(){ $('#snackbar').hide(); }, 2000);
       }
       $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
     },
@@ -239,9 +245,15 @@ function departmentLogoChanged(){
       ui(".btn-close").click();
       var response = JSON.parse(response);
       if(response.success){
-        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
-				$('#snackbar').show();
-				setTimeout(function(){ $('#snackbar').hide(); location.reload();}, 2000);
+        KTToast.show({
+					message: `<b>Success!</b> ${response.msg}`,
+					variant: 'success',
+					icon: '<i class="fas fa-check-circle text-success"></i>',
+				});
+
+        // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
+				// $('#snackbar').show();
+				setTimeout(function(){ location.reload();}, 2000);
       }
     },
     failure: function (response) {

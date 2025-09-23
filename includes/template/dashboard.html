@@ -44,9 +44,21 @@
 								</div>
 							</div>
 						</div>
-						<div class="kt-card-content">
-							<div class="line-chart-loader" style="display: none;"><img draggable="false"
-									src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
+						<div class="kt-card-content relative">
+							<div class="chartLoading absolute size-full bg-white/10 top-0 left-0 backdrop-blur-xs flex items-center justify-center !hidden">
+								<div class="loadingInner"></div>
+							</div>
+
+							<!-- <div class="line-chart-loader" style="display: none;">
+								<img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
+							</div> -->
+							<div class="loading">
+								<div class="loading-1"></div>
+								<div class="loading-2"></div>
+								<div class="loading-3"></div>
+								<div class="loading-4"></div>
+							</div>
+
 							<div class="flex justify-between">
 								<div id="typeCTRSection">
 									<div>
@@ -129,9 +141,13 @@
 								<div class="kt-card-title">Top Performers</div>
 							</div>
 						</div>
-						<div class="kt-card-content py-1" id="chart-container">
-							<div class="performers-chart-loader" style="display: none;"><img draggable="false"
-									src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
+						<div class="kt-card-content py-1 relative" id="chart-container">
+							<div class="chartLoading absolute size-full bg-white/10 top-0 left-0 backdrop-blur-xs flex items-center justify-center !hidden">
+								<div class="loadingInner"></div>
+							</div>
+							<!-- <div class="performers-chart-loader" style="display: none;">
+								<img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
+							</div> -->
 							<canvas id="signature_chart"></canvas>
 						</div>
 					</div>
@@ -143,16 +159,28 @@
 				</div>
 			</div>
 			%%DEFINE_Message%%
+			
 			<div class="kt-card mt-2">
 				<div class="kt-card-header h-auto py-3 flex-col justify-start items-start">
 					<div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
-						<div class="flex items-center gap-1">
+						<div class="flex items-center gap-2">
 							<div class="kt-input">
 								<i class="hgi hgi-stroke hgi-search-01"></i>
 								<input class="kt-input" type="text" id="search_input" placeholder="Type to Search...">
 							</div>
 							<div class="text-nowrap text-xs text-gray-600">
-								%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users</div>
+								%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users
+							</div>
+							<a class="kt-btn kt-btn-primary" href="usermanagement/">
+								<i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
+							</a>
+							<div class="flex items-center text-nowrap gap-2" style="display:none;" id="extratop">
+								<input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
+								<label class="kt-label" for="select_all">Select All</label>
+								<div data-action="bulkdelete" id="bulk_deletesignature">
+									<a class="kt-btn kt-btn-destructive" href="javascrip:void(0);">Delete</a>
+								</div>
+							</div>
 						</div>
 
 						<div class="flex flex-wrap gap-1">
@@ -171,10 +199,6 @@
 									</ul>
 								</div>
 							</div>
-
-							<a class="kt-btn kt-btn-primary" href="usermanagement/">
-								<i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
-							</a>
 
 							<div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
 								data-kt-dropdown-placement="bottom-end">
@@ -246,12 +270,7 @@
 								}
 							</style>
 							{:IF}
-							<div class="flex items-center gap-2 ml-4" style="display:none;" id="extratop">
-								<input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
-								<label class="kt-label" for="select_all">Select All</label>
-								<a class="kt-btn kt-btn-destructive" href="javascrip:void(0);" data-action="bulkdelete"
-									id="bulk_deletesignature">Delete</a>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -320,7 +339,7 @@
 					<p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
 				</div>
 			</div>
-			<div id="img_errormsg_logo"></div>
+			<div id="img_errormsg_logo" class="text-danger"></div>
 			<div class="kt-alert kt-alert-light kt-alert-warning my-5">
 				<div class="kt-alert-icon">
 					<i class="hgi hgi-stroke hgi-alert-01"></i>
@@ -442,6 +461,69 @@
 <script src="%%DEFINE_JS_LINK%%/uploadlogo.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
 <script>
 
+function initCustomSlider(
+    values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+    sliderId = "rangeSlider",
+    tooltipId = "tooltip",
+    labelsId = "labels",
+    thumbId = "customThumb",
+    fillId = "fillTreck"
+  ) {
+    const slider = document.getElementById(sliderId);
+    const tooltip = document.getElementById(tooltipId);
+    const labelsContainer = document.getElementById(labelsId);
+    const customThumb = document.getElementById(thumbId);
+    const rangeBg = document.getElementById(fillId);
+
+    const thumbWidth = customThumb.offsetWidth;
+    const halfThumb = thumbWidth / 2;
+
+    // Set slider max
+    slider.max = values.length - 1;
+
+    // Apply negative margin to labels container
+    labelsContainer.style.marginLeft = `-${halfThumb}px`;
+    labelsContainer.style.marginRight = `-${halfThumb}px`;
+
+    // Add labels
+    labelsContainer.innerHTML = "";
+    values.forEach(val => {
+      const span = document.createElement("span");
+      span.textContent = val;
+      labelsContainer.appendChild(span);
+    });
+
+    function updateUI() {
+      const index = parseInt(slider.value);
+      const value = values[index];
+      const percent = (index / (values.length - 1)) * 100;
+      const sliderWidth = slider.offsetWidth;
+      const posX = (percent / 100) * sliderWidth;
+
+      tooltip.style.left = posX + "px";
+      tooltip.textContent = `${value} signature`;
+
+      customThumb.style.left = posX + "px";
+      rangeBg.style.width = percent + "%";
+
+      if (typeof updatePlanDetails === 'function') {
+          updatePlanDetails(value);
+      }
+      if (typeof updateRenewaccountPlanDetails === 'function') {
+          updateRenewaccountPlanDetails(value);
+      }
+      if (typeof updatePurchasePlanDetails === 'function') {
+          updatePurchasePlanDetails(value);
+      }
+    }
+
+    slider.addEventListener("input", updateUI);
+    window.addEventListener("resize", updateUI);
+
+    updateUI(); // initialize
+  }
+
+  
 	const swalClasses = {
 		htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
 		popup: '!p-8 rounded-xl border-none w-full max-w-[350px] dark:bg-black',
@@ -472,7 +554,8 @@
 		}
 
 		$(document).ready(function () {
-			setTimeout(function () { $('.alert').remove(); }, 3000);
+
+			// setTimeout(function () { $('.alert').remove(); }, 3000);
 			const feedbackModalEl = document.querySelector('#feedbackModal');
 			const feedbackModal = KTModal.getInstance(feedbackModalEl);
 
@@ -484,7 +567,6 @@
 				if (action == 'delete') {
 					// var confirmation = confirm("are you sure you want to delete the signature?");
 					if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
-
 						openDeleteModal($(this), "Are you sure you want to delete this signature?", "This signature will be permanently removed.");
 						var confirmation = false;
 					} else {
@@ -493,6 +575,7 @@
 				} else {
 					confirmation = true;
 				}
+
 				if (confirmation) {
 					$.ajax({
 						type: 'POST',
@@ -506,6 +589,7 @@
 							KTToast.show({
 								message: `<strong>Failure! </strong> ${data.msg}`,
 								variant: 'destructive',
+								icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
 							});
 							return false;
 						}
@@ -527,7 +611,7 @@
 					return false;
 				}
 
-				$('#bulk_deletesignature').html('<div class="spinner-border text-light" role="status" style="width:1rem; height:1rem;"><span class="visually-hidden">Delete..</span></div>');
+				$('#bulk_deletesignature').html('<span class="kt-btn kt-btn-destructive flex items-center"><span>Delete..</span><i class="fas fa-circle-notch fa-spin"></i></div>');
 				var ids = [];
 				$('.del_chekbox:checked').each(function (i, e) {
 					ids.push($(this).val());
@@ -663,10 +747,18 @@
 				document.execCommand('copy');
 				console.log('should have copied ' + text);
 				// $('#shareModal').focus();
+				KTToast.show({
+					message: '<b>Success!</b> Link has been copied to clipboard!',
+					variant: 'success',
+					icon: '<i class="fas fa-check-circle text-success"></i>',
+				});
 
-				$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
-				$('#snackbar').show();
-				setTimeout(function () { $('#snackbar').hide(); }, 2000);
+				// $('#snackbar').html(`<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">
+				// 	<img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt="">
+				// 	<strong>Success! </strong>Link has been copied to clipboard! </div>`
+				// 	);
+				// $('#snackbar').show();
+				// setTimeout(function () { $('#snackbar').hide(); }, 2000);
 
 				shareModal.hide();
 			});
@@ -695,43 +787,42 @@
 		}
 	});
 
+	const changeLogoModelEl = document.querySelector('#changeLogoModel');
+	const changeLogoModel = KTModal.getInstance(changeLogoModelEl);
 
-		const changeLogoModelEl = document.querySelector('#changeLogoModel');
-		const changeLogoModel = KTModal.getInstance(changeLogoModelEl);
+	const backButton = document.getElementById('backreview');
+	backButton.addEventListener('click', function () {
+		const reviewlogo = this.getAttribute('data-img');
+		const signatureId = this.getAttribute('data-id');
 
-		const backButton = document.getElementById('backreview');
-		backButton.addEventListener('click', function () {
-			const reviewlogo = this.getAttribute('data-img');
-			const signatureId = this.getAttribute('data-id');
+		// Update modal content
+		document.getElementById("looksgood").setAttribute('data-id', signatureId);
+		document.getElementById("backreview").setAttribute('data-id', signatureId);
+		document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
-			// Update modal content
-			document.getElementById("looksgood").setAttribute('data-id', signatureId);
-			document.getElementById("backreview").setAttribute('data-id', signatureId);
-			document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+		const imgBody = reviewModalEl.querySelector('.preview-logo');
+		imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
 
-			const imgBody = reviewModalEl.querySelector('.preview-logo');
-			imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
+		// Show the modal
+		reviewModal.show();
+	});
 
-			// Show the modal
-			reviewModal.show();
-		});
+	const shareModalEl = document.getElementById('shareModal');
+	const shareModal = KTModal.getInstance(shareModalEl);
 
-		const shareModalEl = document.getElementById('shareModal');
-		const shareModal = KTModal.getInstance(shareModalEl);
+	shareModal.on('show', (e) => {
+		// KTUI: get the element that triggered this modal
+		const button = shareModal.getTargetElement();
+		if (!button) return;
 
-		shareModal.on('show', (e) => {
-			// KTUI: get the element that triggered this modal
-			const button = shareModal.getTargetElement();
-			if (!button) return;
+		const signatureId = button.getAttribute('data-id');
+		const shareUrl = button.getAttribute('data-url');
+		const shareEmail = button.getAttribute('data-email');
 
-			const signatureId = button.getAttribute('data-id');
-			const shareUrl = button.getAttribute('data-url');
-			const shareEmail = button.getAttribute('data-email');
-
-			document.getElementById("share_url").value = shareUrl || '';
-			document.getElementById("share_email").value = shareEmail || '';
-			document.getElementById("sharesig").setAttribute('data-id', signatureId || '');
-		});
+		document.getElementById("share_url").value = shareUrl || '';
+		document.getElementById("share_email").value = shareEmail || '';
+		document.getElementById("sharesig").setAttribute('data-id', signatureId || '');
+	});
 </script>
 
 <script language="javascript">
@@ -1193,7 +1284,8 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 			})
 			.catch(error => console.error('Error loading chart data:', error))
 			.finally(() => {
-				$('.line-chart-loader').hide(); // Hide the loader after fetch is done (either success or failure)
+				// $('.line-chart-loader').hide();
+				hideLoader()
 			});
 	}
 
@@ -1479,7 +1571,8 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 		} catch (error) {
 			console.error('Error loading signature chart data:', error);
 		} finally {
-			$('.performers-chart-loader').hide(); // Hide the loader after the function completes
+			// $('.performers-chart-loader').hide();
+			hideLoader();
 		}
 	}
 
@@ -1540,8 +1633,9 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 
 
 	$(document).ready(function () {
-		$('.line-chart-loader').show();
-		$('.performers-chart-loader').show();
+		// $('.line-chart-loader').show();
+		// $('.performers-chart-loader').show();
+		showLoader();
 		const { startDate, endDate } = getDateRange('this-month');
 		loadChartData('days', startDate, endDate);
 		drawSignatureChart(startDate, endDate);
@@ -1549,8 +1643,9 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 
 
 	$('.chart-range-option').on('click', function () {
-		$('.line-chart-loader').show();
-		$('.performers-chart-loader').show();
+		// $('.line-chart-loader').show();
+		// $('.performers-chart-loader').show();
+		showLoader();
 		const range = $(this).data('range');
 		const { startDate, endDate } = getDateRange(range);
 		loadChartData('days', startDate, endDate);
