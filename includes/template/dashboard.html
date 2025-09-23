@@ -274,12 +274,7 @@
 		<div class="kt-modal-header">
 			<h3 class="kt-modal-title">Feedback</h3>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#reviewModal">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="lucide lucide-x" aria-hidden="true">
-					<path d="M18 6 6 18"></path>
-					<path d="m6 6 12 12"></path>
-				</svg>
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -303,12 +298,7 @@
 			<p class="kt-modal-title">Upload Brand Logo</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#changeLogoModel">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="lucide lucide-x" aria-hidden="true">
-					<path d="M18 6 6 18"></path>
-					<path d="m6 6 12 12"></path>
-				</svg>
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -350,12 +340,7 @@
 			<p class="kt-modal-title">Feedback</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#feedbackModal">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="lucide lucide-x" aria-hidden="true">
-					<path d="M18 6 6 18"></path>
-					<path d="m6 6 12 12"></path>
-				</svg>
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -374,12 +359,7 @@
 		<div class="kt-modal-header">
 			<h3 class="kt-modal-title">Feedback</h3>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#thanksModal">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="lucide lucide-x" aria-hidden="true">
-					<path d="M18 6 6 18"></path>
-					<path d="m6 6 12 12"></path>
-				</svg>
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -396,29 +376,27 @@
 		<div class="kt-modal-header">
 			<p class="kt-modal-title">Share Signature</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModal">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="lucide lucide-x" aria-hidden="true">
-					<path d="M18 6 6 18"></path>
-					<path d="m6 6 12 12"></path>
-				</svg>
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
 			<p class="text-lg mb-2 mt-4">You can share the signature by copying the installation link</p>
+			
+				<label class="kt-form-label" for="">URL</label>
 				<div class="flex gap-2">
-					<label class="kt-form-label" for="">Url</label>
-					<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
-					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="copyshareurl">
-						<i class="hgi hgi-stroke hgi-copy-01"></i> copy
-					</a>
+				<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
+				<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="copyshareurl">
+					<i class="hgi hgi-stroke hgi-copy-01"></i> copy
+				</a>
 				</div>
 
 				<p class="text-lg mb-2 mt-4">or send by email to your team member</p>
 				<label class="kt-form-label" for="">Email id</label>
+				<div class="flex gap-2">
 				<input type="text" class="kt-input" id="share_email" name="share_email" placeholder="Email Address" required="required" value="">
-				<a href="javascript:void(0);" class="btn btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">
+				<a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">
 					<i class="hgi hgi-stroke hgi-sent"></i> Send</a>
+					</div>
 		</div>
 	</div>
 </div>
