@@ -53,7 +53,7 @@
 </div> -->
 
  <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgrade-plan-popup">
-    <div class="kt-modal-content border-white shadow-[0_0_20px_5px_rgba(77,127,255,0.4)] !p-0 max-w-[875px]">
+    <div class="kt-modal-content max-h-full border-white shadow-[0_0_20px_5px_rgba(77,127,255,0.4)] !p-0 max-w-[875px]">
       <i class="hgi hgi-stroke hgi-cancel-circle !absolute top-2 right-2 text-xl cursor-pointer" data-kt-modal-dismiss="#upgrade-plan-popup"></i>
       <div class="kt-modal-body p-0 flex" id="upgrade-plan-popupmodal-body">
         <div class="flex-1 p-8">
@@ -334,7 +334,30 @@
 
     
 
-      $('#load-upgrade-content').on('click', function () {
+    //   $('#load-upgrade-content').on('click', function () {
+    //   clearInterval(countdownInterval);
+    //   const $button = $(this);
+    //   const $target = $('#upgrade-plan-popupmodal-body');
+    //   const originalContent = $target.html();
+    //   const targetUrl = $('#root_link').val() + '/pricing';
+
+    //   // Set loading state
+    //   $button.prop('disabled', true).text('Processing...').addClass('spinner');
+
+    //   $.ajax({
+    //     url: targetUrl,
+    //     method: 'GET',
+    //     dataType: 'html',
+    //     complete: function (xhr) {
+    //       // Reset button state with new text
+    //       $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
+    //       // Only update content on HTTP 200
+    //       xhr.status === 200 ? $target.html(xhr.responseText) : $target.html(originalContent);
+    //     }
+    //   });
+    // });
+
+    $('#load-upgrade-content').on('click', function () {
       clearInterval(countdownInterval);
       const $button = $(this);
       const $target = $('#upgrade-plan-popupmodal-body');
@@ -349,13 +372,29 @@
         method: 'GET',
         dataType: 'html',
         complete: function (xhr) {
-          // Reset button state with new text
+          // Reset button state
           $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
-          // Only update content on HTTP 200
-          xhr.status === 200 ? $target.html(xhr.responseText) : $target.html(originalContent);
+
+          if (xhr.status === 200) {
+            // Parse response HTML into a temporary DOM
+            const $response = $('<div>').html(xhr.responseText);
+            // Extract only the needed div by ID
+            const $suggested = $response.find('#modalDataMove');
+
+           if ($suggested.length) {
+              $target
+                .html($suggested)        // inject only the div
+                $suggested.addClass('h-full overflow-auto'); // ensure classes are applied
+            } else {
+              $target.html('<p>Content not found.</p>');
+            }
+          } else {
+            $target.html(originalContent);
+          }
         }
       });
     });
+
     })(jQuery);
 
   </script>

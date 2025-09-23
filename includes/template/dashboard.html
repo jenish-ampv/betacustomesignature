@@ -45,7 +45,8 @@
 							</div>
 						</div>
 						<div class="kt-card-content">
-							<div class="line-chart-loader" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
+							<div class="line-chart-loader" style="display: none;"><img draggable="false"
+									src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
 							<div class="flex justify-between">
 								<div id="typeCTRSection">
 									<div>
@@ -116,7 +117,8 @@
 									{:IF}
 								</div>
 							</div>
-							<div class="kt-card-content relative flex items-center justify-center text-center overflow-hidden">
+							<div
+								class="kt-card-content relative flex items-center justify-center text-center overflow-hidden">
 								%%DEFINE_master_signature%%
 							</div>
 						</div>
@@ -128,7 +130,8 @@
 							</div>
 						</div>
 						<div class="kt-card-content py-1" id="chart-container">
-							<div class="performers-chart-loader" style="display: none;"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
+							<div class="performers-chart-loader" style="display: none;"><img draggable="false"
+									src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""></div>
 							<canvas id="signature_chart"></canvas>
 						</div>
 					</div>
@@ -160,7 +163,8 @@
 									Status <i class="!hidden md:!block fas fa-caret-down ml-1"></i>
 								</button>
 								<div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
-									<ul id="signature-status-selector-menu" class="kt-dropdown-menu-sub" data-kt-dropdown-dismiss="true">
+									<ul id="signature-status-selector-menu" class="kt-dropdown-menu-sub"
+										data-kt-dropdown-dismiss="true">
 										<li id="all" class="kt-dropdown-menu-link">All</li>
 										<li id="installed" class="kt-dropdown-menu-link">Installed</li>
 										<li id="pending" class="kt-dropdown-menu-link">Pending</li>
@@ -207,10 +211,12 @@
 							</div>
 
 							IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%" href="%%DEFINE_linkModuleNewsignature%%">
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTDN%%"
+								href="%%DEFINE_linkModuleNewsignature%%">
 								<i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
 							</a>
-							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%" href="%%DEFINE_billing%%?action=freetrial">
+							<a id="create_signature_btn" class="kt-btn kt-btn-primary %%DEFINE_FTD%%"
+								href="%%DEFINE_billing%%?action=freetrial">
 								<i class="hgi hgi-stroke hgi-add-01"></i> Create Signature
 							</a>
 							{:IF}
@@ -243,7 +249,8 @@
 							<div class="flex items-center gap-2 ml-4" style="display:none;" id="extratop">
 								<input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
 								<label class="kt-label" for="select_all">Select All</label>
-								<a class="kt-btn kt-btn-destructive" href="javascrip:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
+								<a class="kt-btn kt-btn-destructive" href="javascrip:void(0);" data-action="bulkdelete"
+									id="bulk_deletesignature">Delete</a>
 							</div>
 						</div>
 					</div>
@@ -252,7 +259,7 @@
 					<div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
 					<div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
 					<div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
-					
+
 					<div style="display:block"></div>
 					<div id="search_result" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 						%%DEFINE_signature_list%%
@@ -284,8 +291,7 @@
 			<button type="button" class="btn btn-secondary" data-kt-modal-toggle="#feedbackModal">Would like to
 				revise</button>
 			<a href="javascript:void(0);" class="btn btn-primary ajaxaction" id="looksgood" data-id="0"
-				data-action="status">Looks Goods! <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg"
-					alt=""></a>
+				data-action="status">Looks Goods! <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
 
 		</div>
 	</div>
@@ -306,26 +312,30 @@
 			<div id="img_preview_logo"></div>
 			<div class="upload-area-logo" id="uploadfilelogo">
 				<input type="hidden" value="%%DEFINE_signature_image_name%%" name="signature_image">
-				<div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl cursor-pointer">
+				<div
+					class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl cursor-pointer">
 					<img class="signature_logo" src="%%DEFINE_signature_change_image%%" alt="">
-					<p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a href="javascript:void(0);">browse</a></p>
+					<p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a
+							href="javascript:void(0);">browse</a></p>
 					<p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
 				</div>
 			</div>
 			<div id="img_errormsg_logo"></div>
 			<div class="kt-alert kt-alert-light kt-alert-warning my-5">
 				<div class="kt-alert-icon">
-				<i class="hgi hgi-stroke hgi-alert-01"></i>
+					<i class="hgi hgi-stroke hgi-alert-01"></i>
 				</div>
-				<div class="kt-alert-title"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above pixels</b> for
-				better animation quality.</div>
+				<div class="kt-alert-title"><b>Note:</b> Please upload a logo with dimensions <b>500×500 and above
+						pixels</b> for
+					better animation quality.</div>
 			</div>
 			<div class="change-logo-reason">
 				<input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
 				<label class="kt-form-label" for="">Please add feedback</label>
 				<div class="kt-input-group">
 					<input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
-					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">
+					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn"
+						onclick="logoChanged();">
 						Submit <i class="hgi hgi-stroke hgi-arrow-right-02"></i>
 					</a>
 				</div>
@@ -347,7 +357,8 @@
 			<textarea name="feedback" id="feedback" rows="5" class="form-control"></textarea>
 		</div>
 		<div class="flex gap-2">
-			<button type="button" class="kt-btn kt-btn-secondary" id="backreview" data-kt-modal-toggle="#reviewModal" data-img="" data-id="">Back</button>
+			<button type="button" class="kt-btn kt-btn-secondary" id="backreview" data-kt-modal-toggle="#reviewModal"
+				data-img="" data-id="">Back</button>
 			<button type="button" class="kt-btn kt-btn-primary" id="sendfeedback">Send Feedback! <img
 					src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></button>
 		</div>
@@ -381,62 +392,46 @@
 		</div>
 		<div class="kt-modal-body">
 			<p class="text-lg mb-2 mt-4">You can share the signature by copying the installation link</p>
-			
-				<label class="kt-form-label" for="">URL</label>
-				<div class="flex gap-2">
-				<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
+			<label class="kt-form-label" for="">URL</label>
+			<div class="flex gap-2">
+				<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address"
+					required="required" value="">
 				<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="copyshareurl">
 					<i class="hgi hgi-stroke hgi-copy-01"></i> copy
 				</a>
-				</div>
+			</div>
 
-				<p class="text-lg mb-2 mt-4">or send by email to your team member</p>
-				<label class="kt-form-label" for="">Email id</label>
-				<div class="flex gap-2">
-				<input type="text" class="kt-input" id="share_email" name="share_email" placeholder="Email Address" required="required" value="">
-				<a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction_share" id="sharesig" data-id="0" data-action="share">
-					<i class="hgi hgi-stroke hgi-sent"></i> Send</a>
-					</div>
+			<p class="text-lg mb-2 mt-4">or send by email to your team member</p>
+			<label class="kt-form-label" for="">Email id</label>
+			<div class="flex gap-2">
+				<input type="text" class="kt-input" id="share_email" name="share_email" placeholder="Email Address"
+					required="required" value="">
+				<a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction_share" id="sharesig" data-id="0"
+					data-action="share">
+					<i class="hgi hgi-stroke hgi-sent"></i> Send
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgradeFromFreeTrialPopup">
-<div class="kt-modal-content max-w-[400px]">
-	<div class="kt-modal-header">
-	<h3 class="kt-modal-title">Upgrade Your Plan</h3>
-	<button
-		type="button"
-		class="kt-modal-close"
-		aria-label="Close modal"
-		data-kt-modal-dismiss="#upgradeFromFreeTrialPopup"
-	>
-		<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		class="lucide lucide-x"
-		aria-hidden="true"
-		>
-		<path d="M18 6 6 18"></path>
-		<path d="m6 6 12 12"></path>
-		</svg>
-	</button>
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<h3 class="kt-modal-title">Upgrade Your Plan</h3>
+			<button type="button" class="kt-modal-close" aria-label="Close modal"
+				data-kt-modal-dismiss="#upgradeFromFreeTrialPopup">
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+			</button>
+		</div>
+		<div class="kt-modal-body">
+			<p style="padding-bottom:0;">You have to upgrade your plan to make your logo animated</p>
+			<div style="padding-bottom:10px;">
+				<a href="%%DEFINE_billing%%?action=freetrial" class="btn btn-primary">Upgrade <img
+						src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
+			</div>
+		</div>
 	</div>
-	<div class="kt-modal-body">
-	<p style="padding-bottom:0;">You have to upgrade your plan to make your logo animated</p>
-	<div style="padding-bottom:10px;">
-		<a href="%%DEFINE_billing%%?action=freetrial" class="btn btn-primary">Upgrade <img
-				src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-	</div>
-	</div>
-</div>
 </div>
 
 
@@ -444,7 +439,7 @@
 <script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
 <!-- <script src="%%DEFINE_JS_LINK%%/htmltoimage/html2canvas.js"></script> 
 <script src="%%DEFINE_JS_LINK%%/htmltoimage/htmltoimage.js"></script>  -->
-
+<script src="%%DEFINE_JS_LINK%%/uploadlogo.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
 <script>
 
 	const swalClasses = {
@@ -455,7 +450,7 @@
 		confirmButton: 'btn btn-sm btn-primary',
 		cancelButton: 'btn btn-sm btn-dark',
 		denyButton: 'btn btn-sm btn-light',
-		icon:'mt-0 w-10 h-10 border-none bg-danger-20 text-danger mb-6',
+		icon: 'mt-0 w-10 h-10 border-none bg-danger-20 text-danger mb-6',
 	};
 
 
@@ -470,52 +465,168 @@
 			x.style.display = "none";
 		}
 	}
-	
+
 	$(document).on('click', function (event) {
 		if (!$(event.target).closest('.menu_open').length && !$(event.target).is('.openPopupClass')) {
 			$('.menu_open').hide();
 		}
 
-
 		$(document).ready(function () {
-		setTimeout(function(){ $('.alert').remove(); }, 3000);
-		const feedbackModalEl = document.querySelector('#feedbackModal');
-		const feedbackModal = KTModal.getInstance(feedbackModalEl);
+			setTimeout(function () { $('.alert').remove(); }, 3000);
+			const feedbackModalEl = document.querySelector('#feedbackModal');
+			const feedbackModal = KTModal.getInstance(feedbackModalEl);
 
+			// delete and copy signature action
+			$('.ajaxaction').on("click", function () {
+				var id = $(this).attr('data-id');
+				var action = $(this).attr('data-action');
+				var url = $('#form_url').val();
+				if (action == 'delete') {
+					// var confirmation = confirm("are you sure you want to delete the signature?");
+					if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
 
-		
+						openDeleteModal($(this), "Are you sure you want to delete this signature?", "This signature will be permanently removed.");
+						var confirmation = false;
+					} else {
+						var confirmation = true;
+					}
+				} else {
+					confirmation = true;
+				}
+				if (confirmation) {
+					$.ajax({
+						type: 'POST',
+						url: $('#form_url').val(),
+						data: 'action=' + action + '&id=' + id,
+						dataType: "json",
+					}).done(function (data) {
+						if (data.error == '0') {
+							window.location = url;
+						} else {
+							KTToast.show({
+								message: `<strong>Failure! </strong> ${data.msg}`,
+								variant: 'destructive',
+							});
+							return false;
+						}
+						this.bind('click', handler);
+						// Optionally alert the user of success here...
+					}).fail(function (data) {
+						return false;
+						// Optionally alert the user of an error here...
+					});
+					return false;
+				}
+			});
 
-		// delete and copy signature action
-		$('.ajaxaction').on("click", function () {
-			var id = $(this).attr('data-id');
-			var action = $(this).attr('data-action');
-			var url = $('#form_url').val();
-			if (action == 'delete') {
-				// var confirmation = confirm("are you sure you want to delete the signature?");
+			// bulk delte
+			$('#bulk_deletesignature').on("click", function () {
+
 				if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
-					
-					openDeleteModal($(this), "Are you sure you want to delete this signature?", "This signature will be permanently removed.");
-					var confirmation = false;
-				} else {
-					var confirmation = true;
+					openDeleteModal($(this), "Are you sure you want to delete these signatures?", "These signatures will be permanently removed.");
+					return false;
 				}
-			} else {
+
+				$('#bulk_deletesignature').html('<div class="spinner-border text-light" role="status" style="width:1rem; height:1rem;"><span class="visually-hidden">Delete..</span></div>');
+				var ids = [];
+				$('.del_chekbox:checked').each(function (i, e) {
+					ids.push($(this).val());
+				});
+				var id = ids;
+				var action = $(this).attr('data-action');
+				var url = $('#form_url').val();
 				confirmation = true;
-			}
-			if (confirmation) {
+				if (confirmation) {
+					$.ajax({
+						type: 'POST',
+						url: $('#form_url').val(),
+						data: 'action=' + action + '&id=' + id,
+						dataType: "json",
+					}).done(function (data) {
+						if (data.error == '0') {
+							window.location = url;
+						} else {
+							alert(data.msg);
+							return false;
+						}
+						this.bind('click', handler);
+						// Optionally alert the user of success here...
+					}).fail(function (data) {
+						return false;
+						// Optionally alert the user of an error here...
+					});
+					return false;
+				}
+			});
+
+			// share signature mail
+
+			// delete and copy signature action
+			$('.ajaxaction_share').on("click", function () {
+				var id = $(this).attr('data-id');
+				var action = $(this).attr('data-action');
+				var url = $('#form_url').val();
+				var mailto = $('#share_email');
+				var share_url = $('#share_url').val();
+				console.log(share_url)
+				if (mailto.val() == '') {
+					mailto.focus();
+				} else {
+					$.ajax({
+						type: 'POST',
+						url: $('#form_url').val(),
+						data: 'action=' + action + '&id=' + id + '&share_email=' + mailto.val() + '&share_url=' + share_url,
+						dataType: "json",
+					}).done(function (data) {
+						if (data.error == '0') {
+
+							$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+							$('#snackbar').show();
+							setTimeout(function () { $('#snackbar').hide(); }, 2000);
+							// $('#shareModal').modal('hide');
+							shareModal.hide();
+						} else {
+							alert('somthing wrong try again');
+							return false;
+						}
+						// this.bind('click',handler);
+						// Optionally alert the user of success here...
+					}).fail(function (data) {
+						return false;
+						// Optionally alert the user of an error here...
+					});
+					return false;
+				}
+			});
+
+			// send feedback signature
+
+			$('#sendfeedback').on("click", function () {
+
+				const thanksModalEl = document.querySelector('#thanksModal');
+				const thanksModal = KTModal.getInstance(thanksModalEl);
+
+				var signatureid = $('#backreview').attr('data-id');
+				var feedback = $('#feedback');
+				if ($.trim(feedback.val()) == "") {
+					feedback.css('border-color', 'red');
+					return false;
+				}
+				var url = $('#form_url').val();
 				$.ajax({
 					type: 'POST',
 					url: $('#form_url').val(),
-					data: 'action=' + action + '&id=' + id,
+					data: 'feedback=' + feedback.val() + '&signature_id=' + signatureid,
 					dataType: "json",
+					async: true,
 				}).done(function (data) {
-					if (data.error == '0') {
-						window.location = url;
+					if (data['error'] == '0') {
+
+						feedbackModal.hide();
+						thanksModal.show();
+						return false;
 					} else {
-						KTToast.show({
-							message: `<strong>Failure! </strong> ${data.msg}`,
-							variant: 'destructive',
-						});
+						alert(data['error']);
 						return false;
 					}
 					this.bind('click', handler);
@@ -525,186 +636,71 @@
 					// Optionally alert the user of an error here...
 				});
 				return false;
-			}
-		});
-
-
-		// bulk delte
-		$('#bulk_deletesignature').on("click", function () {
-
-			if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
-				openDeleteModal($(this), "Are you sure you want to delete these signatures?", "These signatures will be permanently removed.");
-				return false;
-			}
-
-			$('#bulk_deletesignature').html('<div class="spinner-border text-light" role="status" style="width:1rem; height:1rem;"><span class="visually-hidden">Delete..</span></div>');
-			var ids = [];
-			$('.del_chekbox:checked').each(function (i, e) {
-				ids.push($(this).val());
 			});
-			var id = ids;
-			var action = $(this).attr('data-action');
-			var url = $('#form_url').val();
-			confirmation = true;
-			if (confirmation) {
-				$.ajax({
-					type: 'POST',
-					url: $('#form_url').val(),
-					data: 'action=' + action + '&id=' + id,
-					dataType: "json",
-				}).done(function (data) {
-					if (data.error == '0') {
-						window.location = url;
+
+			// search box
+			$("#search_input").keyup(function () {
+				var filter = $(this).val(),
+					count = 0;
+				$('#search_result div.search-container').each(function () {
+					if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+						$(this).hide();
 					} else {
-						alert(data.msg);
-						return false;
+						$(this).show(); count++;
 					}
-					this.bind('click', handler);
-					// Optionally alert the user of success here...
-				}).fail(function (data) {
-					return false;
-					// Optionally alert the user of an error here...
+					$('.menu_open').hide();
 				});
-				return false;
-			}
-		});
-
-		// share signature mail
-
-		// delete and copy signature action
-		$('.ajaxaction_share').on("click", function () {
-			var id = $(this).attr('data-id');
-			var action = $(this).attr('data-action');
-			var url = $('#form_url').val();
-			var mailto = $('#share_email');
-			var share_url = $('#share_url').val();
-			console.log(share_url)
-			if (mailto.val() == '') {
-				mailto.focus();
-			} else {
-				$.ajax({
-					type: 'POST',
-					url: $('#form_url').val(),
-					data: 'action=' + action + '&id=' + id + '&share_email=' + mailto.val() + '&share_url=' + share_url,
-					dataType: "json",
-				}).done(function (data) {
-					if (data.error == '0') {
-
-						$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
-						$('#snackbar').show();
-						setTimeout(function () { $('#snackbar').hide(); }, 2000);
-						// $('#shareModal').modal('hide');
-						shareModal.hide();
-					} else {
-						alert('somthing wrong try again');
-						return false;
-					}
-					// this.bind('click',handler);
-					// Optionally alert the user of success here...
-				}).fail(function (data) {
-					return false;
-					// Optionally alert the user of an error here...
-				});
-				return false;
-			}
-		});
-
-		// send feedback signature
-
-		$('#sendfeedback').on("click", function () {
-
-			const thanksModalEl = document.querySelector('#thanksModal');
-			const thanksModal = KTModal.getInstance(thanksModalEl);
-
-			var signatureid = $('#backreview').attr('data-id');
-			var feedback = $('#feedback');
-			if ($.trim(feedback.val()) == "") {
-				feedback.css('border-color', 'red');
-				return false;
-			}
-			var url = $('#form_url').val();
-			$.ajax({
-				type: 'POST',
-				url: $('#form_url').val(),
-				data: 'feedback=' + feedback.val() + '&signature_id=' + signatureid,
-				dataType: "json",
-				async: true,
-			}).done(function (data) {
-				if (data['error'] == '0') {
-
-					feedbackModal.hide();
-					thanksModal.show();
-					return false;
-				} else {
-					alert(data['error']);
-					return false;
-				}
-				this.bind('click', handler);
-				// Optionally alert the user of success here...
-			}).fail(function (data) {
-				return false;
-				// Optionally alert the user of an error here...
 			});
-			return false;
+
 		});
 
-		// search box
-		$("#search_input").keyup(function () {
-			var filter = $(this).val(),
-				count = 0;
-			$('#search_result div.search-container').each(function () {
-				if ($(this).text().search(new RegExp(filter, "i")) < 0) {
-					$(this).hide();
-				} else {
-					$(this).show(); count++;
-				}
-				$('.menu_open').hide();
+		$(document).ready(function () { // copy signature share url
+			$('#copyshareurl').on('click', function (event) {  // copy signature
+				text = $('#share_url').val();
+				var textField = $('#share_url');
+				textField.focus(); //SET FOCUS on the TEXTFIELD
+				textField.select();
+				document.execCommand('copy');
+				console.log('should have copied ' + text);
+				// $('#shareModal').focus();
+
+				$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
+				$('#snackbar').show();
+				setTimeout(function () { $('#snackbar').hide(); }, 2000);
+
+				shareModal.hide();
 			});
 		});
-
 	});
 
-		// review logo popup event and redirect
-		// review lgo popup event and redirect
-		// var reviewModal = document.getElementById('reviewModal');
-		// reviewModal.addEventListener('show.bs.modal', function (event) {
-		// 	// Button that triggered the modal
-		// 	var button = event.relatedTarget
-		// 	var reviewlogo = button.getAttribute('data-img');
-		// 	var signatureId = button.getAttribute('data-id');
-		// 	document.getElementById("looksgood").setAttribute('data-id', signatureId);
-
-		// 	document.getElementById("backreview").setAttribute('data-id', signatureId);
-		// 	document.getElementById("backreview").setAttribute('data-img', reviewlogo);
-
-		// 	var imgBody = reviewModal.querySelector('.preview-logo');
-		// 	imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
-
-		// });
-
+	
+	document.addEventListener("DOMContentLoaded", function () {
 		const reviewModalEl = document.querySelector('#reviewModal');
 		const reviewModal = KTModal.getInstance(reviewModalEl);
 
 		const reviewLogo = document.getElementById('reviewLogo');
-		reviewLogo.addEventListener('click', function() {
-			var reviewlogo = button.getAttribute('data-img');
-			var signatureId = button.getAttribute('data-id');
-			document.getElementById("looksgood").setAttribute('data-id', signatureId);
+		if (reviewLogo) {
+			reviewLogo.addEventListener('click', function (event) {
+				var reviewlogo = reviewLogo.getAttribute('data-img');
+				var signatureId = reviewLogo.getAttribute('data-id');
 
-			document.getElementById("backreview").setAttribute('data-id', signatureId);
-			document.getElementById("backreview").setAttribute('data-img', reviewlogo);
+				document.getElementById("looksgood").setAttribute('data-id', signatureId);
+				document.getElementById("backreview").setAttribute('data-id', signatureId);
+				document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
-			var imgBody = reviewModal.querySelector('.preview-logo');
-			imgBody.innerHTML = '<img src="' + reviewlogo + '" ,alt="" />';
-			reviewModal.show();
-		});
+				var imgBody = reviewModal.querySelector('.preview-logo');
+				imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
+				reviewModal.show();
+			});
+		}
+	});
 
 
 		const changeLogoModelEl = document.querySelector('#changeLogoModel');
 		const changeLogoModel = KTModal.getInstance(changeLogoModelEl);
 
 		const backButton = document.getElementById('backreview');
-		backButton.addEventListener('click', function() {
+		backButton.addEventListener('click', function () {
 			const reviewlogo = this.getAttribute('data-img');
 			const signatureId = this.getAttribute('data-id');
 
@@ -720,42 +716,26 @@
 			reviewModal.show();
 		});
 
-		const shareModalEl = document.querySelector('#shareModal');
+		const shareModalEl = document.getElementById('shareModal');
 		const shareModal = KTModal.getInstance(shareModalEl);
 
-		shareModal.on('show', () => {
-			var button = event.relatedTarget
-			var signatureId = button.getAttribute('data-id');
-			var shareUrl = button.getAttribute('data-url');
-			var shareEmail = button.getAttribute('data-email');
-			document.getElementById("share_url").value = shareUrl;
-			document.getElementById("share_email").value = shareEmail;
-			document.getElementById("sharesig").setAttribute('data-id', signatureId);
+		shareModal.on('show', (e) => {
+			// KTUI: get the element that triggered this modal
+			const button = shareModal.getTargetElement();
+			if (!button) return;
+
+			const signatureId = button.getAttribute('data-id');
+			const shareUrl = button.getAttribute('data-url');
+			const shareEmail = button.getAttribute('data-email');
+
+			document.getElementById("share_url").value = shareUrl || '';
+			document.getElementById("share_email").value = shareEmail || '';
+			document.getElementById("sharesig").setAttribute('data-id', signatureId || '');
 		});
-
-		$(document).ready(function () { // copy signature share url
-		$('#copyshareurl').on('click', function (event) {  // copy signature
-			text = $('#share_url').val();
-			var textField = $('#share_url');
-			textField.focus(); //SET FOCUS on the TEXTFIELD
-			textField.select();
-			document.execCommand('copy');
-			console.log('should have copied ' + text);
-			// $('#shareModal').focus();
-
-			$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Link has been copied to clipboard! </div>');
-			$('#snackbar').show();
-			setTimeout(function () { $('#snackbar').hide(); }, 2000);
-			
-			shareModal.hide();
-		});
-	});
-});
-
 </script>
 
 <script language="javascript">
-	
+
 	$(document).ready(function () {
 		$('#select_all').on('click', function () {
 			if (this.checked) {
@@ -797,7 +777,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 	});
 </script>
 {:IF}
-<script src="%%DEFINE_JS_LINK%%/uploadlogo.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
+
 
 <!-- <script>
 	$(document).ready(function () {
@@ -1276,226 +1256,226 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 			const yAxisMax = stepSize * 4;
 
 			signatureChart = new Chart(ctx, {
-			type: 'bar',
-			data: {
-				labels: names,
-				datasets: [{
-					data: values,
-					backgroundColor: (ctx) => {
-						if (ctx.dataIndex === hoveredIndex) {
-							const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, ctx.chart.height);
-							gradient.addColorStop(0, '#1D4AFE');
-							gradient.addColorStop(1, '#26B7FF');
-							return gradient;
-						}
-						return '#e0e0e0';
-					},
-					borderRadius: Number.MAX_VALUE,
-					borderSkipped: false,
-					barThickness: 40
-				}]
-			},
-			options: {
-				responsive: true,
-				layout: { padding: { top: 30, bottom: 30 } },
-				plugins: {
-					legend: { display: false },
-					tooltip: { enabled: false },
-					title: {
-						display: false
-					}
+				type: 'bar',
+				data: {
+					labels: names,
+					datasets: [{
+						data: values,
+						backgroundColor: (ctx) => {
+							if (ctx.dataIndex === hoveredIndex) {
+								const gradient = ctx.chart.ctx.createLinearGradient(0, 0, 0, ctx.chart.height);
+								gradient.addColorStop(0, '#1D4AFE');
+								gradient.addColorStop(1, '#26B7FF');
+								return gradient;
+							}
+							return '#e0e0e0';
+						},
+						borderRadius: Number.MAX_VALUE,
+						borderSkipped: false,
+						barThickness: 40
+					}]
 				},
-				scales: {
-					x: {
-						grid: {
-							display: false,
-							drawBorder: false,  // disables bottom border line
-						},
-						border: {
-							display: false     // disables border on x-axis
-						},
-						ticks: {
+				options: {
+					responsive: true,
+					layout: { padding: { top: 30, bottom: 30 } },
+					plugins: {
+						legend: { display: false },
+						tooltip: { enabled: false },
+						title: {
 							display: false
 						}
 					},
-					y: {
-						suggestedMin: 0,
-						suggestedMax: 3,
-						grid: {
-							display: false,
-							drawBorder: false,  // disables left border line
+					scales: {
+						x: {
+							grid: {
+								display: false,
+								drawBorder: false,  // disables bottom border line
+							},
+							border: {
+								display: false     // disables border on x-axis
+							},
+							ticks: {
+								display: false
+							}
 						},
-						border: {
-							display: false     // disables border on y-axis
-						},
-						ticks: {
-							stepSize: stepSize,
-							color: '#888',
-							font: { size: 12 }
+						y: {
+							suggestedMin: 0,
+							suggestedMax: 3,
+							grid: {
+								display: false,
+								drawBorder: false,  // disables left border line
+							},
+							border: {
+								display: false     // disables border on y-axis
+							},
+							ticks: {
+								stepSize: stepSize,
+								color: '#888',
+								font: { size: 12 }
+							}
 						}
+					},
+					onHover: (event, elements) => {
+						hoveredIndex = elements.length ? elements[0].index : null;
+						signatureChart.update();
 					}
 				},
-				onHover: (event, elements) => {
-					hoveredIndex = elements.length ? elements[0].index : null;
-					signatureChart.update();
-				}
-			},
-			plugins: [{
-				id: 'customAvatarPlugin',
-				afterDatasetsDraw(chart) {
-					const { ctx, chartArea: { bottom }, scales: { x, y } } = chart;
+				plugins: [{
+					id: 'customAvatarPlugin',
+					afterDatasetsDraw(chart) {
+						const { ctx, chartArea: { bottom }, scales: { x, y } } = chart;
 
-					values.forEach((val, i) => {
-						const xPos = x.getPixelForValue(i);
-						const yPos = y.getPixelForValue(val);
+						values.forEach((val, i) => {
+							const xPos = x.getPixelForValue(i);
+							const yPos = y.getPixelForValue(val);
 
-						// Hover effects
-						if (i === hoveredIndex) {
-							// Dashed line (unchanged)
-							ctx.save();
-							ctx.setLineDash([5, 5]);
-							ctx.strokeStyle = 'white';
-							ctx.lineWidth = 2;
-							ctx.beginPath();
-							ctx.moveTo(xPos, yPos);
-							ctx.lineTo(xPos, chart.scales.y.bottom);
-							ctx.stroke();
-							ctx.setLineDash([]);
-							ctx.restore();
+							// Hover effects
+							if (i === hoveredIndex) {
+								// Dashed line (unchanged)
+								ctx.save();
+								ctx.setLineDash([5, 5]);
+								ctx.strokeStyle = 'white';
+								ctx.lineWidth = 2;
+								ctx.beginPath();
+								ctx.moveTo(xPos, yPos);
+								ctx.lineTo(xPos, chart.scales.y.bottom);
+								ctx.stroke();
+								ctx.setLineDash([]);
+								ctx.restore();
 
-							// Create a linear gradient for the dot (bar color gradient)
-							const gradient = ctx.createLinearGradient(0, 0, 0, 1);
-							gradient.addColorStop(0, '#26B7FF'); // Light Blue
-							gradient.addColorStop(1, '#1D4AFE'); // Dark Blue
+								// Create a linear gradient for the dot (bar color gradient)
+								const gradient = ctx.createLinearGradient(0, 0, 0, 1);
+								gradient.addColorStop(0, '#26B7FF'); // Light Blue
+								gradient.addColorStop(1, '#1D4AFE'); // Dark Blue
 
-							// Apply shadow effect for the circle border (dot)
-							ctx.shadowColor = '#1D4AFE33'; // Shadow color (semi-transparent blue)
-							ctx.shadowOffsetX = 0;  // No horizontal offset
-							ctx.shadowOffsetY = 0;  // No vertical offset
-							ctx.shadowBlur = 10;    // Blur level for soft shadow effect
+								// Apply shadow effect for the circle border (dot)
+								ctx.shadowColor = '#1D4AFE33'; // Shadow color (semi-transparent blue)
+								ctx.shadowOffsetX = 0;  // No horizontal offset
+								ctx.shadowOffsetY = 0;  // No vertical offset
+								ctx.shadowBlur = 10;    // Blur level for soft shadow effect
 
-							// Draw the dot with gradient
-							ctx.beginPath();
-							ctx.arc(xPos, yPos, 5, 0, 2 * Math.PI);
-							ctx.fillStyle = gradient;  // Set gradient as dot color
-							ctx.fill();
+								// Draw the dot with gradient
+								ctx.beginPath();
+								ctx.arc(xPos, yPos, 5, 0, 2 * Math.PI);
+								ctx.fillStyle = gradient;  // Set gradient as dot color
+								ctx.fill();
 
-							// Draw white border around the dot
-							ctx.lineWidth = 3; // Border width
-							ctx.strokeStyle = 'white'; // White border
-							ctx.stroke();  // Draw the white border
+								// Draw white border around the dot
+								ctx.lineWidth = 3; // Border width
+								ctx.strokeStyle = 'white'; // White border
+								ctx.stroke();  // Draw the white border
 
-							// Reset shadow after drawing the circle
-							ctx.shadowColor = 'transparent'; // Reset shadow after drawing
+								// Reset shadow after drawing the circle
+								ctx.shadowColor = 'transparent'; // Reset shadow after drawing
 
-							// Tooltip bubble (applying shadow to the box as well)
-							const label = `${val}`;
-							const paddingX = 10; // Slightly larger padding for the number
-							const paddingY = 4;  // Padding for vertical space inside box
+								// Tooltip bubble (applying shadow to the box as well)
+								const label = `${val}`;
+								const paddingX = 10; // Slightly larger padding for the number
+								const paddingY = 4;  // Padding for vertical space inside box
 
-							ctx.font = 'bold 14px sans-serif';  // Bold text
-							const textWidth = ctx.measureText(label).width;
-							const boxWidth = textWidth + paddingX * 2;
-							const boxHeight = 30;  // Slightly larger height for a more relaxed feel
+								ctx.font = 'bold 14px sans-serif';  // Bold text
+								const textWidth = ctx.measureText(label).width;
+								const boxWidth = textWidth + paddingX * 2;
+								const boxHeight = 30;  // Slightly larger height for a more relaxed feel
 
-							const boxX = xPos - boxWidth / 2;
-							let boxY = yPos - boxHeight - 16;
-							if (boxY < 0) {
-								boxY = yPos + 16; // Draw below the dot instead
+								const boxX = xPos - boxWidth / 2;
+								let boxY = yPos - boxHeight - 16;
+								if (boxY < 0) {
+									boxY = yPos + 16; // Draw below the dot instead
+								}
+
+								// Apply shadow effect for the tooltip box (outside the box)
+								ctx.shadowColor = '#1D4AFE33'; // Same shadow color (semi-transparent blue)
+								ctx.shadowOffsetX = 0;  // No horizontal offset
+								ctx.shadowOffsetY = 0;  // No vertical offset
+								ctx.shadowBlur = 15;    // Increase blur for softer, larger shadow
+
+								// Fill the tooltip bubble with **solid white color**
+								ctx.fillStyle = '#fff';  // Solid white fill for the tooltip bubble
+								ctx.beginPath();
+								ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 6); // Rounded corners (softer curve)
+								ctx.fill();
+
+								// // Draw **white border** around the tooltip bubble
+								// ctx.strokeStyle = '#fff';  // White border for the tooltip bubble
+								// ctx.lineWidth = 2;  // Border width
+								// ctx.stroke();
+
+								// Reset shadow after drawing the bubble
+								ctx.shadowColor = 'transparent'; // Reset shadow after drawing
+
+								// Gradient text for the number inside the box
+								const textGradient = ctx.createLinearGradient(0, 0, 0, 1);
+								textGradient.addColorStop(0, '#26B7FF'); // Light Blue
+								textGradient.addColorStop(1, '#1D4AFE'); // Dark Blue
+
+								ctx.fillStyle = textGradient; // Apply the gradient for the text
+								ctx.textAlign = 'center';
+								ctx.textBaseline = 'middle';
+								ctx.fillText(label, xPos, boxY + boxHeight / 2);  // Draw the number with gradient inside the box
 							}
 
-							// Apply shadow effect for the tooltip box (outside the box)
-							ctx.shadowColor = '#1D4AFE33'; // Same shadow color (semi-transparent blue)
-							ctx.shadowOffsetX = 0;  // No horizontal offset
-							ctx.shadowOffsetY = 0;  // No vertical offset
-							ctx.shadowBlur = 15;    // Increase blur for softer, larger shadow
+							// Avatar
+							const img = avatarImages[i];
+							const imgSize = 36;
+							const imgY = bottom;
 
-							// Fill the tooltip bubble with **solid white color**
-							ctx.fillStyle = '#fff';  // Solid white fill for the tooltip bubble
+							// Save context
+							ctx.save();
+
+							// Clip to circle and draw image
 							ctx.beginPath();
-							ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 6); // Rounded corners (softer curve)
-							ctx.fill();
+							ctx.arc(xPos, imgY, imgSize / 2, 0, 2 * Math.PI);
+							ctx.closePath();
+							ctx.clip();
 
-							// // Draw **white border** around the tooltip bubble
-							// ctx.strokeStyle = '#fff';  // White border for the tooltip bubble
-							// ctx.lineWidth = 2;  // Border width
-							// ctx.stroke();
+							ctx.drawImage(img, xPos - imgSize / 2, imgY - imgSize / 2, imgSize, imgSize);
 
-							// Reset shadow after drawing the bubble
-							ctx.shadowColor = 'transparent'; // Reset shadow after drawing
+							// Restore context to remove clipping
+							ctx.restore();
 
-							// Gradient text for the number inside the box
-							const textGradient = ctx.createLinearGradient(0, 0, 0, 1);
-							textGradient.addColorStop(0, '#26B7FF'); // Light Blue
-							textGradient.addColorStop(1, '#1D4AFE'); // Dark Blue
+							// Now draw white border outside the clip
+							ctx.beginPath();
+							ctx.arc(xPos, imgY, imgSize / 2, 0, 2 * Math.PI);
+							ctx.strokeStyle = '#fff';
+							ctx.lineWidth = 3;
+							ctx.stroke();
 
-							ctx.fillStyle = textGradient; // Apply the gradient for the text
+
+							// Name
+							ctx.font = '12px sans-serif';
+							ctx.fillStyle = '#333';
 							ctx.textAlign = 'center';
-							ctx.textBaseline = 'middle';
-							ctx.fillText(label, xPos, boxY + boxHeight / 2);  // Draw the number with gradient inside the box
-						}
+							ctx.fillText(names[i], xPos, imgY + 30);
+						});
+					}
+				},
+				{
+					id: 'customYAxisLines',
+					beforeDatasetsDraw(chart) {
+						const { ctx, chartArea: { left, right }, scales: { y } } = chart;
 
-						// Avatar
-						const img = avatarImages[i];
-						const imgSize = 36;
-						const imgY = bottom;
-
-						// Save context
 						ctx.save();
+						ctx.strokeStyle = '#eee';      // Line color (light gray)
+						ctx.lineWidth = 2;
+						ctx.setLineDash([4, 4]);       // Dashed style
 
-						// Clip to circle and draw image
-						ctx.beginPath();
-						ctx.arc(xPos, imgY, imgSize / 2, 0, 2 * Math.PI);
-						ctx.closePath();
-						ctx.clip();
+						y.ticks.forEach(tick => {
+							const value = tick.value;
+							if (value === 0) return;     // Skip zero line
 
-						ctx.drawImage(img, xPos - imgSize / 2, imgY - imgSize / 2, imgSize, imgSize);
+							const yPos = y.getPixelForValue(value);
 
-						// Restore context to remove clipping
+							ctx.beginPath();
+							ctx.moveTo(left, yPos);      // Full width line
+							ctx.lineTo(right, yPos);
+							ctx.stroke();
+						});
+
 						ctx.restore();
-
-						// Now draw white border outside the clip
-						ctx.beginPath();
-						ctx.arc(xPos, imgY, imgSize / 2, 0, 2 * Math.PI);
-						ctx.strokeStyle = '#fff';
-						ctx.lineWidth = 3;
-						ctx.stroke();
-
-
-						// Name
-						ctx.font = '12px sans-serif';
-						ctx.fillStyle = '#333';
-						ctx.textAlign = 'center';
-						ctx.fillText(names[i], xPos, imgY + 30);
-					});
-				}
-			},
-			{
-				id: 'customYAxisLines',
-				beforeDatasetsDraw(chart) {
-					const { ctx, chartArea: { left, right }, scales: { y } } = chart;
-
-					ctx.save();
-					ctx.strokeStyle = '#eee';      // Line color (light gray)
-					ctx.lineWidth = 2;
-					ctx.setLineDash([4, 4]);       // Dashed style
-
-					y.ticks.forEach(tick => {
-						const value = tick.value;
-						if (value === 0) return;     // Skip zero line
-
-						const yPos = y.getPixelForValue(value);
-
-						ctx.beginPath();
-						ctx.moveTo(left, yPos);      // Full width line
-						ctx.lineTo(right, yPos);
-						ctx.stroke();
-					});
-
-					ctx.restore();
-				}
-			}]
-		});
+					}
+				}]
+			});
 		} catch (error) {
 			console.error('Error loading signature chart data:', error);
 		} finally {
@@ -1558,7 +1538,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 	}
 
 
-	
+
 	$(document).ready(function () {
 		$('.line-chart-loader').show();
 		$('.performers-chart-loader').show();
