@@ -277,7 +277,15 @@ class CIT_BILLING
 						if(is_null($GLOBALS['plan_name'])){
 							$GLOBALS['plan_name'] = $planname;
 						}
-					}				
+					}	
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}			
 				}
 			}
 			if($planRow['plan_id'] == $selplan_id){
@@ -330,6 +338,11 @@ class CIT_BILLING
 		$GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
 		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
 		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+
+		$GLOBALS['pro_month_unit_new'] = json_encode($pro_month_arr_new);
+		$GLOBALS['pro_month_unitspl_new'] = json_encode($pro_month_arrspl_new);
+		$GLOBALS['pro_year_unit_new'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl_new'] = json_encode($pro_year_arrspl_new);
 		return false;
 	}
 
@@ -381,6 +394,7 @@ class CIT_BILLING
 		   $subscription_id = $userRow['subscription_id'];
 		   $plan_id = $_POST['plan_id'];
 		   $plan_unit = $_POST['plan_unit'];
+		   $multiplyprice = $_POST['multiplyprice'];
 		   $priceRow = $GLOBALS['DB']->row("SELECT plan_priceid FROM plan WHERE plan_id =?",array($plan_id));
 		   $stripe_price = $priceRow['plan_priceid'];
 
@@ -411,11 +425,18 @@ class CIT_BILLING
 				//print_r($invoiceData); 
 				//$amount_due = ($invoiceData['amount_due'] / 100);
 				//$amount_due = ($invoiceData['amount_paid'] / 100);
-				
-				
-				 $starting_balanced  = $invoiceData['starting_balance'];
-			     $amount_due = ($invoiceData['lines']['data'][1]['amount'] - abs($invoiceData['lines']['data'][0]['amount'] +$starting_balanced));
-				 $amount_due = ($amount_due / 100);
+				$starting_balanced  = $invoiceData['starting_balance'];
+				$amount_due = ($invoiceData['lines']['data'][1]['amount'] - abs($invoiceData['lines']['data'][0]['amount'] +$starting_balanced));
+				$amount_due = ($amount_due / 100);
+
+				if(is_null($invoiceData['lines']['data'][1]['amount']) || is_null($invoiceData['lines']['data'][0]['amount'])){
+					$priceRow = $GLOBALS['DB']->row("SELECT * FROM plan_unit WHERE plan_id =? AND plan_unit =?",array($plan_id,$plan_unit));
+					if($priceRow){
+						$amount_due = $priceRow['plan_unitprice'] * $multiplyprice;
+					}else{
+						return array('error'=>1,'message'=>"Something went wrong try again later.");
+					}
+				}
 				return array('error'=>0,'amount_due'=>$amount_due,'proration_date'=>$proration_date,'free_trial'=>$userRow['free_trial']);
 			}catch(Exception $e) {  
 				$api_error = $e->getMessage();

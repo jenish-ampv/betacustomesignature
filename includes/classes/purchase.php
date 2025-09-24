@@ -706,14 +706,14 @@ class CIT_PURCHASE
 
 		$GLOBALS['quartrly_enabled'] = 'false';
 		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
-		$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
+		$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
 		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
 		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
 
 		if($renewAccount){
 			$GLOBALS['quartrly_enabled'] = 'true';
 			$GLOBALS['pro_month_unit'] = json_encode($pro_quarter_arr);
-			$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+			$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
 			$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
 			$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
 		}
