@@ -199,7 +199,6 @@
             e.preventDefault();
             var redirecturl = $('#redirecturl').val();
             var validate = 1;
-            $(".loader-image").show();
             $('.form-control').css('border-bottom-color', '');
             bannerImageUrl = $('#banner_image').val();
 
@@ -252,6 +251,7 @@
                 e.stopPropagation(); return false;
             }
 
+            $(".loader-image").show();
             // Collect the checked departments as a comma-separated string
             var departmentList = [];
             $("input.department-checkbox:checked").each(function () {

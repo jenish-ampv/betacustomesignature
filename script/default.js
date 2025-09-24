@@ -1,13 +1,16 @@
-// generate loader bars dynamically
-function initLoader() {
-  const $loaderInner = $(".loadingInner");
-  for (let i = 0; i < 4; i++) {
-    const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
-    $loaderInner.append($bar);
-  }
-}
-initLoader();
 
+jQuery.noConflict();
+(function ($) {
+    // generate loader bars dynamically
+    function initLoader() {
+    const $loaderInner = $(".loadingInner");
+    for (let i = 0; i < 4; i++) {
+        const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
+        $loaderInner.append($bar);
+    }
+    }
+    initLoader();
+});
 // show loader
 function showLoader() {
   $(".chartLoading").removeClass("!hidden");
