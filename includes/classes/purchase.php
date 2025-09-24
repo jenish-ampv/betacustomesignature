@@ -12,7 +12,7 @@ class CIT_PURCHASE
 	
 	public function displayPage(){
 		AddMessageInfo();
-		$GLOBALS['free_trial'] = '0';
+		$GLOBALS['free_trial'] = 0;
 		
 		if($_POST['coupon_code'] !="" && $_POST['coupon_apply'] ==1){
 			$coupon_code = trim($_POST['coupon_code']);
@@ -273,6 +273,37 @@ class CIT_PURCHASE
 			}
 		}
 
+		if($_POST['paymentsubmit'] == 1){  // SUBMIT REGISTER 
+			//$_SESSION['plan_id'] = $_POST['plan_id'];
+			//$_SESSION['plan_unit'] = $_POST['plan_unit'];
+			$GLOBALS['free_trial'] = 1;
+			if($_POST['stripeToken']!="" && $_POST['plan_id'] !="" && $_POST['plan_unit'] !="" && $_POST['user_id'] !="" && $_POST['user_email'] !="" && $_POST['user_name'] !=""){
+				$planDetails = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE plan_id = ? LIMIT 0,1",array($_POST['plan_id']));
+				$Subscription = false;
+				if($planDetails){
+					$GLOBALS['plan_priceid'] = $planDetails['plan_priceid'];
+					$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'],$_POST['user_id'],$_POST['user_email'],$_POST['user_name']);
+				}else{
+					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> Plan is not active!.</div>';
+					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));exit();
+				}
+				
+				if($Subscription){				
+					$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
+					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
+				}else{
+					if($GLOBALS['Error_code'] == 'subscription_payment_intent_requires_action'){
+						$this->checkStripe3D($_POST);
+					}
+					
+					$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>'.$GLOBALS['Error'].' please contact administrator. if your payment debit from your account.</div>';	
+				}
+				
+			 }else{
+			 	$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>please enter all required field!</div>';
+			 }
+		}
+
 		if($_POST['stripeToken']!="" && $_POST['plan_id'] !="" && $_POST['plan_unit'] !=""){
 
 			\Stripe\Stripe::setApiKey(GetConfig('STRIPE_SECRET_KEY'));
@@ -381,36 +412,7 @@ class CIT_PURCHASE
 		
 
 
-		if($_POST['paymentsubmit'] == 1){  // SUBMIT REGISTER 
-			//$_SESSION['plan_id'] = $_POST['plan_id'];
-			//$_SESSION['plan_unit'] = $_POST['plan_unit'];
-			$GLOBALS['free_trial'] = '1';
-			if($_POST['stripeToken']!="" && $_POST['plan_id'] !="" && $_POST['plan_unit'] !="" && $_POST['user_id'] !="" && $_POST['user_email'] !="" && $_POST['user_name'] !=""){
-				$planDetails = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE plan_id = ? LIMIT 0,1",array($_POST['plan_id']));
-				$Subscription = false;
-				if($planDetails){
-					$GLOBALS['plan_priceid'] = $planDetails['plan_priceid'];
-					$Subscription = $this->createSubscription($_POST['stripeToken'],$_POST['plan_id'], $_POST['plan_unit'],$_POST['user_id'],$_POST['user_email'],$_POST['user_name']);
-				}else{
-					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> Plan is not active!.</div>';
-					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));exit();
-				}
-				
-				if($Subscription){				
-					$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
-					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
-				}else{
-					if($GLOBALS['Error_code'] == 'subscription_payment_intent_requires_action'){
-						$this->checkStripe3D($_POST);
-					}
-					
-					$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>'.$GLOBALS['Error'].' please contact administrator. if your payment debit from your account.</div>';	
-				}
-				
-			 }else{
-			 	$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>please enter all required field!</div>';
-			 }
-		}
+		
 
 		$rowUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? LIMIT 0,1",array($GLOBALS['USERID']));
 		if($rowUser){
@@ -704,14 +706,14 @@ class CIT_PURCHASE
 
 		$GLOBALS['quartrly_enabled'] = 'false';
 		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
-		$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
+		$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
 		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
 		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
 
 		if($renewAccount){
 			$GLOBALS['quartrly_enabled'] = 'true';
 			$GLOBALS['pro_month_unit'] = json_encode($pro_quarter_arr);
-			$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+			$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
 			$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
 			$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
 		}
@@ -738,7 +740,6 @@ class CIT_PURCHASE
 			$metadata = array('user_id' =>$user_id,'plan_id'=>$plan_id,'plan_unit'=>$plan_unit);
 		}
 		
-		
 		// create customer on stripe
 		try {  
 			 $customer = \Stripe\Customer::create(array(
@@ -757,7 +758,7 @@ class CIT_PURCHASE
 			$GLOBALS['Error_code'] = $e->getError()->code;
 			$api_error = $e->getMessage();  
 		} 
-
+		
 		if(empty($api_error) && $customer){   // create subscription
 			try { 
 				if($GLOBALS['free_trial'] == 1){ // add trial period
@@ -778,6 +779,8 @@ class CIT_PURCHASE
 							'trial_period_days' =>7
 						));
 					}else{
+						var_dump('helo');
+
 						$subscription = \Stripe\Subscription::create(array(
 							"customer" => $customer->id, 
 							'metadata' => array('user_id' => $user_id,'plan_id' => $plan_id,'plan_unit'=>$plan_unit),
@@ -836,7 +839,7 @@ class CIT_PURCHASE
 				}
 			}
 		}
-		 $GLOBALS['Error']= $api_error; 
+		$GLOBALS['Error']= $api_error; 
 		return false;
 	}
 

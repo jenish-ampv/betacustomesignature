@@ -178,7 +178,26 @@
                         <h6><span class="no_employee_qarter">5</span> Signatures</h6>
                         <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
                     </div>
-                    <div class="range_slider">
+                    <div class="kt-card">
+                        <div class="kt-card-content !pr-8 relative">
+                        <div class="relative">
+                            <div class="tooltip after:block after:w-0 after:h-0 
+                    after:border-l-8 after:border-l-transparent 
+                    after:border-r-8 after:border-r-transparent 
+                    after:border-t-8 after:border-t-primary after:absolute after:-bottom-[7px] after:left-1/2 after:-translate-x-1/2
+                    absolute -top-10 -translate-x-1/2 bg-gradient-to-r from-[#26B7FF]/10 rounded-2xl to-[#1D4AFE]/10 bg-primary text-white text-nowrap px-2.5 py-1.5 pointer-events-none" id="tooltip">1 Signatures</div>
+                            <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
+                            id="rangeSlider" min="0" max="8" step="1" value="0">
+                            <div
+                            class="absolute bg-cover top-1/2 -translate-y-1/2 pointer-events-none size-5 text-[0px] -translate-x-1/2 z-[4]"
+                            id="customThumb" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/ellipse2.png');"></div>
+                            <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
+                            <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
+                        </div>
+                        <div class="labels flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
+                        </div>
+                    </div>
+                    <!-- <div class="range_slider">
                         <div id="range" class="noUi-target noUi-ltr noUi-horizontal"></div>
                         <div class="range_text">
                             <span class="rno active" id="rno1">1</span>
@@ -204,7 +223,7 @@
                             <span class="rno" id="rno95">95</span>
                             <span class="rno" id="rno100" style="margin-right:-12px;">100</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div id="tab_quarter" style="display:none;">
                         <div class="signature_layot hidden">
@@ -313,10 +332,12 @@
 </div> -->
 
 <script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
-<script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
+<!-- <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script> -->
 <script>
     jQuery.noConflict();
     (function ($) {
+
+        /*
         start = $('#plan_unit').val();
         var rangeSlider = $('#range')[0];
         noUiSlider.create(rangeSlider, {
@@ -382,6 +403,7 @@
 
         });
 
+        */
         $(document).ready(function () {
 
             // select pro plan if current purchased plan is basic
@@ -399,9 +421,10 @@
             }
             // select pro plan if current purchased plan is basic
 
-            $("input[name$='plan_type']").click(function () {
+            $("input[name='plan_type']").click(function () {
                 var tab = $(this).val();
-                if (tab == 'quarter') {
+                console.log(tab)
+                if (tab == 'quarter' || tab == 'month') {
                     $('#plan_id2').prop('checked', true);
                     $('#tab_quarter').css('display', 'inline');
                     $('#tab_year').css('display', 'none');
@@ -438,6 +461,11 @@
         });
 
         $("#changeplan").on("click", function () {
+            var activePlanId = "%%DEFINE_plan_id%%";
+            if(activePlanId > 5){
+                $('#plan_type1').val('month');
+                $('label[for="plan_type1"]').text('Monthly');
+            }
             $("#order-main, #selectplan-main").toggleClass("hidden");
         });
         
@@ -492,21 +520,31 @@
         $('#selectplan').on('click', function (e) {
 
             $("#upgrade_planbtn").attr('disabled', true);
-            var plan_id = $('input[name="plan_id"]:checked').val();
+            // var plan_id = $('input[name="plan_id"]:checked').val();
+            var activePlanId = "%%DEFINE_plan_id%%";
+            var plan_id = activePlanId;
             var plan_unit = $("#plan_unit").val();
+            if($('input[name=plan_id]:checked').val() < 3){
+                multiplyprice = 3;
+                if(activePlanId > 5){
+                    multiplyprice = 1;
+                }
+            }else{
+                multiplyprice = 12;
+            }
             $.ajax({
                 type: 'POST',
                 url: $('#form_url').val(),
-                data: 'plan_id=' + plan_id + '&plan_unit=' + plan_unit + '&proration=1',
+                data: 'plan_id=' + plan_id + '&plan_unit=' + plan_unit + '&proration=1&multiplyprice=' + multiplyprice,
             }).done(function (data) {
                 var json = JSON.parse(data);
                 if (json.error != 1) {
-                    if (json.free_trial == 1) {
-                        $("#upgrade_planbtn").attr('disabled', false);
-                    } else {
+                    // if (json.free_trial == 1) {
+                        // $("#upgrade_planbtn").attr('disabled', false);
+                    // } else {
                         $("#amount_due").html('<span class="total" id="total">Amount Due: $' + json.amount_due + '</span>');
                         $("#upgrade_planbtn").attr('disabled', false);
-                    }
+                    // }
                 } else {
                     $("#msg").html(json.message);
                     $("#upgrade_planbtn").text('Upgrade');
@@ -674,6 +712,130 @@ IF("%%DEFINE_upgrade_freetrial%%" == "1"){
             }
         });
     })(jQuery);
+</script>
+
+
+<script type="text/javascript">
+    function updateBillingPlanDetails(value){
+        //if(unencoded == 0 ) {unencoded = $('#plan_unit').val();}
+        //  if(unencoded == 0 ) {unencoded = 1;}
+        //  if( unencoded == '39.99999999999999') { unencoded = 40;}
+        //  if( unencoded == '74') { unencoded = 75;}
+        //  unencoded = unencoded.slice(0, 2);
+        unencoded = value;
+        unencoded = parseInt(unencoded);
+        if(unencoded == 0 ) {unencoded = [1];}
+        $("#form_plan_unit").val(unencoded);
+        
+        $('#plan_unit').val(unencoded);
+        $('.no_employee_qarter').text(unencoded);
+        var activePlanId = "%%DEFINE_plan_id%%";
+        if(activePlanId > 5){
+            // month price changhe
+            var pro_month_unit_new = JSON.parse('%%DEFINE_pro_month_unit_new%%');
+            var pro_month_unitspl_new = JSON.parse('%%DEFINE_pro_month_unitspl_new%%');
+            $('.quarter_proprice').text(pro_month_unit_new[unencoded]);
+            $('.quarter_propricespl').text(pro_month_unitspl_new[unencoded]);
+
+            // year price changhe
+            var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit_new%%');
+            var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl_new%%');
+
+        }else{
+            // quarter price changhe
+            var pro_quarter_unit = JSON.parse('%%DEFINE_pro_quarter_unit%%');
+            var pro_quarter_unitspl = JSON.parse('%%DEFINE_pro_quarter_unitspl%%');
+            $('.quarter_proprice').text(pro_quarter_unit[unencoded]);
+            $('.quarter_propricespl').text(pro_quarter_unitspl[unencoded]);
+
+            // year price changhe
+
+
+            var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+            var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+        }
+        
+        
+        $('.year_proprice').text(pro_year_unit[unencoded]);
+        $('.year_propricespl').text(pro_year_unitspl[unencoded]);
+        var radioObj = $('input[name=plan_id]:checked');
+        if($('input[name=plan_id]:checked').val() < 3){
+            multiplyprice = 3;
+            if(activePlanId > 5){
+                multiplyprice = 1;
+            }
+        }else{
+            multiplyprice = 12;
+        }
+        planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+        
+        $(".rno").removeClass("active");
+        $("#rno"+unencoded).addClass("active");
+
+        // updateSelectPlan();
+        // updateGpayButton(planpriceint.toFixed(2));
+    }
+
+    function initCustomSliderBilling(
+        values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+        sliderId = "rangeSlider",
+        tooltipId = "tooltip",
+        labelsId = "labels",
+        thumbId = "customThumb",
+        fillId = "fillTreck"
+    ) {
+        const slider = document.getElementById(sliderId);
+        const tooltip = document.getElementById(tooltipId);
+        const labelsContainer = document.getElementById(labelsId);
+        const customThumb = document.getElementById(thumbId);
+        const rangeBg = document.getElementById(fillId);
+
+        const thumbWidth = customThumb.offsetWidth;
+        const halfThumb = thumbWidth / 2;
+
+        // Set slider max
+        slider.max = values.length - 1;
+
+        // Apply negative margin to labels container
+        labelsContainer.style.marginLeft = `-${halfThumb}px`;
+        labelsContainer.style.marginRight = `-${halfThumb}px`;
+
+        // Add labels
+        labelsContainer.innerHTML = "";
+        values.forEach(val => {
+        const span = document.createElement("span");
+        span.textContent = val;
+        labelsContainer.appendChild(span);
+        });
+
+        function updateUI() {
+            const index = parseInt(slider.value);
+            const value = values[index];
+            const percent = (index / (values.length - 1)) * 100;
+            const sliderWidth = slider.offsetWidth;
+            const posX = (percent / 100) * sliderWidth;
+
+            tooltip.style.left = posX + "px";
+            tooltip.textContent = `${value} signature`;
+
+            customThumb.style.left = posX + "px";
+            rangeBg.style.width = percent + "%";
+
+            if (typeof updateBillingPlanDetails === 'function') {
+                updateBillingPlanDetails(value);
+            }
+        
+        }
+
+        slider.addEventListener("input", updateUI);
+        window.addEventListener("resize", updateUI);
+
+        updateUI(); // initialize
+    }
+
+
+    initCustomSliderBilling();
+
 </script>
 
 
