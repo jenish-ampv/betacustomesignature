@@ -359,44 +359,121 @@
     //   });
     // });
 
-    $('#load-upgrade-content').on('click', function () {
-      clearInterval(countdownInterval);
-      const $button = $(this);
-      const $target = $('#upgrade-plan-popupmodal-body');
-      const originalContent = $target.html();
-      const targetUrl = $('#root_link').val() + '/pricing';
+      function initCustomSlider(
+        values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+        sliderId = "rangeSlider",
+        tooltipId = "tooltip",
+        labelsId = "labels",
+        thumbId = "customThumb",
+        fillId = "fillTreck"
+      ) {
+        const slider = document.getElementById(sliderId);
+        const tooltip = document.getElementById(tooltipId);
+        const labelsContainer = document.getElementById(labelsId);
+        const customThumb = document.getElementById(thumbId);
+        const rangeBg = document.getElementById(fillId);
 
-      // Set loading state
-      $button.prop('disabled', true).text('Processing...').addClass('spinner');
+        const thumbWidth = customThumb.offsetWidth;
+        const halfThumb = thumbWidth / 2;
 
-      $.ajax({
-        url: targetUrl,
-        method: 'GET',
-        dataType: 'html',
-        complete: function (xhr) {
-          // Reset button state
-          $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
+        // Set slider max
+        slider.max = values.length - 1;
 
-          if (xhr.status === 200) {
-            // Parse response HTML into a temporary DOM
-            const $response = $('<div>').html(xhr.responseText);
-            // Extract only the needed div by ID
-            const $suggested = $response.find('#modalDataMove');
+        // Apply negative margin to labels container
+        labelsContainer.style.marginLeft = `-${halfThumb}px`;
+        labelsContainer.style.marginRight = `-${halfThumb}px`;
 
-           if ($suggested.length) {
-              $target
-                .html($suggested)        // inject only the div
-                $suggested.addClass('h-full overflow-auto'); // ensure classes are applied
-                initCustomSlider();
-            } else {
-              $target.html('<p>Content not found.</p>');
-            }
-          } else {
-            $target.html(originalContent);
+        // Add labels
+        labelsContainer.innerHTML = "";
+        values.forEach(val => {
+          const span = document.createElement("span");
+          span.textContent = val;
+          labelsContainer.appendChild(span);
+        });
+
+        function updateUI() {
+          const index = parseInt(slider.value);
+          const value = values[index];
+          const percent = (index / (values.length - 1)) * 100;
+          const sliderWidth = slider.offsetWidth;
+          const posX = (percent / 100) * sliderWidth;
+
+          tooltip.style.left = posX + "px";
+          tooltip.textContent = `${value} signature`;
+
+          customThumb.style.left = posX + "px";
+          rangeBg.style.width = percent + "%";
+
+          if (typeof updatePlanDetails === 'function') {
+              updatePlanDetails(value);
+          }
+          if (typeof updateRenewaccountPlanDetails === 'function') {
+              updateRenewaccountPlanDetails(value);
+          }
+          if (typeof updatePurchasePlanDetails === 'function') {
+              updatePurchasePlanDetails(value);
+          }
+          if (typeof updatePlanDetailsDashboard === 'function') {
+              updatePlanDetailsDashboard(value);
           }
         }
+        slider.addEventListener("input", updateUI);
+        window.addEventListener("resize", updateUI);
+
+        updateUI(); // initialize
+      }
+
+      $('#load-upgrade-content').on('click', function () {
+        clearInterval(countdownInterval);
+        const $button = $(this);
+        const $target = $('#upgrade-plan-popupmodal-body');
+        const originalContent = $target.html();
+        const targetUrl = $('#root_link').val() + '/pricing';
+
+        // Set loading state
+        $button.prop('disabled', true).text('Processing...').addClass('spinner');
+
+        $.ajax({
+          url: targetUrl,
+          method: 'GET',
+          dataType: 'html',
+          complete: function (xhr) {
+            // Reset button state
+            $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
+
+            if (xhr.status === 200) {
+              // Parse response HTML into a temporary DOM
+              const $response = $('<div>').html(xhr.responseText);
+              // Extract only the needed div by ID
+              const $suggested = $response.find('#modalDataMove');
+
+            if ($suggested.length) {
+                $target
+                  .html($suggested)        // inject only the div
+                  $suggested.addClass('h-full overflow-auto'); // ensure classes are applied
+                  initCustomSlider();
+
+                  // For monthly yearly toggle
+                  $('#plan_type').on('change', function () {
+                    if ($(this).is(':checked')) {
+                      $("#yearly-tab").removeClass('hidden');
+                      $("#monthly-tab").addClass('hidden');
+                    } else {
+                      $("#monthly-tab").removeClass('hidden');
+                      $("#yearly-tab").addClass('hidden');
+                    }
+                  });
+                  // For monthly yearly toggle
+
+              } else {
+                $target.html('<p>Content not found.</p>');
+              }
+            } else {
+              $target.html(originalContent);
+            }
+          }
+        });
       });
-    });
 
     })(jQuery);
 
