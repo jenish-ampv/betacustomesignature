@@ -327,11 +327,3 @@ input[type="range"]::-webkit-slider-thumb {  width: 24px; height: 24px; border-r
 -webkit-appearance: auto;
 padding: 0;
 }
-
-.layout_ctabtn1,
-.layout_ctabtn2,
-.layout_ctabtn3{
-    img{
-        display: !important inline-block;
-    }
-}
