@@ -270,7 +270,7 @@ class CIT_DASHBOARD
 						$GLOBALS['selected_department'] = $department['department_id'];
 						$defaultFirstSelectedSubUser = "department_selected";
 					}
-					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
+					$GLOBALS['department_list'] .= '<tr class="department_container handle hover:bg-gray-100 '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
 								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
 								<td>'.$thisDepartmentSignatures.' Members</td>
 								<td><span class="mastersig clickableAnchor mr-2" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></span></td>
@@ -280,14 +280,14 @@ class CIT_DASHBOARD
 			}else{
 
 				if(sizeof($department_lists_arr) == 1){
-					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
+					$GLOBALS['department_list'] .= '<tr class="department_container handle hover:bg-gray-100 '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
 								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
 								<td>'.$thisDepartmentSignatures.' Members</td>
 								<td><span class="mastersig clickableAnchor mr-2" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></span>
 								</td>
 							</tr>';
 				}else{
-					$GLOBALS['department_list'] .= '<tr class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
+					$GLOBALS['department_list'] .= '<tr class="department_container handle hover:bg-gray-100 '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
 								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
 								<td>'.$thisDepartmentSignatures.' Members</td>
 								<td><span class="mastersig clickableAnchor mr-2" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></span>
@@ -357,7 +357,10 @@ class CIT_DASHBOARD
 				$signature_image_without_analytics = $GLOBALS['UPLOAD_LINK'].'/signature/'.$GLOBALS['USERID'].'/'.$signature_logo['logo'];
 			}
  			if($GLOBALS['logo_process'] == 1){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process">
+					$GLOBALS['signature_process'] ='
+					<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+					<div class="sin_dashboard_box sin_process">
 								<div class="flex-1 flex justify-between">
 									<div>
 										<p class="text-xl mt-3 text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
@@ -371,9 +374,11 @@ class CIT_DASHBOARD
 						if($signature_logo['logo_change_process'] != 2){
 							$GLOBALS['signature_process'] .= '<p class="text-gray-400">Did you mistakenly upload the wrong logo? Please <a class="text-primary underline cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></p>';
 						}
-					$GLOBALS['signature_process'] .= '</div></div>';
+					$GLOBALS['signature_process'] .= '</div></div></div></div>';
 				}else if($GLOBALS['logo_process'] == 0 || $GLOBALS['logo_process'] == 3 ){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo Animation is Processing</p>
@@ -396,10 +401,12 @@ class CIT_DASHBOARD
 							$GLOBALS['signature_process'] .= '<button class="kt-btn kt-btn-primary mt-5" data-kt-modal-toggle="#upgrade-plan-popup">Upgrade to animate</button>';
 						}
 					}
-					$GLOBALS['signature_process'] .= '</div></div>';
+					$GLOBALS['signature_process'] .= '</div></div></div></div>';
 				}
 				elseif ($signature_logo['logo_change_process'] == 0 || $signature_logo['logo_change_process'] == 1) {
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo is Under Review</p>';
@@ -411,10 +418,12 @@ class CIT_DASHBOARD
 								<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 								<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 							</div>
-						</div>';
+						</div></div></div>';
 				}
 				elseif ($signature_logo['logo_change_process'] == 3) {
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 									<p class="text-xl text-gray-950">Your logo is not matching with our guideline.</p>
 									<p class="text-gray-600 mt-2">'.$signature_logo['change_logo_reject_reason'].'</p>
@@ -424,10 +433,12 @@ class CIT_DASHBOARD
 									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 								</div>
-							</div>';
+							</div></div></div>';
 				}
 				elseif ($signature_logo['logo_change_process'] == 4 ) {
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+							<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
@@ -448,10 +459,12 @@ class CIT_DASHBOARD
 						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
-						</div></div>';
+						</div></div></div>';
 				}
 				elseif( $GLOBALS['logo_process'] == 4 ){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
@@ -470,10 +483,12 @@ class CIT_DASHBOARD
 									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 								</div>
-							</div>';
+							</div></div></div>';
 				}
 				if($GLOBALS['plan_type'] == 'FREE'){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row items-center">
 								<div class="flex-1">
 									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 									<p class="text-gray-600 mt-2">Your Free Trial period will end in '.$GLOBALS['freeperiod_dayleft'].' day!</p>
@@ -486,7 +501,7 @@ class CIT_DASHBOARD
 									</div>
 									<a href="#" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="kt-btn kt-btn-primary mt-2">Animated Plan</a>
 								</div>
-						</div>';
+						</div></div></div>';
 				}
 				
 
