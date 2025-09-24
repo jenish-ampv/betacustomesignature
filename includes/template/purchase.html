@@ -166,7 +166,12 @@
             <div>
               <label class="kt-form-label">Card Number</label>
               <div class="card_info kt-input">
-                <div id="card-element" class="w-full"></div>
+                <!-- <div id="card-element" class="w-full"></div> -->
+                <div id="card-element" class="w-full">
+                  <div id="card-number-element" class="mb-2"></div>
+                  <div id="card-expiry-element" class="mb-2"></div>
+                  <div id="card-cvc-element" class="mb-2"></div>
+                </div>
               </div>
             </div>
             <div>
@@ -682,37 +687,84 @@
 
   // Create an instance of elements
   var elements = stripe.elements();
-      var style = {
-        base: {
-          color: "#32325d",
-          fontFamily: 'Roboto, sans-serif',
-          fontSmoothing: "antialiased",
-          fontSize: "13px",
-          "::placeholder": {
-            color: "#32325d"
-          }
-        },
-        invalid: {
-          fontFamily: 'Arial, sans-serif',
-          color: "#fa755a",
-          iconColor: "#fa755a"
-        }
-      };
 
-      var cardElement = elements.create("card", {   hidePostalCode: true, style: style });
-      // Stripe injects an iframe into the DOM
-      cardElement.mount("#card-element");
-
-      // Validate input of the card elements
-      var resultContainer = document.getElementById('paymentResponse');
-      cardElement.addEventListener('change', function(event) {
-      if (event.error) {
-          resultContainer.innerHTML = '<p style="color:#F00;">'+event.error.message+'</p>';
-      } else {
-          resultContainer.innerHTML = '';
+  var style = {
+    base: {
+      color: "#32325d",
+      fontFamily: 'Roboto, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "13px",
+      "::placeholder": {
+        color: "#32325d"
       }
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: "#fa755a",
+      iconColor: "#fa755a"
+    }
+  };
+
+  // Create individual elements
+  var cardNumber = elements.create('cardNumber', { style: style });
+  var cardExpiry = elements.create('cardExpiry', { style: style });
+  var cardCvc = elements.create('cardCvc', { style: style });
+
+  // Mount to respective divs
+  cardNumber.mount('#card-number-element');
+  cardExpiry.mount('#card-expiry-element');
+  cardCvc.mount('#card-cvc-element');
+
+  // Handle validation errors
+  var resultContainer = document.getElementById('paymentResponse');
+
+  function setError(event) {
+    if (event.error) {
+      resultContainer.innerHTML = '<p style="color:#F00;">' + event.error.message + '</p>';
+    } else {
+      resultContainer.innerHTML = '';
+    }
+  }
+
+  cardNumber.on('change', setError);
+  cardExpiry.on('change', setError);
+  cardCvc.on('change', setError);
+
+  // Old code for the card field
+  /*
+
+  var style = {
+    base: {
+      color: "#32325d",
+      fontFamily: 'Roboto, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "13px",
+      "::placeholder": {
+        color: "#32325d"
+      }
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: "#fa755a",
+      iconColor: "#fa755a"
+    }
+  };
+
+  var cardElement = elements.create("card", {   hidePostalCode: true, style: style });
+  // Stripe injects an iframe into the DOM
+  cardElement.mount("#card-element");
+
+  // Validate input of the card elements
+  var resultContainer = document.getElementById('paymentResponse');
+  cardElement.addEventListener('change', function(event) {
+    if (event.error) {
+        resultContainer.innerHTML = '<p style="color:#F00;">'+event.error.message+'</p>';
+    } else {
+        resultContainer.innerHTML = '';
+    }
   });
-  
+  */
+ // Old code for the card field
   var form = document.getElementById('paymentform');
   
   form.addEventListener('submit', function(e) {
@@ -725,21 +777,46 @@
   });
 
   // Create single-use token to charge the user
+
+
+  function createToken() {
+    var card_name = document.getElementById('card_name').value;
+
+    // Use cardNumber element here, not cardElement
+    stripe.createToken(cardNumber, { name: card_name }).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error
+        resultContainer.innerHTML = '<p style="color:#F00;">' + result.error.message + '</p>';
+        $("#payment_button").prop('disabled', false);
+        $("#payment_button").text('Confirm Purchase');
+        $("#payment_button").removeClass('spinner');
+      } else {
+        // Send the token to your server
+        stripeTokenHandler(result.token);
+      }
+    });
+  }
+
+
+  // Old code for the card field
+  /*
   function createToken() {
     var card_name = document.getElementById('card_name').value;
       stripe.createToken(cardElement,{name: card_name}).then(function(result) {
-          if (result.error) {
-              // Inform the user if there was an error
-              resultContainer.innerHTML = '<p style="color:#F00;">'+result.error.message+'</p>';
-              $("#payment_button").prop('disabled', false);
-              $("#payment_button").text('Confirm Purchase');
-              $("#payment_button").removeClass('spinner');
-          } else {
-              // Send the token to your server
-              stripeTokenHandler(result.token);
-          }
-      });
+        if (result.error) {
+            // Inform the user if there was an error
+            resultContainer.innerHTML = '<p style="color:#F00;">'+result.error.message+'</p>';
+            $("#payment_button").prop('disabled', false);
+            $("#payment_button").text('Confirm Purchase');
+            $("#payment_button").removeClass('spinner');
+        } else {
+            // Send the token to your server
+            stripeTokenHandler(result.token);
+        }
+    });
   }
+  */
+  // Old code for the card field
 
   // Callback to handle the response from stripe
   function stripeTokenHandler(token) {
