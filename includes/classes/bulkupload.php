@@ -245,11 +245,11 @@ class CIT_BULKUPLOAD
 					 $redirect = GetUrl(array('module'=>$_REQUEST['module'])).'?success=1';
 					 GetFrontRedirectUrl($redirect); exit;
 				}else{
-					$_SESSION[GetSession('Error')] = '<div class="alert alert-info">please select master signature.</div>';
+					$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-info gap-8 py-5 px-4 pl-5 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg">please select master signature.</div></div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module']))); exit;
 				}
 			}else {
-				$_SESSION[GetSession('Error')] = '<div class="alert alert-info">Please select a valid .csv file.</div>';
+				$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-info gap-8 py-5 px-4 pl-5 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg">Please select a valid .csv file.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module']))); exit;
 			}
 		}
