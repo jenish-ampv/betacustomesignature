@@ -171,9 +171,12 @@
 							<div class="text-nowrap text-xs text-gray-600">
 								%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users
 							</div>
-							<a class="kt-btn kt-btn-primary" href="usermanagement/">
-								<i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
-							</a>
+							IF("%%DEFINE_ISSUBUSER%%" != "1"){
+                                <a class="kt-btn kt-btn-primary" href="usermanagement/">
+									<i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
+								</a>
+                            {:IF}
+							
 							<div class="flex items-center text-nowrap gap-2" style="display:none;" id="extratop">
 								<input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
 								<label class="kt-label" for="select_all">Select All</label>
