@@ -13,17 +13,19 @@
                     <div class="kt-card-heading">
                         <h6 class="kt-card-title">Billing Overview</h6>
                     </div>
-                    IF("%%DEFINE_free_trial%%" == "0"){
-                    <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
-                        <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
-                    </button>
-                    {:IF}
-                    IF("%%DEFINE_free_trial%%" == "1"){
-                    <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
-                        <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
-                    </button>
-                    <a href="%%DEFINE_li_cancelsubscription%%" class="kt-btn kt-btn-outline">Cancel</a>
-                    {:IF}
+                    <div class="kt-card-toolbar">
+                        IF("%%DEFINE_free_trial%%" == "0"){
+                        <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
+                        </button>
+                        {:IF}
+                        IF("%%DEFINE_free_trial%%" == "1"){
+                        <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
+                        </button>
+                        <a href="%%DEFINE_li_cancelsubscription%%" class="kt-btn kt-btn-outline">Cancel</a>
+                        {:IF}
+                    </div>
                 </div>
                 <div class="kt-card-content p-1">
                     <div class="table-responsive-md billing_table overflow-auto">

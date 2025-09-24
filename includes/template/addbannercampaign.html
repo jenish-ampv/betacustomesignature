@@ -116,7 +116,7 @@
                         </div>
                         <div class="flex items-center justify-center flex-1">
                             <div class="w-full overflow-auto text-center">
-                                <div class="signature_previous_box overflow-auto inline-block bg-white border border-gray-200 rounded-lg p-6">
+                                <div class="signature_previous_box overflow-auto flex sm:justify-center bg-white border border-gray-200 rounded-lg p-6 w-full">
                                     %%DEFINE_bannercampaign_signature%%
                                 </div>
                                 <div class="flex items-center justify-center gap-2 mt-4">
@@ -141,6 +141,7 @@
 <input type="hidden" id="form_url" value="%%DEFINE_bannercampaign%%" />
 <input type="hidden" id="save_banner_url" value="%%DEFINE_bannercampaign%%/saveBanner" />
 <!-- <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script> -->
+ <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 
 <script>
@@ -199,7 +200,7 @@
             e.preventDefault();
             var redirecturl = $('#redirecturl').val();
             var validate = 1;
-            $(".loader-image").show();
+            
             $('.form-control').css('border-bottom-color', '');
             bannerImageUrl = $('#banner_image').val();
 
@@ -207,43 +208,69 @@
                 // $('#campaign_name').css('border-color','#842029'); validate = 0;
                 // $('#campaign_name').after("<span style='color: #842029'>Please add valid campaign name</span>");
                 // $('#campaign_name').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
-                $('#snackbar-error').show();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                KTToast.show({
+                    message: `<strong>Failure! </strong> Please add valid campaign name`,
+                    variant: 'destructive',
+                    icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+                });
+                // $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid campaign name</div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if ($('.department-checkbox:checked').length == 0) {
                 // $('#division').css('border-color','#842029'); validate = 0;
                 // $('#division').after("<span style='color: #842029'>Please select atleast one division</span>");
                 // $('#division').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
-                $('#snackbar-error').show();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                KTToast.show({
+                    message: `<strong>Failure! </strong> Please select atleast one division`,
+                    variant: 'destructive',
+                    icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+                });
+                // $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select atleast one division</div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if (!$('#datepicker').val()) {
                 // Show error message if no date range is selected
-                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
-                $('#snackbar-error').show();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                KTToast.show({
+                    message: `<strong>Failure! </strong> Please select a date range`,
+                    variant: 'destructive',
+                    icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+                });
+
+                // $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select a date range</div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if ($('#banner')[0].files.length === 0 && !bannerImageUrl) {
                 // $('.drag_your_image').css('border-color','#842029'); validate = 0;
                 // $('.drag_your_image').after("<span style='color: #842029'>Please upload banner</span>");
                 // $('.drag_your_image').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
-                $('#snackbar-error').show();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                KTToast.show({
+                    message: `<strong>Failure! </strong> Please upload banner`,
+                    variant: 'destructive',
+                    icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+                });
+                // $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please upload banner</div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
             else if ($('#banner_link').val() === "") {
                 // $('#banner_link').css('border-color','#842029'); validate = 0;
                 // $('#banner_link').after("<span style='color: #842029'>Please add valid banner link</span>");
                 // $('#banner_link').focus();
-                $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
-                $('#snackbar-error').show();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                KTToast.show({
+                    message: `<strong>Failure! </strong> Please add valid banner link`,
+                    variant: 'destructive',
+                    icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+                });
+                // $('#snackbar-error').html('<div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please add valid banner link</div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 validate = 0;
             }
 
@@ -266,6 +293,7 @@
                 var departmentData = '';  // If no department selected, set to an empty string
             }
 
+            $(".loader-image").show();
             // Prepare form data with department list
             var formData = $('#bannerform').serialize();  // Serialize the form
             formData += '&department_list=' + encodeURIComponent(departmentData);  // Append the department data

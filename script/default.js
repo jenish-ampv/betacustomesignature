@@ -20,8 +20,7 @@ function hideLoader() {
 
 
 
-jQuery.noConflict();
-(function ($) {
+
     var root_link = $('#root_link').val();
     var image_link = $('#image_link').val();
     document.addEventListener("contextmenu", function (e){
@@ -506,4 +505,3 @@ jQuery.noConflict();
         // });
 
     });
-});

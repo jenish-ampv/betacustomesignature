@@ -36,8 +36,8 @@
                             <input type="text" name="user_email" value="%%DEFINE_user_email%%" class="kt-input" id="" placeholder="Email" required="required" disabled>
                         </div>
                     </div>
-                    <div class="text-center mt-4">
-                        <a class="kt-btn kt-btn-primary changepassword" href="%%DEFINE_changepassword%%" title="Change Password">Save Changes</a>
+                    <div class="text-left mt-5">
+                        <a class="hover:text-primary changepassword underline" href="%%DEFINE_changepassword%%" title="Change Password">Change Password</a>
                     </div>
                 </div>
             </div>
@@ -46,14 +46,13 @@
 </div>
 
 <script>
-    jQuery.noConflict();
-    (function($) {
+    
         // To active/inactive in leftbar
         $('.new_dashboard_left a').removeClass('active');
         $(document).ready(function(){
             setTimeout(function(){ $('.alert').remove(); }, 3000);
         });
-    })(jQuery);
+    
     
 </script>
 %%DEFINE_FOOTER%%
