@@ -321,38 +321,6 @@ jQuery.noConflict();
     // For pending import process popup
 
 
-    // For redirect url with ajax to handle error messages ONLY FOR NEW SIGNATURE & CREATE MASTER SIGNATURE buttons
-
-    function redirectUrlWithAjax(url) {
-        $.ajax({
-            url: url
-        }).done(function(response) {
-            var data = jQuery.parseJSON(response);
-
-            if(data.error){
-                $('#snackbar-info').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
-                $('#snackbar-info').show();
-                $('html, body').animate({
-                    scrollTop: $("#snackbar-info").offset().top
-                }, 500);
-                setTimeout(function(){ $('#snackbar-info').hide(); }, 2000);
-            }
-        }).fail(function(response) {
-            var data = jQuery.parseJSON(response);
-
-            if(data.error){
-                $('#snackbar-info').focus();
-                $('#snackbar-info').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
-                $('#snackbar-info').show();
-                $('html, body').animate({
-                    scrollTop: $("#snackbar-info").offset().top
-                }, 500);
-                setTimeout(function(){ $('#snackbar-info').hide(); }, 2000);
-            }
-            
-        });
-    }
-
     const swalClasses = {
         htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
         popup: '!p-8 rounded-xl border-none w-full max-w-[350px] dark:bg-black',
