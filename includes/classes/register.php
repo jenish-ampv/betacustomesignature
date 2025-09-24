@@ -78,6 +78,9 @@ class CIT_REGISTER
 		if($_REQUEST['category_id'] =='stripe' && $_REQUEST['id'] =='web-hook'){ // STRIPE WEBHOOK
 			$this->StripeWebhook(); exit;
 		}
+		if(!$_REQUEST['category_id']){
+			GetFrontRedirectUrl(GetUrl(array('module'=>'signup','category_id'=>'verifyemail')));
+		}
 
 		if($_REQUEST['category_id'] =='verifyemail'){ // verifyemail 
 			$this->verifyEmail(); exit;
