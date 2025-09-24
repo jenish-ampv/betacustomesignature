@@ -292,10 +292,6 @@ class CIT_NEWSIGNATURE
 				//$location = "upload-beta/".$filename;
 				$filename = time().'-'.$GLOBALS['USERID'].'.'.$ext;
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/banner/'.$filename ;
-				$targetDir = 'upload-beta/signature/banner/';
-				if (!is_dir($targetDir)) {
-					mkdir($targetDir, 0755, true);
-				}
 				$return_arr = array();
 				if(move_uploaded_file($_FILES['banner']['tmp_name'],$location)){
 					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
@@ -338,13 +334,13 @@ class CIT_NEWSIGNATURE
 				if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
 					// $src = $GLOBALS['ROOT_LINK']."/images/img-icon.svg";
 					// checking file is image or not
-					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
-						'Bucket'=>$GLOBALS['BUCKETNAME'],
-						'Key' =>  'upload-beta/signature/'.$GLOBALS['USERID'].'/'.$filename,
-						'SourceFile' => $location,
-						'StorageClass' => 'REDUCED_REDUNDANCY',
-						'ACL'   => 'public-read'
-					));
+					// $result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
+					// 	'Bucket'=>$GLOBALS['BUCKETNAME'],
+					// 	'Key' =>  'upload-beta/signature/'.$GLOBALS['USERID'].'/'.$filename,
+					// 	'SourceFile' => $location,
+					// 	'StorageClass' => 'REDUCED_REDUNDANCY',
+					// 	'ACL'   => 'public-read'
+					// ));
 
 					$src = $GLOBALS['UPLOAD_LINK'].'/signature/'.$GLOBALS['USERID'].'/'.$filename;
 					$GLOBALS['signature_image_name_value'] = $filename;

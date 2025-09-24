@@ -52,7 +52,7 @@ h3{font-size: calc( 32px + (40 - 32) * (100vw - 400px) / (1920 - 400) );}
 h4{font-size: calc( 24px + (32 - 24) * (100vw - 400px) / (1920 - 400) );}
 h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 
-input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: transparent; /* invisible */ cursor: pointer; position: relative; z-index: 3; }
+input[type="range"]::-webkit-slider-thumb {  width: 24px; height: 24px; border-radius: 50%; background: transparent; /* invisible */ cursor: pointer; position: relative; z-index: 3; }
 
 
 .bg-gradient{
@@ -128,7 +128,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24p
     }
 }
 .kt-form-label{
-    @apply mb-2.5;
+    @apply mb-1;
 }
 
 .masterSignature{
@@ -238,7 +238,7 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24p
 }
 
 .required{
-    @apply after:content-['*'] after:text-red-500
+    @apply after:content-['*'] after:text-red-500;
 }
 .list-check{
     li{
@@ -284,22 +284,22 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24p
 }
 
 .kt-alert{
-    @apply shadow-lg text-gray-950 rounded-xl;
+    @apply shadow-lg text-gray-950 rounded-xl bg-white;
     &.kt-alert-success{
-        @apply bg-gradient-to-r from-[#00B71B]/10 to-[#fff]/0 border-l-9 border-green-600;
+        @apply bg-gradient-to-r from-[#00B71B]/10 to-[#00B71B]/0 border-l-9 border-green-600;
     }
     &.kt-alert-destructive{
-        @apply bg-gradient-to-r from-[#ff0000]/10 to-[#fff]/0 border-l-9 border-danger;
+        @apply bg-gradient-to-r from-[#ff0000]/10 to-[#ff0000]/0 border-l-9 border-danger;
     }
 }
 
 .alert{
-    @apply shadow-lg text-gray-950 rounded-xl p-3;
+    @apply shadow-lg text-gray-950 rounded-xl p-3 bg-white;
     &.alert-danger{
-        @apply bg-gradient-to-r from-[#ff0000]/10 to-[#fff]/0 border-l-9 border-danger;
+        @apply bg-gradient-to-r from-[#ff0000]/10 to-[#ff0000]/0 border-l-9 border-danger;
     }
     &.alert-success{
-        @apply bg-gradient-to-r from-[#00B71B]/10 to-[#fff]/0 border-l-9 border-green-600;
+        @apply bg-gradient-to-r from-[#00B71B]/10 to-[#00B71B]/0 border-l-9 border-green-600;
     }
 }
 
