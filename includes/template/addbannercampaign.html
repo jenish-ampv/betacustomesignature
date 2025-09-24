@@ -279,6 +279,7 @@
                 e.stopPropagation(); return false;
             }
 
+            $(".loader-image").show();
             // Collect the checked departments as a comma-separated string
             var departmentList = [];
             $("input.department-checkbox:checked").each(function () {

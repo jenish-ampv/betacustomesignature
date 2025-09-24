@@ -425,6 +425,11 @@
       customThumb.style.left = posX + "px";
       rangeBg.style.width = percent + "%";
     }
+
+    var activePlanId = "%%DEFINE_plan_id%%";
+    if(activePlanId == 7){
+      $('#plan_type').prop('checked', false);
+    }
   });
 
 

@@ -1,13 +1,16 @@
-// generate loader bars dynamically
-function initLoader() {
-  const $loaderInner = $(".loadingInner");
-  for (let i = 0; i < 4; i++) {
-    const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
-    $loaderInner.append($bar);
-  }
-}
-initLoader();
 
+jQuery.noConflict();
+(function ($) {
+    // generate loader bars dynamically
+    function initLoader() {
+    const $loaderInner = $(".loadingInner");
+    for (let i = 0; i < 4; i++) {
+        const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
+        $loaderInner.append($bar);
+    }
+    }
+    initLoader();
+});
 // show loader
 function showLoader() {
   $(".chartLoading").removeClass("!hidden");
@@ -316,38 +319,6 @@ function hideLoader() {
 
     // For pending import process popup
 
-
-    // For redirect url with ajax to handle error messages ONLY FOR NEW SIGNATURE & CREATE MASTER SIGNATURE buttons
-
-    function redirectUrlWithAjax(url) {
-        $.ajax({
-            url: url
-        }).done(function(response) {
-            var data = jQuery.parseJSON(response);
-
-            if(data.error){
-                $('#snackbar-info').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
-                $('#snackbar-info').show();
-                $('html, body').animate({
-                    scrollTop: $("#snackbar-info").offset().top
-                }, 500);
-                setTimeout(function(){ $('#snackbar-info').hide(); }, 2000);
-            }
-        }).fail(function(response) {
-            var data = jQuery.parseJSON(response);
-
-            if(data.error){
-                $('#snackbar-info').focus();
-                $('#snackbar-info').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg"><img class="absolute left-4" src="'+image_link+'/images/warning-message-icon.svg" alt=""><strong>Warning! </strong>'+data.msg+'</div>');
-                $('#snackbar-info').show();
-                $('html, body').animate({
-                    scrollTop: $("#snackbar-info").offset().top
-                }, 500);
-                setTimeout(function(){ $('#snackbar-info').hide(); }, 2000);
-            }
-            
-        });
-    }
 
     const swalClasses = {
         htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
