@@ -66,7 +66,7 @@ class CIT_USERMANAGEMENT
         $GLOBALS['departmentUserTableBody'] = "";
 		foreach ($manageSubUsers as $row) {
             if($row['is_active'] == 1){
-                $status = "<span class='kt-badge kt-badge-mono enabled-btn'>Enabled</span>";
+                $status = "<span class='kt-badge kt-badge-success enabled-btn'>Enabled</span>";
                 $checked = "checked";
             }else if($row['is_active'] == 2){
                 $status = "<span class='kt-badge kt-badge-warning pending-btn'>Pending</span>";

@@ -21,6 +21,7 @@
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.css" rel="stylesheet">
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/switzer/fonts.css" rel="stylesheet">
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/swiper/swiper.bundle.css" rel="stylesheet">
+    <link href="%%DEFINE_CSS_LINK%%/croppie.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2s">
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/css/styles.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
@@ -30,10 +31,9 @@
     <!-- <link href="%%DEFINE_CSS_LINK%%/new-style.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2"> -->
     <link href="%%DEFINE_CSS_LINK%%/new-dashboard.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2">
     <link href="%%DEFINE_CSS_LINK%%/style-latest.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2">
-    <link href="%%DEFINE_CSS_LINK%%/croppie.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2s">
     <link rel="icon" href="%%DEFINE_IMAGE_LINK%%/images/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet">
-
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.min.js"></script>
 
     <title>%%DEFINE_MetaTitle%%</title>
     
@@ -149,14 +149,14 @@
     </script>
   </header>
 
-<div class="loader-container" id="loader" style="display: none;">
-  <div class="loader-inner-container">
-    <div class="loading-text">
+<div class="loader-container fixed size-full z-10 bg-black/80 backdrop-blur-sm flex items-center justify-center" style="display: none;" id="loader">
+  <div class="flex flex-col gap-4">
+    <div class="flex text-white font-bold items-center justify-between gap-3 text-lg">
       <p id="custom-loader-text">Loading...</p>
       <div class="counter" id="counter">0%</div> 
     </div> 
-    <div class="progress-bar">
-      <div class="progress" id="progress" style="width: 0%;"></div>
+    <div class="w-80 h-2 bg-white rounded-full">
+      <div class="bg-gradient h-full rounded-full" id="progress" style="width: 0%;"></div>
     </div>
   </div>
 </div>

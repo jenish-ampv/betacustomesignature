@@ -540,7 +540,7 @@ class CIT_INDEX
 			$usrRes = $GLOBALS['DB']->row("SELECT user_status,user_image FROM `registerusers` WHERE `user_id`=? and user_status=1",array($GLOBALS['USERID']));
 			if($usrRes['user_image'] != 'default.png' ){
 				$profile_img = $GLOBALS['UPLOAD_LINK'].'/profile/'.$usrRes['user_image'];
-				$GLOBALS['USERPROFILEIMG'] = '<img src="'.$profile_img.'?'.time().'" alt="">';
+				$GLOBALS['USERPROFILEIMG'] = '<img class="w-full h-full object-cover" src="'.$profile_img.'?'.time().'" alt="">';
 			}else{
 				$profile_txt = substr($GLOBALS['USERNAME'],0,1);
 				$GLOBALS['USERPROFILEIMG'] = '<span class="profiletxt">'.$profile_txt.'</span>';

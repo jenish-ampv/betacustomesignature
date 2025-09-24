@@ -147,8 +147,6 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
 <!-- Js for first time profile upload for new user  -->
 <script src="%%DEFINE_JS_LINK%%/uploadbanner.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
 <script src="%%DEFINE_JS_LINK%%/sigeditor.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
-
-<link href="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.css" rel="stylesheet">
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 <script type="text/javascript">
   jQuery.noConflict();
@@ -717,15 +715,13 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
   })(jQuery);
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   jQuery.noConflict();
   (function ($) {
     $(document).ready(function () {
 
       var tooltip = $("<div class='hover_tooltip'>Please upload your profile picture or click 'Set & Save' if it’s already uploaded.</div>");
       $('body').append(tooltip);
-
-      // Track mousemove globally (since pointer-events are disabled)
       $(document).on('mousemove', function (e) {
         // Check if the mouse is over the .profile_animation_section
         var $section = $('.profile_animation_section');
@@ -752,13 +748,11 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
           tooltip.hide();  // Hide the tooltip when not hovering the section
         }
       });
-
-      // Hide tooltip when the mouse leaves the document
       $(document).on('mouseleave', function () {
         tooltip.hide();
       });
 
     });
   })(jQuery);
-</script>
+</script> -->
 %%DEFINE_FOOTER%%

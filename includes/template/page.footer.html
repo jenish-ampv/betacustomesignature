@@ -53,7 +53,7 @@
 </div> -->
 
  <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgrade-plan-popup">
-    <div class="kt-modal-content border-white shadow-[0_0_20px_5px_rgba(77,127,255,0.4)] !p-0 max-w-[875px]">
+    <div class="kt-modal-content max-h-full border-white shadow-[0_0_20px_5px_rgba(77,127,255,0.4)] !p-0 max-w-[875px]">
       <i class="hgi hgi-stroke hgi-cancel-circle !absolute top-2 right-2 text-xl cursor-pointer" data-kt-modal-dismiss="#upgrade-plan-popup"></i>
       <div class="kt-modal-body p-0 flex" id="upgrade-plan-popupmodal-body">
         <div class="flex-1 p-8">
@@ -63,7 +63,9 @@
           </div>
           <h5 class="font-semibold mb-2">Start Your <span class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free Trial!</span></h5>
           <p class="mb-2 text-gray-500">Here's how you've used premium features during your free trial.</p>
-          <div class="h-[133px] my-3"></div>
+          <div class="my-3">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/trialSignature.jpg">
+          </div>
           <div class="space-y-4">
             <div class="flex items-start gap-3">
               <button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline">
@@ -120,7 +122,7 @@
 <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
 <script src="%%DEFINE_JS_LINK%%/croppie/croppie.js"></script> 
 <script src="%%DEFINE_JS_LINK%%/croppie/cropImage.js"></script>
-<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.min.js"></script>
+
 <script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/swiper/swiper.bundle.js"></script>
 <script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
 <script src="%%DEFINE_JS_LINK%%/default.js"></script> 
@@ -334,7 +336,30 @@
 
     
 
-      $('#load-upgrade-content').on('click', function () {
+    //   $('#load-upgrade-content').on('click', function () {
+    //   clearInterval(countdownInterval);
+    //   const $button = $(this);
+    //   const $target = $('#upgrade-plan-popupmodal-body');
+    //   const originalContent = $target.html();
+    //   const targetUrl = $('#root_link').val() + '/pricing';
+
+    //   // Set loading state
+    //   $button.prop('disabled', true).text('Processing...').addClass('spinner');
+
+    //   $.ajax({
+    //     url: targetUrl,
+    //     method: 'GET',
+    //     dataType: 'html',
+    //     complete: function (xhr) {
+    //       // Reset button state with new text
+    //       $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
+    //       // Only update content on HTTP 200
+    //       xhr.status === 200 ? $target.html(xhr.responseText) : $target.html(originalContent);
+    //     }
+    //   });
+    // });
+
+    $('#load-upgrade-content').on('click', function () {
       clearInterval(countdownInterval);
       const $button = $(this);
       const $target = $('#upgrade-plan-popupmodal-body');
@@ -349,13 +374,30 @@
         method: 'GET',
         dataType: 'html',
         complete: function (xhr) {
-          // Reset button state with new text
+          // Reset button state
           $button.prop('disabled', false).text('Start 7-day Free Trial').removeClass('spinner');
-          // Only update content on HTTP 200
-          xhr.status === 200 ? $target.html(xhr.responseText) : $target.html(originalContent);
+
+          if (xhr.status === 200) {
+            // Parse response HTML into a temporary DOM
+            const $response = $('<div>').html(xhr.responseText);
+            // Extract only the needed div by ID
+            const $suggested = $response.find('#modalDataMove');
+
+           if ($suggested.length) {
+              $target
+                .html($suggested)        // inject only the div
+                $suggested.addClass('h-full overflow-auto'); // ensure classes are applied
+                initCustomSlider();
+            } else {
+              $target.html('<p>Content not found.</p>');
+            }
+          } else {
+            $target.html(originalContent);
+          }
         }
       });
     });
+
     })(jQuery);
 
   </script>
