@@ -148,11 +148,9 @@
 							<canvas id="signature_chart"></canvas>
 						</div>
 					</div>
-					<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+					
 							%%DEFINE_signature_process%%
-						</div>
-					</div>
+						
 				</div>
 			</div>
 			%%DEFINE_Message%%
@@ -437,17 +435,16 @@
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgradeFromFreeTrialPopup">
 	<div class="kt-modal-content max-w-[400px]">
 		<div class="kt-modal-header">
-			<h3 class="kt-modal-title">Upgrade Your Plan</h3>
+			<p class="kt-modal-title">Upgrade Your Plan</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#upgradeFromFreeTrialPopup">
 				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
-		<div class="kt-modal-body">
-			<p style="padding-bottom:0;">You have to upgrade your plan to make your logo animated</p>
-			<div style="padding-bottom:10px;">
-				<a href="%%DEFINE_billing%%?action=freetrial" class="btn btn-primary">Upgrade <img
-						src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
+		<div class="kt-modal-body text-center">
+			<p class="text-lg font-semibold">You have to upgrade your plan to make your logo animated</p>
+			<div class="text-center mt-4">
+				<a href="%%DEFINE_billing%%?action=freetrial" class="kt-btn kt-btn-primary">Upgrade</a>
 			</div>
 		</div>
 	</div>
@@ -461,18 +458,6 @@
 <script src="%%DEFINE_JS_LINK%%/uploadlogo.js?v=%%DEFINE_CSS_VERSION%%" type="text/javascript"></script>
 <script>
   
-	const swalClasses = {
-		htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
-		popup: '!p-8 rounded-xl border-none w-full max-w-[350px] dark:bg-black',
-		title: 'font-bold text-xl text-gray-900 p-0',
-		closeButton: 'btn btn-xl btn-icon btn-light absolute top-2 right-2',
-		confirmButton: 'btn btn-sm btn-primary',
-		cancelButton: 'btn btn-sm btn-dark',
-		denyButton: 'btn btn-sm btn-light',
-		icon: 'mt-0 w-10 h-10 border-none bg-danger-20 text-danger mb-6',
-	};
-
-
 	function myFunction(objid) {
 		$('.menu_open:not(#myDIV' + objid + ')').hide();
 		divobj = 'myDIV' + objid;

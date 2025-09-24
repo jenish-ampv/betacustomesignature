@@ -292,12 +292,12 @@ input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24p
 }
 
 .kt-alert{
-    @apply shadow-lg bg-white text-gray-950 rounded-xl;
+    @apply shadow-lg text-gray-950 rounded-xl;
     &.kt-alert-success{
-        @apply bg-gradient-to-r from-[#00B71B]/10 to-[#00B71B]/0 border-l-9 border-green-600 ;
+        @apply bg-gradient-to-r from-[#00B71B]/10 to-[#fff]/0 border-l-9 border-green-600;
     }
     &.kt-alert-destructive{
-        @apply bg-gradient-to-r from-[#ff0000]/10 to-[#ff0000]/0 border-l-9 border-danger;
+        @apply bg-gradient-to-r from-[#ff0000]/10 to-[#fff]/0 border-l-9 border-danger;
     }
 }
 

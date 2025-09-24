@@ -13,17 +13,19 @@
                     <div class="kt-card-heading">
                         <h6 class="kt-card-title">Billing Overview</h6>
                     </div>
-                    IF("%%DEFINE_free_trial%%" == "0"){
-                    <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
-                        <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
-                    </button>
-                    {:IF}
-                    IF("%%DEFINE_free_trial%%" == "1"){
-                    <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
-                        <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
-                    </button>
-                    <a href="%%DEFINE_li_cancelsubscription%%" class="kt-btn kt-btn-outline">Cancel</a>
-                    {:IF}
+                    <div class="kt-card-toolbar">
+                        IF("%%DEFINE_free_trial%%" == "0"){
+                        <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
+                        </button>
+                        {:IF}
+                        IF("%%DEFINE_free_trial%%" == "1"){
+                        <button data-kt-modal-toggle="#upgradeplanModal" class="kt-btn kt-btn-primary">
+                            <img src="%%DEFINE_IMAGE_LINK%%/images/upgrade.svg" alt="">Upgrade
+                        </button>
+                        <a href="%%DEFINE_li_cancelsubscription%%" class="kt-btn kt-btn-outline">Cancel</a>
+                        {:IF}
+                    </div>
                 </div>
                 <div class="kt-card-content p-1">
                     <div class="table-responsive-md billing_table overflow-auto">
@@ -177,13 +179,9 @@
                         <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
                     </div>
                     <div class="kt-card">
-                        <div class="kt-card-content !pr-8 relative">
+                        <div class="kt-card-content relative p-10 pt-16 pr-12">
                         <div class="relative">
-                            <div class="tooltip after:block after:w-0 after:h-0 
-                    after:border-l-8 after:border-l-transparent 
-                    after:border-r-8 after:border-r-transparent 
-                    after:border-t-8 after:border-t-primary after:absolute after:-bottom-[7px] after:left-1/2 after:-translate-x-1/2
-                    absolute -top-10 -translate-x-1/2 bg-gradient-to-r from-[#26B7FF]/10 rounded-2xl to-[#1D4AFE]/10 bg-primary text-white text-nowrap px-2.5 py-1.5 pointer-events-none" id="tooltip">1 Signatures</div>
+                            <div class="rangeTooltip" id="tooltip">1 Signatures</div>
                             <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
                             id="rangeSlider" min="0" max="8" step="1" value="0">
                             <div
