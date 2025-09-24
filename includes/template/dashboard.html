@@ -158,8 +158,8 @@
 			<div class="kt-card mt-2">
 				<div class="kt-card-header h-auto py-3 flex-col justify-start items-start">
 					<div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
-						<div class="flex items-center gap-2">
-							<div class="kt-input">
+						<div class="flex flex-wrap items-center gap-2">
+							<div class="kt-input min-w-[200px]">
 								<i class="hgi hgi-stroke hgi-search-01"></i>
 								<input class="kt-input" type="text" id="search_input" placeholder="Type to Search...">
 							</div>
@@ -186,7 +186,13 @@
 							<div class="flex-none" data-kt-dropdown="true" data-kt-dropdown-trigger="click"
 								data-kt-dropdown-placement="bottom-end">
 								<button class="kt-btn kt-btn-primary kt-btn-outline" data-kt-dropdown-toggle="true">
-									Status <i class="!hidden md:!block fas fa-caret-down ml-1"></i>
+									Status
+									<span class="kt-dropdown-open:hidden">
+									<i class="fas fa-caret-down ml-1 mr-2"></i>
+									</span>
+									<span class="hidden kt-dropdown-open:inline">
+									<i class="fas fa-caret-up ml-1 mr-2"></i>
+									</span>
 								</button>
 								<div class="kt-dropdown-menu w-24" data-kt-dropdown-menu="true">
 									<ul id="signature-status-selector-menu" class="kt-dropdown-menu-sub"
@@ -296,20 +302,19 @@
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="reviewModal">
 	<div class="kt-modal-content max-w-[400px]">
 		<div class="kt-modal-header">
-			<h3 class="kt-modal-title">Feedback</h3>
+			<p class="kt-modal-title">Feedback</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#reviewModal">
 				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
 			<div class="preview-logo"></div>
-		</div>
-		<div class="kt-modal-footer">
-			<button type="button" class="btn btn-secondary" data-kt-modal-toggle="#feedbackModal">Would like to
-				revise</button>
-			<a href="javascript:void(0);" class="btn btn-primary ajaxaction" id="looksgood" data-id="0"
-				data-action="status">Looks Goods! <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-
+			<div class="flex justify-center mt-3">
+				<button type="button" class="kt-btn kt-btn-secondary" data-kt-modal-toggle="#feedbackModal">Would like to
+					revise</button>
+				<a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction" id="looksgood" data-id="0"
+					data-action="status">Looks Goods!</a>
+			</div>
 		</div>
 	</div>
 </div>

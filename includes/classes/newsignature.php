@@ -292,10 +292,6 @@ class CIT_NEWSIGNATURE
 				//$location = "upload-beta/".$filename;
 				$filename = time().'-'.$GLOBALS['USERID'].'.'.$ext;
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/banner/'.$filename ;
-				$targetDir = 'upload-beta/signature/banner/';
-				if (!is_dir($targetDir)) {
-					mkdir($targetDir, 0755, true);
-				}
 				$return_arr = array();
 				if(move_uploaded_file($_FILES['banner']['tmp_name'],$location)){
 					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
