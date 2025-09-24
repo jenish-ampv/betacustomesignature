@@ -151,11 +151,7 @@
 							<canvas id="signature_chart"></canvas>
 						</div>
 					</div>
-					<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
-							%%DEFINE_signature_process%%
-						</div>
-					</div>
+						%%DEFINE_signature_process%%
 				</div>
 			</div>
 			%%DEFINE_Message%%
@@ -498,9 +494,18 @@
 
 			// delete and copy signature action
 			$('.ajaxaction').on("click", function () {
+				var $btn = $(this);
+				if ($btn.data('clicked')) {
+					return false; // ignore if already clicked
+				}
+				$btn.data('clicked', true);
+
 				var id = $(this).attr('data-id');
 				var action = $(this).attr('data-action');
 				var url = $('#form_url').val();
+
+				var confirmation = false;
+
 				if (action == 'delete') {
 					// var confirmation = confirm("are you sure you want to delete the signature?");
 					if (!$(this).hasClass('clickedFromDeleteConfirmationPopup')) {
@@ -520,7 +525,8 @@
 						data: 'action=' + action + '&id=' + id,
 						dataType: "json",
 					}).done(function (data) {
-						if (data.error == '0') {
+						console.log("AJAX response:", data);
+						if (data.error === 0) {
 							window.location = url;
 						} else {
 							KTToast.show({
@@ -528,15 +534,19 @@
 								variant: 'destructive',
 								icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
 							});
-							return false;
 						}
-						this.bind('click', handler);
-						// Optionally alert the user of success here...
-					}).fail(function (data) {
+					}).fail(function () {
+						KTToast.show({
+								message: `<strong>Failure! </strong> ${data.msg}`,
+								variant: 'destructive',
+								icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+							});
+					}).always(function () {
+							$btn.data('clicked', false);
+						});
 						return false;
-						// Optionally alert the user of an error here...
-					});
-					return false;
+				} else {
+					$btn.data('clicked', false);
 				}
 			});
 
