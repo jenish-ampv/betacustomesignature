@@ -334,13 +334,13 @@ class CIT_NEWSIGNATURE
 				if(move_uploaded_file($_FILES['file']['tmp_name'],$location)){
 					// $src = $GLOBALS['ROOT_LINK']."/images/img-icon.svg";
 					// checking file is image or not
-					// $result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
-					// 	'Bucket'=>$GLOBALS['BUCKETNAME'],
-					// 	'Key' =>  'upload-beta/signature/'.$GLOBALS['USERID'].'/'.$filename,
-					// 	'SourceFile' => $location,
-					// 	'StorageClass' => 'REDUCED_REDUNDANCY',
-					// 	'ACL'   => 'public-read'
-					// ));
+					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
+						'Bucket'=>$GLOBALS['BUCKETNAME'],
+						'Key' =>  'upload-beta/signature/'.$GLOBALS['USERID'].'/'.$filename,
+						'SourceFile' => $location,
+						'StorageClass' => 'REDUCED_REDUNDANCY',
+						'ACL'   => 'public-read'
+					));
 
 					$src = $GLOBALS['UPLOAD_LINK'].'/signature/'.$GLOBALS['USERID'].'/'.$filename;
 					$GLOBALS['signature_image_name_value'] = $filename;
