@@ -52,7 +52,11 @@ h3{font-size: calc( 32px + (40 - 32) * (100vw - 400px) / (1920 - 400) );}
 h4{font-size: calc( 24px + (32 - 24) * (100vw - 400px) / (1920 - 400) );}
 h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 
-input[type="range"]::-webkit-slider-thumb {  width: 24px; height: 24px; border-radius: 50%; background: transparent; /* invisible */ cursor: pointer; position: relative; z-index: 3; }
+input[type="range"]::-webkit-slider-thumb {  
+    width: 24px; height: 24px; border-radius: 50%; background: transparent; /* invisible */ 
+    cursor: pointer; position: relative; z-index: 3;
+    -webkit-appearance: none;
+; }
 
 
 .bg-gradient{
@@ -332,6 +336,6 @@ padding: 0;
 .layout_ctabtn2,
 .layout_ctabtn3{
     img{
-        display: !important inline-block;
+        display: inline-block !important;
     }
 }

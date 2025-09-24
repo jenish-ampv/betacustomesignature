@@ -484,7 +484,8 @@
             if ($suggested.length) {
                 $target
                   .html($suggested)        // inject only the div
-                  $suggested.addClass('h-full overflow-auto'); // ensure classes are applied
+                  $suggested.addClass('h-full overflow-auto mx-auto'); // ensure classes are applied
+                  $target.closest('.kt-modal-content').addClass('max-w-full');
                   initCustomSlider();
 
                   // For monthly yearly toggle

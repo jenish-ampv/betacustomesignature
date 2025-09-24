@@ -1,13 +1,13 @@
 @custom-variant light (&:not(.dark *));
 
-.appearance-none {
+/* .appearance-none {
 	background-image: none !important;
 	box-shadow: none;
 	background-color: transparent;
 	border: 0;
 	width: 0;
 	height: 0;
-}
+} */
 
 @import './apexcharts.css';
 @import './container.css';
