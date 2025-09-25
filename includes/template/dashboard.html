@@ -114,9 +114,7 @@
 								</div>
 								<div class="kt-card-toolbar">
 									IF("%%DEFINE_plan_signaturelimit%%" != "1"){
-									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary"
-										href="javascript:void(0);"
-										onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
+									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary" href="javascript:void(0);" id="createMasterSignatureButton" onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
 										<i class="hgi hgi-stroke hgi-add-01"></i>
 									</a>
 									{:IF}

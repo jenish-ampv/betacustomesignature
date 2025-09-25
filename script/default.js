@@ -439,6 +439,18 @@ function hideLoader() {
 
             $('.del_chekbox').attr('disabled','true');
 
+            $('#createSignatureButton').removeAttr('href');
+            $('#createSignatureButton').removeAttr('onclick');
+            $('#createSignatureButton').on('click', function(event) { event.preventDefault(); });
+            $('#createSignatureButton').removeAttr('data-kt-modal-toggle');
+            $('#createSignatureButton').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $('#createMasterSignatureButton').removeAttr('href');
+            $('#createMasterSignatureButton').removeAttr('onclick');
+            $('#createMasterSignatureButton').on('click', function(event) { event.preventDefault(); });
+            $('#createMasterSignatureButton').removeAttr('data-kt-modal-toggle');
+            $('#createMasterSignatureButton').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
         }
 
         let scrollTrigger = $('.hover_previous_right_bg').outerHeight();

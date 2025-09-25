@@ -120,8 +120,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                             </div>
                             <div class="kt-card-toolbar">
                                 IF("%%DEFINE_plan_signaturelimit%%" != "1"){
-                                <a class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary" href="javascript:void(0);"
-                                    onclick="redirectUrlWithAjax('%%DEFINE_newsignatureenterprise%%?siganature_type=master&department_id=%%DEFINE_current_department_id%%')">
+                                <a class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary" id="createSignatureButton" href="javascript:void(0);" onclick="createMasterSignatureButton('%%DEFINE_newsignatureenterprise%%?siganature_type=master&department_id=%%DEFINE_current_department_id%%')">
                                     <i class="hgi hgi-stroke hgi-add-01"></i>
                                 </a>
                                 {:IF}

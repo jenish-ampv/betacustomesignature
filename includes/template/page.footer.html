@@ -489,15 +489,15 @@
                   initCustomSlider();
 
                   // Bind event for the monthly/yearly toggle to dynamically injected content
-        $(document).on('change', '#plan_type', function () {
-          if ($(this).is(':checked')) {
-            $("#yearly-tab").removeClass('hidden');
-            $("#monthly-tab").addClass('hidden');
-          } else {
-            $("#monthly-tab").removeClass('hidden');
-            $("#yearly-tab").addClass('hidden');
-          }
-        });
+                  $(document).on('change', '#plan_type', function () {
+                    if ($(this).is(':checked')) {
+                      $("#yearly-tab").removeClass('hidden');
+                      $("#monthly-tab").addClass('hidden');
+                    } else {
+                      $("#monthly-tab").removeClass('hidden');
+                      $("#yearly-tab").addClass('hidden');
+                    }
+                  });
               } else {
                 $target.html('<p>Content not found.</p>');
               }

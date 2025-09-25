@@ -1379,7 +1379,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
                     </div>';
 		}else{
 			$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
-  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
 							<p>Upgrade to create more signatures</p>
@@ -1391,7 +1391,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 			if($signatureSubscription){
 				if($signatureSubscription['subscription_id'] == ""){
 					$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
-  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
 							<p>Upgrade to create more signatures</p>
@@ -1413,7 +1413,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
                     </div>';
 			}else{
 				$GLOBALS['signature_create_upgrade'] ='<div class="p-4 flex flex-col gap-4 items-center justify-center border border-dashed border-primary rounded-2xl bg-primary/5">
-	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 									<i class="hgi hgi-stroke hgi-add-01"></i>
 								</button>
 								<p>Upgrade to create more signatures</p>
