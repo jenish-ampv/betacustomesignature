@@ -30,9 +30,6 @@ function hideLoader() {
   $(".chartLoading").addClass("!hidden");
 }
 
-
-
-
     var root_link = $('#root_link').val();
     var image_link = $('#image_link').val();
     document.addEventListener("contextmenu", function (e){
@@ -410,7 +407,9 @@ function hideLoader() {
         });
 
         
-        let currentPath = window.location.pathname.split("/").filter(Boolean)[1];
+        let currentPath = window.location.pathname.split('/'); 
+        currentPath = currentPath[currentPath.length - 1];
+        
         if (!currentPath) currentPath = "dashboard";
         // reset all li
         $("#mega_menu li").removeClass("active");
