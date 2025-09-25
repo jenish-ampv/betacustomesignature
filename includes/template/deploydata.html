@@ -54,6 +54,17 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        if($('#accordionExample').html().trim() === "") {
+            $("#groupdeployoutlook").hide();
+            $("#search_member").hide();
+            $('#step1').append('<p class="flex items-center justify-center mt-7">No Users Found</p>');
+        } else {
+            $("#groupdeployoutlook").show();
+            $("#search_member").show();
+        }
+        
+
         var members = [];
 
         // Disable duplicate users if any
