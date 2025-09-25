@@ -55,8 +55,12 @@
                     </div>
                   </div>
                   <div class="kt-card-content">
+                    <h6 class="font-semibold text-xl mb-2 invisible hidden lg:block">Personal Information</h6>
                     <div class="space-y-2">
                       %%DEFINE_dirattr_fieldp%%
+                    </div>
+                    <h6 class="font-semibold text-xl mt-5 mb-2 invisible">Contact Information</h6>
+                    <div class="space-y-2">
                       %%DEFINE_dirattr_fieldc%%
                     </div>
                   </div>
@@ -108,7 +112,7 @@
             <div class="border border-gray-200 rounded-xl mt-4 p-5">
               <input type="text" class="kt-input" value="" id="search_member" placeholder="Search user">
               <p id="notfound" style="display:none;">No results found</p>
-              <div id="search_result" class="search_result accordion" style="display:none;">%%DEFINE_search_list%%</div>
+              <div id="search_result" class="search_result accordion mt-2" style="display:none;">%%DEFINE_search_list%%</div>
               <form id="groupazure" method="post" action="" enctype="multipart/form-data">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2 my-3">
