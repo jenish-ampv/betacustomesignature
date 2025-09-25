@@ -1344,7 +1344,7 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 
 
 				if($GLOBALS['signature_layout'] == $layout_id){
-					$GLOBALS['lauout_load'] = '<div class="signature_previous_box">
+					$GLOBALS['lauout_load'] = '<div class="signature_previous_box overflow-auto">
 					<input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.'>
 					<table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].';" cellspacing="0" cellpadding="0" border="0">
 					<tr><td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td></tr>
