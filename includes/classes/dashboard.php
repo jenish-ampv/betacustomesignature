@@ -367,7 +367,7 @@ class CIT_DASHBOARD
 										<p class="text-gray-600">Your Logo Animation ready! Please review it</p>
 										<a class="kt-btn kt-btn-primary my-4" id="reviewLogo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#reviewModal">Review Logo</a>
 									</div>
-									div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+									<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
 										<img class="w-[150px]" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/complete/'.$signature_logo['user_id'].'/'.$signature_logo['logo_animation'].'" alt="">
 										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 									</div>
