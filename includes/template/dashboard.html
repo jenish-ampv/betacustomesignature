@@ -170,12 +170,10 @@
 								</a>
                             {:IF}
 							
-							<div class="flex items-center text-nowrap gap-2" style="display:none;" id="extratop">
+							<div class="flex items-center text-nowrap gap-2 delete-signature group" style="display:none;" id="extratop">
 								<input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
 								<label class="kt-label" for="select_all">Select All</label>
-								<div data-action="bulkdelete" id="bulk_deletesignature">
-									<a class="kt-btn kt-btn-destructive" href="javascrip:void(0);">Delete</a>
-								</div>
+								<a class="kt-btn kt-btn-destructive group-[.disabled]:bg-gray-400 group-[.disabled]:pointer-events-none" href="javascrip:void(0);" data-action="bulkdelete" id="bulk_deletesignature">Delete</a>
 							</div>
 						</div>
 
@@ -548,7 +546,7 @@
 					return false;
 				}
 
-				$('#bulk_deletesignature').html('<span class="kt-btn kt-btn-destructive flex items-center"><span>Delete..</span><i class="fas fa-circle-notch fa-spin"></i></div>');
+				$('#bulk_deletesignature').html('<span class="kt-btn kt-btn-destructive flex items-center"><span>Delete..</span><i class="fas fa-circle-notch fa-spin"></i></span>');
 				var ids = [];
 				$('.del_chekbox:checked').each(function (i, e) {
 					ids.push($(this).val());
@@ -780,12 +778,12 @@
 			if (this.checked) {
 				$('.del_chekbox').each(function () {
 					this.checked = true;
-					$('#bulk_deletesignature').removeClass('disable-button');
+					$('.delete-signature').removeClass('disabled');
 				});
 			} else {
 				$('.del_chekbox').each(function () {
 					this.checked = false;
-					$('#bulk_deletesignature').addClass('disable-button');
+					$('.delete-signature').addClass('disabled');
 				});
 			}
 		});
@@ -793,17 +791,17 @@
 		$('.del_chekbox').on('click', function () {
 			if ($('.del_chekbox:checked').length == $('.del_chekbox').length) {
 				$('#select_all').prop('checked', true);
-				$('#bulk_deletesignature').removeClass('disable-button');
+				$('.delete-signature').removeClass('disabled');
 			} else {
 				$('#select_all').prop('checked', false);
-				$('#bulk_deletesignature').addClass('disable-button');
+				$('.delete-signature').addClass('disabled');
 			}
 			if ($('.del_chekbox:checked').length < 1) {
 				$('#extratop').css('display', 'none');
-				$('#bulk_deletesignature').addClass('disable-button');
+				$('.delete-signature').addClass('disabled');
 			} else {
 				$('#extratop').css('display', '');
-				$('#bulk_deletesignature').removeClass('disable-button');
+				$('.delete-signature').removeClass('disabled');
 			}
 		});
 	});
