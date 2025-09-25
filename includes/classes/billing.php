@@ -649,7 +649,7 @@ class CIT_BILLING
 					$send_mail = _SendMail($user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 
 					$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong>Plan cancelled.</div>';
-					GetFrontRedirectUrl(GetUrl(array('module'=>'renewaccount')));
+					GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));
 				}else{
 					$_SESSION[GetSession('Error')] = '<div class="alert alert-info"><strong>Failed!</strong> '.$api_error.'</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>'billing')));
