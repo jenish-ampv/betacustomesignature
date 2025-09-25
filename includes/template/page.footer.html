@@ -488,18 +488,16 @@
                   $target.closest('.kt-modal-content').addClass('max-w-full');
                   initCustomSlider();
 
-                  // For monthly yearly toggle
-                  $('#plan_type').on('change', function () {
-                    if ($(this).is(':checked')) {
-                      $("#yearly-tab").removeClass('hidden');
-                      $("#monthly-tab").addClass('hidden');
-                    } else {
-                      $("#monthly-tab").removeClass('hidden');
-                      $("#yearly-tab").addClass('hidden');
-                    }
-                  });
-                  // For monthly yearly toggle
-
+                  // Bind event for the monthly/yearly toggle to dynamically injected content
+        $(document).on('change', '#plan_type', function () {
+          if ($(this).is(':checked')) {
+            $("#yearly-tab").removeClass('hidden');
+            $("#monthly-tab").addClass('hidden');
+          } else {
+            $("#monthly-tab").removeClass('hidden');
+            $("#yearly-tab").addClass('hidden');
+          }
+        });
               } else {
                 $target.html('<p>Content not found.</p>');
               }
