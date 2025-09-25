@@ -73,15 +73,27 @@ $(document).ready(function(){
     if(beforeBorderRadius == '200px'){
       $($('.imagetopngClass')[index]).css('border-radius','15px');
     }
+    var styleTag = `
+    <style>
+      img, canvas {
+        display: inline-block !important;
+      }
+      img {
+        max-width: inherit !important;
+        height: auto !important;
+      }
+    </style>
+  `;
+  $('head').append(styleTag);
     html2canvas($('.imagetopngClass')[index], {
         scale:3,
         scrollX: -window.scrollX,
         scrollY: -window.scrollY,
-        windowWidth: document.documentElement.offsetWidth,
-        windowHeight: document.documentElement.offsetHeight,
+        // windowWidth: document.documentElement.offsetWidth,
+        // windowHeight: document.documentElement.offsetHeight,
         backgroundColor: null,
-        width: beforewidth[index],
-        height: beforeheight[index],
+        // width: beforewidth[index],
+        // height: beforeheight[index],
       }).then(function(canvas) {
         // window.scrollTo(0, 0);
         canvas.style.position = 'absolute';  // Right Here!

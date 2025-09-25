@@ -332,10 +332,3 @@ input[type="range"]::-webkit-slider-thumb {
 padding: 0;
 }
 
-.layout_ctabtn1,
-.layout_ctabtn2,
-.layout_ctabtn3{
-    img{
-        display: inline-block !important;
-    }
-}
