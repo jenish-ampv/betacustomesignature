@@ -451,6 +451,14 @@ function hideLoader() {
             $('#createMasterSignatureButton').removeAttr('data-kt-modal-toggle');
             $('#createMasterSignatureButton').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
 
+            $("#deployOutlookButton").removeAttr('href');
+            $("#deployOutlookButton").removeAttr('data-kt-modal-toggle');
+            $("#deployOutlookButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $("#deployGmailButton").removeAttr('href');
+            $("#deployGmailButton").removeAttr('data-kt-modal-toggle');
+            $("#deployGmailButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
         }
 
         let scrollTrigger = $('.hover_previous_right_bg').outerHeight();
