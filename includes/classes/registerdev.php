@@ -254,7 +254,7 @@ class CIT_REGISTERDEV
 					 }
 					 $GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 						 <h6>'.$planRow['plan_name'].' ('.$plantype.'ly) <b><span class="offper">'. $offper.'% OFF</span>$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h6>  
-						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 						 <ul>'.$plan_text.'</ul>
 					  </div>';
 				}else{
