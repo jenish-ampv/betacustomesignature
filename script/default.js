@@ -384,6 +384,83 @@ function hideLoader() {
 
 
     $(document).ready(function () {
+        var plan_type = $('#plan_type').val();
+
+        if(plan_type == 'NEWSIGNUP'){
+                
+            $("#outlookConnectButton").removeAttr('href');
+            $("#outlookConnectButton").removeAttr('data-kt-modal-toggle');
+            $("#outlookConnectButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $("#googleConnectButton").removeAttr('href');
+            $("#googleConnectButton").removeAttr('data-kt-modal-toggle');
+            $("#googleConnectButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+            
+            $("#addUserButton").removeAttr('href');
+            $("#addUserButton").removeAttr('data-kt-modal-toggle');
+            $("#addUserButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+            
+            $("#billingButton").removeAttr('href');
+            $("#billingButton").removeAttr('data-kt-modal-toggle');
+            $("#billingButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+
+            $("#csv_file").removeAttr('onchange');
+            $("#csv_file").on('click', function(event) { event.preventDefault(); });
+            $("#csv_file").removeAttr('href');
+            $("#csv_file").removeAttr('data-kt-modal-toggle');
+            $("#csv_file").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $("#import_integration").removeAttr('href');
+            $("#import_integration").removeAttr('data-kt-modal-toggle');
+            $("#import_integration").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $("#import_integration_google").removeAttr('href');
+            $("#import_integration_google").removeAttr('data-kt-modal-toggle');
+            $("#import_integration_google").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            
+            $('[data-action="duplicate"]').removeAttr('href');
+            $('[data-action="duplicate"]').removeClass('ajaxaction');
+            $('[data-action="duplicate"]').on('click', function(event) { event.preventDefault(); });
+            $('[data-action="duplicate"]').removeAttr('data-kt-modal-toggle');
+            $('[data-action="duplicate"]').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $('[title="Share"]').removeAttr('href');
+            $('[title="Share"]').on('click', function(event) { event.preventDefault(); });
+            $('[title="Share"]').removeAttr('data-kt-modal-toggle');
+            $('[title="Share"]').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $('[data-action="delete"]').removeAttr('href');
+            $('[data-action="delete"]').removeClass('ajaxaction');
+            $('[data-action="delete"]').on('click', function(event) { event.preventDefault(); });
+            $('[data-action="delete"]').removeAttr('data-kt-modal-toggle');
+            $('[data-action="delete"]').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $('.del_chekbox').attr('disabled','true');
+
+            $('#createSignatureButton').removeAttr('href');
+            $('#createSignatureButton').removeAttr('onclick');
+            $('#createSignatureButton').on('click', function(event) { event.preventDefault(); });
+            $('#createSignatureButton').removeAttr('data-kt-modal-toggle');
+            $('#createSignatureButton').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $('#createMasterSignatureButton').removeAttr('href');
+            $('#createMasterSignatureButton').removeAttr('onclick');
+            $('#createMasterSignatureButton').on('click', function(event) { event.preventDefault(); });
+            $('#createMasterSignatureButton').removeAttr('data-kt-modal-toggle');
+            $('#createMasterSignatureButton').attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $("#deployOutlookButton").removeAttr('href');
+            $("#deployOutlookButton").removeAttr('data-kt-modal-toggle');
+            $("#deployOutlookButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+            $("#deployGmailButton").removeAttr('href');
+            $("#deployGmailButton").removeAttr('data-kt-modal-toggle');
+            $("#deployGmailButton").attr('data-kt-modal-toggle',"#upgrade-plan-popup");
+
+        }
+
         let scrollTrigger = $('.hover_previous_right_bg').outerHeight();
         // Real-time resize tracking using requestAnimationFrame
         let lastHeight = scrollTrigger;

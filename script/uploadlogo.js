@@ -198,7 +198,7 @@ function logoChanged(){
     return false;
   }
 
-  $("#logo_change_done_btn").addClass('cursor-not-allowed opacity-50').text('Processing...');
+  $("#logo_change_done_btn").addClass('cursor-not-allowed opacity-50 pointer-events-none').text('Processing...');
   ui.ajax({
     type: 'POST',
     url: upload_signature_logourl,
@@ -220,11 +220,11 @@ function logoChanged(){
 				// $('#snackbar').show();
 				// setTimeout(function(){ $('#snackbar').hide(); }, 2000);
       }
-      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50 pointer-events-none').text('Submit');
     },
     failure: function (response) {
       console.log('failed');
-      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50').text('Submit');
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50 pointer-events-none').text('Submit');
     }
   });
 };

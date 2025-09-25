@@ -367,8 +367,9 @@ class CIT_DASHBOARD
 										<p class="text-gray-600">Your Logo Animation ready! Please review it</p>
 										<a class="kt-btn kt-btn-primary my-4" id="reviewLogo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#reviewModal">Review Logo</a>
 									</div>
-									<div class="p-0.5 border border-gray-200 bg-white rounded-lg">
+									div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
 										<img class="w-[150px]" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/complete/'.$signature_logo['user_id'].'/'.$signature_logo['logo_animation'].'" alt="">
+										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 									</div>
 								</div>';
 						if($signature_logo['logo_change_process'] != 2){
@@ -1379,7 +1380,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
                     </div>';
 		}else{
 			$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
-  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
 							<p>Upgrade to create more signatures</p>
@@ -1391,7 +1392,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 			if($signatureSubscription){
 				if($signatureSubscription['subscription_id'] == ""){
 					$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
-  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
 							<p>Upgrade to create more signatures</p>
@@ -1413,7 +1414,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
                     </div>';
 			}else{
 				$GLOBALS['signature_create_upgrade'] ='<div class="p-4 flex flex-col gap-4 items-center justify-center border border-dashed border-primary rounded-2xl bg-primary/5">
-	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 									<i class="hgi hgi-stroke hgi-add-01"></i>
 								</button>
 								<p>Upgrade to create more signatures</p>

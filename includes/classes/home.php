@@ -569,6 +569,9 @@ class CIT_INDEX
 			
 			// check free trial left day
 			$GLOBALS['plan_type'] = $usrRes['free_trial'] == 1 ? 'FREE' : 'GENEREAL';
+			if(!$usrRes['subscription_id']){
+				$GLOBALS['plan_type'] = 'NEWSIGNUP';
+			}
 			$GLOBALS['FREETRIAL'] = $usrRes['free_trial'] == 1 ? 1 : 0;
 			$GLOBALS['FTD'] = $usrRes['free_trial'] == 1 ? '' : 'hidden';
 			$GLOBALS['FTDN'] = $usrRes['free_trial'] == 1 ? 'hidden' : '';

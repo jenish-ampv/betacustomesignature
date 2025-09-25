@@ -15,7 +15,7 @@
                             <h2 class="kt-card-title">User Management</h2>
                         </div>
                         <div class="kt-card-toolbar">
-                            <button class="kt-btn kt-btn-primary" data-kt-modal-toggle="#addUserModel">Add User</button>
+                            <button class="kt-btn kt-btn-primary" id="addUserButton" data-kt-modal-toggle="#addUserModel">Add User</button>
                         </div>
                     </div>
                     <div class="kt-card-content p-1 overflow-auto">
@@ -136,278 +136,278 @@
             };
             
             $(document).ready(function () {
-            $('#addUserForm').on('submit', function (e) {
-                $('#user_firstname').css('border-color', '');
-                $('#user_lastname').css('border-color', '');
-                $('#email').css('border-color', '');
-                $('.first-name-text').remove();
-                $('.last-name-text').remove();
-                $('.email-text').remove();
-                $('#permission').css('border', '');
-                $('#permission').css('padding', '');
-                $('#permission').css('border-color', '');
-                $('.permission-text').remove();
-                $('#department').css('border', '');
-                $('#department').css('padding', '');
-                $('#department').css('border-color', '');
-                $('.department-text').remove();
-                var redirecturlUM = $('#redirecturlUM').val();
-                var validate = 1;
+                $('#addUserForm').on('submit', function (e) {
+                    $('#user_firstname').css('border-color', '');
+                    $('#user_lastname').css('border-color', '');
+                    $('#email').css('border-color', '');
+                    $('.first-name-text').remove();
+                    $('.last-name-text').remove();
+                    $('.email-text').remove();
+                    $('#permission').css('border', '');
+                    $('#permission').css('padding', '');
+                    $('#permission').css('border-color', '');
+                    $('.permission-text').remove();
+                    $('#department').css('border', '');
+                    $('#department').css('padding', '');
+                    $('#department').css('border-color', '');
+                    $('.department-text').remove();
+                    var redirecturlUM = $('#redirecturlUM').val();
+                    var validate = 1;
 
-                if ($('#user_firstname').val().trim() === "") {
-                    $('#user_firstname').css('border-color', '#842029'); validate = 0;
-                    $('#user_firstname').after("<span class='first-name-text' style='color: #842029'>Please add a valid first name.</span>");
-                }
-                if ($('#user_lastname').val().trim() === "") {
-                    $('#user_lastname').css('border-color', '#842029'); validate = 0;
-                    $('#user_lastname').after("<span class='last-name-text' style='color: #842029'>Please add a valid last name.</span>");
-                }
-                // if($('#email').val() === ""){
-                //     $('#email').css('border-color','#842029'); validate =0;
-                //     $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
-                // }
-                var email = $("#email").val().trim();
-                var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!regex.test(email)) {
-                    $('#email').css('border-color', '#842029'); validate = 0;
-                    $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
-                }
-
-                if ($('.permission-checkbox:checked').length == 0) {
-                    $('#permission').css('border', '1px solid');
-                    $('#permission').css('padding', '20px');
-                    $('#permission').css('border-color', '#842029'); validate = 0;
-                    $('#permission').after("<span class='permission-text' style='color: #842029'>Please select atlease one permission.</span>");
-                }
-                if ($('.department-checkbox').length > 0 && $('.department-checkbox:checked').length == 0) {
-                    $('#department').css('border', '1px solid');
-                    $('#department').css('padding', '20px');
-                    $('#department').css('border-color', '#842029'); validate = 0;
-                    $('#department').after("<span class='department-text' style='color: #842029'>Please select atlease one division.</span>");
-                }
-
-
-                if (validate != 1) {
-                    // setTimeout(function () {
-                    //     $('#user_firstname').css('border-color', '');
-                    //     $('#user_lastname').css('border-color', '');
-                    //     $('#email').css('border-color', '');
-                    //     $('.first-name-text').remove();
-                    //     $('.last-name-text').remove();
-                    //     $('.email-text').remove();
-                    //     $('#permission').css('border', '');
-                    //     $('#permission').css('padding', '');
-                    //     $('#permission').css('border-color', '');
-                    //     $('.permission-text').remove();
-                    //     $('#department').css('border', '');
-                    //     $('#department').css('padding', '');
-                    //     $('#department').css('border-color', '');
-                    //     $('.department-text').remove();
-                    // }, 2000);
-                    event.stopPropagation(); return false;
-                }
-                $('#user_firstname').removeAttr('disabled');
-                $('#user_lastname').removeAttr('disabled');
-                $('#email').removeAttr('disabled');
-
-                $(".userSubmit").prop('disabled', true);
-                $(".userSubmit").text('Processing...');
-
-
-                var form = $('#addUserForm');
-                data = form.serialize();
-                formUrl = $('#form_url_usermanagement_saveuser').val();
-                const formData = {};
-                $(this).serializeArray().forEach(function (item) {
-                    // If the field already exists (like checkboxes), turn it into an array
-                    if (formData[item.name]) {
-                        if (Array.isArray(formData[item.name])) {
-                            formData[item.name].push(item.value);
-                        } else {
-                            formData[item.name] = [formData[item.name], item.value];
-                        }
-                    } else {
-                        formData[item.name] = item.value;
+                    if ($('#user_firstname').val().trim() === "") {
+                        $('#user_firstname').css('border-color', '#842029'); validate = 0;
+                        $('#user_firstname').after("<span class='first-name-text' style='color: #842029'>Please add a valid first name.</span>");
                     }
+                    if ($('#user_lastname').val().trim() === "") {
+                        $('#user_lastname').css('border-color', '#842029'); validate = 0;
+                        $('#user_lastname').after("<span class='last-name-text' style='color: #842029'>Please add a valid last name.</span>");
+                    }
+                    // if($('#email').val() === ""){
+                    //     $('#email').css('border-color','#842029'); validate =0;
+                    //     $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
+                    // }
+                    var email = $("#email").val().trim();
+                    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!regex.test(email)) {
+                        $('#email').css('border-color', '#842029'); validate = 0;
+                        $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
+                    }
+
+                    if ($('.permission-checkbox:checked').length == 0) {
+                        $('#permission').css('border', '1px solid');
+                        $('#permission').css('padding', '20px');
+                        $('#permission').css('border-color', '#842029'); validate = 0;
+                        $('#permission').after("<span class='permission-text' style='color: #842029'>Please select atlease one permission.</span>");
+                    }
+                    if ($('.department-checkbox').length > 0 && $('.department-checkbox:checked').length == 0) {
+                        $('#department').css('border', '1px solid');
+                        $('#department').css('padding', '20px');
+                        $('#department').css('border-color', '#842029'); validate = 0;
+                        $('#department').after("<span class='department-text' style='color: #842029'>Please select atlease one division.</span>");
+                    }
+
+
+                    if (validate != 1) {
+                        // setTimeout(function () {
+                        //     $('#user_firstname').css('border-color', '');
+                        //     $('#user_lastname').css('border-color', '');
+                        //     $('#email').css('border-color', '');
+                        //     $('.first-name-text').remove();
+                        //     $('.last-name-text').remove();
+                        //     $('.email-text').remove();
+                        //     $('#permission').css('border', '');
+                        //     $('#permission').css('padding', '');
+                        //     $('#permission').css('border-color', '');
+                        //     $('.permission-text').remove();
+                        //     $('#department').css('border', '');
+                        //     $('#department').css('padding', '');
+                        //     $('#department').css('border-color', '');
+                        //     $('.department-text').remove();
+                        // }, 2000);
+                        event.stopPropagation(); return false;
+                    }
+                    $('#user_firstname').removeAttr('disabled');
+                    $('#user_lastname').removeAttr('disabled');
+                    $('#email').removeAttr('disabled');
+
+                    $(".userSubmit").prop('disabled', true);
+                    $(".userSubmit").text('Processing...');
+
+
+                    var form = $('#addUserForm');
+                    data = form.serialize();
+                    formUrl = $('#form_url_usermanagement_saveuser').val();
+                    const formData = {};
+                    $(this).serializeArray().forEach(function (item) {
+                        // If the field already exists (like checkboxes), turn it into an array
+                        if (formData[item.name]) {
+                            if (Array.isArray(formData[item.name])) {
+                                formData[item.name].push(item.value);
+                            } else {
+                                formData[item.name] = [formData[item.name], item.value];
+                            }
+                        } else {
+                            formData[item.name] = item.value;
+                        }
+                    });
+
+                    $.ajax({
+                        type: 'POST',
+                        url: formUrl,
+                        contentType: 'application/json',
+                        data: JSON.stringify(formData)
+                    }).done(function (data) {
+                        var json = JSON.parse(data);
+                        if (json.error != 1) {
+                            $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
+                            $('.kt-modal-close').click();
+                            $('#snackbar').show();
+                            setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 2000);
+                        } else {
+                            KTToast.show({
+                                message: `<strong>Failure! </strong>${json.msg}`,
+                                variant: 'destructive',
+                            });
+                            // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""> </div>');
+                            // $('#snackbar-error').show();
+                            setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                            $('.kt-modal-close').click();
+                            $(".userSubmit").prop('disabled', false);
+                            $(".userSubmit").text('Invite');
+                            return false;
+                        }
+                        // Optionally alert the user of success here...
+                    }).fail(function (data) {
+                        return false;
+                        // Optionally alert the user of an error here...
+                    });
+                    return false;
                 });
 
-                $.ajax({
-                    type: 'POST',
-                    url: formUrl,
-                    contentType: 'application/json',
-                    data: JSON.stringify(formData)
-                }).done(function (data) {
-                    var json = JSON.parse(data);
-                    if (json.error != 1) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
-                        $('.kt-modal-close').click();
-                        $('#snackbar').show();
-                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 2000);
-                    } else {
-                        KTToast.show({
-                            message: `<strong>Failure! </strong>${json.msg}`,
-                            variant: 'destructive',
-                        });
-                        // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""> </div>');
-                        // $('#snackbar-error').show();
-                        setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                        $('.kt-modal-close').click();
-                        $(".userSubmit").prop('disabled', false);
-                        $(".userSubmit").text('Invite');
+                function simulateUserInput(selector, value) {
+                    const input = $(selector)[0];
+                    input.value = value;
+
+                    // Trigger input event (works with React or vanilla JS listeners)
+                    const event = new Event('input', { bubbles: true });
+                    input.dispatchEvent(event);
+                }
+
+                $(".edit_user").click(function (e) {
+                    element = $(this);
+                    setTimeout(function () { $('#snackbar-error').hide(); 
+                        // e.stopPropagation();
+                        $("#edit_user").val(1);
+                        simulateUserInput('#user_firstname', $(element).data('fname'));
+                        simulateUserInput('#user_lastname', $(element).data('lname'));
+                        simulateUserInput('#email', $(element).data('email'));
+                        $('#email').attr('disabled', true);
+                        $('#email').addClass('disabled-input');
+                        if ($(element).data('user_status')) {
+                            $("#status-action").prop('checked', true);
+                        } else {
+                            $("#status-action").prop('checked', false);
+                        }
+
+                        $('.permission-checkbox').prop('checked', false);
+                        var permission = $(element).data('permission').toString();
+                        if ($.trim(permission) !== '') {
+                            if (permission.indexOf(",") !== -1) {
+                                permission = $(element).data('permission').split(",");
+                                $.each(permission, function (index, value) {
+                                    $("#" + value).prop('checked', true);
+                                });
+                            } else {
+                                $("#" + permission).prop('checked', true);
+                            }
+                        }
+
+
+                        $('.department-checkbox').prop('checked', false);
+                        var department = $(element).data('department_list').toString();
+                        if ($.trim(department) !== '') {
+                            if (department.indexOf(",") !== -1) {
+                                department = $(element).data('department_list').split(",");
+                                $.each(department, function (index, value) {
+                                    $("#department_" + value).prop('checked', true);
+                                });
+                            } else {
+                                $("#department_" + department).prop('checked', true);
+                            }
+                        }
+                        $(".userSubmit").html('Save');
+                    }, 10);
+                });
+                $('[data-kt-modal-toggle="#addUserModel"]').click(function (e) {
+                    // e.stopPropagation();
+                    $("#edit_user").val(0);
+                    $('#user_firstname').val('');
+                    $('#user_firstname').removeAttr('disabled');
+                    $('#user_lastname').val('');
+                    $('#user_lastname').removeAttr('disabled');
+                    $('#email').val('');
+                    $('#email').removeAttr('disabled');
+                    $('#email').removeClass('disabled-input');
+                    $(".userSubmit").html('Invite');
+                    $("#status-action").prop('checked', true);
+                    $('.permission-checkbox').prop('checked', false);
+                    $('.department-checkbox').prop('checked', false);
+                });
+
+                $('.delete_user').on( "click", function() {
+                    if(!$(this).hasClass('clickedFromDeleteConfirmationPopup')){
+                        openDeleteModal($(this));
                         return false;
                     }
-                    // Optionally alert the user of success here...
-                }).fail(function (data) {
-                    return false;
-                    // Optionally alert the user of an error here...
+                    // var text = "Do you really want to delete user.";
+                    // if (confirm(text) == true) {
+                    //     text = "You pressed OK!";
+                    // } else {
+                    //     text = "You canceled!";
+                    //     return false;
+                    // }
+
                 });
-                return false;
-            });
+                $('.departmentUser-change-status').on("click", function () {
+                    var redirecturlUM = $('#redirecturlUM').val();
+                    formUrl = $('#form_url_saveuser_status').val();
+                    sub_user_id = $(this).find("#departmentUser-action").data('sub_user_id');
+                    var valueStatus = $(this).find("#departmentUser-action").is(':checked') ? 1 : 0;
+                    const formData = {
+                        'sub_user_id': sub_user_id,
+                        'user_status': valueStatus
+                    };
+                    $('.loader-image').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: formUrl,
+                        contentType: 'application/json',
+                        data: JSON.stringify(formData)
+                    }).done(function (data) {
+                        $('.loader-image').hide();
 
-            function simulateUserInput(selector, value) {
-                const input = $(selector)[0];
-                input.value = value;
-
-                // Trigger input event (works with React or vanilla JS listeners)
-                const event = new Event('input', { bubbles: true });
-                input.dispatchEvent(event);
-            }
-
-            $(".edit_user").click(function (e) {
-                element = $(this);
-                setTimeout(function () { $('#snackbar-error').hide(); 
-                    // e.stopPropagation();
-                    $("#edit_user").val(1);
-                    simulateUserInput('#user_firstname', $(element).data('fname'));
-                    simulateUserInput('#user_lastname', $(element).data('lname'));
-                    simulateUserInput('#email', $(element).data('email'));
-                    $('#email').attr('disabled', true);
-                    $('#email').addClass('disabled-input');
-                    if ($(element).data('user_status')) {
-                        $("#status-action").prop('checked', true);
-                    } else {
-                        $("#status-action").prop('checked', false);
-                    }
-
-                    $('.permission-checkbox').prop('checked', false);
-                    var permission = $(element).data('permission').toString();
-                    if ($.trim(permission) !== '') {
-                        if (permission.indexOf(",") !== -1) {
-                            permission = $(element).data('permission').split(",");
-                            $.each(permission, function (index, value) {
-                                $("#" + value).prop('checked', true);
-                            });
+                        var json = JSON.parse(data);
+                        if (json.error != 1) {
+                            $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""> User status changed successfully.</div>');
+                            $('#snackbar').show();
+                            setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 3000);
                         } else {
-                            $("#" + permission).prop('checked', true);
-                        }
-                    }
-
-
-                    $('.department-checkbox').prop('checked', false);
-                    var department = $(element).data('department_list').toString();
-                    if ($.trim(department) !== '') {
-                        if (department.indexOf(",") !== -1) {
-                            department = $(element).data('department_list').split(",");
-                            $.each(department, function (index, value) {
-                                $("#department_" + value).prop('checked', true);
+                            KTToast.show({
+                                message: `<strong>Failure! </strong>${json.msg}`,
+                                variant: 'destructive',
                             });
-                        } else {
-                            $("#department_" + department).prop('checked', true);
+                            // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                            // $('#snackbar-error').show();
+                            // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                            $('.kt-modal-close').click();
+                            return false;
                         }
-                    }
-                    $(".userSubmit").html('Save');
-                }, 10);
-            });
-            $('[data-kt-modal-toggle="#addUserModel"]').click(function (e) {
-                // e.stopPropagation();
-                $("#edit_user").val(0);
-                $('#user_firstname').val('');
-                $('#user_firstname').removeAttr('disabled');
-                $('#user_lastname').val('');
-                $('#user_lastname').removeAttr('disabled');
-                $('#email').val('');
-                $('#email').removeAttr('disabled');
-                $('#email').removeClass('disabled-input');
-                $(".userSubmit").html('Invite');
-                $("#status-action").prop('checked', true);
-                $('.permission-checkbox').prop('checked', false);
-                $('.department-checkbox').prop('checked', false);
-            });
-
-            $('.delete_user').on( "click", function() {
-                if(!$(this).hasClass('clickedFromDeleteConfirmationPopup')){
-                    openDeleteModal($(this));
-                    return false;
-                }
-                // var text = "Do you really want to delete user.";
-                // if (confirm(text) == true) {
-                //     text = "You pressed OK!";
-                // } else {
-                //     text = "You canceled!";
-                //     return false;
-                // }
-
-            });
-            $('.departmentUser-change-status').on("click", function () {
-                var redirecturlUM = $('#redirecturlUM').val();
-                formUrl = $('#form_url_saveuser_status').val();
-                sub_user_id = $(this).find("#departmentUser-action").data('sub_user_id');
-                var valueStatus = $(this).find("#departmentUser-action").is(':checked') ? 1 : 0;
-                const formData = {
-                    'sub_user_id': sub_user_id,
-                    'user_status': valueStatus
-                };
-                $('.loader-image').show();
-                $.ajax({
-                    type: 'POST',
-                    url: formUrl,
-                    contentType: 'application/json',
-                    data: JSON.stringify(formData)
-                }).done(function (data) {
-                    $('.loader-image').hide();
-
-                    var json = JSON.parse(data);
-                    if (json.error != 1) {
-                        $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""> User status changed successfully.</div>');
-                        $('#snackbar').show();
-                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 3000);
-                    } else {
+                        // Optionally alert the user of success here...
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX error:", textStatus, errorThrown);
                         KTToast.show({
-                            message: `<strong>Failure! </strong>${json.msg}`,
+                            message: `<strong>Request Failed!</strong> Please try again later.`,
                             variant: 'destructive',
                         });
                         // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
                         // $('#snackbar-error').show();
                         // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                        $('.kt-modal-close').click();
-                        return false;
-                    }
-                    // Optionally alert the user of success here...
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error("AJAX error:", textStatus, errorThrown);
-                    KTToast.show({
-                        message: `<strong>Request Failed!</strong> Please try again later.`,
-                        variant: 'destructive',
                     });
-                    // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
-                    // $('#snackbar-error').show();
-                    // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 });
+
+
+
+                // $('#select_all').on('click', function() {
+                //     $('.department-checkbox').prop('checked', this.checked);
+                // });
+                // $('.department-checkbox').click(function() {
+                //     if ($('.department-checkbox:checked').length === $('.department-checkbox').length) {
+                //         $('#select_all').prop('checked', true);
+                //     } else {
+                //         $('#select_all').prop('checked', false);
+                //     }
+                // });
             });
-
-
-
-            // $('#select_all').on('click', function() {
-            //     $('.department-checkbox').prop('checked', this.checked);
-            // });
-            // $('.department-checkbox').click(function() {
-            //     if ($('.department-checkbox:checked').length === $('.department-checkbox').length) {
-            //         $('#select_all').prop('checked', true);
-            //     } else {
-            //         $('#select_all').prop('checked', false);
-            //     }
-            // });
-        });
         })(jQuery);
     </script>
 

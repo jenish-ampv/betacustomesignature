@@ -768,12 +768,12 @@ class CIT_NEWSIGNATURE
 				$GLOBALS['signature_profilesize'] = $layoutRow['profile_image_size'];
 				$GLOBALS['signature_profileanimationsize'] = $layoutRow['profile_image_size'];
 				$GLOBALS['signature_logosize'] = "100";
-				 $GLOBALS['layout_list'] .= $templateTitle.'<label class="relative block" for="layout_id'.$layout_id.'">
+				 $GLOBALS['layout_list'] .= $templateTitle.'<label class="relative block cursor-pointer" for="layout_id'.$layout_id.'">
 				 	<input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="peer hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.' data-layout_divider_padding_remove="'.$layoutRow['layout_divider_padding_remove'].'">
 					 <span class="top-1/2 right-1/2 hidden absolute -translate-y-1/2 -translate-x-1/2 bg-gradient size-6 text-white rounded-full text-lg items-center justify-center peer-checked:flex z-[1]">
 					 <i class="hgi hgi-stroke hgi-tick-02"></i>
 					 </span>
-					 <span class="layout_id peer-checked:opacity-50">
+					 <span class="layout_id peer-checked:opacity-50 pointer-events-none">
 						<table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td>

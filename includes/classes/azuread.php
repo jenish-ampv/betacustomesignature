@@ -285,7 +285,7 @@ class CIT_AZUREAD
 						$GLOBALS['group_list'] .='  <div data-kt-accordion-item="true" class="kt-accordion-item group relative" aria-expanded="false">
 							<div class="flex items-center gap-2 p-3 group-[.active]:bg-primary/10">
 								<input class="kt-checkbox master_checkbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$group['id'].'" data-wrapper ="wrapper-'.$group['id'].'">
-								<label class="kt-label mb-3" for="'.$group['id'].'">'.$group['displayName'].'</label>
+								<label class="kt-label" for="'.$group['id'].'">'.$group['displayName'].'</label>
 							</div>
 							<div class="size-[45px] cursor-pointer hover:bg-gray-100 flex items-center justify-center absolute right-0 top-0" data-kt-accordion-toggle="true" aria-controls="accordion_content_'.$group['id'].'" id="accordion_toggle_'.$group['id'].'">
 								<i  class="hgi hgi-stroke hgi-arrow-right-01 text-xl"></i>
@@ -304,7 +304,7 @@ class CIT_AZUREAD
 										<div class="member_list">
 											<div class="member_chek flex flex-wrap items-center gap-2">
 												<input class="kt-checkbox mem_checkbox" type="checkbox" name="members['.$mem_count.']" id="'.$members['id'].'-'.$group['id'].'" value="'.$members['id'].'"  data-wrapper="wrapper-'.$group['id'].'" data-master="'.$group['id'].'">
-												<label class="kt-label mb-3" for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'<span class="ml-2 text-gray-500 font-normal">('.$members['mail'].')</span></label>
+												<label class="kt-label" for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'<span class="ml-2 text-gray-500 font-normal">('.$members['mail'].')</span></label>
 											</div>
 											<input type="hidden" name="displayName[]" value="'.$members['displayName'].'" >
 											<input type="hidden" name="givenName[]" value="'.$members['givenName'].'" >
@@ -326,9 +326,9 @@ class CIT_AZUREAD
 					
 										$GLOBALS['search_list'] .='
 										<div class="member_list search-container" style="display:none;">
-											<div class="flex items-center gap-2">
+											<div class="flex items-center gap-2 mb-3">
 												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$members['id'].'-'.$group['id'].'" value=""  data-master="'.$group['id'].'">
-												<label class="kt-label mb-3" for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'('.$members['mail'].')</label>
+												<label class="kt-label" for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'('.$members['mail'].')</label>
 											</div>
 										</div>';
 										$mem_count++;

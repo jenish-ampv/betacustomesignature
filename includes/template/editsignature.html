@@ -646,9 +646,9 @@
     $(document).ready(function () {
       var profileImagePath = $('input[name="signature_profile"]').val();
       if (!$.trim(profileImagePath)) {
-        $(".profile_animation_section").addClass('cursor-not-allowed opacity-50');
+        $(".profile_animation_section").addClass('cursor-not-allowed opacity-50 pointer-events-none');
       }else{
-        $(".profile_animation_section").removeClass('cursor-not-allowed opacity-50');
+        $(".profile_animation_section").removeClass('cursor-not-allowed opacity-50 pointer-events-none');
       }
 
       // var tooltip = $("<div class='hover_tooltip'>Please upload your profile picture or click 'Set & Save' if it’s already uploaded.</div>");

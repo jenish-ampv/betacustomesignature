@@ -72,7 +72,7 @@
                 <i class="hgi hgi-stroke hgi-ai-magic"></i>
               </button>
               <div>
-                <p class="text-gray-950">🚀 2X Your Reply Rate</p>
+                <p class="text-gray-950">🚀 2x Your Reply Rate</p>
                 <p class="text-gray-500">Add your logo, links, banners, and team details to match your brand identity.</p>
               </div>
             </div>
@@ -82,7 +82,7 @@
               </button>
               <div>
                 <p class="text-gray-950">📊 Analytics Tracking</p>
-                <p class="text-gray-500">Add your logo, links, banners, and team details to match your brand identity.</p>
+                <p class="text-gray-500">Track Performance like never before. Our real-time analytics show impressions, clicks and engagement across your entire team.</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
@@ -91,7 +91,7 @@
               </button>
               <div>
                 <p class="text-gray-950">⚡ Auto-Deployment & Team Dashboard</p>
-                <p class="text-gray-500">Add your logo, links, banners, and team details to match your brand identity.</p>
+                <p class="text-gray-500">Easily create, organize, and deploy professional email signatures for your entire team from one centralized dashboard.</p>
               </div>
             </div>
           </div>
@@ -488,8 +488,8 @@
                   $target.closest('.kt-modal-content').addClass('max-w-full');
                   initCustomSlider();
 
-                  // For monthly yearly toggle
-                  $('#plan_type').on('change', function () {
+                  // Bind event for the monthly/yearly toggle to dynamically injected content
+                  $(document).on('change', '#plan_type', function () {
                     if ($(this).is(':checked')) {
                       $("#yearly-tab").removeClass('hidden');
                       $("#monthly-tab").addClass('hidden');
@@ -498,8 +498,6 @@
                       $("#yearly-tab").addClass('hidden');
                     }
                   });
-                  // For monthly yearly toggle
-
               } else {
                 $target.html('<p>Content not found.</p>');
               }
