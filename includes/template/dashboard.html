@@ -114,14 +114,14 @@
 								</div>
 								<div class="kt-card-toolbar">
 									IF("%%DEFINE_plan_signaturelimit%%" != "1"){
-									<a class="kt-btn kt-btn-icon rounded-full kt-btn-outline kt-btn-primary"
+									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary"
 										href="javascript:void(0);"
 										onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
 										<i class="hgi hgi-stroke hgi-add-01"></i>
 									</a>
 									{:IF}
 									IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-									<a class="kt-btn kt-btn-primary"
+									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary"
 										href="%%DEFINE_linkModuleNewsignature%%?siganature_type=master"><i class="hgi hgi-stroke hgi-add-01"></i></a>
 									{:IF}
 								</div>
@@ -159,7 +159,7 @@
 				<div class="kt-card-header h-auto py-3 flex-col justify-start items-start">
 					<div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
 						<div class="flex flex-wrap items-center gap-2">
-							<div class="kt-input min-w-[200px]">
+							<div class="kt-input w-[200px]">
 								<i class="hgi hgi-stroke hgi-search-01"></i>
 								<input class="kt-input" type="text" id="search_input" placeholder="Type to Search...">
 							</div>
