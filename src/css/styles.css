@@ -335,3 +335,9 @@ input[type="range"]::-webkit-slider-thumb {
 padding: 0;
 }
 
+.signature_previous_box,
+.layout_id{
+    img{
+        @apply max-w-[unset];
+    }
+}
