@@ -536,9 +536,9 @@
 								icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
 							});
 					}).always(function () {
-							$btn.data('clicked', false);
-						});
-						return false;
+						$btn.data('clicked', false);
+					});
+					return false;
 				} else {
 					$btn.data('clicked', false);
 				}
@@ -588,6 +588,12 @@
 
 			// delete and copy signature action
 			$('.ajaxaction_share').on("click", function () {
+				var $btn = $(this);
+				if ($btn.data('clicked')) {
+					return false; // ignore if already clicked
+				}
+				$btn.data('clicked', true);
+				
 				var id = $(this).attr('data-id');
 				var action = $(this).attr('data-action');
 				var url = $('#form_url').val();
@@ -617,8 +623,13 @@
 						// this.bind('click',handler);
 						// Optionally alert the user of success here...
 					}).fail(function (data) {
-						return false;
-						// Optionally alert the user of an error here...
+						KTToast.show({
+							message: `<strong>Failure! </strong> ${data.msg}`,
+							variant: 'destructive',
+							icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
+						});
+					}).always(function () {
+						$btn.data('clicked', false);
 					});
 					return false;
 				}
