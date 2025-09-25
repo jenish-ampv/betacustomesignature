@@ -73,18 +73,24 @@ $(document).ready(function(){
     if(beforeBorderRadius == '200px'){
       $($('.imagetopngClass')[index]).css('border-radius','15px');
     }
+
+    $('.signature_tbl_main img').each(function() {
+  $(this).css('display', 'inline-block');
+});
+
+
     var styleTag = `
-    <style>
-      img, canvas {
-        display: inline-block !important;
-      }
-      img {
-        max-width: inherit !important;
-        height: auto !important;
-      }
-    </style>
-  `;
-  $('head').append(styleTag);
+  <style id="custom-image-style">
+    img, canvas {
+      display: inline-block;
+    }
+    img {
+      max-width: inherit;
+      height: auto;
+    }
+  </style>
+`;
+$('head').append(styleTag);
     html2canvas($('.imagetopngClass')[index], {
         scale:3,
         scrollX: -window.scrollX,
@@ -119,6 +125,7 @@ $(document).ready(function(){
             data: {image: imageData, image_name: imageName+".png", root_link: root_link, signature_id: signatureId},
             dataType: 'html',
             success: function(response){
+              $('#custom-image-style').remove();
               var data = jQuery.parseJSON(response);
               if(data.error){
                 console.log(data.msg);

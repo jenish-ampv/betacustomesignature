@@ -334,10 +334,3 @@ input[type="range"]::-webkit-slider-thumb {
 -webkit-appearance: auto;
 padding: 0;
 }
-
-.signature_previous_box,
-.layout_id{
-    img{
-        @apply max-w-[unset];
-    }
-}
