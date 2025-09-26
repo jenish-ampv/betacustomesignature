@@ -92,9 +92,9 @@ class CIT_BANNERCAMPAIGN
 			if(isset($row['campaign_status'])){
 				$fieldtype = $row['campaign_status'];
 				if($fieldtype != 'canceled'){
-					if($row['start_date'] > date('Y-m-d H:i:s')){
+					if($row['start_date'] > date('Y-m-d')){
 						$fieldtype = 'scheduled';
-					}else if(date('Y-m-d H:i:s') > $row['end_date']){
+					}else if(date('Y-m-d') > $row['end_date']){
 						$fieldtype = 'completed';
 					}
 					else if($row['is_paused'] == 'true'){
