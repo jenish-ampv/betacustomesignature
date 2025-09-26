@@ -156,8 +156,8 @@
 			<div class="kt-card mt-2">
 				<div class="kt-card-header h-auto py-3 flex-col justify-start items-start">
 					<div class="kt-card-toolbar w-full flex flex-wrap justify-between items-center">
-						<div class="flex flex-wrap items-center gap-2">
-							<div class="kt-input w-[200px]">
+						<div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+							<div class="kt-input">
 								<i class="hgi hgi-stroke hgi-search-01"></i>
 								<input class="kt-input" type="text" id="search_input" placeholder="Type to Search...">
 							</div>
@@ -713,7 +713,7 @@
 	
 	document.addEventListener("DOMContentLoaded", function () {
 		const reviewModalEl = document.querySelector('#reviewModal');
-		const reviewModal = KTModal.getInstance(reviewModalEl);
+		const reviewModalKT = KTModal.getInstance(reviewModalEl);
 
 		const reviewLogo = document.getElementById('reviewLogo');
 		if (reviewLogo) {
@@ -725,9 +725,10 @@
 				document.getElementById("backreview").setAttribute('data-id', signatureId);
 				document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
-				var imgBody = reviewModalEl.querySelector('.preview-logo');
+				var reviewModal = document.getElementById('reviewModal');
+				var imgBody = reviewModal.querySelector('.preview-logo');
 				imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
-				reviewModal.show();
+				reviewModalKT.show();
 			});
 		}
 	});

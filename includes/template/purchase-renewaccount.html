@@ -198,8 +198,22 @@
                 </div>
                 <div id="paymentResponse"></div>
                 <div class="mt-4 form-floating card_info">
-                  <label class="kt-form-label">Card Number *</label>
-                  <div id="card-element"></div>
+                  <!-- <label class="kt-form-label">Card Number *</label> -->
+                  <!-- <div id="card-element"></div> -->
+                  <div id="card-element" class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                      <label class="kt-form-label">Card Number</label>
+                      <div id="card-number-element" class="kt-input !block pt-3"></div>
+                    </div>
+                    <div>
+                      <label class="kt-form-label">Expiry date</label>
+                      <div id="card-expiry-element" class="kt-input !block pt-3"></div>
+                    </div>
+                    <div>
+                      <label class="kt-form-label">Security code</label>
+                      <div id="card-cvc-element" class="kt-input !block pt-3"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -607,6 +621,54 @@
     // Set your publishable API key
     var stripe = Stripe('%%DEFINE_STRIPE_PUBLISHABLE_KEY%%');
 
+
+    // Create an instance of elements
+    var elements = stripe.elements();
+
+    var style = {
+      base: {
+        color: "#32325d",
+        fontFamily: 'Switzer, sans-serif',
+        fontSmoothing: "antialiased",
+        fontSize: "13px",
+        "::placeholder": {
+          color: "#9f9fa9"
+        }
+      },
+      invalid: {
+        fontFamily: 'Arial, sans-serif',
+        color: "#fa755a",
+        iconColor: "#fa755a"
+      }
+    };
+
+    // Create individual elements
+    var cardNumber = elements.create('cardNumber', { style: style });
+    var cardExpiry = elements.create('cardExpiry', { style: style });
+    var cardCvc = elements.create('cardCvc', { style: style });
+
+    // Mount to respective divs
+    cardNumber.mount('#card-number-element');
+    cardExpiry.mount('#card-expiry-element');
+    cardCvc.mount('#card-cvc-element');
+
+    // Handle validation errors
+    var resultContainer = document.getElementById('paymentResponse');
+
+    function setError(event) {
+      if (event.error) {
+        resultContainer.innerHTML = '<p style="color:#F00;">' + event.error.message + '</p>';
+      } else {
+        resultContainer.innerHTML = '';
+      }
+    }
+
+    cardNumber.on('change', setError);
+    cardExpiry.on('change', setError);
+    cardCvc.on('change', setError);
+
+    // Old code for the card field
+    /*
     // Create an instance of elements
     var elements = stripe.elements();
     var style = {
@@ -639,6 +701,9 @@
         resultContainer.innerHTML = '';
       }
     });
+    */
+    // Old code for the card field
+
     // Get payment form element
     var form = document.getElementById('registerForm');
 

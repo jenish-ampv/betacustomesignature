@@ -107,41 +107,33 @@
     <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
     
     <script language="javascript">
-        jQuery.noConflict();
-            (function ($) {
-            function sendInviteMail(url) {
-                $(".loader-image").show();
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    contentType: 'application/json'
-                }).done(function (data) {
+        function sendInviteMail(url) {
+            $(".loader-image").show();
+            $.ajax({
+                type: 'POST',
+                url: url,
+                contentType: 'application/json'
+            }).done(function (data) {
+                $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong>Invite mail send successfully.</div>');
+                console.log('he;;p')
+                $('#snackbar').show();
+                $(".loader-image").hide();
+                setTimeout(function () { $('#snackbar').hide(); }, 2000);
 
-                    KTToast.show({
-                        message: '<b>Success!</b> Invite mail send successfully.',
-                        variant: 'success',
-                        icon: '<i class="fas fa-check-circle text-success"></i>',
-                    });
-
-                    // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong>Invite mail send successfully.</div>');
-                    // $('#snackbar').show();
-                    // setTimeout(function () { $('#snackbar').hide(); }, 2000);
-                    $(".loader-image").hide();
-
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    KTToast.show({
-                        message: `<strong>Something went wrong! Please try again.</strong> Please try again later.`,
-                        variant: 'destructive',
-                        icon: '<i class="fas fa-exclamation-triangle text-danger"></i>',
-                    });
-
-                    // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
-                    // $('#snackbar-error').show();
-                    // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                    $(".loader-image").hide();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                KTToast.show({
+                    message: `<strong>Something went wrong! Please try again.</strong> Please try again later.`,
+                    variant: 'destructive',
                 });
-            };
-            
+
+                // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                $(".loader-image").hide();
+            });
+        };
+        jQuery.noConflict();
+        (function ($) {
             $(document).ready(function () {
                 $('#addUserForm').on('submit', function (e) {
                     $('#user_firstname').css('border-color', '');
