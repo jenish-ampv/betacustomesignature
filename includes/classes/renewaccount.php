@@ -241,7 +241,7 @@ class CIT_RENEWACCOUNT
 					$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
 					$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 					 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly) <b>$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b><span class="offper">'. $offper.'% OFF</span></h6>  
-					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 					 <ul>'.$plan_text.'</ul>
 					</div>';
 				}else{
@@ -316,7 +316,7 @@ class CIT_RENEWACCOUNT
 					$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
 					$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 					 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly) <b>$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b><span class="offper">'. $offper.'% OFF</span></h6>  
-					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 					 <ul>'.$plan_text.'</ul>
 					</div>';
 				}else{

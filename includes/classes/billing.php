@@ -320,7 +320,7 @@ class CIT_BILLING
 							<div class="text_price"><span>'.$selunit.'</span> Signature</div>
 							<span class="kt-badge bg-gradient text-white rounded-full absolute left-2 top-2">'. $offper.'</span>';
 					if($plantype == 'year'){
-						$GLOBALS['selected_plan'] .= '<div class="monthprice">$<span>'.$plan_selpricespl.'</span></div>';
+						$GLOBALS['selected_plan'] .= '<div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div>';
 					}
 					$GLOBALS['selected_plan'] .= '</div></div>';
 				}else{

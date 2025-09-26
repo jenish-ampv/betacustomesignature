@@ -836,13 +836,13 @@ class CIT_REGISTER
 					 if( $_SESSION['free_trial'] == 1){
 						 $GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 						 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)  <b style="float:none;"><span class="offper">7 Day Free Trial</b></span><b><span class="month_basicprice">7 Day Free</span></b></h6>  
-						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice" style="text-decoration-line:none;"><span>Then $'.$GLOBALS['plan_price_hiden'].'/'.$plantype.' after trial</span></div></div>
+						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through" style="text-decoration-line:none;"><span>Then $'.$GLOBALS['plan_price_hiden'].'/'.$plantype.' after trial</span></div></div>
 						 <ul><li>Static Logo (Upgrade Trial to Animate)</li><li>Animated Icon</li><li>Pro Layouts</li><li>Full Dashboard Suite</li></ul>
 					   </div>';
 					 }else{
 					 	$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 						 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)  <b>'.$freetrial_text.' '. $offper.'$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h6>  
-						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 						 <ul>'.$plan_text.'</ul>
 					   </div>';
 					 }
