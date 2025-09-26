@@ -175,7 +175,7 @@ class CIT_BANNERCAMPAIGN
                 </tr>";
                 // <img src='".$GLOBALS['IMAGE_LINK']."/images/dots-menu.svg'/>
         }
-        $GLOBALS['bannerCampaignTableBody'] .= '<tr id="no_banner_row"><td colspan="9" style="text-align: center;">No Campaign Found</td></tr>';
+        $GLOBALS['bannerCampaignTableBody'] .= '<tr id="no_banner_row"><td class="text-center pb-0 pt-5" colspan="9">No Campaign Found</td></tr>';
         $departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
         foreach ($departments as $department) {
             $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
