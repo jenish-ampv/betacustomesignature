@@ -52,15 +52,11 @@ h3{font-size: calc( 32px + (40 - 32) * (100vw - 400px) / (1920 - 400) );}
 h4{font-size: calc( 24px + (32 - 24) * (100vw - 400px) / (1920 - 400) );}
 h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 
-input[type="range" i]::-webkit-slider-thumb {  
-    width: 24px; height: 24px; border-radius: 50%; background-color: #fff;
+input[type="range"]::-webkit-slider-thumb {  
+    width: 24px; height: 24px; border-radius: 50%; background: transparent; /* invisible */ 
     cursor: pointer; position: relative; z-index: 3;
-    background-image: url('https://customesignature.s3.us-west-1.amazonaws.com/images/ellipse1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
     -webkit-appearance: none;
-    appearance: none;
- }
+; }
 
 
 .bg-gradient{
@@ -286,7 +282,7 @@ input[type="range" i]::-webkit-slider-thumb {
   border-radius: var(--r) var(--r) min(var(--r),100% - var(--p) - var(--b)/2) min(var(--r),var(--p) - var(--b)/2)/var(--r);
   background: 0 0/100% calc(100% + var(--h)) 
     linear-gradient(60deg,#d4f0ff,#d2dbff); /* the gradient */
-    @apply absolute -top-10 -translate-x-0 rounded-lg text-gray-950 text-nowrap px-2.5 py-1.5 pointer-events-none;
+    @apply absolute -top-10 -translate-x-1/2 rounded-lg text-gray-950 text-nowrap px-2.5 py-1.5 pointer-events-none;
     &:before{
         content: "";
         position: absolute;
