@@ -367,6 +367,13 @@ class CIT_REGISTER
 								$dataLayerData['user_data']["user_email"] = (isset($userData["user_email"]) && !empty($userData["user_email"])) ? hash('sha256', $userData["user_email"]) : null;
 								$dataLayerData['user_data']["user_phone"] = (isset($userData["user_phone"]) && !empty($userData["user_phone"])) ? hash('sha256', $userData["user_phone"]) : null;
 								$dataLayerData['user_data']["user_organization"] = $userData["user_organization"];
+								$dataLayerData['user_data']["user_business"] = $userData["user_business"];
+								$dataLayerData['user_data']["user_job_title"] = $userData["user_job_title"];
+								$dataLayerData['user_data']["user_company_size"] = $userData["user_company_size"];
+								$dataLayerData['user_data']["user_team_size"] = $userData["user_team_size"];
+								$dataLayerData['user_data']["user_email_platform"] = $userData["user_email_platform"];
+								$dataLayerData['user_data']["heard_about_us"] = $userData["heard_about_us"];
+								$dataLayerData['user_data']["what_brought_you"] = $userData["what_brought_you"];
 								
 								$datalayer = json_encode($dataLayerData);
 								$redirect_thnk = GetUrl(array('module'=>'thanks')).'/register?customer_id='.$insert_id.'&datalayer='.$datalayer;
@@ -637,7 +644,14 @@ class CIT_REGISTER
 			$dataLayerData['user_data']["user_email"] = (isset($userData["user_email"]) && !empty($userData["user_email"])) ? hash('sha256', $userData["user_email"]) : null;
 			$dataLayerData['user_data']["user_phone"] = (isset($userData["user_phone"]) && !empty($userData["user_phone"])) ? hash('sha256', $userData["user_phone"]) : null;
 			$dataLayerData['user_data']["user_organization"] = $userData["user_organization"];
-			
+			$dataLayerData['user_data']["user_business"] = $userData["user_business"];
+			$dataLayerData['user_data']["user_job_title"] = $userData["user_job_title"];
+			$dataLayerData['user_data']["user_company_size"] = $userData["user_company_size"];
+			$dataLayerData['user_data']["user_team_size"] = $userData["user_team_size"];
+			$dataLayerData['user_data']["user_email_platform"] = $userData["user_email_platform"];
+			$dataLayerData['user_data']["heard_about_us"] = $userData["heard_about_us"];
+			$dataLayerData['user_data']["what_brought_you"] = $userData["what_brought_you"];
+
 			$datalayer = json_encode($dataLayerData);
 			$redirect_thnk = GetUrl(array('module'=>'thanks'));
 			$returnData = array('error'=>0,'redirect_thnk'=>$redirect_thnk,'datalayer'=>$datalayer);
@@ -1907,6 +1921,14 @@ class CIT_REGISTER
 			$gh_lastname = $parts[1];
 			$gh_email = $_POST['user_email'];
 			$gh_org = $_POST['user_organization'];
+			$gh_user_business = $_POST['user_business'];
+			$gh_user_company_size = $_POST['user_company_size'];
+			$gh_user_job_title = $_POST['user_job_title'];
+			$gh_user_team_size = $_POST['user_team_size'];
+			$gh_user_email_platform = $_POST['user_email_platform'];
+			$gh_heard_about_us = $_POST['heard_about_us'];
+			$gh_what_brought_you = $_POST['what_brought_you'];
+
 
 			// retrive user if already exist on gohighlevel by email start
 			$curlForExistingContact = curl_init();
@@ -1976,6 +1998,13 @@ class CIT_REGISTER
 				"firstName": "'.$gh_firstname.'",
 				"lastName": "'.$gh_lastname.'",
 				"companyName": "'.$gh_org.'",
+				"businessName": "'.$gh_user_business.'",
+				"companySize": "'.$gh_user_company_size.'",
+				"jobTitle": "'.$gh_user_job_title.'",
+				"teamSize": "'.$gh_user_team_size.'",
+				"emailPlatform": "'.$gh_user_email_platform.'",
+				"heardAboutUs": "'.$gh_heard_about_us.'",
+				"whatBroughtYou": "'.$gh_what_brought_you.'",
 				"website": "'.$GLOBALS['SITE_TITLE'].'",
 				"tags": '. $tagsArrayStr.',
 				"source": "public api"
