@@ -38,12 +38,11 @@ class CIT_account
 						'StorageClass' => 'REDUCED_REDUNDANCY',
 						'ACL'   => 'public-read'
 					));
-					if(is_array(getimagesize($location))){
-						$src = $GLOBALS['UPLOAD_LINK'].'/profile/'.$filename;
-						
-						$data =array('user_image'=>$filename); $where =array('user_id'=>$GLOBALS['USERID']); 
-						$update = $GLOBALS['DB']->update("registerusers",$data,$where);
-					}
+					
+					$src = $GLOBALS['UPLOAD_LINK'].'/profile/'.$filename;
+					
+					$data =array('user_image'=>$filename); $where =array('user_id'=>$GLOBALS['USERID']); 
+					$update = $GLOBALS['DB']->update("registerusers",$data,$where);
 					$return_arr = array("name" => $filename,"displayname" => $displayname, "size" => $filesize, "src"=> $src, "error"=>0);
 				}
 			}else{
