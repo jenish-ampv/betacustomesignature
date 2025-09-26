@@ -54,13 +54,18 @@ ui(function() {
     // profile file selected
     ui("#profileImage").change(function(){
         var fd = new FormData();
-
         var files = ui('#profileImage')[0].files[0];
-
         fd.append('profileImage',files);
 		ui("#profile_img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
-
         uploadProfileData(fd);
+        
+
+
+        var fd = new FormData();
+        var files = ui('#profileImage')[0].files[0];
+        fd.append('profile',files);
+
+        uploadData1(fd);
     });
 
 
@@ -114,6 +119,28 @@ function addProfileThumbnail(data){
 	}
 
 }
+
+
+// Sending AJAX request and upload file
+function uploadData1(formdata, isdragndrop = false){
+
+    ui.ajax({
+        url: upload_url1,
+        type: 'post',
+        data: formdata,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function(response){
+            $('#uploadfile2').find('img').attr('src', response.src);
+            $('.signature_profile').attr('src', response.src);
+            // filename = response.name;
+            // var resultProfileName = (filename.match(/-(\d+)\.[^\.]+$/) || [])[1] + '.' + filename.split('.').pop();
+            $('[name="signature_profile"]').attr('value', response.name);
+        }
+    });
+}
+
 
 function removeProfileImage(){
 	// ui("#nxt2").prop('disabled', true);
