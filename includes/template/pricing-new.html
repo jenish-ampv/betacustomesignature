@@ -5,7 +5,7 @@
         <i class="hgi hgi-stroke hgi-cancel-01"></i>
       </a>
     <div class="mx-auto container py-4 ">
-      <div id="modalDataMove" class="p-5 h-full overflow-auto">
+      <div id="modalDataMove" class="p-4 h-full overflow-auto">
         <div class="text-center my-7 md:my-16">
           <h2 class="font-semibold text-gray-950">Choose <span
               class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Your Plan</span></h2>
@@ -13,14 +13,14 @@
         </div>
 
         <div class="kt-card">
-          <div class="kt-card-content relative px-5 sm:p-10 pt-14 sm:pt-16 sm:pr-12">
+          <div class="kt-card-content relative px-4 sm:p-10 pt-12 sm:pt-16 sm:pr-12">
             <div class="relative">
-              <div class="rangeTooltip" id="tooltip">1 Signatures</div>
+              <div class="rangeTooltip text-[10px] sm:text-base" id="tooltip">1 Signatures</div>
               <input type="range" class="appearance-none -mx-2 block !h-5 relative z-[1] bg-transparent !w-full"
                 id="rangeSlider" min="0" max="8" step="1" value="0">
-              <!-- <div
+              <div
                 class="absolute bg-cover top-1/2 -translate-y-1/2 pointer-events-none size-5 text-[0px] -translate-x-1/2 z-[4]"
-                id="customThumb" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/ellipse1.png');"></div> -->
+                id="customThumb" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/ellipse1.png');"></div>
               <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
               <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
             </div>
@@ -339,11 +339,7 @@
           const sliderWidth = slider.offsetWidth;
           const posX = (percent / 100) * sliderWidth;
 
-          if (window.innerWidth > 640) {
-            tooltip.style.left = posX + "px";
-          } else {
-            tooltip.style.left = "50%"; // Reset or remove for smaller screens
-          }
+          tooltip.style.left = posX + "px";
           tooltip.textContent = `${value} Signature`;
 
           customThumb.style.left = posX + "px";
