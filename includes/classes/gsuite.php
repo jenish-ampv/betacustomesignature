@@ -169,26 +169,26 @@ class CIT_GSUITE
 					}
 					foreach ($grouped as $groupName => $users) {
 						$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$groupName.'">';
-    					$GLOBALS['group_list'] .= "<strong>" . htmlspecialchars($groupName) . "</strong>
-						<div class='flex items-center gap-2 mb-4'>
-							<label class='kt-label' for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label>
+    					$GLOBALS['group_list'] .= "<div class='flex items-center justify-between py-3 gap-2'>
+						<div class='flex items-center gap-2'>
 							<input type='checkbox' class='select_all_department kt-checkbox' id='select_all_".strtolower(htmlspecialchars($groupName))."' data-department-id='".strtolower(htmlspecialchars($groupName))."' >
-						</div>";
+							<label class='kt-label' for='select_all_".strtolower(htmlspecialchars($groupName))."'>Select All</label>
+						</div><strong>" . htmlspecialchars($groupName) . "</strong></div><div class='border border-gray-200 rounded-xl'>";
 						foreach ($users as $user) {
-							$GLOBALS['group_list'] .='<div class="flex items-center gap-2">
+							$GLOBALS['group_list'] .='<div class="flex items-center gap-2 p-3 border-b border-b-gray-200 last:border-b-0">
                               <input class="kt-checkbox groupcbox checkbox-'.strtolower(htmlspecialchars($groupName)).' mem_checkbox" type="checkbox" name="addUsers[]" id="'.$user->id.'" value="'.$user->primaryEmail.'" data-department-id="'.strtolower(htmlspecialchars($groupName)).'">
 							  <label for="'.$user->id.'">'.$user->name->fullName.'<span class="text-gray-400">('.$user->primaryEmail.')</span></label>
 							</div>';
 							$GLOBALS['search_list'] .='
-										<div class="member_list search-container" style="display:none;">
-											<div class="flex items-center gap-2">
-												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$user->id.'" value="" data-master="'.$user->id.'">
-												<label class="kt-label" for="search_'.$user->id.'">'.$user->name->fullName.'('.$user->primaryEmail.')</label>
-											</div>
-										</div>';
+								<div class="member_list search-container" style="display:none;">
+									<div class="p-3 flex items-center gap-2">
+										<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$user->id.'" value="" data-master="'.$user->id.'">
+										<label class="kt-label" for="search_'.$user->id.'">'.$user->name->fullName.'('.$user->primaryEmail.')</label>
+									</div>
+								</div>';
 						}
 					}
-					$GLOBALS['search_list'] .='</div>';
+					$GLOBALS['search_list'] .='</div></div>';
 				}else{
 						$_SESSION[GetSession('Error')] = '<div class="alert alert-danger">'.$getUsers['msg'].'.</div>';
 				}
