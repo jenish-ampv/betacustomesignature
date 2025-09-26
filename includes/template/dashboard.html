@@ -714,7 +714,7 @@
 	
 	document.addEventListener("DOMContentLoaded", function () {
 		const reviewModalEl = document.querySelector('#reviewModal');
-		const reviewModal = KTModal.getInstance(reviewModalEl);
+		const reviewModalKT = KTModal.getInstance(reviewModalEl);
 
 		const reviewLogo = document.getElementById('reviewLogo');
 		if (reviewLogo) {
@@ -726,9 +726,10 @@
 				document.getElementById("backreview").setAttribute('data-id', signatureId);
 				document.getElementById("backreview").setAttribute('data-img', reviewlogo);
 
+				var reviewModal = document.getElementById('reviewModal');
 				var imgBody = reviewModal.querySelector('.preview-logo');
 				imgBody.innerHTML = '<img src="' + reviewlogo + '" alt="" />';
-				reviewModal.show();
+				reviewModalKT.show();
 			});
 		}
 	});
