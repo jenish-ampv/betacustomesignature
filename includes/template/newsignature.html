@@ -1,5 +1,19 @@
 %%DEFINE_HEADER%%
 
+
+IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
+<style>
+  #logoProfileUploadContainer {
+    display: none !important;
+  }
+
+  #msform {
+    display: inline !important;
+  }
+</style>
+{:IF}
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.2/lottie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
 
@@ -183,17 +197,6 @@
 </form>
 
 
-IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
-<style>
-  #logoProfileUploadContainer {
-    display: none !important;
-  }
-
-  #msform {
-    display: inline !important;
-  }
-</style>
-{:IF}
 
     <input type="hidden" id="upload_url" value="%%DEFINE_linkModuleNewsignature%%/uploadimg" />
     <input type="hidden" id="upload_profile_url" value="%%DEFINE_linkModuleNewsignature%%/uploadprofileimg" />

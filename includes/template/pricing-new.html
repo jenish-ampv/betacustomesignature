@@ -74,8 +74,8 @@
 
         <div class="hidden" id="monthly-tab">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="kt-card mt-5 bg-gradient-to-br from-[#26B7FF]/5 via-white/5 to-[#1D4AFE]/5 recommended">
-              <div class="kt-card-content">
+            <div class="kt-card border-0 bg-[linear-gradient(to_bottom_right,rgba(38,183,255,0.6)_0%,rgba(255,255,255,0.6)_50%,rgba(29,74,254,0.6)_100%)] p-[2px] mt-5">
+              <div class="kt-card-content rounded-xl bg-gradient-to-br from-[#26B7FF]/5 via-white/5 to-[#1D4AFE]/5 bg-white recommended">
                 <div class="flex items-center gap-10">
                   <div>
                     <h5 class="font-semibold">Pro Plan</h5>
@@ -118,19 +118,17 @@
             </div>
             <div class="kt-card mt-5">
               <div class="kt-card-content">
-                <div class="flex items-center gap-10">
+                <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5>Enterprise Plan</h5>
                     <p>100+ signature</p>
                     <p class="mt-1 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day
                       Risk-Free Guarantee</p>
                   </div>
-                  <span class="font-normal kt-badge kt-badge-lg px-4 h-auto py-1 text-base rounded-full bg-gradient-to-b from-[#26B7FF] to-[#1D4AFE] shadow-[0_0_15px_#1D4AFE,inset_0_-2px_6px_#1E3CB5] text-white">Most
-                    Popular</span>
                 </div>
                 <p class="min-h-5 line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10"></p>
                 <h2>Contact Us</h2>
-                <p class="text-gray-400 mt-1">For large companies with over +100 users and custom solutions.</p>
+                <p class="text-gray-400 my-1">For large companies with over +100 users and custom solutions.</p>
                 <p class="min-h-5"></p>
                 <a class="kt-btn kt-btn-white w-full my-4" target="_blank"
                   href="https://www.customesignature.com/contact-us">Contact us</a>
@@ -165,9 +163,9 @@
 
         <div id="yearly-tab">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="kt-card mt-5 bg-gradient-to-br from-[#26B7FF]/5 via-white/5 to-[#1D4AFE]/5">
-              <div class="kt-card-content recommended">
-                <div class="flex items-center gap-10">
+            <div class="kt-card border-0 bg-[linear-gradient(to_bottom_right,rgba(38,183,255,0.6)_0%,rgba(255,255,255,0.6)_50%,rgba(29,74,254,0.6)_100%)] p-[2px] mt-5">
+              <div class="kt-card-content rounded-xl bg-gradient-to-br from-[#26B7FF]/5 via-white/5 to-[#1D4AFE]/5 bg-white recommended">
+                <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5 class="font-semibold">Pro Plan</h5>
                     <p><span class="no_employee">1</span> signature</p>
@@ -213,19 +211,17 @@
             </div>
             <div class="kt-card mt-5">
               <div class="kt-card-content">
-                <div class="flex items-center gap-10">
+                <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5>Enterprise Plan</h5>
                     <p>100+ signature</p>
                     <p class="mt-1 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day
                       Risk-Free Guarantee</p>
                   </div>
-                  <span class="font-normal kt-badge kt-badge-lg px-4 h-auto py-1 text-base rounded-full bg-gradient-to-b from-[#26B7FF] to-[#1D4AFE] shadow-[0_0_15px_#1D4AFE,inset_0_-2px_6px_#1E3CB5] text-white">Most
-                    Popular</span>
                 </div>
                 <p class="min-h-5 line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10"></p>
                 <h2>Contact Us</h2>
-                <p class="text-gray-400 mt-1">For large companies with over +100 users and custom solutions.</p>
+                <p class="text-gray-400 my-1">For large companies with over +100 users and custom solutions.</p>
                 <p class="min-h-5"></p>
                 <a class="kt-btn kt-btn-white w-full my-4" target="_blank"
                   href="https://www.customesignature.com/contact-us">Contact us</a>
@@ -344,7 +340,7 @@
           const posX = (percent / 100) * sliderWidth;
 
           tooltip.style.left = posX + "px";
-          tooltip.textContent = `${value} signature`;
+          tooltip.textContent = `${value} Signature`;
 
           customThumb.style.left = posX + "px";
           rangeBg.style.width = percent + "%";

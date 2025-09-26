@@ -505,6 +505,7 @@ class CIT_DASHBOARD
 						</div></div></div>';
 				}
 				
+				
 
 				// if($GLOBALS['current_department_id']){
 				// 	$signature_logo_department = $GLOBALS['DB']->row("SELECT * FROM `signature_logo` WHERE user_id = ? AND department_id = ?",array($GLOBALS['USERID'],$GLOBALS['current_department_id']));

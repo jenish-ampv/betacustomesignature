@@ -552,7 +552,7 @@
             var number = Math.random() * 100;
             // Creating an thumbnail
             // ui("#uploadfile3").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-            ui("#uploadfile3").append('<div class="drag_your_image text-center"><img class="inline-block size-52 object-cover" src="' + src + '?rand=' + number + '"></div>');
+            ui("#uploadfile3").append('<div class="drag_your_image border border-gray-300 bg-gray-100 rounded-xl p-5 text-center"><img class="inline-block size-52 object-cover" src="' + src + '?rand=' + number + '"></div>');
             ui('input[name="signature_banner"]').remove();
             ui("#img_preview3").append('<div class="bg-white flex gap-3 rounded-lg p-3 mb-4"><i class="hgi hgi-stroke hgi-checkmark-circle-01 !text-success"></i><span>'+displayname+' &nbsp; ('+size+') </span> <a class="text-danger" href="javascript:void(0);" onclick="removeImage2()"> <i class="hgi hgi-stroke hgi-delete-02"></i> </a> <input type="hidden" name="signature_banner" value="' + name + '"> </div>');
             ui("#nxt2").prop('disabled', false);

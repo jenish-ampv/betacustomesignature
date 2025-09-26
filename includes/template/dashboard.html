@@ -303,7 +303,7 @@
 		</div>
 		<div class="kt-modal-body">
 			<div class="preview-logo"></div>
-			<div class="flex justify-center mt-3">
+			<div class="flex justify-center mt-3 gap-2">
 				<button type="button" class="kt-btn kt-btn-secondary" data-kt-modal-toggle="#feedbackModal">Would like to
 					revise</button>
 				<a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction" id="looksgood" data-id="0"
@@ -370,13 +370,12 @@
 			</button>
 		</div>
 		<div class="kt-modal-body">
-			<textarea name="feedback" id="feedback" rows="5" class="form-control"></textarea>
-		</div>
-		<div class="flex gap-2">
-			<button type="button" class="kt-btn kt-btn-secondary" id="backreview" data-kt-modal-toggle="#reviewModal"
-				data-img="" data-id="">Back</button>
-			<button type="button" class="kt-btn kt-btn-primary" id="sendfeedback">Send Feedback! <img
-					src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></button>
+			<textarea name="feedback" id="feedback" rows="5" class="kt-textarea"></textarea>
+			<div class="flex justify-center gap-2 mt-3">
+				<button type="button" class="kt-btn kt-btn-secondary" id="backreview" data-kt-modal-toggle="#reviewModal"
+					data-img="" data-id="">Back</button>
+				<button type="button" class="kt-btn kt-btn-primary" id="sendfeedback">Send Feedback!</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -770,6 +769,7 @@
 		document.getElementById("share_email").value = shareEmail || '';
 		document.getElementById("sharesig").setAttribute('data-id', signatureId || '');
 	});
+
 </script>
 
 <script language="javascript">

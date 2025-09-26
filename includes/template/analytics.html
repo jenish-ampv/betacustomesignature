@@ -11,9 +11,9 @@
 
             <div class="flex gap-2 flex-wrap justify-between items-center mb-4">
                 <h5 class="text-xl text-nowrap">Analytics Overview</h5>
-                <div class="kt-input w-auto">
+                <div class="kt-input w-auto cursor-pointer">
                     <i class="hgi hgi-stroke hgi-calendar-03"></i>
-                    <input type="text" class="w-[180px]" id="datepicker" name="date_range" readonly>
+                    <input type="text" class="w-[180px] cursor-pointer" id="datepicker" name="date_range" readonly>
                 </div>
             </div>
 
@@ -561,7 +561,7 @@
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
                                     <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] after:border-2 h-full after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_windows_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_windows_clicks_percentage">0%</span>
+                                <span class="ml-5 w-9" id="total_windows_clicks_percentage">0%</span>
                             </div>
                             <div>
                                 <div class="flex items-center gap-2 min-w-28">
@@ -570,7 +570,7 @@
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
                                     <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] after:border-2 h-full after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_macos_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_macos_clicks_percentage">0%</span>
+                                <span class="ml-5 w-9" id="total_macos_clicks_percentage">0%</span>
                             </div>
                             <div>
                                 <div class="flex items-center gap-2 min-w-28">
@@ -579,7 +579,7 @@
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
                                     <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] after:border-2 h-full after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_linux_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_linux_clicks_percentage">0%</span>
+                                <span class="ml-5 w-9" id="total_linux_clicks_percentage">0%</span>
                             </div>
                             <div>
                                 <div class="flex items-center gap-2 min-w-28">
@@ -588,7 +588,7 @@
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
                                     <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] after:border-2 h-full after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_ios_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_ios_clicks_percentage">0%</span>
+                                <span class="ml-5 w-9" id="total_ios_clicks_percentage">0%</span>
                             </div>
                             <div>
                                 <div class="flex items-center gap-2 min-w-28">
@@ -597,7 +597,7 @@
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
                                     <div class="relative after:content-[''] after:absolute after:top-[-3px] after:w-[12px] after:h-[12px] after:bg-gradient-to-r after:from-[#1D4AFE] after:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] after:border-2 h-full after:border-white after:rounded-full after:shadow-[0_0_8px_#1D4AFE] after:transition-[left] after:duration-300 after:ease-in-out" id="total_android_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_android_clicks_percentage">0%</span>
+                                <span class="ml-5 w-9" id="total_android_clicks_percentage">0%</span>
                             </div>
                         </div>
                     </div>
@@ -1584,7 +1584,7 @@
         if (statsBox) {
             statsBox.innerHTML = `
                 <div class='border border-gray-200 rounded-lg bg-white'>
-                    <div class="flex items-center gap-3 p-3" id="collapse_toggle" data-kt-collapse="#collapse_content" aria-expanded="false">
+                    <div class="flex items-center justify-between gap-3 p-3" id="collapse_toggle" data-kt-collapse="#collapse_content" aria-expanded="false">
                         <div>
                             <p class="text-2xl text-gray-950 font-semibold">${totalClicks.toLocaleString()}</p>
                             <p class="text-xs text-gray-400">Worldwide Clicks</p>
