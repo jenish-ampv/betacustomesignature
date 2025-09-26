@@ -248,33 +248,35 @@ class CIT_GSUITE
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label mb-3">Full Name</label>
+							<label class="kt-form-label">Full Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
 							</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
-                                <select  class="kt-select" name="dirattrp[]">
-                                    <option value="master" '.$signature_firstnamemaster.'>Take From Master </option>
-                                    <option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
-                                    <option value="familyName" '.$signature_firstnamefamilyName.'>family Name</option>
+								<label class="kt-form-label hidden lg:block opacity-0">Full Name</label>
+								<select  class="kt-select" name="dirattrp[]">
+									<option value="master" '.$signature_firstnamemaster.'>Take From Master </option>
+									<option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
+									<option value="familyName" '.$signature_firstnamefamilyName.'>family Name</option>
 									<option value="fullName" '.$signature_firstnamefullName.'>Full Name</option>
 									<option value="givenName" '.$signature_firstnamegivenName.'>Given Name</option>
-                                    <option value="primaryEmail" '.$signature_firstnameprimaryEmail.'>primaryEmail</option>
-                                    <option value="phones" '.$signature_firstnamephones.'>Phones</option>
-                                    <option value="organizations" '.$signature_firstnameorganizations.'>Organizations</option>
-                                    <option value="websites" '.$signature_firstnamewebsites.'>Websites</option>
-									 <option value="addresses" '.$signature_firstnameaddresses.'>Address</option>
-                                    <option value="locations" '.$signature_firstnamelocations.'>Locations</option>
-                                </select>
-                                <input type="hidden" name="fieldp[]" value="signature_firstname" />
+									<option value="primaryEmail" '.$signature_firstnameprimaryEmail.'>primaryEmail</option>
+									<option value="phones" '.$signature_firstnamephones.'>Phones</option>
+									<option value="organizations" '.$signature_firstnameorganizations.'>Organizations</option>
+									<option value="websites" '.$signature_firstnamewebsites.'>Websites</option>
+									<option value="addresses" '.$signature_firstnameaddresses.'>Address</option>
+									<option value="locations" '.$signature_firstnamelocations.'>Locations</option>
+								</select>
+								<input type="hidden" name="fieldp[]" value="signature_firstname" />
                             </div>';
 				$mfield++;
 			}
 			if($data['signature_jobtitle'] != ""){
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label mb-3">Title / Sub Title</label>
+							<label class="kt-form-label">Title / Sub Title</label>
   							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
+								<label class="kt-form-label hidden lg:block opacity-0">Full Name</label>
                                 <select  class="kt-select" name="dirattrp[]">
                                     <option value="master" '.$signature_jobtitlemaster.'>Take From Master </option>
                                     <option value="displayName" '.$signature_jobtitledisplayName.'>Display Name</option>
@@ -295,10 +297,11 @@ class CIT_GSUITE
 			if($data['signature_company'] !=""){
 				$mfield++;
 				$GLOBALS['master_fieldp'] .='<div>
-							<label class="kt-label mb-3">Company Name</label>
+							<label class="kt-form-label">Company Name</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
 				$GLOBALS['dirattr_fieldp'] .='<div>
+						<label class="kt-form-label hidden lg:block opacity-0">Full Name</label>
 						<select class="kt-select" name="dirattrp[]">
 							<option value="master" '.$signature_companymaster.'>Take From Master </option>
 							<option value="displayName" '.$signature_companydisplayName.'>Display Name</option>
@@ -337,11 +340,12 @@ class CIT_GSUITE
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
 						$GLOBALS['master_fieldc'] .='<div>
-							<label class="kt-label mb-3">'.$field_label.'</label>
+							<label class="kt-form-label">'.$field_label.'</label>
 							<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						
 						$GLOBALS['dirattr_fieldc'] .='<div>
+								<label class="kt-form-label hidden lg:block opacity-0">Full Name</label>
                                 <select class="kt-select" name="dirattrc[]">
                                     <option value="master" '.${$fieldname.'master'}.'>Take From Master </option>
 									 <option value="displayName" '.${$fieldname.'displayName'}.'>Display Name</option>

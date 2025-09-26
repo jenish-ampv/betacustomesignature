@@ -13,14 +13,58 @@
 					}
 				</style>
 				{:IF}
-				<div class="col-span-12 xl:col-span-6 2xl:col-span-5">
-					<div class="kt-card h-full">
-						<div class="kt-card-header flex-col justify-start items-start">
-							<div class="kt-card-heading pt-5">
+				<div class="col-span-12 xl:col-span-6 2xl:col-span-5 grid grid-cols-12 gap-2">
+					<div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-12 master_signature">
+						<div class="kt-card h-full">
+							<div class="kt-card-header">
+								<div class="kt-card-heading">
+									<div class="kt-card-title">Master Signature</div>
+								</div>
+								<div class="kt-card-toolbar">
+									IF("%%DEFINE_plan_signaturelimit%%" != "1"){
+									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary" href="javascript:void(0);" id="createMasterSignatureButton" onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
+										<i class="hgi hgi-stroke hgi-add-01"></i>
+									</a>
+									{:IF}
+									IF("%%DEFINE_plan_signaturelimit%%" == "1"){
+									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary"
+										href="%%DEFINE_linkModuleNewsignature%%?siganature_type=master"><i class="hgi hgi-stroke hgi-add-01"></i></a>
+									{:IF}
+								</div>
+							</div>
+							<div
+								class="kt-card-content relative flex items-center justify-center text-center">
+								<div class="h-full w-full overflow-auto">
+									%%DEFINE_master_signature%%
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-12 kt-card">
+						<div class="kt-card-header">
+							<div class="kt-card-heading">
+								<div class="kt-card-title">Top Performers</div>
+							</div>
+						</div>
+						<div class="kt-card-content py-1 relative" id="chart-container">
+							<div class="chartLoading absolute size-full bg-white/10 top-0 left-0 backdrop-blur-xs flex items-center justify-center !hidden">
+								<div class="loadingInner"></div>
+							</div>
+							<!-- <div class="performers-chart-loader" style="display: none;">
+								<img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
+							</div> -->
+							<canvas id="signature_chart"></canvas>
+						</div>
+					</div>						
+				</div>
+				<div class="col-span-12 xl:col-span-6 2xl:col-span-7 flex flex-col gap-2">
+					<div class="kt-card flex-1">
+						<div class="kt-card-header flex-col justify-start items-start py-2">
+							<div class="kt-card-heading">
 								<div class="kt-card-title">Analytics Snapshot</div>
 							</div>
 							<div
-								class="kt-card-toolbar w-full mb-4 *:bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 *:gap-4 *:border *:border-primary *:rounded-full *:flex *:items-center *:p-2">
+								class="kt-card-toolbar w-full *:bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 *:gap-4 *:border *:border-primary *:rounded-full *:flex *:items-center *:p-2">
 								<div>
 									<img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
 									<div class="snapshot-data flex flex-col">
@@ -44,7 +88,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="kt-card-content relative">
+						<div class="kt-card-content relative flex flex-col">
 							<div class="chartLoading absolute size-full bg-white/10 top-0 left-0 backdrop-blur-xs flex items-center justify-center !hidden">
 								<div class="loadingInner"></div>
 							</div>
@@ -63,7 +107,7 @@
 								<div id="typeCTRSection">
 									<div>
 										<span class="rate"><span id="clickThroughRate">0</span></span>
-										<span class="change kt-badge kt-badge-success"
+										<span class="change kt-badge"
 											id="clickThroughChange"><span>▲</span> +0%</span>
 									</div>
 									<span class="text-xs text-gray-500">Click-Through Rate</span>
@@ -99,57 +143,16 @@
 									</div>
 								</div>
 							</div>
-							<div>
-								<canvas id="dashboardAnalyticsChart"></canvas>
+							<div class="flex-1">
+								<canvas id="dashboardAnalyticsChart" class="h-full"></canvas>
 							</div>
 						</div>
+					</div>
+					<div class="hidden">
+					%%DEFINE_signature_process%%
 					</div>
 				</div>
-				<div class="col-span-12 xl:col-span-6 2xl:col-span-7 grid grid-cols-12 gap-2">
-					<div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-6 master_signature">
-						<div class="kt-card h-full">
-							<div class="kt-card-header">
-								<div class="kt-card-heading">
-									<div class="kt-card-title">Master Signature</div>
-								</div>
-								<div class="kt-card-toolbar">
-									IF("%%DEFINE_plan_signaturelimit%%" != "1"){
-									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary" href="javascript:void(0);" id="createMasterSignatureButton" onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
-										<i class="hgi hgi-stroke hgi-add-01"></i>
-									</a>
-									{:IF}
-									IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-									<a class="kt-btn kt-btn-icon kt-btn-sm rounded-full kt-btn-outline kt-btn-primary"
-										href="%%DEFINE_linkModuleNewsignature%%?siganature_type=master"><i class="hgi hgi-stroke hgi-add-01"></i></a>
-									{:IF}
-								</div>
-							</div>
-							<div
-								class="kt-card-content relative flex items-center justify-center text-center overflow-hidden">
-								%%DEFINE_master_signature%%
-							</div>
-						</div>
-					</div>
-					<div class="col-span-12 md:col-span-6 xl:col-span-12 2xl:col-span-6 kt-card">
-						<div class="kt-card-header">
-							<div class="kt-card-heading">
-								<div class="kt-card-title">Top Performers</div>
-							</div>
-						</div>
-						<div class="kt-card-content py-1 relative" id="chart-container">
-							<div class="chartLoading absolute size-full bg-white/10 top-0 left-0 backdrop-blur-xs flex items-center justify-center !hidden">
-								<div class="loadingInner"></div>
-							</div>
-							<!-- <div class="performers-chart-loader" style="display: none;">
-								<img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
-							</div> -->
-							<canvas id="signature_chart"></canvas>
-						</div>
-					</div>
-					
-							%%DEFINE_signature_process%%
-						
-				</div>
+				
 			</div>
 			%%DEFINE_Message%%
 			
@@ -1231,12 +1234,12 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 
 				if (changeValue < 0) {
 					$changeElem.html(`▼ ${Math.abs(changeValue)}%`)
-						.addClass('negative-change')
-						.removeClass('positive-change');
+						.addClass('kt-badge-destructive')
+						.removeClass('kt-badge-success');
 				} else {
 					$changeElem.html(`▲ ${changeValue}%`)
-						.addClass('positive-change')
-						.removeClass('negative-change');
+						.addClass('kt-badge-success')
+						.removeClass('kt-badge-destructive');
 				}
 			})
 			.catch(error => console.error('Error loading chart data:', error))
