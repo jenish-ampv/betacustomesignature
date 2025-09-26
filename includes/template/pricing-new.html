@@ -4,16 +4,16 @@
     <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn kt-btn-secondary kt-btn-icon absolute top-4 right-4">
         <i class="hgi hgi-stroke hgi-cancel-01"></i>
       </a>
-    <div class="mx-auto container p-4">
+    <div class="mx-auto container py-4 ">
       <div id="modalDataMove" class="p-5 h-full overflow-auto">
-        <div class="text-center my-16">
+        <div class="text-center my-7 md:my-16">
           <h2 class="font-semibold text-gray-950">Choose <span
               class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Your Plan</span></h2>
           <p class="text-xl">How many signatures do you need?</p>
         </div>
 
         <div class="kt-card">
-          <div class="kt-card-content relative p-10 pt-16 pr-12">
+          <div class="kt-card-content relative px-5 sm:p-10 pt-14 sm:pt-16 sm:pr-12">
             <div class="relative">
               <div class="rangeTooltip" id="tooltip">1 Signatures</div>
               <input type="range" class="appearance-none -mx-2 block !h-5 relative z-[1] bg-transparent !w-full"
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-center gap-2 my-10">
+        <div class="flex items-center justify-center gap-2 my-7 md:my-10">
           <div class="flex items-center gap-2">
             <label class="kt-label">Monthly</label>
             <input class="kt-switch" type="checkbox" role="switch" id="plan_type" name="checkbox" checked>
@@ -74,12 +74,12 @@
 
         <div class="hidden" id="monthly-tab">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="kt-card border-0 bg-[linear-gradient(to_bottom_right,rgba(38,183,255,0.6)_0%,rgba(255,255,255,0.6)_50%,rgba(29,74,254,0.6)_100%)] p-[2px] mt-5">
+            <div class="kt-card border-0 bg-[linear-gradient(to_bottom_right,rgba(38,183,255,0.6)_0%,rgba(255,255,255,0.6)_50%,rgba(29,74,254,0.6)_100%)] p-[2px]">
               <div class="kt-card-content rounded-xl bg-gradient-to-br from-[#26B7FF]/5 via-white/5 to-[#1D4AFE]/5 bg-white recommended">
-                <div class="flex items-center gap-10">
+                <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5 class="font-semibold">Pro Plan</h5>
-                    <p><span class="no_employee">1</span> signature</span></p>
+                    <p><span class="no_employee">1</span> Signature</span></p>
                     <p class="mt-1 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free
                       Guarantee</p>
                   </div>
@@ -116,12 +116,12 @@
                 </ul>
               </div>
             </div>
-            <div class="kt-card mt-5">
+            <div class="kt-card">
               <div class="kt-card-content">
                 <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5>Enterprise Plan</h5>
-                    <p>100+ signature</p>
+                    <p>100+ Signature</p>
                     <p class="mt-1 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day
                       Risk-Free Guarantee</p>
                   </div>
@@ -163,12 +163,12 @@
 
         <div id="yearly-tab">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="kt-card border-0 bg-[linear-gradient(to_bottom_right,rgba(38,183,255,0.6)_0%,rgba(255,255,255,0.6)_50%,rgba(29,74,254,0.6)_100%)] p-[2px] mt-5">
+            <div class="kt-card border-0 bg-[linear-gradient(to_bottom_right,rgba(38,183,255,0.6)_0%,rgba(255,255,255,0.6)_50%,rgba(29,74,254,0.6)_100%)] p-[2px]">
               <div class="kt-card-content rounded-xl bg-gradient-to-br from-[#26B7FF]/5 via-white/5 to-[#1D4AFE]/5 bg-white recommended">
                 <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5 class="font-semibold">Pro Plan</h5>
-                    <p><span class="no_employee">1</span> signature</p>
+                    <p><span class="no_employee">1</span> Signature</p>
                     <p class="mt-1 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day
                       Risk-Free Guarantee</p>
                   </div>
@@ -209,12 +209,12 @@
                 </ul>
               </div>
             </div>
-            <div class="kt-card mt-5">
+            <div class="kt-card">
               <div class="kt-card-content">
                 <div class="flex items-center justify-between gap-10">
                   <div>
                     <h5>Enterprise Plan</h5>
-                    <p>100+ signature</p>
+                    <p>100+ Signature</p>
                     <p class="mt-1 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day
                       Risk-Free Guarantee</p>
                   </div>
@@ -339,7 +339,11 @@
           const sliderWidth = slider.offsetWidth;
           const posX = (percent / 100) * sliderWidth;
 
-          tooltip.style.left = posX + "px";
+          if (window.innerWidth > 640) {
+            tooltip.style.left = posX + "px";
+          } else {
+            tooltip.style.left = "50%"; // Reset or remove for smaller screens
+          }
           tooltip.textContent = `${value} Signature`;
 
           customThumb.style.left = posX + "px";

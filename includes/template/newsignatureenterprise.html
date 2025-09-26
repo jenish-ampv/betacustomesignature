@@ -281,7 +281,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
               setTimeout(function () { x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
             }
           } else {
-            $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+            $('#snackbar-error').html('<div class="alert alert-danger"><i class="hgi hgi-stroke hgi-alert-circle mr-3"></i><strong><strong>Failure! </strong>' + json.msg + ' </div>');
             $('#snackbar-error').show();
             setTimeout(function () { $('#snackbar-error').hide(); window.location = redirecturld; }, 2000);
             return false;
