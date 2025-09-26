@@ -29,19 +29,6 @@
                             data with the fields in your Master Signature.</p>
                         <form id="mappingazure" method="post" action="" enctype="multipart/form-data">
                             <div class="grid gap-5 grid-cols-1 lg:grid-cols-2">
-                                <table class="kt-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Master Signature Field</th>
-                                            <th>Google Workspace Attributes</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                                 <div class="kt-card kt-card-accent">
                                     <div class="kt-card-header">
                                         <div class="kt-card-heading">
@@ -66,8 +53,12 @@
                                         </div>
                                     </div>
                                     <div class="kt-card-content">
+                                        <div class="h-[25px] hidden lg:block opacity-0 mb-2"></div>
                                         <div class="space-y-2">
                                             %%DEFINE_dirattr_fieldp%%
+                                        </div>
+                                        <div class="h-[25px] hidden lg:block opacity-0 mb-2 mt-5"></div>
+                                        <div class="space-y-2 mt-2 lg:mt-0">
                                             %%DEFINE_dirattr_fieldc%%
                                         </div>
                                     </div>

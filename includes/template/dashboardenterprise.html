@@ -79,7 +79,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                 <div id="typeCTRSection" class="ctr-metric">
                                     <div>
                                         <span class="rate" id="clickThroughRate">0 <span>%</span></span>
-                                        <span class="change kt-badge kt-badge-success" id="clickThroughChange"><span>▲</span>+0%</span>
+                                        <span class="change kt-badge" id="clickThroughChange"><span>▲</span>+0%</span>
                                     </div>
                                     <span class="text-xs text-gray-500">Click-Through Rate</span>
                                 </div>
@@ -1449,12 +1449,12 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 
                 if (changeValue < 0) {
                     $changeElem.html(`▼ ${Math.abs(changeValue)}%`)
-                        .addClass('negative-change')
-                        .removeClass('positive-change');
+                        .addClass('kt-badge-destructive')
+                        .removeClass('kt-badge-success');
                 } else {
                     $changeElem.html(`▲ ${changeValue}%`)
-                        .addClass('positive-change')
-                        .removeClass('negative-change');
+                        .addClass('kt-badge-success')
+                        .removeClass('kt-badge-destructive');
                 }
             })
             .catch(error => console.error('Error loading chart data:', error));

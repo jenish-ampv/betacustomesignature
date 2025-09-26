@@ -1473,12 +1473,12 @@
         const changeValue = Number(change);
         if (changeValue < 0) {
             changeElem.innerHTML = `▼ ${Math.abs(changeValue)}%`;
-            changeElem.classList.add('negative-change');
-            changeElem.classList.remove('positive-change');
+            changeElem.classList.add('kt-badge-destructive');
+            changeElem.classList.remove('kt-badge-success');
         } else {
             changeElem.innerHTML = `▲ ${changeValue}%`;
-            changeElem.classList.add('positive-change');
-            changeElem.classList.remove('negative-change');
+            changeElem.classList.add('kt-badge-success');
+            changeElem.classList.remove('kt-badge-destructive');
         }
     }
 

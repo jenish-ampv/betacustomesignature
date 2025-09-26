@@ -265,6 +265,12 @@ input[type="range"]::-webkit-slider-thumb {
     }
 }
 
+.imgFix{
+    img{
+        @apply max-w-[unset];
+    }
+}
+
 
 .rangeTooltip {
    --b: 1em; /* base */
@@ -331,6 +337,6 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .cr-slider{
--webkit-appearance: auto;
-padding: 0;
+    -webkit-appearance: auto;
+    padding: 0;
 }

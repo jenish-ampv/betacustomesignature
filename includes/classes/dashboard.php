@@ -1099,7 +1099,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 					$isGSuiteConnected =false;
 				}
 				if($sRow['signature_master'] == 1){
-				$GLOBALS['master_signature'] = '<div class="inline-block mx-auto masterSignature relative mt-5">
+				$GLOBALS['master_signature'] = '<div class="inline-block mx-auto masterSignature relative mt-6">
 				 		 <div class="size-11 rounded-full p-[2px] bg-gradient absolute top-0 -translate-y-1/2 -translate-x-1/2 left-1/2 z-[1]">
 							<div class="size-full rounded-full bg-white flex items-center justify-center">
 								<img src="'.$GLOBALS['IMAGE_LINK'].'/images/crown.svg" alt="">
@@ -1174,7 +1174,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 						</div>	
 					</div>
 					
-					<div class="flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
+					<div class="flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-auto imgFix">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
 					<div class="sigshadow_box"></div>
 				</div>';
 
@@ -1362,7 +1362,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								$GLOBALS['signature_list'] .= '</div>
 							</div>
 							<div class="kt-card-content">
-								<div class="max-h-[190px] overflow-hidden">'
+								<div class="max-h-[190px] overflow-auto imgFix">'
 									.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'
 									<div class="sigshadow_box"></div>
 								</div>
