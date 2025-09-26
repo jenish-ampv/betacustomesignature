@@ -53,6 +53,13 @@
                             <option value="normal">Normal</option>
                           </select>
                         </div>
+                        <div class="col-md-3 mb-3">
+                          <select name="filter_user" class="custom-select" id="filter_user">
+                            <option value="">Select User</option>
+                            <option value="newsignup">New Signup</option>
+                            <option value="purchased">Purchased</option>
+                          </select>
+                        </div>
                       </div>
                     </tr>               
                   </div>  
@@ -119,6 +126,8 @@
           data.filter_val = fd;
           var userType = filter('#filter_user_type_val').val();
           data.filter_user_type_val = userType;
+          var user = filter('#filter_user').val();
+          data.filter_user = user;
         },
       }, 
       'columns': [
@@ -137,6 +146,10 @@
       dataTable.draw();
     });
     filter('#filter_user_type_val').change(function(){
+      dataTable.draw();
+    });
+
+    filter('#filter_user').change(function(){
       dataTable.draw();
     });
   });
