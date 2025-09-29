@@ -1,12 +1,44 @@
 %%DEFINE_HEADER%%
 <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto bg-cover bg-no-repeat bg-top" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/pricingBG.jpg');">
-  <main class="" id="content" role="content">
-    <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn kt-btn-secondary kt-btn-icon absolute top-4 right-4">
+  <div class="" id="content" role="content">
+    <!-- <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn kt-btn-secondary kt-btn-icon absolute top-4 right-4">
         <i class="hgi hgi-stroke hgi-cancel-01"></i>
-      </a>
+      </a> -->
+    <div class="w-full fixed top-0 left-0 z-50">
+      <div class="mx-auto container py-4 px-3">
+        <div class="nav_outer-block p-3 flex items-center justify-between w-full bg-white rounded-xl shadow-md">
+          <a href="%%DEFINE_ROOT_LINK%%">
+              <img class="hidden lg:block h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/logo.svg"/>
+              <img class="lg:hidden h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/domo-logo1.png"/>
+          </a>
+          <button class="lg:hidden kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#pricing_menu_container">
+              <i class="hgi hgi-stroke hgi-menu-11"></i>
+          </button>
+
+          <nav class="hidden lg:flex items-center justify-center grow" id="pricingMenuWrapper"> 
+            <div class="flex flex-1 [--kt-reparent-mode:prepend] lg:[--kt-reparent-mode:prepend] [--kt-reparent-target:body] lg:[--kt-reparent-target:#pricingMenuWrapper]" data-kt-reparent="true">
+              <div class="hidden flex-1 fixed lg:relative lg:flex lg:items-stretch [--kt-drawer-enable:true] lg:[--kt-drawer-enable:false]" data-kt-drawer="true" data-kt-drawer-class="kt-drawer kt-drawer-start fixed z-10 top-0 bottom-0 w-full mr-5 max-w-[250px] p-5 lg:p-0 overflow-auto" id="pricing_menu_container">
+                <div class="flex flex-1 justify-start lg:justify-center gap-7 [&>*]:font-medium [&>*]:text-[16px] kt-menu flex-col lg:flex-row lg:items-center relative z-[1] *:cursor-pointer" data-kt-menu="true">
+                  <a href="https://www.customesignature.com/#Features" target="_blank">Features</a>
+                  <a href="https://app.customesignature.com/pricing" target="_blank">Pricing</a>
+                  <a href="https://www.customesignature.com/about" target="_blank">About</a>
+                  <a href="https://www.customesignature.com/contact-us" target="_blank">Contact</a>
+                  <a href="https://www.customesignature.com/#FAQ" target="_blank">FAQs</a>
+                </div>
+                <div class="flex items-center gap-2 text">
+                  <a href="https://www.customesignature.com/demo" target="_blank" aria-current="page" class="kt-btn kt-btn-primary">View Demo<i class="fas fa-caret-right mt-1"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <span class="hidden lg:block absolute top-0 h-full rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10"></span>
+        </div>
+      </div>
+    </div>
     <div class="mx-auto container py-4 ">
       <div id="modalDataMove" class="p-4 h-full overflow-auto">
-        <div class="text-center my-7 md:my-16">
+        <div class="text-center mt-20 mb-7 md:mt-30 md:my-16">
           <h2 class="font-semibold text-gray-950">Choose <span
               class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Your Plan</span></h2>
           <p class="text-xl">How many signatures do you need?</p>
