@@ -75,14 +75,14 @@ input[type="range" i]::-webkit-slider-thumb {
 
 .kt-switch {
     &:checked, &[aria-checked='true'] {
-       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1D4AFE] outline-white/20 shadow-[inset_0px_1px_4px_rgba(255,255,255,0.3)];
+       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1D4AFE] outline-white/20 shadow shadow-primary;
     i{
         @apply leading-none;
     }
 
     &:before {
-            @apply outline outline-offset-0 outline-white/20;
-        }
+        @apply outline outline-offset-0 outline-white/20;
+    }
     }   
 }
 

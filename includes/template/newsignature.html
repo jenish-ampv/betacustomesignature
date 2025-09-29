@@ -137,22 +137,22 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
   </div>
 </div>
 
-<form id="msform" class="w-full h-full overflow-hidden" style="display: none;">
+<form id="msform" class="w-full h-full overflow-auto" style="display: none;">
   <input type="hidden" name="signature_image" value="">
-  <div class="flex h-full flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
-    <main class="h-full" id="content" role="content">
-      <div class="kt-container-fluid p-4 h-full">
-        <div class="flex flex-col lg:flex-row gap-5 h-full">
+  <div class="flex  flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    <main class="" id="content" role="content">
+      <div class="kt-container-fluid p-4 ">
+        <div class="flex flex-col lg:flex-row gap-5 ">
           %%DEFINE_EDITOR_SIDEBAR_NEW_SIGNATURE%%
-          <div class="flex lg:hidden items-center justify-between">
+          <!-- <div class="flex lg:hidden items-center justify-between">
             <a href="%%DEFINE_ROOT_LINK%%/dashboard">
                 <img class="h-8 inline-block" draggable="false"
                     src="%%DEFINE_IMAGE_LINK%%/images/logo.svg" alt="">
             </a>
              <span class="kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#drawer"><i class="hgi hgi-stroke hgi-sidebar-left"></i></span>
-          </div>
+          </div> -->
           <div
-            class="hover_previous_right_bg w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 h-full overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
+            class="hover_previous_right_bg order-1 lg:order-2 w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
             <div class="flex-1 flex flex-col items-center justify-center">
               <div class="border border-gray-300 rounded-xl p-5 bg-white max-w-[740px] mx-auto w-full">
                 <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
@@ -180,7 +180,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 </button>
               </div>
             </div>
-            <div class="flex flex-wrap text-sm items-center justify-between px-4 text-center mt-5">
+            <div class="flex flex-wrap text-sm items-center justify-center md:justify-between px-4 text-center mt-5">
               <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
               <div class="flex text-gray-700 items-center gap-2">
                   <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
