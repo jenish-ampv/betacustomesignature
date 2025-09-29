@@ -192,8 +192,8 @@ function logoChanged(){
   var reason = ui("input[name=change_reason]").val();
   var logo_id = ui("input[name=logo_id]").val();
   if(!reason){
-    ui("#img_errormsg_logo").html('<div class="text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
-    setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
+    ui("#feedback_errormsg_logo").html('<div class="text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
+    setTimeout(function(){ ui("#feedback_errormsg_logo").html(""); }, 3000);
     
     return false;
   }
