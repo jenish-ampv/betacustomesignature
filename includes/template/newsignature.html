@@ -389,7 +389,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 if ($('#uploadlimit').val() === 1) {
                   window.location = redirecturl;
                 } else {
-                  $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+                  $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
                   $('#snackbar').show();
                   setTimeout(function () { $('#snackbar').hide(); window.location = redirecturld; }, 2000);
                   setTimeout(function () { x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
@@ -480,7 +480,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
               url: saveSignatureUrl,
               data: { html: $('.signature_temp_preview_box').html() }
             }).done(function (data) {
-              $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+              $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
               $('#snackbar').show();
               setTimeout(function () { $('#snackbar').hide(); window.location = redirecturld; }, 2000);
             }).fail(function (data) {
