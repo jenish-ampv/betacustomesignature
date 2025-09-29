@@ -338,7 +338,8 @@ class CIT_REGISTER
 								$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 								$message= _getEmailTemplate('welcome');
 								$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
-								$this->AddgohiLevelContact();
+								// $this->AddgohiLevelContact();
+								$this->AddBrevoContact();
 								
 								$dataLayerData = [];
 								$userSubscriptionData = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE `user_id`= ?",array($insert_id));
@@ -615,7 +616,8 @@ class CIT_REGISTER
 		$_SESSION[GetSession('Success')] ='<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signup success signin to create new signature</div></div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
-			$this->AddgohiLevelContact();
+			// $this->AddgohiLevelContact();
+			$this->AddBrevoContact();
 			
 			$dataLayerData = [];
 			$userSubscriptionData = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE `user_id`= ?",array($insert_id));
@@ -738,7 +740,8 @@ class CIT_REGISTER
 			$_SESSION[GetSession('Success')] ='<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signup success signin to create new signature</div></div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($postData->user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
-			$this->AddgohiLevelContact();
+			// $this->AddgohiLevelContact();
+			$this->AddBrevoContact();
 			
 			$dataLayerData = [];
 			$userSubscriptionData = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE `user_id`= ?",array($insert_id));
@@ -2143,6 +2146,94 @@ class CIT_REGISTER
 			$api_error = $e->getMessage();  
 		} 
 	}
+
+	private function AddBrevoContact(){
+		if($_POST['register_user_email'] != "" && ($_POST['user_first_name'] !="" || $_POST['user_last_name'] !="")){
+			$gh_firstname = $_POST['user_first_name']; 
+			$gh_lastname = $_POST['user_last_name'];
+			$gh_email = $_POST['register_user_email'];
+			$gh_phone = $_POST['user_phone'];
+			$gh_org = $_POST['user_organization'];
+			$gh_user_business = $_POST['user_business'];
+			$gh_user_company_size = $_POST['user_company_size'];
+			$gh_user_job_title = $_POST['user_job_title'];
+			$gh_user_team_size = $_POST['user_team_size'];
+			$gh_user_email_platform = $_POST['user_email_platform'];
+			$gh_heard_about_us = $_POST['heard_about_us'];
+			$gh_what_brought_you = $_POST['what_brought_you'];
+
+			// New tags to add
+			$newTags = ['lead', 'trial-user', 'marketing'];
+
+			//Get existing tags
+			$curl = curl_init();
+			curl_setopt_array($curl, [
+				CURLOPT_URL => 'https://api.brevo.com/v3/contacts/' . urlencode($email),
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_HTTPHEADER => [
+					'accept: application/json',
+					'api-key: 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'
+				]
+			]);
+			$response = curl_exec($curl);
+			if (curl_errno($curl)) {
+				echo 'Curl error (GET): ' . curl_error($curl);
+				exit;
+			}
+			curl_close($curl);
+
+			$data = json_decode($response, true);
+			$oldTags = [];
+			if (isset($data['tags']) && is_array($data['tags'])) {
+				$oldTags = $data['tags'];
+			}
+
+			//Merge old and new tags, remove duplicates
+			$mergedTags = array_unique(array_merge($oldTags, $newTags));
+			$tagsArrayStr = json_encode(implode(',', $mergedTags));
+			$tagsArrayStr = str_replace('"', '', $tagsArrayStr);
+			// Create/Update New Customer
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://api.brevo.com/v3/contacts',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => '{
+					"email": "'.$gh_email.'",
+					"attributes": {
+						"FIRSTNAME": "'.$gh_firstname.'",
+						"LASTNAME": "'.$gh_lastname.'",
+						"SMS": "+91'.$gh_phone.'",
+						"COMPANYNAME": "'.$gh_org.'",
+						"BUSINESSNAME": "'.$gh_user_business.'",
+						"COMPANYSIZE": "'.$gh_user_company_size.'",
+						"JOB_TITLE": "'.$gh_user_job_title.'",
+						"TEAMSIZE": "'.$gh_user_team_size.'",
+						"EMAILPLATFORM": "'.$gh_user_email_platform.'",
+						"HEARDABOUTUS": "'.$gh_heard_about_us.'",
+						"WHATBROUGHTYOU": "'.$gh_what_brought_you.'",
+						"WEBSITE": "'.$GLOBALS['SITE_TITLE'].'",
+						"TAGS": "'.$tagsArrayStr.'"
+					},
+					"updateEnabled": true
+				}',
+				CURLOPT_HTTPHEADER => array(
+					'accept: application/json',
+					'api-key: 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',
+					'content-type: application/json'
+				),
+			));
+			$response = curl_exec($curl);
+			curl_close($curl);
+			// echo '<pre>'; print_r($response); echo '</pre>'; exit('<br>pre exit');
+		}
+	}
+
 }
 
 ?>
