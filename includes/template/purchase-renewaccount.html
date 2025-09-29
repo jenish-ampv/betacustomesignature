@@ -14,18 +14,17 @@
         %%DEFINE_Message%%
         <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 xl:gap-10">
-          <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn kt-btn-secondary kt-btn-icon absolute top-2 right-2">
+          <a href="%%DEFINE_ROOT_LINK%%/dashboard"
+            class="kt-btn text-gray-600 !bg-transparent border !border-primary bg-gradient-to-r from-[#26B7FF]/20 to-[#1D4AFE]/20 kt-btn-icon absolute top-2 right-4">
             <i class="hgi hgi-stroke hgi-cancel-01"></i>
           </a>
           <div id="selectplan-main" class="bg-gray-100 border border-gray-300 p-5 rounded-4xl" style="display:block;">
             <div class="flex flex-wrap items-center justify-between mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 2xl:mb-10">
-              <div>
-                <h4 class="font-bold">Renew Account</h4>
-                <!-- <span
+              <h4 class="font-bold">Renew Account</h4>
+              <!-- <span
                     class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free
                     Trial!</span> -->
-                <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Cancel Anytime</p>
-              </div>
+              <!-- <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Cancel Anytime</p> -->
               <div class="flex items-center gap-2">
                 <div class="flex items-center gap-2">
                   <span id="nav-tabs-monthly">Monthly</span>
@@ -39,20 +38,17 @@
             </div>
             <p class="mb-3">How many signatures do you need?</p>
             <div class="kt-card">
-           <div class="kt-card-content relative px-5 sm:p-10 pt-14 sm:pt-16 sm:pr-12">
-              <div class="relative">
-                <div class="rangeTooltip text-[10px] sm:text-base" id="tooltip">1 Signatures</div>
-                <input type="range" class="appearance-none -mx-2 block !h-5 relative z-[1] bg-transparent !w-full"
-                  id="rangeSlider" min="0" max="8" step="1" value="0">
-                <div
-                  class="absolute bg-cover top-1/2 -translate-y-1/2 pointer-events-none size-5 text-[0px] -translate-x-1/2 z-[4]"
-                  id="customThumb" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/ellipse1.png');"></div>
-                <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
-                <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
+              <div class="kt-card-content relative p-10 pt-16 pr-12">
+                <div class="relative">
+                  <div class="rangeTooltip" id="tooltip">1 Signatures</div>
+                  <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
+                    id="rangeSlider" min="0" max="8" step="1" value="0">
+                  <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
+                  <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
+                </div>
+                <div class="labels hidden lg:flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
               </div>
-              <div class="labels hidden lg:flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
             </div>
-          </div>
             <!-- <div class="kt-card mt-3">
               <div class="kt-card-content">
                 <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
@@ -83,26 +79,33 @@
                 </div>
               </div>
             </div> -->
-            <div class="hidden kt-card mt-5" id="monthly-tab-panel">
+            <div class="hidden kt-card mt-5 relative rounded-2xl" id="monthly-tab-panel">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png"
+                class="-top-[26px] -left-[26px] max-w-[fit-content] absolute">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png"
+                class="-right-[27px] -bottom-[27px] max-w-[fit-content] absolute rotate-180">
               <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="hidden imgbgchk" value="2"
                 required="required" %%DEFINE_plan_selplan2%%>
               <label for="plan_id2" class="changeprice" data-price="20">
-
-                <div class="kt-card-content">
+                <div class="kt-card-content p-8"
+                  style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
                   <h5>Pro Plan</h5>
-                  <p class="no_employee_qarter">5</span> Signature</p>
-                  <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
-                  
+                  <p><span class="no_employee_qarter">5</span> Signature</p>
+                  <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free
+                    Guarantee</p>
+
                   <div class="flex items-end gap-3 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">
                     <h2>$<span class="month_proprice cprice">15</span></h2>
                     <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">Change to yearly, save 20%</span>
                   </div>
-                  
-                  <p class="monthprice" style="display:none;"> $<span class="month_propricespl cpricespl">60</span> USD </p>
+
+                  <p class="monthprice" style="display:none;"> $<span class="month_propricespl cpricespl">60</span> USD
+                  </p>
                   <div class="grid grid-cols-1 md:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
                     <ul class="list-check space-y-2">
                       <li class="flex gap-1">Interactive Signature</li>
-                      <li class="flex gap-1">Verification Badge<img class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                      <li class="flex gap-1">Verification Badge<img class="mt-1"
+                          src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
                       <li class="flex gap-1">Interactive Social Icons</li>
                       <li class="flex gap-1">Pro Templates</li>
                       <li class="flex gap-1">Animated Profile</li>
@@ -114,49 +117,86 @@
                       <li class="flex gap-1">Remove CES Watermark</li>
                       <li class="flex gap-1">Animated Profile</li>
                       <li class="flex gap-1">Team Dashboard</li>
-                      <li class="flex gap-1 items-center">Outlook and Gmail Sync <img class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img
-                          class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                      <li class="flex gap-1 items-center">Outlook and Gmail Sync <img class="mt-1"
+                          src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img class="mt-1"
+                          src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
                       <li class="flex gap-1">Instant Load Speed</li>
                     </ul>
                   </div>
                 </div>
               </label>
             </div>
-            <div id="yearly-tab-panel" class="kt-card mt-5">
-              <div class="kt-card-content">
-                <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
+            <div id="yearly-tab-panel" class="kt-card mt-5 relative rounded-2xl">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png"
+                class="-top-[26px] -left-[26px] max-w-[fit-content] absolute">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png"
+                class="-right-[27px] -bottom-[27px] max-w-[fit-content] absolute rotate-180">
+              <div class="kt-card-content p-8"
+                style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
+                <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="hidden imgbgchk" value="4"
+                  required="required" %%DEFINE_plan_selplan4%%>
                 <label for="plan_id4" class="changeprice" data-price="20">
                   <h5>Pro Plan</h5>
                   <p><span class="no_employee_qarter">5</span> Signature</p>
                   <div class="yearprice" style="display:none;">
                     $<span class="year_propricespl cpricespl">60</span> USD
                   </div>
-                  <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
+                  <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free
+                    Guarantee</p>
                   <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$ 30</p>
                   <div class="flex items-end gap-3">
                     <h2>$<span class="year_proprice cprice">15</span></h2>
                     <!-- <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span> -->
                   </div>
                   <p class="text-gray-400 my-1">Billed Yearly</p>
-                  <p class="text-gray-400">Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</p>
+                  <p class="text-gray-400">Full animation features with advanced layouts, interactive icons, team
+                    management and auto-deployment.</p>
                   <div class="grid grid-cols-1 md:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
                     <ul class="space-y-2">
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Signature</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>AI - Logo Animation™</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Remove CES Watermark</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team Dashboard</sup></li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Social Icons</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Animated Profile</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Analytics <span class="text-gray-300">(coming soon)</span></li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Customer Support</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive
+                        Signature</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>AI
+                        - Logo Animation™</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Remove
+                        CES Watermark</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team
+                        Dashboard</sup></li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive
+                        Social Icons</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Animated
+                        Profile</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Analytics
+                        <span class="text-gray-300">(coming soon)</span></li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Customer
+                        Support</li>
                     </ul>
                     <ul class="space-y-2">
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Verification Badge <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Pro Templates</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team Dashboard</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Outlook and Gmail Sync <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt="">
-                        <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Instant Load Speed</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Verification
+                        Badge <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt="">
+                      </li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Pro
+                        Templates</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Team
+                        Dashboard</li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Outlook
+                        and Gmail Sync <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt="">
+                        <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt="">
+                      </li>
+                      <li class="gap-1 flex items-start"><i
+                          class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Instant
+                        Load Speed</li>
                     </ul>
                   </div>
                 </label>
@@ -227,7 +267,8 @@
                 <input type="text" id="promo_code" class="kt-input" id="" placeholder="">
                 <input type="hidden" id="coupon_id" name="coupon_id" value="" />
                 <button type="button" class="kt-btn kt-btn-primary applied" id="apply_promocode">APPLY NOW</button>
-                <button type="button" class="kt-btn kt-btn-icon kt-btn-destructive applied hidden" id="applied_promocode">
+                <button type="button" class="kt-btn kt-btn-icon kt-btn-destructive applied hidden"
+                  id="applied_promocode">
                   <i class="hgi hgi-stroke hgi-delete-02"></i>
                 </button>
               </div>
@@ -248,7 +289,8 @@
                   <span>Total Savings</span>
                   <span id="savings">%%DEFINE_plan_format_savings%% USD</span>
                 </div>
-                <div class="flex items-center justify-between text-gray-950 text-xl font-semibold border-t border-t-gray-200 pt-4 mt-4">
+                <div
+                  class="flex items-center justify-between text-gray-950 text-xl font-semibold border-t border-t-gray-200 pt-4 mt-4">
                   <span>Total %%DEFINE_freetrialtext%%</span>
                   <span class="total" id="total">%%DEFINE_plan_format_price%% USD</span>
                 </div>
@@ -257,7 +299,8 @@
             </div>
             <div class="flex flex-col justify-center gap-2 mt-4">
               <input type="hidden" name="registersubmit" value="1" />
-              <button type="submit" name="signin" class="kt-btn kt-btn-primary w-full" id="renew_button">Renew Account</button>
+              <button type="submit" name="signin" class="kt-btn kt-btn-primary w-full" id="renew_button">Renew
+                Account</button>
               <p class="text-center text-gray-300">Cancel Anytime</p>
             </div>
           </div>
@@ -268,539 +311,538 @@
   </main>
 </div>
 
-  <!-- pricing plan change based on slider -->
-  <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
-  <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
-  <script>
-    var quartlyEnabled = %%DEFINE_quartrly_enabled%%;
+<!-- pricing plan change based on slider -->
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
+<script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
+<script>
+  var quartlyEnabled = %%DEFINE_quartrly_enabled%%;
 
-    function updateSelectPlan() {
+  function updateSelectPlan() {
 
-      // if(isFreeTrial){
-      //   return false;
-      // }
+    // if(isFreeTrial){
+    //   return false;
+    // }
+    if (quartlyEnabled) {
+      $("#nav-tabs-monthly").text("Quarterly");
+    }
+    if ($('input[name=plan_id]:checked').val() < 3) {
+      multiplyprice = 1;
       if (quartlyEnabled) {
-        $("#nav-tabs-monthly").text("Quarterly");
+        multiplyprice = 3;
       }
-      if ($('input[name=plan_id]:checked').val() < 3) {
-        multiplyprice = 1;
-        if (quartlyEnabled) {
-          multiplyprice = 3;
-        }
-      } else {
-        multiplyprice = 12;
+    } else {
+      multiplyprice = 12;
+    }
+    var radioObj = $('input[name=plan_id]:checked');
+    planpriceint = parseFloat(radioObj.parent().find('span.cprice').text() * multiplyprice);
+    planpricesplint = parseFloat(radioObj.parent().find('span.cpricespl').text() * multiplyprice);
+    totalsavings = parseFloat(planpricesplint - planpriceint);
+    console.log(planpriceint)
+    console.log(planpricesplint)
+    $('#subtotal').text('$' + planpricesplint.toFixed(2) + ' USD');
+    $('#savings').text('$' + totalsavings.toFixed(2) + ' USD');
+    $('#total').text('$' + planpriceint.toFixed(2) + ' USD');
+    // $('#selectplan-main').toggle();
+    // $('#order-main').toggle();
+    //for discount calcultion
+    $('#totalpay').val(planpriceint);
+
+    $('#coupon_id').val('');
+    $('#promo_code').val('');
+    $('#couponResponse').text('');
+    $('#discount').text('$0.00 USD');
+    $("#apply_promocode").removeClass('hidden');
+    $("#applied_promocode").addClass('hidden');
+  };
+
+  function updateRenewaccountPlanDetails(value) {
+    unencoded = value;
+    unencoded = parseInt(unencoded);
+    if (unencoded == 0) { unencoded = [1]; }
+    $("#form_plan_unit").val(unencoded);
+
+    $('#plan_unit').val(unencoded);
+    $('.no_employee_qarter').text(unencoded);
+    // month price changhe
+    var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+    var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
+    $('.month_proprice').text(pro_month_unit[unencoded]);
+    $('.month_propricespl').text(pro_month_unitspl[unencoded]);
+    // year price changhe
+    var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+    var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+    $('.year_proprice').text(pro_year_unit[unencoded]);
+    $('.year_propricespl').text(pro_year_unitspl[unencoded]);
+    var radioObj = $('input[name=plan_id]:checked');
+    if ($('input[name=plan_id]:checked').val() < 3) {
+      multiplyprice = 1;
+      if (quartlyEnabled) {
+        multiplyprice = 3;
       }
-      var radioObj = $('input[name=plan_id]:checked');
-      planpriceint = parseFloat(radioObj.parent().find('span.cprice').text() * multiplyprice);
-      planpricesplint = parseFloat(radioObj.parent().find('span.cpricespl').text() * multiplyprice);
-      totalsavings = parseFloat(planpricesplint - planpriceint);
-      console.log(planpriceint)
-      console.log(planpricesplint)
-      $('#subtotal').text('$' + planpricesplint.toFixed(2) + ' USD');
-      $('#savings').text('$' + totalsavings.toFixed(2) + ' USD');
-      $('#total').text('$' + planpriceint.toFixed(2) + ' USD');
-      // $('#selectplan-main').toggle();
-      // $('#order-main').toggle();
-      //for discount calcultion
-      $('#totalpay').val(planpriceint);
+    } else {
+      multiplyprice = 12;
+    }
+    planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
 
-      $('#coupon_id').val('');
-      $('#promo_code').val('');
-      $('#couponResponse').text('');
-      $('#discount').text('$0.00 USD');
-      $("#apply_promocode").removeClass('hidden');
-      $("#applied_promocode").addClass('hidden');
-    };
+    $(".rno").removeClass("active");
+    $("#rno" + unencoded).addClass("active");
 
-    function updateRenewaccountPlanDetails(value) {
-      unencoded = value;
-      unencoded = parseInt(unencoded);
-      if (unencoded == 0) { unencoded = [1]; }
-      $("#form_plan_unit").val(unencoded);
+    updateSelectPlan();
+  }
 
-      $('#plan_unit').val(unencoded);
-      $('.no_employee_qarter').text(unencoded);
-      // month price changhe
-      var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
-      var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
-      $('.month_proprice').text(pro_month_unit[unencoded]);
-      $('.month_propricespl').text(pro_month_unitspl[unencoded]);
-      // year price changhe
-      var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
-      var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
-      $('.year_proprice').text(pro_year_unit[unencoded]);
-      $('.year_propricespl').text(pro_year_unitspl[unencoded]);
-      var radioObj = $('input[name=plan_id]:checked');
-      if ($('input[name=plan_id]:checked').val() < 3) {
-        multiplyprice = 1;
-        if (quartlyEnabled) {
-          multiplyprice = 3;
-        }
-      } else {
-        multiplyprice = 12;
+  function initCustomSliderPurchaseRenewAccount(
+    values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+    sliderId = "rangeSlider",
+    tooltipId = "tooltip",
+    labelsId = "labels",
+    fillId = "fillTreck"
+  ) {
+    const slider = document.getElementById(sliderId);
+    const tooltip = document.getElementById(tooltipId);
+    const labelsContainer = document.getElementById(labelsId);
+    const rangeBg = document.getElementById(fillId);
+
+    slider.max = values.length - 1;
+    const thumbWidth = 24; // known thumb width
+
+    // Generate labels
+    labelsContainer.innerHTML = "";
+    values.forEach((val, i) => {
+      const span = document.createElement("span");
+      span.textContent = val;
+      const percent = (i / (values.length - 1)) * 100;
+      span.style.left = percent + "%";
+      labelsContainer.appendChild(span);
+    });
+
+    function updateUI() {
+      const index = parseInt(slider.value);
+      const value = values[index];
+      const percent = index / (values.length - 1);
+
+      // Ensure correct width including padding
+      const sliderRect = slider.getBoundingClientRect();
+      const sliderWidth = sliderRect.width;
+
+      // Compute tooltip left position
+      const computedLeft = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+      tooltip.style.left = computedLeft + "px";
+      tooltip.style.transform = "translateX(-50%)";
+
+      tooltip.textContent = `${value} Signature${value > 1 ? 's' : ''}`;
+
+      // Update filled track
+      rangeBg.style.width = (percent * 100) + "%";
+
+      if (typeof updateRenewaccountPlanDetails === 'function') {
+        updateRenewaccountPlanDetails(value);
       }
-      planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
-
-      $(".rno").removeClass("active");
-      $("#rno" + unencoded).addClass("active");
-
-      updateSelectPlan();
     }
 
-    function initCustomSliderPurchaseRenewAccount(
-        values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
-        sliderId = "rangeSlider",
-        tooltipId = "tooltip",
-        labelsId = "labels",
-        thumbId = "customThumb",
-        fillId = "fillTreck"
-      ) {
-        const slider = document.getElementById(sliderId);
-        const tooltip = document.getElementById(tooltipId);
-        const labelsContainer = document.getElementById(labelsId);
-        const customThumb = document.getElementById(thumbId);
-        const rangeBg = document.getElementById(fillId);
+    // Make sure tooltip positions correctly after DOM is fully ready
+    window.addEventListener("load", updateUI);
+    slider.addEventListener("input", updateUI);
+    window.addEventListener("resize", updateUI);
+  }
 
-        const thumbWidth = customThumb.offsetWidth;
-        const halfThumb = thumbWidth / 2;
-
-        // Set slider max
-        slider.max = values.length - 1;
-
-        // Apply negative margin to labels container
-        labelsContainer.style.marginLeft = `-${halfThumb}px`;
-        labelsContainer.style.marginRight = `-${halfThumb}px`;
-
-        // Add labels
-        labelsContainer.innerHTML = "";
-        values.forEach(val => {
-          const span = document.createElement("span");
-          span.textContent = val;
-          labelsContainer.appendChild(span);
-        });
-
-        function updateUI() {
-          const index = parseInt(slider.value);
-          const value = values[index];
-          const percent = (index / (values.length - 1)) * 100;
-          const sliderWidth = slider.offsetWidth;
-          const posX = (percent / 100) * sliderWidth;
-
-          if (window.innerWidth > 640) {
-            tooltip.style.left = posX + "px";
-          } else {
-            tooltip.style.left = "50%"; // Reset or remove for smaller screens
-          }
-          tooltip.textContent = `${value} Signature`;
-
-          customThumb.style.left = posX + "px";
-          rangeBg.style.width = percent + "%";
-
-          if (typeof updateRenewaccountPlanDetails === 'function') {
-            updateRenewaccountPlanDetails(value);
-          }
-        }
-        slider.addEventListener("input", updateUI);
-        window.addEventListener("resize", updateUI);
-
-        updateUI(); // initialize
-      }
+  initCustomSliderPurchaseRenewAccount();
 
 
-    initCustomSliderPurchaseRenewAccount();
-    $(document).ready(function(){
-      updateRenewaccountPlanDetails(1);
-      const slider = $('#rangeSlider')[0];
-      const tooltip = $('#tooltip')[0];
-      const customThumb = $('#customThumb')[0];
-      const rangeBg = $('#fillTreck')[0];
-      const values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
-      const indexToSet = values.indexOf(parseInt(1));
-      slider.value = indexToSet;
+  $(document).ready(function () {
+    updateRenewaccountPlanDetails(1);
 
-      updateUI();
+    const slider = $('#rangeSlider')[0];
+    const tooltip = $('#tooltip')[0];
+    const customThumb = $('#customThumb')[0];
+    const rangeBg = $('#fillTreck')[0];
+    const values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+    const indexToSet = values.indexOf(parseInt(1));
+    slider.value = indexToSet;
 
-      function updateUI() {
-        const index = parseInt(slider.value);
-        const value = values[index];
-        const percent = (index / (values.length - 1)) * 100;
-        const sliderWidth = slider.offsetWidth;
-        const posX = (percent / 100) * sliderWidth;
+    updateUI();
 
-        tooltip.style.left = posX + "px";
-        tooltip.textContent = `${value} Signature`;
+    function updateUI() {
+      const index = parseInt(slider.value);
+      const value = values[index];
+      const percent = (index / (values.length - 1)) * 100;
+      const sliderWidth = slider.offsetWidth;
+      const posX = (percent / 100) * sliderWidth;
 
-        customThumb.style.left = posX + "px";
-        rangeBg.style.width = percent + "%";
+      tooltip.style.left = posX + "px";
+      tooltip.textContent = `${value} Signature`;
+
+      customThumb.style.left = posX + "px";
+      rangeBg.style.width = percent + "%";
+    }
+  });
+
+  $(document).ready(function () {
+    setTimeout(function () { $('.alert').remove(); }, 3000);
+    // Listen for changes on the checkbox
+    $('#user_payment').change(function () {
+      if ($(this).is(':checked')) {
+        $('#card_section').slideUp();    // Hide with animation
+      } else {
+        $('#card_section').slideDown();  // Show with animation
       }
     });
+  });
+</script>
 
-    $(document).ready(function () {
-      setTimeout(function () { $('.alert').remove(); }, 3000);
-      // Listen for changes on the checkbox
-      $('#user_payment').change(function () {
-        if ($(this).is(':checked')) {
-          $('#card_section').slideUp();    // Hide with animation
-        } else {
-          $('#card_section').slideDown();  // Show with animation
-        }
-      });
-    });
-  </script>
-  <script type="text/javascript">
-    jQuery.noConflict();
-    (function ($) {
-      if ($('input[name="plan_id"]:checked').length === 0) {
+<script type="text/javascript">
+  jQuery.noConflict();
+  (function ($) {
+    if ($('input[name="plan_id"]:checked').length === 0) {
+      $("#yearly-tab-panel").removeClass('hidden');
+      $("#monthly-tab-panel").addClass('hidden');
+      $("#plan_id4").prop('checked', true);
+      $("#form_plan_id").val(8);
+    } else {
+      if ($('input[name="plan_id"]:checked').data('section') == 'monthly') {
+        $('#plan_type').prop('checked', false);
+        $("#monthly-tab-panel").removeClass('hidden');
+        $("#yearly-tab-panel").addClass('hidden');
+        $("#plan_id2").prop('checked', true);
+        $("#form_plan_id").val(7);
+      } else {
+        $('#plan_type').prop('checked', true);
         $("#yearly-tab-panel").removeClass('hidden');
         $("#monthly-tab-panel").addClass('hidden');
         $("#plan_id4").prop('checked', true);
         $("#form_plan_id").val(8);
-      } else {
-        if ($('input[name="plan_id"]:checked').data('section') == 'monthly') {
-          $('#plan_type').prop('checked', false);
-          $("#monthly-tab-panel").removeClass('hidden');
-          $("#yearly-tab-panel").addClass('hidden');
-          $("#plan_id2").prop('checked', true);
-          $("#form_plan_id").val(7);
-        } else {
-          $('#plan_type').prop('checked', true);
+      }
+    }
+    $(document).ready(function () {
+      $('#plan_type').on('change', function () {
+        if ($(this).is(':checked')) {
           $("#yearly-tab-panel").removeClass('hidden');
           $("#monthly-tab-panel").addClass('hidden');
           $("#plan_id4").prop('checked', true);
           $("#form_plan_id").val(8);
+        } else {
+          $("#month-tab").click();
+          $("#monthly-tab-panel").removeClass('hidden');
+          $("#yearly-tab-panel").addClass('hidden');
+          $("#plan_id2").prop('checked', true);
+          $("#form_plan_id").val(7);
         }
-      }
-      $(document).ready(function () {
-        $('#plan_type').on('change', function () {
-          if ($(this).is(':checked')) {
-            $("#yearly-tab-panel").removeClass('hidden');
-            $("#monthly-tab-panel").addClass('hidden');
-            $("#plan_id4").prop('checked', true);
-            $("#form_plan_id").val(8);
-          } else {
-            $("#month-tab").click();
-            $("#monthly-tab-panel").removeClass('hidden');
-            $("#yearly-tab-panel").addClass('hidden');
-            $("#plan_id2").prop('checked', true);
-            $("#form_plan_id").val(7);
-          }
-          updateSelectPlan();
-        });
+        updateSelectPlan();
       });
-    })(jQuery);
-  </script>
-  <script>
-    /*
-    start = $('#plan_unit').val();
-    var rangeSlider = $('#range')[0];
-    noUiSlider.create(rangeSlider, {
-      start: [start],
-      behaviour: 'tap', //drag
-      step: 5,
-      connect: [true, false],
-      range: {
-        'min': [1],
-        '4%': [3, 2],
-        '7%': [5, 5],
-        'max': [100]
-      }
     });
+  })(jQuery);
+</script>
+<script>
+  /*
+  start = $('#plan_unit').val();
+  var rangeSlider = $('#range')[0];
+  noUiSlider.create(rangeSlider, {
+    start: [start],
+    behaviour: 'tap', //drag
+    step: 5,
+    connect: [true, false],
+    range: {
+      'min': [1],
+      '4%': [3, 2],
+      '7%': [5, 5],
+      'max': [100]
+    }
+  });
 
-    rangeSlider.noUiSlider.on('update', function (values, handle, unencoded) {
-      //if(unencoded == 0 ) {unencoded = $('#plan_unit').val();}
-      //  if(unencoded == 0 ) {unencoded = 1;}
-      //  if( unencoded == '39.99999999999999') { unencoded = 40;}
-      //  if( unencoded == '74') { unencoded = 75;}
-      //  unencoded = unencoded.slice(0, 2);
-      unencoded = values;
-      unencoded = parseInt(unencoded);
-      if (unencoded == 0) { unencoded = [1]; }
-      $("#form_plan_unit").val(unencoded);
+  rangeSlider.noUiSlider.on('update', function (values, handle, unencoded) {
+    //if(unencoded == 0 ) {unencoded = $('#plan_unit').val();}
+    //  if(unencoded == 0 ) {unencoded = 1;}
+    //  if( unencoded == '39.99999999999999') { unencoded = 40;}
+    //  if( unencoded == '74') { unencoded = 75;}
+    //  unencoded = unencoded.slice(0, 2);
+    unencoded = values;
+    unencoded = parseInt(unencoded);
+    if (unencoded == 0) { unencoded = [1]; }
+    $("#form_plan_unit").val(unencoded);
 
-      $('#plan_unit').val(unencoded);
-      $('.no_employee_qarter').text(unencoded);
-      // month price changhe
-      var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
-      var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
-      $('.month_proprice').text(pro_month_unit[unencoded]);
-      $('.month_propricespl').text(pro_month_unitspl[unencoded]);
-      // year price changhe
-      var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
-      var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
-      $('.year_proprice').text(pro_year_unit[unencoded]);
-      $('.year_propricespl').text(pro_year_unitspl[unencoded]);
-      var radioObj = $('input[name=plan_id]:checked');
-      if ($('input[name=plan_id]:checked').val() < 3) {
-        multiplyprice = 1;
-        if (quartlyEnabled) {
-          multiplyprice = 3;
-        }
+    $('#plan_unit').val(unencoded);
+    $('.no_employee_qarter').text(unencoded);
+    // month price changhe
+    var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+    var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
+    $('.month_proprice').text(pro_month_unit[unencoded]);
+    $('.month_propricespl').text(pro_month_unitspl[unencoded]);
+    // year price changhe
+    var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+    var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+    $('.year_proprice').text(pro_year_unit[unencoded]);
+    $('.year_propricespl').text(pro_year_unitspl[unencoded]);
+    var radioObj = $('input[name=plan_id]:checked');
+    if ($('input[name=plan_id]:checked').val() < 3) {
+      multiplyprice = 1;
+      if (quartlyEnabled) {
+        multiplyprice = 3;
+      }
+    } else {
+      multiplyprice = 12;
+    }
+    planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
+
+    $(".rno").removeClass("active");
+    $("#rno" + unencoded).addClass("active");
+
+    updateSelectPlan();
+  });
+
+  */
+  $(document).ready(function () {
+    $("input[name$='plan_type']").click(function () {
+      var tab = $(this).val();
+      if (tab == 'quarter') {
+        $('#plan_id2').prop('checked', true);
+        $('#tab_quarter').css('display', 'inline');
+        $('#tab_year').css('display', 'none');
+        $('.yearly_save').removeClass('hidden');
       } else {
-        multiplyprice = 12;
+        $('#plan_id4').prop('checked', true);
+        $('#tab_quarter').css('display', 'none');
+        $('#tab_year').css('display', 'inline');
+        $('.yearly_save').addClass('hidden');
       }
-      planpriceint = parseFloat(radioObj.parent().find('label span.cprice').text() * multiplyprice);
-
-      $(".rno").removeClass("active");
-      $("#rno" + unencoded).addClass("active");
-
-      updateSelectPlan();
     });
+  });
 
-    */
-    $(document).ready(function () {
-      $("input[name$='plan_type']").click(function () {
-        var tab = $(this).val();
-        if (tab == 'quarter') {
-          $('#plan_id2').prop('checked', true);
-          $('#tab_quarter').css('display', 'inline');
-          $('#tab_year').css('display', 'none');
-          $('.yearly_save').removeClass('hidden');
-        } else {
-          $('#plan_id4').prop('checked', true);
-          $('#tab_quarter').css('display', 'none');
-          $('#tab_year').css('display', 'inline');
-          $('.yearly_save').addClass('hidden');
-        }
-      });
-    });
+  // chek plan coupon is valid
 
-    // chek plan coupon is valid
+  $(document).ready(function () {
+    $("#apply_promocode").click(function () {
+      $('#paymentResponse').html('');
+      $('#coupon_id').val('');
+      var promo_code = $('#promo_code');
+      if (promo_code.val() == "") {
+        promo_code.focus(); return false;
+      } else {
+        var url = $('#ajax_url').val();
+        jQuery.ajax({
+          url: url,
+          data: 'coupon_apply=1&coupon_code=' + promo_code.val(),
+          type: "POST",
+          dataType: "json",
+          async: false,
+          success: function (data) {
+            if (data['coupon_id'] != 0) {
+              $('#coupon_id').val(data['coupon_id']);
 
-    $(document).ready(function () {
-      $("#apply_promocode").click(function () {
-        $('#paymentResponse').html('');
-        $('#coupon_id').val('');
-        var promo_code = $('#promo_code');
-        if (promo_code.val() == "") {
-          promo_code.focus(); return false;
-        } else {
-          var url = $('#ajax_url').val();
-          jQuery.ajax({
-            url: url,
-            data: 'coupon_apply=1&coupon_code=' + promo_code.val(),
-            type: "POST",
-            dataType: "json",
-            async: false,
-            success: function (data) {
-              if (data['coupon_id'] != 0) {
-                $('#coupon_id').val(data['coupon_id']);
-
-                totalValue = $('#totalpay').val();
-                if (data['coupon_type'] == 'per') {
-                  discount = ((totalValue * data['coupon_amount']) / 100).toFixed(2);
-                  totalpay = (totalValue - discount).toFixed(2);
-                } else {
-                  discount = (data['coupon_amount']).toFixed(2);
-                  totalpay = (totalValue - discount).toFixed(2);
-                }
-                $('#discount').text('$' + discount + ' USD');
-                $('#total').text('$' + totalpay + ' USD');
-                $("#apply_promocode").addClass('hidden');
-                $("#applied_promocode").removeClass('hidden');
+              totalValue = $('#totalpay').val();
+              if (data['coupon_type'] == 'per') {
+                discount = ((totalValue * data['coupon_amount']) / 100).toFixed(2);
+                totalpay = (totalValue - discount).toFixed(2);
+              } else {
+                discount = (data['coupon_amount']).toFixed(2);
+                totalpay = (totalValue - discount).toFixed(2);
               }
-              $('#couponResponse').html(data['msg']);
-            },
-            error: function () {
-              clearconsole();
+              $('#discount').text('$' + discount + ' USD');
+              $('#total').text('$' + totalpay + ' USD');
+              $("#apply_promocode").addClass('hidden');
+              $("#applied_promocode").removeClass('hidden');
             }
-          });
-        }
-      });
-
-      $("#applied_promocode").click(function () {
-        $('#coupon_id').val('');
-        $('#promo_code').val('');
-        totalPay = $('#totalpay').val();
-        totalPay = parseFloat(totalPay).toFixed(2);
-        $('#discount').text('$0 USD');
-        $('#total').text('$' + totalPay + ' USD');
-        $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
-        $("#apply_promocode").removeClass('hidden');
-        $("#applied_promocode").addClass('hidden');
-      })
+            $('#couponResponse').html(data['msg']);
+          },
+          error: function () {
+            clearconsole();
+          }
+        });
+      }
     });
 
-  </script>
-  <!-- end pricing plan change based on slider -->
+    $("#applied_promocode").click(function () {
+      $('#coupon_id').val('');
+      $('#promo_code').val('');
+      totalPay = $('#totalpay').val();
+      totalPay = parseFloat(totalPay).toFixed(2);
+      $('#discount').text('$0 USD');
+      $('#total').text('$' + totalPay + ' USD');
+      $('#couponResponse').html('<span style="color:#F00;">Discount code removed!</span>');
+      $("#apply_promocode").removeClass('hidden');
+      $("#applied_promocode").addClass('hidden');
+    })
+  });
+
+</script>
+<!-- end pricing plan change based on slider -->
 
 
-  <script>
-    // Create an instance of the Stripe object
-    // Set your publishable API key
-    var stripe = Stripe('%%DEFINE_STRIPE_PUBLISHABLE_KEY%%');
+<script>
+  // Create an instance of the Stripe object
+  // Set your publishable API key
+  var stripe = Stripe('%%DEFINE_STRIPE_PUBLISHABLE_KEY%%');
 
 
-    // Create an instance of elements
-    var elements = stripe.elements();
+  // Create an instance of elements
+  var elements = stripe.elements();
 
-    var style = {
-      base: {
-        color: "#32325d",
-        fontFamily: 'Switzer, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "13px",
-        "::placeholder": {
-          color: "#9f9fa9"
-        }
-      },
-      invalid: {
-        fontFamily: 'Arial, sans-serif',
-        color: "#fa755a",
-        iconColor: "#fa755a"
+  var style = {
+    base: {
+      color: "#32325d",
+      fontFamily: 'Switzer, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "13px",
+      "::placeholder": {
+        color: "#9f9fa9"
       }
-    };
-
-    // Create individual elements
-    var cardNumber = elements.create('cardNumber', { style: style });
-    var cardExpiry = elements.create('cardExpiry', { style: style });
-    var cardCvc = elements.create('cardCvc', { style: style });
-
-    // Mount to respective divs
-    cardNumber.mount('#card-number-element');
-    cardExpiry.mount('#card-expiry-element');
-    cardCvc.mount('#card-cvc-element');
-
-    // Handle validation errors
-    var resultContainer = document.getElementById('paymentResponse');
-
-    function setError(event) {
-      if (event.error) {
-        resultContainer.innerHTML = '<p style="color:#F00;">' + event.error.message + '</p>';
-      } else {
-        resultContainer.innerHTML = '';
-      }
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: "#fa755a",
+      iconColor: "#fa755a"
     }
+  };
 
-    cardNumber.on('change', setError);
-    cardExpiry.on('change', setError);
-    cardCvc.on('change', setError);
+  // Create individual elements
+  var cardNumber = elements.create('cardNumber', { style: style });
+  var cardExpiry = elements.create('cardExpiry', { style: style });
+  var cardCvc = elements.create('cardCvc', { style: style });
 
-    // Old code for the card field
-    /*
-    // Create an instance of elements
-    var elements = stripe.elements();
-    var style = {
-      base: {
-        color: "#32325d",
-        fontFamily: 'Roboto, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "13px",
-        "::placeholder": {
-          color: "#32325d"
-        }
-      },
-      invalid: {
-        fontFamily: 'Arial, sans-serif',
-        color: "#fa755a",
-        iconColor: "#fa755a"
-      }
-    };
+  // Mount to respective divs
+  cardNumber.mount('#card-number-element');
+  cardExpiry.mount('#card-expiry-element');
+  cardCvc.mount('#card-cvc-element');
 
-    var cardElement = elements.create("card", { hidePostalCode: true, style: style });
-    // Stripe injects an iframe into the DOM
-    cardElement.mount("#card-element");
+  // Handle validation errors
+  var resultContainer = document.getElementById('paymentResponse');
 
-    // Validate input of the card elements
-    var resultContainer = document.getElementById('paymentResponse');
-    cardElement.addEventListener('change', function (event) {
-      if (event.error) {
-        resultContainer.innerHTML = '<p style="color:#F00;">' + event.error.message + '</p>';
-      } else {
-        resultContainer.innerHTML = '';
-      }
-    });
-    */
-    // Old code for the card field
-
-    // Get payment form element
-    var form = document.getElementById('registerForm');
-
-    // Create a token when the form is submitted.
-    form.addEventListener('submit', function (e) {
-      $("#renew_button").prop('disabled', true);
-      $("#renew_button").html('Processing...');
-      $("#renew_button").addClass('spinner');
-      // $('button[name=signin]').attr('disabled',true);
-      e.preventDefault();
-      if ($("#user_payment").is(':checked')) {
-        var hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'useSavedCard');
-        hiddenInput.setAttribute('value', true);
-        form.appendChild(hiddenInput);
-        form.submit();
-      } else {
-        createToken();
-      }
-      return false;
-    });
-
-    // Create single-use token to charge the user
-    function createToken() {
-      var card_name = document.getElementById('card_name').value;
-      stripe.createToken(cardElement, { name: card_name }).then(function (result) {
-        if (result.error) {
-          // Inform the user if there was an error
-          // $('button[name=signin]').attr('disabled',false);
-          $("#renew_button").prop('disabled', false);
-          $("#renew_button").html('Renew Account <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt="">');
-          $("#renew_button").removeClass('spinner');
-          resultContainer.innerHTML = '<p style="color:#F00;">' + result.error.message + '</p>';
-        } else {
-          // Send the token to your server
-          stripeTokenHandler(result.token);
-        }
-      });
+  function setError(event) {
+    if (event.error) {
+      resultContainer.innerHTML = '<p style="color:#F00;">' + event.error.message + '</p>';
+    } else {
+      resultContainer.innerHTML = '';
     }
+  }
 
-    // Callback to handle the response from stripe
-    function stripeTokenHandler(token) {
-      // Insert the token ID into the form so it gets submitted to the server
+  cardNumber.on('change', setError);
+  cardExpiry.on('change', setError);
+  cardCvc.on('change', setError);
+
+  // Old code for the card field
+  /*
+  // Create an instance of elements
+  var elements = stripe.elements();
+  var style = {
+    base: {
+      color: "#32325d",
+      fontFamily: 'Roboto, sans-serif',
+      fontSmoothing: "antialiased",
+      fontSize: "13px",
+      "::placeholder": {
+        color: "#32325d"
+      }
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: "#fa755a",
+      iconColor: "#fa755a"
+    }
+  };
+
+  var cardElement = elements.create("card", { hidePostalCode: true, style: style });
+  // Stripe injects an iframe into the DOM
+  cardElement.mount("#card-element");
+
+  // Validate input of the card elements
+  var resultContainer = document.getElementById('paymentResponse');
+  cardElement.addEventListener('change', function (event) {
+    if (event.error) {
+      resultContainer.innerHTML = '<p style="color:#F00;">' + event.error.message + '</p>';
+    } else {
+      resultContainer.innerHTML = '';
+    }
+  });
+  */
+  // Old code for the card field
+
+  // Get payment form element
+  var form = document.getElementById('registerForm');
+
+  // Create a token when the form is submitted.
+  form.addEventListener('submit', function (e) {
+    $("#renew_button").prop('disabled', true);
+    $("#renew_button").html('Processing...');
+    $("#renew_button").addClass('spinner');
+    // $('button[name=signin]').attr('disabled',true);
+    e.preventDefault();
+    if ($("#user_payment").is(':checked')) {
       var hiddenInput = document.createElement('input');
       hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeToken');
-      hiddenInput.setAttribute('value', token.id);
+      hiddenInput.setAttribute('name', 'useSavedCard');
+      hiddenInput.setAttribute('value', true);
       form.appendChild(hiddenInput);
-      // Submit the form
       form.submit();
+    } else {
+      createToken();
     }
-  </script>
-  <script>
-    function handleCredentialResponse(response) {
-      // decodeJwtResponse() is a custom function defined by you
-      // to decode the credential response.
-      var responsePayload = parseJwt(response.credential);
-      // console.log(responsePayload.email_verified);
-      document.getElementById('user_firstname').value = responsePayload.given_name + ' ' + responsePayload.family_name;
-      //document.getElementById('user_lastname').value = responsePayload.family_name;
-      document.getElementById('user_email').value = responsePayload.email;
-      document.getElementById("passField").style.display = "none";
-      document.getElementById("user_password").value = 'google';
+    return false;
+  });
 
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'user_googleid');
-      hiddenInput.setAttribute('value', responsePayload.sub);
-      form.appendChild(hiddenInput);
+  // Create single-use token to charge the user
+  function createToken() {
+    var card_name = document.getElementById('card_name').value;
+    stripe.createToken(cardElement, { name: card_name }).then(function (result) {
+      if (result.error) {
+        // Inform the user if there was an error
+        // $('button[name=signin]').attr('disabled',false);
+        $("#renew_button").prop('disabled', false);
+        $("#renew_button").html('Renew Account <img src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt="">');
+        $("#renew_button").removeClass('spinner');
+        resultContainer.innerHTML = '<p style="color:#F00;">' + result.error.message + '</p>';
+      } else {
+        // Send the token to your server
+        stripeTokenHandler(result.token);
+      }
+    });
+  }
 
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'user_image');
-      hiddenInput.setAttribute('value', responsePayload.picture);
-      form.appendChild(hiddenInput);
+  // Callback to handle the response from stripe
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+    // Submit the form
+    form.submit();
+  }
+</script>
+<script>
+  function handleCredentialResponse(response) {
+    // decodeJwtResponse() is a custom function defined by you
+    // to decode the credential response.
+    var responsePayload = parseJwt(response.credential);
+    // console.log(responsePayload.email_verified);
+    document.getElementById('user_firstname').value = responsePayload.given_name + ' ' + responsePayload.family_name;
+    //document.getElementById('user_lastname').value = responsePayload.family_name;
+    document.getElementById('user_email').value = responsePayload.email;
+    document.getElementById("passField").style.display = "none";
+    document.getElementById("user_password").value = 'google';
 
-    }
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'user_googleid');
+    hiddenInput.setAttribute('value', responsePayload.sub);
+    form.appendChild(hiddenInput);
 
-    function parseJwt(token) {
-      var base64Url = token.split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'user_image');
+    hiddenInput.setAttribute('value', responsePayload.picture);
+    form.appendChild(hiddenInput);
 
-      return JSON.parse(jsonPayload);
-    };
-  </script>
+  }
+
+  function parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  };
+</script>
 
 
-  %%DEFINE_FOOTER%%
+%%DEFINE_FOOTER%%
