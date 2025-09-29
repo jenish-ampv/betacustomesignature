@@ -75,7 +75,7 @@ input[type="range" i]::-webkit-slider-thumb {
 
 .kt-switch {
     &:checked, &[aria-checked='true'] {
-       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1D4AFE] outline-white/20 shadow shadow-primary;
+       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1d4afe] outline-white/20 shadow-[0_0_5px_3px_rgba(59,98,253,0.4)];
     i{
         @apply leading-none;
     }
