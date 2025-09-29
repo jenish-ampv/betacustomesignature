@@ -38,16 +38,13 @@
           <div class="kt-card">
             <div class="kt-card-content relative p-10 pt-16 lg:pr-12">
               <div class="relative">
-                <div class="rangeTooltip" id="tooltip">1 Signatures</div>
-                <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
-                  id="rangeSlider" min="0" max="8" step="1" value="0">
-                <!-- <div
-                  class="absolute bg-cover top-1/2 -translate-y-1/2 pointer-events-none size-5 text-[0px] -translate-x-1/2 z-[4]"
-                  id="customThumb" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/ellipse1.png');"></div> -->
-                <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
-                <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
-              </div>
-              <div class="labels hidden lg:flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
+                  <div class="rangeTooltip" id="tooltip">1 Signatures</div>
+                  <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
+                    id="rangeSlider" min="0" max="8" step="1" value="0">
+                  <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
+                  <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
+                </div>
+                <div class="labels hidden lg:flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
             </div>
           </div>
           <!-- <div class="kt-card mt-3">
@@ -96,7 +93,7 @@
                     <h2>$<span class="month_proprice cprice">15</span>/mo</h2>
                     <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">Change to yearly, save 20%</span>
                   </div>
-                  <p class="text-gray-400 my-1">Billed Yearly</p>
+                  <p class="text-gray-400 my-1">Billed Monthly</p>
                   <p class="text-gray-400">Full animation features with advanced layouts, interactive icons, team management and auto-deployment.</p>
                   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
                     <ul class="space-y-2">
@@ -254,68 +251,65 @@
 </div>
 </div>
 <!-- pricing plan change based on slider -->
-<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>         
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
 <script src="%%DEFINE_JS_LINK%%/nouislider/nouislider.min.js"></script>
 <script type="text/javascript">
 
   
-
-  function initCustomSliderPurchase(
-    values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
-    sliderId = "rangeSlider",
-    tooltipId = "tooltip",
-    labelsId = "labels",
-    thumbId = "customThumb",
-    fillId = "fillTreck"
+function initCustomSliderPurchase(
+      values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+      sliderId = "rangeSlider",
+      tooltipId = "tooltip",
+      labelsId = "labels",
+      fillId = "fillTreck"
   ) {
-    const slider = document.getElementById(sliderId);
-    const tooltip = document.getElementById(tooltipId);
-    const labelsContainer = document.getElementById(labelsId);
-    const customThumb = document.getElementById(thumbId);
-    const rangeBg = document.getElementById(fillId);
+      const slider = document.getElementById(sliderId);
+      const tooltip = document.getElementById(tooltipId);
+      const labelsContainer = document.getElementById(labelsId);
+      const rangeBg = document.getElementById(fillId);
 
-    const thumbWidth = customThumb.offsetWidth;
-    const halfThumb = thumbWidth / 2;
+      slider.max = values.length - 1;
+      const thumbWidth = 24; // known thumb width
 
-    // Set slider max
-    slider.max = values.length - 1;
+      // Generate labels
+      labelsContainer.innerHTML = "";
+      values.forEach((val, i) => {
+          const span = document.createElement("span");
+          span.textContent = val;
+          const percent = (i / (values.length - 1)) * 100;
+          span.style.left = percent + "%";
+          labelsContainer.appendChild(span);
+      });
 
-    // Apply negative margin to labels container
-    labelsContainer.style.marginLeft = `-${halfThumb}px`;
-    labelsContainer.style.marginRight = `-${halfThumb}px`;
+      function updateUI() {
+          const index = parseInt(slider.value);
+          const value = values[index];
+          const percent = index / (values.length - 1);
 
-    // Add labels
-    labelsContainer.innerHTML = "";
-    values.forEach(val => {
-      const span = document.createElement("span");
-      span.textContent = val;
-      labelsContainer.appendChild(span);
-    });
+          // Ensure correct width including padding
+          const sliderRect = slider.getBoundingClientRect();
+          const sliderWidth = sliderRect.width;
 
-    function updateUI() {
-      const index = parseInt(slider.value);
-      const value = values[index];
-      const percent = (index / (values.length - 1)) * 100;
-      const sliderWidth = slider.offsetWidth;
-      const posX = (percent / 100) * sliderWidth;
+          // Compute tooltip left position
+          const computedLeft = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+          tooltip.style.left = computedLeft + "px";
+          tooltip.style.transform = "translateX(-50%)";
 
-      tooltip.style.left = posX + "px";
-      tooltip.textContent = `${value} Signature`;
+          tooltip.textContent = `${value} Signature${value > 1 ? 's' : ''}`;
 
-      customThumb.style.left = posX + "px";
-      rangeBg.style.width = percent + "%";
+          // Update filled track
+          rangeBg.style.width = (percent * 100) + "%";
 
-      if (typeof updatePurchasePlanDetails === 'function') {
-          updatePurchasePlanDetails(value);
+          if (typeof updatePurchasePlanDetails === 'function') {
+            updatePurchasePlanDetails(value);
+        }
       }
-    }
 
-    slider.addEventListener("input", updateUI);
-    window.addEventListener("resize", updateUI);
-
-    updateUI(); // initialize
+      // Make sure tooltip positions correctly after DOM is fully ready
+      window.addEventListener("load", updateUI);
+      slider.addEventListener("input", updateUI);
+      window.addEventListener("resize", updateUI);
   }
-
 
   function updateSelectPlan(){
       
@@ -358,7 +352,6 @@
       $("#apply_promocode").removeClass('hidden');
       $("#applied_promocode").addClass('hidden');
     };
-
 
   function updatePurchasePlanDetails(value){
     //if(unencoded == 0 ) {unencoded = $('#plan_unit').val();}
@@ -407,6 +400,7 @@
   }
 
   initCustomSliderPurchase();
+
   $(document).ready(function(){
     var start = "%%DEFINE_plan_unit%%";
     updatePurchasePlanDetails(start);

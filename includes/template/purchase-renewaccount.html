@@ -14,18 +14,16 @@
         %%DEFINE_Message%%
         <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 xl:gap-10">
-          <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn kt-btn-secondary kt-btn-icon absolute top-2 right-2">
+          <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn text-gray-600 !bg-transparent border !border-primary bg-gradient-to-r from-[#26B7FF]/20 to-[#1D4AFE]/20 kt-btn-icon absolute top-2 right-4">
             <i class="hgi hgi-stroke hgi-cancel-01"></i>
           </a>
           <div id="selectplan-main" class="bg-gray-100 border border-gray-300 p-5 rounded-4xl" style="display:block;">
             <div class="flex flex-wrap items-center justify-between mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 2xl:mb-10">
-              <div>
                 <h4 class="font-bold">Renew Account</h4>
                 <!-- <span
                     class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">7-day Free
                     Trial!</span> -->
-                <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Cancel Anytime</p>
-              </div>
+                <!-- <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Cancel Anytime</p> -->
               <div class="flex items-center gap-2">
                 <div class="flex items-center gap-2">
                   <span id="nav-tabs-monthly">Monthly</span>
@@ -39,20 +37,17 @@
             </div>
             <p class="mb-3">How many signatures do you need?</p>
             <div class="kt-card">
-            <div class="kt-card-content relative p-10 pt-16 pr-12">
-              <div class="relative">
-                <div class="rangeTooltip" id="tooltip">1 Signatures</div>
-                <input type="range" class="appearance-none -mx-2 block !h-5 relative z-[1] bg-transparent !w-full"
-                  id="rangeSlider" min="0" max="8" step="1" value="0">
-                <!-- <div
-                  class="absolute bg-cover top-1/2 -translate-y-1/2 pointer-events-none size-5 text-[0px] -translate-x-1/2 z-[4]"
-                  id="customThumb" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/ellipse1.png');"></div> -->
-                <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
-                <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
+              <div class="kt-card-content relative p-10 pt-16 pr-12">
+                <div class="relative">
+                  <div class="rangeTooltip" id="tooltip">1 Signatures</div>
+                  <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
+                    id="rangeSlider" min="0" max="8" step="1" value="0">
+                  <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
+                  <div class="h-1.5 absolute top-1/2 -translate-y-1/2 rounded-full bg-gradient" id="fillTreck"></div>
+                </div>
+                <div class="labels hidden lg:flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
               </div>
-              <div class="labels hidden lg:flex justify-between mt-4 *:w-6 *:text-center" id="labels"></div>
             </div>
-          </div>
             <!-- <div class="kt-card mt-3">
               <div class="kt-card-content">
                 <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
@@ -83,47 +78,50 @@
                 </div>
               </div>
             </div> -->
-            <div class="hidden kt-card mt-5" id="monthly-tab-panel">
+            <div class="hidden kt-card mt-5 relative rounded-2xl" id="monthly-tab-panel">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-top-[26px] -left-[26px] max-w-[fit-content] absolute">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-right-[27px] -bottom-[27px] max-w-[fit-content] absolute rotate-180">
               <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="hidden imgbgchk" value="2"
                 required="required" %%DEFINE_plan_selplan2%%>
-              <label for="plan_id2" class="changeprice" data-price="20">
-
-                <div class="kt-card-content">
-                  <h5>Pro Plan</h5>
-                  <p class="no_employee_qarter">5</span> Signature</p>
-                  <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
-                  
-                  <div class="flex items-end gap-3 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">
-                    <h2>$<span class="month_proprice cprice">15</span></h2>
-                    <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">Change to yearly, save 20%</span>
+                <label for="plan_id2" class="changeprice" data-price="20">
+                  <div class="kt-card-content p-8" style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
+                    <h5>Pro Plan</h5>
+                    <p><span class="no_employee_qarter">5</span> Signature</p>
+                    <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
+                    
+                    <div class="flex items-end gap-3 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">
+                      <h2>$<span class="month_proprice cprice">15</span></h2>
+                      <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">Change to yearly, save 20%</span>
+                    </div>
+                    
+                    <p class="monthprice" style="display:none;"> $<span class="month_propricespl cpricespl">60</span> USD </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
+                      <ul class="list-check space-y-2">
+                        <li class="flex gap-1">Interactive Signature</li>
+                        <li class="flex gap-1">AI - Logo Animation™</li>
+                        <li class="flex gap-1">Remove CES Watermark</li>
+                        <li class="flex gap-1">Team Dashboard</sup></li>
+                        <li class="flex gap-1">Interactive Social Icons</li>
+                        <li class="flex gap-1">Animated Profile</li>
+                        <li class="flex gap-1">Analytics <span class="text-gray-300">(coming soon)</span></li>
+                        <li class="flex gap-1">Customer Support</li>
+                      </ul>
+                      <ul class="list-check space-y-2">
+                        <li class="flex gap-1">Verification Badge<img class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
+                        <li class="flex gap-1">Pro Templates</li>
+                        <li class="flex gap-1">Team Dashboard</li>
+                        <li class="flex gap-1">Outlook and Gmail Sync<img class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img
+                            class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
+                        <li class="flex gap-1">Instant Load Speed</li>
+                      </ul>
+                    </div>
                   </div>
-                  
-                  <p class="monthprice" style="display:none;"> $<span class="month_propricespl cpricespl">60</span> USD </p>
-                  <div class="grid grid-cols-1 md:grid-cols-2 mt-6 pt-6 border-t border-t-gray-200 gap-2">
-                    <ul class="list-check space-y-2">
-                      <li class="flex gap-1">Interactive Signature</li>
-                      <li class="flex gap-1">AI - Logo Animation™</li>
-                      <li class="flex gap-1">Remove CES Watermark</li>
-                      <li class="flex gap-1">Team Dashboard</sup></li>
-                      <li class="flex gap-1">Interactive Social Icons</li>
-                      <li class="flex gap-1">Animated Profile</li>
-                      <li class="flex gap-1">Analytics <span class="text-gray-300">(coming soon)</span></li>
-                      <li class="flex gap-1">Customer Support</li>
-                    </ul>
-                    <ul class="list-check space-y-2">
-                      <li class="flex gap-1">Verification Badge<img class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
-                      <li class="flex gap-1">Pro Templates</li>
-                      <li class="flex gap-1">Team Dashboard</li>
-                      <li class="flex gap-1">Outlook and Gmail Sync<img class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/gmail-icon1.svg" alt=""><img
-                          class="mt-1" src="%%DEFINE_IMAGE_LINK%%/images/outlook-icon1.svg" alt=""></li>
-                      <li class="flex gap-1">Instant Load Speed</li>
-                    </ul>
-                  </div>
-                </div>
-              </label>
+                </label>
             </div>
-            <div id="yearly-tab-panel" class="kt-card mt-5">
-              <div class="kt-card-content">
+            <div id="yearly-tab-panel" class="kt-card mt-5 relative rounded-2xl">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-top-[26px] -left-[26px] max-w-[fit-content] absolute">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-right-[27px] -bottom-[27px] max-w-[fit-content] absolute rotate-180">
+              <div class="kt-card-content p-8" style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
                 <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
                 <label for="plan_id4" class="changeprice" data-price="20">
                   <h5>Pro Plan</h5>
@@ -347,65 +345,67 @@
       updateSelectPlan();
     }
 
-    function initCustomSliderPurchaseRenewAccount(
-        values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
-        sliderId = "rangeSlider",
-        tooltipId = "tooltip",
-        labelsId = "labels",
-        thumbId = "customThumb",
-        fillId = "fillTreck"
-      ) {
-        const slider = document.getElementById(sliderId);
-        const tooltip = document.getElementById(tooltipId);
-        const labelsContainer = document.getElementById(labelsId);
-        const customThumb = document.getElementById(thumbId);
-        const rangeBg = document.getElementById(fillId);
+   function initCustomSliderPurchaseRenewAccount(
+      values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+      sliderId = "rangeSlider",
+      tooltipId = "tooltip",
+      labelsId = "labels",
+      fillId = "fillTreck"
+  ) {
+      const slider = document.getElementById(sliderId);
+      const tooltip = document.getElementById(tooltipId);
+      const labelsContainer = document.getElementById(labelsId);
+      const rangeBg = document.getElementById(fillId);
 
-        const thumbWidth = customThumb.offsetWidth;
-        const halfThumb = thumbWidth / 2;
+      slider.max = values.length - 1;
+      const thumbWidth = 24; // known thumb width
 
-        // Set slider max
-        slider.max = values.length - 1;
-
-        // Apply negative margin to labels container
-        labelsContainer.style.marginLeft = `-${halfThumb}px`;
-        labelsContainer.style.marginRight = `-${halfThumb}px`;
-
-        // Add labels
-        labelsContainer.innerHTML = "";
-        values.forEach(val => {
+      // Generate labels
+      labelsContainer.innerHTML = "";
+      values.forEach((val, i) => {
           const span = document.createElement("span");
           span.textContent = val;
+          const percent = (i / (values.length - 1)) * 100;
+          span.style.left = percent + "%";
           labelsContainer.appendChild(span);
-        });
+      });
 
-        function updateUI() {
+      function updateUI() {
           const index = parseInt(slider.value);
           const value = values[index];
-          const percent = (index / (values.length - 1)) * 100;
-          const sliderWidth = slider.offsetWidth;
-          const posX = (percent / 100) * sliderWidth;
+          const percent = index / (values.length - 1);
 
-          tooltip.style.left = posX + "px";
-          tooltip.textContent = `${value} Signature`;
+          // Ensure correct width including padding
+          const sliderRect = slider.getBoundingClientRect();
+          const sliderWidth = sliderRect.width;
 
-          customThumb.style.left = posX + "px";
-          rangeBg.style.width = percent + "%";
+          // Compute tooltip left position
+          const computedLeft = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+          tooltip.style.left = computedLeft + "px";
+          tooltip.style.transform = "translateX(-50%)";
+
+          tooltip.textContent = `${value} Signature${value > 1 ? 's' : ''}`;
+
+          // Update filled track
+          rangeBg.style.width = (percent * 100) + "%";
 
           if (typeof updateRenewaccountPlanDetails === 'function') {
-            updateRenewaccountPlanDetails(value);
+              updateRenewaccountPlanDetails(value);
           }
-        }
-        slider.addEventListener("input", updateUI);
-        window.addEventListener("resize", updateUI);
-
-        updateUI(); // initialize
       }
 
+      // Make sure tooltip positions correctly after DOM is fully ready
+      window.addEventListener("load", updateUI);
+      slider.addEventListener("input", updateUI);
+      window.addEventListener("resize", updateUI);
+  }
 
     initCustomSliderPurchaseRenewAccount();
+
+
     $(document).ready(function(){
       updateRenewaccountPlanDetails(1);
+
       const slider = $('#rangeSlider')[0];
       const tooltip = $('#tooltip')[0];
       const customThumb = $('#customThumb')[0];
@@ -443,6 +443,7 @@
       });
     });
   </script>
+
   <script type="text/javascript">
     jQuery.noConflict();
     (function ($) {
