@@ -656,7 +656,8 @@
 
 						feedbackModal.hide();
 						thanksModal.show();
-						return false;
+						window.location = url;
+						// return false;
 					} else {
 						alert(data['error']);
 						return false;
