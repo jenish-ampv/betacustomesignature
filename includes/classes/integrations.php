@@ -221,7 +221,7 @@ class CIT_INTEGRATIONS
 					if(filter_var($to, FILTER_VALIDATE_EMAIL)){
 						$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					}
-					$result = array('error'=>0,'msg'=>'<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signature share success</div>');
+					$result = array('error'=>0,'msg'=>'<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signature share success</div>');
 					$response = json_encode($result);
 				}
 			}else{

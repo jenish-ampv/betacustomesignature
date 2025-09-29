@@ -254,12 +254,12 @@ class CIT_AZUREAD
 									}
 									// manage import process queue with DB
 									// $this->previewImportedSignatureToSaveHtml();
-									$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
+									$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
 									$redirect = GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id'];
 									GetFrontRedirectUrl($redirect); exit;
 								}
 								else{
-									$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
+									$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
 									//$redirect = GetUrl(array('module'=>'import')).'?success=1';
 									$redirect = GetUrl(array('module'=>'azuread','category_id'=>'thanks'));
 									GetFrontRedirectUrl($redirect); exit;

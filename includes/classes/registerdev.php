@@ -49,7 +49,7 @@ class CIT_REGISTERDEV
 					$message= _getEmailTemplate('forget_password');
 					$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					if($send_mail){
-						$_SESSION[GetSession('Error')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong> Success! </strong>password reset link sent to your register email address!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong> Success! </strong>password reset link sent to your register email address!</div>';
 					}else{
 						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>please enter email address associate with your account!</div>';
 					}
@@ -102,7 +102,7 @@ class CIT_REGISTERDEV
 									}
 								}
 							    unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-								$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
+								$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 								$message= _getEmailTemplate('welcome');
 								$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 								$this->AddgohiLevelContact();

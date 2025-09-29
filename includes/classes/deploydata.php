@@ -104,7 +104,7 @@ class CIT_DEPLOYDATA
 				foreach ($updateSignatureIds as $signatureId ) {
 					$GLOBALS['DB']->query("UPDATE `signature` SET `is_deploy` = '1' WHERE `signature_id`=?",array($signatureId)); 
 				}
-				$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Signatures deployed successfully.'.$implodedSTR.'</div><script>jQuery.noConflict();(function($) {$(document).ready(function(){setTimeout(function(){ $(".alert").hide(); }, 2000);});})(jQuery);</script>';
+				$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Signatures deployed successfully.'.$implodedSTR.'</div><script>jQuery.noConflict();(function($) {$(document).ready(function(){setTimeout(function(){ $(".alert").hide(); }, 2000);});})(jQuery);</script>';
 				$redirect = GetUrl(array('module'=>'dashboard'));
 				GetFrontRedirectUrl($redirect); exit;
 			}
@@ -240,7 +240,7 @@ class CIT_DEPLOYDATA
 				    // echo "<pre>"; print_r($response); 
 				}
 				// die;
-				$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Signatures deployed successfully.'.$implodedSTR.'</div><script>jQuery.noConflict();(function($) {$(document).ready(function(){setTimeout(function(){ $(".alert").hide(); }, 2000);});})(jQuery);</script>';
+				$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Signatures deployed successfully.'.$implodedSTR.'</div><script>jQuery.noConflict();(function($) {$(document).ready(function(){setTimeout(function(){ $(".alert").hide(); }, 2000);});})(jQuery);</script>';
 				$redirect = GetUrl(array('module'=>'dashboard'));
 				GetFrontRedirectUrl($redirect); exit;
 			}
