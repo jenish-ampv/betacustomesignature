@@ -63,7 +63,7 @@ ui(function() {
         var fd = new FormData();
         var files = ui('#profileImage')[0].files[0];
         fd.append('profile',files);
-        uploadData1(fd);
+        uploadDataSignatureProfile(fd);
     });
 
 
@@ -120,7 +120,7 @@ function addProfileThumbnail(data){
 
 
 // Sending AJAX request and upload file
-function uploadData1(formdata, isdragndrop = false){
+function uploadDataSignatureProfile(formdata, isdragndrop = false){
 
     ui.ajax({
         url: upload_url1,
