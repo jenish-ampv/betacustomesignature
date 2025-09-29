@@ -379,7 +379,7 @@ class CIT_BANNERCAMPAIGN
 			$departments = explode(',', $departmentstr);
     		$isAnyOtherActivated = false;
 			foreach ($departments as $department) {
-				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ?",array('%' . $department . '%'));
+				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ? AND end_date >= date('Y-m-d')",array('%' . $department . '%'));
 				if($activeBanner){
 	        		$isAnyOtherActivated = true;
 				}
@@ -431,7 +431,7 @@ class CIT_BANNERCAMPAIGN
 			$departments = explode(',', $departmentstr);
     		$isAnyOtherActivated = false;
 			foreach ($departments as $department) {
-				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ?",array('%' . $department . '%'));
+				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ? AND end_date >= date('Y-m-d')",array('%' . $department . '%'));
 				if($activeBanner){
 	        		$isAnyOtherActivated = true;
 				}
