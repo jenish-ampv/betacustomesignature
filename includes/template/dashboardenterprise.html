@@ -313,6 +313,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                 better animation quality.</p>
             </div>
                 <label class="kt-form-label">Please add feedback</label>
+                <div id="feedback_errormsg_logo"></div>
                 <div class="flex gap-2">
                     <input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
                     <input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
@@ -858,8 +859,8 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                 if (data['error'] == '0') {
                     feedbackModal.hide();
                     thanksModal.show();
-
-                    return false;
+                    window.location = url;
+                    // return false;
                 } else {
                     alert(data['error']);
                     return false;

@@ -257,7 +257,7 @@ class CIT_PURCHASE
 
 						}
 
-						$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
+						$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
 						GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
 
 					} catch (\Stripe\Exception\CardException $e) {
@@ -289,7 +289,7 @@ class CIT_PURCHASE
 				}
 				
 				if($Subscription){				
-					$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
+					$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
 					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
 				}else{
 					if($GLOBALS['Error_code'] == 'subscription_payment_intent_requires_action'){
@@ -349,7 +349,7 @@ class CIT_PURCHASE
 				}
 				
 				if($Subscription){	
-					$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
+					$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
 					GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
 				}else{
 					$_SESSION[GetSession('Success')] = '<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment debit from your account.</div>';	
@@ -468,7 +468,7 @@ class CIT_PURCHASE
 			$message= _getEmailTemplate('register_verify_email');
 			$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			if($send_mail){
-				$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
+				$_SESSION[GetSession('Success')]='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}else{
 				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again!.</div>';
@@ -500,7 +500,7 @@ class CIT_PURCHASE
 				$message= _getEmailTemplate('register_verify_email');
 				$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 				if($send_mail){
-					$_SESSION[GetSession('Success')]='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
+					$_SESSION[GetSession('Success')]='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 				}else{
 					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again!.</div>';
@@ -620,7 +620,7 @@ class CIT_PURCHASE
 				}
 			}
 				unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-			$_SESSION[GetSession('Success')] ='<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
+			$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($postData->user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			$this->AddgohiLevelContact();

@@ -44,7 +44,7 @@
             <div class="kt-modal-header">
                 <p class="kt-modal-title">Invite User</p>
                 <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#addUserModel">
-                    <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+                    <i class="hgi hgi-stroke hgi-cancel-circle text-3xl"></i>
                 </button>
             </div>
             <div class="kt-modal-body">
@@ -114,7 +114,7 @@
                 url: url,
                 contentType: 'application/json'
             }).done(function (data) {
-                $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong>Invite mail send successfully.</div>');
+                $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong>Invite mail send successfully.</div>');
                 console.log('he;;p')
                 $('#snackbar').show();
                 $(".loader-image").hide();
@@ -240,7 +240,7 @@
                         if (json.error != 1) {
                             
 
-                            // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
+                            // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
                             // $('#snackbar').show();
                             $('.kt-modal-close').click();
                             KTToast.show({
@@ -379,7 +379,7 @@
                                 variant: 'success',
                                 icon: '<i class="fas fa-check-circle text-success"></i>',
                             });
-                            // $('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""> User status changed successfully.</div>');
+                            // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""> User status changed successfully.</div>');
                             // $('#snackbar').show();
                             setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 3000);
                         } else {

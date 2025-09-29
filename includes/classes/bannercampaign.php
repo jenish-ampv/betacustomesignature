@@ -156,7 +156,7 @@ class CIT_BANNERCAMPAIGN
                 		<div class='campaign_option_btns flex gap-1 items-center'>
 							<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Duplicate' data-kt-tooltip='true' data-kt-tooltip-placement='top' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-copy-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Duplicate</span></a>";
 							if($fieldtype == 'pause'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Resume' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'><i class='hgi hgi-solid hgi-sharp hgi-play'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Resume</span></a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Resume' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-sharp hgi-play'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Resume</span></a>";
 							}
 							else if($fieldtype == 'active'){
 								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Pause' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-pause'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Pause</span></a>";
@@ -379,7 +379,7 @@ class CIT_BANNERCAMPAIGN
 			$departments = explode(',', $departmentstr);
     		$isAnyOtherActivated = false;
 			foreach ($departments as $department) {
-				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ?",array('%' . $department . '%'));
+				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ? AND end_date >= date('Y-m-d')",array('%' . $department . '%'));
 				if($activeBanner){
 	        		$isAnyOtherActivated = true;
 				}
@@ -431,7 +431,7 @@ class CIT_BANNERCAMPAIGN
 			$departments = explode(',', $departmentstr);
     		$isAnyOtherActivated = false;
 			foreach ($departments as $department) {
-				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ?",array('%' . $department . '%'));
+				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ? AND end_date >= date('Y-m-d')",array('%' . $department . '%'));
 				if($activeBanner){
 	        		$isAnyOtherActivated = true;
 				}

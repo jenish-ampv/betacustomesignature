@@ -124,7 +124,7 @@ class CIT_GSUITE
 								}
 								
 								$_SESSION['import_items'] =  $import_item;
-								$_SESSION[GetSession('Success')] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">File has been imported successfully.</div>';
+								$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">File has been imported successfully.</div>';
 					 			$redirect = GetUrl(array('module'=>'import')).'?success=1';
 							    GetFrontRedirectUrl($redirect); exit;
 							}else{

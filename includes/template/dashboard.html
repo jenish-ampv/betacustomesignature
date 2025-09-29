@@ -351,6 +351,7 @@
 			<div class="change-logo-reason">
 				<input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
 				<label class="kt-form-label" for="">Please add feedback</label>
+				<div id="feedback_errormsg_logo" class="text-danger"></div>
 				<div class="kt-input-group">
 					<input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
 					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn"
@@ -606,7 +607,7 @@
 					}).done(function (data) {
 						if (data.error == '0') {
 
-							$('#snackbar').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
+							$('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature mail has been sent! </div>');
 							$('#snackbar').show();
 							setTimeout(function () { $('#snackbar').hide(); }, 2000);
 							// $('#shareModal').modal('hide');
@@ -656,7 +657,8 @@
 
 						feedbackModal.hide();
 						thanksModal.show();
-						return false;
+						window.location = url;
+						// return false;
 					} else {
 						alert(data['error']);
 						return false;
@@ -701,7 +703,7 @@
 					icon: '<i class="fas fa-check-circle text-success"></i>',
 				});
 
-				// $('#snackbar').html(`<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">
+				// $('#snackbar').html(`<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">
 				// 	<img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt="">
 				// 	<strong>Success! </strong>Link has been copied to clipboard! </div>`
 				// 	);
