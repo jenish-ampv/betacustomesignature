@@ -821,7 +821,8 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         setTimeout(function () {
                             $('#snackbar').hide();
                         }, 2000);
-                        shareModal.hide();
+                        // shareModal.hide();
+                        $(".kt-modal-close").click();
                     } else {
                         alert('somthing wrong try again');
                         return false;
