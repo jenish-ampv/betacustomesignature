@@ -59,12 +59,10 @@ ui(function() {
 		ui("#profile_img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
         uploadProfileData(fd);
         
-
-
+        // For signature profile
         var fd = new FormData();
         var files = ui('#profileImage')[0].files[0];
         fd.append('profile',files);
-
         uploadData1(fd);
     });
 
@@ -137,6 +135,7 @@ function uploadData1(formdata, isdragndrop = false){
             // filename = response.name;
             // var resultProfileName = (filename.match(/-(\d+)\.[^\.]+$/) || [])[1] + '.' + filename.split('.').pop();
             $('[name="signature_profile"]').attr('value', response.name);
+            $(".profile_animation_section").removeClass('cursor-not-allowed opacity-50 pointer-events-none');
         }
     });
 }
