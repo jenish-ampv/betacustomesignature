@@ -1436,7 +1436,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 		}
 
 		if($GLOBALS['master_signature'] == ''){
-			$GLOBALS['master_signature'] = '<div class="text-center h-full font-semibold text-gray-400 flex items-center justify-center">
+			$GLOBALS['master_signature'] = '<div class="text-center h-full font-semibold text-gray-400 flex items-center justify-center w-full">
   							Please Select the Master<br /> Signature
                         </div>';
 		}
