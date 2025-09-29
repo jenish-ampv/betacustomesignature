@@ -159,7 +159,7 @@ class CIT_BANNERCAMPAIGN
 								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Resume' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'><i class='hgi hgi-solid hgi-sharp hgi-play'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Resume</span></a>";
 							}
 							else if($fieldtype == 'active'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Pause' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-pause-circle'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Pause</span></a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Pause' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-pause'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Pause</span></a>";
 							}
 							if($fieldtype == 'scheduled' || $fieldtype == 'draft'){
 								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Edit' data-kt-tooltip='true' data-kt-tooltip-placement='top' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."/edit'><i class='hgi hgi-stroke hgi-pencil-edit-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Edit</span></a>";

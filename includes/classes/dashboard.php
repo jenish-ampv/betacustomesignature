@@ -1136,12 +1136,12 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 									<div class="flex gap-2">';
 										if($GLOBALS['current_department_id'] != '0'){
 										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'">
-											<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+											<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
 											<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 										</a>';
 										}else{
 										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'">
-											<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+											<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
 											<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 										</a>';
 										}
@@ -1332,7 +1332,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 													<div class="flex flex-col gap-3 items-center justify-center h-full">
 														<div class="flex gap-2">
 															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Edit">
-																<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+																<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
 																<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 															</a>
 															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="duplicate" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Duplicate">
