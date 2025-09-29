@@ -72,6 +72,20 @@ input[type="range" i]::-webkit-slider-thumb {
         @apply leading-none;
     }
 }
+
+.kt-switch {
+    &:checked, &[aria-checked='true'] {
+       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1D4AFE] outline-white/20 shadow-[inset_0px_1px_4px_rgba(255,255,255,0.3)];
+    i{
+        @apply leading-none;
+    }
+
+    &:before {
+            @apply outline outline-offset-0 outline-white/20;
+        }
+    }   
+}
+
 .kt-btn-sm{
     @apply h-7 px-2.5;
 }
@@ -93,6 +107,7 @@ input[type="range" i]::-webkit-slider-thumb {
         }
     }
 }
+
 .kt-btn-white{
     /* @apply relative bg-white text-primary before:rounded-[14px] before:inset-[1px] before:border-2 before:border-transparent before:absolute before:[border-image:linear-gradient(90deg,#4D7FFF,#FFFFFF)_1]; */
     @apply relative bg-white text-primary place-items-center border-2 border-white;
