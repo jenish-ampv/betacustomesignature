@@ -619,6 +619,13 @@
                 var user_email = datalayer['user_data']['user_email'];
                 var user_phone = datalayer['user_data']['user_phone'];
                 var user_organization = datalayer['user_data']['user_organization'];
+                var user_business = datalayer['user_data']['user_business'];
+                var user_job_title = datalayer['user_data']['user_job_title'];
+                var user_company_size = datalayer['user_data']['user_company_size'];
+                var user_team_size = datalayer['user_data']['user_team_size'];
+                var user_email_platform = datalayer['user_data']['user_email_platform'];
+                var heard_about_us = datalayer['user_data']['heard_about_us'];
+                var what_brought_you = datalayer['user_data']['what_brought_you'];
 
                 $('#user_name').html(datalayer['user_name'])
                 const purchaseEvent = {
@@ -660,14 +667,21 @@
                     first_name: user_first_name,
                     last_name: user_last_name,
                     email_hash: user_email,
-                    phone_number_hash: user_phone
+                    phone_number_hash: user_phone,
+                    user_organization: user_organization,
+                    user_business: user_business,
+                    user_job_title: user_job_title,
+                    user_company_size: user_company_size,
+                    user_team_size: user_team_size,
+                    user_email_platform: user_email_platform,
+                    heard_about_us: heard_about_us,
+                    what_brought_you: what_brought_you,
                   },
                   ga4_event_parameters: {
                     signature_limit: plan_signaturelimit,
                     plan_interval: plan_interval
                   }
                 };
-
                 // Push to dataLayer
                 dataLayer.push(purchaseEvent);
 

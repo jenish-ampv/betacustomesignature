@@ -412,8 +412,7 @@
 			<p class="text-lg mb-2 mt-4">You can share the signature by copying the installation link</p>
 			<label class="kt-form-label" for="">URL</label>
 			<div class="flex gap-2">
-				<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address"
-					required="required" value="">
+				<input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Share Url" required="required" value="">
 				<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="copyshareurl">
 					<i class="hgi hgi-stroke hgi-copy-01"></i> copy
 				</a>
@@ -756,28 +755,39 @@
 		reviewModal.show();
 	});
 
-	const shareModalEl = document.getElementById('shareModal');
-	const shareModal = KTModal.getInstance(shareModalEl);
+	// const shareModalEl = document.getElementById('shareModal');
+	// const shareModal = KTModal.getInstance(shareModalEl);
 
-	shareModal.on('show', (e) => {
-		// KTUI: get the element that triggered this modal
-		const button = shareModal.getTargetElement();
-		if (!button) return;
+	// shareModal.on('show', (e) => {
+	// 	// KTUI: get the element that triggered this modal
+	// 	const button = shareModal.getTargetElement();
+	// 	if (!button) return;
 
-		const signatureId = button.getAttribute('data-id');
-		const shareUrl = button.getAttribute('data-url');
-		const shareEmail = button.getAttribute('data-email');
+	// 	const signatureId = button.getAttribute('data-id');
+	// 	const shareUrl = button.getAttribute('data-url');
+	// 	const shareEmail = button.getAttribute('data-email');
 
-		document.getElementById("share_url").value = shareUrl || '';
-		document.getElementById("share_email").value = shareEmail || '';
-		document.getElementById("sharesig").setAttribute('data-id', signatureId || '');
-	});
+	// 	document.getElementById("share_url").value = shareUrl || '';
+	// 	document.getElementById("share_email").value = shareEmail || '';
+	// 	document.getElementById("sharesig").setAttribute('data-id', signatureId || '');
+	// });
 
 </script>
 
 <script language="javascript">
 
 	$(document).ready(function () {
+		$('[title="Share"]').on('click', function (event) {
+            console.log('hello')
+            var button = $(this);
+            var signatureId = button.attr('data-id');
+            var shareUrl = button.attr('data-url');
+            var shareEmail = button.attr('data-email');
+            $("#share_url").val(shareUrl);
+            $("#share_email").val(shareEmail);
+            $("#sharesig").attr('data-id', signatureId);
+        });
+		
 		$('#select_all').on('click', function () {
 			if (this.checked) {
 				$('.del_chekbox').each(function () {

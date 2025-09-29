@@ -99,7 +99,7 @@ function addThumbnail(data){
 		ui("#nxt2").prop('disabled', false);
 		ui("#img_errormsg").html('');
 	}else{
-		ui("#img_errormsg").html('<div class="alert text-danger mb-2" role="alert">'+data.msg+'</div>');
+		ui("#img_errormsg").html('<div class="alert alert-danger mb-2" role="alert">'+data.msg+'</div>');
 		ui("#img_preview").empty();
 		
 	}

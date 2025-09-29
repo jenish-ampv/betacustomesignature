@@ -367,7 +367,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             <p class="text-lg mb-2 mt-4">You can share the signature by copying the installation link</p>
             <label class="kt-form-label" for="">Url</label>
             <div class="flex gap-2">
-                <input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Email Address" required="required" value="">
+                <input type="text" class="kt-input" id="share_url" name="share_url" placeholder="Share Url" required="required" value="">
                 <a href="javascript:void(0);" id="copyshareurl" class="kt-btn kt-btn-primary">
                     <i class="hgi hgi-stroke hgi-copy-01"></i> copy
                 </a>
@@ -913,20 +913,31 @@ IF("%%DEFINE_manage_signatures%%" == ""){
         document.getElementById("backreview").setAttribute('data-img', reviewlogo);
     });
 
-    const shareModalEl = document.querySelector('#shareModal');
-    const shareModal = KTModal.getInstance(shareModalEl);
+    // const shareModalEl = document.querySelector('#shareModal');
+    // const shareModal = KTModal.getInstance(shareModalEl);
 
-    shareModal.on('show', () => {
-        var button = event.relatedTarget
-        var signatureId = button.getAttribute('data-id');
-        var shareUrl = button.getAttribute('data-url');
-        var shareEmail = button.getAttribute('data-email');
-        document.getElementById("share_url").value = shareUrl;
-        document.getElementById("share_email").value = shareEmail;
-        document.getElementById("sharesig").setAttribute('data-id', signatureId);
-    });
+    // shareModal.on('show', () => {
+    //     var button = event.relatedTarget
+    //     var signatureId = button.getAttribute('data-id');
+    //     var shareUrl = button.getAttribute('data-url');
+    //     var shareEmail = button.getAttribute('data-email');
+    //     document.getElementById("share_url").value = shareUrl;
+    //     document.getElementById("share_email").value = shareEmail;
+    //     document.getElementById("sharesig").setAttribute('data-id', signatureId);
+    // });
 
-    $(document).ready(function () { // copy signature share url
+    $(document).ready(function () { 
+        $('[title="Share"]').on('click', function (event) {
+            console.log('hello')
+            var button = $(this);
+            var signatureId = button.attr('data-id');
+            var shareUrl = button.attr('data-url');
+            var shareEmail = button.attr('data-email');
+            $("#share_url").val(shareUrl);
+            $("#share_email").val(shareEmail);
+            $("#sharesig").attr('data-id', signatureId);
+        });
+
         $('#copyshareurl').on('click', function (event) { // copy signature
             text = $('#share_url').val();
             var textField = $('#share_url');

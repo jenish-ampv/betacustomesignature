@@ -54,13 +54,18 @@ ui(function() {
     // profile file selected
     ui("#profileImage").change(function(){
         var fd = new FormData();
-
         var files = ui('#profileImage')[0].files[0];
-
         fd.append('profileImage',files);
 		ui("#profile_img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
-
         uploadProfileData(fd);
+        
+
+
+        var fd = new FormData();
+        var files = ui('#profileImage')[0].files[0];
+        fd.append('profile',files);
+
+        uploadData1(fd);
     });
 
 
@@ -103,7 +108,7 @@ function addProfileThumbnail(data){
 		var number = Math.random() * 100;
 		// Creating an thumbnail
 	   // ui("#uploadProfileImage").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-		ui("#uploadProfileImage").append('<div class="edit_profile_img flex items-center justify-center h-full"> <img src="'+src+'?rand='+number+'"></div>');
+		ui("#uploadProfileImage").append('<div class="edit_profile_img flex items-center justify-center"> <img class="max-h-[300px]" src="'+src+'?rand='+number+'"></div>');
 		ui("#profile_img_preview").append(' <div class="img_preview_box flex items-center gap-2 mt-2"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeProfileImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
 		// ui("#nxt2").prop('disabled', false);
 		ui("#profile_img_errormsg").html('');
@@ -114,6 +119,28 @@ function addProfileThumbnail(data){
 	}
 
 }
+
+
+// Sending AJAX request and upload file
+function uploadData1(formdata, isdragndrop = false){
+
+    ui.ajax({
+        url: upload_url1,
+        type: 'post',
+        data: formdata,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: function(response){
+            $('#uploadfile2').find('img').attr('src', response.src);
+            $('.signature_profile').attr('src', response.src);
+            // filename = response.name;
+            // var resultProfileName = (filename.match(/-(\d+)\.[^\.]+$/) || [])[1] + '.' + filename.split('.').pop();
+            $('[name="signature_profile"]').attr('value', response.name);
+        }
+    });
+}
+
 
 function removeProfileImage(){
 	// ui("#nxt2").prop('disabled', true);

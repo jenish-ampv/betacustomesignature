@@ -45,7 +45,7 @@ h1{
     line-height: calc(1.2em);
 }
 h2{
-    font-size: calc( 40px + (48 - 40) * (100vw - 400px) / (1920 - 400) );
+    font-size: calc( 35px + (48 - 40) * (100vw - 400px) / (1920 - 400) );
     line-height: calc(1.2em);
 }
 h3{font-size: calc( 32px + (40 - 32) * (100vw - 400px) / (1920 - 400) );}

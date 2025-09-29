@@ -378,21 +378,29 @@ class CIT_SIGNATURE{
 		$filter_val = $_POST['filter_val'];
 		$searchQuery = " ";
 		if($searchValue != ''){
-			$searchQuery = " AND (RU.user_id like '%".$searchValue."%' or RU.user_firstname like '%".$searchValue."%' or RU.user_email like '%".$searchValue."%')";
+			$searchQuery .= " AND (RU.user_id like '%".$searchValue."%' or RU.user_firstname like '%".$searchValue."%' or RU.user_email like '%".$searchValue."%')";
 			$searchQueryForTotalData = " WHERE (RU.user_id like '%".$searchValue."%' or RU.user_firstname like '%".$searchValue."%' or RU.user_email like '%".$searchValue."%')";
 		}
 		if($_POST['filter_val'] != ''){
 			if($_POST['filter_val'] == 10){
-				$searchQuery = " AND SL.logo_process =0 AND SU.free_trial=1 OR SU.plan_cancel=1";
+				$searchQuery .= " AND SL.logo_process =0 AND SU.free_trial=1 OR SU.plan_cancel=1";
 			}else if($_POST['filter_val'] == 0){
-				$searchQuery = " AND SL.logo_process =0 AND SU.free_trial=0 AND SU.plan_cancel = 0";
+				$searchQuery .= " AND SL.logo_process =0 AND SU.free_trial=0 AND SU.plan_cancel = 0";
 			}else{
-				$searchQuery = " AND SL.logo_process =".$_POST['filter_val'];
+				$searchQuery .= " AND SL.logo_process =".$_POST['filter_val'];
 			}
 		}
 
 		if($_POST['filter_user_type_val'] != ''){
-			$searchQuery = " AND RU.user_type='".$_POST['filter_user_type_val']."' ";
+			$searchQuery .= " AND RU.user_type='".$_POST['filter_user_type_val']."' ";
+		}
+
+		if($_POST['filter_user'] != ''){
+			if($_POST['filter_user'] == 'newsignup'){
+				$searchQuery .= " AND ((SU.subscription_id IS NULL) OR (SU.subscription_id = ''))";
+			}else{
+				$searchQuery .= " AND (SU.subscription_id IS NOT NULL AND SU.subscription_id != '')";
+			}
 		}
 
 		if($searchQueryForTotalData){
@@ -426,6 +434,10 @@ class CIT_SIGNATURE{
 				$userlable ='<label class="badge badge-light-primary" style="cursor:pointer;">Free</label>';
 			}else{
 				$userlable ='';
+			}
+
+			if(isset($row['subscription_id']) && !$row['subscription_id']){
+				$userlable = '<label class="badge badge-light-primary" style="cursor:pointer;">New Signup</label>';
 			}
 
 			$GLOBALS['on_process'] = 'return jsConfirm("","Process")';

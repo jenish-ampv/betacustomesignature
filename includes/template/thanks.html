@@ -115,6 +115,7 @@
         };
         var datalayerRawData = getUrlParameter('datalayer');
         var datalayer = JSON.parse(datalayerRawData);
+        console.log(datalayer)
         var transaction_id = datalayer['subscription_id'];
         var plan_id = datalayer['plan_id'];
         var plan_name = datalayer['plan_name'];

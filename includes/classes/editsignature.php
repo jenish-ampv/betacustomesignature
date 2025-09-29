@@ -1389,8 +1389,8 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 							<i class="hgi hgi-stroke hgi-tick-02"></i>
 						</span>
 
-						<span class="layout_id peer-checked:opacity-50 pointer-events-none">
-							<table class="signature_tbl_main" 
+						<span class="layout_id peer-checked:opacity-50">
+							<table class="signature_tbl_main pointer-events-none" 
 								style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" 
 								cellspacing="0" cellpadding="0" border="0">
 								<tr>

@@ -77,7 +77,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                     for="profileImage" id="uploadProfileImage">
                     <div class="cursor-pointer p-6 upload-box drag_your_image">
                       <span class="kt-btn kt-btn-white kt-btn-icon"><i class="fas fa-upload"></i></span>
-                      <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or SVG</p>
+                      <p class="text-gray-500 my-4">Choose a file or drag & drop it here.<br>PNG, JPG or JPEG</p>
                       <span class="kt-btn kt-btn-primary kt-btn-outline">Browse File</span>
                     </div>
                     <div class="preview size-full absolute z-[1] hidden">
@@ -88,9 +88,8 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                           class="fas fa-pen"></i> Edit Profile</button>
                     </div>
                   </label>
-                  <p class="text-gray-600 text-xs mt-2"><span class="text-gray-950">Notes:</span> Please upload a logo
-                    with dimension <span class="text-gray-950">500*500 and above pixel</span> for better animation
-                    quality.</p>
+                  <p class="text-gray-600 text-xs mt-2"><span class="text-gray-950">Notes:</span> Please upload a profile
+                    with dimension <span class="text-gray-950">300*300 pixel</span> for better experience.</p>
                   <div id="profile_img_preview"></div>
                   <div id="profile_img_errormsg"></div>
                 </div>
@@ -344,7 +343,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
             if ($("#profileImageCheck").is(":checked")) {
               var fileInput = $("#profileImage")[0];
               if (!(fileInput.files && fileInput.files[0])) {
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong> Please upload your profile image. </div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><i class="hgi hgi-stroke hgi-alert-circle mr-3"></i><strong>Failure! </strong>Please upload your profile image. </div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide();}, 2000);
                 return false;
@@ -396,7 +395,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                   setTimeout(function () { x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
                 }
               } else {
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><i class="hgi hgi-stroke hgi-alert-circle mr-3"></i><strong>Failure! </strong>' + json.msg + ' </div>');
                 $('#snackbar-error').show();
                 setTimeout(function () { $('#snackbar-error').hide(); window.location = redirecturld; }, 2000);
                 return false;
