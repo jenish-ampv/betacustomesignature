@@ -72,11 +72,10 @@ class CIT_BANNERCAMPAIGN
 						'StorageClass' => 'REDUCED_REDUNDANCY',
 						'ACL'   => 'public-read'
 					));
-					if(is_array(getimagesize($location))){
+					// if(is_array(getimagesize($location))){
 						$src = $GLOBALS['UPLOAD_LINK'].'/bannercampaign/'.$filename;
-
 						$data =array('user_image'=>$filename); $where =array('user_id'=>$GLOBALS['USERID']);
-					}
+					// }
 					$return_arr = array("name" => $filename,"displayname" => $displayname, "size" => $filesize, "src"=> $src, "error"=>0);
 				}
 			}else{
