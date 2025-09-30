@@ -224,7 +224,7 @@
                             <label for="plan_id1" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
                                     <div class="flex justify-between mt-5 flex-col sm:flex-row">
-                                        <h5 class="text-gray-950 font-semibold">Basic (Quarterly)</h5>
+                                        <h5 class="text-gray-950 font-semibold">Basic (<span class="plan_label">Quarterly</span>)</h5>
                                         <h5 class="text-gray-950 font-semibold">$<span class="quarter_basicprice cprice">10</span> /mo</h5>
                                     </div>
                                     <div class="flex justify-between">
@@ -242,7 +242,7 @@
                             <label for="plan_id2" class="changeprice" data-price="20">
                                 <div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
                                     <div class="flex justify-between flex-col sm:flex-row">
-                                        <h5 class="text-gray-950 font-semibold">Pro (Quarterly)</h5>
+                                        <h5 class="text-gray-950 font-semibold">Pro (<span class="plan_label">Quarterly</span>)</h5>
                                         <h5 class="text-gray-950 font-semibold">$<span class="quarter_proprice cprice">15</span> /mo</h5>
                                     </div>
                                     <div class="flex justify-between">
@@ -458,6 +458,7 @@
             if(activePlanId > 5){
                 $('#plan_type1').val('month');
                 $('label[for="plan_type1"]').text('Monthly');
+                $('.plan_label').text('Monthly');
             }
             $("#order-main, #selectplan-main").toggleClass("hidden");
         });
