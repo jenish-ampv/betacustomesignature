@@ -750,7 +750,7 @@ class CIT_NEWSIGNATURE
 				if($GLOBALS['signature_layout'] == $layout_id){
 					$GLOBALS['lauout_load'] = '<div class="signature_previous_box overflow-auto">
 					<input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.'>
-					<table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0">
+					<table class="signature_tbl_main pointer-events-none" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0">
 					<tr>
 					<td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td>
 					</tr>
