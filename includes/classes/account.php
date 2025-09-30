@@ -46,7 +46,7 @@ class CIT_account
 					$return_arr = array("name" => $filename,"displayname" => $displayname, "size" => $filesize, "src"=> $src, "error"=>0);
 				}
 			}else{
-				$return_arr = array("error" =>1, "msg"=>"please upload valid jpg, jpeg, png, gif or svg image");
+				$return_arr = array("error" =>1, "msg"=>"please upload valid jpg, jpeg or png image");
 			}
 			echo json_encode($return_arr); exit;
 		}
