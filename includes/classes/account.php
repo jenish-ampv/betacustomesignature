@@ -96,25 +96,25 @@ class CIT_account
 							$data =array('password'=>md5($_POST['user_password']));
 							$where =array('id'=>$GLOBALS['SUBUSERID']);
 							$update = $GLOBALS['DB']->update("registerusers_sub_users",$data,$where);
-							$_SESSION[GetSession('Success')] = '<div class="fixed top-0 right-0 p-3"><div class="py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> password updated.</div></div>';	
+							$_SESSION[GetSession('Success')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> password updated.</div></div>';	
 						}else{
-							$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
+							$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
 						}
 					}else{
 						if(md5($current_pass) == $GLOBALS['user_password']){
 							$data =array('user_password'=>md5($_POST['user_password']));
 							$where =array('user_id'=>$GLOBALS['USERID']);
 							$update = $GLOBALS['DB']->update("registerusers",$data,$where);
-							$_SESSION[GetSession('Success')] = '<div class="fixed top-0 right-0 p-3"><div class="py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> password updated.</div></div>';	
+							$_SESSION[GetSession('Success')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> password updated.</div></div>';	
 						}else{
-							$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
+							$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
 						}
 					}
 				}else{
-					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> password and confirm password not match.</div>';	
+					$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> password and confirm password not match.</div>';	
 				}
 			}else{
-				$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> please enter required field.</div>';	
+				$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> please enter required field.</div>';	
 			}
 			GetFrontRedirectUrl(GetUrl(array('module'=>'account','id'=>'changepassword')));
 		}
