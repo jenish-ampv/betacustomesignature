@@ -398,8 +398,12 @@ class CIT_SIGNATURE{
 		if($_POST['filter_user'] != ''){
 			if($_POST['filter_user'] == 'newsignup'){
 				$searchQuery .= " AND ((SU.subscription_id IS NULL) OR (SU.subscription_id = ''))";
-			}else{
-				$searchQuery .= " AND (SU.subscription_id IS NOT NULL AND SU.subscription_id != '')";
+			}
+			else if($_POST['filter_user'] == 'freetrial'){
+				$searchQuery .= " AND SU.free_trial=1";
+			}
+			else{
+				$searchQuery .= " AND (SU.subscription_id IS NOT NULL AND SU.subscription_id != '') AND SU.free_trial!=1";
 			}
 		}
 
@@ -431,7 +435,7 @@ class CIT_SIGNATURE{
 			// }
 
 			if($row['free_trial'] == 1){
-				$userlable ='<label class="badge badge-light-primary" style="cursor:pointer;">Free</label>';
+				$userlable ='<label class="badge badge-light-primary" style="cursor:pointer;">7 Day Free Trial</label>';
 			}else{
 				$userlable ='';
 			}

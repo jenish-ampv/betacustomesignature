@@ -312,12 +312,12 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                 better animation quality.</p>
             </div>
                 <label class="kt-form-label">Please add feedback</label>
-                <div id="feedback_errormsg_logo"></div>
                 <div class="flex gap-2">
                     <input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
                     <input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
                     <a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Submit</a>
                 </div>
+                <div id="feedback_errormsg_logo" class="text-danger"></div>
         </div>
     </div>
 </div>
@@ -387,23 +387,23 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 </div>
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="upgradeFromFreeTrialPopup">
-    <div class="kt-modal-content max-w-[400px]">
-        <div class="kt-modal-header">
-            <h3 class="kt-modal-title">Upgrade Your Plan</h3>
-            <button type="button" class="kt-modal-close" aria-label="Close modal"
-                data-kt-modal-dismiss="#upgradeFromFreeTrialPopup">
-                <i class="hgi hgi-stroke hgi-add-circle"></i>
-            </button>
-        </div>
-        <div class="kt-modal-body">
-            <p style="padding-bottom:0;">You have to upgrade your plan to make your logo animated</p>
-            <div style="padding-bottom:10px;">
-                <a href="%%DEFINE_billing%%?action=freetrial" class="btn btn-primary">Upgrade <img
-                        src="%%DEFINE_IMAGE_LINK%%/images/arrow-right.svg" alt=""></a>
-            </div>
-        </div>
-    </div>
+	<div class="kt-modal-content max-w-[400px]">
+		<div class="kt-modal-header">
+			<p class="kt-modal-title invisible">Upgrade Your Plan</p>
+			<button type="button" class="kt-modal-close" aria-label="Close modal"
+				data-kt-modal-dismiss="#upgradeFromFreeTrialPopup">
+				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+			</button>
+		</div>
+		<div class="kt-modal-body text-center">
+			<p class="text-lg font-semibold">Your 7-day free trial has ended. You will now be charged according to your selected plan, and your logo animation will begin.</p>
+			<div class="text-center mt-4">
+				<a href="javascript:void(0);" onclick="endFreeTrialNow();" class="kt-btn kt-btn-primary">Animate Now</a>
+			</div>
+		</div>
+	</div>
 </div>
+
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="departmentModel">
     <div class="kt-modal-content max-w-[400px]">
@@ -606,7 +606,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             return false;
         });
         $(".clickableAnchor").click(function (e) {
-            e.stopPropagation();
+            // e.stopPropagation();
             $('#department_name').val($(this).data('department_name'));
             if ($('#edit_department').length && $('#department_id').length) {
                 $('#edit_department').val('1');

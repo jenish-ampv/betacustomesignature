@@ -330,6 +330,8 @@
       if (quartlyEnabled) {
         multiplyprice = 3;
       }
+    } else if($('input[name=plan_id]:checked').val() == 7){
+      multiplyprice = 1;
     } else {
       multiplyprice = 12;
     }
@@ -337,8 +339,6 @@
     planpriceint = parseFloat(radioObj.parent().find('span.cprice').text() * multiplyprice);
     planpricesplint = parseFloat(radioObj.parent().find('span.cpricespl').text() * multiplyprice);
     totalsavings = parseFloat(planpricesplint - planpriceint);
-    console.log(planpriceint)
-    console.log(planpricesplint)
     $('#subtotal').text('$' + planpricesplint.toFixed(2) + ' USD');
     $('#savings').text('$' + totalsavings.toFixed(2) + ' USD');
     $('#total').text('$' + planpriceint.toFixed(2) + ' USD');
@@ -453,7 +453,7 @@
 
     const slider = $('#rangeSlider')[0];
     const tooltip = $('#tooltip')[0];
-    const customThumb = $('#customThumb')[0];
+    //const customThumb = $('#customThumb')[0];
     const rangeBg = $('#fillTreck')[0];
     const values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
     const indexToSet = values.indexOf(parseInt(1));
@@ -471,7 +471,7 @@
       tooltip.style.left = posX + "px";
       tooltip.textContent = `${value} Signature`;
 
-      customThumb.style.left = posX + "px";
+      //customThumb.style.left = posX + "px";
       rangeBg.style.width = percent + "%";
     }
   });
@@ -496,20 +496,20 @@
       $("#yearly-tab-panel").removeClass('hidden');
       $("#monthly-tab-panel").addClass('hidden');
       $("#plan_id4").prop('checked', true);
-      $("#form_plan_id").val(8);
+      $("#plan_id4").val(8);
     } else {
       if ($('input[name="plan_id"]:checked').data('section') == 'monthly') {
         $('#plan_type').prop('checked', false);
         $("#monthly-tab-panel").removeClass('hidden');
         $("#yearly-tab-panel").addClass('hidden');
         $("#plan_id2").prop('checked', true);
-        $("#form_plan_id").val(7);
+        $("#plan_id2").val(7);
       } else {
         $('#plan_type').prop('checked', true);
         $("#yearly-tab-panel").removeClass('hidden');
         $("#monthly-tab-panel").addClass('hidden');
         $("#plan_id4").prop('checked', true);
-        $("#form_plan_id").val(8);
+        $("#plan_id4").val(8);
       }
     }
     $(document).ready(function () {
@@ -518,13 +518,13 @@
           $("#yearly-tab-panel").removeClass('hidden');
           $("#monthly-tab-panel").addClass('hidden');
           $("#plan_id4").prop('checked', true);
-          $("#form_plan_id").val(8);
+          $("#plan_id4").val(8);
         } else {
           $("#month-tab").click();
           $("#monthly-tab-panel").removeClass('hidden');
           $("#yearly-tab-panel").addClass('hidden');
           $("#plan_id2").prop('checked', true);
-          $("#form_plan_id").val(7);
+          $("#plan_id2").val(7);
         }
         updateSelectPlan();
       });

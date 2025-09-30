@@ -13,6 +13,39 @@ class CIT_PURCHASE
 	public function displayPage(){
 		AddMessageInfo();
 		$GLOBALS['free_trial'] = 0;
+
+		if($_REQUEST['category_id'] == 'endfreetrial'){
+			$subscriptionDetails = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE user_id = ? ",array($GLOBALS['USERID']));
+			if($subscriptionDetails){
+				$subscriptionId = $subscriptionDetails['subscription_id'];
+				\Stripe\Stripe::setApiKey(GetConfig('STRIPE_SECRET_KEY'));
+				try {
+					$subscription = \Stripe\Subscription::retrieve($subscriptionId);
+					if ($subscription->trial_end) {
+						$updatedSubscription = \Stripe\Subscription::update(
+							$subscriptionId,
+							[
+								'trial_end' => 'now',
+								'billing_cycle_anchor' => 'now',
+							]
+						);
+						$return_arr = array("error" =>0,"msg"=>"Trial ended and subscription updated. Customer will be charged immediately.");
+						echo json_encode($return_arr); exit;
+					} else {
+						$return_arr = array("error" =>1,"msg"=>"No trial period on this subscription.");
+						echo json_encode($return_arr); exit;
+					}
+				} catch (\Stripe\Exception\ApiErrorException $e) {
+					$return_arr = array("error" =>1,"msg"=>"Error: " . $e->getMessage());
+					echo json_encode($return_arr); exit;
+				}
+			}else{
+				$return_arr = array("error" =>1,"msg"=>"No subscription found.");
+				echo json_encode($return_arr); exit;
+			}
+			
+		}
+
 		
 		if($_POST['coupon_code'] !="" && $_POST['coupon_apply'] ==1){
 			$coupon_code = trim($_POST['coupon_code']);
