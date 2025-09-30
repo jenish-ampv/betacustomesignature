@@ -1,5 +1,5 @@
 <?php
-// ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+require_once($GLOBALS['BASE_LINK'].'/'.GetConfig('CLASSES').'/dashboard.php');
 require_once(GetConfig('SITE_BASE_PATH').'/lib/stripe-php/stripe-config.php');	  // stripe
 require_once(GetConfig('SITE_BASE_PATH').'/lib/stripe-php/init.php');	  // bpoint  // stripe
 class CIT_PURCHASE
@@ -7,7 +7,7 @@ class CIT_PURCHASE
 	
 	public function __construct()
 	{
-
+		
 	}
 	
 	public function displayPage(){
@@ -428,6 +428,10 @@ class CIT_PURCHASE
 		$this->getPlanDetail($GLOBALS['plan_id'],$GLOBALS['plan_unit']);
 		$GLOBALS['STRIPE_PUBLISHABLE_KEY'] = GetConfig('STRIPE_PUBLISHABLE_KEY');
 		$GLOBALS['PAYMENT_FORM_ACTION_URL'] = GetUrl(array('module'=>'purchase'));
+
+		$GLOBALS['SIGNATURE'] = GetClass('CIT_DASHBOARD');
+		$signatureId = $GLOBALS['DB']->row("SELECT signature_id FROM `signature` WHERE user_id = ? ORDER BY signature_id LIMIT 0,1",array($GLOBALS['USERID']));
+		$GLOBALS['USER_SIGNATURE'] = $GLOBALS['SIGNATURE']->getUserSignature($signatureId['signature_id']);
 		
 		$GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/purchase.html');	
 		$GLOBALS['HEADER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.header.html');			
