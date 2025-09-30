@@ -492,21 +492,14 @@ class CIT_DASHBOARD
 						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
 									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
-									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
-									<p class="text-gray-600 mt-1">Your Free Trial period will end in '.$GLOBALS['freeperiod_dayleft'].' day!</p>
-									<div class="flex items-center mt-6 mb-5 gap-4">
-										<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
-											<div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-1/2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
-									</div>
-									<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>
+									<p class="text-gray-600 mt-2">Your Free Trial period will end in '.$GLOBALS['freeperiod_dayleft'].' day!</p>
 								</div>
-								<div class="sm:pl-20">
+								<div>
 									<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
 										<img class="max-w-full max-h-full" src="%%DEFINE_IMAGE_LINK%%/images/main-logo.png" alt="">
 										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 									</div>
+									<a href="#" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="kt-btn kt-btn-primary mt-2">Animated Plan</a>
 								</div>
 						</div></div></div>';
 				}
@@ -1180,7 +1173,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 						</div>	
 					</div>
 					
-					<div class="shadow-[0_0_6px_2px_rgba(0,0,0,0.1)] flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden imgFix">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
+					<div class="shadow-[0_0_6px_2px_rgba(0,0,0,0.1)] flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden imgFix pointer-events-none">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
 					<div class="sigshadow_box"></div>
 				</div>';
 
@@ -1368,7 +1361,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								$GLOBALS['signature_list'] .= '</div>
 							</div>
 							<div class="kt-card-content">
-								<div class="max-h-[190px] overflow-hidden imgFix">'
+								<div class="max-h-[190px] overflow-hidden imgFix pointer-events-none">'
 									.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'
 									<div class="sigshadow_box"></div>
 								</div>
