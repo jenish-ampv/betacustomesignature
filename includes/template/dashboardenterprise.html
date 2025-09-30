@@ -313,12 +313,12 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                 better animation quality.</p>
             </div>
                 <label class="kt-form-label">Please add feedback</label>
-                <div id="feedback_errormsg_logo"></div>
                 <div class="flex gap-2">
                     <input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
                     <input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
                     <a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Submit</a>
                 </div>
+                <div id="feedback_errormsg_logo" class="text-danger"></div>
         </div>
     </div>
 </div>
