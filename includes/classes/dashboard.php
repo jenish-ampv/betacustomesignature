@@ -496,7 +496,7 @@ class CIT_DASHBOARD
 								</div>
 								<div>
 									<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
-										<img class="max-w-full max-h-full" src="%%DEFINE_IMAGE_LINK%%/images/main-logo.png" alt="">
+										<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 									</div>
 									<a href="javascript:void(0);" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="kt-btn kt-btn-primary mt-2">Animate Now</a>
