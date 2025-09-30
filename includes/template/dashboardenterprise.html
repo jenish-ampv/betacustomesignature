@@ -1529,4 +1529,35 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
         loadChartData('days', startDate, endDate);
     });
 </script>
+
+<script>
+	function endFreeTrialNow(){
+		var root_link = $('#root_link').val();
+		var url = root_link+'/purchase/endfreetrial';
+		$.ajax({
+			url: url,
+			type: "POST",
+			dataType: "json",
+			success: function(data) {
+				console.log(data);
+				$(".kt-modal-close").click();
+				if(data.error){
+					$('#snackbar-error').html('<div class="success-error-message alert alert-danger"><i class="fa-solid fa-triangle-exclamation text-danger"></i><strong>Failure! </strong>' + data.msg + ' </div>');
+					$('#snackbar-error').show();
+					setTimeout(function () {$('#snackbar-error').hide(); location.reload();}, 3000);
+				}else{
+					$('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + data.msg + '</div>');
+					$('#snackbar').show();
+					setTimeout(function () {$('#snackbar').hide();}, 3000);
+				}
+			},
+			error: function() {
+				$(".kt-modal-close").click();
+				$('#snackbar-error').html('<div class="success-error-message alert alert-danger"><i class="fa-solid fa-triangle-exclamation text-danger"></i><strong>Failure! </strong>Something went wrong. Try again.</div>');
+				$('#snackbar-error').show();
+				setTimeout(function () {$('#snackbar-error').hide();}, 3000);
+			}
+		});
+	}
+</script>
 %%DEFINE_FOOTER%%
