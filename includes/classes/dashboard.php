@@ -1180,7 +1180,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 						</div>	
 					</div>
 					
-					<div class="flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden imgFix">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
+					<div class="shadow-[0_0_6px_2px_rgba(0,0,0,0.1)] flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden imgFix">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
 					<div class="sigshadow_box"></div>
 				</div>';
 

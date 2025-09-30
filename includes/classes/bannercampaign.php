@@ -123,7 +123,7 @@ class CIT_BANNERCAMPAIGN
 					 	$campaign_status = "<span class='kt-badge kt-badge-primary'>Pause</span>";
 					 	break;
 				 	case 'draft':
-					 	$campaign_status = "<span class='kt-badge kt-badge-secondary'>draft</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-secondary'>Draft</span>";
 					 	break;
 					default:
 					 	$campaign_status = "<span class='kt-badge kt-badge-mono'>".$row['campaign_status']."</span>";
@@ -148,7 +148,7 @@ class CIT_BANNERCAMPAIGN
                 <td>".$department_name."</td>
                 <td>
 					<span class='campain-table-img'>
-                    	<img style='width:150px;height:50px;' src='".$GLOBALS['UPLOAD_LINK']."/bannercampaign/".$row['banner_name']."'/>
+                    	<img class='max-w-[150px] max-h-[150px] object-cover' src='".$GLOBALS['UPLOAD_LINK']."/bannercampaign/".$row['banner_name']."'/>
 					</span>
                 </td>
                 <td>
