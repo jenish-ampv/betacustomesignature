@@ -398,7 +398,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 		<div class="kt-modal-body text-center">
 			<p class="text-lg font-semibold">Your 7-day free trial has ended. You will now be charged according to your selected plan, and your logo animation will begin.</p>
 			<div class="text-center mt-4">
-				<a href="javascript:void(0);" onclick="endFreeTrialNow();" class="endfreetrialnowbutton kt-btn kt-btn-primary">Animate Now <i class="fas fa-circle-notch fa-spin"></i></a>
+				<a href="javascript:void(0);" onclick="endFreeTrialNow();" class="endfreetrialnowbutton kt-btn kt-btn-primary">Animate Now <i class="animateButtonSpinner fas fa-circle-notch fa-spin" style="display: none;"></i></a>
 			</div>
 		</div>
 	</div>
@@ -1542,6 +1542,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 <script>
 	function endFreeTrialNow(){
 		$('.endfreetrialnowbutton').addClass('cursor-not-allowed opacity-50 pointer-events-none');
+		$('.animateButtonSpinner').show();
 		var root_link = $('#root_link').val();
 		var url = root_link+'/purchase/endfreetrial';
 		$.ajax({
@@ -1550,6 +1551,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 			dataType: "json",
 			success: function(data) {
 				$('.endfreetrialnowbutton').removeClass('cursor-not-allowed opacity-50 pointer-events-none');
+				$('.animateButtonSpinner').hide();
 				$(".kt-modal-close").click();
 				if(data.error){
 					$('#snackbar-error').html('<div class="success-error-message alert alert-danger"><i class="fa-solid fa-triangle-exclamation text-danger"></i><strong>Failure! </strong>' + data.msg + ' </div>');
@@ -1563,6 +1565,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 			},
 			error: function() {
 				$('.endfreetrialnowbutton').removeClass('cursor-not-allowed opacity-50 pointer-events-none');
+				$('.animateButtonSpinner').hide();
 				$(".kt-modal-close").click();
 				$('#snackbar-error').html('<div class="success-error-message alert alert-danger"><i class="fa-solid fa-triangle-exclamation text-danger"></i><strong>Failure! </strong>Something went wrong. Try again.</div>');
 				$('#snackbar-error').show();
