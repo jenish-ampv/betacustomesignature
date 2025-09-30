@@ -406,27 +406,38 @@
                 $('#tab_quarter').css('display', 'inline');
                 $('#tab_year').css('display', 'none');
                 $('.yearly_save').removeClass('hidden');
+                if(tab == 'month'){
+                    $('#plan_id2').val(7);
+                }
             } else {
                 $('#plan_id4').prop('checked', true);
                 $('#tab_quarter').css('display', 'none');
                 $('#tab_year').css('display', 'inline');
                 $('.yearly_save').addClass('hidden');
+                if(tab == 'yearnew'){
+                    $('#plan_id4').val(8);
+                }
             }
             // select pro plan if current purchased plan is basic
 
             $("input[name='plan_type']").click(function () {
                 var tab = $(this).val();
-                console.log(tab)
                 if (tab == 'quarter' || tab == 'month') {
                     $('#plan_id2').prop('checked', true);
                     $('#tab_quarter').css('display', 'inline');
                     $('#tab_year').css('display', 'none');
                     $('.yearly_save').removeClass('hidden');
+                    if(tab == 'month'){
+                        $('#plan_id2').val(7);
+                    }
                 } else {
                     $('#plan_id4').prop('checked', true);
                     $('#tab_quarter').css('display', 'none');
                     $('#tab_year').css('display', 'inline');
                     $('.yearly_save').addClass('hidden');
+                    if(tab == 'yearnew'){
+                        $('#plan_id4').val(8);
+                    }
                 }
             });
 
@@ -459,8 +470,12 @@
                 $('#plan_type1').val('month');
                 $('label[for="plan_type1"]').text('Monthly');
                 $('.plan_label').text('Monthly');
+                $('#plan_type2').val('yearnew');
             }
             $("#order-main, #selectplan-main").toggleClass("hidden");
+            if(activePlanId == 8){
+                $("#plan_type2").click();
+            }
         });
         
     })(jQuery);
@@ -514,9 +529,7 @@
         $('#selectplan').on('click', function (e) {
 
             $("#upgrade_planbtn").attr('disabled', true);
-            // var plan_id = $('input[name="plan_id"]:checked').val();
-            var activePlanId = "%%DEFINE_plan_id%%";
-            var plan_id = activePlanId;
+            var activePlanId = $('input[name="plan_id"]:checked').val();
             var plan_unit = $("#plan_unit").val();
             if($('input[name=plan_id]:checked').val() < 3){
                 multiplyprice = 3;
@@ -526,6 +539,11 @@
             }else{
                 multiplyprice = 12;
             }
+            if(activePlanId == 7){
+                multiplyprice = 1;
+            }
+            var plan_id = $('input[name="plan_id"]:checked').val();
+
             $.ajax({
                 type: 'POST',
                 url: $('#form_url').val(),
