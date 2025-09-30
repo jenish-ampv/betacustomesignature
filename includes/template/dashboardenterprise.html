@@ -67,7 +67,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                 {:IF}
                             </div>
                         </div>
-                        <div class="kt-card-content relative flex items-center justify-center text-center">
+                        <div class="kt-card-content relative flex items-center justify-center text-center bg-no-repeat bg-cover" style="background-image: url('%%DEFINE_IMAGE_LINK%%/sign.jpg');">
                             <div class="h-full w-full overflow-auto flex items-center py-3">
                             %%DEFINE_master_signature%%
                             </div>
@@ -907,6 +907,9 @@ IF("%%DEFINE_manage_signatures%%" == ""){
         document.getElementById("backreview").setAttribute('data-img', reviewlogo);
     });
 
+    const departmentModelEl = document.querySelector('#departmentModel');
+    const departmentModel = KTModal.getInstance(departmentModelEl);
+
     // const shareModalEl = document.querySelector('#shareModal');
     // const shareModal = KTModal.getInstance(shareModalEl);
 
@@ -921,6 +924,12 @@ IF("%%DEFINE_manage_signatures%%" == ""){
     // });
 
     $(document).ready(function () { 
+
+        $('[data-kt-modal-toggle="#departmentModel"]').on('click', function() {
+            departmentModel.show();
+        });
+
+
         $('[title="Share"]').on('click', function (event) {
             console.log('hello')
             var button = $(this);
