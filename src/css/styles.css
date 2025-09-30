@@ -60,8 +60,12 @@ input[type="range" i]::-webkit-slider-thumb {
     background-size: cover;
     -webkit-appearance: none;
     appearance: none;
+    transition: all 0.3s;
+    transform: scale(1);
  }
-
+input[type="range" i]:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+}
 
 .bg-gradient{
     @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
