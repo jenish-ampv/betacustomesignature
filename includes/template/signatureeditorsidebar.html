@@ -505,11 +505,12 @@
 
                             <div class="flex flex-wrap gap-2 social_link_box" id="social_link_box">
                                 {LOOP: SOCIALICONS}
+                                <div class="custome_icon">
                                 <label for="{%%SOCIALICONS.iconname%%}-icon"
                                     class="relative cursor-pointer rounded-lg iconcheckbox"
                                     title="{%%SOCIALICONS.iconname%%}">
                                     <input type="checkbox" name="{%%SOCIALICONS.iconname%%}-icon"
-                                        id="{%%SOCIALICONS.iconname%%}-icon" class="peer hidden checkbox" value="1"
+                                        id="{%%SOCIALICONS.iconname%%}-icon" class="peer hidden imgbgchk checkbox" value="1"
                                         %%DEFINE_signature_{%%SOCIALICONS.iconname%%}_chk%%>
                                     <img draggable="false" class="size-9"
                                         src="%%DEFINE_IMAGE_LINK%%/images/social/static/%%DEFINE_signature_socialdesign%%/{%%SOCIALICONS.iconname%%}-icon.png"
@@ -520,6 +521,7 @@
                                         <i class="hgi hgi-stroke hgi-tick-02"></i>
                                     </span>
                                 </label>
+                                </div>
                                 {/LOOP: SOCIALICONS}
                             </div>
                             <div class="space-y-5 mt-5" id="social_search_box">
@@ -2032,7 +2034,7 @@
                                         {LOOP: MARKETPLACEBTN}
                                         <div>
                                             <input type="checkbox" name="{%%MARKETPLACEBTN.iconname%%}-btn"
-                                                id="{%%MARKETPLACEBTN.iconname%%}-btn" class="peer hidden checkbox"
+                                                id="{%%MARKETPLACEBTN.iconname%%}-btn" class="peer hidden imgbgchk checkbox"
                                                 value="1" %%DEFINE_signature_{%%MARKETPLACEBTN.iconname%%}_chk%%>
                                             <label for="{%%MARKETPLACEBTN.iconname%%}-btn"
                                                 class="iconcheckbox [&>span]:hidden peer-checked:[&>span]:flex">
