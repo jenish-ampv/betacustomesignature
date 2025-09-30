@@ -118,12 +118,12 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                                 <button class="kt-btn bg-white border border-gray-400 text-gray-600 !rounded-full"
                                     data-kt-dropdown-toggle="true">
                                     <span>This Month</span>
-                                    <span class="kt-dropdown-open:hidden">
+                                    <i class="kt-dropdown-open:hidden">
                                         <i class="fas fa-caret-down"></i>
-                                    </span>
-                                    <span class="hidden kt-dropdown-open:inline">
+                                    </i>
+                                    <i class="hidden kt-dropdown-open:inline">
                                         <i class="fas fa-caret-up"></i>
-                                    </span>
+                                    </i>
                                 </button>
                                 <div class="kt-dropdown-menu w-36" data-kt-dropdown-menu="true">
                                     <ul class="status-selector-menu" data-kt-dropdown-dismiss="true">
@@ -468,16 +468,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 <script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.js"></script>
 
 <script>
-    const swalClasses = {
-        htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
-        popup: '!p-8 rounded-xl border-none w-full max-w-[350px] dark:bg-black',
-        title: 'font-bold text-xl text-gray-900 p-0',
-        closeButton: 'btn btn-xl btn-icon btn-light absolute top-2 right-2',
-        confirmButton: 'btn btn-sm btn-primary',
-        cancelButton: 'btn btn-sm btn-dark',
-        denyButton: 'btn btn-sm btn-light',
-        icon:'mt-0 w-10 h-10 border-none bg-danger-20 text-danger mb-6',
-    };
+    
 
     const list = document.getElementById('sortable-list');
     let draggingItem = null;
@@ -588,7 +579,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             }).done(function (data) {
                 var json = JSON.parse(data);
                 if (json.error != 1) {
-                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Division saved! </div>');
+                    $('#snackbar').html('<div class="alert alert-success"><i class="fa-solid fa-circle-check text-green-500"></i><strong>Success! </strong>Division saved! </div>');
                     $('.btn-close').click();
                     $('#snackbar').show();
                     setTimeout(function () {
@@ -600,7 +591,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
                         window.location = redirecturld;
                     }, 2000);
                 } else {
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger"><i class="fa-solid fa-triangle-exclamation text-danger"></i><strong>Failure! </strong>' + json.msg + ' </div>');
                     $('#snackbar-error').show();
                     setTimeout(function () {
                         $('#snackbar-error').hide();
@@ -1001,8 +992,8 @@ IF("%%DEFINE_manage_signatures%%" == ""){
     $(document).ready(function () {
         $('.department_container').first().click();
         $('.department_container').on('click', function () {
-            $('.department_container').removeClass('department_selected');
-            $(this).addClass('department_selected');
+            $('.department_container').removeClass('department_selected bg-gray-100');
+            $(this).addClass('department_selected bg-gray-100');
             current_department = $(this).data('department-id');
             window.history.replaceState(null, null, "?department_id=" + current_department);
             location.reload();
@@ -1043,8 +1034,8 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
     $(document).ready(function () {
         const urlParams = new URLSearchParams(window.location.search);
         const paramValue = urlParams.get('department_id');
-        $('.department_container').removeClass('department_selected');
-        $("[data-department-id=" + paramValue + "]").addClass('department_selected');
+        $('.department_container').removeClass('department_selected bg-gray-100');
+        $("[data-department-id=" + paramValue + "]").addClass('department_selected bg-gray-100');
     });
 </script>
 <script>
