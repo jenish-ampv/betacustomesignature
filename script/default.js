@@ -376,7 +376,7 @@ function hideLoader() {
     /*End status-selector Menu*/
     $('#signature-status-selector-menu li').on('click', function() {
         const status = $(this).attr('id');
-        console.log(status)
+        $(".statusTitle").html(status);
         $('.search-container ').hide();
         $('.search-container.' + status).show();
     });
