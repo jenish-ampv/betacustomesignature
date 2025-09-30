@@ -325,6 +325,11 @@ function hideLoader() {
 
     // For pending import process popup
 
+    $(document).on("click", "[data-kt-dropdown][data-kt-toggle-replace='true'] .kt-dropdown-menu-link", function () {
+        let $dropdown = $(this).closest("[data-kt-dropdown]");
+        let $button = $dropdown.find("[data-kt-dropdown-toggle='true']");
+        $button.find("span").first().text($(this).text());
+    });
 
     const swalClasses = {
         htmlContainer: 'font-semibold text-base text-gray-500 pt-1 px-0',
@@ -354,13 +359,7 @@ function hideLoader() {
         });
     }
 
-
-
-    $(document).on("click", "[data-kt-dropdown][data-kt-toggle-replace='true'] .kt-dropdown-menu-link", function () {
-        let $dropdown = $(this).closest("[data-kt-dropdown]");
-        let $button = $dropdown.find("[data-kt-dropdown-toggle='true']");
-        $button.find("span").first().text($(this).text());
-    });
+    
         
     /*status-selector*/
     $('.status-selector').click(function () {
