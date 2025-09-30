@@ -394,6 +394,7 @@
     // });
 
     function initCustomSlider(
+      fromPopup = false,
       values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
       sliderId = "rangeSlider",
       tooltipId = "tooltip",
@@ -455,6 +456,9 @@
       window.addEventListener("load", updateUI);
       slider.addEventListener("input", updateUI);
       window.addEventListener("resize", updateUI);
+      if(fromPopup){
+        updateUI();
+      }
   }
 
       $('#load-upgrade-content').on('click', function () {
@@ -486,7 +490,7 @@
                   .html($suggested)        // inject only the div
                   $suggested.addClass('h-full overflow-auto mx-auto'); // ensure classes are applied
                   $target.closest('.kt-modal-content').addClass('max-w-7xl');
-                  initCustomSlider();
+                  initCustomSlider(true);
 
                   // Bind event for the monthly/yearly toggle to dynamically injected content
                   $(document).on('change', '#plan_type', function () {
