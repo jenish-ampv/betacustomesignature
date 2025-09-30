@@ -616,7 +616,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             return false;
         });
         $(".clickableAnchor").click(function (e) {
-            e.stopPropagation();
+            // e.stopPropagation();
             $('#department_name').val($(this).data('department_name'));
             if ($('#edit_department').length && $('#department_id').length) {
                 $('#edit_department').val('1');
