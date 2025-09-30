@@ -499,7 +499,7 @@ class CIT_DASHBOARD
 										<img class="max-w-full max-h-full" src="%%DEFINE_IMAGE_LINK%%/images/main-logo.png" alt="">
 										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 									</div>
-									<a href="#" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="kt-btn kt-btn-primary mt-2">Animated Plan</a>
+									<a href="#" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="kt-btn kt-btn-primary mt-2">Animated Now</a>
 								</div>
 						</div></div></div>';
 				}
