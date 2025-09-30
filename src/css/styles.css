@@ -313,7 +313,7 @@ input[type="range" i]::-webkit-slider-thumb {
 }
 
 .kt-alert{
-    @apply shadow-lg text-gray-950 rounded-xl bg-white;
+    @apply shadow-lg text-gray-950 rounded-xl bg-white z-[100];
     &.kt-alert-success{
         @apply bg-gradient-to-r from-[#00B71B]/10 to-[#00B71B]/0 border-l-9 border-green-600;
     }
