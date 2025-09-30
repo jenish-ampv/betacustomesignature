@@ -37,7 +37,7 @@ jQuery.noConflict();
       var chboxname = $(this).attr("name");
       var toggleid = chboxname.replace("-icon", "");
       if (!$(this).is(":checked")) {
-        $('#' + toggleid).find('input:text').val("");
+        $('#collapse-' + toggleid + '-icon').find('input:text').val("");
         setTimeout(function () { $('#' + toggleid).removeClass("show"); }, 500);
       }
       if (checkboxes > 8) {
