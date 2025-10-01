@@ -1,3 +1,6 @@
 lib/*
 upload/*
 upload-beta/*
+node_modules
+dist
+dist/assets/css/styles.css

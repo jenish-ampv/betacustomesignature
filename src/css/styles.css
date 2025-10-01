@@ -18,6 +18,7 @@
     --text-lg: 16px;     /* optional custom sizes */
     --text-xl: 18px;
     --text-xxl: 20px;
+    --border: #E5E7EB;
   }
 
 /* Tailwind core */
@@ -58,6 +59,16 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 .bg-gradient{
     @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
 }
+
+@utility border-gradient{
+    background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, #26B7FF, #1D4AFE) border-box;
+    }
+@utility bgborder{
+background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
+            linear-gradient(to right, #26B7FF, #1D4AFE) border-box;
+}
+
 
 .kt-btn{
     @apply rounded-full h-10 outline -outline-offset-2 px-4 outline-transparent;
@@ -104,7 +115,6 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
         @apply h-7 leading-2.5;
     }
 }
-
 .kt-modal-content{
     @apply bg-muted p-1 rounded-[12px];
 }
@@ -114,8 +124,17 @@ h5{font-size: calc( 20px + (24 - 20) * (100vw - 400px) / (1920 - 400) );}
 .kt-modal-header{
     @apply border-b-0;
 }
+.kt-card{
+    @apply rounded-3xl border-gray-200;
+}
+.kt-card-header{
+    @apply border-b-0;
+}
 .kt-card-title{
-    @apply text-xxl;
+    @apply text-xxl font-medium;
+}
+.kt-card-content{
+    @apply border-t border-t-gray-200 rounded-t-3xl;
 }
 .kt-modal-close{
     i{
