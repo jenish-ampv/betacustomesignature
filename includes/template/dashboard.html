@@ -302,25 +302,24 @@
 
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="reviewModal">
-	<div class="kt-modal-content max-w-[400px]">
+	<div class="kt-modal-content max-w-[550px]">
 		<div class="kt-modal-header">
-			<p class="kt-modal-title">Feedback</p>
+			<p class="kt-modal-title">Review Logo</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#reviewModal">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
 			<div class="preview-logo"></div>
-			<div class="flex justify-center mt-3 gap-2">
-				<button type="button" class="kt-btn kt-btn-secondary" data-kt-modal-toggle="#feedbackModal">Would like to
+			<div class="flex mt-3 gap-2">
+				<button type="button" class="kt-btn kt-btn-white flex-1" data-kt-modal-toggle="#feedbackModal">Would like to
 					revise</button>
-				<a href="javascript:void(0);" class="kt-btn kt-btn-primary ajaxaction" id="looksgood" data-id="0"
+				<a href="javascript:void(0);" class="kt-btn kt-btn-primary flex-1 ajaxaction" id="looksgood" data-id="0"
 					data-action="status">Looks Goods!</a>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="changeLogoModel">
 	<div class="kt-modal-content max-w-[400px]">
@@ -328,7 +327,7 @@
 			<p class="kt-modal-title">Upload Brand Logo</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#changeLogoModel">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -339,9 +338,8 @@
 				<div
 					class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl cursor-pointer">
 					<img class="signature_logo" src="%%DEFINE_signature_change_image%%" alt="">
-					<p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a
-							href="javascript:void(0);">browse</a></p>
-					<p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+					<p class="text-gray-500">Choose a file or drag & drop it here.</p>
+					<p class="text-gray-500">Supports: PNG, SVG, JPG, JPEG</p>
 				</div>
 			</div>
 			<div id="img_errormsg_logo" class="text-danger"></div>
@@ -355,33 +353,32 @@
 			</div>
 			<div class="change-logo-reason">
 				<input type="hidden" name="logo_id" value="%%DEFINE_signature_logo_id%%">
-				<label class="kt-form-label" for="">Please add feedback</label>
-				<div class="kt-input-group">
-					<input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
+				<input type="text" class="kt-input" name="change_reason" placeholder="Reason for change logo">
+				<div id="feedback_errormsg_logo" class="text-danger"></div>
+				<div class="text-right mt-4">
 					<a href="javascript:void(0);" class="kt-btn kt-btn-primary" id="logo_change_done_btn"
 						onclick="logoChanged();">
-						Submit <i class="hgi hgi-stroke hgi-arrow-right-02"></i>
+						Submit
 					</a>
 				</div>
-				<div id="feedback_errormsg_logo" class="text-danger"></div>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="kt-modal kt-modal-center" data-kt-modal="true" id="feedbackModal">
-	<div class="kt-modal-content max-w-[400px]">
+	<div class="kt-modal-content max-w-[550px]">
 		<div class="kt-modal-header">
 			<p class="kt-modal-title">Feedback</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#feedbackModal">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
-			<textarea name="feedback" id="feedback" rows="5" class="kt-textarea"></textarea>
-			<div class="flex justify-center gap-2 mt-3">
-				<button type="button" class="kt-btn kt-btn-secondary" id="backreview" data-kt-modal-toggle="#reviewModal"
+			<textarea name="feedback" id="feedback" rows="5" placeholder="Write your Feedback" class="kt-textarea"></textarea>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+				<button type="button" class="kt-btn kt-btn-white" id="backreview" data-kt-modal-toggle="#reviewModal"
 					data-img="" data-id="">Back</button>
 				<button type="button" class="kt-btn kt-btn-primary" id="sendfeedback">Send Feedback!</button>
 			</div>
@@ -394,7 +391,7 @@
 		<div class="kt-modal-header">
 			<h3 class="kt-modal-title">Feedback</h3>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#thanksModal">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -411,7 +408,7 @@
 		<div class="kt-modal-header">
 			<p class="kt-modal-title">Share Signature</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModal">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body">
@@ -444,7 +441,7 @@
 			<p class="kt-modal-title invisible">Upgrade Your Plan</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#upgradeFromFreeTrialPopup">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body text-center">

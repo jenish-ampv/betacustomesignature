@@ -40,58 +40,54 @@
 
 
     <div class="kt-modal kt-modal-center" data-kt-modal="true" id="addUserModel">
-        <div class="kt-modal-content max-w-[400px]">
+        <div class="kt-modal-content max-w-[550px]">
             <div class="kt-modal-header">
                 <p class="kt-modal-title">Invite User</p>
                 <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#addUserModel">
-                    <i class="hgi hgi-stroke hgi-cancel-circle text-3xl"></i>
+                    <i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
                 </button>
             </div>
             <div class="kt-modal-body">
-                <form action="" method="post" id="addUserForm" class="flex flex-col gap-3">
+                <form action="" method="post" id="addUserForm" class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                        <label for="" class="kt-form-label">First Name</label>
                         <input type="text" class="kt-input" name="user_firstname" id="user_firstname"
                             placeholder="First Name" data-class="user_firstname">
                     </div>
                     <div>
-                        <label for="" class="kt-form-label">Last Name</label>
                         <input type="text" class="kt-input" name="user_lastname" id="user_lastname"
                             placeholder="Last Name" data-class="user_lastname">
                     </div>
-                    <div>
-                        <label for="" class="kt-form-label">Email</label>
-                        <input type="text" class="kt-input" name="email" id="email" placeholder="Email"
-                            data-class="email">
+                    <div class="md:col-span-2">
+                        <input type="text" class="kt-input" name="email" id="email" placeholder="Email" data-class="email">
                     </div>
-                    <div id="permission">
-                        <p class="kt-form-label">Permissions</p>
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2.5">
-                                <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="manage_signatures" id="manage_signatures">
-                                <label for="manage_signatures" class="kt-label">Manage signatures</label>
+                    <div id="permission" class="md:col-span-2">
+                        <p class="kt-form-label !mb-3">Permissions</p>
+                        <div class="flex flex-wrap gap-4">
+                            <div>
+                                <input type="checkbox" class="peer hidden permission-checkbox" name="permission" value="manage_signatures" id="manage_signatures">
+                                <label for="manage_signatures" class="rounded-2xl bg-gray-100 text-gray-500 px-2 peer-checked:bg-primary peer-checked:text-white py-1 inline-block">Manage signatures</label>
                             </div>
-                            <div class="flex items-center gap-2.5">
-                                <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="billing_settings" id="billing_settings">
-                                <label for="billing_settings" class="kt-label">Billing</label>
+                            <div>
+                                <input type="checkbox" class="peer hidden permission-checkbox" name="permission" value="billing_settings" id="billing_settings">
+                                <label for="billing_settings" class="rounded-2xl bg-gray-100 text-gray-500 px-2 peer-checked:bg-primary peer-checked:text-white py-1 inline-block">Billing</label>
                             </div>
-                            <div class="flex items-center gap-2.5">
-                                <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="integration_settings" id="integration_settings">
-                                <label for="integration_settings" class="kt-label">Integrations</label>
+                            <div>
+                                <input type="checkbox" class="peer hidden permission-checkbox" name="permission" value="integration_settings" id="integration_settings">
+                                <label for="integration_settings" class="rounded-2xl bg-gray-100 text-gray-500 px-2 peer-checked:bg-primary peer-checked:text-white py-1 inline-block">Integrations</label>
                             </div>
                         </div>
                     </div>
 
                     IF("%%DEFINE_USERTYPE%%" == "enterprise"){
-                    <div class="form-check-list" id="department">
-                        <label class="kt-label mb-3">Divisions</label>
-                        <div class="space-y-2">
+                    <div class="form-check-list md:col-span-2 mt-4" id="department">
+                        <p class="kt-form-label mb-3">Divisions</p>
+                        <div class="flex flex-wrap gap-2">
                             %%DEFINE_department_list%%
                         </div>
                     </div>
                     {:IF}
 
-                    <div class="text-center">
+                    <div class="text-right mt-4 md:col-span-2">
                         <button type="submit" name="next" class="userSubmit kt-btn kt-btn-primary next action-button" value="Next Step">Invite</button>
                     </div>
                     <input type="hidden" id="form_url_usermanagement_saveuser" value="%%DEFINE_usermanagement%%/saveuser" />

@@ -17,6 +17,7 @@
     --color-danger: #ff0000;
     --color-success: #00a63e;
     --color-primary-50: #EBF6FF;
+    --color-primary-100: #DBEDFF;
     --text-base: 14px;
     --border: #E5E7EB;
   }
@@ -88,7 +89,7 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
 
 
 .kt-btn{
-    @apply rounded-[14px] h-10 outline -outline-offset-2 px-4 outline-transparent;
+    @apply rounded-[14px] h-10 outline -outline-offset-2 px-4 outline-transparent shadow-[0_4px_24px_rgba(29,74,254,0.10)];
     i{
         @apply leading-none;
     }
@@ -111,24 +112,6 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
         }
     }
 }
-
-
-
-.kt-switch {
-    &:checked, &[aria-checked='true'] {
-       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1d4afe] outline-white/20 shadow-[0_0_5px_3px_rgba(59,98,253,0.4)];
-    i{
-        @apply leading-none;
-    }
-
-    &:before {
-        @apply outline outline-offset-0 outline-white/20;
-    }
-    }   
-}
-
-
-
 .kt-btn-white{
     /* @apply relative bg-white text-primary before:rounded-[14px] before:inset-[1px] before:border-2 before:border-transparent before:absolute before:[border-image:linear-gradient(90deg,#4D7FFF,#FFFFFF)_1]; */
     @apply relative bg-white text-primary place-items-center border-2 border-white;
@@ -141,9 +124,28 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
         linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor; /* cuts inner area */
         mask-composite: exclude;
-        border-radius: calc(infinity * 1px);
+        border-radius: calc(14px);
         @apply absolute p-[1px] inset-0;
       }
+}
+.kt-switch {
+    &:checked, &[aria-checked='true'] {
+       @apply outline -outline-offset-1 bg-gradient-to-t from-[#26B7FF] to-[#1d4afe] outline-white/20 shadow-[0_0_5px_3px_rgba(59,98,253,0.4)];
+    i{
+        @apply leading-none;
+    }
+
+    &:before {
+        @apply outline outline-offset-0 outline-white/20;
+    }
+    }   
+}
+.kt-input,.kt-select,.kt-textarea{
+    @apply focus:border-transparent text-gray-950 shadow-none ring-0 focus:placeholder:text-gray-950;
+    &:focus{
+        background: linear-gradient(to right, #def4ff, #dde4ff) padding-box,
+            linear-gradient(to right, #26B7FF, #1D4AFE) border-box;
+    }
 }
 .kt-input,.kt-select{
     @apply rounded-[14px] h-10;
@@ -151,14 +153,37 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
         @apply h-7 leading-2.5;
     }
 }
-.kt-modal-content{
-    @apply bg-muted p-1 rounded-3xl;
+.kt-textarea{
+    @apply rounded-2xl;
 }
+
+
+.kt-dropdown-menu{
+    @apply rounded-[14px] border border-gray-100 p-1.5 shadow-[0_2px_16px_0_rgba(16,24,40,0.1)];
+}
+.kt-dropdown-menu-link{
+    @apply rounded-xl hover:bg-primary-100 text-gray-950 font-medium py-2.5 px-4;
+    &:hover{
+        i{
+            @apply text-gray-950;
+        }
+    }
+    i{
+        @apply text-gray-500;
+    }
+}
+
 .kt-modal-body{
-    @apply bg-white rounded-3xl;
+    @apply pt-0;
+}
+.kt-modal-content{
+    @apply rounded-3xl shadow-[0_2px_16px_rgba(0,0,0,0.05)];
 }
 .kt-modal-header{
     @apply border-b-0;
+}
+.kt-modal-title{
+    @apply text-lg text-gray-900 font-medium;
 }
 .kt-card{
     @apply rounded-3xl border-gray-200 shadow-none;
@@ -173,9 +198,13 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
     @apply border-t border-t-gray-200 rounded-t-3xl;
 }
 .kt-modal-close{
+    @apply size-6 border border-gray-200 rounded-lg flex items-center justify-center !m-0 hover:bg-primary-50;
     i{
         @apply text-[20px] leading-none;
     }
+}
+.kt-modal-backdrop{
+    @apply bg-black/10 backdrop-blur-md;
 }
 .kt-form-label{
     @apply mb-1;

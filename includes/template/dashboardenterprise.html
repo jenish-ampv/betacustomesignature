@@ -362,7 +362,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
         <div class="kt-modal-header">
             <p class="kt-modal-title">Share Signature</p>
             <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModal">
-                <i class="hgi hgi-stroke hgi-cancel-circle"></i>
+                <i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
             </button>
         </div>
         <div class="kt-modal-body">
@@ -392,7 +392,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
 			<p class="kt-modal-title invisible">Upgrade Your Plan</p>
 			<button type="button" class="kt-modal-close" aria-label="Close modal"
 				data-kt-modal-dismiss="#upgradeFromFreeTrialPopup">
-				<i class="hgi hgi-stroke hgi-cancel-circle"></i>
+				<i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
 			</button>
 		</div>
 		<div class="kt-modal-body text-center">
@@ -411,42 +411,42 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             <p class="kt-modal-title" id="department_title">Add Company Division</p>
             <button type="button" class="kt-modal-close" aria-label="Close modal"
                 data-kt-modal-dismiss="#departmentModel">
-                <i class="hgi hgi-stroke hgi-cancel-circle"></i>
+                <i class="hgi hgi-stroke hgi-cancel-01 !text-sm"></i>
             </button>
         </div>
         <div class="kt-modal-body">
             <form action="" method="post" id="departmentForm">
                 <div class="inputbox">
-                    <label class="kt-form-label">Company Division Name</label>
                     <input type="text" class="kt-input" name="department_name" id="department_name"
                         placeholder="Company Division Name" data-class="department_name">
                     <span class="input-error-message"></span>
                 </div>
-                <div class="inputbox department-logo-container" style="display:none;">
-                    <div class="flex items-center gap-2 toggleCheckbox-title">
+                <div class="inputbox department-logo-container" style="display: none;">
+                    <div class="flex items-center gap-2 toggleCheckbox-title mt-3">
                         <label class="kt-label" for="toggleCheckbox">Do you want to use same logo?</label>
-                        <input class="kt-checkbox" type="checkbox" id="toggleCheckbox" checked>
+                        <input class="kt-checkbox kt-checkbox-sm" type="checkbox" id="toggleCheckbox" checked>
                     </div>
 
-                    <div class="upload_logo_bg" id="hiddenDepartmentLogoDiv" style="display: none;">
-                        <h4 class="upload-title">Upload Division Logo</h4>
+                    <div class="upload_logo_bg mt-3" id="hiddenDepartmentLogoDiv" style="display: none;">
+                        <p class="kt-form-label upload-title">Upload Division Logo</p>
                         <input class="signature_department_logo" type="file" name="signature_department_logo"
                             id="signature_department_logo" style="display:none;">
                         <div id="img_preview_logo"></div>
                         <div class="upload-area-department-logo" id="uploadfiledepartmentlogo">
                             <input type="hidden" value="%%DEFINE_signature_department_image_name%%"
                                 name="signature_department_image" id="signature_department_image">
-                            <div class="drag_your_image"> <img class="signature_department_logo"
-                                    src="%%DEFINE_IMAGE_LINK%%/images/upload-img-icon.svg" alt="">
-                                <h4>Drag your image here, or <a href="javascript:void(0);">browse</a></h4>
-                                <p>Supports: PNG, SVG, JPG, JPEG</p>
+                            <div class="drag_your_image text-gray-500 bg-gray-50 border border-gray-200 p-6 rounded-xl text-center">
+                                <i class="hgi hgi-stroke hgi-upload-01 kt-btn kt-btn-icon kt-btn-white mb-4"></i>
+                                <!-- <img class="inline-block mb-4 signature_department_logo" src="%%DEFINE_IMAGE_LINK%%/images/upload-img-icon.svg" alt=""> -->
+                                <p>Choose a file or drag & drop it here.</p>
+                                <p>PNG, SVG, JPG, JPEG</p>
                             </div>
                         </div>
                         <div id="img_errormsg_logo"></div>
                     </div>
                 </div>
                 <div class="mt-4 text-center">
-                    <button type="submit" name="next" class="departmentSubmit kt-btn kt-btn-primary next action-button"
+                    <button type="submit" name="next" class="departmentSubmit w-full kt-btn kt-btn-primary next action-button"
                         value="Next Step">Save Division</button>
                 </div>
             </form>

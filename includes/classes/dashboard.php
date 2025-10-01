@@ -507,6 +507,7 @@ class CIT_DASHBOARD
 				}
 				
 				
+				
 
 				// if($GLOBALS['current_department_id']){
 				// 	$signature_logo_department = $GLOBALS['DB']->row("SELECT * FROM `signature_logo` WHERE user_id = ? AND department_id = ?",array($GLOBALS['USERID'],$GLOBALS['current_department_id']));
@@ -1129,6 +1130,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								<i class="fal fa-times-circle cursor-pointer absolute top-2 right-2" data-kt-collapse="#myDIV'.$signature_id.'master"></i>
 								<div class="flex flex-col gap-3 items-center justify-center h-full">
 									<div class="flex gap-2">';
+
 										if($GLOBALS['current_department_id'] != '0'){
 										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'">
 											<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
