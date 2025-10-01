@@ -16,10 +16,8 @@
     --color-gray-50: #FAFAFA;
     --color-danger: #ff0000;
     --color-success: #00a63e;
+    --color-primary-50: #EBF6FF;
     --text-base: 14px;
-    --text-lg: 16px;     /* optional custom sizes */
-    --text-xl: 18px;
-    --text-xxl: 20px;
     --border: #E5E7EB;
   }
 
@@ -81,6 +79,13 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
             linear-gradient(to right, #26B7FF, #1D4AFE) border-box;
 }
 
+@utility textGradient{
+    background: linear-gradient(to right, #26B7FF, #1D4AFE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
 
 .kt-btn{
     @apply rounded-[14px] h-10 outline -outline-offset-2 px-4 outline-transparent;
@@ -89,7 +94,7 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
     }
 }
 .kt-btn-sm{
-    @apply h-7 px-2.5;
+    @apply h-7 px-2.5 rounded-[10px];
 }
 .kt-btn-icon{
     @apply w-10 p-0;
@@ -156,13 +161,13 @@ background: linear-gradient(#EBF6FF, #EBF6FF) padding-box,
     @apply border-b-0;
 }
 .kt-card{
-    @apply rounded-3xl border-gray-200;
+    @apply rounded-3xl border-gray-200 shadow-none;
 }
 .kt-card-header{
-    @apply border-b-0;
+    @apply border-b-0 px-5 py-4;
 }
 .kt-card-title{
-    @apply text-xxl font-medium;
+    @apply text-xl font-medium;
 }
 .kt-card-content{
     @apply border-t border-t-gray-200 rounded-t-3xl;

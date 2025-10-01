@@ -361,7 +361,7 @@ class CIT_DASHBOARD
  			if($GLOBALS['logo_process'] == 1){
 					$GLOBALS['signature_process'] ='
 					<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 					<div class="sin_dashboard_box sin_process">
 								<div class="flex-1 flex justify-between">
 									<div>
@@ -380,10 +380,10 @@ class CIT_DASHBOARD
 					$GLOBALS['signature_process'] .= '</div></div></div>';
 				}else if($GLOBALS['logo_process'] == 0 || $GLOBALS['logo_process'] == 3 ){
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
-								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+								<p class="text-xl text-gray-950 font-semibold">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo Animation is Processing</p>
  								<div class="flex items-center my-1 gap-4">
 									<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
@@ -408,13 +408,13 @@ class CIT_DASHBOARD
 				}
 				elseif ($signature_logo['logo_change_process'] == 0 || $signature_logo['logo_change_process'] == 1) {
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
-								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+								<p class="text-xl text-gray-950 font-semibold">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo is Under Review</p>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn text-gray-800">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 							<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
@@ -425,10 +425,10 @@ class CIT_DASHBOARD
 				}
 				elseif ($signature_logo['logo_change_process'] == 3) {
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
-									<p class="text-xl text-gray-950">Your logo is not matching with our guideline.</p>
+									<p class="text-xl text-gray-950 font-semibold">Your logo is not matching with our guideline.</p>
 									<p class="text-gray-600 mt-2">'.$signature_logo['change_logo_reject_reason'].'</p>
 									<a class="kt-btn kt-btn-primary mt-2" id="change_signature_logo" data-url="'.$GLOBALS['UrlRewriteBase'].'dashboard" data-kt-modal-toggle="#changeLogoModel">Reupload Logo</a>
 								</div>
@@ -440,10 +440,10 @@ class CIT_DASHBOARD
 				}
 				elseif ($signature_logo['logo_change_process'] == 4 ) {
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 							<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
-									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+									<p class="text-xl text-gray-950 font-semibold">'.$GLOBALS['USERNAME'].'!</p>
 									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
 									<p class="text-gray-600 mt-2">Thank you for your patience.</p>
 									<div class="flex items-center mt-2 gap-4">
@@ -459,17 +459,17 @@ class CIT_DASHBOARD
 								</div>
 							</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn text-gray-800">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 						</div>';
 				}
 				elseif( $GLOBALS['logo_process'] == 4 ){
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
-									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+									<p class="text-xl text-gray-950 font-semibold">'.$GLOBALS['USERNAME'].'!</p>
 									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
 									<p class="text-gray-600 mt-2">Thank you for your patience.</p>
 									<div class="flex items-center mt-2 gap-4">
@@ -479,7 +479,7 @@ class CIT_DASHBOARD
 										<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
 									</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn text-gray-800">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
 								<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
@@ -490,10 +490,10 @@ class CIT_DASHBOARD
 				}
 				if($GLOBALS['plan_type'] == 'FREE'){
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
-						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="kt-card bgborder !border-transparent p-5 h-full">
 						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
-									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+									<p class="text-xl text-gray-950 font-semibold">'.$GLOBALS['USERNAME'].'!</p>
 									<p class="text-gray-600 mt-2">Your Free Trial period will end in '.$GLOBALS['freeperiod_dayleft'].' day!</p>
 								</div>
 								<div>
@@ -1204,7 +1204,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 					$signature_type = "installed";
 				}
 					$GLOBALS['signature_list'] .= '<div class="search-container all '.$signature_type.'">
-						<div class="kt-card kt-card-accent h-full relative sin_dashboard_box overflow-hidden">
+						<div class="kt-card !rounded-[14px] h-full relative sin_dashboard_box overflow-hidden">
 							<div class="kt-card-header">
 								<div class="top_left_side_list">
 									<div class="flex items-center gap-1 text-lg">
@@ -1362,10 +1362,12 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 
 								$GLOBALS['signature_list'] .= '</div>
 							</div>
-							<div class="kt-card-content">
-								<div class="max-h-[190px] overflow-hidden imgFix pointer-events-none">'
-									.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'
-									<div class="sigshadow_box"></div>
+							<div class="px-3 pb-3">
+								<div class="border border-gray-200 rounded-lg p-4">
+									<div class="max-h-[190px] overflow-hidden imgFix pointer-events-none">'
+										.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'
+										<div class="sigshadow_box"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -1375,10 +1377,11 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 				$GLOBALS['signature_count']++;
 		}
 		if($GLOBALS['plan_signaturelimit'] == 1){
-			$GLOBALS['signature_create_upgrade'] = '<div class="border-2 border-dashed border-gray-300 p-5 rounded-lg flex items-center justify-center">
-						<a class="kt-btn kt-btn-primary" href="'.$GLOBALS['linkModuleNewsignature'].'">
-						<i class="hgi hgi-stroke hgi-plus-sign-circle"></i>Create New Signature
+			$GLOBALS['signature_create_upgrade'] = '<div class="border border-gray-200 bg-gray-50 p-5 rounded-[14px] flex flex-col items-center justify-center">
+						<a class="kt-btn kt-btn-icon kt-btn-outline kt-btn-primary" href="'.$GLOBALS['linkModuleNewsignature'].'">
+							<i class="hgi hgi-stroke hgi-plus-sign"></i>
 						</a>
+						<p class="textGradient mt-2">Create New Signature</p>
                     </div>';
 		}else{
 			$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
