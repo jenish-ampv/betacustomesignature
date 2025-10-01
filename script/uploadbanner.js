@@ -99,7 +99,7 @@ function addThumbnail2(data){
 		// Creating an thumbnail
 	   // ui("#uploadfile3").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
 		ui("#uploadfile3").append('<div class="drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%"></div>');
-		ui("#img_preview3").append(' <div class="img_preview_box"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage2()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="signature_banner" value="'+name+'"></div>');
+		ui("#img_preview3").append(' <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage2()"><i class="hgi hgi-stroke hgi-delete-02 text-danger"></i></a><input type="hidden" name="signature_banner" value="'+name+'"></div>');
 		ui("#nxt2").prop('disabled', false);
         ui('.layout_banner').attr("src",src+'?rand='+number);
 		ui("#img_errormsg3").html('');
@@ -113,7 +113,13 @@ function addThumbnail2(data){
 function removeImage2(){
 	ui("#uploadfile3").empty();
 	ui("#img_preview3").empty();
-	ui("#uploadfile3").append('<div class="drag_your_image"> <img src="'+image_link+'/images/img-icon.svg" alt=""><h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG, JPG, JPEG</p></div>');
+	ui("#uploadfile3").append(`
+        <div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+        <img src="${image_link}/images/img-icon.svg" alt="">
+        <p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a class="text-primary" href="#">browse</a></p>
+        <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+        </div>`
+    );
     ui(".layout_banner").attr("src",image_link+'/images/banner-img1.png');
     $("#banner").val('');
 }

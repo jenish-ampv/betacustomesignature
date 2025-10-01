@@ -23,6 +23,7 @@
         "mini-css-extract-plugin": "^2.9.2",
         "mini-svg-data-uri": "^1.4.4",
         "postcss": "^8.5.6",
+        "postcss-color-functional-notation": "^7.0.12",
         "postcss-import": "^16.1.1",
         "postcss-loader": "^8.1.1",
         "postcss-nesting": "^13.0.2",
@@ -46,6 +47,7 @@
         "esri-leaflet": "^3.0.17",
         "esri-leaflet-geocoder": "^3.1.6",
         "glob": "^11.0.3",
+        "intl-tel-input": "^25.10.6",
         "slick-carousel": "^1.8.1",
         "sweetalert2": "^11.23.0",
         "swiper": "^11.2.10"

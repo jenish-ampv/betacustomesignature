@@ -99,7 +99,7 @@ class CIT_CONFIG{
 			$configName =  serialize($name);
 			    $update_config = $GLOBALS['DB']->update('config',array('name' => $configName),array('id' =>1));
 				if($update_config){
-					$_SESSION['Success'] .= '<div class="alert alert-success">Configuration updated successfully</div>';
+					$_SESSION['Success'] .= '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">Configuration updated successfully</div>';
 				} else {
 					$_SESSION['Error'] .= '<div class="alert alert-danger">An error occurred while you trying to update configuration, please try again.</div>';
 				}

@@ -290,7 +290,7 @@
 .sin_dashboard_box .installed_pending_btn .installed {
     display: inline-block;
 } */
-
+/* 
 #master_signature_box .master_signature_table {
     padding: 1px;
     border-radius: 12px;
@@ -302,7 +302,6 @@
     padding: 6px;
     background: #fff;
     border-radius: 11px;
-    /* box-shadow: 0 0 38px 0px rgba(0, 204, 255, 0.1), 0 0 45px 5px rgba(29, 74, 254, 0.1); */
     backdrop-filter: blur(30px);
     line-height: 0;
 }
@@ -324,7 +323,7 @@
     border-radius: 7px;
     padding: 20px;
     
-}
+} */
 
 .new_dashboard_right .signature_tbl{
     display: inline-block;
@@ -717,8 +716,8 @@
     border: 1px solid #1D4AFE;
 }
 
-.new_dashboard_bg .create_new_signature_bg a{font-size: 14px;}
-.new_dashboard_bg #search_result .create_new_signature_bg span{
+/* .new_dashboard_bg .create_new_signature_bg a{font-size: 14px;} */
+/* .new_dashboard_bg #search_result .create_new_signature_bg span{
     width: 40px;
     height: 40px;
     align-content: center;
@@ -732,11 +731,11 @@
     justify-content: center;
     border-radius: 50px;
 
-}
-.create_new_signature_bg img{width: 15px;}
-.new_dashboard_bg #search_result .create_new_signature_bg span img{margin: 0;padding: 0;width: 20px;}
+} */
+/* .create_new_signature_bg img{width: 15px;} */
+/* .new_dashboard_bg #search_result .create_new_signature_bg span img{margin: 0;padding: 0;width: 20px;} */
 
-.new_dashboard_right .sin_dashboard_box .menu_open ul{padding: 12% 0;}
+/* .new_dashboard_right .sin_dashboard_box .menu_open ul{padding: 12% 0;} */
 
 
 @media only screen and (max-width: 1340px) {
@@ -1055,7 +1054,7 @@
         flex-direction: column-reverse;
     } */
 
-    .sin_dashboard_box.sin_process .progress_details_left {
+    /* .sin_dashboard_box.sin_process .progress_details_left {
         width: 100%;
         text-align: center;
     }
@@ -1064,17 +1063,17 @@
         bottom: auto;
         position: relative;
         margin-top: 15px;
-    }
+    } */
 
-    .signature_integration_box {
+    /* .signature_integration_box {
         padding: 15px;
-    }
+    } */
 
-    .bulk_upload_main {
+    /* .bulk_upload_main {
         padding: 15px;
-    }
+    } */
 
-    .sin_dashboard_box.sin_process .logo_right img{
+    /* .sin_dashboard_box.sin_process .logo_right img{
         height: 30px;
     }
     .new_dashboard_bg .signature_manager_top .button_right {
@@ -1099,11 +1098,11 @@
 
     .new_dashboard_right .signature_tbl{
             height: 190px;
-    }
+    } */
 }
 
 
-@media only screen and (max-width: 400px) {
+/* @media only screen and (max-width: 400px) {
     .new_dashboard_bg .new_dashboard_left .top_menu li a {
         font-size: 12px;
         justify-content: center;
@@ -1115,4 +1114,4 @@
     .new_dashboard_bg .new_dashboard_left ul{gap: 5px;}
     .master_signature_box .title_border a.mastersig{text-indent: -999em;padding: 8px;}
     .master_signature_box .title_border a.mastersig img{margin: 0;}
-}
+} */

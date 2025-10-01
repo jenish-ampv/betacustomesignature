@@ -32,7 +32,7 @@ $(document).ready(function(){
 					url: e.target.result
 				}).then(function(){
 					console.log('jQuery bind complete');
-	              	$(".profile_animation_section").addClass('section_disabled');
+	              	$(".profile_animation_section").addClass('cursor-not-allowed opacity-50 pointer-events-none');
 				});			
 			}
 		}
@@ -42,8 +42,8 @@ $(document).ready(function(){
 			$('.cropped_image').hide();
 			$('.cropped_image_change').hide();
 		}else{
-      		$(".profile_animation_section").addClass('section_disabled');
-      		$(".signature_profile_shape_section").removeClass('section_disabled');
+      		$(".profile_animation_section").addClass('cursor-not-allowed opacity-50 pointer-events-none');
+      		$(".signature_profile_shape_section").removeClass('cursor-not-allowed opacity-50 pointer-events-none');
 			$('.cropped_image').show();
 			$('.cropped_image_change').show();
 			if(!$('#upload-image').data('croppie')){
@@ -75,60 +75,60 @@ $(document).ready(function(){
 		
 		
 	});
-	$('#profileImage').on('change', function () {
-		supportFileTypes = ['image/png', 'image/svg', 'image/jpg', 'image/jpeg']
+	// $('#profileImage').on('change', function () {
+	// 	supportFileTypes = ['image/png', 'image/svg', 'image/jpg', 'image/jpeg']
 
-		dataFile = this.files[0]; 
-		var reader = new FileReader();
-		if(jQuery.inArray(dataFile.type, supportFileTypes) !== -1){
-			reader.onload = function (e) {
-				$image_crop.croppie('bind', {
-					url: e.target.result
-				}).then(function(){
-					console.log('jQuery bind complete');
-	              	$(".profile_animation_section").addClass('section_disabled');
-				});			
-			}
-		}
-		if(jQuery.inArray(dataFile.type, supportFileTypes) === -1){
-			$('#upload-image').croppie('destroy');
-			$('input[name=profileCropped').val('');
-			$('.cropped_image').hide();
-			$('.cropped_image_change').hide();
-		}else{
-      		$(".profile_animation_section").addClass('section_disabled');
-      		$(".signature_profile_shape_section").removeClass('section_disabled');
-			$('.cropped_image').show();
-			$('.cropped_image_change').show();
-			if(!$('#upload-image').data('croppie')){
-				$image_crop = $('#upload-image').croppie({
-					enableExif: true,
-					viewport: {
-						width: 300,
-						height: 300,
-						type: 'square'
-					},
-					boundary: {
-						width: 400,
-						height: 400
-					}
-				});
-			}
-			setTimeout(function () {
-				reader.readAsDataURL(dataFile);
-				if(dataFile.type != "image/gif"){
-					setTimeout(function () {
-						// $(".cropped_image").click();
-				   }, 300);
-				}
-				ui("#upload-image").parent().show();
-				ui("#upload-image").siblings().removeAttr("style");
-				ui("#uploadfile2").hide();
-			}, 1000);
-		}
+	// 	dataFile = this.files[0]; 
+	// 	var reader = new FileReader();
+	// 	if(jQuery.inArray(dataFile.type, supportFileTypes) !== -1){
+	// 		reader.onload = function (e) {
+	// 			$image_crop.croppie('bind', {
+	// 				url: e.target.result
+	// 			}).then(function(){
+	// 				console.log('jQuery bind complete');
+	//               	$(".profile_animation_section").addClass('cursor-not-allowed opacity-50 pointer-events-none');
+	// 			});			
+	// 		}
+	// 	}
+	// 	if(jQuery.inArray(dataFile.type, supportFileTypes) === -1){
+	// 		$('#upload-image').croppie('destroy');
+	// 		$('input[name=profileCropped').val('');
+	// 		$('.cropped_image').hide();
+	// 		$('.cropped_image_change').hide();
+	// 	}else{
+    //   		$(".profile_animation_section").addClass('cursor-not-allowed opacity-50 pointer-events-none');
+    //   		$(".signature_profile_shape_section").removeClass('cursor-not-allowed opacity-50 pointer-events-none');
+	// 		$('.cropped_image').show();
+	// 		$('.cropped_image_change').show();
+	// 		if(!$('#upload-image').data('croppie')){
+	// 			$image_crop = $('#upload-image').croppie({
+	// 				enableExif: true,
+	// 				viewport: {
+	// 					width: 300,
+	// 					height: 300,
+	// 					type: 'square'
+	// 				},
+	// 				boundary: {
+	// 					width: 400,
+	// 					height: 400
+	// 				}
+	// 			});
+	// 		}
+	// 		setTimeout(function () {
+	// 			reader.readAsDataURL(dataFile);
+	// 			if(dataFile.type != "image/gif"){
+	// 				setTimeout(function () {
+	// 					// $(".cropped_image").click();
+	// 			   }, 300);
+	// 			}
+	// 			ui("#upload-image").parent().show();
+	// 			ui("#upload-image").siblings().removeAttr("style");
+	// 			ui("#uploadfile2").hide();
+	// 		}, 1000);
+	// 	}
 		
 		
-	});
+	// });
 	$('.cropped_image').on('click', function (e) {
 		e.preventDefault();
 		$image_crop.croppie('result', {
@@ -156,8 +156,8 @@ $(document).ready(function(){
 		            $("#signature_profile_data").attr("data-circle-json",data.circleJsonName);
 		            $("#signature_profile_data").attr("data-square-json",data.squareJsonName);
 	              	$("#signature_profile_data").data("gifcreated", false);
-	              	$(".profile_animation_section").removeClass('section_disabled');
-	      			$(".signature_profile_shape_section").addClass('section_disabled');
+	              	$(".profile_animation_section").removeClass('cursor-not-allowed opacity-50 pointer-events-none');
+	      			$(".signature_profile_shape_section").addClass('cursor-not-allowed opacity-50 pointer-events-none');
 	            	$('#signature_profileanimation').prop('checked', false).trigger('change');
 					removeImage(path);
 					removeCropedImage();

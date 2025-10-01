@@ -291,6 +291,10 @@ class CIT_NEWSIGNATUREENTERPRISE
 				//$location = "upload-beta/".$filename;
 				$filename = time().'-'.$GLOBALS['USERID'].'.'.$ext;
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/banner/'.$filename ;
+				$targetDir = 'upload-beta/signature/banner/';
+				if (!is_dir($targetDir)) {
+					mkdir($targetDir, 0755, true);
+				}
 				$return_arr = array();
 				if(move_uploaded_file($_FILES['banner']['tmp_name'],$location)){
 					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
@@ -611,6 +615,31 @@ class CIT_NEWSIGNATUREENTERPRISE
 			$GLOBALS['is_banner_campaign'] = '';
 		}
 
+		// Assign global CLA_HTML object to a local variable
+		$html = $GLOBALS['CLA_HTML'];
+
+		// Load the main template (signature editor sidebar)
+		$html->addMain($GLOBALS['WWW_TPL'] . '/signatureeditorsidebar.html');
+
+		// Add common page components
+		$GLOBALS['HEADER']  = $html->addSub($GLOBALS['WWW_TPL'] . '/page.header.html');
+		$GLOBALS['FOOTER']  = $html->addSub($GLOBALS['WWW_TPL'] . '/page.footer.html');
+		$GLOBALS['SIDEBAR'] = $html->addSub($GLOBALS['WWW_TPL'] . '/page.sidebar.html');
+
+		// Set loops for dynamic content
+		$html->SetLoop('SOCIALICONS', $GLOBALS['social_icons_arr']);
+		$html->SetLoop('SOCIALICONSLINK', $GLOBALS['social_icons_arr']);
+		$html->SetLoop('MARKETPLACEBTN', $GLOBALS['marketplace_btn_arr']);
+		$html->SetLoop('MARKETPLACEBTNLINK', $GLOBALS['marketplace_btn_arr']);
+		
+		// Start output buffering
+		ob_start();
+		$html->display();
+		$renderedHtml = ob_get_clean(); // Get the buffered output and assign to a variable
+
+		// Assign it to the global variable without displaying it
+		$GLOBALS['EDITOR_SIDEBAR_NEW_SIGNATURE_ENTERPRISE'] = $renderedHtml;
+
 		$department_logo = $GLOBALS['DB']->row("SELECT count(*) as count FROM `signature_logo` WHERE user_id = ? AND department_id = ? LIMIT 0,1",array($GLOBALS['USERID'],$_REQUEST['department_id']));
 		$GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/newsignatureenterprise.html');
 		// $GLOBALS['sig_html_save_url'] = GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'saveSignatureHtml'));   // code is for saving signature html(to use in deploy) 
@@ -713,19 +742,31 @@ class CIT_NEWSIGNATUREENTERPRISE
 				$GLOBALS['signature_marketplacebtns'] = $GLOBALS['signature_appstorebtn_btn'].$GLOBALS['signature_playstorebtn_btn'].$GLOBALS['signature_amazonbtn_btn'].$GLOBALS['signature_ebaybtn_btn'];
 
 				if($GLOBALS['signature_layout'] == $layout_id){
-					$GLOBALS['lauout_load'] = '<div class="sin_dashboard_box signature_layot"><input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="d-none imgbgchk" value="'.$layout_id.'" required="required" '.$selected.'><table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0"><tr><td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td></tr></table></div>';
+					$GLOBALS['lauout_load'] = '<div class="sin_dashboard_box signature_layot"><input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.'><table class="signature_tbl_main pointer-events-none" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0"><tr><td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td></tr></table></div>';
 				}
 				$selected = $GLOBALS['signature_layout'] == $layout_id ? 'checked="checked"' :'';
 				$templateTitle = "<p>Template ".$templet_no."</p>";
 				if($layout_id >= 13){
-					$templateTitle = "<div class='layout_badge'><p>Template ".$templet_no."</p><div class='badge_text'><span>New Layout</span></div></div>";
+					$templateTitle = "<div class='flex items-center gap-5 mb-3'>
+					<p class='text-gray-400'>Template ".$templet_no."</p>
+					<div class='px-2 py-1 bg-gradient text-xs text-white rounded-full'>AI Animated</div>
+					</div>";
 				}
 				$GLOBALS['signature_profilesize'] = $layoutRow['profile_image_size'];
 				$GLOBALS['signature_profileanimationsize'] = $layoutRow['profile_image_size'];
 				$GLOBALS['signature_logosize'] = "100";
-				 $GLOBALS['layout_list'] .= $templateTitle.'<div class="sin_dashboard_box signature_layot"><input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="d-none imgbgchk" value="'.$layout_id.'" required="required" '.$selected.' data-layout_divider_padding_remove="'.$layoutRow['layout_divider_padding_remove'].'"><label class="layout_id" for="layout_id'.$layout_id.'"><table class="signature_tbl_main" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0"><tr><td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td></tr></table><div class="tick_container">
-              <div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div>
-            </div><input type="hidden" id="profile_image_size'.$layout_id.'" value="'.$layoutRow['profile_image_size'].'"/></label></div>';
+				 $GLOBALS['layout_list'] .= '<div class="relative inline-block cursor-pointer">'.$templateTitle.'<label class="relative inline-block cursor-pointer" for="layout_id'.$layout_id.'">
+				 <input type="radio" name="layout_id" id="layout_id'.$layout_id.'" class="peer hidden imgbgchk" value="'.$layout_id.'" required="required" '.$selected.' data-layout_divider_padding_remove="'.$layoutRow['layout_divider_padding_remove'].'">
+					<span class="top-1/2 right-1/2 hidden absolute -translate-y-1/2 -translate-x-1/2 bg-gradient size-6 text-white rounded-full  text-lg items-center justify-center peer-checked:flex z-[1]">
+						<i class="hgi hgi-stroke hgi-tick-02"></i>
+					</span>
+					<span class="layout_id peer-checked:opacity-50">
+						<table class="signature_tbl_main pointer-events-none" style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" width="454" cellspacing="0" cellpadding="0" border="0">
+						<tr><td>'.$GLOBALS['CLA_HTML']->addContent($layoutRow['layout_desc']).'</td></tr>
+						</table>
+					</span>
+					<input type="hidden" id="profile_image_size'.$layout_id.'" value="'.$layoutRow['profile_image_size'].'"/>
+			</label></div>';
 				$templet_no++;
 
 		}
@@ -984,7 +1025,40 @@ class CIT_NEWSIGNATUREENTERPRISE
 				}
 
 				if($fieldtype == 'text'){ $fieldvar = 1; }
-				$GLOBALS['signature_custom_fields'. $fieldvar].='<div class="inputbox"><div class="row"><div class="col-md-3"><div class="form-floating"><input type="text" class="form-control" name="field_label[]" id=""  placeholder="Title" data-class="'.$layout_labelclass.'"><label for="">Title</label></div></div><div class="col-md-5"><div class="form-floating"><input type="text" class="form-control" id="" name="custom_field[]" value="'.$fieldvalue.'" data-class="'.$layout_class.'"><label for="">'.$fieldlabel.'</label><input type="hidden" name="custom_fieldtype[]" value="'.$fieldtype.'"></div></div><div class="col-md-4"><div class="custome_icon"><input type="checkbox" name="field_fontweight['.$field_count.']" id="bold-icon-'.$fieldid.'" class="d-none imgbgchk style_bold" value="1" data-class="'.$layout_class.'" '.$fontweightchk.'><label for="bold-icon-'.$fieldid.'" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#bold" role="button" aria-expanded="false" aria-controls="bold"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/bold-icon.svg" alt=""><div class="tick_container"><div class="tick bold"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/bold-icon-hover.svg" alt=""></div></div></label></div><div class="custome_icon"><input type="checkbox" name="field_fontstyle['.$field_count.']" id="italic-icon-'.$fieldid.'" class="d-none imgbgchk style_italic" value="1" data-class="'.$layout_class.'" '.$fonstylechk.' ><label for="italic-icon-'.$fieldid.'" class="iconcheckbox collapsed" data-bs-toggle="collapse" href="#italic" role="button" aria-expanded="false" aria-controls="italic"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/italic-icon.svg" alt=""><div class="tick_container"><div class="tick italic"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/italic-icon-hover.svg" alt=""></div></div></label></div><div class="color_picker"><input type="color" name="field_color[]" class="form-control form-control-color" id="exampleColorInput" value="'.$fieldcolor.'" title="Choose your color" data-class="'.$layout_class.'"></div><div class="custome_icon"><select class="select_small_box" data-class="'.$layout_class.'" name="field_fontsize[]"><option value="10px" '.$fontsizesel10px.'>Small</option><option value="12px" '.$fontsizesel12px.'>Normal</option><option value="14px" '.$fontsizesel14px.'>Large</option><option value="16px" '.$fontsizesel16px.'>Huge</option></select></div><a href="javascript:void(0);" class="remove_cusfield" data-id="'.$fieldtype.'" data-number="'.$fieldno.'"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/delete.svg" alt="Remove"></a></div></div></div>';
+				$GLOBALS['signature_custom_fields'. $fieldvar].='
+				<div class="flex items-center gap-4 inputbox mt-5">
+					<div class="flex items-center gap-2 flex-1">
+						<div class="w-20 flex-none floting-input">
+							<label for="">Title</label>
+							<input type="text" class="kt-input" name="field_label[]" id=""  placeholder="Title" data-class="'.$layout_labelclass.'">
+						</div>
+						<div class="flex-1 min-w-28 floting-input">
+							<label for="">'.$fieldlabel.'</label>
+							<input type="text" class="kt-input" id="" name="custom_field[]" value="'.$fieldvalue.'" data-class="'.$layout_class.'">
+							<input type="hidden" name="custom_fieldtype[]" value="'.$fieldtype.'">
+						</div>
+					</div>
+					<div class="flex gap-2 items-center">
+						<label class="cursor-pointer">
+							<input type="checkbox" name="field_fontweight['.$field_count.']" id="bold-icon-'.$fieldid.'" class="peer hidden style_bold" value="1" data-class="'.$layout_class.'" '.$fontweightchk.'>
+							<i class="fas fa-bold text-gray-400 peer-checked:text-gray-950"></i>
+						</label>
+						<label class="cursor-pointer">
+							<input type="checkbox" name="field_fontstyle['.$field_count.']" id="italic-icon-'.$fieldid.'" class="peer hidden style_italic" value="1" data-class="'.$layout_class.'" '.$fonstylechk.' >
+							<i class="fas fa-italic text-gray-400 peer-checked:text-gray-950"></i>
+						</label>
+						<input type="color" name="field_color[]" class="w-4 h-5 rounded-sm form-control-color" id="exampleColorInput" value="'.$fieldcolor.'" title="Choose your color" data-class="'.$layout_class.'">
+						<select class="w-20 kt-select kt-select-sm !leading-normal select_small_box" data-class="'.$layout_class.'" name="field_fontsize[]">
+							<option value="10px" '.$fontsizesel10px.'>Small</option>
+							<option value="12px" '.$fontsizesel12px.'>Normal</option>
+							<option value="14px" '.$fontsizesel14px.'>Large</option>
+							<option value="16px" '.$fontsizesel16px.'>Huge</option>
+						</select>
+						<a href="javascript:void(0);" class="remove_cusfield text-danger" data-id="'.$fieldtype.'" data-number="'.$fieldno.'">
+							<i class="hgi hgi-stroke hgi-delete-02"></i>
+						</a>
+					</div>
+				</div>';
 
 				$field_count++;
 

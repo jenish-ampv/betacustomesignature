@@ -212,9 +212,20 @@ class CIT_R
                         // Output the image content
                         echo $imageContent;
                     } else {
+                        header_remove('Content-Type');
+                        header('Content-Type: image/svg+xml');
+                        header('Content-Length: ' . strlen($imageContent));
+
+                        // Clear output buffer
+                        if (ob_get_length()) {
+                            ob_end_clean();
+                        }
+
+                        // Output the image content
+                        echo $imageContent;
                         // Image data is invalid
-                        header("HTTP/1.0 415 Unsupported Media Type");
-                        echo "Invalid image data.";
+                        // header("HTTP/1.0 415 Unsupported Media Type");
+                        // echo "Invalid image data.";
                     }
                 } else {
                     // Image not found or could not be fetched

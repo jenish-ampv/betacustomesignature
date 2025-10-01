@@ -5,21 +5,28 @@ class CIT_DASHBOARD
 	public function __construct()
 	{
 		if(!isset($_SESSION[GetSession('user_id')]) && !isset($_REQUEST['uuid'])){
-			GetFrontRedirectUrl(GetUrl(array('module'=>'signin')));
+			GetFrontRedirectUrl(GetUrl(array('module'=>'signin')));exit();
 		}
 
-		if($GLOBALS['plan_cancel'] == 1){
-			GetFrontRedirectUrl($GLOBALS['renewaccount']);
+		
+
+		if($_REQUEST['category_id'] != 'planrenewed' && $GLOBALS['plan_cancel'] == 1){
+			GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));exit();
 		}
 		
 		if($GLOBALS['plan_type'] == 'FREE' && $GLOBALS['freeperiod_dayleft'] == 0){
 			$redirect = $GLOBALS['billing'].'?action=freetrial';
-			GetFrontRedirectUrl($redirect);
+			GetFrontRedirectUrl($redirect);exit();
 		}
-		elseif($GLOBALS['PLAN_STATUS'] == 0){
+		elseif($_REQUEST['category_id'] != 'planrenewed' && $GLOBALS['PLAN_STATUS'] == 0){
 			if(!isset($_REQUEST['category_id']) && !isset($_REQUEST['uuid'])){
-				GetFrontRedirectUrl($GLOBALS['renewaccount']);
+				GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));exit();
 			}
+		}
+
+		if($_REQUEST['category_id'] == 'planrenewed'){
+			sleep(5);
+			GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard')));exit();
 		}
 
 		if(isset($_REQUEST['department_id'])){
@@ -32,14 +39,16 @@ class CIT_DASHBOARD
 			if($subUserDepartmentList){
 				$department_ids = explode(",",$subUserDepartmentList['department_list']);
 				if(!in_array($GLOBALS['current_department_id'],$department_ids)){
-					$redirect = $GLOBALS['dashboard'].'?department_id='.$department_ids[0];
-					GetFrontRedirectUrl($redirect);
+					if($department_ids[0]){
+						$redirect = $GLOBALS['dashboard'].'?department_id='.$department_ids[0];
+						GetFrontRedirectUrl($redirect);exit();
+					}
 				}
 			}
 		}
 		$user = $GLOBALS['DB']->row("SELECT RU.user_id,RU.user_come_from_free_trial,count(*) as logo_count FROM `registerusers` as RU RIGHT JOIN signature_logo as SL ON SL.user_id = RU.user_id WHERE RU.user_id=? ",array($GLOBALS['USERID']));
 		if($user['user_come_from_free_trial'] && $user['logo_count'] == '0'){
-			GetFrontRedirectUrl($GLOBALS['uploadbrandlogo']);
+			GetFrontRedirectUrl($GLOBALS['uploadbrandlogo']);exit();
 		}
 	}
 
@@ -68,19 +77,19 @@ class CIT_DASHBOARD
 		}
 
 		// create a logo store directory
-		if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$GLOBALS['USERID'])) {
-			if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$GLOBALS['USERID'])) {
-				$error = 1;
-				die("\"temp\" folder not created. Permission problem.......");
-			}
-		}
+		// if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$GLOBALS['USERID'])) {
+		// 	if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$GLOBALS['USERID'])) {
+		// 		$error = 1;
+		// 		die("\"temp\" folder not created. Permission problem.......");
+		// 	}
+		// }
 
 		// create a signature store directory
-		if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
-			if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
-				die("\"temp\" folder not created. Permission problem.......");
-			}
-		}
+		// if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
+		// 	if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
+		// 		die("\"temp\" folder not created. Permission problem.......");
+		// 	}
+		// }
 
 		$user = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_id = ? ",array($GLOBALS['USERID']));
 		if($user['user_type'] == "enterprise"){
@@ -146,9 +155,13 @@ class CIT_DASHBOARD
 				// $filename = $GLOBALS['USERID'].'.png';
 				$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/'.$GLOBALS['USERID'].'/'.$filename ;
 				$uploadFolder =  GetConfig('SITE_UPLOAD_PATH').'/signature/';
+				$uploadFolderForUser =  GetConfig('SITE_UPLOAD_PATH').'/signature/'.$GLOBALS['USERID'].'/';
 				$return_arr = array();
 				if (!file_exists($uploadFolder)) {
 				    mkdir($uploadFolder, 0777, true);
+				}
+				if (!file_exists($uploadFolderForUser)) {
+				    mkdir($uploadFolderForUser, 0777, true);
 				}
 				if(move_uploaded_file($_FILES['signature_logo']['tmp_name'],$location)){
 					$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
@@ -228,14 +241,16 @@ class CIT_DASHBOARD
 		$GLOBALS['IMPORT_SIGNATURE_PENDING_COUNT'] = $pendingCount['pending_count'];
 		if($pendingCount['pending_count'] > 0){
 			$progressBarWidthPercentage = ($pendingCount['pending_count']/$totalCount['total_count']) * 100 ;
-			$GLOBALS['IMPORT_SIGNATURE_PENDING_LEFTBAR'] = '<div class="pending_signature_bg">
-														<h6>Pending Signature <img src="%%DEFINE_IMAGE_LINK%%/images/pending-icon.svg" alt=""></h6>
-															<div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" >
-															<div class="progress-bar" style="width: '.$progressBarWidthPercentage.'%"></div>
+			$GLOBALS['IMPORT_SIGNATURE_PENDING_LEFTBAR'] = '<div class="p-2 shadow-lg bg-white text-gray-950 rounded-xl bg-gradient-to-r from-yellow-500/10 to-yellow-500/0">
+															<p class="text-xs">Pending Signature</p>
+															<div class="flex items-center gap-2">
+																<div class="w-full h-1.5 bg-gray-100 rounded-full" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+																	<div class="h-full rounded-full bg-gradient" style="width: '.$progressBarWidthPercentage.'%"></div>
+																</div>
+																<div class="font-semibold text-xs"><span id="sig_processing_number">'.$pendingCount['pending_count'].'</span>/<span id="sig_total_processing_number">'.$totalCount['total_count'].'</span></div>
 															</div>
-															<div class="banner_size"><span id="sig_processing_number">'.$pendingCount['pending_count'].'</span>/<span id="sig_total_processing_number">'.$totalCount['total_count'].'</span></div>
 															<h6 style="display:none;"><a href="javascript:void(0);" id="process_pending_imported_signature" data-url="'.$processPendingImportSignatureLink.'" onclick="processPendingImportedSignature()">Click here to popup</a></h6>
-													</div>';
+														</div>';
 		}
 
 		$department_lists_arr = $GLOBALS['DB']->query("SELECT * FROM `registerusers_departments` WHERE user_id = ? ORDER BY position",array($GLOBALS['USERID']));
@@ -257,30 +272,29 @@ class CIT_DASHBOARD
 						$GLOBALS['selected_department'] = $department['department_id'];
 						$defaultFirstSelectedSubUser = "department_selected";
 					}
-					$GLOBALS['department_list'] .= '<li class="department_container handle '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<div class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt=""></span>'.$department['department_name'].'</div>
-								<div class="text_center">'.$thisDepartmentSignatures.' Members</div>
-								<div class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
-								</div>
-							</li>';
+					$GLOBALS['department_list'] .= '<tr class="department_container handle hover:bg-gray-100 '.$defaultFirstSelectedSubUser.'" data-department-id="'.$department['department_id'].'" draggable="true">
+								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
+								<td>'.$thisDepartmentSignatures.' Members</td>
+								<td><a href="javascript:void(0);" class="mastersig clickableAnchor mr-2" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a></td>
+							</tr>';
 				}
 
 			}else{
 
 				if(sizeof($department_lists_arr) == 1){
-					$GLOBALS['department_list'] .= '<li class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<div class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</div>
-								<div class="text_center">'.$thisDepartmentSignatures.' Members</div>
-								<div class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
-								</div>
-							</li>';
+					$GLOBALS['department_list'] .= '<tr class="department_container handle hover:bg-gray-100 '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
+								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
+								<td>'.$thisDepartmentSignatures.' Members</td>
+								<td><a href="javascript:void(0);" class="mastersig clickableAnchor mr-2" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a>
+								</td>
+							</tr>';
 				}else{
-					$GLOBALS['department_list'] .= '<li class="department_container handle '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
-								<div class="text_left"><span class="name"><img src="%%DEFINE_IMAGE_LINK%%/images/new-drag-and-drop-icon.svg" alt="" draggable="false"></span>'.$department['department_name'].'</div>
-								<div class="text_center">'.$thisDepartmentSignatures.' Members</div>
-								<div class="icon_right"><a href="javascript:void(0);" class="mastersig clickableAnchor" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-bs-toggle="modal" data-bs-target="#departmentModel"><img class="color" src="%%DEFINE_IMAGE_LINK%%/images/new-edit-icon.svg" alt=""></a>
-								<a class="mastersig delete_department" href="'.$GLOBALS['departmententerprise'].'/deleteDepartment?department_id='.$department['department_id'].'"><i class="hgi hgi-stroke hgi-delete-02"></i></a></div>
-							</li>';
+					$GLOBALS['department_list'] .= '<tr class="department_container handle hover:bg-gray-100 '.$defaultFirstSelected.'" data-department-id="'.$department['department_id'].'" draggable="true">
+								<td><div class="flex items-center gap-1"><i class="hgi hgi-stroke hgi-drag-drop-vertical text-lg"></i><span>'.$department['department_name'].'</span></div></td>
+								<td>'.$thisDepartmentSignatures.' Members</td>
+								<td><a href="javascript:void(0);" class="mastersig clickableAnchor mr-2" data-department_id="'.$department['department_id'].'" data-department_name="'.$department['department_name'].'" data-kt-modal-toggle="#departmentModel"><i class="hgi hgi-stroke hgi-edit-02"></i></a>
+								<a class="mastersig delete_department" href="'.$GLOBALS['departmententerprise'].'/deleteDepartment?department_id='.$department['department_id'].'"><i class="hgi hgi-stroke hgi-delete-02"></i></a></td>
+							</tr>';
 				}
 			}
 		}
@@ -318,6 +332,7 @@ class CIT_DASHBOARD
 			$GLOBALS['googledeploylink'] = GetUrl(array('module'=>'integrations'));
 		}
 
+		$this->getPlanDetail();
 		$GLOBALS['plan_signature'] = $this->getTotalPlanSignature();
 		$GLOBALS['FOOTER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.footer.html');
 		$GLOBALS['SIDEBAR'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.sidebar.html');
@@ -344,134 +359,154 @@ class CIT_DASHBOARD
 				$signature_image_without_analytics = $GLOBALS['UPLOAD_LINK'].'/signature/'.$GLOBALS['USERID'].'/'.$signature_logo['logo'];
 			}
  			if($GLOBALS['logo_process'] == 1){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process">
-								<div class="flex-1">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/complete/'.$signature_logo['user_id'].'/'.$signature_logo['logo_animation'].'" alt="">
-									<p class="text-xl mt-3 text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
-									<p class="text-gray-600">Your Logo Animation ready! Please review it</p>
-									<a class="kt-btn kt-btn-primary my-4" id="reviewLogo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#reviewModal">Review Logo</a>
+					$GLOBALS['signature_process'] ='
+					<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+					<div class="sin_dashboard_box sin_process">
+								<div class="flex-1 flex justify-between">
+									<div>
+										<p class="text-xl mt-3 text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+										<p class="text-gray-600">Your Logo Animation ready! Please review it</p>
+										<a class="kt-btn kt-btn-primary my-4" id="reviewLogo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#reviewModal">Review Logo</a>
+									</div>
+									<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+										<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/complete/'.$signature_logo['user_id'].'/'.$signature_logo['logo_animation'].'" alt="">
+										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+									</div>
 								</div>';
 						if($signature_logo['logo_change_process'] != 2){
-							$GLOBALS['signature_process'] .= '<p class="text-gray-400">Did you mistakenly upload the wrong logo? Please <a class="text-primary underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></p>';
+							$GLOBALS['signature_process'] .= '<p class="text-gray-400">Did you mistakenly upload the wrong logo? Please <a class="text-primary underline cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></p>';
 						}
-					$GLOBALS['signature_process'] .= '</div></div>';
+					$GLOBALS['signature_process'] .= '</div></div></div>';
 				}else if($GLOBALS['logo_process'] == 0 || $GLOBALS['logo_process'] == 3 ){
-					$GLOBALS['signature_process'] ='<div class="sin_dashboard_box sin_process flex">
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
 								<div class="flex-1">
 								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
 								<p class="text-gray-600">Your Logo Animation is Processing</p>
- 								<div class="flex items-center mt-6 mb-5 gap-4">
-								<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
-								  <div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-[50px]" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-								<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
+ 								<div class="flex items-center my-1 gap-4">
+									<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
+									<div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-1/2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+									<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
 								</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn text-xs text-gray-400">Did you mistakenly upload the wrong logo? Please <a class="underline text-primary cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
-					$GLOBALS['signature_process'] .= '<div class="pl-20"><div class="w-[150px] h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+
+					$GLOBALS['signature_process'] .= '</div><div><div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
 									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 								</div>';
 					if($signatureSubscription){
 						if($signatureSubscription['subscription_id'] == ""){
-							$GLOBALS['signature_process'] .= '<button class="kt-btn kt-btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#upgrade-plan-popup">Upgrade to animate</button>';
+							$GLOBALS['signature_process'] .= '<button class="kt-btn kt-btn-primary mt-5" data-kt-modal-toggle="#upgrade-plan-popup">Upgrade to animate</button>';
 						}
 					}
-					$GLOBALS['signature_process'] .= '</div></div>';
+					$GLOBALS['signature_process'] .= '</div></div></div></div>';
 				}
 				elseif ($signature_logo['logo_change_process'] == 0 || $signature_logo['logo_change_process'] == 1) {
-					$GLOBALS['signature_process'] ='<div class="col-xl-4 col-lg-6 col-md-6 col-12">
-							<div class="sin_dashboard_box sin_process">
-								<div class="logo_right">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
-									<div class="animation_img"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
-								</div>
-								<div class="progress_details_left">
-								<h2>'.$GLOBALS['USERNAME'].'!</h2>
-								<h3>Your Logo is Under Review</h3>';
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
+								<div class="flex-1">
+								<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+								<p class="text-gray-600">Your Logo is Under Review</p>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
-						</div></div>';
+							<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+								<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+								<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+							</div>
+						</div></div></div>';
 				}
 				elseif ($signature_logo['logo_change_process'] == 3) {
-					$GLOBALS['signature_process'] ='<div class="col-xl-4 col-lg-6 col-md-6 col-12">
-							<div class="sin_dashboard_box sin_process">
-								<div class="logo_right">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
-									<div class="animation_img"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
+								<div class="flex-1">
+									<p class="text-xl text-gray-950">Your logo is not matching with our guideline.</p>
+									<p class="text-gray-600 mt-2">'.$signature_logo['change_logo_reject_reason'].'</p>
+									<a class="kt-btn kt-btn-primary mt-2" id="change_signature_logo" data-url="'.$GLOBALS['UrlRewriteBase'].'dashboard" data-kt-modal-toggle="#changeLogoModel">Reupload Logo</a>
 								</div>
-								<div class="progress_details_left">
-								<h2>Your logo is not matching with our guideline.</h2>
-								<ul>
-								<li>'.$signature_logo['change_logo_reject_reason'].'</li>
-								</ul>
-								<div class="review_btn"><a class="btn btn-primary" id="change_signature_logo" data-url="'.$GLOBALS['UrlRewriteBase'].'dashboard" data-kt-modal-toggle="#changeLogoModel">Reupload Logo<img src="'.$GLOBALS['IMAGE_LINK'].'/images/arrow-right.svg" alt=""></a></div></div>
-						</div></div>';
+								<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+								</div>
+							</div></div></div>';
 				}
 				elseif ($signature_logo['logo_change_process'] == 4 ) {
-					$GLOBALS['signature_process'] ='<div class="col-xl-4 col-lg-6 col-md-6 col-12">
-							<div class="sin_dashboard_box sin_process">
-								<div class="logo_right">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
-									<div class="animation_img"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+							<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
+								<div class="flex-1">
+									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
+									<p class="text-gray-600 mt-2">Thank you for your patience.</p>
+									<div class="flex items-center mt-2 gap-4">
+										<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
+											<div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-1/2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
+									</div>
 								</div>
-								<h2>'.$GLOBALS['USERNAME'].'!</h2>
-								<div class="progress_details_left">
-								<h3>Your logo animation is in process</h3>
-								<p>Thank you for your patience.</p>
-								<div class="progress_days_box">
-								<div class="progress">
-								  <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+								<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
 								</div>
-								<span>1/2 Days</span>
-								</div>';
+							</div>';
 					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
-						</div></div>';
-				}
-				elseif( $GLOBALS['logo_process'] == 4 ){
-					$GLOBALS['signature_process'] ='<div class="col-xl-4 col-lg-6 col-md-6 col-12">
-							<div class="sin_dashboard_box sin_process">
-								<div class="logo_right">
-									<img src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
-									<div class="animation_img"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
-								</div>
-								<div class="progress_details_left">
-								<h2>'.$GLOBALS['USERNAME'].'!</h2>
-								<h3>Your logo animation is in process</h3>
-								<p>Thank you for your patience.</p>
-								<div class="progress_days_box">
-								<div class="progress">
-								  <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-								<span>1/2 Days</span>
-								</div>';
-					if($signature_logo['logo_change_process'] != 2){
-						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
-					}
-					$GLOBALS['signature_process'] .= '</div>
-						</div></div>';
-				}
-				if($GLOBALS['plan_type'] == 'FREE'){
-					$GLOBALS['signature_process'] ='<div class="col-xl-4 col-lg-6 col-md-6 col-12">
-							<div class="sin_dashboard_box sin_process">
-								<div class="logo_right"><img src="%%DEFINE_IMAGE_LINK%%/images/main-logo.png" alt="">
-									<div class="animation_img"><img src="%%DEFINE_IMAGE_LINK%%/images/line-animation1.gif" alt=""></div>
-								</div>
-								<div class="progress_details_left">
-								<h2>'.$GLOBALS['USERNAME'].'!</h2>
-								<h3>Your Free Trial period will end in '.$GLOBALS['freeperiod_dayleft'].' day!</h3>
-								<p>kindly renew your account before end.</p>
-								<div class="review_btn"><a href="#" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="btn">Animated Plan</a></div>
-								</div>
-							</div>
 						</div>';
 				}
+				elseif( $GLOBALS['logo_process'] == 4 ){
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
+								<div class="flex-1">
+									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+									<p class="text-gray-600 mt-2">Your logo animation is in process</p>
+									<p class="text-gray-600 mt-2">Thank you for your patience.</p>
+									<div class="flex items-center mt-2 gap-4">
+										<div class="flex-1 bg-black/5 h-[5px] rounded-full gap-3">
+										<div class="rounded-full shadow-[0_2px_15px_0_rgba(29,156,254,0.6)] bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] h-full w-1/2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<span class="text-xs text-gray-950 text-nowrap">1/2 Days</span>
+									</div>';
+					if($signature_logo['logo_change_process'] != 2){
+						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
+					}
+					$GLOBALS['signature_process'] .= '</div>
+								<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+									<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+									<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+								</div>
+							</div></div></div>';
+				}
+				if($GLOBALS['plan_type'] == 'FREE'){
+					$GLOBALS['signature_process'] ='<div class="col-span-12">
+						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
+						<div class="sin_dashboard_box sin_process flex flex-col gap-3 sm:flex-row sm:items-center">
+								<div class="flex-1">
+									<p class="text-xl text-gray-950">'.$GLOBALS['USERNAME'].'!</p>
+									<p class="text-gray-600 mt-2">Your Free Trial period will end in '.$GLOBALS['freeperiod_dayleft'].' day!</p>
+								</div>
+								<div>
+									<div class="w-[150px] p-2 h-[56px] rounded-xl relative border border-gray-400 flex items-center justify-center">
+										<img class="max-w-full max-h-full" src="'.$GLOBALS['UPLOAD_LINK'].'/signature/'.$signature_logo['user_id'].'/'.$signature_logo['logo'].'" alt="">
+										<div class="animation_img absolute w-full h-full top-0 left-0"><lottie-player autoplay loop mode="normal" src="'.$GLOBALS['ROOT_LINK'].'/images/line-animation.json"></lottie-player></div>
+									</div>
+									<a href="javascript:void(0);" data-bs-toggle="modal" data-kt-modal-toggle="#upgradeFromFreeTrialPopup" class="kt-btn kt-btn-primary mt-2">Animate Now</a>
+								</div>
+						</div></div></div>';
+				}
+				
+				
 
 				// if($GLOBALS['current_department_id']){
 				// 	$signature_logo_department = $GLOBALS['DB']->row("SELECT * FROM `signature_logo` WHERE user_id = ? AND department_id = ?",array($GLOBALS['USERID'],$GLOBALS['current_department_id']));
@@ -1065,7 +1100,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 					$isGSuiteConnected =false;
 				}
 				if($sRow['signature_master'] == 1){
-				$GLOBALS['master_signature'] = '<div class="inline-block mx-auto masterSignature relative">
+				$GLOBALS['master_signature'] = '<div class="inline-block mx-auto masterSignature relative mt-6">
 				 		 <div class="size-11 rounded-full p-[2px] bg-gradient absolute top-0 -translate-y-1/2 -translate-x-1/2 left-1/2 z-[1]">
 							<div class="size-full rounded-full bg-white flex items-center justify-center">
 								<img src="'.$GLOBALS['IMAGE_LINK'].'/images/crown.svg" alt="">
@@ -1095,26 +1130,32 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								<div class="flex flex-col gap-3 items-center justify-center h-full">
 									<div class="flex gap-2">';
 										if($GLOBALS['current_department_id'] != '0'){
-										$GLOBALS['master_signature'] .= '<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-toggle="tooltip" data-placement="top" title="Edit">
-											<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'">
+											<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 										</a>';
 										}else{
-										$GLOBALS['master_signature'] .= '<a  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'" data-toggle="tooltip" data-placement="top" title="Edit">
-											<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'">
+											<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 										</a>';
 										}
 
-										$GLOBALS['master_signature'] .= '<a href="javascript:void(0);"  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="duplicate" data-toggle="tooltip" data-placement="top" title="Duplicate">
+										$GLOBALS['master_signature'] .= '<a data-kt-tooltip="true" data-kt-tooltip-placement="top" href="javascript:void(0);" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="duplicate">
 											<i class="hgi hgi-stroke hgi-copy-02"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Duplicate</span>
 										</a>
-										<a href="javascript:void(0);"  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="remove-master" data-toggle="tooltip" data-placement="top" title="Remove Master">
+										<a href="javascript:void(0);" data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" data-id="'.$signature_id.'" data-action="remove-master" title="Remove Master">
 											<i class="hgi hgi-stroke hgi-user"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Remove Master</span>
 										</a>
-										<a  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-toggle="tooltip" data-placement="top" title="Share">
+										<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal" title="Share">
 											<i class="hgi hgi-stroke hgi-sent"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 										</a>
-										<a  class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline delete ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="delete" data-toggle="tooltip" data-placement="top" title="Delete">
+										<a data-kt-tooltip="true" data-kt-tooltip-placement="top" class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline delete ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="delete" title="Delete">
 											<i class="hgi hgi-stroke hgi-delete-02"></i>
+											<span data-kt-tooltip-content="true" class="kt-tooltip">Delete</span>
 										</a>
 									</div>';
 
@@ -1134,7 +1175,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 						</div>	
 					</div>
 					
-					<div class="flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
+					<div class="shadow-[0_0_6px_2px_rgba(0,0,0,0.1)] flex justify-center border border-gray-200 p-3 rounded-lg bg-white"><div class="max-h-[190px] overflow-hidden imgFix pointer-events-none">'.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'</div></div>
 					<div class="sigshadow_box"></div>
 				</div>';
 
@@ -1163,7 +1204,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 					$signature_type = "installed";
 				}
 					$GLOBALS['signature_list'] .= '<div class="search-container all '.$signature_type.'">
-						<div class="kt-card kt-card-accent h-full relative sin_dashboard_box">
+						<div class="kt-card kt-card-accent h-full relative sin_dashboard_box overflow-hidden">
 							<div class="kt-card-header">
 								<div class="top_left_side_list">
 									<div class="flex items-center gap-1 text-lg">
@@ -1220,26 +1261,32 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 													<div class="flex flex-col gap-3 items-center justify-center h-full">
 														<div class="flex gap-2">';
 															if($GLOBALS['current_department_id'] != '0'){
-																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-toggle="tooltip" data-placement="top" title="Edit">
+																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Edit">
 																<i class="hgi hgi-stroke hgi-edit-02"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 																</a>';
 															}else{
-																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'" data-toggle="tooltip" data-placement="top" title="Edit">
+																$GLOBALS['signature_list'] .= '<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="'.$editsignature_link.'" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Edit">
 																<i class="hgi hgi-stroke hgi-edit-02"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 																</a>';
 															}
-															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="remove-master" data-toggle="tooltip" data-placement="top" title="Remove Master">
+															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="remove-master" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Remove Master">
 															<i class="hgi hgi-stroke hgi-user-remove-01"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Remove Master</span>
 															</a>';
 
-															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="duplicate" data-toggle="tooltip" data-placement="top" title="Duplicate">
+															$GLOBALS['signature_list'] .= '<a href="javascript:void(0);" class="ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="duplicate" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Duplicate">
 															<i class="hgi hgi-stroke hgi-copy-02"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Duplicate</span>
 															</a>
-															<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-toggle="tooltip" data-placement="top" title="Share">
+															<a class="kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
 															<i class="hgi hgi-stroke hgi-sent"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 															</a>
-															<a href="javascript:void(0);" class="delete ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="delete" data-toggle="tooltip" data-placement="top" title="Delete">
+															<a href="javascript:void(0);" class="delete ajaxaction kt-btn kt-btn-primary kt-btn-outline kt-btn-icon" data-id="'.$signature_id.'" data-action="delete" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Delete">
 															<i class="hgi hgi-stroke hgi-delete-02"></i>
+															<span data-kt-tooltip-content="true" class="kt-tooltip">Delete</span>
 															</a>
 														</div>
 														<div class="text-center">';
@@ -1279,22 +1326,27 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 													<i class="fal fa-times-circle cursor-pointer absolute top-2 right-2" data-kt-collapse="#myDIV'.$signature_id.'"></i>
 													<div class="flex flex-col gap-3 items-center justify-center h-full">
 														<div class="flex gap-2">
-															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-toggle="tooltip" data-placement="top" title="Edit">
-																<i class="hgi hgi-stroke hgi-pencil-edit-01"></i>
+															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="'.$editsignature_link.'?department_id='.$GLOBALS['current_department_id'].'" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Edit">
+																<i class="hgi hgi-stroke hgi-pencil-edit-02"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Edit</span>
 															</a>
-															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="duplicate" data-toggle="tooltip" data-placement="top" title="Duplicate">
+															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="duplicate" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Duplicate">
 																<i class="hgi hgi-stroke hgi-copy-02"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Duplicate</span>
 															</a>
 															<span style="display:'.$master_linkstyle.'">
-																<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="master" data-toggle="tooltip" data-placement="top" title="Master">
+																<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="master" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Master">
 																	<i class="hgi hgi-stroke hgi-user"></i>
+																	<span data-kt-tooltip-content="true" class="kt-tooltip">Master</span>
 																</a>
 															</span>
-															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-bs-toggle="modal" data-bs-target="#shareModal" data-toggle="tooltip" data-placement="top" title="Share">
+															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" href="javascript:void(0);" id="Share-signature" data-url="'.$sharesignature_link.'" data-id="'.$signature_id.'" data-email="'.$GLOBALS['sigshare_email1'].'" data-kt-modal-toggle="#shareModal" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Share">
 																<i class="hgi hgi-stroke hgi-sent"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Share</span>
 															</a>
-															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline delete ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="delete" data-toggle="tooltip" data-placement="top" title="Delete">
+															<a class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline delete ajaxaction" href="javascript:void(0);" data-id="'.$signature_id.'" data-action="delete" data-kt-tooltip="true" data-kt-tooltip-placement="top" title="Delete">
 																<i class="hgi hgi-stroke hgi-delete-02"></i>
+																<span data-kt-tooltip-content="true" class="kt-tooltip">Delete</span>
 															</a>
 														</div>
 														<div class="text-center">
@@ -1311,7 +1363,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								$GLOBALS['signature_list'] .= '</div>
 							</div>
 							<div class="kt-card-content">
-								<div class="max-h-[190px] overflow-hidden">'
+								<div class="max-h-[190px] overflow-hidden imgFix pointer-events-none">'
 									.$GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']).'
 									<div class="sigshadow_box"></div>
 								</div>
@@ -1323,14 +1375,14 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 				$GLOBALS['signature_count']++;
 		}
 		if($GLOBALS['plan_signaturelimit'] == 1){
-			$GLOBALS['signature_create_upgrade'] ='<div class="border-2 border-dashed border-gray-300 p-5 rounded-lg flex items-center justify-center">
+			$GLOBALS['signature_create_upgrade'] = '<div class="border-2 border-dashed border-gray-300 p-5 rounded-lg flex items-center justify-center">
 						<a class="kt-btn kt-btn-primary" href="'.$GLOBALS['linkModuleNewsignature'].'">
 						<i class="hgi hgi-stroke hgi-plus-sign-circle"></i>Create New Signature
 						</a>
                     </div>';
 		}else{
-			$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
-  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+			$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
 							<p>Upgrade to create more signatures</p>
@@ -1338,23 +1390,33 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								<i class="hgi hgi-stroke hgi-circle-arrow-up-02"></i> Upgrade
 							</a>
                         </div>';
+			$signatureSubscription = $GLOBALS['DB']->row("SELECT subscription_id FROM `registerusers_subscription` WHERE user_id = ? ",array($GLOBALS['USERID']));
+			if($signatureSubscription){
+				if($signatureSubscription['subscription_id'] == ""){
+					$GLOBALS['signature_create_upgrade'] = '<div class="p-4 flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl">
+  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+								<i class="hgi hgi-stroke hgi-add-01"></i>
+							</button>
+							<p>Upgrade to create more signatures</p>
+							<button class="kt-btn kt-btn-primary mt-5" data-kt-modal-toggle="#upgrade-plan-popup">Upgrade</button>
+                        </div>';
+				}
+			}
 		}
 
 
 		if($GLOBALS['current_department_id']){
 			
             if($GLOBALS['plan_signaturelimit'] == 1){
-				$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border border-dashed border-gray-300 rounded-2xl">
-  							<a href="'.$GLOBALS['newsignatureenterprise'].'?department_id='.$GLOBALS['current_department_id'].'">
-							<span>
-								<img src="%%DEFINE_IMAGE_LINK%%/images/new-adddepartment-icon.svg" alt="">
-							</span>
-							Create New Signature
+				$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border-2 border-dashed border-gray-300 rounded-2xl py-5">
+  							<a class="kt-btn kt-btn-primary" href="'.$GLOBALS['newsignatureenterprise'].'?department_id='.$GLOBALS['current_department_id'].'">
+								<i class="hgi hgi-stroke hgi-add-01"></i>
+								Create New Signature
 							</a>
                     </div>';
 			}else{
-				$GLOBALS['signature_create_upgrade'] ='<div class="flex flex-col gap-4 items-center justify-center border border-dashed border-primary rounded-2xl bg-primary/5">
-	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
+				$GLOBALS['signature_create_upgrade'] ='<div class="p-4 flex flex-col gap-4 items-center justify-center border border-dashed border-primary rounded-2xl bg-primary/5">
+	  							<button class="kt-btn kt-btn-icon kt-btn-primary kt-btn-outline" id="createSignatureButton" onclick=redirectUrlWithAjax("'.$GLOBALS['linkModuleNewsignature'].'")>
 									<i class="hgi hgi-stroke hgi-add-01"></i>
 								</button>
 								<p>Upgrade to create more signatures</p>
@@ -1369,9 +1431,8 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 		}
 
 		if($GLOBALS['master_signature'] == ''){
-			$GLOBALS['master_signature'] = '<div class="create_new_signature_bg">
-							<img src="%%DEFINE_IMAGE_LINK%%/images/plus-master-icon.svg" alt=""><br />
-  							<span>Please Select the Master<br /> Signature</span>
+			$GLOBALS['master_signature'] = '<div class="text-center h-full font-semibold text-gray-400 flex items-center justify-center w-full">
+  							Please Select the Master<br /> Signature
                         </div>';
 		}
 		return $GLOBALS['CLA_HTML']->addContent($sRow['layout_desc']); // for use signature
@@ -1743,6 +1804,61 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 		}
 	}
 	// code for setting signature profile size if NULL or NAN END
+
+	public function getPlanDetail($plan_id='',$unit='',$getunit =1){
+		$planRows = $GLOBALS['DB']->query("SELECT * FROM `plan`  WHERE `plan_status` =1");
+		foreach($planRows as $planRow){
+			$plan_id = $planRow['plan_id'];
+			$planname = strtolower($planRow['plan_name']);
+			$plantype = strtolower($planRow['plan_type']);
+			if($getunit == 1){
+				$unitRows = $GLOBALS['DB']->query("SELECT * FROM plan_unit WHERE plan_id = ? ORDER BY plan_unit ASC",array($plan_id));
+				foreach($unitRows as $unit){
+					if($planname == 'basic' && $plantype == 'quarter'){
+						$basic_quarter_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$basic_quarter_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro' && $plantype == 'quarter'){
+						$pro_quarter_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_quarter_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'basic' && $plantype == 'year'){
+						$basic_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$basic_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro' && $plantype == 'year'){
+						$pro_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+				}
+			}
+		}
+		//$GLOBALS['basic_month_unit'] =  json_encode(array(1=>10,5=>15,10=>25,15=>35,20=>45,25=>50,30=>55,35=>60,40=>65,45=>70,50=>75)); 
+		//$GLOBALS['pro_month_unit'] =  json_encode(array(1=>15,5=>20,10=>30,15=>40,20=>50,25=>55,30=>60,35=>65,40=>70,45=>75,50=>80)); 
+		
+		// $GLOBALS['basic_quarter_unit'] = json_encode($basic_quarter_arr);
+		// $GLOBALS['basic_quarter_unitspl'] = json_encode($basic_quarter_arrspl);
+		// $GLOBALS['pro_quarter_unit'] = json_encode($pro_quarter_arr);
+		// $GLOBALS['pro_quarter_unitspl'] = json_encode($pro_quarter_arrspl);
+		// $GLOBALS['basic_year_unit'] = json_encode($basic_year_arr);
+		// $GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
+		// $GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
+		// $GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+
+		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
+		$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
+		return false;
+	}
 
 }
 

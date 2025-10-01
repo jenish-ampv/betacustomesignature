@@ -1,22 +1,7 @@
 module.exports = {
 	output: 'dist/assets',
 	entry: {
-		keenicons: [
-			{
-				src: ['src/vendors/keenicons/**/style.css'],
-				dist: '/vendors/keenicons/styles.bundle.css',
-				bundle: true,
-			},
-			{
-				src: [
-					'src/vendors/keenicons/duotone/fonts',
-					'src/vendors/keenicons/filled/fonts',
-					'src/vendors/keenicons/outline/fonts',
-					'src/vendors/keenicons/solid/fonts',
-				],
-				dist: '/vendors/keenicons/fonts',
-			},
-		],
+		
 		switzer: [
 			{
 				src: ['src/vendors/switzer/fonts.css'],
@@ -76,62 +61,14 @@ module.exports = {
 				bundle: true,
 			},
 		],
-		leaflet: [
-			{
-				src: ['node_modules/leaflet/dist/leaflet.css'],
-				dist: '/vendors/leaflet/leaflet.bundle.css',
-				bundle: true,
-			},
-			{
-				src: [
-					'node_modules/leaflet/dist/leaflet.js',
-					'node_modules/esri-leaflet/dist/esri-leaflet.js',
-					'node_modules/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.js',
-				],
-				dist: '/vendors/leaflet/leaflet.bundle.js',
-				bundle: true,
-			},
-			{
-				src: ['node_modules/leaflet/dist/images'],
-				dist: '/vendors/leaflet/images',
-			},
-		],
-		apexcharts: [
-			{
-				src: ['node_modules/apexcharts/dist/apexcharts.css'],
-				dist: '/vendors/apexcharts/apexcharts.css',
-			},
-			{
-				src: ['node_modules/apexcharts/dist/apexcharts.min.js'],
-				dist: '/vendors/apexcharts/apexcharts.min.js',
-			},
-		],
-		prismjs: [
-			{
-				src: [
-					'node_modules/prismjs/prism.js',
-					'node_modules/prismjs/components/prism-markup.js',
-					'node_modules/prismjs/components/prism-markup-templating.js',
-					'node_modules/prismjs/components/prism-bash.js',
-					'node_modules/prismjs/components/prism-javascript.js',
-					'node_modules/prismjs/components/prism-css.js',
-					'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js',
-					'src/vendors/prismjs/prismjs.init.js',
-				],
-				dist: '/vendors/prismjs/prismjs.min.js',
-				bundle: true,
-			},
-		],
-		clipboard: [
-			{
-				src: ['node_modules/clipboard/dist/clipboard.min.js'],
-				dist: '/vendors/clipboard/clipboard.min.js',
-			},
-		],
 		ktui: [
 			{
 				src: ['node_modules/@keenthemes/ktui/dist/ktui.min.js'],
 				dist: '/vendors/ktui/ktui.min.js',
+			},
+			{
+				src: ['node_modules/@keenthemes/ktui/dist/styles.css'],
+				dist: '/vendors/ktui/ktui.css',
 			},
 		],
 		swiper: [
@@ -150,7 +87,7 @@ module.exports = {
 			  bundle: true,
 			}
 		  ],
-		  sweetalert: [
+		sweetalert: [
 			{
 				src: [
 				'node_modules/sweetalert2/dist/sweetalert2.min.css'
@@ -164,6 +101,38 @@ module.exports = {
 				],
 				dist: '/vendors/sweetalert2/sweetalert2.bundle.js',
 				bundle: true,
+			}
+		],
+		intlTelInput: [
+			{
+				src: [
+				'node_modules/intl-tel-input/build/css/intlTelInput.css'
+				],
+				dist: '/vendors/intl-tel-input/css/intlTelInput.css',
+				bundle: true,
+			},
+			{
+				src: [
+				'node_modules/intl-tel-input/build/js/intlTelInput.min.js'
+				],
+				dist: '/vendors/intl-tel-input/js/intlTelInput.js',
+				bundle: true,
+			},
+			{
+				src: [
+				'node_modules/intl-tel-input/build/js/utils.js'
+				],
+				dist: '/vendors/intl-tel-input/js/utils.js',
+				bundle: false,
+			},
+			{
+				src: [
+				'node_modules/intl-tel-input/build/img/flags.png',
+				'node_modules/intl-tel-input/build/img/flags.webp',
+				'node_modules/intl-tel-input/build/img/flags@2x.png',
+				'node_modules/intl-tel-input/build/img/flags@2x.webp',
+				],
+				dist: '/vendors/intl-tel-input/img',
 			}
 		],
 	},

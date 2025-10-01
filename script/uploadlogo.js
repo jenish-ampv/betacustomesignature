@@ -54,7 +54,7 @@ ui(function() {
 
       fd.append('signature_logo',files);
 
-      ui("#img_preview_logo").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+      ui("#img_preview_logo").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
       setTimeout(function(){ ui("#img_preview_logo").html(""); }, 3000);
 
       uploadDatalogo(fd);
@@ -101,7 +101,7 @@ ui(function() {
 
       fd.append('signature_department_logo',files);
 
-			ui("#img_preview_logo").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
+			ui("#img_preview_logo").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
       setTimeout(function(){ ui("#img_preview_logo").html(""); }, 3000);
       uploadDatalogo(fd);
     });
@@ -131,7 +131,6 @@ ui(function() {
 
 // Sending AJAX request and upload file
 function uploadDatalogo(formdata){
-  console.log('fdggfg');
 
     ui.ajax({
         url: upload_signature_logourl,
@@ -167,7 +166,12 @@ function addThumbnaillogo(data){
 		var number = Math.random() * 100;
 		// Creating an thumbnail
     ui("#uploadfilelogo").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-		ui("#uploadfilelogo").append('<div class="drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%"><h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG, JPG, JPEG</p></div>');
+		ui("#uploadfilelogo").append(`
+      <div class="drag_your_image border border-dashed border-gray-400 flex items-center justify-center flex-col p-10 rounded-xl">
+      <img src="${src+'?rand='+number}" class="max-w-36 max-h-36 object-cover">
+      <p class="text-[#063E76] font-semibold mt-2">Drag your image here, or <a href="#">browse</a></p>
+      <p class="text-xs text-gray-400">Supports: PNG, SVG, JPG, JPEG</p>
+      </div>`);
     // if(ui("#logo_change_done").length == 0){
     //   ui('.change-logo-reason').after('<div id="logo_change_done" style="text-align: center;margin-top: 20px;"><button type="button" class="btn btn-primary" id="logo_change_done_btn" onclick="logoChanged();">Done</button>');
     //   ui("#logo_change_done").parent(".modal-footer").css('display','grid')
@@ -179,7 +183,7 @@ function addThumbnaillogo(data){
     ui('.signature_department_logo').attr("data-logo-name",name);
 		ui("#img_errormsg_logo").html('');
 	}else{
-		ui("#img_errormsg_logo").html('<div class="alert alert-danger" role="alert">'+data.msg+'</div>');
+		ui("#img_errormsg_logo").html('<div class="text-danger mt-2 text-[12px]" role="alert">'+data.msg+'</div>');
     setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
 	}
 
@@ -188,13 +192,13 @@ function logoChanged(){
   var reason = ui("input[name=change_reason]").val();
   var logo_id = ui("input[name=logo_id]").val();
   if(!reason){
-    ui("#img_errormsg_logo").html('<div class="alert alert-danger" role="alert">Please enter feedback to change logo</div>');
-    setTimeout(function(){ ui("#img_errormsg_logo").html(""); }, 3000);
+    ui("#feedback_errormsg_logo").html('<div class="text-danger text-[12px]" role="alert">Please enter feedback to change logo</div>');
+    setTimeout(function(){ ui("#feedback_errormsg_logo").html(""); }, 3000);
     
     return false;
   }
-  console.log('bdf');
 
+  $("#logo_change_done_btn").addClass('cursor-not-allowed opacity-50 pointer-events-none').text('Processing...');
   ui.ajax({
     type: 'POST',
     url: upload_signature_logourl,
@@ -203,16 +207,24 @@ function logoChanged(){
     success: function(response){
       // window.location.replace(upload_signature_logourl);
       // console.log('success');
-      ui(".btn-close").click();
+      ui(".kt-modal-close").click();
       var response = JSON.parse(response);
       if(response.success){
-        $('#snackbar').html('<div class="alert alert-success"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
-				$('#snackbar').show();
-				setTimeout(function(){ $('#snackbar').hide(); }, 2000);
+        KTToast.show({
+					message: `<b>Success!</b> ${response.msg}`,
+					variant: 'success',
+					icon: '<i class="fas fa-check-circle text-success"></i>',
+				});
+
+        // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
+				// $('#snackbar').show();
+				// setTimeout(function(){ $('#snackbar').hide(); }, 2000);
       }
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50 pointer-events-none').text('Submit');
     },
     failure: function (response) {
       console.log('failed');
+      $("#logo_change_done_btn").removeClass('cursor-not-allowed opacity-50 pointer-events-none').text('Submit');
     }
   });
 };
@@ -233,9 +245,15 @@ function departmentLogoChanged(){
       ui(".btn-close").click();
       var response = JSON.parse(response);
       if(response.success){
-        $('#snackbar').html('<div class="alert alert-success"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
-				$('#snackbar').show();
-				setTimeout(function(){ $('#snackbar').hide(); location.reload();}, 2000);
+        KTToast.show({
+					message: `<b>Success!</b> ${response.msg}`,
+					variant: 'success',
+					icon: '<i class="fas fa-check-circle text-success"></i>',
+				});
+
+        // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="'+image_link+'/images/success-message-icon.svg" alt=""><strong>Success! </strong>'+response.msg+' </div>');
+				// $('#snackbar').show();
+				setTimeout(function(){ location.reload();}, 2000);
       }
     },
     failure: function (response) {

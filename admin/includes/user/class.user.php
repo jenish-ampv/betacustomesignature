@@ -107,7 +107,7 @@ class CIT_USER
 			$addResult = $GLOBALS['DB']->update('admin',array('status' =>$_REQUEST['status']),array('id'=>$_REQUEST['id']));
 
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">Status changed successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">Status changed successfully</div>';
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to change status, please try again.</div>';
 			}
@@ -129,7 +129,7 @@ class CIT_USER
 			$addResult = $GLOBALS['DB']->query("DELETE FROM admin WHERE id = ?", array($id));
 
 			if($addResult){
-				$_SESSION['Success'] = '<div class="alert alert-success" role="alert">User deleted successfully</div>';
+				$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">User deleted successfully</div>';
 				GetAdminRedirectUrl(GetAdminUrl(array('module'=>$_REQUEST['module'])));	
 			} else {
 				$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to delete user, please try again.</div>';
@@ -190,7 +190,7 @@ class CIT_USER
 
 								}
 							} 
-							$_SESSION['Success'] = '<div class="alert alert-success" role="alert">User updated successfully</div>';
+							$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">User updated successfully</div>';
 						} else {
 							
 							$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to update user, please try again.</div>';
@@ -274,7 +274,7 @@ class CIT_USER
 								$addresult = $GLOBALS['DB']->insert("adminuser_permisssion",$data);
 							}
 						}
-						$_SESSION['Success'] = '<div class="alert alert-success" role="alert">User added successfully</div>';
+						$_SESSION['Success'] = '<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" role="alert">User added successfully</div>';
 					} else {
 						
 						$_SESSION['Error'] = '<div class="alert alert-danger" role="alert">An error occurred while you trying to add user, please try again.</div>';

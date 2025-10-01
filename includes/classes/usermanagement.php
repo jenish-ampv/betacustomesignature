@@ -66,13 +66,13 @@ class CIT_USERMANAGEMENT
         $GLOBALS['departmentUserTableBody'] = "";
 		foreach ($manageSubUsers as $row) {
             if($row['is_active'] == 1){
-                $status = "<span class='enabled-btn'>Enabled</span>";
+                $status = "<span class='kt-badge kt-badge-success enabled-btn'>Enabled</span>";
                 $checked = "checked";
             }else if($row['is_active'] == 2){
-                $status = "<span class='pending-btn'>Pending</span>";
+                $status = "<span class='kt-badge kt-badge-warning pending-btn'>Pending</span>";
                 $checked = "checked";
             }else{
-                $status = "<span class='disabled-btn'>Disabled</span>";
+                $status = "<span class='kt-badge kt-badge-secondary disabled-btn'>Disabled</span>";
                 $checked = "";
             }
             if(!$row['permission']){
@@ -82,33 +82,44 @@ class CIT_USERMANAGEMENT
                 $row['department_list'] = " ";
             }
             $GLOBALS['departmentUserTableBody'] .= "<tr>
-                <td>".$row['user_firstname']." ".$row['user_lastname']."</td>
+                <td class='text-nowrap'>".$row['user_firstname']." ".$row['user_lastname']."</td>
                 <td>".$row['email']."</td>
                 <td>".$status."</td>
                 <td>
-                    <div class='departmentUser-action-btn'>";
-                     if($row['is_active'] == 2){
-                        $GLOBALS['departmentUserTableBody'] .= "<a href='javascript:void(0);' onclick='sendInviteMail(\"".$GLOBALS['usermanagement']."/inviteuser?user_id=".$row['id']."\")' class='f-20 feather icon-edit invite_link' title='Send Password Link'></a>";
-                    }
-                    $GLOBALS['departmentUserTableBody'] .= "<a href='#' class='f-20 feather icon-edit edit_user' data-fname='".$row['user_firstname']."' data-lname='".$row['user_lastname']."' data-email='".$row['email']."' data-user_status='".$row['is_active']."' data-permission='".$row['permission']."' data-department_list='".$row['department_list']."' title='View' data-bs-toggle='modal' data-bs-target='#addUserModel'>&nbsp;</a><a href='".$GLOBALS['usermanagement']."/deleteuser?user_id=".$row['id']."' class='f-20 feather icon-trash delete_user' title='Delete'>&nbsp;</a> 
-                        <div class='form-check form-switch departmentUser-change-status'>
-                            <input class='form-check-input' type='checkbox' role='switch' id='departmentUser-action' name='user_status_button' value='1' data-sub_user_id='".$row['id']."' ".$checked.">
+                    <div class='flex items-center justify-end gap-3'>";
+                        if($row['is_active'] == 2){
+                            $GLOBALS['departmentUserTableBody'] .= "
+                            <a href='javascript:void(0);' onclick='sendInviteMail(\"".$GLOBALS['usermanagement']."/inviteuser?user_id=".$row['id']."\")' class='feather icon-edit invite_link' title='Send Password Link'>
+                                <i class='hgi hgi-stroke hgi-mail-01 text-xl'></i>
+                            </a>";
+                        }
+                        $GLOBALS['departmentUserTableBody'] .= "
+                        <a href='javascript:void(0);' class='feather icon-edit edit_user' data-fname='".$row['user_firstname']."' data-lname='".$row['user_lastname']."' data-email='".$row['email']."' data-user_status='".$row['is_active']."' data-permission='".$row['permission']."' data-department_list='".$row['department_list']."' title='View' data-kt-modal-toggle='#addUserModel'>
+                            <i class='hgi hgi-stroke hgi-pencil-edit-02 text-xl'></i>
+                        </a>
+                        <a href='".$GLOBALS['usermanagement']."/deleteuser?user_id=".$row['id']."' class='feather icon-trash delete_user' title='Delete'>
+                            <i class='text-danger hgi hgi-stroke hgi-delete-02 text-xl'></i>
+                        </a> 
+                        <div class='departmentUser-change-status'>
+                            <input class='kt-switch' type='checkbox' role='switch' id='departmentUser-action' name='user_status_button' value='1' data-sub_user_id='".$row['id']."' ".$checked.">
                         </div
                     </div>
                 </td>
                 </tr>";
         }
         if($GLOBALS['departmentUserTableBody'] == ""){
-            $GLOBALS['departmentUserTableBody'] = '<td colspan="4">No user found</td>';
+            $GLOBALS['departmentUserTableBody'] = '<td class="text-center" colspan="4">No user found</td>';
         }
         $departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
         foreach ($departments as $department) {
-            $GLOBALS['department_list'] .= "<div class='form-floating'>
-                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."</span>
+            $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+                       <input type='checkbox' class='kt-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+                       <label class='kt-label' for='department_".$department['department_id']."'>".$department['department_name']."</label>
                     </div>
                 ";
         }
             
+        $this->getPlanDetail();
         $GLOBALS['usermanagement_datatable'] = GetUrl(array('module'=>'usermanagement','category_id' => 'datatableregdata'));
         $GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/usermanagement.html');	
         $GLOBALS['HEADER'] = $GLOBALS['CLA_HTML']->addSub($GLOBALS['WWW_TPL'].'/page.header.html');			
@@ -381,6 +392,61 @@ class CIT_USERMANAGEMENT
         $send_mail = _SendMail($userData['email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 
     }
+
+    public function getPlanDetail($plan_id='',$unit='',$getunit =1){
+		$planRows = $GLOBALS['DB']->query("SELECT * FROM `plan`  WHERE `plan_status` =1");
+		foreach($planRows as $planRow){
+			$plan_id = $planRow['plan_id'];
+			$planname = strtolower($planRow['plan_name']);
+			$plantype = strtolower($planRow['plan_type']);
+			if($getunit == 1){
+				$unitRows = $GLOBALS['DB']->query("SELECT * FROM plan_unit WHERE plan_id = ? ORDER BY plan_unit ASC",array($plan_id));
+				foreach($unitRows as $unit){
+					if($planname == 'basic' && $plantype == 'quarter'){
+						$basic_quarter_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$basic_quarter_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro' && $plantype == 'quarter'){
+						$pro_quarter_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_quarter_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'basic' && $plantype == 'year'){
+						$basic_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$basic_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro' && $plantype == 'year'){
+						$pro_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+				}
+			}
+		}
+		//$GLOBALS['basic_month_unit'] =  json_encode(array(1=>10,5=>15,10=>25,15=>35,20=>45,25=>50,30=>55,35=>60,40=>65,45=>70,50=>75)); 
+		//$GLOBALS['pro_month_unit'] =  json_encode(array(1=>15,5=>20,10=>30,15=>40,20=>50,25=>55,30=>60,35=>65,40=>70,45=>75,50=>80)); 
+		
+		// $GLOBALS['basic_quarter_unit'] = json_encode($basic_quarter_arr);
+		// $GLOBALS['basic_quarter_unitspl'] = json_encode($basic_quarter_arrspl);
+		// $GLOBALS['pro_quarter_unit'] = json_encode($pro_quarter_arr);
+		// $GLOBALS['pro_quarter_unitspl'] = json_encode($pro_quarter_arrspl);
+		// $GLOBALS['basic_year_unit'] = json_encode($basic_year_arr);
+		// $GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
+		// $GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
+		// $GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+
+		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
+		$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
+		return false;
+	}
 
 }
 

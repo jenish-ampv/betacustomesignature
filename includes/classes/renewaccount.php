@@ -97,7 +97,7 @@ class CIT_RENEWACCOUNT
 						if($insert_id){
 							
 						    unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-							$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+							$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 							$message= _getEmailTemplate('welcome');
 							$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 							//$this->AddgohiLevelContact();
@@ -229,8 +229,8 @@ class CIT_RENEWACCOUNT
 					$GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					$GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					$GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					$GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					$GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					$GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					$GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					$offper = $plantype == 'year' ? 20 : 15;
 
 					if($selplan_id %2 == 0){ // pro plan
@@ -241,7 +241,7 @@ class CIT_RENEWACCOUNT
 					$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
 					$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 					 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly) <b>$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b><span class="offper">'. $offper.'% OFF</span></h6>  
-					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 					 <ul>'.$plan_text.'</ul>
 					</div>';
 				}else{
@@ -304,8 +304,8 @@ class CIT_RENEWACCOUNT
 					$GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					$GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					$GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					$GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					$GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					$GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					$GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					$offper = $plantype == 'year' ? 20 : 15;
 
 					if($selplan_id %2 == 0){ // pro plan
@@ -316,7 +316,7 @@ class CIT_RENEWACCOUNT
 					$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
 					$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 					 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly) <b>$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b><span class="offper">'. $offper.'% OFF</span></h6>  
-					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+					 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 					 <ul>'.$plan_text.'</ul>
 					</div>';
 				}else{

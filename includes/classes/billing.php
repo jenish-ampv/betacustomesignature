@@ -129,7 +129,7 @@ class CIT_BILLING
 				$cardData = $customerCard->jsonSerialize();
 				$updatecard = $this->saveUserCard($cardData);
 				if($updatecard){
-					$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>card detail updated!</div>';
+					$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>card detail updated!</div>';
 				}else{
 					$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Fail! </strong>somthing wrong please contact administrator. if your payment detail not updated.</div>';
 				}
@@ -173,11 +173,25 @@ class CIT_BILLING
 		$GLOBALS['plan_autorenew'] = $planRow['auto_renew'] == 0 ? 'ON' : 'OFF';
 		$GLOBALS['plan_autorenewbtn'] = $planRow['auto_renew'] == 0 ? 'off' : 'on';
 		$GLOBALS['plan_autorenewvalue'] = $planRow['auto_renew'];
-		$GLOBALS['plan_interval'] = $planRow['plan_interval'] == 'month' ? 'Quarterly' : 'Yearly';
+		if(('month' && $planRow['plan_id'] < 5)){
+			$GLOBALS['plan_interval'] = $planRow['plan_interval'] == 'year' ? 'Yearly' : 'Quarterly';
+		}else{
+			$GLOBALS['plan_interval'] = $planRow['plan_interval'] == 'year' ? 'Yearly' : 'Monthly';
+		}
 		$GLOBALS['plan_enddate'] = $planRow['period_end'] != '' ? date('M d, Y', $planRow['period_end']) : '';
 		$GLOBALS['plan_signature'] = $planRow['nosignature'];
 		$GLOBALS['plan_upgradebtnd'] = $planRow['free_trial'] == 0 ? 'disabled="disabled"' : '';
 		$GLOBALS['plan_popuptitle'] = $planRow['free_trial'] == 0 ? 'Upgrade Plan' : 'Confirm Your Plan';
+
+		if(!$GLOBALS['subscription_id']){
+			$GLOBALS['plan_name'] = "Free Plan";
+			$GLOBALS['total_sigcreated'] = "1";
+			$GLOBALS['plan_signature'] = "1";
+			$GLOBALS['plan_interval'] = "Lifetime";
+			$GLOBALS['plan_enddate'] = "Never";
+			$GLOBALS['plan_invoiceamount'] = "0";
+		}
+
 		if($planRow['invoice_amount']){
 			$invoice_amount = ($planRow['invoice_amount'] / 100);
 			$GLOBALS['plan_invoiceamount'] =  GetPriceFormat($invoice_amount);
@@ -193,7 +207,7 @@ class CIT_BILLING
 		 $GLOBALS['Sigsel'.$planRow['nosignature']] ='selected';
 		 $GLOBALS['free_trial'] = $planRow['free_trial'];
 		 if($planRow['subscription_id'] == '_free' || $planRow['subscription_id'] == '_admin'){
-			 	 $GLOBALS['display_cardupdate'] = 'd-none';
+			 	 $GLOBALS['display_cardupdate'] = 'hidden';
 		 }else{
 			 $GLOBALS['display_cardupdate'] = '';
 		 }
@@ -263,7 +277,15 @@ class CIT_BILLING
 						if(is_null($GLOBALS['plan_name'])){
 							$GLOBALS['plan_name'] = $planname;
 						}
-					}				
+					}	
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}			
 				}
 			}
 			if($planRow['plan_id'] == $selplan_id){
@@ -290,7 +312,7 @@ class CIT_BILLING
 					}
 					$GLOBALS['plan_detail_formail'] = $planRow['plan_name'].' '.$selunit.' Signature'.' '.ucfirst($plantype).'ly plan' ; 
 					$GLOBALS['selected_plan'] = '<div class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10 p-5 rounded-lg relative">
-						<div class="flex justify-between mt-5">
+						<div class="flex justify-between mt-5 flex-col sm:flex-row">
 							<h5 class="text-gray-950 font-semibold">'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)</h5>
 							<h5 class="text-gray-950 font-semibold">$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h5>
 						</div>
@@ -298,7 +320,7 @@ class CIT_BILLING
 							<div class="text_price"><span>'.$selunit.'</span> Signature</div>
 							<span class="kt-badge bg-gradient text-white rounded-full absolute left-2 top-2">'. $offper.'</span>';
 					if($plantype == 'year'){
-						$GLOBALS['selected_plan'] .= '<div class="monthprice">$<span>'.$plan_selpricespl.'</span></div>';
+						$GLOBALS['selected_plan'] .= '<div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div>';
 					}
 					$GLOBALS['selected_plan'] .= '</div></div>';
 				}else{
@@ -316,6 +338,11 @@ class CIT_BILLING
 		$GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
 		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
 		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+
+		$GLOBALS['pro_month_unit_new'] = json_encode($pro_month_arr_new);
+		$GLOBALS['pro_month_unitspl_new'] = json_encode($pro_month_arrspl_new);
+		$GLOBALS['pro_year_unit_new'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl_new'] = json_encode($pro_year_arrspl_new);
 		return false;
 	}
 
@@ -367,6 +394,7 @@ class CIT_BILLING
 		   $subscription_id = $userRow['subscription_id'];
 		   $plan_id = $_POST['plan_id'];
 		   $plan_unit = $_POST['plan_unit'];
+		   $multiplyprice = $_POST['multiplyprice'];
 		   $priceRow = $GLOBALS['DB']->row("SELECT plan_priceid FROM plan WHERE plan_id =?",array($plan_id));
 		   $stripe_price = $priceRow['plan_priceid'];
 
@@ -397,11 +425,18 @@ class CIT_BILLING
 				//print_r($invoiceData); 
 				//$amount_due = ($invoiceData['amount_due'] / 100);
 				//$amount_due = ($invoiceData['amount_paid'] / 100);
-				
-				
-				 $starting_balanced  = $invoiceData['starting_balance'];
-			     $amount_due = ($invoiceData['lines']['data'][1]['amount'] - abs($invoiceData['lines']['data'][0]['amount'] +$starting_balanced));
-				 $amount_due = ($amount_due / 100);
+				$starting_balanced  = $invoiceData['starting_balance'];
+				$amount_due = ($invoiceData['lines']['data'][1]['amount'] - abs($invoiceData['lines']['data'][0]['amount'] +$starting_balanced));
+				$amount_due = ($amount_due / 100);
+
+				if(is_null($invoiceData['lines']['data'][1]['amount']) || is_null($invoiceData['lines']['data'][0]['amount'])){
+					$priceRow = $GLOBALS['DB']->row("SELECT * FROM plan_unit WHERE plan_id =? AND plan_unit =?",array($plan_id,$plan_unit));
+					if($priceRow){
+						$amount_due = $priceRow['plan_unitprice'] * $multiplyprice;
+					}else{
+						return array('error'=>1,'message'=>"Something went wrong try again later.");
+					}
+				}
 				return array('error'=>0,'amount_due'=>$amount_due,'proration_date'=>$proration_date,'free_trial'=>$userRow['free_trial']);
 			}catch(Exception $e) {  
 				$api_error = $e->getMessage();
@@ -521,7 +556,7 @@ class CIT_BILLING
 								 }
 								
 								if($add == 1){
-									 return array('error'=>0,'message'=>'<div class="alert alert-success">You Plan has been updated.</div>');
+									 return array('error'=>0,'message'=>'<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">You Plan has been updated.</div>');
 								}else{
 									return array('error'=>1,'message'=>'<div class="alert alert-danger">somthing wrong if your payment is debit from your account please contact support team.</div>');
 								}
@@ -568,7 +603,7 @@ class CIT_BILLING
 								$message= _getEmailTemplate('animation_process'); 	// send mail
 								$send_mail = _SendMail($GLOBALS['USEREMAIL'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 							}
-							 return array('error'=>0,'message'=>'<div class="alert alert-success">You Plan has been updated.</div>');
+							 return array('error'=>0,'message'=>'<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">You Plan has been updated.</div>');
 						 }catch(Exception $e) { 
 							 return array('error'=>1,'message'=>'<div class="alert alert-danger">'.$e->getMessage().'.</div>'); 
 						} 
@@ -613,8 +648,8 @@ class CIT_BILLING
 					$message= _getEmailTemplate('cancel_subscription');
 					$send_mail = _SendMail($user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 
-					$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong>Plan cancelled.</div>';
-					GetFrontRedirectUrl(GetUrl(array('module'=>'renewaccount')));
+					$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong>Plan cancelled.</div>';
+					GetFrontRedirectUrl(GetUrl(array('module'=>'purchase','category_id'=>'renewaccount')));
 				}else{
 					$_SESSION[GetSession('Error')] = '<div class="alert alert-info"><strong>Failed!</strong> '.$api_error.'</div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>'billing')));
@@ -692,7 +727,7 @@ class CIT_BILLING
 					 $trdata =array('trn_userid'=>$userId,'trn_planid'=>$planId,'trn_invoiceno'=>$invoice_no,'trn_invoicefile'=>$invoice_link,'trn_total'=>$amount_paid);
 					$insert_tr =  $GLOBALS['DB']->insert("registerusers_transaction",$trdata);
 				}
-				 return array('error'=>0,'message'=>'<div class="alert alert-success">You Plan has been updated.</div>');
+				 return array('error'=>0,'message'=>'<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">You Plan has been updated.</div>');
 				
 			}
 		}else{

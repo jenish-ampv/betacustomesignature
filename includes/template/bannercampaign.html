@@ -1,70 +1,72 @@
 %%DEFINE_HEADER%%
-<section>
 <script src="https://js.stripe.com/v3/"></script>
-<div class="container">
-    <div class="new_dashboard_bg">
-        <div class="new_dashboard_left">
-            %%DEFINE_SIDEBAR%%
-        </div>
-        <div class="new_dashboard_right">
-            <div id="snackbar"></div>
-            <div id="snackbar-error"></div>
-            <div id="snackbar-info"></div>
-            %%DEFINE_Message%%
-            <div class="dashboard_set_up_bg bannercampaign-page">
-                <div class="bannercampaign-heading">
-                    <h1>Campaigns list</h1>
-                    <div class="campoin-status-row">
-                        <div class="status-selector">
-                            <div class="select">
+<div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
+    %%DEFINE_SIDEBAR%%
+    <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
+    <div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
+    <div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
+    %%DEFINE_Message%%
+    <main class="grow" id="content" role="content">
+        <div class="kt-container-fluid pb-4 h-full">
+            <div class="kt-card kt-card-accent w-full mx-auto">
+                <div class="kt-card-header">
+                    <div class="kt-card-heading">
+                        <h2 class="kt-card-title">Campaigns list</h2>
+                    </div>
+                    <div class="kt-card-toolbar">
+                        <div data-kt-dropdown="true" data-kt-dropdown-trigger="click"
+                            data-kt-dropdown-placement="bottom-end" data-kt-toggle-replace='true'>
+                            <button class="kt-btn kt-btn-sm bg-white border border-gray-400 text-gray-600 !rounded-full"
+                                data-kt-dropdown-toggle="true">
                                 <span>Status</span>
+                                <i class="kt-dropdown-open:hidden">
+                                    <i class="fas fa-caret-down"></i>
+                                </i>
+                                <i class="hidden kt-dropdown-open:inline">
+                                    <i class="fas fa-caret-up"></i>
+                                </i>
+                            </button>
+                            <div class="kt-dropdown-menu w-40" data-kt-dropdown-dismiss="true" data-kt-dropdown-menu="true">
+                                <ul class="status-selector-menu">
+                                    <li class="kt-dropdown-menu-link" id="allcampaigns">All Campaign</li>
+                                    <li class="kt-dropdown-menu-link" id="scheduled">Scheduled</li>
+                                    <li class="kt-dropdown-menu-link" id="active">Active</li>
+                                    <li class="kt-dropdown-menu-link" id="completed">Completed</li>
+                                    <li class="kt-dropdown-menu-link" id="canceled">Canceled</li>
+                                    <li class="kt-dropdown-menu-link" id="pause">Pause</li>
+                                    <li class="kt-dropdown-menu-link" id="draft">Draft</li>
+                                </ul>
                             </div>
-                            <ul class="status-selector-menu">
-                                <li id="allcampaigns">All Campaign</li>
-                                <li id="scheduled">Scheduled</li>
-                                <li id="active">Active</li>
-                                <li id="completed">Completed</li>
-                                <li id="canceled">Canceled</li>
-                                <li id="pause">Pause</li>
-                                <li id="draft">Draft</li>
-                            </ul>
                         </div>
-                        <a href="%%DEFINE_ROOT_LINK%%/bannercampaign/addBanner" class="btn" id="add_banner">Create New Campaign</a>
+                        <a href="%%DEFINE_ROOT_LINK%%/bannercampaign/addBanner" class="kt-btn kt-btn-primary kt-btn-sm" id="add_banner">Create New Campaign</a>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col-xl-12 col-md-12">
-                        <div class="bannercampaign-detials-list">
-                            <table class="table table-hover mb-0" id="banner_table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <!-- <th>Clicks</th> -->
-                                        <!-- <th>Views</th> -->
-                                        <!-- <th>CTR</th> -->
-                                        <th>Division Name</th>
-                                        <th>Banner Preview</th>
-                                        <th>Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    %%DEFINE_bannerCampaignTableBody%%
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="kt-card-content overflow-auto">
+                    <table class="kt-table" id="banner_table">
+                        <thead>
+                            <tr class="text-nowrap">
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Division Name</th>
+                                <th>Banner Preview</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            %%DEFINE_bannerCampaignTableBody%%
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </div>
+                
 
 <input type="hidden" id="redirecturl" value="%%DEFINE_bannercampaign%%" />
-
+<script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
 
 <script language="javascript">
     // Ensure the function is in the global scope
@@ -84,13 +86,13 @@
             success: function(response) {
                 var json = JSON.parse(response);
                 if(json.error != 1){
-                    $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + '</div>');
+                    $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>' + json.msg + '</div>');
                     $('#snackbar').show();
                     $('html, body').animate({
                       scrollTop: $('#snackbar').offset().top
                     }, 500);
                 }else{
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
+                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
                     $('#snackbar-error').show();
                     $('html, body').animate({
                       scrollTop: $('#snackbar-error').offset().top
@@ -100,7 +102,7 @@
             },
             error: function(xhr, status, error) {
                 // On error, populate the error snackbar with a message
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
+                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + '</div>');
                 $('#snackbar-error').show();
                 $('html, body').animate({
                   scrollTop: $('#snackbar-error').offset().top

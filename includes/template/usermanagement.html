@@ -1,35 +1,31 @@
 %%DEFINE_HEADER%%
 
     <script src="https://js.stripe.com/v3/"></script>
-    <div class="loader-image" style="display: none;">
-        <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
-    </div>
-
     <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
         %%DEFINE_SIDEBAR%%
+        %%DEFINE_Message%%
         <main class="grow" id="content" role="content">
 		    <div class="kt-container-fluid pb-4">
-                <div id="snackbar"></div>
-                <div id="snackbar-error"></div>
-                <div id="snackbar-info"></div>
-                %%DEFINE_Message%%
+                <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
+                <div id="snackbar-error" class="w-full mb-4"></div>
+                <div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
                 <div class="kt-card kt-card-accent">
                     <div class="kt-card-header mb-1">
                         <div class="kt-card-heading">
                             <h2 class="kt-card-title">User Management</h2>
                         </div>
                         <div class="kt-card-toolbar">
-                            <button class="kt-btn kt-btn-primary" data-kt-modal-toggle="#addUserModel">Add User</button>
+                            <button class="kt-btn kt-btn-primary" id="addUserButton" data-kt-modal-toggle="#addUserModel">Add User</button>
                         </div>
                     </div>
-                    <div class="kt-card-content p-1">
+                    <div class="kt-card-content p-1 overflow-auto">
                         <table class="kt-table" id="user_table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th class="w-0 text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,52 +42,52 @@
     <div class="kt-modal kt-modal-center" data-kt-modal="true" id="addUserModel">
         <div class="kt-modal-content max-w-[400px]">
             <div class="kt-modal-header">
-                <p class="kt-modal-title">Invite Admin</p>
+                <p class="kt-modal-title">Invite User</p>
                 <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#addUserModel">
-                    <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+                    <i class="hgi hgi-stroke hgi-cancel-circle text-3xl"></i>
                 </button>
             </div>
             <div class="kt-modal-body">
                 <form action="" method="post" id="addUserForm" class="flex flex-col gap-3">
                     <div>
-                        <label for="" class="kt-label">First Name</label>
+                        <label for="" class="kt-form-label">First Name</label>
                         <input type="text" class="kt-input" name="user_firstname" id="user_firstname"
                             placeholder="First Name" data-class="user_firstname">
                     </div>
                     <div>
-                        <label for="" class="kt-label">Last Name</label>
+                        <label for="" class="kt-form-label">Last Name</label>
                         <input type="text" class="kt-input" name="user_lastname" id="user_lastname"
                             placeholder="Last Name" data-class="user_lastname">
                     </div>
                     <div>
-                        <label for="" class="kt-label">Email</label>
+                        <label for="" class="kt-form-label">Email</label>
                         <input type="text" class="kt-input" name="email" id="email" placeholder="Email"
                             data-class="email">
                     </div>
                     <div id="permission">
-                        <p class="kt-label mb-3">Permissions</p>
+                        <p class="kt-form-label">Permissions</p>
                         <div class="space-y-2">
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="manage_signatures" id="manage_signatures">
-                                <span class="kt-label">Manage signatures</span>
+                                <label for="manage_signatures" class="kt-label">Manage signatures</label>
                             </div>
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="billing_settings" id="billing_settings">
-                                <span class="kt-label">Billing</span>
+                                <label for="billing_settings" class="kt-label">Billing</label>
                             </div>
                             <div class="flex items-center gap-2.5">
                                 <input type="checkbox" class="kt-checkbox permission-checkbox" name="permission" value="integration_settings" id="integration_settings">
-                                <span class="kt-label">Integrations</span>
+                                <label for="integration_settings" class="kt-label">Integrations</label>
                             </div>
                         </div>
                     </div>
 
                     IF("%%DEFINE_USERTYPE%%" == "enterprise"){
                     <div class="form-check-list" id="department">
-                        <div class="form-check-list-lable">
-                            <span class="lable">Divisions</span>
+                        <label class="kt-label mb-3">Divisions</label>
+                        <div class="space-y-2">
+                            %%DEFINE_department_list%%
                         </div>
-                        %%DEFINE_department_list%%
                     </div>
                     {:IF}
 
@@ -108,6 +104,8 @@
     </div>
 
 
+    <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
+    
     <script language="javascript">
         function sendInviteMail(url) {
             $(".loader-image").show();
@@ -116,268 +114,312 @@
                 url: url,
                 contentType: 'application/json'
             }).done(function (data) {
-                $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong>Invite mail send successfully.</div>');
-
+                $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong>Invite mail send successfully.</div>');
+                console.log('he;;p')
                 $('#snackbar').show();
                 $(".loader-image").hide();
                 setTimeout(function () { $('#snackbar').hide(); }, 2000);
 
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Something went wrong! Please try again.</strong> Please try again later.</div>');
-                $('#snackbar-error').show();
+                KTToast.show({
+                    message: `<strong>Something went wrong! Please try again.</strong> Please try again later.`,
+                    variant: 'destructive',
+                });
+
+                // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                // $('#snackbar-error').show();
+                // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
                 $(".loader-image").hide();
-                setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
             });
         };
-        $(document).ready(function () {
-            $('#addUserForm').on('submit', function (e) {
-                $('#user_firstname').css('border-color', '');
-                $('#user_lastname').css('border-color', '');
-                $('#email').css('border-color', '');
-                $('.first-name-text').remove();
-                $('.last-name-text').remove();
-                $('.email-text').remove();
-                $('#permission').css('border', '');
-                $('#permission').css('padding', '');
-                $('#permission').css('border-color', '');
-                $('.permission-text').remove();
-                $('#department').css('border', '');
-                $('#department').css('padding', '');
-                $('#department').css('border-color', '');
-                $('.department-text').remove();
-                var redirecturlUM = $('#redirecturlUM').val();
-                var validate = 1;
+        jQuery.noConflict();
+        (function ($) {
+            $(document).ready(function () {
+                $('#addUserForm').on('submit', function (e) {
+                    $('#user_firstname').css('border-color', '');
+                    $('#user_lastname').css('border-color', '');
+                    $('#email').css('border-color', '');
+                    $('.first-name-text').remove();
+                    $('.last-name-text').remove();
+                    $('.email-text').remove();
+                    $('#permission').css('border', '');
+                    $('#permission').css('padding', '');
+                    $('#permission').css('border-color', '');
+                    $('.permission-text').remove();
+                    $('#department').css('border', '');
+                    $('#department').css('padding', '');
+                    $('#department').css('border-color', '');
+                    $('.department-text').remove();
+                    var redirecturlUM = $('#redirecturlUM').val();
+                    var validate = 1;
 
-                if ($('#user_firstname').val().trim() === "") {
-                    $('#user_firstname').css('border-color', '#842029'); validate = 0;
-                    $('#user_firstname').after("<span class='first-name-text' style='color: #842029'>Please add a valid first name.</span>");
-                }
-                if ($('#user_lastname').val().trim() === "") {
-                    $('#user_lastname').css('border-color', '#842029'); validate = 0;
-                    $('#user_lastname').after("<span class='last-name-text' style='color: #842029'>Please add a valid last name.</span>");
-                }
-                // if($('#email').val() === ""){
-                //     $('#email').css('border-color','#842029'); validate =0;
-                //     $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
-                // }
-                var email = $("#email").val().trim();
-                var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!regex.test(email)) {
-                    $('#email').css('border-color', '#842029'); validate = 0;
-                    $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
-                }
+                    if ($('#user_firstname').val().trim() === "") {
+                        $('#user_firstname').css('border-color', '#842029'); validate = 0;
+                        $('#user_firstname').after("<span class='first-name-text' style='color: #842029'>Please add a valid first name.</span>");
+                    }
+                    if ($('#user_lastname').val().trim() === "") {
+                        $('#user_lastname').css('border-color', '#842029'); validate = 0;
+                        $('#user_lastname').after("<span class='last-name-text' style='color: #842029'>Please add a valid last name.</span>");
+                    }
+                    // if($('#email').val() === ""){
+                    //     $('#email').css('border-color','#842029'); validate =0;
+                    //     $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
+                    // }
+                    var email = $("#email").val().trim();
+                    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!regex.test(email)) {
+                        $('#email').css('border-color', '#842029'); validate = 0;
+                        $('#email').after("<span class='email-text' style='color: #842029'>Please enter a valid email address.</span>");
+                    }
 
-                if ($('.permission-checkbox:checked').length == 0) {
-                    $('#permission').css('border', '1px solid');
-                    $('#permission').css('padding', '20px');
-                    $('#permission').css('border-color', '#842029'); validate = 0;
-                    $('#permission').after("<span class='permission-text' style='color: #842029'>Please select atlease one permission.</span>");
-                }
-                if ($('.department-checkbox').length > 0 && $('.department-checkbox:checked').length == 0) {
-                    $('#department').css('border', '1px solid');
-                    $('#department').css('padding', '20px');
-                    $('#department').css('border-color', '#842029'); validate = 0;
-                    $('#department').after("<span class='department-text' style='color: #842029'>Please select atlease one division.</span>");
-                }
-
-
-                if (validate != 1) {
-                    setTimeout(function () {
-                        $('#user_firstname').css('border-color', '');
-                        $('#user_lastname').css('border-color', '');
-                        $('#email').css('border-color', '');
-                        $('.first-name-text').remove();
-                        $('.last-name-text').remove();
-                        $('.email-text').remove();
-                        $('#permission').css('border', '');
-                        $('#permission').css('padding', '');
-                        $('#permission').css('border-color', '');
-                        $('.permission-text').remove();
-                        $('#department').css('border', '');
-                        $('#department').css('padding', '');
-                        $('#department').css('border-color', '');
-                        $('.department-text').remove();
-                    }, 2000);
-                    event.stopPropagation(); return false;
-                }
-                $('#user_firstname').removeAttr('disabled');
-                $('#user_lastname').removeAttr('disabled');
-                $('#email').removeAttr('disabled');
-
-                $(".userSubmit").prop('disabled', true);
-                $(".userSubmit").text('Processing...');
-                $(".userSubmit").addClass('spinner');
+                    if ($('.permission-checkbox:checked').length == 0) {
+                        $('#permission').css('border', '1px solid');
+                        $('#permission').css('padding', '20px');
+                        $('#permission').css('border-color', '#842029'); validate = 0;
+                        $('#permission').after("<span class='permission-text' style='color: #842029'>Please select atlease one permission.</span>");
+                    }
+                    if ($('.department-checkbox').length > 0 && $('.department-checkbox:checked').length == 0) {
+                        $('#department').css('border', '1px solid');
+                        $('#department').css('padding', '20px');
+                        $('#department').css('border-color', '#842029'); validate = 0;
+                        $('#department').after("<span class='department-text' style='color: #842029'>Please select atlease one division.</span>");
+                    }
 
 
-                var form = $('#addUserForm');
-                data = form.serialize();
-                formUrl = $('#form_url_usermanagement_saveuser').val();
-                const formData = {};
-                $(this).serializeArray().forEach(function (item) {
-                    // If the field already exists (like checkboxes), turn it into an array
-                    if (formData[item.name]) {
-                        if (Array.isArray(formData[item.name])) {
-                            formData[item.name].push(item.value);
+                    if (validate != 1) {
+                        // setTimeout(function () {
+                        //     $('#user_firstname').css('border-color', '');
+                        //     $('#user_lastname').css('border-color', '');
+                        //     $('#email').css('border-color', '');
+                        //     $('.first-name-text').remove();
+                        //     $('.last-name-text').remove();
+                        //     $('.email-text').remove();
+                        //     $('#permission').css('border', '');
+                        //     $('#permission').css('padding', '');
+                        //     $('#permission').css('border-color', '');
+                        //     $('.permission-text').remove();
+                        //     $('#department').css('border', '');
+                        //     $('#department').css('padding', '');
+                        //     $('#department').css('border-color', '');
+                        //     $('.department-text').remove();
+                        // }, 2000);
+                        event.stopPropagation(); return false;
+                    }
+                    $('#user_firstname').removeAttr('disabled');
+                    $('#user_lastname').removeAttr('disabled');
+                    $('#email').removeAttr('disabled');
+
+                    $(".userSubmit").prop('disabled', true);
+                    $(".userSubmit").text('Processing...');
+
+
+                    var form = $('#addUserForm');
+                    data = form.serialize();
+                    formUrl = $('#form_url_usermanagement_saveuser').val();
+                    const formData = {};
+                    $(this).serializeArray().forEach(function (item) {
+                        // If the field already exists (like checkboxes), turn it into an array
+                        if (formData[item.name]) {
+                            if (Array.isArray(formData[item.name])) {
+                                formData[item.name].push(item.value);
+                            } else {
+                                formData[item.name] = [formData[item.name], item.value];
+                            }
                         } else {
-                            formData[item.name] = [formData[item.name], item.value];
+                            formData[item.name] = item.value;
                         }
-                    } else {
-                        formData[item.name] = item.value;
-                    }
-                });
+                    });
 
-                $.ajax({
-                    type: 'POST',
-                    url: formUrl,
-                    contentType: 'application/json',
-                    data: JSON.stringify(formData)
-                }).done(function (data) {
-                    var json = JSON.parse(data);
-                    if (json.error != 1) {
-                        $('#snackbar').html('<div class="alert alert-success"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
-                        $('.btn-close').click();
-                        $('#snackbar').show();
-                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 2000);
-                    } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
-                        $('#snackbar-error').show();
-                        setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                        $('.btn-close').click();
-                        $(".userSubmit").prop('disabled', false);
-                        $(".userSubmit").text('Invite');
-                        $(".userSubmit").removeClass('spinner');
+                    $.ajax({
+                        type: 'POST',
+                        url: formUrl,
+                        contentType: 'application/json',
+                        data: JSON.stringify(formData)
+                    }).done(function (data) {
+                        var json = JSON.parse(data);
+                        if (json.error != 1) {
+                            
+
+                            // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>User saved! </div>');
+                            // $('#snackbar').show();
+                            $('.kt-modal-close').click();
+                            KTToast.show({
+                                message: '<b>Success!</b> User saved!',
+                                variant: 'success',
+                                icon: '<i class="fas fa-check-circle text-success"></i>',
+                            });
+                            setTimeout(function () { window.location = redirecturlUM; }, 2000);
+                        } else {
+                            KTToast.show({
+                                message: `<strong>Failure! </strong>${json.msg}`,
+                                variant: 'destructive',
+                            });
+                            // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""> </div>');
+                            // $('#snackbar-error').show();
+                            setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                            $('.kt-modal-close').click();
+                            $(".userSubmit").prop('disabled', false);
+                            $(".userSubmit").text('Invite');
+                            return false;
+                        }
+                        // Optionally alert the user of success here...
+                    }).fail(function (data) {
                         return false;
-                    }
-                    // Optionally alert the user of success here...
-                }).fail(function (data) {
+                        // Optionally alert the user of an error here...
+                    });
                     return false;
-                    // Optionally alert the user of an error here...
                 });
-                return false;
-            });
 
-            $(".edit_user").click(function (e) {
-                e.stopPropagation();
-                $("#edit_user").val(1);
-                $('#user_firstname').val($(this).data('fname'));
-                // $('#user_firstname').attr('disabled',true);
-                $('#user_lastname').val($(this).data('lname'));
-                // $('#user_lastname').attr('disabled',true);
-                $('#email').val($(this).data('email'));
-                $('#email').attr('disabled', true);
-                $('#email').addClass('disabled-input');
-                if ($(this).data('user_status')) {
+                function simulateUserInput(selector, value) {
+                    const input = $(selector)[0];
+                    input.value = value;
+
+                    // Trigger input event (works with React or vanilla JS listeners)
+                    const event = new Event('input', { bubbles: true });
+                    input.dispatchEvent(event);
+                }
+
+                $(".edit_user").click(function (e) {
+                    element = $(this);
+                    setTimeout(function () { $('#snackbar-error').hide(); 
+                        // e.stopPropagation();
+                        $("#edit_user").val(1);
+                        simulateUserInput('#user_firstname', $(element).data('fname'));
+                        simulateUserInput('#user_lastname', $(element).data('lname'));
+                        simulateUserInput('#email', $(element).data('email'));
+                        $('#email').attr('disabled', true);
+                        $('#email').addClass('disabled-input');
+                        if ($(element).data('user_status')) {
+                            $("#status-action").prop('checked', true);
+                        } else {
+                            $("#status-action").prop('checked', false);
+                        }
+
+                        $('.permission-checkbox').prop('checked', false);
+                        var permission = $(element).data('permission').toString();
+                        if ($.trim(permission) !== '') {
+                            if (permission.indexOf(",") !== -1) {
+                                permission = $(element).data('permission').split(",");
+                                $.each(permission, function (index, value) {
+                                    $("#" + value).prop('checked', true);
+                                });
+                            } else {
+                                $("#" + permission).prop('checked', true);
+                            }
+                        }
+
+
+                        $('.department-checkbox').prop('checked', false);
+                        var department = $(element).data('department_list').toString();
+                        if ($.trim(department) !== '') {
+                            if (department.indexOf(",") !== -1) {
+                                department = $(element).data('department_list').split(",");
+                                $.each(department, function (index, value) {
+                                    $("#department_" + value).prop('checked', true);
+                                });
+                            } else {
+                                $("#department_" + department).prop('checked', true);
+                            }
+                        }
+                        $(".userSubmit").html('Save');
+                    }, 10);
+                });
+                $('[data-kt-modal-toggle="#addUserModel"]').click(function (e) {
+                    // e.stopPropagation();
+                    $("#edit_user").val(0);
+                    $('#user_firstname').val('');
+                    $('#user_firstname').removeAttr('disabled');
+                    $('#user_lastname').val('');
+                    $('#user_lastname').removeAttr('disabled');
+                    $('#email').val('');
+                    $('#email').removeAttr('disabled');
+                    $('#email').removeClass('disabled-input');
+                    $(".userSubmit").html('Invite');
                     $("#status-action").prop('checked', true);
-                } else {
-                    $("#status-action").prop('checked', false);
-                }
+                    $('.permission-checkbox').prop('checked', false);
+                    $('.department-checkbox').prop('checked', false);
+                });
 
-                $('.permission-checkbox').prop('checked', false);
-                var permission = $(this).data('permission').toString();
-                if ($.trim(permission) !== '') {
-                    if (permission.indexOf(",") !== -1) {
-                        permission = $(this).data('permission').split(",");
-                        $.each(permission, function (index, value) {
-                            $("#" + value).prop('checked', true);
-                        });
-                    } else {
-                        $("#" + permission).prop('checked', true);
-                    }
-                }
-
-
-                $('.department-checkbox').prop('checked', false);
-                var department = $(this).data('department_list').toString();
-                if ($.trim(department) !== '') {
-                    if (department.indexOf(",") !== -1) {
-                        department = $(this).data('department_list').split(",");
-                        $.each(department, function (index, value) {
-                            $("#department_" + value).prop('checked', true);
-                        });
-                    } else {
-                        $("#department_" + department).prop('checked', true);
-                    }
-                }
-                $(".userSubmit").html('Save');
-            });
-            $('[data-kt-modal-toggle="#addUserModel"]').click(function (e) {
-                // e.stopPropagation();
-                $("#edit_user").val(0);
-                $('#user_firstname').val('');
-                $('#user_firstname').removeAttr('disabled');
-                $('#user_lastname').val('');
-                $('#user_lastname').removeAttr('disabled');
-                $('#email').val('');
-                $('#email').removeAttr('disabled');
-                $('#email').removeClass('disabled-input');
-                $(".userSubmit").html('Invite');
-                $("#status-action").prop('checked', true);
-                $('.permission-checkbox').prop('checked', false);
-                $('.department-checkbox').prop('checked', false);
-            });
-
-            $('.delete_user').on( "click", function() {
-            if(!$(this).hasClass('clickedFromDeleteConfirmationPopup')){
-                openDeleteModal($(this));
-                    return false;
-                }
-                // var text = "Do you really want to delete user.";
-                // if (confirm(text) == true) {
-                //     text = "You pressed OK!";
-                // } else {
-                //     text = "You canceled!";
-                //     return false;
-                // }
-
-            });
-            $('.departmentUser-change-status').on("click", function () {
-                var redirecturlUM = $('#redirecturlUM').val();
-                formUrl = $('#form_url_saveuser_status').val();
-                sub_user_id = $(this).find("#departmentUser-action").data('sub_user_id');
-                var valueStatus = $(this).find("#departmentUser-action").is(':checked') ? 1 : 0;
-                const formData = {
-                    'sub_user_id': sub_user_id,
-                    'user_status': valueStatus
-                };
-
-                $.ajax({
-                    type: 'POST',
-                    url: formUrl,
-                    contentType: 'application/json',
-                    data: JSON.stringify(formData)
-                }).done(function (data) {
-                    var json = JSON.parse(data);
-                    if (json.error != 1) {
-                        setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 500);
-                    } else {
-                        $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>' + json.msg + ' </div>');
-                        $('#snackbar-error').show();
-                        setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
-                        $('.btn-close').click();
+                $('.delete_user').on( "click", function() {
+                    if(!$(this).hasClass('clickedFromDeleteConfirmationPopup')){
+                        openDeleteModal($(this));
                         return false;
                     }
-                    // Optionally alert the user of success here...
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error("AJAX error:", textStatus, errorThrown);
-                    $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Request Failed!</strong> Please try again later.</div>');
-                    $('#snackbar-error').show();
-                    setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                    // var text = "Do you really want to delete user.";
+                    // if (confirm(text) == true) {
+                    //     text = "You pressed OK!";
+                    // } else {
+                    //     text = "You canceled!";
+                    //     return false;
+                    // }
+
                 });
+                $('.departmentUser-change-status').on("click", function () {
+                    var redirecturlUM = $('#redirecturlUM').val();
+                    formUrl = $('#form_url_saveuser_status').val();
+                    sub_user_id = $(this).find("#departmentUser-action").data('sub_user_id');
+                    var valueStatus = $(this).find("#departmentUser-action").is(':checked') ? 1 : 0;
+                    const formData = {
+                        'sub_user_id': sub_user_id,
+                        'user_status': valueStatus
+                    };
+                    $('.loader-image').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: formUrl,
+                        contentType: 'application/json',
+                        data: JSON.stringify(formData)
+                    }).done(function (data) {
+                        $('.loader-image').hide();
+
+                        var json = JSON.parse(data);
+                        if (json.error != 1) {
+                            KTToast.show({
+                                message: '<b>Success!</b> User status changed successfully.',
+                                variant: 'success',
+                                icon: '<i class="fas fa-check-circle text-success"></i>',
+                            });
+                            // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""> User status changed successfully.</div>');
+                            // $('#snackbar').show();
+                            setTimeout(function () { $('#snackbar').hide(); window.location = redirecturlUM; }, 3000);
+                        } else {
+                            KTToast.show({
+                                message: `<strong>Failure! </strong>${json.msg}`,
+                                variant: 'destructive',
+                            });
+                            // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                            // $('#snackbar-error').show();
+                            // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                            $('.kt-modal-close').click();
+                            return false;
+                        }
+                        // Optionally alert the user of success here...
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX error:", textStatus, errorThrown);
+                        KTToast.show({
+                            message: `<strong>Request Failed!</strong> Please try again later.`,
+                            variant: 'destructive',
+                        });
+                        // $('#snackbar-error').html('<div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""></div>');
+                        // $('#snackbar-error').show();
+                        // setTimeout(function () { $('#snackbar-error').hide(); }, 2000);
+                    });
+                });
+
+
+
+                // $('#select_all').on('click', function() {
+                //     $('.department-checkbox').prop('checked', this.checked);
+                // });
+                // $('.department-checkbox').click(function() {
+                //     if ($('.department-checkbox:checked').length === $('.department-checkbox').length) {
+                //         $('#select_all').prop('checked', true);
+                //     } else {
+                //         $('#select_all').prop('checked', false);
+                //     }
+                // });
             });
-
-
-
-            // $('#select_all').on('click', function() {
-            //     $('.department-checkbox').prop('checked', this.checked);
-            // });
-            // $('.department-checkbox').click(function() {
-            //     if ($('.department-checkbox:checked').length === $('.department-checkbox').length) {
-            //         $('#select_all').prop('checked', true);
-            //     } else {
-            //         $('#select_all').prop('checked', false);
-            //     }
-            // });
-        });
+        })(jQuery);
     </script>
 
     <script>
@@ -386,7 +428,7 @@
             // To active/inactive in leftbar
             $('.new_dashboard_left a').removeClass('active');
             $(document).on("contextmenu", function (e) {
-                $('.btn-close').click();
+                $('.kt-modal-close').click();
             });
         })(jQuery);
     </script>

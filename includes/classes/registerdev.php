@@ -49,7 +49,7 @@ class CIT_REGISTERDEV
 					$message= _getEmailTemplate('forget_password');
 					$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					if($send_mail){
-						$_SESSION[GetSession('Error')] ='<div class="alert alert-success"><strong> Success! </strong>password reset link sent to your register email address!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong> Success! </strong>password reset link sent to your register email address!</div>';
 					}else{
 						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>please enter email address associate with your account!</div>';
 					}
@@ -102,7 +102,7 @@ class CIT_REGISTERDEV
 									}
 								}
 							    unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-								$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+								$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 								$message= _getEmailTemplate('welcome');
 								$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
 								$this->AddgohiLevelContact();
@@ -189,7 +189,7 @@ class CIT_REGISTERDEV
 	// 		}else{
 	// 			$selected ='';
 	// 		}
-	// 		$GLOBALS['plan_list'] .='<div class="signature_layot"><input type="radio" name="plan_id" id="plan_id'.$plan_row['plan_id'].'" class="d-none imgbgchk" value="'.$plan_row['plan_id'].'" '.$selected.' required="required"><label for="plan_id'.$plan_row['plan_id'].'" class="changeprice" data-price="'.$plan_price.'"><div class="order_details_box border-price"> <div class="text"><h6>'.$plan_row['plan_name'].' ('.$plan_row['plan_type'].')</h6></div> <div class="text"><h6>'.$plan_price.' USD<br><span>'.$plan_price.' USD</span></h6> </div></div> <div class="tick_container"><div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div></div></label></div>';
+	// 		$GLOBALS['plan_list'] .='<div class="signature_layot"><input type="radio" name="plan_id" id="plan_id'.$plan_row['plan_id'].'" class="hidden imgbgchk" value="'.$plan_row['plan_id'].'" '.$selected.' required="required"><label for="plan_id'.$plan_row['plan_id'].'" class="changeprice" data-price="'.$plan_price.'"><div class="order_details_box border-price"> <div class="text"><h6>'.$plan_row['plan_name'].' ('.$plan_row['plan_type'].')</h6></div> <div class="text"><h6>'.$plan_price.' USD<br><span>'.$plan_price.' USD</span></h6> </div></div> <div class="tick_container"><div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div></div></label></div>';
 	// 	}
 	// }
 
@@ -243,8 +243,8 @@ class CIT_REGISTERDEV
 					 $GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					  $GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					 $GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					 $offper = $plantype == 'year' ? 50 : 15;
 					 
 					 if($selplan_id %2 == 0){ // pro plan
@@ -254,7 +254,7 @@ class CIT_REGISTERDEV
 					 }
 					 $GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 						 <h6>'.$planRow['plan_name'].' ('.$plantype.'ly) <b><span class="offper">'. $offper.'% OFF</span>$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h6>  
-						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 						 <ul>'.$plan_text.'</ul>
 					  </div>';
 				}else{

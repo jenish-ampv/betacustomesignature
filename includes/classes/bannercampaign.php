@@ -72,11 +72,10 @@ class CIT_BANNERCAMPAIGN
 						'StorageClass' => 'REDUCED_REDUNDANCY',
 						'ACL'   => 'public-read'
 					));
-					if(is_array(getimagesize($location))){
+					// if(is_array(getimagesize($location))){
 						$src = $GLOBALS['UPLOAD_LINK'].'/bannercampaign/'.$filename;
-
 						$data =array('user_image'=>$filename); $where =array('user_id'=>$GLOBALS['USERID']);
-					}
+					// }
 					$return_arr = array("name" => $filename,"displayname" => $displayname, "size" => $filesize, "src"=> $src, "error"=>0);
 				}
 			}else{
@@ -92,9 +91,9 @@ class CIT_BANNERCAMPAIGN
 			if(isset($row['campaign_status'])){
 				$fieldtype = $row['campaign_status'];
 				if($fieldtype != 'canceled'){
-					if($row['start_date'] > date('Y-m-d H:i:s')){
+					if($row['start_date'] > date('Y-m-d')){
 						$fieldtype = 'scheduled';
-					}else if(date('Y-m-d H:i:s') > $row['end_date']){
+					}else if(date('Y-m-d') > $row['end_date']){
 						$fieldtype = 'completed';
 					}
 					else if($row['is_paused'] == 'true'){
@@ -108,25 +107,25 @@ class CIT_BANNERCAMPAIGN
 
 				switch($fieldtype){
 					case 'scheduled':
-					 	$campaign_status = "<span class='enabled-btn scheduled-orange'>Scheduled</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-warning'>Scheduled</span>";
 					 	break;
 					case 'active':
-					 	$campaign_status = "<span class='enabled-btn active-green'>Active</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-success'>Active</span>";
 					 	break;
 					case 'completed':
-					 	$campaign_status = "<span class='enabled-btn completed-darkblue'>Completed</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-info'>Completed</span>";
 					 	break;
 					case 'canceled':
-					 	$campaign_status = "<span class='enabled-btn canceled-red'>Canceled</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-destructive'>Canceled</span>";
 					 	break;
 					case 'pause':
-					 	$campaign_status = "<span class='enabled-btn pause-blue'>Pause</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-primary'>Pause</span>";
 					 	break;
 				 	case 'draft':
-					 	$campaign_status = "<span class='enabled-btn draft-gray'>draft</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-secondary'>Draft</span>";
 					 	break;
 					default:
-					 	$campaign_status = "<span class='enabled-btn'>".$row['campaign_status']."</span>";
+					 	$campaign_status = "<span class='kt-badge kt-badge-mono'>".$row['campaign_status']."</span>";
 					 	break;
 				}
 			}
@@ -148,39 +147,39 @@ class CIT_BANNERCAMPAIGN
                 <td>".$department_name."</td>
                 <td>
 					<span class='campain-table-img'>
-                    	<img style='width:150px;height:50px;' src='".$GLOBALS['UPLOAD_LINK']."/bannercampaign/".$row['banner_name']."'/>
+                    	<img class='max-w-[150px] max-h-[150px] object-cover' src='".$GLOBALS['UPLOAD_LINK']."/bannercampaign/".$row['banner_name']."'/>
 					</span>
                 </td>
                 <td>
                 	<div class='signature_manager_top'>
-                		<div class='campaign_option_btns'>
-							<a class='dropdown-item' data-action='Duplicate' data-toggle='tooltip' data-placement='top' title='Duplicate' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."' > <img src='".$GLOBALS['IMAGE_LINK']."/images/duplicate-icon.svg'/> Duplicate</a>";
+                		<div class='campaign_option_btns flex gap-1 items-center'>
+							<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Duplicate' data-kt-tooltip='true' data-kt-tooltip-placement='top' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-copy-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Duplicate</span></a>";
 							if($fieldtype == 'pause'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='dropdown-item' data-action='Resume' data-toggle='tooltip' data-placement='top' title='Resume' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'> <img src='".$GLOBALS['IMAGE_LINK']."/images/resume.svg'/> Resume</a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Resume' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/resumeBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-sharp hgi-play'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Resume</span></a>";
 							}
 							else if($fieldtype == 'active'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='dropdown-item' data-action='Pause' data-toggle='tooltip' data-placement='top' title='Pause' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'> <img src='".$GLOBALS['IMAGE_LINK']."/images/pause.svg'/> Pause</a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Pause' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/pauseBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-pause'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Pause</span></a>";
 							}
 							if($fieldtype == 'scheduled' || $fieldtype == 'draft'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='dropdown-item' data-action='Edit' data-toggle='tooltip' data-placement='top' title='Edit' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."/edit'> <img src='".$GLOBALS['IMAGE_LINK']."/images/edit-signature-icon.svg'/> Edit</a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Edit' data-kt-tooltip='true' data-kt-tooltip-placement='top' href='".$GLOBALS['bannercampaign']."/addBanner/".$row['banner_id']."/edit'><i class='hgi hgi-stroke hgi-pencil-edit-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Edit</span></a>";
 							}
 							if($fieldtype == 'draft'){
-								$GLOBALS['bannerCampaignTableBody'] .= "<a class='dropdown-item' data-action='start' data-toggle='tooltip' data-placement='top' title='Start Campaign' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/startBanner/".$row['banner_id']."'> <img src='".$GLOBALS['IMAGE_LINK']."/images/start.svg'/> Start</a>";
+								$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='start' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/startBanner/".$row['banner_id']."'><i class='hgi hgi-stroke hgi-start-up-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Start Campaign</span></a>";
 							}
-							
-							$GLOBALS['bannerCampaignTableBody'] .= "<a class='dropdown-item' data-action='Cancel' data-toggle='tooltip' data-placement='top' title='Cancel' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/cancelBanner/".$row['banner_id']."' ".$cancelButtonVisibility."' > <img src='".$GLOBALS['IMAGE_LINK']."/images/cancel.svg'/> Cancel</a>
-							<a href='javascript:void(0);' class='dropdown-item' data-action='Delete' data-toggle='tooltip' data-placement='top' title='Delete' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/deleteBanner/".$row['banner_id']."' > <img src='".$GLOBALS['IMAGE_LINK']."/images/new-delete-signature-icon.svg'/> Delete</a>
+							$GLOBALS['bannerCampaignTableBody'] .= "<a class='kt-btn kt-btn-primary kt-btn-icon' data-action='Cancel' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/cancelBanner/".$row['banner_id']."' ".$cancelButtonVisibility."' ><i class='hgi hgi-stroke hgi-cancel-circle'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Cancel</span></a></a>
+							<a href='javascript:void(0);' class='kt-btn kt-btn-destructive kt-btn-icon' data-action='Delete' data-kt-tooltip='true' data-kt-tooltip-placement='top' onclick='bannerAction(this);' data-url='".$GLOBALS['bannercampaign']."/deleteBanner/".$row['banner_id']."' ><i class='hgi hgi-stroke hgi-delete-02'></i><span data-kt-tooltip-content='true' class='kt-tooltip'>Delete</span></a>
 						</div>
 					</div>
                 </td>
                 </tr>";
                 // <img src='".$GLOBALS['IMAGE_LINK']."/images/dots-menu.svg'/>
         }
-        $GLOBALS['bannerCampaignTableBody'] .= '<tr id="no_banner_row"><td colspan="9" style="text-align: center;">No Campaign Found</td></tr>';
+        $GLOBALS['bannerCampaignTableBody'] .= '<tr id="no_banner_row"><td class="text-center pb-0 pt-5" colspan="9">No Campaign Found</td></tr>';
         $departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
         foreach ($departments as $department) {
-            $GLOBALS['department_list'] .= "<div class='form-floating'>
-                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."</span>
+            $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+					   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."</label>
                     </div>
                 ";
         }
@@ -224,20 +223,23 @@ class CIT_BANNERCAMPAIGN
     		}
     		$departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
 	    	$GLOBALS['department_list'] = "";
-			$GLOBALS['department_list'] .= "<div class='form-floating'>
-				<input type='checkbox' class='form-control-checkbox' id='banner_department_select_all'><span>Select All</span>
+			$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+				<input type='checkbox' class='kt-checkbox kt-checkbox-sm' id='banner_department_select_all'>
+				<label for='banner_department_select_all' class='kt-label'>Select All</label>
 				</div>";
 	        foreach ($departments as $department) {
 	        	$totalRowData = $GLOBALS['DB']->row("SELECT count(`signature_id`) as totalsignature FROM `signature` WHERE `user_id` = ?  AND `department_id` = ?",array($GLOBALS['USERID'],$department['department_id']));
 	        	$totalRow = $totalRowData['totalsignature'];
 	        	if (isset($banner['department_id']) && str_contains($banner['department_id'],$department['department_id'])) {
-	        		$GLOBALS['department_list'] .= "<div class='form-floating'>
-	                       <input type='checkbox' class='form-control-checkbox department-checkbox selected-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."(".$totalRow.")</span>
+	        		$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+	                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox selected-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+						   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."(".$totalRow.")</label>
 	                    </div>
 	                ";
 				} else {
-					$GLOBALS['department_list'] .= "<div class='form-floating'>
-	                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."(".$totalRow.")</span>
+					$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+	                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+						   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."(".$totalRow.")</label>
 	                    </div>
 	                ";
 				}
@@ -265,14 +267,16 @@ class CIT_BANNERCAMPAIGN
     	}else{
     		$departments = $GLOBALS['DB']->query("select * FROM `registerusers_departments` WHERE user_id=? ",array($GLOBALS['USERID']));
 	    	$GLOBALS['department_list'] = "";
-			$GLOBALS['department_list'] .= "<div class='form-floating'>
-				<input type='checkbox' class='form-control-checkbox' id='banner_department_select_all'><span>Select All</span>
+			$GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+				<input type='checkbox' class='kt-checkbox kt-checkbox-sm' id='banner_department_select_all'>
+				<label for='banner_department_select_all' class='kt-label'>Select All</label>
 				</div>";
 	        foreach ($departments as $department) {
 	        	$totalRowData = $GLOBALS['DB']->row("SELECT count(`signature_id`) as totalsignature FROM `signature` WHERE `user_id` = ?  AND `department_id` = ?",array($GLOBALS['USERID'],$department['department_id']));
 	        	$totalRow = $totalRowData['totalsignature'];
-	            $GLOBALS['department_list'] .= "<div class='form-floating'>
-	                       <input type='checkbox' class='form-control-checkbox department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'><span>".$department['department_name']."(".$totalRow.")</span>
+	            $GLOBALS['department_list'] .= "<div class='flex items-center gap-2'>
+	                       <input type='checkbox' class='kt-checkbox kt-checkbox-sm department-checkbox' name='department_list' id='department_".$department['department_id']."' value='".$department['department_id']."'>
+						   <label for='department_".$department['department_id']."' class='kt-label'>".$department['department_name']."(".$totalRow.")</label>
 	                    </div>
 	                ";
 	        }
@@ -374,7 +378,7 @@ class CIT_BANNERCAMPAIGN
 			$departments = explode(',', $departmentstr);
     		$isAnyOtherActivated = false;
 			foreach ($departments as $department) {
-				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ?",array('%' . $department . '%'));
+				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ? AND end_date >= date('Y-m-d')",array('%' . $department . '%'));
 				if($activeBanner){
 	        		$isAnyOtherActivated = true;
 				}
@@ -426,7 +430,7 @@ class CIT_BANNERCAMPAIGN
 			$departments = explode(',', $departmentstr);
     		$isAnyOtherActivated = false;
 			foreach ($departments as $department) {
-				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ?",array('%' . $department . '%'));
+				$activeBanner = $GLOBALS['DB']->row("SELECT * FROM `banner_campaign` WHERE campaign_status='active' AND is_paused='false' AND department_id LIKE ? AND end_date >= date('Y-m-d')",array('%' . $department . '%'));
 				if($activeBanner){
 	        		$isAnyOtherActivated = true;
 				}

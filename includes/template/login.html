@@ -7,16 +7,16 @@
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-<div class="flex w-full">
-  <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10">
-    <div class="flex-1">
+<div class="flex flex-col md:flex-row w-full">
+  <div class="flex gap-10 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10">
+    <div class="flex-1 flex items-center justify-center xl:px-7">
       <div class="max-w-[460px] w-full mx-auto">
         <div class="text-center mb-4"><img class="inline-flex" src="%%DEFINE_IMAGE_LINK%%/images/logoThumb.svg" alt="">
         </div>
-        <h5 class="text-2xl text-center font-normal">Create your Account</h5>
-        <form action="" class="kt-card p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]" method="post"
+        <h5 class="text-2xl text-center font-normal">Sign In to Your Account</h5>
+        <form action="" class="kt-card p-6 sm:p-8 mt-10 [box-shadow:0_4px_24px_rgba(29,74,254,0.3)]" method="post"
           id="loginForm">
-          <div id="login-error">%%DEFINE_Message%%</div>
+          <div id="login-error" class="success-error-message fixed top-0 right-0 p-3">%%DEFINE_Message%%</div>
           <div class="flex flex-col gap-6">
             <div>
               <div>
@@ -26,7 +26,7 @@
                     required="required" value="%%DEFINE_User_Name%%">
                 </div>
               </div>
-              <div class="my-3">
+              <div class="my-4">
                 <label class="kt-form-label">Password</label>
                 <div class="kt-form-control">
                   <input type="password" class="kt-input" name="user_password" id="floatingPassword"
@@ -39,11 +39,11 @@
                     %%DEFINE_RememberMe%%>
                   <label class="kt-label" for="exampleCheck1">Remember Me</label>
                 </div>
-                <div class="text-xs text-primary"><a href="%%DEFINE_forgotpassword%%">Forgot Password?</a></div>
+                <div class="text-sm text-primary"><a href="%%DEFINE_forgotpassword%%">Forgot Password?</a></div>
               </div>
             </div>
 
-            <div>
+            <div style="display: none;">
               <div class="text-center relative">
                 <span class="border-t border-gray-300 absolute w-full top-1/2 left-0"></span>
                 <span class="bg-white px-3 relative z-1 text-gray-500">Or continue with email</span>
@@ -71,8 +71,8 @@
         </form>
       </div>
     </div>
-    <div class="flex text-sm items-center justify-between">
-      <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+    <div class="flex flex-col gap-4 mt-4 text-sm items-center justify-between xl:flex-row">
+      <span class="text-gray-600 text-center">© 2025 Custom Esignature's Inc. All rights reserved.</span>
       <div class="flex text-gray-700 items-center gap-2">
         <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
         <i class="fas fa-circle text-[6px] text-gray-400"></i>
@@ -80,73 +80,62 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+  <div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
     style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/loginbg.jpg);">
     <div class="w-full flex-1 flex flex-col justify-center">
-      <h2 class="text-[40px] px-16 leading-[1.2] mb-4"><span
+      <h3 class=" px-5 xl:px-16  leading-[1.2] mb-4"><span
           class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Exceptional Service</span>
-        That Exceeds Expectations</h2>
+        That Exceeds Expectations</h3>
       <div class="swiper w-full" id="loginSlider">
         <div class="swiper-wrapper">
-          <div class="swiper-slide px-16">
-            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i>I had a fantastic
-              experience
-              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
-              needs and went above and beyond.</p>
-            <div class="flex items-center gap-2 mt-6">
-              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
-              <div>
-                <p class="text-sm">Sage Miller</p>
-                <p class="text-xs text-gray-500">Founder - Awaken</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide px-16">
-            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a fantastic
-              experience
-              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
-              needs and went above and beyond.</p>
-            <div class="flex items-center gap-2 mt-6">
-              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
-              <div>
-                <p class="text-sm">Sage Miller</p>
-                <p class="text-xs text-gray-500">Founder - Awaken</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide px-16">
-            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a fantastic
-              experience
-              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
-              needs and went above and beyond.</p>
-            <div class="flex items-center gap-2 mt-6">
-              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
-              <div>
-                <p class="text-sm">Sage Miller</p>
-                <p class="text-xs text-gray-500">Founder - Awaken</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide px-16">
-            <p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a fantastic
-              experience
-              with this service! The team was super helpful and really focused on my satisfaction. They listened to my
-              needs and went above and beyond.</p>
-            <div class="flex items-center gap-2 mt-6">
-              <img class="rounded-full" src="%%DEFINE_IMAGE_LINK%%/images/user.jpg" alt="">
-              <div>
-                <p class="text-sm">Sage Miller</p>
-                <p class="text-xs text-gray-500">Founder - Awaken</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination mt-8 !static px-16 !text-left"></div>
+					<div class="swiper-slide px-5 xl:px-16">
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I use this as a Chevrolet salesmen, love all the features and such this platform provides, 10/10 quality, 10/10 performance, 10/10 customer service, 10/10 response time, 10/10 overall. I definitely recommend and I will be making one for my sales team.</p>
+						<div class="flex items-center gap-2 mt-6">
+							<img class="rounded-full h-10" src="%%DEFINE_IMAGE_LINK%%/images/Zachary.png" alt="">
+							<div>
+								<p class="text-sm flex items-center gap-1">Zachary <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
+								<!-- <p class="text-xs text-gray-500">Founder - Awaken</p> -->
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide px-5 xl:px-16">
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> I had a
+							The signature works just as its advertised. Really stands out. I also appreciate their responsiveness to little tweaks on the logo that make it look perfect. Definitely recommend.</p>
+						<div class="flex items-center gap-2 mt-6">
+							<img class="rounded-full h-10" src="%%DEFINE_IMAGE_LINK%%/images/Mathis-Kennington.png" alt="">
+							<div>
+								<p class="text-sm flex items-center gap-1">Mathis Kennington <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
+								<!-- <p class="text-xs text-gray-500">Founder - Awaken</p> -->
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide px-5 xl:px-16">
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> Custom Esignature is a game-changer! It’s intuitive, efficient, and is so easy to integrate. Huge time saver and super reliable!</p>
+						<div class="flex items-center gap-2 mt-6">
+							<img class="rounded-full h-10" src="%%DEFINE_IMAGE_LINK%%/images/Ariana-Luterman.png" alt="">
+							<div>
+								<p class="text-sm flex items-center gap-1">Ariana Luterman <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
+								<!-- <p class="text-xs text-gray-500">Founder - Awaken</p> -->
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide px-5 xl:px-16">
+						<p class="text-gray-700 relative pt-4"><i class="hgi hgi-stroke hgi-quote-up !absolute text-gray-900 top-3 -left-5 text-xl"></i> Loving my Esignature! My emails look so much more professional and my response rate is up. So grateful for it and it's affordable/easy to use. Will be getting some for my team as my b business expands!</p>
+						<div class="flex items-center gap-2 mt-6">
+							<img class="rounded-full h-10" src="%%DEFINE_IMAGE_LINK%%/images/Rachel-T..png" alt="">
+							<div>
+								<p class="text-sm flex items-center gap-1">Rachel T. <img class="h-[13px]" src="%%DEFINE_IMAGE_LINK%%/images/new-verify-icon.svg" alt=""></p>
+								<!-- <p class="text-xs text-gray-500">Founder - Awaken</p> -->
+							</div>
+						</div>
+					</div>
+				</div>
+        <div class="swiper-pagination mt-8 !static px-5 xl:px-16 text-center xl:!text-left md:!text-left"></div>
       </div>
     </div>
-    <div class="px-16 mb-12">
+    <div class="px-5 xl:px-16 mb-0 xl:mb-12 md:mb-8 mt-5">
       <p class="text-black text-sm mb-4">Trusted by Industry Leading Companies</p>
-      <div class="flex flex-wrap items-center *:px-4 *:py-3">
+      <div class="flex flex-wrap items-center *:py-3 gap-x-7 sm:gap-x-10">
         <div><img src="%%DEFINE_IMAGE_LINK%%/images/l1.png"></div>
         <div><img src="%%DEFINE_IMAGE_LINK%%/images/l2.png"></div>
         <div><img src="%%DEFINE_IMAGE_LINK%%/images/l3.png"></div>
@@ -164,7 +153,7 @@
 <script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
 
 <script>
-  setTimeout(function () { $('#login-error').html(''); }, 10000); // hide error message after 10 sec
+  setTimeout(function () { $('#login-error').html(''); }, 5000); // hide error message after 10 sec
   function handleCredentialResponse(response) {
     // decodeJwtResponse() is a custom function defined by you
     // to decode the credential response.

@@ -3,43 +3,41 @@
 
 <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     %%DEFINE_SIDEBAR%%
-    %%DEFINE_Message%%
     <main class="grow" id="content" role="content">
-        <div class="kt-container-fluid pb-4">
-            <div class="kt-card">
+        <div class="kt-container-fluid pb-4 h-full flex items-center">
+            %%DEFINE_Message%%
+            <div class="kt-card kt-card-accent max-w-[400px] w-full mx-auto">
                 <div class="kt-card-header">
                     <div class="kt-card-heading">
                         <h2 class="kt-card-title">Account Settings</h2>
                     </div>
-                    <a class="kt-btn kt-btn-primary" href="%%DEFINE_editaccount%%" title="Edit Profile">
+                    <a class="kt-btn kt-btn-mono kt-btn-sm" href="%%DEFINE_editaccount%%" title="Edit Profile">
                         <i class="hgi hgi-stroke hgi-edit-02"></i> Edit Profile
                     </a>
                 </div>
                 <div class="kt-card-content">
-                    <div class="profile_img_left">
-                        <div class="edit_profile_img">
-                            <img src="%%DEFINE_UPLOAD_LINK%%/profile/%%DEFINE_user_image%%" alt="">
-                            <h5>%%DEFINE_user_firstname%%</h5>
-                        </div>
-                        <h6 style="display: none;">Name Your CES Account</h6>
-                        <input style="display: none;" type="text" name="" value="" class="form-control" placeholder="ie. Company Name, Personal Name etc...">
+                    <div class="size-24 overflow-hidden mx-auto rounded-full">
+                        <img src="%%DEFINE_UPLOAD_LINK%%/profile/%%DEFINE_user_image%%" alt="">
                     </div>
-                    <div class="profile_text_box">
-                        <div class="form-floating">
-                            <input type="text" name="user_firstname" value="%%DEFINE_user_firstname%%" class="form-control" id="" placeholder="" required="required" disabled>
-                            <label for="">First Name</label>
+                    <p class="text-gray-950 text-center mt-2">%%DEFINE_user_firstname%%</p>
+                    <h6 style="display: none;">Name Your CES Account</h6>
+                    <input style="display: none;" type="text" name="" value="" class="kt-input" placeholder="ie. Company Name, Personal Name etc...">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="kt-form-label">First Name</label>
+                            <input type="text" name="user_firstname" value="%%DEFINE_user_firstname%%" class="kt-input" id="" placeholder="Frist Name" required="required" disabled>
                         </div>
-                        <div class="form-floating">
-                            <input type="text" name="user_lastname" value="%%DEFINE_user_lastname%%" class="form-control" id="" placeholder="" required="required" disabled>
-                            <label for="">Last Name</label>
+                        <div>
+                            <label class="kt-form-label">Last Name</label>
+                            <input type="text" name="user_lastname" value="%%DEFINE_user_lastname%%" class="kt-input" id="" placeholder="Last Name" required="required" disabled>
                         </div>
-                        <div class="form-floating">
-                            <input type="text" name="user_email" value="%%DEFINE_user_email%%" class="form-control" id="" placeholder="" required="required" disabled>
-                            <label for="">Email</label>
+                        <div>
+                            <label class="kt-form-label">Email</label>
+                            <input type="text" name="user_email" value="%%DEFINE_user_email%%" class="kt-input" id="" placeholder="Email" required="required" disabled>
                         </div>
                     </div>
-                    <div class="profile_button_bottom">
-                        <a class="btn changepassword" href="%%DEFINE_changepassword%%" title="Change Password">Change Password</a>
+                    <div class="text-left mt-5">
+                        <a class="hover:text-primary changepassword underline" href="%%DEFINE_changepassword%%" title="Change Password">Change Password</a>
                     </div>
                 </div>
             </div>
@@ -48,14 +46,13 @@
 </div>
 
 <script>
-    jQuery.noConflict();
-    (function($) {
+    
         // To active/inactive in leftbar
         $('.new_dashboard_left a').removeClass('active');
         $(document).ready(function(){
             setTimeout(function(){ $('.alert').remove(); }, 3000);
         });
-    })(jQuery);
+    
     
 </script>
 %%DEFINE_FOOTER%%

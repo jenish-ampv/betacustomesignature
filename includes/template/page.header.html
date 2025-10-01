@@ -14,20 +14,27 @@
 
     <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
     <link href="%%DEFINE_CSS_LINK%%/nouislider.min.css" rel="stylesheet">
+    <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/intl-tel-input/css/intlTelInput.css" rel="stylesheet">
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/css/all.min.css" rel="stylesheet">
+    <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/swiper/swiper.bundle.css" rel="stylesheet">
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/sweetalert2/sweetalert2.bundle.css" rel="stylesheet">
+    <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.css" rel="stylesheet">
+    <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/switzer/fonts.css" rel="stylesheet">
+    <link href="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/swiper/swiper.bundle.css" rel="stylesheet">
+    <link href="%%DEFINE_CSS_LINK%%/croppie.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2s">
     <link href="%%DEFINE_ROOT_LINK%%/dist/assets/css/styles.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link href="%%DEFINE_CSS_LINK%%/bootstrap.min.css" rel="stylesheet" id="style1">
+    <!-- <link href="%%DEFINE_CSS_LINK%%/bootstrap.min.css" rel="stylesheet" id="style1"> -->
     <!--<link href="%%DEFINE_CSS_LINK%%/font-awesome.min.css" rel="stylesheet"> -->
     <!-- <link href="%%DEFINE_CSS_LINK%%/style.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2"> -->
-    <link href="%%DEFINE_CSS_LINK%%/new-style.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2">
+    <!-- <link href="%%DEFINE_CSS_LINK%%/new-style.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2"> -->
     <link href="%%DEFINE_CSS_LINK%%/new-dashboard.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2">
     <link href="%%DEFINE_CSS_LINK%%/style-latest.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2">
-    <link href="%%DEFINE_CSS_LINK%%/croppie.css?v=%%DEFINE_CSS_VERSION%%" rel="stylesheet" id="style2s">
     <link rel="icon" href="%%DEFINE_IMAGE_LINK%%/images/favicon.ico" type="image/x-icon" />
     <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet">
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/ktui/ktui.min.js"></script>
+
     <title>%%DEFINE_MetaTitle%%</title>
     
     <!-- Google Tag Manager -->
@@ -82,6 +89,35 @@
   </noscript>
   <!-- End Facebook Pixel Code -->
 
+<div class="loader-image fixed inset-0 top-0 left-0 bg-black/50 backdrop-blur-xs z-[100]" style="display: none;">
+  <div class="size-full flex flex-col items-center justify-center">
+    <div class="bg-white border border-gray-300 rounded-2xl p-3 flex gap-2 min-w-60">
+      <div class="border border-gray-100 bg-gray-50 p-1 flex flex-col gap-1 rounded">
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+      </div>
+      <div class="flex flex-col justify-center pr-3">
+        <div class="h-5 bg-gray-200 rounded-full w-16"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-2.5 [animation:width_1s_ease-in-out_infinite]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-1 [animation:width2_1s_ease-in-out_infinite]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-2.5 [animation:width_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-1 [animation:width2_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-1 [animation:width_1s_ease-in-out_infinite]"></div>
+      </div>
+      <div class="flex gap-1.5 justify-center items-center px-4">
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height_1s_ease-in-out_infinite]"></div>
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height2_1s_ease-in-out_infinite]"></div>
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height2_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+      </div>
+    </div>
+    <!-- <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""> -->
+  </div>
+</div>
+
   <header class="hidden">
     <div class="container">
       <div class="header_bg">
@@ -113,14 +149,14 @@
     </script>
   </header>
 
-<div class="loader-container" id="loader" style="display: none;">
-  <div class="loader-inner-container">
-    <div class="loading-text">
+<div class="loader-container fixed size-full z-10 bg-black/80 backdrop-blur-sm flex items-center justify-center" style="display: none;" id="loader">
+  <div class="flex flex-col gap-4">
+    <div class="flex text-white font-bold items-center justify-between gap-3 text-lg">
       <p id="custom-loader-text">Loading...</p>
       <div class="counter" id="counter">0%</div> 
     </div> 
-    <div class="progress-bar">
-      <div class="progress" id="progress" style="width: 0%;"></div>
+    <div class="w-80 h-2 bg-white rounded-full">
+      <div class="bg-gradient h-full rounded-full" id="progress" style="width: 0%;"></div>
     </div>
   </div>
 </div>

@@ -106,15 +106,16 @@ class CIT_INTEGRATIONS
 		}
 		if($_REQUEST['category_id'] =='google' && $_REQUEST['id'] == 'connect'){ // google connect
 			$GLOBALS['PageView'] = 'googleconnect';
-			$GLOBALS['Gstep1'] ='d-none'; $GLOBALS['Gstep2'] ='d-none'; $GLOBALS['Gstep3'] ='d-none';
+			$GLOBALS['Gstep1'] ='hidden'; $GLOBALS['Gstep2'] ='hidden'; $GLOBALS['Gstep3'] ='hidden';
 			if($_REQUEST['subid'] == 2){
 				$GLOBALS['Gstep2'] ='';
-				$GLOBALS['contentclsyes'] = $_REQUEST['sid'] == 0 ? 'd-none' : '';
-				$GLOBALS['contentclsno'] = $_REQUEST['sid'] == 1 ? 'd-none' : '';
+				$GLOBALS['contentclsyes'] = $_REQUEST['sid'] == 0 ? 'hidden' : '';
+				$GLOBALS['contentclsno'] = $_REQUEST['sid'] == 1 ? 'hidden' : '';
 			}else if($_REQUEST['subid'] == 3){
 				$GLOBALS['Gstep3'] ='';
 			}else{
 				$GLOBALS['Gstep1'] ='';
+				$GLOBALS['contentclsno'] = 'hidden';
 			}
 			if($_POST['google_connect'] == 1){  // check connection
 				$response = $this->GsuiteConnect('connect',$GLOBALS['USEREMAIL']);
@@ -220,7 +221,7 @@ class CIT_INTEGRATIONS
 					if(filter_var($to, FILTER_VALIDATE_EMAIL)){
 						$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					}
-					$result = array('error'=>0,'msg'=>'<div class="alert alert-success"><strong>Success! </strong>Signature share success</div>');
+					$result = array('error'=>0,'msg'=>'<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signature share success</div>');
 					$response = json_encode($result);
 				}
 			}else{
@@ -261,24 +262,24 @@ class CIT_INTEGRATIONS
 		$intROw = $GLOBALS['DB']->row("SELECT count(*) connected FROM registerusers_token WHERE user_id = ? AND token_platform = 0",array($GLOBALS['USERID']));
 		$msconnected = $intROw['connected'];
 		if($msconnected > 0){
-			$GLOBALS['connectbtncls'] ='d-none';
+			$GLOBALS['connectbtncls'] ='hidden';
 			$GLOBALS['connectedbtncls'] ='';
 		}else{
 			$GLOBALS['connectbtncls'] ='';
-			$GLOBALS['connectedbtncls'] ='d-none';
+			$GLOBALS['connectedbtncls'] ='hidden';
 		}
 		
 		$intROw = $GLOBALS['DB']->row("SELECT count(*) glconnected FROM registerusers_token WHERE user_id = ? AND token_platform = 1",array($GLOBALS['USERID']));
 		$glconnected = $intROw['glconnected'];
 		if($glconnected > 0){
-			$GLOBALS['glconnectbtncls'] ='d-none';
+			$GLOBALS['glconnectbtncls'] ='hidden';
 			$GLOBALS['glconnectedbtncls'] ='';
 		}else{
 			$GLOBALS['glconnectbtncls'] ='';
-			$GLOBALS['glconnectedbtncls'] ='d-none';
+			$GLOBALS['glconnectedbtncls'] ='hidden';
 		}
 		
-		
+		$this->getPlanDetail();
 		$this->getPage();
 		$GLOBALS['google_connect'] =GetUrl(array('module'=>$_REQUEST['module'],'action'=>'google','id'=>'connect'));
 		$GLOBALS['microsoft_connect'] =GetUrl(array('module'=>$_REQUEST['module'],'action'=>'microsoft','id'=>'connect'));
@@ -533,6 +534,62 @@ class CIT_INTEGRATIONS
         // Combine IV + HMAC + ciphertext and encode
         return bin2hex($iv . $hmac . $ciphertext);
     }
+
+
+	public function getPlanDetail($plan_id='',$unit='',$getunit =1){
+		$planRows = $GLOBALS['DB']->query("SELECT * FROM `plan`  WHERE `plan_status` =1");
+		foreach($planRows as $planRow){
+			$plan_id = $planRow['plan_id'];
+			$planname = strtolower($planRow['plan_name']);
+			$plantype = strtolower($planRow['plan_type']);
+			if($getunit == 1){
+				$unitRows = $GLOBALS['DB']->query("SELECT * FROM plan_unit WHERE plan_id = ? ORDER BY plan_unit ASC",array($plan_id));
+				foreach($unitRows as $unit){
+					if($planname == 'basic' && $plantype == 'quarter'){
+						$basic_quarter_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$basic_quarter_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro' && $plantype == 'quarter'){
+						$pro_quarter_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_quarter_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'basic' && $plantype == 'year'){
+						$basic_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$basic_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro' && $plantype == 'year'){
+						$pro_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+				}
+			}
+		}
+		//$GLOBALS['basic_month_unit'] =  json_encode(array(1=>10,5=>15,10=>25,15=>35,20=>45,25=>50,30=>55,35=>60,40=>65,45=>70,50=>75)); 
+		//$GLOBALS['pro_month_unit'] =  json_encode(array(1=>15,5=>20,10=>30,15=>40,20=>50,25=>55,30=>60,35=>65,40=>70,45=>75,50=>80)); 
+		
+		// $GLOBALS['basic_quarter_unit'] = json_encode($basic_quarter_arr);
+		// $GLOBALS['basic_quarter_unitspl'] = json_encode($basic_quarter_arrspl);
+		// $GLOBALS['pro_quarter_unit'] = json_encode($pro_quarter_arr);
+		// $GLOBALS['pro_quarter_unitspl'] = json_encode($pro_quarter_arrspl);
+		// $GLOBALS['basic_year_unit'] = json_encode($basic_year_arr);
+		// $GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
+		// $GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
+		// $GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+
+		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
+		$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
+		return false;
+	}
 	
 }
 

@@ -1,226 +1,301 @@
 %%DEFINE_HEADER%%
 
-<div class="flex w-full">
-  <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10">
+<div class="flex flex-col md:flex-row w-full">
+  <div class="flex gap-10 w-full md:w-6/12 xl:w-7/12 flex-col p-6 lg:p-10 md:overflow-auto">
+      <div class="progress-boxes">
+        <button class="kt-btn kt-btn-ghost gap-2" id="back2">
+          <i class="fal fa-angle-left text-xl mt-0.5"></i> Back
+        </button>
+      </div>
+
     <div class="flex-1 flex flex-col">
-
-
-      <div class="flex-1 flex flex-col">
-        <div class="max-w-[600px] w-full mx-auto progress-boxes">
-          <div class="flex items-center gap-2 mb-8 cursor-pointer" id="back2">
-            <i class="fa-solid fa-angle-left"></i> Back
+      <form id="registerUserForm" method="POST">
+        <!-- STEP 1 -->
+        <div class="flex-1 step" data-step="1">
+          <div class="h-full flex flex-col">
+            <div class="flex-1 max-w-[600px] w-full mx-auto">
+              <div>
+                <h5 class="text-gray-950 text-2xl font-medium mb-2">Add Profile Details</h5>
+                <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
+                <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                <div class="h-[6px] rounded-full bg-[#E5E7EB]"></div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="col-span-2">
+                  <label class="kt-form-label required gap-0">First Name</label>
+                  <input class="kt-input" name="user_first_name" id="user_first_name" placeholder="Bob">
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label required gap-0">Last Name</label>
+                  <input class="kt-input" name="user_last_name" id="user_last_name" placeholder="Smith">
+                </div>
+                <div class="col-span-2 fv-row">
+                  <label class="kt-form-label required gap-0">Phone</label>
+                  <input class="kt-input" name="user_phone" id="user_phone" placeholder="(999) 999-9999" >
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label required gap-0">Company Name</label>
+                  <input class="kt-input" name="user_organization" id="user_organization" placeholder="Company Name">
+                </div>
+                <div class="col-span-2 sm:col-span-1 md:col-span-2 xl:col-span-1">
+                  <label class="kt-form-label">Industry</label>
+                  <select class="kt-select" name="user_business" id="user_business" data-kt-select="true" data-kt-select-placeholder="IT Industry"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="real_estate">Real Estate</option>
+                    <option value="automotive_sales">Automotive Sales / Car Dealerships</option>
+                    <option value="insurance">Insurance</option>
+                    <option value="financial_services">Financial Services / Advisors</option>
+                    <option value="marketing_advertising">Marketing & Advertising / Agencies</option>
+                    <option value="software_saas">Software / SaaS</option>
+                    <option value="technology_it">Technology / IT Services</option>
+                    <option value="consulting">Consulting / Business Services</option>
+                    <option value="legal">Legal / Law Firms</option>
+                    <option value="accounting_tax">Accounting / Tax Services</option>
+                    <option value="hr_recruiting">Human Resources / Recruiting</option>
+                    <option value="healthcare">Healthcare / Medical</option>
+                    <option value="fitness_training">Fitness / Personal Training</option>
+                    <option value="wellness_coaching">Wellness / Coaching</option>
+                    <option value="retail_ecommerce">Retail / E-commerce</option>
+                    <option value="hospitality_restaurants">Hospitality / Restaurants</option>
+                    <option value="travel_tourism">Travel & Tourism</option>
+                    <option value="events_entertainment">Events / Entertainment</option>
+                    <option value="construction_trades">Construction / Trades</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="logistics_transportation">Logistics / Transportation</option>
+                    <option value="energy_utilities">Energy / Utilities</option>
+                    <option value="education_training">Education / Training</option>
+                    <option value="nonprofit">Nonprofit / Community Organizations</option>
+                    <option value="government">Government / Public Sector</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="col-span-2 sm:col-span-1 md:col-span-2 xl:col-span-1">
+                  <label class="kt-form-label">Company Size</label>
+                  <select class="kt-select" name="user_company_size" id="user_company_size" data-kt-select="true" data-kt-select-placeholder="Company Size"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Just me (solo)">Just me (solo)</option>
+                    <option value="2–5 employees">2–5 employees</option>
+                    <option value="6–10 employees">6–10 employees</option>
+                    <option value="11–25 employees">11–25 employees</option>
+                    <option value="26–50 employees">26–50 employees</option>
+                    <option value="51–100 employees">51–100 employees</option>
+                    <option value="101–250 employees">101–250 employees</option>
+                    <option value="251–500 employees">251–500 employees</option>
+                    <option value="501–1,000 employees">501–1,000 employees</option>
+                    <option value="1,001–2,500 employees">1,001–2,500 employees</option>
+                    <option value="2,501–5,000 employees">2,501–5,000 employees</option>
+                    <option value="5,001–10,000 employees">5,001–10,000 employees</option>
+                    <option value="10,000+ employees">10,000+ employees</option>
+                  </select>
+                </div>
+                <div class="col-span-2">
+                  <label class="kt-form-label">Job Title</label>
+                  <select class="kt-select" name="user_job_title" id="user_job_title" data-kt-select="true" data-kt-select-placeholder="Design Manager"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Owner / Founder / CEO">Owner / Founder / CEO</option>
+                    <option value="President / Partner">President / Partner</option>
+                    <option value="VP / Director">VP / Director</option>
+                    <option value="Sales Manager">Sales Manager</option>
+                    <option value="Marketing Manager">Marketing Manager</option>
+                    <option value="IT Manager">IT Manager</option>
+                    <option value="Sales Rep / Account Executive">Sales Rep / Account Executive</option>
+                    <option value="Marketing Specialist">Marketing Specialist</option>
+                    <option value="Support / Customer Success">Support / Customer Success</option>
+                    <option value="Admin / Coordinator">Admin / Coordinator</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-7">
+              <button class="kt-btn kt-btn-primary" id="next1">Continue</button>
+            </div>
           </div>
         </div>
 
-        <form id="registerUserForm" class="flex-1 flex flex-col" method="POST">
-          <!-- STEP 1 -->
-          <div class="flex-1 step" data-step="1">
-
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto">
-                <div>
-                  <h5 class="text-gray-950 text-2xl font-medium">Add Profile Details</h5>
-                  <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
-                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
-                  <div class="h-[6px] rounded-full bg-gray-400"></div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="col-span-2">
-                    <label class="kt-form-label">First Name</label>
-                    <input class="kt-input" name="user_first_name" id="user_first_name" placeholder="Bob">
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Last Name</label>
-                    <input class="kt-input" name="user_last_name" id="user_last_name" placeholder="Smith">
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Phone</label>
-                    <input class="kt-input" name="user_phone" id="user_phone" placeholder="(999) 999-9999" >
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Password</label>
-                    <input type="password" class="kt-input" name="user_password" id="user_password" placeholder="Password" %%DEFINE_signup_google_user_password_display_hide% >
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Company Name</label>
-                    <input class="kt-input" name="user_organization" id="user_organization" placeholder="Company Name">
-                  </div>
-                  <div>
-                    <label class="kt-form-label">Industry</label>
-                    <input class="kt-input" name="user_business" id="user_business" placeholder="IT Industry">
-                  </div>
-                  <div>
-                    <label class="kt-form-label">Company Size</label>
-                    <select class="kt-select" name="user_company_size" id="user_company_size" data-kt-select="true" data-kt-select-placeholder="Select a framework"
-                      data-kt-select-config='{
-                          "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
-                        }'>
-                      <option value="" selected disabled>Select company size</option>
-                      <option value="1-10">1-10</option>
-                      <option value="11-50">11-50</option>
-                      <option value="50-100">50-100</option>
-                      <option value="100+">100+</option>
-                    </select>
-                  </div>
-                  <div class="col-span-2">
-                    <label class="kt-form-label">Job Title</label>
-                    <input class="kt-input" name="user_job_title" id="user_job_title" placeholder="Design Manager">
-                  </div>
-                </div>
+        <!-- STEP 2 -->
+        <div class="flex-1 step hidden" data-step="2">
+          <div class="h-full flex flex-col">
+            <div class="flex-1 max-w-[600px] w-full mx-auto">
+              <div>
+                <h5 class="text-gray-950 text-2xl font-medium mb-2">Just a couple more questions.</h5>
+                <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
               </div>
-              <div class="text-end">
-                <button class="kt-btn kt-btn-primary" id="next1">Continue</button>
+              <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
+                <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
               </div>
-            </div>
-          </div>
-
-          <!-- STEP 2 -->
-          <div class="flex-1 step hidden" data-step="2">
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto">
+              <div class="grid grid-cols-1 gap-4">
                 <div>
-                  <h5 class="text-gray-950 text-2xl font-medium">Just a couple more questions.</h5>
-                  <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
+                  <label class="kt-form-label required gap-0">How many team members need a signature?</label>
+                  <select class="kt-select" name="user_team_size" id="user_team_size" data-kt-select="true" data-kt-select-placeholder="Select team size"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }'>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
+                    <option value="40">40</option>
+                    <option value="45">45</option>
+                    <option value="50">50</option>
+                    <option value="55">55</option>
+                    <option value="60">60</option>
+                    <option value="65">65</option>
+                    <option value="70">70</option>
+                    <option value="75">75</option>
+                    <option value="80">80</option>
+                    <option value="85">85</option>
+                    <option value="90">90</option>
+                    <option value="95">95</option>
+                    <option value="100+">100+</option>
+                  </select>
                 </div>
-                <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
-                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
-                  <div class="h-[6px] rounded-full bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE]"></div>
+                <div>
+                  <label class="kt-form-label required gap-0">What Email Platform You Use?</label>
+                  <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
+                    data-kt-select-config='{
+                        "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
+                      }' multiple name="user_email_platform" id="user_email_platform">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Gmail">Gmail</option>
+                    <option value="Outlook">Outlook</option>
+                    <option value="Apple Mail">Apple Mail</option>
+                    <option value="Yahoo Mail">Yahoo Mail</option>
+                    <option value="Productivity Email Apps">Productivity Email Apps</option>
+                    <option value="CRM Tool">CRM Tool</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
-                <div class="grid grid-cols-1 gap-4">
-                  <div>
-                    <label class="kt-form-label">How many team members need a signature?</label>
-                    <input type="number" class="kt-input" name="user_team_size" id="user_team_size" placeholder="40">
-                  </div>
-                  <div>
-                    <label class="kt-form-label">What Email Platform You Use?</label>
-                    <select class="kt-select" data-kt-select="true" data-kt-select-placeholder="Select a framework"
-                      data-kt-select-config='{
-                          "optionsClass": "kt-scrollable overflow-auto max-h-[250px]"
-                        }' multiple name="user_email_platform" id="user_email_platform">
-                      <option value="" selected disabled>Select Email Platform</option>
-                      <option value="gmail">Gmail</option>
-                      <option value="outlook">Outlook</option>
-                      <option value="yahoo">Yahoo Mail</option>
-                      <option value="icloud">Apple Mail (iCloud)</option>
-                      <option value="zoho" disabled>Zoho Mail</option>
-                      <option value="protonmail" disabled>ProtonMail</option>
-                    </select>
-                  </div>
-                  <div class="mt-5">
-                    <label class="kt-form-label">How did you hear about us?</label>
-                    <div class="flex flex-wrap *:h-10 *:rounded-2xl *:px-2 gap-[6px] *:font-normal">
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="facebook-instagram">
-                        <label for="facebook-instagram" class="peer-checked:bg-primary peer-checked:text-white">Facebook/Instagram</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="search-engine">
-                        <label for="search-engine" class="peer-checked:bg-primary peer-checked:text-white">Search Engine (Google, Bing, etc.)</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="word-of-mouth">
-                        <label for="word-of-mouth" class="peer-checked:bg-primary peer-checked:text-white">Word of mouth</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="ai-chat">
-                        <label for="ai-chat" class="peer-checked:bg-primary peer-checked:text-white">AI Chat</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="youtube">
-                        <label for="youtube" class="peer-checked:bg-primary peer-checked:text-white">Youtube</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="linkedIn">
-                        <label for="linkedIn" class="peer-checked:bg-primary peer-checked:text-white">LinkedIn</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="tiktok">
-                        <label for="tiktok" class="peer-checked:bg-primary peer-checked:text-white">Tik Tok</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="email-newsletter">
-                        <label for="email-newsletter" class="peer-checked:bg-primary peer-checked:text-white">Email Newsletter</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="review-website">
-                        <label for="review-website" class="peer-checked:bg-primary peer-checked:text-white">Review Website</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="how_did_you_hear_about_us hidden peer" id="how_did_you_hear_about_us_other">
-                        <label for="how_did_you_hear_about_us_other" class="peer-checked:bg-primary peer-checked:text-white">Other</label>
-                      </div>
+                <div class="mt-5">
+                  <label class="kt-form-label mb-2 required">How did you hear about us?</label>
+                  <div class="flex flex-wrap [&>*>label]:bg-white [&>*>label]:cursor-pointer [&>*>label]:hover:border-primary [&>*>label]:hover:bg-gradient-to-r [&>*>label]:hover:from-[#26B7FF]/10 [&>*>label]:hover:to-[#1D4AFE]/10 [&>*>label]:hover:text-black [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-gradient-to-r [&>*>label]:peer-checked:from-[#26B7FF]/10 [&>*>label]:peer-checked:to-[#1D4AFE]/10 [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-black gap-[6px] *:font-normal">
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="facebook-instagram">
+                      <label for="facebook-instagram" class="">Facebook/Instagram</label>
                     </div>
-                  </div>
-                  <div>
-                    <label class="kt-form-label">What brought you to Custom Esignature today?</label>
-                    <div class="flex flex-wrap *:h-10 *:rounded-2xl *:px-2 gap-[6px] *:font-normal">
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="the-interactive-design">
-                        <label for="the-interactive-design" class="peer-checked:bg-primary peer-checked:text-white">The Interactive Design</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="boost-your-replies">
-                        <label for="boost-your-replies" class="peer-checked:bg-primary peer-checked:text-white">Boost Your Replies</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="team-management">
-                        <label for="team-management" class="peer-checked:bg-primary peer-checked:text-white">Team Management</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="signature-analytics">
-                        <label for="signature-analytics" class="peer-checked:bg-primary peer-checked:text-white">Signature Analytics</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="update-old-signature">
-                        <label for="update-old-signature" class="peer-checked:bg-primary peer-checked:text-white">Update Old Signature</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="drive-traffic">
-                        <label for="drive-traffic" class="peer-checked:bg-primary peer-checked:text-white">Drive Traffic</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="promote-brand">
-                        <label for="promote-brand" class="peer-checked:bg-primary peer-checked:text-white">Promote Brand</label>
-                      </div>
-                      <div>
-                        <input type="checkbox" class="what_brought_you hidden peer" id="what_brought_you_other">
-                        <label for="what_brought_you_other" class="peer-checked:bg-primary peer-checked:text-white">Other</label>
-                      </div>
-
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="search-engine">
+                      <label for="search-engine" class="">Search Engine (Google, Bing, etc.)</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="word-of-mouth">
+                      <label for="word-of-mouth" class="">Word of mouth</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="ai-chat">
+                      <label for="ai-chat" class="">AI Chat</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="youtube">
+                      <label for="youtube" class="">Youtube</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="linkedIn">
+                      <label for="linkedIn" class="">LinkedIn</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="tiktok">
+                      <label for="tiktok" class="">Tik Tok</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="email-newsletter">
+                      <label for="email-newsletter" class="">Email Newsletter</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="review-website">
+                      <label for="review-website" class="">Review Website</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="how_did_you_hear_about_us" class="how_did_you_hear_about_us hidden peer" id="how_did_you_hear_about_us_other">
+                      <label for="how_did_you_hear_about_us_other" class="">Other</label>
                     </div>
                   </div>
                 </div>
+                <div>
+                  <label class="kt-form-label mb-2 required">What brought you to Custom Esignature today?</label>
+                  <div class="flex flex-wrap [&>*>label]:bg-white [&>*>label]:cursor-pointer [&>*>label]:hover:border-primary [&>*>label]:hover:bg-gradient-to-r [&>*>label]:hover:from-[#26B7FF]/10 [&>*>label]:hover:to-[#1D4AFE]/10 [&>*>label]:hover:text-black [&>*>label]:border [&>*>label]:block [&>*>label]:rounded-full [&>*>label]:border-gray-200 [&>*>label]:px-3 [&>*>label]:py-2 [&>*>label]:peer-checked:bg-gradient-to-r [&>*>label]:peer-checked:from-[#26B7FF]/10 [&>*>label]:peer-checked:to-[#1D4AFE]/10 [&>*>label]:peer-checked:border-primary [&>*>label]:peer-checked:text-black gap-[6px] *:font-normal">
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="the-interactive-design">
+                      <label for="the-interactive-design">The Interactive Design</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="boost-your-replies">
+                      <label for="boost-your-replies">Boost Your Replies</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="team-management">
+                      <label for="team-management">Team Management</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="signature-analytics">
+                      <label for="signature-analytics">Signature Analytics</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="update-old-signature">
+                      <label for="update-old-signature">Update Old Signature</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="drive-traffic">
+                      <label for="drive-traffic">Drive Traffic</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="promote-brand">
+                      <label for="promote-brand">Promote Brand</label>
+                    </div>
+                    <div>
+                      <input type="checkbox" name="what_brought_you" class="what_brought_you hidden peer" id="what_brought_you_other">
+                      <label for="what_brought_you_other">Other</label>
+                    </div>
+
+                  </div>
+                </div>
               </div>
-              <div class="text-end">
-                <input type="hidden" id="register_url" value="%%DEFINE_linkModuleRegister%%/registerFormSubmit" />
-                <input type="hidden" id="register_user_email" name="register_user_email" value="%%DEFINE_USER_EMAIL%%" />
-                <button type="submit" class="kt-btn kt-btn-primary" id="userRegisterFormSubmit">Sign Up</button>
-              </div>
+            </div>
+            <div class="text-center">
+              <input type="hidden" id="register_url" value="%%DEFINE_linkModuleRegister%%/registerFormSubmit" />
+              <input type="hidden" id="register_user_email" name="register_user_email" value="%%DEFINE_USER_EMAIL%%" />
+              <input type="hidden" id="register_user_password" name="register_user_password" value="%%DEFINE_USER_PASSWORD%%" />
+              <button type="submit" class="kt-btn kt-btn-primary mt-7" id="userRegisterFormSubmit">Sign Up</button>
             </div>
           </div>
+        </div>
 
-          <!-- <div class="flex-1 step hidden" data-step="3">
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto font-normal text-gray-950 flex flex-col">
-                <div>
-                  <h2>Hey, Bob Smith<br>Welcome to<br><span class="font-medium bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom Esignature</span></h2>
-                  <button class="kt-btn kt-btn-primary w-full mt-8">Get Started</button>
-                </div>
-                <div class="flex-1 flex items-center justify-center">
-                <img src="%%DEFINE_IMAGE_LINK%%/images/welcome.png" alt="">
+        <!-- <div class="flex-1 step hidden" data-step="3">
+          <div class="h-full flex flex-col">
+            <div class="flex-1 max-w-[600px] w-full mx-auto font-normal text-gray-950 flex flex-col">
+              <div>
+                <h2>Hey, Bob Smith<br>Welcome to<br><span class="font-medium bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">Custom Esignature</span></h2>
+                <button class="kt-btn kt-btn-primary w-full mt-8">Get Started</button>
               </div>
-              </div>
+              <div class="flex-1 flex items-center justify-center">
+              <img src="%%DEFINE_IMAGE_LINK%%/images/welcome.png" alt="">
             </div>
-          </div> -->
+            </div>
+          </div>
+        </div> -->
 
-        </form>
-
-      </div>
+      </form>
     </div>
-    <div class="flex text-sm items-center justify-between">
-      <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+    <div class="flex flex-col gap-4 mt-4 text-sm items-center justify-between xl:flex-row">
+      <span class="text-gray-600 text-center">© 2025 Custom Esignature's Inc. All rights reserved.</span>
       <div class="flex text-gray-700 items-center gap-2">
         <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
         <i class="fas fa-circle text-[6px] text-gray-400"></i>
@@ -228,9 +303,9 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col w-5/12 bg-gray-100 bg-top xxl:bg-center xl:bg-cover bg-no-repeat"
+  <div class="flex flex-col md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
     style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
-    <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
+    <div class="w-full max-w-[400px] mx-auto py-10 flex-1 flex flex-col justify-center">
       <div class="swiper w-full" id="loginSlider">
         <div class="swiper-wrapper">
           <div class="swiper-slide text-center">
@@ -252,11 +327,10 @@
   </div>
 </div>
 
-<!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+<script src="%%DEFINE_ROOT_LINK%%/script/jquery-3.5.1.min.js"></script>
 
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+<script src="%%DEFINE_ROOT_LINK%%/dist/assets/vendors/intl-tel-input/js/intlTelInput.js"></script>
 <script>
   const input = document.querySelector("#user_phone");
 
@@ -265,7 +339,7 @@
     nationalMode: false,  // ensures full number includes country code
     formatOnDisplay: true,
     separateDialCode: true,
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js", // for validation/formatting
+    utilsScript: "%%DEFINE_ROOT_LINK%%/dist/assets/vendors/intl-tel-input/intlTelInput.js", // for validation/formatting
   });
 </script>
 
@@ -273,337 +347,371 @@
 %%DEFINE_FOOTER%%
 
 <script>
-  $(function () {
-    const $steps = $(".step");
-    const $boxes = $(".progress-box");
-    const $titles = $("[data-title]");
-    let current = 1;
+      const $steps = $(".step");
+      const $boxes = $(".progress-box");
+      const $titles = $("[data-title]");
+      let current = 1;
 
-    function showStep(n) {
-      current = n;
+      function showStep(n) {
+        current = n;
 
-      // show current step only
-      $steps.addClass("hidden").filter(`[data-step="${n}"]`).removeClass("hidden");
+        // show current step only
+        $steps.addClass("hidden").filter(`[data-step="${n}"]`).removeClass("hidden");
 
-    }
+      }
 
-    // validation (optional, right now no error divs in your form)
-    function validateStep(n) {
-      return true; // skip for now
-    }
+      // validation (optional, right now no error divs in your form)
+      function validateStep(n) {
+        return true; // skip for now
+      }
 
-    let isValidFirstStep = true;
+      let isValidFirstStep = true;
 
-    function showError(input, message) {
-      isValidFirstStep = false;
-      let $input = $(input);
 
-      // Try to find any existing error message after the input or after a following div
-      let $existingError = $input.nextAll('.error-msg').first();
-      if ($existingError.length) {
-        // Update existing error message
-        $existingError.text(message);
-      } else {
-        // Add new error message
-        let $lastDiv = $input.nextAll('div').last();
-        let $errorMsg = $('<div class="error-msg" style="color: red; font-size: 12px;"></div>').text(message);
 
-        if ($lastDiv.length > 0) {
-          $lastDiv.after($errorMsg);
+      // function showError(input, message) {
+      //   isValidFirstStep = false;
+      //   let $input = $(input);
+
+      //   // Try to find any existing error message after the input or after a following div
+      //   let $existingError = $input.nextAll('.error-msg').first();
+      //   if ($existingError.length) {
+      //     // Update existing error message
+      //     $existingError.text(message);
+      //   } else {
+      //     // Add new error message
+      //     let $lastDiv = $input.nextAll('div').last();
+      //     let $errorMsg = $('<div class="error-msg" style="color: red; font-size: 12px;"></div>').text(message);
+
+      //     if ($lastDiv.length > 0) {
+      //       $lastDiv.after($errorMsg);
+      //     } else {
+      //       $input.after($errorMsg);
+      //     }
+      //   }
+      // }
+
+      function showError(input, message) {
+        isValidFirstStep = false;
+        let $input = $(input);
+
+        // Check if input is inside .fw-row
+        let $fwRow = $input.closest('.fv-row');
+
+        // If parent .fw-row exists, insert error inside it
+        if ($fwRow.length) {
+          let $existingError = $fwRow.children('.error-msg').last();
+
+          if ($existingError.length) {
+            // Update existing error
+            $existingError.text(message);
+          } else {
+            // Add new error at the end of .fw-row
+            let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+            $fwRow.append($errorMsg);
+          }
+
         } else {
-          $input.after($errorMsg);
+          // Default: error message after input
+          let $existingError = $input.nextAll('.error-msg').first();
+
+          if ($existingError.length) {
+            $existingError.text(message);
+          } else {
+            let $lastDiv = $input.nextAll('div').last();
+            let $errorMsg = $('<div class="error-msg text-xs text-danger"></div>').text(message);
+
+            if ($lastDiv.length > 0) {
+              $lastDiv.after($errorMsg);
+            } else {
+              $input.after($errorMsg);
+            }
+          }
         }
       }
-    }
 
-    function removeError(input) {
-      let $input = $(input);
+      function removeError(input) {
+        let $input = $(input);
 
-      // Remove the first error message found after the input
-      let $existingError = $input.nextAll('.error-msg').first();
-      if ($existingError.length) {
-        $existingError.remove();
+        // Remove the first error message found after the input
+        let $existingError = $input.nextAll('.error-msg').first();
+        if ($existingError.length) {
+          $existingError.remove();
+        }
       }
-    }
-    $('#user_phone').on('input', function() {
-      // Remove any character that is NOT a digit
-      this.value = this.value.replace(/\D/g, '');
-    });
-    $("#next1").on("click", function (e) {
-      e.preventDefault();
-
-      isValidFirstStep = true
-      // Validate first name
-      let firstName = $('#user_first_name').val().trim();
-      if (firstName === '') {
-        showError('#user_first_name', 'First name is required.');
-      } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
-        showError('#user_first_name', 'First name can only contain letters and spaces.');
-      } else{
-        removeError('#user_first_name');
-      }
-
-      // Validate last name
-      let lastName = $('#user_last_name').val().trim();
-      if (lastName === '') {
-        showError('#user_last_name', 'Last name is required.');
-      } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
-        showError('#user_last_name', 'Last name can only contain letters and spaces.');
-      } else{
-        removeError('#user_last_name');
-      }
-
-      // Validate phone
-      let phonePattern = /^(\+?\d{1,3}[-.\s()]*)?(\d{3})[-.\s()]*(\d{3})[-.\s()]*(\d{4})$/;
-      let phone = $('#user_phone').val().trim();
-      if (phone === '') {
-        showError('#user_phone', 'Phone number is required.');
-      } else if (!phonePattern.test(phone)) {
-        showError('#user_phone', 'Enter a valid phone number.');
-      } else{
-        removeError('#user_phone');
-      }
-
-      // Validate password
-      var password = $('#user_password').val();
-      var errorMessage = '';
-
-      if (password.length < 8) {
-        showError('#user_password', 'Password must be at least 8 characters long.');
-      }
-      else if (!/[a-z]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one lowercase letter.');
-      }
-      else if (!/[A-Z]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one uppercase letter.');
-      }
-      else if (!/[0-9]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one number.');
-      }
-      else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-        showError('#user_password', 'Password must contain at least one special character.');
-      }
-      else{
-        removeError('#user_password');
-      }
-
-      // Validate company name
-      let companyName = $('#user_organization').val().trim();
-      if (companyName === '') {
-        showError('#user_organization', 'Company name is required.');
-      } else{
-        removeError('#user_organization');
-      }
-
-      // Validate industry
-      let industry = $('#user_business').val().trim();
-      if (industry === '') {
-        showError('#user_business', 'Industry is required.');
-      } else{
-        removeError('#user_business');
-      }
-
-      // Validate company size
-      let companySize = $('#user_company_size').val();
-      if (companySize === null || companySize === '') {
-        showError('#user_company_size', 'Please select company size.');
-      } else{
-        removeError('#user_company_size');
-      }
-
-      // Validate job title
-      let jobTitle = $('#user_job_title').val().trim();
-      if (jobTitle === '') {
-        showError('#user_job_title', 'Job title is required.');
-      } else{
-        removeError('#user_job_title');
-      }
-
-      // Prevent form submission if invalid
-      if (isValidFirstStep) {
-        console.log('Form is valid. Proceeding to next step.');
-        if (validateStep(1)) showStep(2);
-      }
-      
-    });
-    
-
-    function getCheckedValuesAsCSV(className) {
-      let values = [];
-      $('.' + className + ':checked').each(function () {
-        let label = $('label[for="' + $(this).attr('id') + '"]').text().trim();
-        values.push(label);
+      $('#user_phone').on('input', function() {
+        // Remove any character that is NOT a digit
+        this.value = this.value.replace(/\D/g, '');
       });
-      return values.join(', ');
-    }
+      $("#next1").on("click", function (e) {
+        e.preventDefault();
 
-    $("#userRegisterFormSubmit").on("click", function (e){
-      let isValidSecondStep = true;
+        isValidFirstStep = true
+        // Validate first name
+        let firstName = $('#user_first_name').val().trim();
+        if (firstName === '') {
+          showError('#user_first_name', 'First name is required.');
+        } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
+          showError('#user_first_name', 'First name can only contain letters and spaces.');
+        } else{
+          removeError('#user_first_name');
+        }
 
-      // Validate user_team_size (required, positive integer)
-      const teamSize = $("#user_team_size").val().trim();
-      if (!teamSize) {
-        isValidSecondStep = false;
-        showError('#user_team_size', 'Team size is required.');
-      } else if (!/^\d+$/.test(teamSize) || parseInt(teamSize) <= 0) {
-        isValidSecondStep = false;
-        showError('#user_team_size', 'Please enter a valid positive number.');
-      } else {
-        removeError('#user_team_size');
+        // Validate last name
+        let lastName = $('#user_last_name').val().trim();
+        if (lastName === '') {
+          showError('#user_last_name', 'Last name is required.');
+        } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
+          showError('#user_last_name', 'Last name can only contain letters and spaces.');
+        } else{
+          removeError('#user_last_name');
+        }
+
+        // Validate phone
+        let phonePattern = /^(\+?\d{1,3}[-.\s()]*)?(\d{3})[-.\s()]*(\d{3})[-.\s()]*(\d{4})$/;
+        let phone = $('#user_phone').val().trim();
+        if (phone === '') {
+          showError('#user_phone', 'Phone number is required.');
+        } else if (!phonePattern.test(phone)) {
+          showError('#user_phone', 'Enter a valid phone number.');
+        } else{
+          removeError('#user_phone');
+        }
+
+        // Validate company name
+        let companyName = $('#user_organization').val().trim();
+        if (companyName === '') {
+          showError('#user_organization', 'Company name is required.');
+        } else{
+          removeError('#user_organization');
+        }
+
+        // Validate industry
+        let industry = $('#user_business').val();
+        if (industry === null || industry === '') {
+          showError('#user_business', 'Industry is required.');
+        } else{
+          removeError('#user_business');
+        }
+
+        // Validate company size
+        let companySize = $('#user_company_size').val();
+        if (companySize === null || companySize === '') {
+          showError('#user_company_size', 'Please select company size.');
+        } else{
+          removeError('#user_company_size');
+        }
+
+        // Validate job title
+        let jobTitle = $('#user_job_title').val();
+        if (jobTitle === null || jobTitle === '') {
+          showError('#user_job_title', 'Job title is required.');
+        } else{
+          removeError('#user_job_title');
+        }
+
+        // Prevent form submission if invalid
+        if (isValidFirstStep) {
+          console.log('Form is valid. Proceeding to next step.');
+          if (validateStep(1)) showStep(2);
+        }
+        
+      });
+      
+
+      function getCheckedValuesAsCSV(className) {
+        let values = [];
+        $('.' + className + ':checked').each(function () {
+          let label = $('label[for="' + $(this).attr('id') + '"]').text().trim();
+          values.push(label);
+        });
+        return values.join(', ');
       }
 
-      // Validate user_email_platform (at least one selected)
-      const selectedEmailPlatforms = $("#user_email_platform").val();
-      if (!selectedEmailPlatforms || selectedEmailPlatforms.length === 0) {
-        isValidSecondStep = false;
-        showError('#user_email_platform', 'Please select at least one Email Platform.');
-      } else {
-        removeError('#user_email_platform');
-      }
+      $("#userRegisterFormSubmit").on("click", function (e){
+        let isValidSecondStep = true;
 
-      // Validate how_did_you_hear_about_us checkboxes (at least one checked)
-      if ($("input.how_did_you_hear_about_us:checked").length === 0) {
-        isValidSecondStep = false;
-        showError('.how_did_you_hear_about_us:first', 'Please select at least one option for how you heard about us.');
-      } else {
-        removeError('.how_did_you_hear_about_us:first');
-      }
+        // Validate user_team_size 
+        let teamSize = $('#user_team_size').val();
+        if (teamSize === null || teamSize === '') {
+          isValidSecondStep = false;
+          showError('#user_team_size', 'Team size is required.');
+        } else{
+          removeError('#user_team_size');
+        }
 
-      // Validate what_brought_you checkboxes (at least one checked)
-      if ($("input.what_brought_you:checked").length === 0) {
-        isValidSecondStep = false;
-        showError('.what_brought_you:first', 'Please select at least one option for what brought you here.');
-      } else {
-        removeError('.what_brought_you:first');
-      }
+        // Validate user_email_platform (at least one selected)
+        const selectedEmailPlatforms = $("#user_email_platform").val();
+        if (!selectedEmailPlatforms || selectedEmailPlatforms.length === 0) {
+          isValidSecondStep = false;
+          showError('#user_email_platform', 'Please select at least one Email Platform.');
+        } else {
+          removeError('#user_email_platform');
+        }
+
+        // Validate how_did_you_hear_about_us checkboxes (at least one checked)
+        if ($("input.how_did_you_hear_about_us:checked").length === 0) {
+          isValidSecondStep = false;
+          showError(
+            $('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'),
+            'Please select at least one option for how you heard about us.'
+          );
+        } else {
+          removeError($('.how_did_you_hear_about_us:last').closest('.flex.flex-wrap'));
+        }
+
+        // Validate what_brought_you checkboxes (at least one checked)
+        if ($("input.what_brought_you:checked").length === 0) {
+          isValidSecondStep = false;
+          showError(
+            $('.what_brought_you:last').closest('.flex.flex-wrap'),
+            'Please select at least one option for what brought you here.'
+          );
+        } else {
+          removeError($('.what_brought_you:last').closest('.flex.flex-wrap'));
+        }
+
+        if(!isValidSecondStep){
+          e.preventDefault();
+        }else{
+          e.preventDefault(); // prevent default form submission
+          $("#userRegisterFormSubmit").prop('disabled', true).text('Processing...').addClass('spinner');
+          $.ajax({
+            type: 'POST',
+            url: $('#register_url').val(),
+            data: $('#registerUserForm').serialize()
+                  + '&heard_about_us=' + encodeURIComponent(getCheckedValuesAsCSV('how_did_you_hear_about_us'))
+                  + '&what_brought_you=' + encodeURIComponent(getCheckedValuesAsCSV('what_brought_you')),
+            dataType: 'json',
+            success: function(response) {
+              
+              if (response.error === 0 && response.redirect_thnk) {
+                
+                var datalayerRawData = response.datalayer;
+                var datalayer = JSON.parse(datalayerRawData);
+                var transaction_id = datalayer['subscription_id'];
+                var plan_id = datalayer['plan_id'];
+                var plan_name = datalayer['plan_name'];
+                var plan_status = datalayer['plan_status'];
+                var customer_id = datalayer['customer_id'];
+                var subscription_id = datalayer['subscription_id'];
+                var price_id = datalayer['price_id'];
+                var plan_interval = datalayer['plan_interval'];
+                var plan_signaturelimit = datalayer['plan_signaturelimit'];
+                var period_start = datalayer['period_start'];
+                var period_end = datalayer['period_end'];
+                var invoice_amount = datalayer['invoice_amount'];
+                var invoice_link = datalayer['invoice_link'];
+                var apply_coupon = datalayer['apply_coupon'];
+                var auto_renew = datalayer['auto_renew'];
+                var free_trial = datalayer['free_trial'];
+                var plan_cancel = datalayer['plan_cancel'];
+                var item_variant = 'quarterly';
+                if(plan_interval == 'month'){
+                  var item_variant = 'quarterly';
+                }
+                else if(plan_interval == 'year'){
+                  var item_variant = 'yearly';
+                }
+
+                var user_first_name = datalayer['user_data']['user_firstname'];
+                var user_last_name = datalayer['user_data']['user_lastname'];
+                var user_email = datalayer['user_data']['user_email'];
+                var user_phone = datalayer['user_data']['user_phone'];
+                var user_organization = datalayer['user_data']['user_organization'];
+                var user_business = datalayer['user_data']['user_business'];
+                var user_job_title = datalayer['user_data']['user_job_title'];
+                var user_company_size = datalayer['user_data']['user_company_size'];
+                var user_team_size = datalayer['user_data']['user_team_size'];
+                var user_email_platform = datalayer['user_data']['user_email_platform'];
+                var heard_about_us = datalayer['user_data']['heard_about_us'];
+                var what_brought_you = datalayer['user_data']['what_brought_you'];
+
+                $('#user_name').html(datalayer['user_name'])
+                const purchaseEvent = {
+                  event: "purchase",
+                  ecommerce: {
+                    currency: "USD",
+                    value: invoice_amount,
+                    tax: "0.00",
+                    shipping: "0.00",
+                    transaction_id: transaction_id,
+                    affiliation: user_organization,
+                    coupon: "",
+                    items: [
+                      {
+                        item_id : plan_id,
+                        item_name : plan_name,
+                        price : invoice_amount,
+                        quantity: plan_signaturelimit,
+                        item_brand: user_organization,
+                        item_category: 'subscription',
+                        item_variant: item_variant
+                      }
+                    ],
+                    plan_status : plan_status,
+                    customer_id : customer_id,
+                    subscription_id : subscription_id,
+                    price_id : price_id,
+                    plan_interval : plan_interval,
+                    plan_signaturelimit : plan_signaturelimit,
+                    period_start : period_start,
+                    period_end : period_end,
+                    invoice_link : invoice_link,
+                    apply_coupon : apply_coupon,
+                    auto_renew : auto_renew,
+                    free_trial : free_trial,
+                    plan_cancel : plan_cancel
+                  },
+                  user_data: {
+                    first_name: user_first_name,
+                    last_name: user_last_name,
+                    email_hash: user_email,
+                    phone_number_hash: user_phone,
+                    user_organization: user_organization,
+                    user_business: user_business,
+                    user_job_title: user_job_title,
+                    user_company_size: user_company_size,
+                    user_team_size: user_team_size,
+                    user_email_platform: user_email_platform,
+                    heard_about_us: heard_about_us,
+                    what_brought_you: what_brought_you,
+                  },
+                  ga4_event_parameters: {
+                    signature_limit: plan_signaturelimit,
+                    plan_interval: plan_interval
+                  }
+                };
+                // Push to dataLayer
+                dataLayer.push(purchaseEvent);
+
+                // Redirect to the URL from the server
+                window.location.href = response.redirect_thnk;
+              }
+              
+              if(response.error === 1){
+                window.location.href = response.redirect_url;
+              }
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', error);
+            }
+          });
+        }
+      });
 
       
-      debugger;
-      if(!isValidSecondStep){
+      $("#next2").on("click", function (e) {
         e.preventDefault();
-      }else{
-        e.preventDefault(); // prevent default form submission
-        $("#userRegisterFormSubmit").prop('disabled', true).text('Processing...').addClass('spinner');
-        $.ajax({
-          type: 'POST',
-          url: $('#register_url').val(),
-          data: $('#registerUserForm').serialize()
-                + '&heard_about_us=' + encodeURIComponent(getCheckedValuesAsCSV('how_did_you_hear_about_us'))
-                + '&what_brought_you=' + encodeURIComponent(getCheckedValuesAsCSV('what_brought_you')),
-          dataType: 'json',
-          success: function(response) {
-            
-            if (response.error === 0 && response.redirect_thnk) {
-              
-              var datalayerRawData = response.datalayer;
-              var datalayer = JSON.parse(datalayerRawData);
-              var transaction_id = datalayer['subscription_id'];
-              var plan_id = datalayer['plan_id'];
-              var plan_name = datalayer['plan_name'];
-              var plan_status = datalayer['plan_status'];
-              var customer_id = datalayer['customer_id'];
-              var subscription_id = datalayer['subscription_id'];
-              var price_id = datalayer['price_id'];
-              var plan_interval = datalayer['plan_interval'];
-              var plan_signaturelimit = datalayer['plan_signaturelimit'];
-              var period_start = datalayer['period_start'];
-              var period_end = datalayer['period_end'];
-              var invoice_amount = datalayer['invoice_amount'];
-              var invoice_link = datalayer['invoice_link'];
-              var apply_coupon = datalayer['apply_coupon'];
-              var auto_renew = datalayer['auto_renew'];
-              var free_trial = datalayer['free_trial'];
-              var plan_cancel = datalayer['plan_cancel'];
-              var item_variant = 'quarterly';
-              if(plan_interval == 'month'){
-                var item_variant = 'quarterly';
-              }
-              else if(plan_interval == 'year'){
-                var item_variant = 'yearly';
-              }
+        if (validateStep(2)) showStep(3);
+      });
 
-              var user_first_name = datalayer['user_data']['user_firstname'];
-              var user_last_name = datalayer['user_data']['user_lastname'];
-              var user_email = datalayer['user_data']['user_email'];
-              var user_phone = datalayer['user_data']['user_phone'];
-              var user_organization = datalayer['user_data']['user_organization'];
-
-              $('#user_name').html(datalayer['user_name'])
-              const purchaseEvent = {
-                event: "purchase",
-                ecommerce: {
-                  currency: "USD",
-                  value: invoice_amount,
-                  tax: "0.00",
-                  shipping: "0.00",
-                  transaction_id: transaction_id,
-                  affiliation: user_organization,
-                  coupon: "",
-                  items: [
-                    {
-                      item_id : plan_id,
-                      item_name : plan_name,
-                      price : invoice_amount,
-                      quantity: plan_signaturelimit,
-                      item_brand: user_organization,
-                      item_category: 'subscription',
-                      item_variant: item_variant
-                    }
-                  ],
-                  plan_status : plan_status,
-                  customer_id : customer_id,
-                  subscription_id : subscription_id,
-                  price_id : price_id,
-                  plan_interval : plan_interval,
-                  plan_signaturelimit : plan_signaturelimit,
-                  period_start : period_start,
-                  period_end : period_end,
-                  invoice_link : invoice_link,
-                  apply_coupon : apply_coupon,
-                  auto_renew : auto_renew,
-                  free_trial : free_trial,
-                  plan_cancel : plan_cancel
-                },
-                user_data: {
-                  first_name: user_first_name,
-                  last_name: user_last_name,
-                  email_hash: user_email,
-                  phone_number_hash: user_phone
-                },
-                ga4_event_parameters: {
-                  signature_limit: plan_signaturelimit,
-                  plan_interval: plan_interval
-                }
-              };
-
-              // Push to dataLayer
-              dataLayer.push(purchaseEvent);
-
-
-              // Redirect to the URL from the server
-              window.location.href = response.redirect_thnk;
-            }
-          },
-          error: function(xhr, status, error) {
-            console.error('Error:', error);
-          }
-        });
-      }
-    });
-
-    
-    $("#next2").on("click", function (e) {
-      e.preventDefault();
-      if (validateStep(2)) showStep(3);
-    });
-
-    $("#back2").on("click", function (e) {
-      e.preventDefault();
-      if($(`[data-step="1"]`).is(":visible")){
-        window.location.href = "%%DEFINE_ROOT_LINK%%/signin";
-        return;
-      }
-      showStep(1);
-    });
-  });
+      $("#back2").on("click", function (e) {
+        e.preventDefault();
+        if($(`[data-step="1"]`).is(":visible")){
+          window.location.href = "%%DEFINE_ROOT_LINK%%/signup/verifyemail";
+          return;
+        }
+        showStep(1);
+      });
 </script>

@@ -3,8 +3,6 @@
 <div class="flex w-full">
   <div class="flex gap-10 w-7/12 flex-col p-8 lg:p-10">
     <div class="flex-1 flex flex-col">
-
-
       <div class="flex-1 flex flex-col">
         <div class="max-w-[600px] w-full mx-auto progress-boxes">
           <div class="flex items-center gap-2 mb-8 cursor-pointer" id="back2">
@@ -15,11 +13,10 @@
         <form id="wizard" class="flex-1 flex flex-col" novalidate>
           <!-- STEP 1 -->
           <div class="flex-1 step" data-step="1">
-
-            <div class="h-full flex flex-col">
-              <div class="flex-1 max-w-[600px] w-full mx-auto">
+            <div class="h-full flex flex-col group">
+              <div class="flex-1 max-w-[600px] w-full mx-auto mt-4">
                 <div>
-                  <h5 class="text-gray-950 text-2xl font-medium">Upload Company Logo</h5>
+                  <h5 class="text-gray-950 text-2xl font-medium mb-2">Upload Company Logo</h5>
                   <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
                 </div>
                 <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
@@ -29,7 +26,6 @@
                 <div class="flex flex-col gap-4">
                   <div>
                     <label class="kt-form-label">Company Logo</label>
-
                     <input class="hidden" type="file" id="companyLogo">
                     <label for="companyLogo"
                       class="w-full bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[225px]">
@@ -83,7 +79,7 @@
             <div class="h-full flex flex-col">
               <div class="flex-1 max-w-[600px] w-full mx-auto">
                 <div>
-                  <h5 class="text-gray-950 text-2xl font-medium">Just a couple more questions.</h5>
+                  <h5 class="text-gray-950 text-2xl font-medium mb-2">Just a couple more questions.</h5>
                   <p class="text-gray-500">Please tell us about yourself so we can create better experience for you.</p>
                 </div>
                 <div class="grid grid-cols-2 gap-2 my-6 mx-auto">
@@ -197,8 +193,6 @@
     </div>
   </div>
 </div>
-
-
 
 %%DEFINE_FOOTER%%
 

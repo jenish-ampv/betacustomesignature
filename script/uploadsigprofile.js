@@ -59,7 +59,7 @@ ui(function() {
                     <span class="text-sm">Uploading...</span>
                     <i class="fas fa-circle-notch fa-spin"></i>
                 </div>`);
-            ui('.croppie-buttons').addClass('disabled-button');
+            ui('.croppie-buttons').addClass('cursor-not-allowed opacity-50 pointer-events-none');
 
         uploadData1(fd);
     });
@@ -113,7 +113,7 @@ function addThumbnail1(data, isdragndrop = false){
               <input type="hidden" name="signature_profile" value="${name}">
             </div>
           `);
-          ui('.croppie-buttons').removeClass('disabled-button');
+          ui('.croppie-buttons').removeClass('cursor-not-allowed opacity-50 pointer-events-none');
 		ui("#nxt2").prop('disabled', false);
         ui('.signature_profile').attr("src",src+'?rand='+number);
 		ui("#img_errormsg2").html('');

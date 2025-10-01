@@ -78,6 +78,9 @@ class CIT_REGISTER
 		if($_REQUEST['category_id'] =='stripe' && $_REQUEST['id'] =='web-hook'){ // STRIPE WEBHOOK
 			$this->StripeWebhook(); exit;
 		}
+		if(!$_REQUEST['category_id']){
+			GetFrontRedirectUrl(GetUrl(array('module'=>'signup','category_id'=>'verifyemail')));
+		}
 
 		if($_REQUEST['category_id'] =='verifyemail'){ // verifyemail 
 			$this->verifyEmail(); exit;
@@ -268,7 +271,7 @@ class CIT_REGISTER
 					$message= _getEmailTemplate('forget_password');
 					$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					if($send_mail){
-						$_SESSION[GetSession('Error')] ='<div class="alert alert-success"><strong> Success! </strong>password reset link sent to your register email address!</div>';
+						$_SESSION[GetSession('Error')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong> Success! </strong>password reset link sent to your register email address!</div>';
 					}else{
 						$_SESSION[GetSession('Error')] ='<div class="alert alert-danger" id="wrong"><strong> Failure! </strong>please enter email address associate with your account!</div>';
 					}
@@ -332,10 +335,11 @@ class CIT_REGISTER
 									}
 								}
 							    unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-								$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+								$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 								$message= _getEmailTemplate('welcome');
 								$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
-								$this->AddgohiLevelContact();
+								// $this->AddgohiLevelContact();
+								$this->AddBrevoContact();
 								
 								$dataLayerData = [];
 								$userSubscriptionData = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE `user_id`= ?",array($insert_id));
@@ -364,6 +368,13 @@ class CIT_REGISTER
 								$dataLayerData['user_data']["user_email"] = (isset($userData["user_email"]) && !empty($userData["user_email"])) ? hash('sha256', $userData["user_email"]) : null;
 								$dataLayerData['user_data']["user_phone"] = (isset($userData["user_phone"]) && !empty($userData["user_phone"])) ? hash('sha256', $userData["user_phone"]) : null;
 								$dataLayerData['user_data']["user_organization"] = $userData["user_organization"];
+								$dataLayerData['user_data']["user_business"] = $userData["user_business"];
+								$dataLayerData['user_data']["user_job_title"] = $userData["user_job_title"];
+								$dataLayerData['user_data']["user_company_size"] = $userData["user_company_size"];
+								$dataLayerData['user_data']["user_team_size"] = $userData["user_team_size"];
+								$dataLayerData['user_data']["user_email_platform"] = $userData["user_email_platform"];
+								$dataLayerData['user_data']["heard_about_us"] = $userData["heard_about_us"];
+								$dataLayerData['user_data']["what_brought_you"] = $userData["what_brought_you"];
 								
 								$datalayer = json_encode($dataLayerData);
 								$redirect_thnk = GetUrl(array('module'=>'thanks')).'/register?customer_id='.$insert_id.'&datalayer='.$datalayer;
@@ -418,7 +429,7 @@ class CIT_REGISTER
 			 $GLOBALS['plan_unit'] = 1;
 			 $GLOBALS['free_trial'] =0; 
 		}
-		$GLOBALS['freet_display'] = $_SESSION['free_trial'] == 1 ? '' : 'd-none';
+		$GLOBALS['freet_display'] = $_SESSION['free_trial'] == 1 ? '' : 'hidden';
 		$GLOBALS['chnage_planlink'] = $_SESSION['free_trial'] == 1 ? $GLOBALS['linkModulePricing'] : 'javascript:void(0);';
 
 
@@ -465,9 +476,9 @@ class CIT_REGISTER
 			$otp = $_POST['digit-1'].$_POST['digit-2'].$_POST['digit-3'].$_POST['digit-4'].$_POST['digit-5'].$_POST['digit-6'];
 			if($otp == $_SESSION[GetSession('ve_otp')]){
 				$_SESSION[GetSession('ve_otpverify')] = $otp;
-				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'userdetails','email'=>bin2hex($_SESSION[GetSession('ve_email')]))));
+				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'userdetails','email'=>bin2hex($_SESSION[GetSession('ve_email')]),'password'=>bin2hex($_SESSION[GetSession('ve_password')]))));
 			}else{
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> code not match!.</div>';
+				$_SESSION[GetSession('Error')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> code not match!.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}
 		}
@@ -480,10 +491,10 @@ class CIT_REGISTER
 			$message= _getEmailTemplate('register_verify_email');
 			$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 			if($send_mail){
-				$_SESSION[GetSession('Success')]='<div class="alert alert-success" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
+				$_SESSION[GetSession('Success')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong> OTP sent to your email account!.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}else{
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again!.</div>';
+				$_SESSION[GetSession('Error')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> mail not sent try again!.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 			}
 		}
@@ -491,16 +502,17 @@ class CIT_REGISTER
 		// send otp
 		if($_POST['ve_email']){
 			$user_email = $_POST['ve_email'];
+			$user_password = $_POST['ve_password'];
 
 			$rowVE = $GLOBALS['DB']->row("SELECT * FROM `registerusers` WHERE user_email = ?",array($user_email));
 			$rowVESubUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers_sub_users` WHERE email = ?",array($user_email));
 			
 			if($rowVE){
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+				$_SESSION[GetSession('Error')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));
 			}
 			else if($rowVESubUser){
-				$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
+				$_SESSION[GetSession('Error')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));
 			}
 			else{
@@ -508,14 +520,15 @@ class CIT_REGISTER
 				$GLOBALS['veotp'] = rand(100000,999999);
 				$_SESSION[GetSession('ve_otp')] = $GLOBALS['veotp'];
 				$_SESSION[GetSession('ve_email')] = $user_email;
+				$_SESSION[GetSession('ve_password')] = $user_password;
 				$to = $user_email;
 				$message= _getEmailTemplate('register_verify_email');
 				$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 				if($send_mail){
-					$_SESSION[GetSession('Success')]='<div class="alert alert-success" id="success"><strong>Success!</strong> OTP sent to your email account!.</div>';
+					$_SESSION[GetSession('Success')]='<div class="success-error-message fixed top-3 right-3"><div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg" id="success"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success!</strong> OTP sent to your email account!.</div></div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 				}else{
-					$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> mail not sent try again!.</div>';
+					$_SESSION[GetSession('Error')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> mail not sent try again!.</div></div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'])));
 				}
 			}
@@ -540,9 +553,10 @@ class CIT_REGISTER
 	public function userDetails() {
 		if(isset($_REQUEST['id'])){
 			$GLOBALS['USER_EMAIL'] = hex2bin($_REQUEST['id']);
+			$GLOBALS['USER_PASSWORD'] = hex2bin($_REQUEST['subid']);
 		}
 		else{
-			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> something went wrong, try again later.</div>';
+			$_SESSION[GetSession('Error')]='<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> something went wrong, try again later.</div></div>';
 			GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>$_REQUEST['category_id'],'id'=>'otp')));
 		}
 		$GLOBALS['STRIPE_PUBLISHABLE_KEY'] = GetConfig('STRIPE_PUBLISHABLE_KEY');
@@ -563,14 +577,18 @@ class CIT_REGISTER
 		$rowSubUser = $GLOBALS['DB']->row("SELECT * FROM `registerusers_sub_users` WHERE email = ?",array($postData['register_user_email']));
 		
 		if($rowUser){
-			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
-			GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			$_SESSION[GetSession('Error')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
+			$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			header('Content-Type: application/json');
+			echo json_encode($returnData);exit();
 		}
 		else if($rowSubUser){
-			$_SESSION[GetSession('Error')]='<div class="alert alert-danger"><strong>Fail!</strong> email address already registered!</div>';
-			GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			$_SESSION[GetSession('Error')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> email address already registered!</div></div>';
+			$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+			header('Content-Type: application/json');
+			echo json_encode($returnData);exit();
 		}
-		$user_password = md5($postData['user_password']);
+		$user_password = md5($postData['register_user_password']);
 		$data =array('user_firstname'=>trim($postData['user_first_name']),'user_lastname'=>trim($postData['user_last_name']),'user_email'=>trim(strtolower($postData['register_user_email'])),'user_phone'=>$postData['user_phone'],'user_password'=>$user_password,'user_organization'=>trim($postData['user_organization']),'user_business'=>$postData['user_business'],'user_company_size'=>$postData['user_company_size'],'user_job_title'=>$postData['user_job_title'],'user_team_size'=>$postData['user_team_size'],'user_email_platform'=>$postData['user_email_platform'],'heard_about_us'=>$postData['heard_about_us'],'what_brought_you'=>$postData['what_brought_you'],'user_ip'=>$_SERVER['REMOTE_ADDR'],'user_planactive'=>1);
 
 		$insert_id = $GLOBALS['DB']->insert("registerusers",$data);
@@ -579,19 +597,27 @@ class CIT_REGISTER
 			$GLOBALS['DB']->insert("registerusers_subscription",$dataSubscription);
 			if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/".$insert_id)) {
 				if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/".$insert_id)) {
-					die("\"temp\" folder not created. Permission problem.......");
+					die();
+					$_SESSION[GetSession('Error')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> temp folder not created. Permission problem.</div></div>';
+					$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+					header('Content-Type: application/json');
+					echo json_encode($returnData);exit();
 				}
 			}
 			if (!is_dir(GetConfig('SITE_UPLOAD_PATH') . "/signature/complete/".$insert_id)) {
 				if (!mkdir(GetConfig('SITE_UPLOAD_PATH')."/signature/complete/".$insert_id)) {
-					die("\"temp\" folder not created. Permission problem.......");
+					$_SESSION[GetSession('Error')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Fail!</strong> temp folder not created. Permission problem.</div></div>';
+					$returnData = array('error'=>1,'redirect_url'=>GetUrl(array('module'=>$_REQUEST['module'],'category_id'=>'verifyemail')));
+					header('Content-Type: application/json');
+					echo json_encode($returnData);exit();
 				}
 			}
 			unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-			$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+		$_SESSION[GetSession('Success')] ='<div class="success-error-message fixed top-0 right-0 p-3"><div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signup success signin to create new signature</div></div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($_POST['user_email'],'',$GLOBALS['EMAIL_SUBJECT'],$message);
-			$this->AddgohiLevelContact();
+			// $this->AddgohiLevelContact();
+			$this->AddBrevoContact();
 			
 			$dataLayerData = [];
 			$userSubscriptionData = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE `user_id`= ?",array($insert_id));
@@ -620,7 +646,14 @@ class CIT_REGISTER
 			$dataLayerData['user_data']["user_email"] = (isset($userData["user_email"]) && !empty($userData["user_email"])) ? hash('sha256', $userData["user_email"]) : null;
 			$dataLayerData['user_data']["user_phone"] = (isset($userData["user_phone"]) && !empty($userData["user_phone"])) ? hash('sha256', $userData["user_phone"]) : null;
 			$dataLayerData['user_data']["user_organization"] = $userData["user_organization"];
-			
+			$dataLayerData['user_data']["user_business"] = $userData["user_business"];
+			$dataLayerData['user_data']["user_job_title"] = $userData["user_job_title"];
+			$dataLayerData['user_data']["user_company_size"] = $userData["user_company_size"];
+			$dataLayerData['user_data']["user_team_size"] = $userData["user_team_size"];
+			$dataLayerData['user_data']["user_email_platform"] = $userData["user_email_platform"];
+			$dataLayerData['user_data']["heard_about_us"] = $userData["heard_about_us"];
+			$dataLayerData['user_data']["what_brought_you"] = $userData["what_brought_you"];
+
 			$datalayer = json_encode($dataLayerData);
 			$redirect_thnk = GetUrl(array('module'=>'thanks'));
 			$returnData = array('error'=>0,'redirect_thnk'=>$redirect_thnk,'datalayer'=>$datalayer);
@@ -704,10 +737,11 @@ class CIT_REGISTER
 				}
 			}
 				unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-			$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+			$_SESSION[GetSession('Success')] ='<div class="success-error-message fixed top-0 right-0 p-3"><div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signup success signin to create new signature</div></div>';
 			$message= _getEmailTemplate('welcome');
 			$send_mail = _SendMail($postData->user_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
-			$this->AddgohiLevelContact();
+			// $this->AddgohiLevelContact();
+			$this->AddBrevoContact();
 			
 			$dataLayerData = [];
 			$userSubscriptionData = $GLOBALS['DB']->row("SELECT * FROM `registerusers_subscription` WHERE `user_id`= ?",array($insert_id));
@@ -760,7 +794,7 @@ class CIT_REGISTER
 	// 		}else{
 	// 			$selected ='';
 	// 		}
-	// 		$GLOBALS['plan_list'] .='<div class="signature_layot"><input type="radio" name="plan_id" id="plan_id'.$plan_row['plan_id'].'" class="d-none imgbgchk" value="'.$plan_row['plan_id'].'" '.$selected.' required="required"><label for="plan_id'.$plan_row['plan_id'].'" class="changeprice" data-price="'.$plan_price.'"><div class="order_details_box border-price"> <div class="text"><h6>'.$plan_row['plan_name'].' ('.$plan_row['plan_type'].')</h6></div> <div class="text"><h6>'.$plan_price.' USD<br><span>'.$plan_price.' USD</span></h6> </div></div> <div class="tick_container"><div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div></div></label></div>';
+	// 		$GLOBALS['plan_list'] .='<div class="signature_layot"><input type="radio" name="plan_id" id="plan_id'.$plan_row['plan_id'].'" class="hidden imgbgchk" value="'.$plan_row['plan_id'].'" '.$selected.' required="required"><label for="plan_id'.$plan_row['plan_id'].'" class="changeprice" data-price="'.$plan_price.'"><div class="order_details_box border-price"> <div class="text"><h6>'.$plan_row['plan_name'].' ('.$plan_row['plan_type'].')</h6></div> <div class="text"><h6>'.$plan_price.' USD<br><span>'.$plan_price.' USD</span></h6> </div></div> <div class="tick_container"><div class="tick"><img src="'.$GLOBALS['IMAGE_LINK'].'/images/right-icon.png" alt=""></div></div></label></div>';
 	// 	}
 	// }
 
@@ -806,8 +840,8 @@ class CIT_REGISTER
 					 $GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					  $GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					 $GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					 $offper = $plantype == 'year' ? '<span class="offper">Saving 20%</span>' : '';
 					 
 					 if($selplan_id %2 == 0){ // pro plan
@@ -819,13 +853,13 @@ class CIT_REGISTER
 					 if( $_SESSION['free_trial'] == 1){
 						 $GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 						 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)  <b style="float:none;"><span class="offper">7 Day Free Trial</b></span><b><span class="month_basicprice">7 Day Free</span></b></h6>  
-						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice" style="text-decoration-line:none;"><span>Then $'.$GLOBALS['plan_price_hiden'].'/'.$plantype.' after trial</span></div></div>
+						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through" style="text-decoration-line:none;"><span>Then $'.$GLOBALS['plan_price_hiden'].'/'.$plantype.' after trial</span></div></div>
 						 <ul><li>Static Logo (Upgrade Trial to Animate)</li><li>Animated Icon</li><li>Pro Layouts</li><li>Full Dashboard Suite</li></ul>
 					   </div>';
 					 }else{
 					 	$GLOBALS['selected_plan'] = '<div class="order_details_box border-price">
 						 <h6>'.$planRow['plan_name'].' ('.ucfirst($plantype).'ly)  <b>'.$freetrial_text.' '. $offper.'$<span class="month_basicprice">'.$plan_selprice.'</span> /mo</b></h6>  
-						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice">$<span>'.$plan_selpricespl.'</span></div></div>
+						 <div class="text_price"><span>'.$selunit.'</span> Signature <div class="monthprice line-through">$<span>'.$plan_selpricespl.'</span></div></div>
 						 <ul>'.$plan_text.'</ul>
 					   </div>';
 					 }
@@ -1115,7 +1149,6 @@ class CIT_REGISTER
 		
 		$GLOBALS['DB']->insert("stripe_webhook",$data);
 		
-		
 		switch ($event->type) {
 			case 'invoice.payment_succeeded': // subscription create success
 			 	$paymentIntent = $event->data->object;	
@@ -1136,7 +1169,7 @@ class CIT_REGISTER
 				$invoice_no = $paymentIntent->id;
 				
 				$memRow = $GLOBALS['DB']->row("SELECT * FROM registerusers RU LEFT JOIN registerusers_subscription SU ON RU.user_id = SU.user_id WHERE RU.user_id=?",array($userId));
-					
+				
 				if($memRow['user_status'] == 0){
 					$updateResult = $GLOBALS['DB']->update('registerusers',array('user_status' => 1),array('user_id'=>$memRow['user_id']));
 					if($updateResult){
@@ -1236,7 +1269,7 @@ class CIT_REGISTER
 					}
 				}
 				if($memRow['user_id']){
-					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'period_start' => $start_time,'period_end' => $end_time,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
+					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'plan_signaturelimit' => $planUnit ,'period_start' => $start_time,'period_end' => $end_time,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
 					$where = array('user_id'=>$userId);
 					$add = $GLOBALS['DB']->update('registerusers_subscription',$data,$where);
 					
@@ -1244,6 +1277,9 @@ class CIT_REGISTER
 					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'period_start' => $start_time,'period_end' => $end_time,'apply_coupon'=>$coupon_id,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
 					$add = $GLOBALS['DB']->insert("registerusers_subscription",$data);
 				}
+				$userPlanData = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE `plan_priceid`= ?",array($plan_id));
+				$GLOBALS['plan_name'] = $userPlanData["plan_name"];
+				$GLOBALS['plan_type'] = ucfirst($userPlanData["plan_type"]);
 				$GLOBALS['amount_paid'] = GetPriceFormat($amount_paid / 100);
 				$GLOBALS['payment_date'] = date('M d, Y');
 				$GLOBALS['renew_date'] = date('M d, Y',$end_time);
@@ -1863,6 +1899,9 @@ class CIT_REGISTER
 					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'period_start' => $start_time,'period_end' => $end_time,'apply_coupon'=>$coupon_id,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
 					$add = $GLOBALS['DB']->insert("registerusers_subscription",$data);
 				}
+				$userPlanData = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE `plan_priceid`= ?",array($plan_id));
+				$GLOBALS['plan_name'] = $userPlanData["plan_name"];
+				$GLOBALS['plan_type'] = ucfirst($userPlanData["plan_type"]);
 				$GLOBALS['amount_paid'] = GetPriceFormat($amount_paid / 100);
 				$GLOBALS['payment_date'] = date('M d, Y');
 				$GLOBALS['renew_date'] = date('M d, Y',$end_time);
@@ -1891,6 +1930,14 @@ class CIT_REGISTER
 			$gh_lastname = $parts[1];
 			$gh_email = $_POST['user_email'];
 			$gh_org = $_POST['user_organization'];
+			$gh_user_business = $_POST['user_business'];
+			$gh_user_company_size = $_POST['user_company_size'];
+			$gh_user_job_title = $_POST['user_job_title'];
+			$gh_user_team_size = $_POST['user_team_size'];
+			$gh_user_email_platform = $_POST['user_email_platform'];
+			$gh_heard_about_us = $_POST['heard_about_us'];
+			$gh_what_brought_you = $_POST['what_brought_you'];
+
 
 			// retrive user if already exist on gohighlevel by email start
 			$curlForExistingContact = curl_init();
@@ -1960,6 +2007,13 @@ class CIT_REGISTER
 				"firstName": "'.$gh_firstname.'",
 				"lastName": "'.$gh_lastname.'",
 				"companyName": "'.$gh_org.'",
+				"businessName": "'.$gh_user_business.'",
+				"companySize": "'.$gh_user_company_size.'",
+				"jobTitle": "'.$gh_user_job_title.'",
+				"teamSize": "'.$gh_user_team_size.'",
+				"emailPlatform": "'.$gh_user_email_platform.'",
+				"heardAboutUs": "'.$gh_heard_about_us.'",
+				"whatBroughtYou": "'.$gh_what_brought_you.'",
 				"website": "'.$GLOBALS['SITE_TITLE'].'",
 				"tags": '. $tagsArrayStr.',
 				"source": "public api"
@@ -2098,6 +2152,94 @@ class CIT_REGISTER
 			$api_error = $e->getMessage();  
 		} 
 	}
+
+	private function AddBrevoContact(){
+		if($_POST['register_user_email'] != "" && ($_POST['user_first_name'] !="" || $_POST['user_last_name'] !="")){
+			$gh_firstname = $_POST['user_first_name']; 
+			$gh_lastname = $_POST['user_last_name'];
+			$gh_email = $_POST['register_user_email'];
+			$gh_phone = $_POST['user_phone'];
+			$gh_org = $_POST['user_organization'];
+			$gh_user_business = $_POST['user_business'];
+			$gh_user_company_size = $_POST['user_company_size'];
+			$gh_user_job_title = $_POST['user_job_title'];
+			$gh_user_team_size = $_POST['user_team_size'];
+			$gh_user_email_platform = $_POST['user_email_platform'];
+			$gh_heard_about_us = $_POST['heard_about_us'];
+			$gh_what_brought_you = $_POST['what_brought_you'];
+
+			// New tags to add
+			$newTags = ['lead', 'trial-user', 'marketing'];
+
+			//Get existing tags
+			$curl = curl_init();
+			curl_setopt_array($curl, [
+				CURLOPT_URL => 'https://api.brevo.com/v3/contacts/' . urlencode($email),
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_HTTPHEADER => [
+					'accept: application/json',
+					'api-key: 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'
+				]
+			]);
+			$response = curl_exec($curl);
+			if (curl_errno($curl)) {
+				echo 'Curl error (GET): ' . curl_error($curl);
+				exit;
+			}
+			curl_close($curl);
+
+			$data = json_decode($response, true);
+			$oldTags = [];
+			if (isset($data['tags']) && is_array($data['tags'])) {
+				$oldTags = $data['tags'];
+			}
+
+			//Merge old and new tags, remove duplicates
+			$mergedTags = array_unique(array_merge($oldTags, $newTags));
+			$tagsArrayStr = json_encode(implode(',', $mergedTags));
+			$tagsArrayStr = str_replace('"', '', $tagsArrayStr);
+			// Create/Update New Customer
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_URL => 'https://api.brevo.com/v3/contacts',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING => '',
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS => '{
+					"email": "'.$gh_email.'",
+					"attributes": {
+						"FIRSTNAME": "'.$gh_firstname.'",
+						"LASTNAME": "'.$gh_lastname.'",
+						"SMS": "+91'.$gh_phone.'",
+						"COMPANYNAME": "'.$gh_org.'",
+						"BUSINESSNAME": "'.$gh_user_business.'",
+						"COMPANYSIZE": "'.$gh_user_company_size.'",
+						"JOB_TITLE": "'.$gh_user_job_title.'",
+						"TEAMSIZE": "'.$gh_user_team_size.'",
+						"EMAILPLATFORM": "'.$gh_user_email_platform.'",
+						"HEARDABOUTUS": "'.$gh_heard_about_us.'",
+						"WHATBROUGHTYOU": "'.$gh_what_brought_you.'",
+						"WEBSITE": "'.$GLOBALS['SITE_TITLE'].'",
+						"TAGS": "'.$tagsArrayStr.'"
+					},
+					"updateEnabled": true
+				}',
+				CURLOPT_HTTPHEADER => array(
+					'accept: application/json',
+					'api-key: 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',
+					'content-type: application/json'
+				),
+			));
+			$response = curl_exec($curl);
+			curl_close($curl);
+			// echo '<pre>'; print_r($response); echo '</pre>'; exit('<br>pre exit');
+		}
+	}
+
 }
 
 ?>

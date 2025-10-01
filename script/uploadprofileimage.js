@@ -50,12 +50,9 @@ ui(function() {
     // file selected
     ui("#file").change(function(){
         var fd = new FormData();
-
         var files = ui('#file')[0].files[0];
-
         fd.append('file',files);
 		ui("#img_preview").html('<div class="img_preview_box"><div class="d-flex align-items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
-
         uploadData(fd);
     });
 	
@@ -97,12 +94,12 @@ function addThumbnail(data){
 		var number = Math.random() * 100;
 		// Creating an thumbnail
 	   // ui("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
-		ui("#uploadfile").append('<div class="edit_profile_img"> <img src="'+src+'?rand='+number+'"></div>');
-		ui("#img_preview").append(' <div class="img_preview_box"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
+		ui("#uploadfile").append('<div class="edit_profile_img size-24 relative overflow-hidden mx-auto rounded-full"> <img src="'+src+'?rand='+number+'"></div>');
+		ui("#img_preview").append(' <div class="img_preview_box flex gap-2 items-center mb-3"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
 		ui("#nxt2").prop('disabled', false);
 		ui("#img_errormsg").html('');
 	}else{
-		ui("#img_errormsg").html('<div class="alert alert-danger" role="alert">'+data.msg+'</div>');
+		ui("#img_errormsg").html('<div class="alert alert-danger mb-2" role="alert">'+data.msg+'</div>');
 		ui("#img_preview").empty();
 		
 	}
@@ -113,7 +110,7 @@ function removeImage(){
 	ui("#nxt2").prop('disabled', true);
 	ui("#uploadfile").empty();
 	ui("#img_preview").empty();
-	ui("#uploadfile").append('<div class="edit_profile_img"><img src="'+image_link+'/images/profile-img.png" alt=""><div class="icon"><a href="javascript:void(0);"><img src="'+image_link+'/images/edit-profile-icon.svg" width="24" alt=""></a></div></div>');
+	ui("#uploadfile").append('<div class="edit_profile_img size-24 relative overflow-hidden mx-auto rounded-full"><img src="'+image_link+'/images/profile-img.png" alt=""><div class="icon"><a href="javascript:void(0);"><img src="'+image_link+'/images/edit-profile-icon.svg" width="24" alt=""></a></div></div>');
 }
 
 // Bytes conversion

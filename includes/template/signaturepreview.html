@@ -1,16 +1,44 @@
 %%DEFINE_HEADER%%
 <!-- <div class="loader-image" style="display: block;"><img src="http://127.0.0.1/esignature-local//images/loading-2.gif" alt=""></div> -->
-<div class="loader-popup loader-image" style="display: block;">
-   <div class="progress_in_signature_bg">
-      <div class="import_signature_preview_box">
-        %%DEFINE_signature_outlook_imported%%
-        <div class="popup_loading"><img src="%%DEFINE_IMAGE_LINK%%/images/Process_Loader_1.gif" alt=""></div>
-      </div>
-    </div> 
+<!-- <div class="loader-popup loader-image" style="display: block;"> -->
+
+
+
+<div class="import_signature_preview_box opacity-0 absolute">
+  %%DEFINE_signature_outlook_imported%%
 </div>
+<div class="loader-image fixed inset-0 top-0 left-0 bg-black/50 backdrop-blur-xs z-[100]">
+  <div class="size-full flex flex-col items-center justify-center">
+    <div class="bg-white border border-gray-300 rounded-2xl p-3 flex gap-2 min-w-60">
+      <div class="border border-gray-100 bg-gray-50 p-1 flex flex-col gap-1 rounded">
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+        <div class="size-4 rounded bg-gray-200"></div>
+      </div>
+      <div class="flex flex-col justify-center pr-3">
+        <div class="h-5 bg-gray-200 rounded-full w-16"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-2.5 [animation:width_1s_ease-in-out_infinite]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-1 [animation:width2_1s_ease-in-out_infinite]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-2.5 [animation:width_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-1 [animation:width2_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+        <div class="h-2 bg-gray-200 rounded-full mt-1 [animation:width_1s_ease-in-out_infinite]"></div>
+      </div>
+      <div class="flex gap-1.5 justify-center items-center px-4">
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height_1s_ease-in-out_infinite]"></div>
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height2_1s_ease-in-out_infinite]"></div>
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+        <div class="w-2.5 bg-gray-200 rounded-full [animation:height2_1s_ease-in-out_infinite] [animation-delay:.2s]"></div>
+      </div>
+    </div>
+    <!-- <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt=""> -->
+  </div>
+</div>
+
 <div id="snackbar"></div>
-<div id="snackbar-error"></div>
-<div id="snackbar-info"></div>
+<div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
+<div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
 
 <input type="hidden" id="signature_save_html_url" value="%%DEFINE_sig_save_html_url%%" />
 <input type="hidden" id="redirecturl" value="%%DEFINE_link_redirect%%" />
@@ -19,9 +47,9 @@
 
 <script src="%%DEFINE_JS_LINK%%/jquery-3.5.1.min.js"></script>
 <script src="%%DEFINE_JS_LINK%%/heapbox.min.js"></script>
+
 <script type="text/javascript">
   $(document).ready(function(){
-
 
     var root_link = $('#root_link').val();
     var upload_link = $('#upload_link').val();
@@ -43,8 +71,7 @@
           url: url,
           data:{html: signatureHtml}
         }).done(function(data) {
-
-            // $('#snackbar').html('<div class="alert alert-success"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved!</div>');
+            // $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved!</div>');
             // $('#snackbar').show();
             // setTimeout(function(){ $('#snackbar').hide(); }, 2000);
             importedSignature++;
@@ -216,8 +243,6 @@
     }
 
     function copyCtaBtnForImportProcess(){
-
-
       for (let index = 0; index < signtureCtabtnCopyFromId.length; ++index) {
 
         copy_from_signature_id = signtureCtabtnCopyFromId[index];
@@ -251,7 +276,6 @@
         });
 
       }
-      
     }
 
   });

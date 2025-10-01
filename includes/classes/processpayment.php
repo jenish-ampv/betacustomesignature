@@ -94,7 +94,7 @@ class CIT_PROCESSPAYMENT
 					}
 				}
 			    unset($_SESSION['plan_id']); unset($_SESSION['plan_unit']);
-				$_SESSION[GetSession('Success')] ='<div class="alert alert-success"><strong>Success! </strong>Signup success signin to create new signature</div>';
+				$_SESSION[GetSession('Success')] ='<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signup success signin to create new signature</div>';
 				$message= _getEmailTemplate('welcome');
 				$send_mail = _SendMail($email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 				$this->AddgohiLevelContact();
@@ -203,8 +203,8 @@ class CIT_PROCESSPAYMENT
 					 $GLOBALS['plan_format_pricespl'] = GetPriceFormat($plan_selpricespl *$mulperiod);
 					  $GLOBALS['plan_format_savings'] = GetPriceFormat(($plan_selpricespl * $mulperiod) -($plan_selprice * $mulperiod));
 					 $GLOBALS['plan_price_hiden'] = ($plan_selprice * $mulperiod);
-					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'd-none' : '';
-					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'd-none';
+					 $GLOBALS['save_year_label'] = $plantype == 'year' ? 'hidden' : '';
+					  $GLOBALS['save_text'] = $plantype == 'year' ? '' : 'hidden';
 					 $offper = $plantype == 'year' ? '<span class="offper">Saving 20%</span>' : '';
 					 
 					 if($selplan_id %2 == 0){ // pro plan

@@ -1,25 +1,23 @@
 %%DEFINE_HEADER%%
-<div class="loader-image" style="display: none;">
-    <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/loading-2.gif" alt="">
-</div>
+
 
 <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
         <div class="kt-container-fluid pb-4">
-            <div id="snackbar"></div>
-            <div id="snackbar-error"></div>
-            <div id="snackbar-info"></div>
+            <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
+            <div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
+            <div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
 
             <div class="flex gap-2 flex-wrap justify-between items-center mb-4">
                 <h5 class="text-xl text-nowrap">Analytics Overview</h5>
-                <div class="kt-input w-auto">
+                <div class="kt-input w-auto cursor-pointer">
                     <i class="hgi hgi-stroke hgi-calendar-03"></i>
-                    <input type="text" class="w-[180px]" id="datepicker" name="date_range" readonly>
+                    <input type="text" class="w-[180px] cursor-pointer" id="datepicker" name="date_range" readonly>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div class="kt-card" style="background-image: url(../../images/per-click-box-bg.png);">
                     <div class="kt-card-content flex items-center justify-between">
                         <div class="flex flex-col">
@@ -33,7 +31,7 @@
                     <div class="kt-card-content flex items-center justify-between">
                         <div class="flex flex-col">
                             <span class="text-gray-400">Impression</span>
-                            <h5 class="font-semibold text-gray-950 class="total_count total_impressions">%%DEFINE_TOTAL_IMPRESSION%%</h5>
+                            <h5 class="font-semibold text-gray-950 total_count total_impressions">%%DEFINE_TOTAL_IMPRESSION%%</h5>
                         </div>
                         <img src="%%DEFINE_IMAGE_LINK%%/images/analytics-snapshot-view-icon.svg" alt="" />
                     </div>
@@ -61,259 +59,263 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-3">
                 <div class="kt-card overflow-hidden">
                     <div class="kt-card-table">
-                        <table class="kt-table" id="general_clicks" cellpadding="0" cellspacing="0" border="0">
-                            <thead class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">
-                                <tr class="*:text-gray-950">
-                                    <th align="left" valign="middle" class="title text-nowrap">All Elements Click</th>
-                                    <th align="left" valign="middle" class="title text-nowrap">Clicks</th>
-                                    <th align="left" valign="middle" class="title text-nowrap">Unique Clicks</th>
-                                    <th align="left" valign="middle" class="title text-nowrap">CTR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="email_row" style="display:none">
-                                    <td class="hover"><span>Email</span></td>
-                                    <td id="total_email_clicks">%%DEFINE_TOTAL_EMAIL_CLICKS%%</td>
-                                    <td id="total_email_unique_clicks">%%DEFINE_TOTAL_EMAIL_UNIQUE_CLICKS%%</td>
-                                    <td id="total_email_ctr">%%DEFINE_TOTAL_EMAIL_CTR%%</td>
-                                </tr>
-                                <tr id="phone_row" style="display:none">
-                                    <td class="hover"><span>Phone</span></td>
-                                    <td id="total_phone_clicks">%%DEFINE_TOTAL_PHONE_CLICKS%%</td>
-                                    <td id="total_phone_unique_clicks">%%DEFINE_TOTAL_PHONE_UNIQUE_CLICKS%%</td>
-                                    <td id="total_phone_ctr">%%DEFINE_TOTAL_PHONE_CTR%%</td>
-                                </tr>
-                                <tr id="social_row" style="display:none">
-                                    <td class="hover"><span>Social</span></td>
-                                    <td id="total_social_clicks">%%DEFINE_TOTAL_SOCIAL_CLICKS%%</td>
-                                    <td id="total_social_unique_clicks">%%DEFINE_TOTAL_SOCIAL_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_social_ctr">%%DEFINE_TOTAL_SOCIAL_CTR%%</td>
-                                </tr>
-                                <tr id="cta_button_row" style="display:none">
-                                    <td class="hover"><span>CTA Buttons</span></td>
-                                    <td id="total_cta_button_clicks">%%DEFINE_TOTAL_CTA_BUTTON_CLICKS%%</td>
-                                    <td id="total_cta_button_unique_clicks">
-                                        %%DEFINE_TOTAL_CTA_BUTTON_UNIQUE_CLICKS%%</td>
-                                    <td id="total_cta_button_ctr">%%DEFINE_TOTAL_CTA_BUTTON_CTR%%</td>
-                                </tr>
-                                <tr id="marketplace_row" style="display:none">
-                                    <td class="hover"><span>Marketplace Buttons</span></td>
-                                    <td id="total_marketplace_clicks">%%DEFINE_TOTAL_MARKETPLACE_CLICKS%%</td>
-                                    <td id="total_marketplace_unique_clicks">
-                                        %%DEFINE_TOTAL_MARKETPLACE_UNIQUE_CLICKS%%</td>
-                                    <td id="total_marketplace_ctr">%%DEFINE_TOTAL_MARKETPLACE_CTR%%</td>
-                                </tr>
-                                <tr id="banner_row" style="display:none">
-                                    <td class="hover"><span>Banner</span></td>
-                                    <td id="total_banner_clicks">%%DEFINE_TOTAL_BANNER_CLICKS%%</td>
-                                    <td id="total_banner_unique_clicks">%%DEFINE_TOTAL_BANNER_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_banner_ctr">%%DEFINE_TOTAL_BANNER_CTR%%</td>
-                                </tr>
-                                <tr id="logo_row" style="display:none">
-                                    <td class="hover"><span>Logo</span></td>
-                                    <td id="total_logo_clicks">%%DEFINE_TOTAL_LOGO_CLICKS%%</td>
-                                    <td id="total_logo_unique_clicks">%%DEFINE_TOTAL_LOGO_UNIQUE_CLICKS%%</td>
-                                    <td id="total_logo_ctr">%%DEFINE_TOTAL_LOGO_CTR%%</td>
-                                </tr>
-                                <tr id="general_clicks_no_record_row" style="display:none">
-                                    <td class="hover" colspan="4"><span>No Records Found</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="max-h-[400px] overflow-auto">
+                            <table class="kt-table overflow-auto" id="general_clicks" cellpadding="0" cellspacing="0" border="0">
+                                <thead class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">
+                                    <tr class="*:text-gray-950 *text-nowrap">
+                                        <th align="left" valign="middle" class="title text-nowrap">All Elements Click</th>
+                                        <th align="left" valign="middle" class="title text-nowrap">Clicks</th>
+                                        <th align="left" valign="middle" class="title text-nowrap">Unique Clicks</th>
+                                        <th align="left" valign="middle" class="title text-nowrap">CTR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="email_row" style="display:none">
+                                        <td class="hover"><span>Email</span></td>
+                                        <td id="total_email_clicks">%%DEFINE_TOTAL_EMAIL_CLICKS%%</td>
+                                        <td id="total_email_unique_clicks">%%DEFINE_TOTAL_EMAIL_UNIQUE_CLICKS%%</td>
+                                        <td id="total_email_ctr">%%DEFINE_TOTAL_EMAIL_CTR%%</td>
+                                    </tr>
+                                    <tr id="phone_row" style="display:none">
+                                        <td class="hover"><span>Phone</span></td>
+                                        <td id="total_phone_clicks">%%DEFINE_TOTAL_PHONE_CLICKS%%</td>
+                                        <td id="total_phone_unique_clicks">%%DEFINE_TOTAL_PHONE_UNIQUE_CLICKS%%</td>
+                                        <td id="total_phone_ctr">%%DEFINE_TOTAL_PHONE_CTR%%</td>
+                                    </tr>
+                                    <tr id="social_row" style="display:none">
+                                        <td class="hover"><span>Social</span></td>
+                                        <td id="total_social_clicks">%%DEFINE_TOTAL_SOCIAL_CLICKS%%</td>
+                                        <td id="total_social_unique_clicks">%%DEFINE_TOTAL_SOCIAL_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_social_ctr">%%DEFINE_TOTAL_SOCIAL_CTR%%</td>
+                                    </tr>
+                                    <tr id="cta_button_row" style="display:none">
+                                        <td class="hover"><span>CTA Buttons</span></td>
+                                        <td id="total_cta_button_clicks">%%DEFINE_TOTAL_CTA_BUTTON_CLICKS%%</td>
+                                        <td id="total_cta_button_unique_clicks">
+                                            %%DEFINE_TOTAL_CTA_BUTTON_UNIQUE_CLICKS%%</td>
+                                        <td id="total_cta_button_ctr">%%DEFINE_TOTAL_CTA_BUTTON_CTR%%</td>
+                                    </tr>
+                                    <tr id="marketplace_row" style="display:none">
+                                        <td class="hover"><span>Marketplace Buttons</span></td>
+                                        <td id="total_marketplace_clicks">%%DEFINE_TOTAL_MARKETPLACE_CLICKS%%</td>
+                                        <td id="total_marketplace_unique_clicks">
+                                            %%DEFINE_TOTAL_MARKETPLACE_UNIQUE_CLICKS%%</td>
+                                        <td id="total_marketplace_ctr">%%DEFINE_TOTAL_MARKETPLACE_CTR%%</td>
+                                    </tr>
+                                    <tr id="banner_row" style="display:none">
+                                        <td class="hover"><span>Banner</span></td>
+                                        <td id="total_banner_clicks">%%DEFINE_TOTAL_BANNER_CLICKS%%</td>
+                                        <td id="total_banner_unique_clicks">%%DEFINE_TOTAL_BANNER_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_banner_ctr">%%DEFINE_TOTAL_BANNER_CTR%%</td>
+                                    </tr>
+                                    <tr id="logo_row" style="display:none">
+                                        <td class="hover"><span>Logo</span></td>
+                                        <td id="total_logo_clicks">%%DEFINE_TOTAL_LOGO_CLICKS%%</td>
+                                        <td id="total_logo_unique_clicks">%%DEFINE_TOTAL_LOGO_UNIQUE_CLICKS%%</td>
+                                        <td id="total_logo_ctr">%%DEFINE_TOTAL_LOGO_CTR%%</td>
+                                    </tr>
+                                    <tr id="general_clicks_no_record_row" style="display:none">
+                                        <td class="hover" colspan="4"><span>No Records Found</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="kt-card overflow-hidden">
                     <div class="kt-card-table">
-                        <table class="kt-table" id="social_clicks" cellpadding="0" cellspacing="0" border="0">
-                            <thead class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">
-                                <tr class="*:text-gray-950">
-                                    <th align="left" valign="middle" class="title text-nowrap">Social Media</th>
-                                    <th align="left" valign="middle" class="title text-nowrap">Clicks</th>
-                                    <th align="left" valign="middle" class="title text-nowrap">Unique Clicks</th>
-                                    <th align="left" valign="middle" class="title text-nowrap">CTR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="web_row" style="display:none;">
-                                    <td class="hover"><span>Web</span></td>
-                                    <td id="total_web_clicks">%%DEFINE_TOTAL_WEB_CLICKS%%</td>
-                                    <td id="total_web_unique_clicks">%%DEFINE_TOTAL_WEB_UNIQUE_CLICKS%%</td>
-                                    <td id="total_web_ctr">%%DEFINE_TOTAL_WEB_CTR%%</td>
-                                </tr>
-                                <tr id="insta_row" style="display:none;">
-                                    <td class="hover"><span>Instagram</span></td>
-                                    <td id="total_insta_clicks">%%DEFINE_TOTAL_INSTA_CLICKS%%</td>
-                                    <td id="total_insta_unique_clicks">%%DEFINE_TOTAL_INSTA_UNIQUE_CLICKS%%</td>
-                                    <td id="total_insta_ctr">%%DEFINE_TOTAL_INSTA_CTR%%</td>
-                                </tr>
-                                <tr id="linkedin_row" style="display:none;">
-                                    <td class="hover"><span>LinkedIn</span></td>
-                                    <td id="total_linkedin_clicks">%%DEFINE_TOTAL_LINKEDIN_CLICKS%%</td>
-                                    <td id="total_linkedin_unique_clicks">%%DEFINE_TOTAL_LINKEDIN_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_linkedin_ctr">%%DEFINE_TOTAL_LINKEDIN_CTR%%</td>
-                                </tr>
-                                <tr id="facebook_row" style="display:none;">
-                                    <td class="hover"><span>Facebook</span></td>
-                                    <td id="total_facebook_clicks">%%DEFINE_TOTAL_FACEBOOK_CLICKS%%</td>
-                                    <td id="total_facebook_unique_clicks">%%DEFINE_TOTAL_FACEBOOK_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_facebook_ctr">%%DEFINE_TOTAL_FACEBOOK_CTR%%</td>
-                                </tr>
-                                <tr id="tiktok_row" style="display:none;">
-                                    <td class="hover"><span>TikTok</span></td>
-                                    <td id="total_tiktok_clicks">%%DEFINE_TOTAL_TIKTOK_CLICKS%%</td>
-                                    <td id="total_tiktok_unique_clicks">%%DEFINE_TOTAL_TIKTOK_UNIQUE_CLICKS%%</td>
-                                    <td id="total_tiktok_ctr">%%DEFINE_TOTAL_TIKTOK_CTR%%</td>
-                                </tr>
-                                <tr id="youtube_row" style="display:none;">
-                                    <td class="hover"><span>YouTube</span></td>
-                                    <td id="total_youtube_clicks">%%DEFINE_TOTAL_YOUTUBE_CLICKS%%</td>
-                                    <td id="total_youtube_unique_clicks">%%DEFINE_TOTAL_YOUTUBE_UNIQUE_CLICKS%%</td>
-                                    <td id="total_youtube_ctr">%%DEFINE_TOTAL_YOUTUBE_CTR%%</td>
-                                </tr>
-                                <tr id="twitter_row" style="display:none;">
-                                    <td class="hover"><span>Twitter</span></td>
-                                    <td id="total_twitter_clicks">%%DEFINE_TOTAL_TWITTER_CLICKS%%</td>
-                                    <td id="total_twitter_unique_clicks">%%DEFINE_TOTAL_TWITTER_UNIQUE_CLICKS%%</td>
-                                    <td id="total_twitter_ctr">%%DEFINE_TOTAL_TWITTER_CTR%%</td>
-                                </tr>
-                                <tr id="vimeo_row" style="display:none;">
-                                    <td class="hover"><span>Vimeo</span></td>
-                                    <td id="total_vimeo_clicks">%%DEFINE_TOTAL_VIMEO_CLICKS%%</td>
-                                    <td id="total_vimeo_unique_clicks">%%DEFINE_TOTAL_VIMEO_UNIQUE_CLICKS%%</td>
-                                    <td id="total_vimeo_ctr">%%DEFINE_TOTAL_VIMEO_CTR%%</td>
-                                </tr>
-                                <tr id="pintrest_row" style="display:none;">
-                                    <td class="hover"><span>Pinterest</span></td>
-                                    <td id="total_pintrest_clicks">%%DEFINE_TOTAL_PINTREST_CLICKS%%</td>
-                                    <td id="total_pintrest_unique_clicks">%%DEFINE_TOTAL_PINTREST_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_pintrest_ctr">%%DEFINE_TOTAL_PINTREST_CTR%%</td>
-                                </tr>
-                                <tr id="google_row" style="display:none;">
-                                    <td class="hover"><span>Google</span></td>
-                                    <td id="total_google_clicks">%%DEFINE_TOTAL_GOOGLE_CLICKS%%</td>
-                                    <td id="total_google_unique_clicks">%%DEFINE_TOTAL_GOOGLE_UNIQUE_CLICKS%%</td>
-                                    <td id="total_google_ctr">%%DEFINE_TOTAL_GOOGLE_CTR%%</td>
-                                </tr>
-                                <tr id="yelp_row" style="display:none;">
-                                    <td class="hover"><span>Yelp</span></td>
-                                    <td id="total_yelp_clicks">%%DEFINE_TOTAL_YELP_CLICKS%%</td>
-                                    <td id="total_yelp_unique_clicks">%%DEFINE_TOTAL_YELP_UNIQUE_CLICKS%%</td>
-                                    <td id="total_yelp_ctr">%%DEFINE_TOTAL_YELP_CTR%%</td>
-                                </tr>
-                                <tr id="zillow_row" style="display:none;">
-                                    <td class="hover"><span>Zillow</span></td>
-                                    <td id="total_zillow_clicks">%%DEFINE_TOTAL_ZILLOW_CLICKS%%</td>
-                                    <td id="total_zillow_unique_clicks">%%DEFINE_TOTAL_ZILLOW_UNIQUE_CLICKS%%</td>
-                                    <td id="total_zillow_ctr">%%DEFINE_TOTAL_ZILLOW_CTR%%</td>
-                                </tr>
-                                <tr id="airbnb_row" style="display:none;">
-                                    <td class="hover"><span>Airbnb</span></td>
-                                    <td id="total_airbnb_clicks">%%DEFINE_TOTAL_AIRBNB_CLICKS%%</td>
-                                    <td id="total_airbnb_unique_clicks">%%DEFINE_TOTAL_AIRBNB_UNIQUE_CLICKS%%</td>
-                                    <td id="total_airbnb_ctr">%%DEFINE_TOTAL_AIRBNB_CTR%%</td>
-                                </tr>
-                                <tr id="whatsapp_row" style="display:none;">
-                                    <td class="hover"><span>WhatsApp</span></td>
-                                    <td id="total_whatsapp_clicks">%%DEFINE_TOTAL_WHATSAPP_CLICKS%%</td>
-                                    <td id="total_whatsapp_unique_clicks">%%DEFINE_TOTAL_WHATSAPP_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_whatsapp_ctr">%%DEFINE_TOTAL_WHATSAPP_CTR%%</td>
-                                </tr>
-                                <tr id="discord_row" style="display:none;">
-                                    <td class="hover"><span>Discord</span></td>
-                                    <td id="total_discord_clicks">%%DEFINE_TOTAL_DISCORD_CLICKS%%</td>
-                                    <td id="total_discord_unique_clicks">%%DEFINE_TOTAL_DISCORD_UNIQUE_CLICKS%%</td>
-                                    <td id="total_discord_ctr">%%DEFINE_TOTAL_DISCORD_CTR%%</td>
-                                </tr>
-                                <tr id="imbd_row" style="display:none;">
-                                    <td class="hover"><span>IMDb</span></td>
-                                    <td id="total_imbd_clicks">%%DEFINE_TOTAL_IMBD_CLICKS%%</td>
-                                    <td id="total_imbd_unique_clicks">%%DEFINE_TOTAL_IMBD_UNIQUE_CLICKS%%</td>
-                                    <td id="total_imbd_ctr">%%DEFINE_TOTAL_IMBD_CTR%%</td>
-                                </tr>
-                                <tr id="ebay_row" style="display:none;">
-                                    <td class="hover"><span>eBay</span></td>
-                                    <td id="total_ebay_clicks">%%DEFINE_TOTAL_EBAY_CLICKS%%</td>
-                                    <td id="total_ebay_unique_clicks">%%DEFINE_TOTAL_EBAY_UNIQUE_CLICKS%%</td>
-                                    <td id="total_ebay_ctr">%%DEFINE_TOTAL_EBAY_CTR%%</td>
-                                </tr>
-                                <tr id="spotify_row" style="display:none;">
-                                    <td class="hover"><span>Spotify</span></td>
-                                    <td id="total_spotify_clicks">%%DEFINE_TOTAL_SPOTIFY_CLICKS%%</td>
-                                    <td id="total_spotify_unique_clicks">%%DEFINE_TOTAL_SPOTIFY_UNIQUE_CLICKS%%</td>
-                                    <td id="total_spotify_ctr">%%DEFINE_TOTAL_SPOTIFY_CTR%%</td>
-                                </tr>
-                                <tr id="amazon_row" style="display:none;">
-                                    <td class="hover"><span>Amazon</span></td>
-                                    <td id="total_amazon_clicks">%%DEFINE_TOTAL_AMAZON_CLICKS%%</td>
-                                    <td id="total_amazon_unique_clicks">%%DEFINE_TOTAL_AMAZON_UNIQUE_CLICKS%%</td>
-                                    <td id="total_amazon_ctr">%%DEFINE_TOTAL_AMAZON_CTR%%</td>
-                                </tr>
-                                <tr id="clendly_row" style="display:none;">
-                                    <td class="hover"><span>Calendly</span></td>
-                                    <td id="total_clendly_clicks">%%DEFINE_TOTAL_CLENDLY_CLICKS%%</td>
-                                    <td id="total_clendly_unique_clicks">%%DEFINE_TOTAL_CLENDLY_UNIQUE_CLICKS%%</td>
-                                    <td id="total_clendly_ctr">%%DEFINE_TOTAL_CLENDLY_CTR%%</td>
-                                </tr>
-                                <tr id="wechat_row" style="display:none;">
-                                    <td class="hover"><span>WeChat</span></td>
-                                    <td id="total_wechat_clicks">%%DEFINE_TOTAL_WECHAT_CLICKS%%</td>
-                                    <td id="total_wechat_unique_clicks">%%DEFINE_TOTAL_WECHAT_UNIQUE_CLICKS%%</td>
-                                    <td id="total_wechat_ctr">%%DEFINE_TOTAL_WECHAT_CTR%%</td>
-                                </tr>
-                                <tr id="apple_row" style="display:none;">
-                                    <td class="hover"><span>Apple</span></td>
-                                    <td id="total_apple_clicks">%%DEFINE_TOTAL_APPLE_CLICKS%%</td>
-                                    <td id="total_apple_unique_clicks">%%DEFINE_TOTAL_APPLE_UNIQUE_CLICKS%%</td>
-                                    <td id="total_apple_ctr">%%DEFINE_TOTAL_APPLE_CTR%%</td>
-                                </tr>
-                                <tr id="snapchat_row" style="display:none;">
-                                    <td class="hover"><span>Snapchat</span></td>
-                                    <td id="total_snapchat_clicks">%%DEFINE_TOTAL_SNAPCHAT_CLICKS%%</td>
-                                    <td id="total_snapchat_unique_clicks">%%DEFINE_TOTAL_SNAPCHAT_UNIQUE_CLICKS%%
-                                    </td>
-                                    <td id="total_snapchat_ctr">%%DEFINE_TOTAL_SNAPCHAT_CTR%%</td>
-                                </tr>
-                                <tr id="reddit_row" style="display:none;">
-                                    <td class="hover"><span>Reddit</span></td>
-                                    <td id="total_reddit_clicks">%%DEFINE_TOTAL_REDDIT_CLICKS%%</td>
-                                    <td id="total_reddit_unique_clicks">%%DEFINE_TOTAL_REDDIT_UNIQUE_CLICKS%%</td>
-                                    <td id="total_reddit_ctr">%%DEFINE_TOTAL_REDDIT_CTR%%</td>
-                                </tr>
-                                <tr id="shopify_row" style="display:none;">
-                                    <td class="hover"><span>Shopify</span></td>
-                                    <td id="total_shopify_clicks">%%DEFINE_TOTAL_SHOPIFY_CLICKS%%</td>
-                                    <td id="total_shopify_unique_clicks">%%DEFINE_TOTAL_SHOPIFY_UNIQUE_CLICKS%%</td>
-                                    <td id="total_shopify_ctr">%%DEFINE_TOTAL_SHOPIFY_CTR%%</td>
-                                </tr>
-                                <tr id="threads_row" style="display:none;">
-                                    <td class="hover"><span>Threads</span></td>
-                                    <td id="total_threads_clicks">%%DEFINE_TOTAL_THREADS_CLICKS%%</td>
-                                    <td id="total_threads_unique_clicks">%%DEFINE_TOTAL_THREADS_UNIQUE_CLICKS%%</td>
-                                    <td id="total_threads_ctr">%%DEFINE_TOTAL_THREADS_CTR%%</td>
-                                </tr>
-                                <tr id="venmo_row" style="display:none;">
-                                    <td class="hover"><span>Venmo</span></td>
-                                    <td id="total_venmo_clicks">%%DEFINE_TOTAL_VENMO_CLICKS%%</td>
-                                    <td id="total_venmo_unique_clicks">%%DEFINE_TOTAL_VENMO_UNIQUE_CLICKS%%</td>
-                                    <td id="total_venmo_ctr">%%DEFINE_TOTAL_VENMO_CTR%%</td>
-                                </tr>
-                                <tr id="zelle_row" style="display:none;">
-                                    <td class="hover"><span>Zelle</span></td>
-                                    <td id="total_zelle_clicks">%%DEFINE_TOTAL_ZELLE_CLICKS%%</td>
-                                    <td id="total_zelle_unique_clicks">%%DEFINE_TOTAL_ZELLE_UNIQUE_CLICKS%%</td>
-                                    <td id="total_zelle_ctr">%%DEFINE_TOTAL_ZELLE_CTR%%</td>
-                                </tr>
-                                <tr id="social_clicks_no_record_row" style="display:none">
-                                    <td class="hover" colspan="4"><span>No Records Found</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="max-h-[400px] overflow-auto">
+                            <table class="kt-table" id="social_clicks" cellpadding="0" cellspacing="0" border="0">
+                                <thead class="bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10">
+                                    <tr class="*:text-gray-950">
+                                        <th align="left" valign="middle" class="title text-nowrap">Social Media</th>
+                                        <th align="left" valign="middle" class="title text-nowrap">Clicks</th>
+                                        <th align="left" valign="middle" class="title text-nowrap">Unique Clicks</th>
+                                        <th align="left" valign="middle" class="title text-nowrap">CTR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr id="web_row" style="display:none;">
+                                        <td class="hover"><span>Web</span></td>
+                                        <td id="total_web_clicks">%%DEFINE_TOTAL_WEB_CLICKS%%</td>
+                                        <td id="total_web_unique_clicks">%%DEFINE_TOTAL_WEB_UNIQUE_CLICKS%%</td>
+                                        <td id="total_web_ctr">%%DEFINE_TOTAL_WEB_CTR%%</td>
+                                    </tr>
+                                    <tr id="insta_row" style="display:none;">
+                                        <td class="hover"><span>Instagram</span></td>
+                                        <td id="total_insta_clicks">%%DEFINE_TOTAL_INSTA_CLICKS%%</td>
+                                        <td id="total_insta_unique_clicks">%%DEFINE_TOTAL_INSTA_UNIQUE_CLICKS%%</td>
+                                        <td id="total_insta_ctr">%%DEFINE_TOTAL_INSTA_CTR%%</td>
+                                    </tr>
+                                    <tr id="linkedin_row" style="display:none;">
+                                        <td class="hover"><span>LinkedIn</span></td>
+                                        <td id="total_linkedin_clicks">%%DEFINE_TOTAL_LINKEDIN_CLICKS%%</td>
+                                        <td id="total_linkedin_unique_clicks">%%DEFINE_TOTAL_LINKEDIN_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_linkedin_ctr">%%DEFINE_TOTAL_LINKEDIN_CTR%%</td>
+                                    </tr>
+                                    <tr id="facebook_row" style="display:none;">
+                                        <td class="hover"><span>Facebook</span></td>
+                                        <td id="total_facebook_clicks">%%DEFINE_TOTAL_FACEBOOK_CLICKS%%</td>
+                                        <td id="total_facebook_unique_clicks">%%DEFINE_TOTAL_FACEBOOK_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_facebook_ctr">%%DEFINE_TOTAL_FACEBOOK_CTR%%</td>
+                                    </tr>
+                                    <tr id="tiktok_row" style="display:none;">
+                                        <td class="hover"><span>TikTok</span></td>
+                                        <td id="total_tiktok_clicks">%%DEFINE_TOTAL_TIKTOK_CLICKS%%</td>
+                                        <td id="total_tiktok_unique_clicks">%%DEFINE_TOTAL_TIKTOK_UNIQUE_CLICKS%%</td>
+                                        <td id="total_tiktok_ctr">%%DEFINE_TOTAL_TIKTOK_CTR%%</td>
+                                    </tr>
+                                    <tr id="youtube_row" style="display:none;">
+                                        <td class="hover"><span>YouTube</span></td>
+                                        <td id="total_youtube_clicks">%%DEFINE_TOTAL_YOUTUBE_CLICKS%%</td>
+                                        <td id="total_youtube_unique_clicks">%%DEFINE_TOTAL_YOUTUBE_UNIQUE_CLICKS%%</td>
+                                        <td id="total_youtube_ctr">%%DEFINE_TOTAL_YOUTUBE_CTR%%</td>
+                                    </tr>
+                                    <tr id="twitter_row" style="display:none;">
+                                        <td class="hover"><span>Twitter</span></td>
+                                        <td id="total_twitter_clicks">%%DEFINE_TOTAL_TWITTER_CLICKS%%</td>
+                                        <td id="total_twitter_unique_clicks">%%DEFINE_TOTAL_TWITTER_UNIQUE_CLICKS%%</td>
+                                        <td id="total_twitter_ctr">%%DEFINE_TOTAL_TWITTER_CTR%%</td>
+                                    </tr>
+                                    <tr id="vimeo_row" style="display:none;">
+                                        <td class="hover"><span>Vimeo</span></td>
+                                        <td id="total_vimeo_clicks">%%DEFINE_TOTAL_VIMEO_CLICKS%%</td>
+                                        <td id="total_vimeo_unique_clicks">%%DEFINE_TOTAL_VIMEO_UNIQUE_CLICKS%%</td>
+                                        <td id="total_vimeo_ctr">%%DEFINE_TOTAL_VIMEO_CTR%%</td>
+                                    </tr>
+                                    <tr id="pintrest_row" style="display:none;">
+                                        <td class="hover"><span>Pinterest</span></td>
+                                        <td id="total_pintrest_clicks">%%DEFINE_TOTAL_PINTREST_CLICKS%%</td>
+                                        <td id="total_pintrest_unique_clicks">%%DEFINE_TOTAL_PINTREST_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_pintrest_ctr">%%DEFINE_TOTAL_PINTREST_CTR%%</td>
+                                    </tr>
+                                    <tr id="google_row" style="display:none;">
+                                        <td class="hover"><span>Google</span></td>
+                                        <td id="total_google_clicks">%%DEFINE_TOTAL_GOOGLE_CLICKS%%</td>
+                                        <td id="total_google_unique_clicks">%%DEFINE_TOTAL_GOOGLE_UNIQUE_CLICKS%%</td>
+                                        <td id="total_google_ctr">%%DEFINE_TOTAL_GOOGLE_CTR%%</td>
+                                    </tr>
+                                    <tr id="yelp_row" style="display:none;">
+                                        <td class="hover"><span>Yelp</span></td>
+                                        <td id="total_yelp_clicks">%%DEFINE_TOTAL_YELP_CLICKS%%</td>
+                                        <td id="total_yelp_unique_clicks">%%DEFINE_TOTAL_YELP_UNIQUE_CLICKS%%</td>
+                                        <td id="total_yelp_ctr">%%DEFINE_TOTAL_YELP_CTR%%</td>
+                                    </tr>
+                                    <tr id="zillow_row" style="display:none;">
+                                        <td class="hover"><span>Zillow</span></td>
+                                        <td id="total_zillow_clicks">%%DEFINE_TOTAL_ZILLOW_CLICKS%%</td>
+                                        <td id="total_zillow_unique_clicks">%%DEFINE_TOTAL_ZILLOW_UNIQUE_CLICKS%%</td>
+                                        <td id="total_zillow_ctr">%%DEFINE_TOTAL_ZILLOW_CTR%%</td>
+                                    </tr>
+                                    <tr id="airbnb_row" style="display:none;">
+                                        <td class="hover"><span>Airbnb</span></td>
+                                        <td id="total_airbnb_clicks">%%DEFINE_TOTAL_AIRBNB_CLICKS%%</td>
+                                        <td id="total_airbnb_unique_clicks">%%DEFINE_TOTAL_AIRBNB_UNIQUE_CLICKS%%</td>
+                                        <td id="total_airbnb_ctr">%%DEFINE_TOTAL_AIRBNB_CTR%%</td>
+                                    </tr>
+                                    <tr id="whatsapp_row" style="display:none;">
+                                        <td class="hover"><span>WhatsApp</span></td>
+                                        <td id="total_whatsapp_clicks">%%DEFINE_TOTAL_WHATSAPP_CLICKS%%</td>
+                                        <td id="total_whatsapp_unique_clicks">%%DEFINE_TOTAL_WHATSAPP_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_whatsapp_ctr">%%DEFINE_TOTAL_WHATSAPP_CTR%%</td>
+                                    </tr>
+                                    <tr id="discord_row" style="display:none;">
+                                        <td class="hover"><span>Discord</span></td>
+                                        <td id="total_discord_clicks">%%DEFINE_TOTAL_DISCORD_CLICKS%%</td>
+                                        <td id="total_discord_unique_clicks">%%DEFINE_TOTAL_DISCORD_UNIQUE_CLICKS%%</td>
+                                        <td id="total_discord_ctr">%%DEFINE_TOTAL_DISCORD_CTR%%</td>
+                                    </tr>
+                                    <tr id="imbd_row" style="display:none;">
+                                        <td class="hover"><span>IMDb</span></td>
+                                        <td id="total_imbd_clicks">%%DEFINE_TOTAL_IMBD_CLICKS%%</td>
+                                        <td id="total_imbd_unique_clicks">%%DEFINE_TOTAL_IMBD_UNIQUE_CLICKS%%</td>
+                                        <td id="total_imbd_ctr">%%DEFINE_TOTAL_IMBD_CTR%%</td>
+                                    </tr>
+                                    <tr id="ebay_row" style="display:none;">
+                                        <td class="hover"><span>eBay</span></td>
+                                        <td id="total_ebay_clicks">%%DEFINE_TOTAL_EBAY_CLICKS%%</td>
+                                        <td id="total_ebay_unique_clicks">%%DEFINE_TOTAL_EBAY_UNIQUE_CLICKS%%</td>
+                                        <td id="total_ebay_ctr">%%DEFINE_TOTAL_EBAY_CTR%%</td>
+                                    </tr>
+                                    <tr id="spotify_row" style="display:none;">
+                                        <td class="hover"><span>Spotify</span></td>
+                                        <td id="total_spotify_clicks">%%DEFINE_TOTAL_SPOTIFY_CLICKS%%</td>
+                                        <td id="total_spotify_unique_clicks">%%DEFINE_TOTAL_SPOTIFY_UNIQUE_CLICKS%%</td>
+                                        <td id="total_spotify_ctr">%%DEFINE_TOTAL_SPOTIFY_CTR%%</td>
+                                    </tr>
+                                    <tr id="amazon_row" style="display:none;">
+                                        <td class="hover"><span>Amazon</span></td>
+                                        <td id="total_amazon_clicks">%%DEFINE_TOTAL_AMAZON_CLICKS%%</td>
+                                        <td id="total_amazon_unique_clicks">%%DEFINE_TOTAL_AMAZON_UNIQUE_CLICKS%%</td>
+                                        <td id="total_amazon_ctr">%%DEFINE_TOTAL_AMAZON_CTR%%</td>
+                                    </tr>
+                                    <tr id="clendly_row" style="display:none;">
+                                        <td class="hover"><span>Calendly</span></td>
+                                        <td id="total_clendly_clicks">%%DEFINE_TOTAL_CLENDLY_CLICKS%%</td>
+                                        <td id="total_clendly_unique_clicks">%%DEFINE_TOTAL_CLENDLY_UNIQUE_CLICKS%%</td>
+                                        <td id="total_clendly_ctr">%%DEFINE_TOTAL_CLENDLY_CTR%%</td>
+                                    </tr>
+                                    <tr id="wechat_row" style="display:none;">
+                                        <td class="hover"><span>WeChat</span></td>
+                                        <td id="total_wechat_clicks">%%DEFINE_TOTAL_WECHAT_CLICKS%%</td>
+                                        <td id="total_wechat_unique_clicks">%%DEFINE_TOTAL_WECHAT_UNIQUE_CLICKS%%</td>
+                                        <td id="total_wechat_ctr">%%DEFINE_TOTAL_WECHAT_CTR%%</td>
+                                    </tr>
+                                    <tr id="apple_row" style="display:none;">
+                                        <td class="hover"><span>Apple</span></td>
+                                        <td id="total_apple_clicks">%%DEFINE_TOTAL_APPLE_CLICKS%%</td>
+                                        <td id="total_apple_unique_clicks">%%DEFINE_TOTAL_APPLE_UNIQUE_CLICKS%%</td>
+                                        <td id="total_apple_ctr">%%DEFINE_TOTAL_APPLE_CTR%%</td>
+                                    </tr>
+                                    <tr id="snapchat_row" style="display:none;">
+                                        <td class="hover"><span>Snapchat</span></td>
+                                        <td id="total_snapchat_clicks">%%DEFINE_TOTAL_SNAPCHAT_CLICKS%%</td>
+                                        <td id="total_snapchat_unique_clicks">%%DEFINE_TOTAL_SNAPCHAT_UNIQUE_CLICKS%%
+                                        </td>
+                                        <td id="total_snapchat_ctr">%%DEFINE_TOTAL_SNAPCHAT_CTR%%</td>
+                                    </tr>
+                                    <tr id="reddit_row" style="display:none;">
+                                        <td class="hover"><span>Reddit</span></td>
+                                        <td id="total_reddit_clicks">%%DEFINE_TOTAL_REDDIT_CLICKS%%</td>
+                                        <td id="total_reddit_unique_clicks">%%DEFINE_TOTAL_REDDIT_UNIQUE_CLICKS%%</td>
+                                        <td id="total_reddit_ctr">%%DEFINE_TOTAL_REDDIT_CTR%%</td>
+                                    </tr>
+                                    <tr id="shopify_row" style="display:none;">
+                                        <td class="hover"><span>Shopify</span></td>
+                                        <td id="total_shopify_clicks">%%DEFINE_TOTAL_SHOPIFY_CLICKS%%</td>
+                                        <td id="total_shopify_unique_clicks">%%DEFINE_TOTAL_SHOPIFY_UNIQUE_CLICKS%%</td>
+                                        <td id="total_shopify_ctr">%%DEFINE_TOTAL_SHOPIFY_CTR%%</td>
+                                    </tr>
+                                    <tr id="threads_row" style="display:none;">
+                                        <td class="hover"><span>Threads</span></td>
+                                        <td id="total_threads_clicks">%%DEFINE_TOTAL_THREADS_CLICKS%%</td>
+                                        <td id="total_threads_unique_clicks">%%DEFINE_TOTAL_THREADS_UNIQUE_CLICKS%%</td>
+                                        <td id="total_threads_ctr">%%DEFINE_TOTAL_THREADS_CTR%%</td>
+                                    </tr>
+                                    <tr id="venmo_row" style="display:none;">
+                                        <td class="hover"><span>Venmo</span></td>
+                                        <td id="total_venmo_clicks">%%DEFINE_TOTAL_VENMO_CLICKS%%</td>
+                                        <td id="total_venmo_unique_clicks">%%DEFINE_TOTAL_VENMO_UNIQUE_CLICKS%%</td>
+                                        <td id="total_venmo_ctr">%%DEFINE_TOTAL_VENMO_CTR%%</td>
+                                    </tr>
+                                    <tr id="zelle_row" style="display:none;">
+                                        <td class="hover"><span>Zelle</span></td>
+                                        <td id="total_zelle_clicks">%%DEFINE_TOTAL_ZELLE_CLICKS%%</td>
+                                        <td id="total_zelle_unique_clicks">%%DEFINE_TOTAL_ZELLE_UNIQUE_CLICKS%%</td>
+                                        <td id="total_zelle_ctr">%%DEFINE_TOTAL_ZELLE_CTR%%</td>
+                                    </tr>
+                                    <tr id="social_clicks_no_record_row" style="display:none">
+                                        <td class="hover" colspan="4"><span>No Records Found</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -326,7 +328,7 @@
                         </div>
                     </div>
                     <div class="kt-card-content">
-                        <canvas id="performanceChart"></canvas>
+                        <canvas id="performanceChart" class="w-full h-full"></canvas>
                     </div>
                 </div>
                 <div class="kt-card">
@@ -339,31 +341,31 @@
                     </div>
 
                     <div class="kt-card-content flex flex-col gap-4">
-                        <div class="flex justify-between gap-5">
+                        <div class="flex justify-between flex-wrap gap-5">
                             <div class="flex items-center gap-2">
                                 <div class="size-7 relative -top-1 rounded-lg bg-[linear-gradient(178.19deg,#E5F6FF_6.15%,#E4EAFF_98.35%)]"></div>
                                 <div>
-                                    <p id="totalTypeClicks" class="total-count-click-number leading-none">0</p>
+                                    <h5 id="totalTypeClicks" class="total-count-click-number leading-none">0</h5>
                                     <p class="text-gray-400">All Clicks</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
-                                <div class="size-7 relative -top-1 bg-[repeating-linear-gradient(135deg,rgba(219,237,255,0.7),rgba(219,237,255,0.7)_2px,transparent_2px,transparent_4px)]"></div>
+                                <div class="size-7 relative -top-1 rounded-lg bg-[repeating-linear-gradient(135deg,rgba(219,237,255,0.7),rgba(219,237,255,0.7)_2px,transparent_2px,transparent_4px)]"></div>
                                 <div>
-                                    <p id="totalTypeUniqueClicks" class="size-7 total-count-click-number leading-none">0</p>
+                                    <h5 id="totalTypeUniqueClicks" class="total-count-click-number leading-none">0</h5>
                                     <p class="text-gray-400">Unique Clicks</p>
                                 </div>
                             </div>
                             <div id="typeCTRSection" class="mt-auto">
                                 <div class="flex items-center gap-2">
-                                    <h5 class="text-2xl" id="clickThroughRate">0 <span>%</span></h5>
+                                    <h3 class="text-2xl" id="clickThroughRate">0 <span>%</span></h3>
                                     <span class="kt-badge kt-badge-success" id="clickThroughChange"><span>▲</span> +0%</span>
                                 </div>
                                 <span class="text-gray-400 text-xs">Click-Through Rate</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <canvas id="type_and_popular_chart" width="400" height="270"></canvas>
+                            <canvas id="type_and_popular_chart" class="w-full h-full"></canvas>
                         </div>
                     </div>
                 </div>
@@ -505,7 +507,7 @@
                     <div class="kt-card-header">
                         <h4 class="kt-card-title">Clicks by Countries</h4>
                     </div>
-                    <div class="kt-card-content relative">
+                    <div class="kt-card-content p-0 relative">
                         <div id="statsBox" class="absolute top-5 right-5"></div>
                         <canvas id="worldMap"></canvas>
                     </div>
@@ -523,7 +525,7 @@
                                     %%DEFINE_TOTAL_DESKTOP_CLICKS_PERCENTAGE%%%
                                 </p>
                                 <div class="relative h-12 rounded-lg overflow-hidden max-w-full desktop_clicks">
-                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg"></div>
+                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg bg-gradient"></div>
                                 </div>
                             </div>
                             <div class="border border-gray-200 rounded-lg p-4">
@@ -535,7 +537,7 @@
                                     </p>
                                 </div>
                                 <div class="relative h-12 rounded-lg overflow-hidden max-w-full mobile_clicks">
-                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg"></div>
+                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg bg-gradient"></div>
                                 </div>
                             </div>
                             <div class="border border-gray-200 rounded-lg p-4">
@@ -547,55 +549,55 @@
                                     </p>
                                 </div>
                                 <div class="relative h-12 rounded-lg overflow-hidden max-w-full tablet_clicks">
-                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg"></div>
+                                    <div class="progress_new absolute top-0 left-0 h-full rounded-lg bg-gradient"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="flex-1 *:flex *:items-center space-y-5">
-                            <div>
+                            <div class="relative pr-[55px]">
                                 <div class="flex items-center gap-2 min-w-28">
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/windows.svg" alt="" />Windows
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_windows_clicks_percentage_style"></div>
+                                    <div class="relative rounded-full before:absolute before:top-[-3px] before:right-0 before:w-[12px] before:h-[12px] before:bg-gradient-to-r before:from-[#1D4AFE] before:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] h-full before:border-2 before:border-white before:rounded-full before:shadow-[0_0_8px_#1D4AFE] before:transition-[left] before:duration-300 before:ease-in-out" id="total_windows_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_windows_clicks_percentage">0%</span>
+                                <span class="absolute right-0" id="total_windows_clicks_percentage">0%</span>
                             </div>
-                            <div>
+                            <div class="relative pr-[55px]">
                                 <div class="flex items-center gap-2 min-w-28">
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/macos.svg" alt="" />MacOS
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_macos_clicks_percentage_style"></div>
+                                    <div class="relative rounded-full before:absolute before:top-[-3px] before:right-0 before:w-[12px] before:h-[12px] before:bg-gradient-to-r before:from-[#1D4AFE] before:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] h-full before:border-2 before:border-white before:rounded-full before:shadow-[0_0_8px_#1D4AFE] before:transition-[left] before:duration-300 before:ease-in-out" id="total_macos_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_macos_clicks_percentage">0%</span>
+                                <span class="absolute right-0" id="total_macos_clicks_percentage">0%</span>
                             </div>
-                            <div>
+                            <div class="relative pr-[55px]">
                                 <div class="flex items-center gap-2 min-w-28">
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/linux.svg" alt="" />Linux
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_linux_clicks_percentage_style"></div>
+                                    <div class="relative rounded-full before:absolute before:top-[-3px] before:right-0 before:w-[12px] before:h-[12px] before:bg-gradient-to-r before:from-[#1D4AFE] before:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] h-full before:border-2 before:border-white before:rounded-full before:shadow-[0_0_8px_#1D4AFE] before:transition-[left] before:duration-300 before:ease-in-out" id="total_linux_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_linux_clicks_percentage">0%</span>
+                                <span class="absolute right-0" id="total_linux_clicks_percentage">0%</span>
                             </div>
-                            <div>
+                            <div class="relative pr-[55px]">
                                 <div class="flex items-center gap-2 min-w-28">
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/ios.svg" alt="" />iOS
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_ios_clicks_percentage_style"></div>
+                                    <div class="relative rounded-full before:absolute before:top-[-3px] before:right-0 before:w-[12px] before:h-[12px] before:bg-gradient-to-r before:from-[#1D4AFE] before:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] h-full before:border-2 before:border-white before:rounded-full before:shadow-[0_0_8px_#1D4AFE] before:transition-[left] before:duration-300 before:ease-in-out" id="total_ios_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_ios_clicks_percentage">0%</span>
+                                <span class="absolute right-0" id="total_ios_clicks_percentage">0%</span>
                             </div>
-                            <div>
+                            <div class="relative pr-[55px]">
                                 <div class="flex items-center gap-2 min-w-28">
                                     <img src="%%DEFINE_IMAGE_LINK%%/images/android.svg" alt="" />Android
                                 </div>
                                 <div class="bg-gray-200 rounded-full h-1.5 flex-1">
-                                    <div class="relative after:-mt-[1px] rounded-full h-full bg-gradient after:size-2 after:bg-gradient-to-r after:from-[#26B7FF] after:to-[#1D4AFE] after:block after:absolute after:rounded-full after:right-0 after:outline after:outline-primary after:outline-offset-2" id="total_android_clicks_percentage_style"></div>
+                                    <div class="relative rounded-full before:absolute before:top-[-3px] before:right-0 before:w-[12px] before:h-[12px] before:bg-gradient-to-r before:from-[#1D4AFE] before:to-[#00CCFF] bg-gradient-to-r from-[#1D4AFE] to-[#00CCFF] h-full before:border-2 before:border-white before:rounded-full before:shadow-[0_0_8px_#1D4AFE] before:transition-[left] before:duration-300 before:ease-in-out" id="total_android_clicks_percentage_style"></div>
                                 </div>
-                                <span class="ml-5" id="total_android_clicks_percentage">0%</span>
+                                <span class="absolute right-0" id="total_android_clicks_percentage">0%</span>
                             </div>
                         </div>
                     </div>
@@ -844,7 +846,7 @@
 
                 // Create buttons container
                 const btnContainer = document.createElement('div');
-                btnContainer.classList.add('litepicker-preset-buttons');
+                btnContainer.classList.add('litepicker-preset-buttons', 'flex', 'flex-wrap', 'sm:absolute', 'sm:left-[-95px]', 'sm:flex-col',  'items-start', 'gap-2', 'p-5', 'bg-white', 'h-full', 'border-r', 'border-gray-200', '*:cursor-pointer', '*:text-gray-400', 'shadow-[-2px_0px_10px_0px_#ddd]', 'rounded-sm',);
                 btnContainer.innerHTML = `
                     <button data-range="today">Today</button>
                     <button data-range="yesterday">Yesterday</button>
@@ -1471,12 +1473,12 @@
         const changeValue = Number(change);
         if (changeValue < 0) {
             changeElem.innerHTML = `▼ ${Math.abs(changeValue)}%`;
-            changeElem.classList.add('negative-change');
-            changeElem.classList.remove('positive-change');
+            changeElem.classList.add('kt-badge-destructive');
+            changeElem.classList.remove('kt-badge-success');
         } else {
             changeElem.innerHTML = `▲ ${changeValue}%`;
-            changeElem.classList.add('positive-change');
-            changeElem.classList.remove('negative-change');
+            changeElem.classList.add('kt-badge-success');
+            changeElem.classList.remove('kt-badge-destructive');
         }
     }
 
@@ -1582,7 +1584,7 @@
         if (statsBox) {
             statsBox.innerHTML = `
                 <div class='border border-gray-200 rounded-lg bg-white'>
-                    <div class="flex items-center gap-3 p-3" id="collapse_toggle" data-kt-collapse="#collapse_content" aria-expanded="false">
+                    <div class="flex items-center justify-between gap-3 p-3" id="collapse_toggle" data-kt-collapse="#collapse_content" aria-expanded="false">
                         <div>
                             <p class="text-2xl text-gray-950 font-semibold">${totalClicks.toLocaleString()}</p>
                             <p class="text-xs text-gray-400">Worldwide Clicks</p>
@@ -1592,22 +1594,23 @@
                         </button>
                     </div>
 
-                    <div class="transition-[height] duration-300 hidden" id="collapse_content">
+                    <div class="transition-[height] duration-300 p-3 border-t border-t-gray-200 hidden" id="collapse_content">
+                        <div class="flex flex-col gap-2">
                         ${statsRows.map(row => {
                         // const code = isoMapping[row.id];
                         const code = row.id;
                         const countryName = row.name.toLowerCase().slice(0, 2);
-                        const flag = code ? `<img src="%%DEFINE_ROOT_LINK%%/images/countryflags/${countryName}.svg" alt="${row.name}" >` : '';
-                return `<div class="country_row">
-                            <div class="country_flag">
+                        const flag = code ? `<img class="size-4 rounded-full object-cover" src="%%DEFINE_ROOT_LINK%%/images/countryflags/${countryName}.svg" alt="${row.name}" >` : '';
+                return `<div class="flex items-center justify-between gap-2 border p-2 border-gray-200 rounded-2xl">
+                            <div class="flex items-center gap-2">
                                 ${flag}
                                 <span class="country_name">${row.name}</span>
                             </div>
-                            <span>${row.count.toLocaleString()}</span>
+                            <span class="size-6 bg-black text-xs text-white flex items-center justify-center rounded-full">${row.count.toLocaleString()}</span>
                         </div>`;
                         }).join('')}
                     </div>
-
+                    <div>
                 </div>
                `;
         }

@@ -8,8 +8,8 @@ class CIT_BULKUPLOAD
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
 		//$refid = $_REQUEST['refid'];
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='!hidden'; 
+		$GLOBALS['bulkuploadcls'] = '!hidden'; 
 		
 		$conuRow = $GLOBALS['DB']->row("SELECT count(signature_id) as mastersig FROM signature WHERE signature_master =1 AND user_id = ?",array($GLOBALS['USERID']));
 		
@@ -32,7 +32,7 @@ class CIT_BULKUPLOAD
 					if(filter_var($to, FILTER_VALIDATE_EMAIL)){
 						$send_mail = _SendMail($to,'',$GLOBALS['EMAIL_SUBJECT'],$message);
 					}
-					$result = array('error'=>0,'msg'=>'<div class="alert alert-success"><strong>Success! </strong>Signature share success</div>');
+					$result = array('error'=>0,'msg'=>'<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Signature share success</div>');
 					$response = json_encode($result);
 				}
 			}else{
@@ -241,15 +241,15 @@ class CIT_BULKUPLOAD
 					 }
 					 
 					 $_SESSION['import_items']=  $import_item;
-					$_SESSION[GetSession('Success')] = '<div class="alert alert-success">File has been imported successfully.</div>';
+					$_SESSION[GetSession('Success')] = '<div class="alert-success success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">File has been imported successfully.</div>';
 					 $redirect = GetUrl(array('module'=>$_REQUEST['module'])).'?success=1';
 					 GetFrontRedirectUrl($redirect); exit;
 				}else{
-					$_SESSION[GetSession('Error')] = '<div class="alert alert-info">please select master signature.</div>';
+					$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-info gap-8 py-5 px-4 pl-5 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg">please select master signature.</div></div>';
 					GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module']))); exit;
 				}
 			}else {
-				$_SESSION[GetSession('Error')] = '<div class="alert alert-info">Please select a valid .csv file.</div>';
+				$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-info gap-8 py-5 px-4 pl-5 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#FF8E0A]/12 to-[#FF8E0A]/0 shadow-lg">Please select a valid .csv file.</div></div>';
 				GetFrontRedirectUrl(GetUrl(array('module'=>$_REQUEST['module']))); exit;
 			}
 		}

@@ -38,16 +38,15 @@ class CIT_account
 						'StorageClass' => 'REDUCED_REDUNDANCY',
 						'ACL'   => 'public-read'
 					));
-					if(is_array(getimagesize($location))){
-						$src = $GLOBALS['UPLOAD_LINK'].'/profile/'.$filename;
-						
-						$data =array('user_image'=>$filename); $where =array('user_id'=>$GLOBALS['USERID']); 
-						$update = $GLOBALS['DB']->update("registerusers",$data,$where);
-					}
+					
+					$src = $GLOBALS['UPLOAD_LINK'].'/profile/'.$filename;
+					
+					$data =array('user_image'=>$filename); $where =array('user_id'=>$GLOBALS['USERID']); 
+					$update = $GLOBALS['DB']->update("registerusers",$data,$where);
 					$return_arr = array("name" => $filename,"displayname" => $displayname, "size" => $filesize, "src"=> $src, "error"=>0);
 				}
 			}else{
-				$return_arr = array("error" =>1, "msg"=>"please upload valid jpg, jpeg, png gif or svg image");
+				$return_arr = array("error" =>1, "msg"=>"please upload valid jpg, jpeg or png image");
 			}
 			echo json_encode($return_arr); exit;
 		}
@@ -66,7 +65,16 @@ class CIT_account
 						$update = $GLOBALS['DB']->update("registerusers",$data,$where);
 					}
 					$_SESSION[GetSession('user_name')] = $_POST['user_firstname'] ." ".$_POST['user_lastname'];
-					$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong> Detail update!</div>';	
+					$_SESSION[GetSession('Success')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="gap-8 py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> Detail update!</div></div>';
+					$usrRes = $GLOBALS['DB']->row("SELECT user_status,user_image FROM `registerusers` WHERE `user_id`=? and user_status=1",array($GLOBALS['USERID']));
+					if($usrRes['user_image'] != 'default.png'){
+						$profile_img = $GLOBALS['UPLOAD_LINK'].'/profile/'.$usrRes['user_image'];
+						$GLOBALS['USERPROFILEIMG'] = '<div class="size-[42px] md:size-8 rounded-full overflow-hidden text-white flex items-center justify-center"><img src="'.$profile_img.'?'.time().'" alt=""></div>';
+					}else{
+						$profile_txt = substr($GLOBALS['USERNAME'],0,1);
+						$GLOBALS['USERPROFILEIMG'] = '<div class="size-[42px] md:size-8 rounded-full overflow-hidden bg-gradient text-white flex items-center justify-center"><span class="profiletxt">'.$profile_txt.'</span></div>';
+					}
+
 				}else{
 					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> please enter required field</div>';	
 				}
@@ -88,25 +96,25 @@ class CIT_account
 							$data =array('password'=>md5($_POST['user_password']));
 							$where =array('id'=>$GLOBALS['SUBUSERID']);
 							$update = $GLOBALS['DB']->update("registerusers_sub_users",$data,$where);
-							$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong> password update.</div>';	
+							$_SESSION[GetSession('Success')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> password updated.</div></div>';	
 						}else{
-							$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
+							$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
 						}
 					}else{
 						if(md5($current_pass) == $GLOBALS['user_password']){
 							$data =array('user_password'=>md5($_POST['user_password']));
 							$where =array('user_id'=>$GLOBALS['USERID']);
 							$update = $GLOBALS['DB']->update("registerusers",$data,$where);
-							$_SESSION[GetSession('Success')] = '<div class="alert alert-success"><strong>Success!</strong> password update.</div>';	
+							$_SESSION[GetSession('Success')] = '<div class="success-error-message fixed top-0 right-0 p-3"><div class="py-5 px-4 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success!</strong> password updated.</div></div>';	
 						}else{
-							$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
+							$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> current password does not match.</div>';	
 						}
 					}
 				}else{
-					$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> password and confirm password not match.</div>';	
+					$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> password and confirm password not match.</div>';	
 				}
 			}else{
-				$_SESSION[GetSession('Error')] = '<div class="alert alert-danger"><strong>Fail!</strong> please enter required field.</div>';	
+				$_SESSION[GetSession('Error')] = '<div class="success-error-message alert alert-danger"><strong>Fail!</strong> please enter required field.</div>';	
 			}
 			GetFrontRedirectUrl(GetUrl(array('module'=>'account','id'=>'changepassword')));
 		}

@@ -14,9 +14,9 @@
             <div class="hidden lg:flex items-center justify-center grow" id="megaMenuWrapper">
                 <div class="flex [--kt-reparent-mode:prepend] lg:[--kt-reparent-mode:prepend] [--kt-reparent-target:body] lg:[--kt-reparent-target:#megaMenuWrapper]" data-kt-reparent="true">
                     <div class="hidden fixed lg:relative lg:flex lg:items-stretch [--kt-drawer-enable:true] lg:[--kt-drawer-enable:false]" data-kt-drawer="true" data-kt-drawer-class="kt-drawer kt-drawer-start fixed z-10 top-0 bottom-0 w-full mr-5 max-w-[250px] p-5 lg:p-0 overflow-auto" id="mega_menu_container">
-                        <ul class="kt-menu flex-col lg:flex-row flex lg:items-center relative z-[1] *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:group-[.active]:text-primary  [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:px-3 [&>*>*]:py-2 [&>*>*]:border [&>*>*]:border-transparent text-gray-500" data-kt-menu="true" id="mega_menu">
+                        <ul class="kt-menu flex-col lg:flex-row flex gap-2 lg:items-center relative z-[1] *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:group-[.active]:text-black [&>*>*]:group-[.active]:rounded-full [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:px-3 [&>*>*]:py-2 [&>*>*]:border [&>*>*]:border-transparent text-gray-500 [&>*>*]:hover:text-black [&>*>*]:hover:rounded-full [&>*>*]:hover:border-primary [&>*>*]:hover:bg-gradient-to-r [&>*>*]:hover:from-[#26B7FF]/10 [&>*>*]:hover:to-[#1D4AFE]/10" data-kt-menu="true" id="mega_menu">
                             <li class="dashboard group active">
-                                <a href="%%DEFINE_ROOT_LINK%%">
+                                <a href="%%DEFINE_ROOT_LINK%%" >
                                     <i class="font-bold hgi hgi-stroke hgi-dashboard-square-01"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -57,29 +57,34 @@
 
             <div class="flex gap-2">
                 %%DEFINE_IMPORT_SIGNATURE_PENDING_LEFTBAR%%
-                <div class="size-[42px] rounded-full flex items-center justify-center border border-primary/50 text-black">
+                <!-- <div class="size-[42px] rounded-full flex items-center justify-center border border-primary/50 text-black">
                     <i class="fal fa-bell"></i>
                 </div>
                 <div class="size-[42px] rounded-full flex items-center justify-center border border-primary/50 text-black">
                     <i class="fal fa-cog"></i>
-                </div>
+                </div> -->
                 <div data-kt-dropdown="true" data-kt-dropdown-placement="bottom-end" data-kt-dropdown-trigger="click" %%DEFINE_NLDN%%">
-                    <div class="flex items-center gap-2 md:p-1 border border-primary/50 rounded-full" data-kt-dropdown-toggle="true">
-                        <div class="size-[42px] md:size-8 rounded-full bg-gradient text-white flex items-center justify-center">
+                    <div class="flex items-center gap-2 md:p-1 border border-primary/50 rounded-full cursor-pointer" data-kt-dropdown-toggle="true">
+                        <div class="size-[42px] md:size-8 rounded-full overflow-hidden bg-gradient text-white flex items-center justify-center">
                             %%DEFINE_USERPROFILEIMG%%
                         </div>
                         <div class="hidden md:block">
                             <p class="text-gray-950 text-xs">Workspace</p>
                             <p class="text-gray-600 text-[10px]">%%DEFINE_USERNAME%%</p>
                         </div>
-                        <i class="!hidden md:!block fas fa-caret-down ml-1 mr-2"></i>
+                        <div class="hidden md:block">
+                            <span class="kt-dropdown-open:hidden">
+                            <i class="fas fa-caret-down ml-1 mr-2"></i>
+                            </span>
+                            <span class="hidden kt-dropdown-open:inline">
+                            <i class="fas fa-caret-up ml-1 mr-2"></i>
+                            </span>
+                        </div>
                     </div>
-                    <ul class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true">
+                    <ul class="kt-dropdown-menu w-52" data-kt-dropdown-menu="true" data-kt-dropdown-dismiss="true">
                         <li class="border-b border-b-gray-200 pb-3 md:hidden">
                             <div class="flex items-center gap-2">
-                                <div class="size-8 rounded-full bg-gradient text-white flex items-center justify-center">
-                                    %%DEFINE_USERPROFILEIMG%%
-                                </div>
+                                %%DEFINE_USERPROFILEIMG%%
                                 <div>
                                     <p class="text-gray-950">Workspace</p>
                                     <p class="text-gray-600 text-xs">%%DEFINE_USERNAME%%</p>
@@ -98,7 +103,7 @@
                         </li>
                         IF("%%DEFINE_billing_settings%%" == "billing_settings"){
                         <li>
-                            <a class="kt-dropdown-menu-link" href="%%DEFINE_billing%%">
+                            <a class="kt-dropdown-menu-link" href="%%DEFINE_billing%%" id="billingButton">
                                 <i class="font-bold text-gray-600 hgi hgi-stroke hgi-invoice-03"></i> Billing
                             </a>
                         </li>
@@ -132,5 +137,6 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="plan_type" value="%%DEFINE_plan_type%%">
     </div>
 </header>

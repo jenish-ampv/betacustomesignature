@@ -19,6 +19,7 @@ class CIT_PRICING
 		} else {
 			$action = '';
 		}
+		
 		$this->getPage();
 		$this->getPlanDetail();
 		$GLOBALS['CLA_HTML']->addMain($GLOBALS['WWW_TPL'].'/pricing-new.html');	
@@ -56,25 +57,33 @@ class CIT_PRICING
 						$pro_year_arr[$unit['plan_unit']] = $unit['plan_unitprice'];
 						$pro_year_arrspl[$unit['plan_unit']] = $unit['plan_unitsplprice'];
 					}
+					if($planname == 'pro month new' && $plantype == 'month'){
+						$pro_month_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_month_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
+					if($planname == 'pro year new' && $plantype == 'year'){
+						$pro_year_arr_new[$unit['plan_unit']] = $unit['plan_unitprice'];
+						$pro_year_arrspl_new[$unit['plan_unit']] = $unit['plan_unitsplprice'];
+					}
 				}
 			}
 		}
 		//$GLOBALS['basic_month_unit'] =  json_encode(array(1=>10,5=>15,10=>25,15=>35,20=>45,25=>50,30=>55,35=>60,40=>65,45=>70,50=>75)); 
 		//$GLOBALS['pro_month_unit'] =  json_encode(array(1=>15,5=>20,10=>30,15=>40,20=>50,25=>55,30=>60,35=>65,40=>70,45=>75,50=>80)); 
 		
-		$GLOBALS['basic_quarter_unit'] = json_encode($basic_quarter_arr);
-		$GLOBALS['basic_quarter_unitspl'] = json_encode($basic_quarter_arrspl);
-		$GLOBALS['pro_quarter_unit'] = json_encode($pro_quarter_arr);
-		$GLOBALS['pro_quarter_unitspl'] = json_encode($pro_quarter_arrspl);
+		// $GLOBALS['basic_quarter_unit'] = json_encode($basic_quarter_arr);
+		// $GLOBALS['basic_quarter_unitspl'] = json_encode($basic_quarter_arrspl);
+		// $GLOBALS['pro_quarter_unit'] = json_encode($pro_quarter_arr);
+		// $GLOBALS['pro_quarter_unitspl'] = json_encode($pro_quarter_arrspl);
+		// $GLOBALS['basic_year_unit'] = json_encode($basic_year_arr);
+		// $GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
+		// $GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
+		// $GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
 
-		$GLOBALS['basic_month_unit'] = json_encode($basic_quarter_arr);
-		$GLOBALS['basic_month_unitspl'] = json_encode($basic_quarter_arrspl);
-		$GLOBALS['pro_month_unit'] = json_encode($pro_quarter_arr);
-		$GLOBALS['pro_month_unitspl'] = json_encode($pro_quarter_arrspl);
-		$GLOBALS['basic_year_unit'] = json_encode($basic_year_arr);
-		$GLOBALS['basic_year_unitspl'] = json_encode($basic_year_arrspl);
-		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr);
-		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl);
+		$GLOBALS['pro_month_unit'] = json_encode($pro_month_arr_new);
+		$GLOBALS['pro_month_unitspl'] = json_encode($pro_month_arrspl_new);
+		$GLOBALS['pro_year_unit'] = json_encode($pro_year_arr_new);
+		$GLOBALS['pro_year_unitspl'] = json_encode($pro_year_arrspl_new);
 		return false;
 	}
 	

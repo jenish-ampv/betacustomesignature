@@ -23,8 +23,8 @@ class CIT_AZUREAD
 		
 		AddMessageInfo();
 		$GLOBALS['success_popup'] =0;
-		$GLOBALS['bulkerrorcls'] ='d-none'; 
-		$GLOBALS['bulkuploadcls'] = 'd-none'; 
+		$GLOBALS['bulkerrorcls'] ='hidden'; 
+		$GLOBALS['bulkuploadcls'] = 'hidden'; 
 
 		if(isset($_REQUEST['category_id']) && $_REQUEST['category_id'] == 'copyCtaButton'){
 			$this->copyCtaButton();
@@ -69,9 +69,9 @@ class CIT_AZUREAD
 			GetFrontRedirectUrl(GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id']); exit;
 		}
 
-		$GLOBALS['azurestep1'] ='d-none';
-		$GLOBALS['azurestep2'] ='d-none';
-		$GLOBALS['azurestep3'] ='d-none';
+		$GLOBALS['azurestep1'] ='hidden';
+		$GLOBALS['azurestep2'] ='hidden';
+		$GLOBALS['azurestep3'] ='hidden';
 		
 			if($_POST['forcetoupdate'] == 1){
 				$members =  $GLOBALS['integrations']->getLastUpdatedUserData('',$getattRow['api_username'],$getattRow['api_password'],$getattRow['api_uniqid']);
@@ -254,12 +254,12 @@ class CIT_AZUREAD
 									}
 									// manage import process queue with DB
 									// $this->previewImportedSignatureToSaveHtml();
-									$_SESSION[GetSession('Success')] = '<div class="alert alert-success">The signature has been created successfully.</div>';
+									$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
 									$redirect = GetUrl(array('module'=>'dashboard'))."?department_id=".$GLOBALS['current_department_id'];
 									GetFrontRedirectUrl($redirect); exit;
 								}
 								else{
-									$_SESSION[GetSession('Success')] = '<div class="alert alert-success">The signature has been created successfully.</div>';
+									$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg">The signature has been created successfully.</div>';
 									//$redirect = GetUrl(array('module'=>'import')).'?success=1';
 									$redirect = GetUrl(array('module'=>'azuread','category_id'=>'thanks'));
 									GetFrontRedirectUrl($redirect); exit;
@@ -282,28 +282,64 @@ class CIT_AZUREAD
 					$GLOBALS['group_list'] ='';
 					 $mem_count = 0;
 					foreach($getgroups['groups'] as $group){
-						$GLOBALS['group_list'] .='  <div class="accordion-item">
-						<h2 class="accordion-header">
-						<input class="form-check-input master_checkbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$group['id'].'" data-wrapper ="wrapper-'.$group['id'].'"><label for="'.$group['id'].'">'.$group['displayName'].'</label>
-							<div class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse-'.$group['id'].'" aria-expanded="false" aria-controls="collapse-'.$group['id'].'"></div>
-							</h2><div id="collapse-'.$group['id'].'" class="accordion-collapse collapse" data-bs-parent="#accordionExample"><div class="accordion-body" id="wrapper-'.$group['id'].'">';
-						$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$group['id'].'">';
-							  $azureadusers = $GLOBALS['integrations']->getUserGraph($group['id']);
+						$GLOBALS['group_list'] .='  <div data-kt-accordion-item="true" class="kt-accordion-item group relative" aria-expanded="false">
+							<div class="flex items-center gap-2 p-3 group-[.active]:bg-primary/10">
+								<input class="kt-checkbox master_checkbox" type="checkbox" name="adgroups[]" id="'.$group['id'].'" value="'.$group['id'].'" data-wrapper ="wrapper-'.$group['id'].'">
+								<label class="kt-label" for="'.$group['id'].'">'.$group['displayName'].'</label>
+							</div>
+							<div class="size-[45px] cursor-pointer hover:bg-gray-100 flex items-center justify-center absolute right-0 top-0" data-kt-accordion-toggle="true" aria-controls="accordion_content_'.$group['id'].'" id="accordion_toggle_'.$group['id'].'">
+								<i  class="hgi hgi-stroke hgi-arrow-right-01 text-xl"></i>
+							</div>
+
+							<div class="kt-accordion-content hidden" aria-labelledby="accordion_toggle_'.$group['id'].'" id="accordion_content_'.$group['id'].'">
+							<div class="py-3 pl-5 pb-3 space-y-2" id="wrapper-'.$group['id'].'">';
+							$GLOBALS['search_list'] .='<div class="accordion-body-search" id="swrapper-'.$group['id'].'">';
+							  	$azureadusers = $GLOBALS['integrations']->getUserGraph($group['id']);
+								if(!count($azureadusers['users'])){
+									$GLOBALS['group_list'] .='<p class="text-gray-400">No User Found</p>';
+								}
 								foreach($azureadusers['users'] as  $members){
 									if($members['mail'] != ""){
-									$GLOBALS['group_list'] .='<div class="member_list" style="padding-left:20px;"><span class="member_chek"><input class="form-check-input mem_checkbox" type="checkbox" name="members['.$mem_count.']" id="'.$members['id'].'-'.$group['id'].'" value="'.$members['id'].'"  data-wrapper="wrapper-'.$group['id'].'"
-                data-master="'.$group['id'].'"><label for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'</label></span><span class="member-mail-id">'.$members['mail'].'</span><input type="hidden" name="displayName[]" value="'.$members['displayName'].'" ><input type="hidden" name="givenName[]" value="'.$members['givenName'].'" ><input type="hidden" name="surname[]" value="'.$members['surname'].'" ><input type="hidden" name="jobTitle[]" value="'.$members['jobTitle'].'" ><input type="hidden" name="mail[]" value="'.$members['mail'].'" ><input type="hidden" name="mobilePhone[]" value="'.$members['mobilePhone'].'" ><input type="hidden" name="officeLocation[]" value="'.$members['officeLocation'].'" ><input type="hidden" name="businessPhones[]" value="'.$members['businessPhones'][0].'" ><input type="hidden" name="faxNumber[]" value="'.$members['faxNumber'].'" ><input type="hidden" name="department[]" value="'.$members['department'].'" ><input type="hidden" name="companyName[]" value="'.$members['companyName'].'" ><input type="hidden" name="streetAddress[]" value="'.$members['streetAddress'].'" ><input type="hidden" name="city[]" value="'.$members['city'].'" ><input type="hidden" name="state[]" value="'.$members['state'].'" ><input type="hidden" name="country[]" value="'.$members['country'].'" ><input type="hidden" name="postalCode[]" value="'.$members['postalCode'].'"></div>';
-				
-								$GLOBALS['search_list'] .='<div class="member_list search-container" style="display:none;"><span class="member_chek"><input class="form-check-input mem_search_checkbox" type="checkbox" name="" id="search_'.$members['id'].'-'.$group['id'].'" value=""  data-master="'.$group['id'].'"><label for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'</label></span><span class="member-mail-id">'.$members['mail'].'</span></div>';
-								$mem_count++;
-								 }
+										$GLOBALS['group_list'] .='
+										<div class="member_list">
+											<div class="member_chek flex flex-wrap items-center gap-2">
+												<input class="kt-checkbox mem_checkbox" type="checkbox" name="members['.$mem_count.']" id="'.$members['id'].'-'.$group['id'].'" value="'.$members['id'].'"  data-wrapper="wrapper-'.$group['id'].'" data-master="'.$group['id'].'">
+												<label class="kt-label" for="'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'<span class="ml-2 text-gray-500 font-normal">('.$members['mail'].')</span></label>
+											</div>
+											<input type="hidden" name="displayName[]" value="'.$members['displayName'].'" >
+											<input type="hidden" name="givenName[]" value="'.$members['givenName'].'" >
+											<input type="hidden" name="surname[]" value="'.$members['surname'].'" >
+											<input type="hidden" name="jobTitle[]" value="'.$members['jobTitle'].'" >
+											<input type="hidden" name="mail[]" value="'.$members['mail'].'" >
+											<input type="hidden" name="mobilePhone[]" value="'.$members['mobilePhone'].'" >
+											<input type="hidden" name="officeLocation[]" value="'.$members['officeLocation'].'" >
+											<input type="hidden" name="businessPhones[]" value="'.$members['businessPhones'][0].'" >
+											<input type="hidden" name="faxNumber[]" value="'.$members['faxNumber'].'" >
+											<input type="hidden" name="department[]" value="'.$members['department'].'" >
+											<input type="hidden" name="companyName[]" value="'.$members['companyName'].'" >
+											<input type="hidden" name="streetAddress[]" value="'.$members['streetAddress'].'" >
+											<input type="hidden" name="city[]" value="'.$members['city'].'" >
+											<input type="hidden" name="state[]" value="'.$members['state'].'" >
+											<input type="hidden" name="country[]" value="'.$members['country'].'" >
+											<input type="hidden" name="postalCode[]" value="'.$members['postalCode'].'">
+										</div>';
+					
+										$GLOBALS['search_list'] .='
+										<div class="member_list search-container" style="display:none;">
+											<div class="flex items-center gap-2 mb-3">
+												<input class="kt-checkbox mem_search_checkbox" type="checkbox" name="" id="search_'.$members['id'].'-'.$group['id'].'" value=""  data-master="'.$group['id'].'">
+												<label class="kt-label" for="search_'.$members['id'].'-'.$group['id'].'">'.$members['displayName'].'('.$members['mail'].')</label>
+											</div>
+										</div>';
+										$mem_count++;
+								 	}
 								} 
 	  						$GLOBALS['group_list'] .='</div></div></div>';
-							 $GLOBALS['search_list'] .='</div>';
+							$GLOBALS['search_list'] .='</div>';
 							$GLOBALS['memberr_selected']= $mem_count;
 					}
 				}else{
-						$_SESSION[GetSession('Error')] = '<div class="alert alert-danger">'.$getgroups['msg'].'.</div>';
+						$_SESSION[GetSession('Error')] = '<div class="fixed top-0 right-0 p-3"><div class="alert alert-danger gap-8 py-5 px-4 pl-11 border-l-9 border-red-600 rounded-xl relative bg-white bg-gradient-to-r from-[#EB4545]/12 to-[#EB4545]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt="">'.$getgroups['msg'].'.</div></div>';
 				}
 				 
 				 
@@ -372,38 +408,43 @@ class CIT_AZUREAD
 			}
 			$mfield = 0;
 			if($data['signature_firstname'] != ""){
-				$GLOBALS['master_fieldp'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
-  							<label for=" ">Full Name</label></div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control select_heap_box" name="dirattrp[]">
-                                    <option value="master" '.$signature_firstnamemaster.'>Take from Master Signature </option>
-                                    <option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
-                                    <option value="givenName" '.$signature_firstnamegivenName.'>Given Name</option>
-									<option value="surname" '.$signature_firstnamesurname.'>Surname</option>
-                                    <option value="jobTitle" '.$signature_firstnamejobTitle.'>job Title</option>
-                                    <option value="mail" '.$signature_firstnamemail.'>Mail</option>
-                                    <option value="mobilePhone" '.$signature_firstnamemobilePhone.'>Mobile Phone</option>
-								    <option value="businessPhones" '.$signature_firstnamebusinessPhones.'>Office Phones</option>
-								    <option value="faxNumber" '.$signature_firstnamefaxNumber.'>Fax Number</option>
-								    <option value="companyName" '.$signature_firstnamecompanyName.'>Company Name</option>
-								    <option value="department" '.$signature_firstnamedepartment.'>Department</option>
-								    <option value="officeLocation" '.$signature_firstnameofficeLocation.'>Office Location</option>
-								    <option value="streetAddress" '.$signature_firstnamestreetAddress.'>Street Address</option>
-									<option value="postalCode" '.$signature_firstnamepostalCode.'>Zipcode</option>
-								    <option value="city" '.$signature_firstnamecity.'>City</option>
-								    <option value="state" '.$signature_firstnamestate.'>State</option>
-								    <option value="country" '.$signature_firstnamecountry.'>Country</option>
-                                </select><label for=" ">Full Name</label>
-                                <input type="hidden" name="fieldp[]" value="signature_firstname" />
-                            </div>';
+				$GLOBALS['master_fieldp'] .='<div>
+						<label class="kt-label mb-3">Full Name</label>
+						<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_firstname'].'" disabled="disabled">
+					</div>';
+				$GLOBALS['dirattr_fieldp'] .='<div>
+					<label class="kt-label mb-3">Full Name</label>
+					<select class="kt-select" name="dirattrp[]">
+						<option value="master" '.$signature_firstnamemaster.'>Take from Master Signature </option>
+						<option value="displayName" '.$signature_firstnamedisplayName.'>Display Name</option>
+						<option value="givenName" '.$signature_firstnamegivenName.'>Given Name</option>
+						<option value="surname" '.$signature_firstnamesurname.'>Surname</option>
+						<option value="jobTitle" '.$signature_firstnamejobTitle.'>job Title</option>
+						<option value="mail" '.$signature_firstnamemail.'>Mail</option>
+						<option value="mobilePhone" '.$signature_firstnamemobilePhone.'>Mobile Phone</option>
+						<option value="businessPhones" '.$signature_firstnamebusinessPhones.'>Office Phones</option>
+						<option value="faxNumber" '.$signature_firstnamefaxNumber.'>Fax Number</option>
+						<option value="companyName" '.$signature_firstnamecompanyName.'>Company Name</option>
+						<option value="department" '.$signature_firstnamedepartment.'>Department</option>
+						<option value="officeLocation" '.$signature_firstnameofficeLocation.'>Office Location</option>
+						<option value="streetAddress" '.$signature_firstnamestreetAddress.'>Street Address</option>
+						<option value="postalCode" '.$signature_firstnamepostalCode.'>Zipcode</option>
+						<option value="city" '.$signature_firstnamecity.'>City</option>
+						<option value="state" '.$signature_firstnamestate.'>State</option>
+						<option value="country" '.$signature_firstnamecountry.'>Country</option>
+					</select>
+					<input type="hidden" name="fieldp[]" value="signature_firstname" />
+				</div>';
 				$mfield++;
 			}
 			if($data['signature_jobtitle'] != ""){
-				$GLOBALS['master_fieldp'] .='<div class="form-floating">
-  							<input type="text" class="form-control" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled"><label for=" ">Title / Sub Title</label>
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class="kt-label mb-3">Title / Sub Title</label>
+  							<input type="text" class="kt-input" placeholder="" value="'.$data['signature_jobtitle'].'" disabled="disabled">
 						</div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control select_heap_box" name="dirattrp[]">
+				$GLOBALS['dirattr_fieldp'] .='<div>
+								<label class="kt-label mb-3">Title / Sub Title</label>
+                                <select class="kt-select" name="dirattrp[]">
                                     <option value="master" '.$signature_jobtitlemaster.'>Take from Master Signature </option>
                                     <option value="displayName" '.$signature_jobtitledisplayName.'>Display Name</option>
                                     <option value="givenName" '.$signature_jobtitlegivenName.'>Given Name</option>
@@ -421,18 +462,20 @@ class CIT_AZUREAD
 								    <option value="city" '.$signature_jobtitlecity.'>City</option>
 								    <option value="state" '.$signature_jobtitlestate.'>State</option>
 								    <option value="country" '.$signature_jobtitlecountry.'>Country</option>
-                                </select><label for=" ">Title / Sub Title</label>
+                                </select>
                                 <input type="hidden" name="fieldp[]" value="signature_jobtitle" />
                             </div>';
 				$mfield++;
 			}
 			if($data['signature_company'] !=""){
 				$mfield++;
-				$GLOBALS['master_fieldp'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
-  							<label for=" ">Company Name</label>
+				$GLOBALS['master_fieldp'] .='<div>
+							<label class="kt-label mb-3">Company Name</label>
+							<input type="text" class="kt-input"  placeholder=""  value="'.$data['signature_company'].'" disabled="disabled">
 						</div>';
-				$GLOBALS['dirattr_fieldp'] .='<div class="form-floating">
-                                <select  class="form-control select_heap_box" name="dirattrp[]">
+				$GLOBALS['dirattr_fieldp'] .='<div>
+								<label class="kt-label mb-3">Company Name</label>
+                                <select class="kt-select" name="dirattrp[]">
                                    <option value="master" '.$signature_companymaster.'>Take from Master Signature </option>
                                     <option value="displayName" '.$signature_companydisplayName.'>Display Name</option>
                                     <option value="givenName" '.$signature_companygivenName.'>Given Name</option>
@@ -450,7 +493,7 @@ class CIT_AZUREAD
 								    <option value="city" '.$signature_companycity.'>City</option>
 								    <option value="state" '.$signature_companystate.'>State</option>
 								    <option value="country" '.$signature_companycountry.'>Country</option>
-                                </select><label for=" ">Company Name</label>
+                                </select>
                                 <input type="hidden" name="fieldp[]" value="signature_company" />
                             </div>';
 			$mfield++;
@@ -475,12 +518,14 @@ class CIT_AZUREAD
 						$newfieldc[$fieldc.${$fieldc.'c'}] = 1;
 						$fieldname =    $fieldc.${$fieldc.'c'};
 						
-						$GLOBALS['master_fieldc'] .='<div class="form-floating"><input type="text" class="form-control"  placeholder=""  value="'.$field_value.'" disabled="disabled">
-  							<label for=" ">'.$field_label.'</label>
+						$GLOBALS['master_fieldc'] .='<div>
+						<label class="kt-label mb-3">'.$field_label.'</label>
+						<input type="text" class="kt-input"  placeholder=""  value="'.$field_value.'" disabled="disabled">
 						</div>';
 						
-						$GLOBALS['dirattr_fieldc'] .='<div class="form-floating">
-                                <select class="form-control select_heap_box" name="dirattrc[]">
+						$GLOBALS['dirattr_fieldc'] .='<div>
+								<label class="kt-label mb-3">'.$field_label.'</label>
+                                <select class="kt-select" name="dirattrc[]">
                                     <option value="master" '.${$fieldname.'master'}.'>Take from Master Signature </option>
                                     <option value="displayName" '.${$fieldname.'displayName'}.'>Display Name</option>
 									 <option value="surname" '.${$fieldname.'surname'}.'>Surname</option>
@@ -498,14 +543,11 @@ class CIT_AZUREAD
 								    <option value="city" '.${$fieldname.'city'}.'>City</option>
 								    <option value="state" '.${$fieldname.'state'}.'>State</option>
 								    <option value="country" '.${$fieldname.'country'}.'>Country</option>
-                                </select><label for=" ">'.$field_label.'</label>
+                                </select>
                                 <input type="hidden" name="fieldc[]" value="'.$customfield['field_type'].'" />
                             </div>'; 
 					 $fieldno++; $mfield++; }
 				}
-				
-								
-					
 
 				unset($data['signature_id']); unset($data['no']); // remove from csv file
 

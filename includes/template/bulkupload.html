@@ -2,11 +2,11 @@
  <div class="flex grow flex-col in-data-kt-[sticky-header=on]:pt-(--header-height-default) overflow-auto">
     %%DEFINE_SIDEBAR%%
     <main class="grow" id="content" role="content">
-        <div class="kt-container-fluid pb-4">
+        <div class="kt-container-fluid pb-4 h-full flex flex-col gap-2">
             %%DEFINE_Message%%
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 %%DEFINE_bulkuploadcls%%">
-                <div class="rounded-2xl overflow-hidden">
-                    <video width="100%" border="0" controls disablePictureInPicture controlsList="nodownload" poster="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png">
+                <div class="overflow-hidden cursor-pointer">
+                    <video width="100%" border="0" controls disablePictureInPicture controlsList="nodownload" poster="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png" class="rounded-2xl">
                         <source src="%%DEFINE_IMAGE_LINK%%/images/video/bulk-signature-tutorial.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -33,7 +33,7 @@
                                 <h6 class="font-semibold">Upload here</h6>
                             </div>
                         </div>
-                         <div class="flex justify-center gap-4 border border-dashed border-gray-300 rounded-2xl p-10 my-10">
+                         <div class="flex justify-center flex-col sm:flex-row gap-4 border border-dashed border-gray-300 rounded-2xl p-10 my-10">
                             <a href="%%DEFINE_samplecsv_download%%" class="kt-btn kt-btn-primary next">
                                 <i class="hgi hgi-stroke hgi-file-download"></i> Download CSV
                             </a>
@@ -41,31 +41,35 @@
                         </div>
                         <div class="up_form">
                             <form action="" method="post" id="bulkUpload" name="bulkUpload" enctype="multipart/form-data">
-                                <input class="kt-input" name="csv_file" id="csv_file" type="file" onchange="form.submit()" />
+                                <input class="kt-input cursor-pointer" name="csv_file" id="csv_file" type="file" accept=".csv" onchange="form.submit()" />
                             </form>
+                            <p class="padding mt-2 text-primary">Only CSV files are allowed</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-             <div class="kt-card %%DEFINE_bulkerrorcls%%">
-                 <div class="row">
-                     <div class="col-md-6 col-12">
-                         <div class="bulkupload_video"><img src="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png" /></div>
-                     </div>
-                     <div class="col-md-6 col-12">
-                         <h5>Import Team</h5>
-                         <h2>Select master signature</h2>
-                         <p>please go to dashboard and select set as master signature for import team.</p>
-
-
-                         <div class="bottom_bg_btn"><a href="%%DEFINE_moduleLinkDashboard%%" class="btn next action-button">Dashboard</a></div>
-
-                     </div>
-                 </div>
+             <div class="flex h-auto md:h-full items-center justify-center gap-5 %%DEFINE_bulkerrorcls%%">
+                <div class="flex justify-center flex-col md:flex-row gap-5">
+                    <div class="rounded-2xl overflow-hidden">
+                        <div class="bulkupload_video"><img src="%%DEFINE_IMAGE_LINK%%/images/bulkupload_video.png" /></div>
+                    </div>
+                    <div class="kt-card kt-card-accent">
+                        <div class="kt-card-header mb-2">
+                            <div class="kt-card-heading">
+                                <h2 class="kt-card-title mb-0">Select master signature</h2>
+                                <span>Import Team</span>
+                            </div>
+                        </div>
+                        <div class="kt-card-content">
+                            <p>please go to dashboard and select set as master signature for import team.</p>
+                            <div class="mt-5">
+                                <a href="%%DEFINE_moduleLinkDashboard%%" class="kt-btn kt-btn-primary next action-button">Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
              </div>
-
          </div>
      </div>
  </div>
@@ -75,11 +79,10 @@
 
  <!-- share Popup -->
 
- <div class="modal fade" id="success-importmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- <div class="modal fade" id="success-importmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog">
          <div class="modal-content">
              <div class="modal-header" style="border:none;">
-                 <!--    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
                  <button data-url="%%DEFINE_moduleLinkDashboard%%" type="button" class="btn-close redirectButton" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
              <div class="modal-body">
@@ -94,14 +97,14 @@
              </div>
          </div>
      </div>
- </div>
+ </div> -->
 
 
- <div class="kt-modal kt-modal-center" data-kt-modal="true" id="successImportmodel1">
+ <div class="kt-modal kt-modal-center" data-kt-modal="true" id="successImportmodel">
     <div class="kt-modal-content max-w-[400px]">
       <div class="kt-modal-body text-center">
-        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#successImportmodel1">
-            <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#successImportmodel">
+            <i class="hgi hgi-stroke hgi-cancel-circle text-3xl"></i>
         </button> 
         <img class="inline-block" src="%%DEFINE_IMAGE_LINK%%/images/success-msg.png" />
         <h5 class="my-3 font-semibold">Congratulations!</h5>
@@ -115,11 +118,11 @@
 
 <div>
   <div class="kt-modal kt-modal-center" data-kt-modal="true" id="shareModalbulk">
-    <div class="kt-modal-content max-w-[600px]">
+    <div class="kt-modal-content max-w-[600px] max-h-full">
       <div class="kt-modal-header">
         <p class="kt-modal-title">Share Signature</p>
-        <button type="button" class="kt-modal-close absolute right-3 top-1" aria-label="Close modal" data-kt-modal-dismiss="#shareModalbulk">
-            <i class="hgi hgi-stroke hgi-cancel-circle text-2xl"></i>
+        <button type="button" class="kt-modal-close" aria-label="Close modal" data-kt-modal-dismiss="#shareModalbulk">
+            <i class="hgi hgi-stroke hgi-cancel-circle text-3xl"></i>
         </button> 
       </div>
       <div class="kt-modal-body">
@@ -165,6 +168,7 @@
         //  });
 
          $('#bulkUpload').submit(function() {
+            alert('asdasdsd');
              $('#loaderImg').show();
              return true;
          });
@@ -178,7 +182,7 @@
          
         setTimeout(function(){ $('.alert-success').hide();}, 3000);
 
-        const successImportmodelEl = document.querySelector('#successImportmodel1');
+        const successImportmodelEl = document.querySelector('#successImportmodel');
         const successImportmodel = KTModal.getInstance(successImportmodelEl);
         successImportmodel.show();
 
