@@ -17,20 +17,20 @@
 				<div class="flex flex-col gap-2">
 					%%DEFINE_signature_process%%
 					<div class="master_signature flex-1">
-						<div class="kt-card h-full">
+						<div class="kt-card h-full overflow-hidden">
 							<div class="kt-card-header">
 								<div class="kt-card-heading">
 									<div class="kt-card-title">Master Signature</div>
 								</div>
 								<div class="kt-card-toolbar">
 									IF("%%DEFINE_plan_signaturelimit%%" != "1"){
-									<a class="kt-btn kt-btn-sm rounded-full kt-btn-primary" href="javascript:void(0);" id="createMasterSignatureButton" onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
+									<a class="kt-btn kt-btn-sm kt-btn-primary" href="javascript:void(0);" id="createMasterSignatureButton" onclick="redirectUrlWithAjax('%%DEFINE_linkModuleNewsignature%%?siganature_type=master')">
 										<i class="hgi hgi-stroke hgi-plus-sign-circle"></i>
 										Create Master Signature
 									</a>
 									{:IF}
 									IF("%%DEFINE_plan_signaturelimit%%" == "1"){
-									<a class="kt-btn kt-btn-sm rounded-full kt-btn-primary"
+									<a class="kt-btn kt-btn-sm kt-btn-primary"
 										href="%%DEFINE_linkModuleNewsignature%%?siganature_type=master">
 										<i class="hgi hgi-stroke hgi-plus-sign-circle"></i>
 										Create Master Signature
@@ -48,12 +48,12 @@
 					</div>
 				</div>
 				<div class="kt-card">
-					<div class="kt-card-header flex-col justify-start items-start py-2">
+					<div class="kt-card-header flex-col justify-start items-start py-2 gap-4">
 						<div class="kt-card-heading">
 							<div class="kt-card-title">Analytics Snapshot</div>
 						</div>
 						<div
-							class="kt-card-toolbar overflow-auto w-full *:bg-white flex *:gap-2 *:border *:border-primary *:rounded-full *:flex *:items-center *:py-2 *:pl-2 *:pr-4 *:flex-none">
+							class="kt-card-toolbar overflow-auto w-full flex *:gap-2 *:border *:border-gray-200 *:rounded-2xl *:flex *:items-center *:py-2 *:pl-2 *:hover:border-transparent *:pr-4 *:flex-none *:hover:bgborder">
 							<div>
 								<img src="%%DEFINE_IMAGE_LINK%%/images/total-icon-new.svg">
 								<div class="snapshot-data flex flex-col flex-none">
@@ -164,14 +164,20 @@
 								<i class="hgi hgi-stroke hgi-search-01"></i>
 								<input class="kt-input" type="text" id="search_input" placeholder="Type to Search...">
 							</div>
-							<div class="text-nowrap text-xs text-gray-600">
-								%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%% Users
+							<div class="h-10 border border-gray-200 rounded-[14px] p-1 flex items-center gap-4">
+								<div class="text-nowrap text-gray-600 ml-2 flex gap-1.5 items-center">
+									 <span class="text-gray-600 text-xs">Users</span>
+									 <span class="text-gray-950 text-sm font-medium">%%DEFINE_total_sigcreated%%/%%DEFINE_plan_signature%%</span>
+								</div>
+								IF("%%DEFINE_ISSUBUSER%%" != "1"){
+									<a class="kt-btn kt-btn-icon kt-btn-sm kt-btn-outline kt-btn-primary" data-kt-tooltip="#inviteNewUser" href="usermanagement/">
+										<i class="hgi hgi-stroke hgi-plus-sign"></i>
+										<div id="inviteNewUser" class="kt-tooltip">
+											Invite New User
+										</div>
+									</a>
+								{:IF}
 							</div>
-							IF("%%DEFINE_ISSUBUSER%%" != "1"){
-                                <a class="kt-btn kt-btn-primary" href="usermanagement/">
-									<i class="hgi hgi-stroke hgi-plus-sign-circle"></i> Invite New User
-								</a>
-                            {:IF}
 							
 							<div class="flex items-center text-nowrap gap-2 delete-signature group" style="display:none;" id="extratop">
 								<input type="checkbox" value="" id="select_all" class="kt-checkbox select_all" />
