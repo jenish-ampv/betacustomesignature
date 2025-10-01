@@ -71,7 +71,7 @@ input[type="range" i]:hover::-webkit-slider-thumb {
     @apply bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE];
 }
 .kt-btn{
-    @apply rounded-full h-10 outline -outline-offset-2 px-4 outline-transparent;
+    @apply rounded-[14px] h-10 outline -outline-offset-2 px-4 outline-transparent;
     i{
         @apply leading-none;
     }
@@ -129,7 +129,7 @@ input[type="range" i]:hover::-webkit-slider-thumb {
       }
 }
 .kt-input,.kt-select{
-    @apply rounded-full h-10;
+    @apply rounded-[14px] h-10;
     &.kt-input-sm,&.kt-select-sm{
         @apply h-7 leading-2.5;
     }
