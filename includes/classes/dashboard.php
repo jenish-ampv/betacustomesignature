@@ -39,8 +39,10 @@ class CIT_DASHBOARD
 			if($subUserDepartmentList){
 				$department_ids = explode(",",$subUserDepartmentList['department_list']);
 				if(!in_array($GLOBALS['current_department_id'],$department_ids)){
-					$redirect = $GLOBALS['dashboard'].'?department_id='.$department_ids[0];
-					GetFrontRedirectUrl($redirect);exit();
+					if($department_ids[0]){
+						$redirect = $GLOBALS['dashboard'].'?department_id='.$department_ids[0];
+						GetFrontRedirectUrl($redirect);exit();
+					}
 				}
 			}
 		}
