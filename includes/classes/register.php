@@ -1277,6 +1277,9 @@ class CIT_REGISTER
 					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'period_start' => $start_time,'period_end' => $end_time,'apply_coupon'=>$coupon_id,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
 					$add = $GLOBALS['DB']->insert("registerusers_subscription",$data);
 				}
+				$userPlanData = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE `plan_priceid`= ?",array($plan_id));
+				$GLOBALS['plan_name'] = $userPlanData["plan_name"];
+				$GLOBALS['plan_type'] = ucfirst($userPlanData["plan_type"]);
 				$GLOBALS['amount_paid'] = GetPriceFormat($amount_paid / 100);
 				$GLOBALS['payment_date'] = date('M d, Y');
 				$GLOBALS['renew_date'] = date('M d, Y',$end_time);
@@ -1896,6 +1899,9 @@ class CIT_REGISTER
 					$data = array('plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'period_start' => $start_time,'period_end' => $end_time,'apply_coupon'=>$coupon_id,'invoice_link' => $invoice_link,'invoice_amount'=>$amount_paid,'plan_cancel'=>0);
 					$add = $GLOBALS['DB']->insert("registerusers_subscription",$data);
 				}
+				$userPlanData = $GLOBALS['DB']->row("SELECT * FROM `plan` WHERE `plan_priceid`= ?",array($plan_id));
+				$GLOBALS['plan_name'] = $userPlanData["plan_name"];
+				$GLOBALS['plan_type'] = ucfirst($userPlanData["plan_type"]);
 				$GLOBALS['amount_paid'] = GetPriceFormat($amount_paid / 100);
 				$GLOBALS['payment_date'] = date('M d, Y');
 				$GLOBALS['renew_date'] = date('M d, Y',$end_time);
