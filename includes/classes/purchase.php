@@ -289,6 +289,27 @@ class CIT_PURCHASE
 							// updateSubscriptionIdInDB($userId, $newSubscription->id);
 
 						}
+						$invoices = \Stripe\Invoice::all([
+							'customer' => $customerId,
+							'limit' => 1,
+							'status' => 'open'
+						]);
+						if (count($invoices->data) > 0) {
+							$latest_invoice = $invoices->data[0];
+							$invoice_no = $latest_invoice->number;
+							$invoice_link = $latest_invoice->hosted_invoice_url;
+							$amount_paid = $latest_invoice->amount_paid / 100;
+
+							$trdata = array(
+								'trn_userid' => $GLOBALS['USERID'],
+								'trn_planid' => $_POST['plan_id'],
+								'trn_invoiceno' => $invoice_no,
+								'trn_invoicefile' => $invoice_link,
+								'trn_total' => $amount_paid
+							);
+
+							$GLOBALS['DB']->insert("registerusers_transaction", $trdata);
+						}
 
 						$_SESSION[GetSession('Success')] = '<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><strong>Success! </strong>Your user has been upgraded.</div>';
 						GetFrontRedirectUrl(GetUrl(['module' => 'dashboard','category_id'=>'planrenewed']));exit();
@@ -920,25 +941,25 @@ class CIT_PURCHASE
 			$add = $GLOBALS['DB']->update('registerusers_subscription',$data,$where);
 			
 			// add transaction detail
-				 $trdata =array('trn_userid'=>$userId,'trn_planid'=>$GLOBALS['plan_id'],'trn_invoiceno'=>$invoice_no,'trn_invoicefile'=>$invoice_link,'trn_total'=>$amount_paid);
-			     $GLOBALS['DB']->insert("registerusers_transaction",$trdata);
-				 
-				 $GLOBALS['plan_amount_paid'] = number_format(($amount_paid / 100),2);
-				 $message= _getEmailTemplate('subscription_admin','admin');
-				_SendMailAdmin($customer_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
-				 return true;
+			$trdata =array('trn_userid'=>$userId,'trn_planid'=>$GLOBALS['plan_id'],'trn_invoiceno'=>$invoice_no,'trn_invoicefile'=>$invoice_link,'trn_total'=>$amount_paid);
+			$GLOBALS['DB']->insert("registerusers_transaction",$trdata);
+			
+			$GLOBALS['plan_amount_paid'] = number_format(($amount_paid / 100),2);
+			$message= _getEmailTemplate('subscription_admin','admin');
+			_SendMailAdmin($customer_email,'',$GLOBALS['EMAIL_SUBJECT'],$message);
+			return true;
 		}else{
 			$data = array('user_id'=>$userId,'plan_id'=>$planId,'customer_id'=>$customer_id,'subscription_id' => $subscription_id,'price_id' =>$plan_id,'plan_interval' => $plan_interval,'plan_signaturelimit'=>$GLOBALS['plan_signaturelimit'],'period_start' => $start_time,'period_end' => $end_time,'apply_coupon'=>$coupon_id,'invoice_amount'=>$amount_paid,'invoice_link' =>$invoice_link,'free_trial'=>$free_trial);
-				$add = $GLOBALS['DB']->insert("registerusers_subscription",$data);
+			$add = $GLOBALS['DB']->insert("registerusers_subscription",$data);
+		
+			// add transaction detail
+			$trdata =array('trn_userid'=>$userId,'trn_planid'=>$GLOBALS['plan_id'],'trn_invoiceno'=>$invoice_no,'trn_invoicefile'=>$invoice_link,'trn_total'=>$amount_paid);
+			$GLOBALS['DB']->insert("registerusers_transaction",$trdata);
 			
-				// add transaction detail
-			    $trdata =array('trn_userid'=>$userId,'trn_planid'=>$GLOBALS['plan_id'],'trn_invoiceno'=>$invoice_no,'trn_invoicefile'=>$invoice_link,'trn_total'=>$amount_paid);
-			    $GLOBALS['DB']->insert("registerusers_transaction",$trdata);
-				
-				$GLOBALS['plan_amount_paid'] = number_format(($amount_paid / 100),2);
-				$message= _getEmailTemplate('subscription_admin','admin');
-				_SendMailMasterAdmin($customer_email,1,$GLOBALS['EMAIL_SUBJECT'],$message);
-				return true;
+			$GLOBALS['plan_amount_paid'] = number_format(($amount_paid / 100),2);
+			$message= _getEmailTemplate('subscription_admin','admin');
+			_SendMailMasterAdmin($customer_email,1,$GLOBALS['EMAIL_SUBJECT'],$message);
+			return true;
 		}
 		
 		return false;
