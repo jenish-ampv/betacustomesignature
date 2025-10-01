@@ -392,74 +392,115 @@
     //     }
     //   });
     // });
+      function updatePlanDetails(value) {
+        var pro_month_unit = JSON.parse('%%DEFINE_pro_month_unit%%');
+        var pro_month_unitspl = JSON.parse('%%DEFINE_pro_month_unitspl%%');
+        unencoded = value;
+        unencoded = parseInt(unencoded);
 
-    function initCustomSlider(
-      fromPopup = false,
-      values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
-      sliderId = "rangeSlider",
-      tooltipId = "tooltip",
-      labelsId = "labels",
-      fillId = "fillTreck"
-  ) {
-      const slider = document.getElementById(sliderId);
-      const tooltip = document.getElementById(tooltipId);
-      const labelsContainer = document.getElementById(labelsId);
-      const rangeBg = document.getElementById(fillId);
+        $('.no_employee').text(unencoded);
+        $('#month_proprice').text(pro_month_unit[unencoded]);
+        $('#month_propricespl').text(pro_month_unitspl[unencoded]);
+        $('#free_priceq').text((pro_month_unit[unencoded] * 3).toFixed(2));
 
-      slider.max = values.length - 1;
-      const thumbWidth = 24; // known thumb width
+        var basicurl = $('#gs_qbasic').attr('href');
+        var prourl = $('#gs_qpro').attr('href');
+        newprourl = prourl.substr(0, prourl.lastIndexOf("/"));
+        newprourl += "/" + unencoded;
+        $('#gs_qpro').attr('href', newprourl);
 
-      // Generate labels
-      labelsContainer.innerHTML = "";
-      values.forEach((val, i) => {
-          const span = document.createElement("span");
-          span.textContent = val;
-          const percent = (i / (values.length - 1)) * 100;
-          span.style.left = percent + "%";
-          labelsContainer.appendChild(span);
-      });
+        var freeurl = newprourl + '&trial=1';
+        $('#gs_qfree').attr('href', freeurl);
 
-      function updateUI() {
-          const index = parseInt(slider.value);
-          const value = values[index];
-          const percent = index / (values.length - 1);
+        // year
+        var pro_year_unit = JSON.parse('%%DEFINE_pro_year_unit%%');
+        var pro_year_unitspl = JSON.parse('%%DEFINE_pro_year_unitspl%%');
+        $('#year_proprice').text(pro_year_unit[unencoded]);
+        $('#year_propricespl').text(pro_year_unitspl[unencoded]);
+        $('#free_pricey').text((pro_year_unit[unencoded] * 12).toFixed(2));
 
-          // Ensure correct width including padding
-          const sliderRect = slider.getBoundingClientRect();
-          const sliderWidth = sliderRect.width;
+        var prourl = $('#gs_ypro').attr('href');
+        newprourl = prourl.substr(0, prourl.lastIndexOf("/"));
+        newprourl += "/" + unencoded;
+        $('#gs_ypro').attr('href', newprourl);
 
-          // Compute tooltip left position
-          const computedLeft = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
-          tooltip.style.left = computedLeft + "px";
-          tooltip.style.transform = "translateX(-50%)";
+        var freeurl = newprourl + '&trial=1';
+        $('#gs_yfree').attr('href', freeurl);
 
-          tooltip.textContent = `${value} Signature${value > 1 ? 's' : ''}`;
-
-          // Update filled track
-          rangeBg.style.width = (percent * 100) + "%";
-
-           if (typeof updatePlanDetails === 'function') {
-              updatePlanDetails(value);
-          }
-          if (typeof updateRenewaccountPlanDetails === 'function') {
-              updateRenewaccountPlanDetails(value);
-          }
-          if (typeof updatePurchasePlanDetails === 'function') {
-              updatePurchasePlanDetails(value);
-          }
-          if (typeof updatePlanDetailsDashboard === 'function') {
-              updatePlanDetailsDashboard(value);
-          }
+        var url = window.location.href;
+        if (url.indexOf('getstarted=true') > -1) {
+            $('.getStartedButton').text('Get Started');
+            $('.getStartedButton').attr('href',$("#root_link").val()+"/signup/verifyemail");
+        }
       }
 
-      // Make sure tooltip positions correctly after DOM is fully ready
-      window.addEventListener("load", updateUI);
-      slider.addEventListener("input", updateUI);
-      window.addEventListener("resize", updateUI);
-      if(fromPopup){
-        updateUI();
+      function initCustomSlider(
+        fromPopup = false,
+        values = [1, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+        sliderId = "rangeSlider",
+        tooltipId = "tooltip",
+        labelsId = "labels",
+        fillId = "fillTreck"
+      ) {
+        const slider = document.getElementById(sliderId);
+        const tooltip = document.getElementById(tooltipId);
+        const labelsContainer = document.getElementById(labelsId);
+        const rangeBg = document.getElementById(fillId);
+
+        slider.max = values.length - 1;
+        const thumbWidth = 24; // known thumb width
+
+        // Generate labels
+        labelsContainer.innerHTML = "";
+        values.forEach((val, i) => {
+            const span = document.createElement("span");
+            span.textContent = val;
+            const percent = (i / (values.length - 1)) * 100;
+            span.style.left = percent + "%";
+            labelsContainer.appendChild(span);
+        });
+
+        function updateUI() {
+            const index = parseInt(slider.value);
+            const value = values[index];
+            const percent = index / (values.length - 1);
+
+            // Ensure correct width including padding
+            const sliderRect = slider.getBoundingClientRect();
+            const sliderWidth = sliderRect.width;
+
+            // Compute tooltip left position
+            const computedLeft = percent * (sliderWidth - thumbWidth) + thumbWidth / 2;
+            tooltip.style.left = computedLeft + "px";
+            tooltip.style.transform = "translateX(-50%)";
+
+            tooltip.textContent = `${value} Signature${value > 1 ? 's' : ''}`;
+
+            // Update filled track
+            rangeBg.style.width = (percent * 100) + "%";
+
+            if (typeof updatePlanDetails === 'function') {
+                updatePlanDetails(value);
+            }
+            if (typeof updateRenewaccountPlanDetails === 'function') {
+                updateRenewaccountPlanDetails(value);
+            }
+            if (typeof updatePurchasePlanDetails === 'function') {
+                updatePurchasePlanDetails(value);
+            }
+            if (typeof updatePlanDetailsDashboard === 'function') {
+                updatePlanDetailsDashboard(value);
+            }
+        }
+
+        // Make sure tooltip positions correctly after DOM is fully ready
+        window.addEventListener("load", updateUI);
+        slider.addEventListener("input", updateUI);
+        window.addEventListener("resize", updateUI);
+        if(fromPopup){
+          updateUI();
+        }
       }
-  }
 
       $('#load-upgrade-content').on('click', function () {
         clearInterval(countdownInterval);
