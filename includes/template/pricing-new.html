@@ -7,7 +7,7 @@
     <div class="w-full fixed top-0 left-0 z-50">
       <div class="mx-auto max-w-7xl py-4 px-3">
         <div class="nav_outer-block p-3 flex items-center justify-between w-full bg-white rounded-xl shadow-md">
-          <a href="%%DEFINE_ROOT_LINK%%">
+          <a href="https://www.customesignature.com">
               <img class="hidden lg:block h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/logo.svg"/>
               <img class="lg:hidden h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/domo-logo1.png"/>
           </a>
@@ -327,6 +327,12 @@
 
     var freeurl = newprourl + '&trial=1';
     $('#gs_yfree').attr('href', freeurl);
+
+    var url = window.location.href;
+    if (url.indexOf('getstarted=true') > -1) {
+        $('.getStartedButton').text('Get Started');
+        $('.getStartedButton').attr('href',$("#root_link").val()+"/signup/verifyemail");
+    }
   }
 
 
@@ -464,6 +470,7 @@
       var url = window.location.href;
       if (url.indexOf('getstarted=true') > -1) {
           $('.getStartedButton').text('Get Started');
+          $('.getStartedButton').attr('href',$("#root_link").val()+"/signup/verifyemail");
       }
 
       var user_id = "%%DEFINE_USERID%%";
