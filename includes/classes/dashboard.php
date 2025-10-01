@@ -375,7 +375,7 @@ class CIT_DASHBOARD
 						if($signature_logo['logo_change_process'] != 2){
 							$GLOBALS['signature_process'] .= '<p class="text-gray-400">Did you mistakenly upload the wrong logo? Please <a class="text-primary underline cursor-pointer" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></p>';
 						}
-					$GLOBALS['signature_process'] .= '</div></div></div></div>';
+					$GLOBALS['signature_process'] .= '</div></div></div>';
 				}else if($GLOBALS['logo_process'] == 0 || $GLOBALS['logo_process'] == 3 ){
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
 						<div class="kt-card bg-gradient-to-r from-[#1D4AFE]/5 to-[#26B7FF]/5 p-5 h-full">
@@ -460,7 +460,7 @@ class CIT_DASHBOARD
 						$GLOBALS['signature_process'] .= '<div class="change_logo_btn">Did you mistakenly upload the wrong logo? Please <a class="text-primary cursor-pointer underline" id="change_signature_logo" data-img="'.$signature_image_without_analytics.'" data-id="'.$GLOBALS['logo_id'].'" data-kt-modal-toggle="#changeLogoModel">click here.</a></div>';
 					}
 					$GLOBALS['signature_process'] .= '</div>
-						</div></div></div>';
+						</div>';
 				}
 				elseif( $GLOBALS['logo_process'] == 4 ){
 					$GLOBALS['signature_process'] ='<div class="col-span-12">
