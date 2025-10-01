@@ -363,3 +363,7 @@ input[type="range" i]:hover::-webkit-slider-thumb {
     -webkit-appearance: auto;
     padding: 0;
 }
+
+.signature_tbl_main table img {
+    max-width: unset;
+}
