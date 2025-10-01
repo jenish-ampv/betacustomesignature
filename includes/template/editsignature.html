@@ -21,7 +21,10 @@
              <span class="kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#drawer"><i class="hgi hgi-stroke hgi-sidebar-left"></i></span>
           </div>
           
-          <div class="hover_previous_right_bg order-1 lg:order-2 w-full flex flex-col bg-cover rounded-3xl border border-gray-200 bg-no-repeat bg-bottom p-5 overflow-auto" style="background: #fff url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
+          <div class="hover_previous_right_bg order-1 lg:order-2 w-full flex flex-col bg-cover rounded-3xl border border-gray-200 bg-no-repeat bg-bottom p-5 overflow-auto" style="background: #fff url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png') no-repeat center/cover;">
+            <h6 class="text-xl font-medium text-gray-950 flex items-center gap-4 mb-10">
+                <span>Preview</span>
+              </h6>
             <div class="flex-1 flex flex-col items-center justify-center">
               <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
               <div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
@@ -48,7 +51,7 @@
               </div>
               <div class="flex justify-center gap-4 mt-5 md:mt-6 lg:mt-8 xl:mt-10">
                 <a href="%%DEFINE_linkModuleDashboard%%?department_id=%%DEFINE_current_department_id%%"
-                  class="previous kt-btn kt-btn-mono action-button-previous">Go Back</a>
+                  class="previous kt-btn bg-white border border-gray-200 text-gray-950 action-button-previous">Go Back</a>
                 <button type="submit" name="next" class="submit kt-btn kt-btn-primary next action-button"
                   value="Next Step">
                   Save Signature <i class="hgi hgi-stroke hgi-arrow-right-double"></i>
@@ -56,8 +59,8 @@
               </div>
             </div>
             <div class="flex flex-wrap flex-col md:flex-row text-sm items-center justify-center md:justify-between px-4 text-center mt-5">
-              <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
-              <div class="flex text-gray-700 items-center gap-2">
+              <span class="text-gray-500">© 2025 Custom Esignature's Inc. All rights reserved.</span>
+              <div class="flex text-gray-500 items-center gap-2">
                   <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
                   <i class="fas fa-circle text-[6px] text-gray-400"></i>
                   <a href="https://www.customesignature.com/terms-of-use" target="_blank">Terms and Conditions</a>

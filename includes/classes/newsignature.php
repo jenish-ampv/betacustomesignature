@@ -760,9 +760,9 @@ class CIT_NEWSIGNATURE
 				$selected = $GLOBALS['signature_layout'] == $layout_id ? 'checked="checked"' :'';
 				$templateTitle = "<p>Template ".$templet_no."</p>";
 				if($layout_id >= 13){
-					$templateTitle = "<div class='flex items-center gap-5 mb-3'>
-					<p class='text-gray-400'>Template ".$templet_no."</p>
-					<div class='px-2 py-1 bg-gradient text-xs text-white rounded-full'>AI Animated</div>
+					$templateTitle = "<div class='flex items-center gap-2 mb-3'>
+					<p class='text-gray-500 font-normal'>Template ".$templet_no."</p>
+					<span class='px-2 py-0.5 bg-gradient text-xs text-white rounded-lg shadow-[0px_4.42px_24px_0px_#0E9FFF4D]'>AI Animated</span>
 					</div>";
 				}
 				$GLOBALS['signature_profilesize'] = $layoutRow['profile_image_size'];

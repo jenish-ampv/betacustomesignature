@@ -1354,9 +1354,9 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 				$selected = $GLOBALS['signature_layout'] == $layout_id ? 'checked="checked"' :'';
 				$templateTitle = "<p>Template ".$templet_no."</p>";
 				if($layout_id >= 13){
-					$templateTitle = "<div class='flex items-center gap-5 mb-3'>
-					<p class='text-gray-400'>Template ".$templet_no."</p>
-					<span class='px-2 py-1 bg-gradient text-xs text-white rounded-full'>AI Animated</span></div>";
+					$templateTitle = "<div class='flex items-center gap-2 mb-3'>
+					<p class='text-gray-500 font-normal'>Template ".$templet_no."</p>
+					<span class='px-2 py-0.5 bg-gradient text-xs text-white rounded-lg shadow-[0px_4.42px_24px_0px_#0E9FFF4D]'>AI Animated</span></div>";
 				}
 				$GLOBALS['signature_profilesize'] = $layoutRow['profile_image_size'];
 				$GLOBALS['signature_profileanimationsize'] = $layoutRow['profile_image_size'];
@@ -1384,12 +1384,11 @@ if(isset($_REQUEST['generateAndSaveGIF']) && $_REQUEST['generateAndSaveGIF']){
 							'.$selected.' 
 							data-layout_divider_padding_remove="'.$layoutRow['layout_divider_padding_remove'].'">
 
-						<span class="top-1/2 right-1/2 hidden absolute -translate-y-1/2 -translate-x-1/2 bg-gradient size-6 text-white rounded-full 
-									text-lg items-center justify-center peer-checked:flex z-[1]">
-							<i class="hgi hgi-stroke hgi-tick-02"></i>
+						<span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden peer-checked:flex z-[1] shadow-[0px_0px_24px_0px_#4D7FFFCC] rounded-full size-10 bg-white items-center justify-center">
+							<i class="hgi hgi-stroke hgi-tick-02 bg-gradient size-6 text-white rounded-full text-md flex items-center justify-center"></i>
 						</span>
 
-						<span class="layout_id peer-checked:opacity-50">
+						<span class="layout_id flex peer-checked:before:opacity-10 peer-checked:before:rounded-md peer-checked:before:absolute peer-checked:before:inset-0 peer-checked:before:bg-gradient-to-r peer-checked:before:from-[#26B7FF] peer-checked:before:to-[#1D4AFE]">
 							<table class="signature_tbl_main pointer-events-none" 
 								style="font-family:'.$GLOBALS['signature_fontfamily'].'; line-height:'.$GLOBALS['signature_lineheight'].';" 
 								cellspacing="0" cellpadding="0" border="0">
