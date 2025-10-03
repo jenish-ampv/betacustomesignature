@@ -38,6 +38,19 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
               <div class="col-xl-6 col-md-6 col-12" style="display: none;">
                 <h3>Upload Profile Pic <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/uploadprofile-pic.svg"
                     alt=""></h3>
+                <div style="display:none;">
+                  <input class="profileCroppedFirstTime" type="hidden" name="profileCroppedFirstTime" id="profileCroppedFirstTime"
+                      value="">
+                  <div id="upload-profile-image-first"></div>
+                  <div class="flex items-center gap-3 justify-center croppie-buttons-first">
+                      <button class="kt-btn kt-btn-primary next action-button cropped_image_first_time">Set &
+                          Save</button>
+                      <a href="javascript:void(0);"
+                          class="kt-btn kt-btn-outline previous cropped_image_change_first_time">
+                          Change Image
+                      </a>
+                  </div>
+                </div>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p> -->
                 <input type="file" name="profileImage" id="profileImage" style="display:none;">
                 <div class="upload-area-profile" id="uploadProfileImage">

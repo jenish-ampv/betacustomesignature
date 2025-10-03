@@ -65,6 +65,8 @@ ui(function() {
 		ui("#profile_img_preview").html('<div class="img_preview_box"><div class="flex items-center"><strong>Uploading...</strong><div class="spinner-border ms-auto" role="status" aria-hidden="true"></div></div>');
         uploadProfileData(fd);
         
+        ui('.croppie-buttons-first').addClass('cursor-not-allowed opacity-50 pointer-events-none');
+
         // For signature profile
         var fd = new FormData();
         var files = ui('#profileImage')[0].files[0];
@@ -118,7 +120,7 @@ function addProfileThumbnail(data){
             <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3">
               <img src="${image_link}/images/applied-icon.png" alt="">
               <span>${displayname} &nbsp; (${size})</span>
-              <a class="ml-auto" href="javascript:void(0);" onclick="removeImage1();removeCropedImage();">
+              <a class="ml-auto" href="javascript:void(0);" onclick="removeProfileImage();removeFirstProfileCropedImage();">
                 <i class="hgi hgi-stroke hgi-delete-02 text-danger"></i>
               </a>
               <input type="hidden" name="signature_profile" value="${name}">
@@ -173,4 +175,11 @@ function convertSize(size) {
     if (size == 0) return '0 Byte';
     var i = parseInt(Math.floor(Math.log(size) / Math.log(1024)));
     return Math.round(size / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
+function removeFirstProfileCropedImage() {
+	ui("#profileCroppedFirstTime").attr("src","");
+	ui("#upload-profile-image-first").parent().hide();
+	ui("#uploadProfileImage").show();
+    ui('#profile').val('');
 }
