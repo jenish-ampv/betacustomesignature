@@ -1386,7 +1386,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 								<i class="hgi hgi-stroke hgi-add-01"></i>
 							</button>
 							<p>Upgrade to create more signatures</p>
-							<a class="kt-btn kt-btn-primary upgrade" href="%%DEFINE_billing%%">
+							<a class="kt-btn kt-btn-primary upgrade" href="'.$GLOBALS['billing'].'">
 								<i class="hgi hgi-stroke hgi-circle-arrow-up-02"></i> Upgrade
 							</a>
                         </div>';
@@ -1420,7 +1420,7 @@ $sigBannerClickAnalytics = $GLOBALS['DB']->row("SELECT * FROM `registerusers_ana
 									<i class="hgi hgi-stroke hgi-add-01"></i>
 								</button>
 								<p>Upgrade to create more signatures</p>
-								<a class="kt-btn kt-btn-primary upgrade" href="%%DEFINE_billing%%">
+								<a class="kt-btn kt-btn-primary upgrade" href="'.$GLOBALS['billing'].'">
 									<i class="hgi hgi-stroke hgi-circle-arrow-up-02"></i> Upgrade
 								</a>
 	                    </div>';
