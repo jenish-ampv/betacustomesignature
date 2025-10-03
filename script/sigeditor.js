@@ -1305,7 +1305,7 @@ jQuery.noConflict();
                 if (src) {
                   const filename = $('input[name="signature_profile"]').val();
                   // const userId = filename.split('-')[1].replace('.png', '');
-                  const match = filename.match(/-(.*?)\.png/);
+                  const match = filename.match(/-(.*?)\.[^.]+$/);
                   const userId = match ? match[1] : 0;
 
                   let newSrc =

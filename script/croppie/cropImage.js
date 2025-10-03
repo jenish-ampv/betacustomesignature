@@ -298,6 +298,7 @@ $(document).ready(function(){
 					ui("#uploadProfileImage").empty();
 					var number = Math.random() * 100;
 					ui("#uploadProfileImage").append('<div class="edit_profile_img flex items-center justify-center"> <img class="max-h-[150px] max-w-[150px] object-cover" src="'+src+'?rand='+number+'"></div>');
+					ui("#uploadfile2").find('img').attr('src',src);
 					// ui("#img_preview2").append('<input type="hidden" name="signature_profile" value="'+imageName+'">');
 
 					// exportLottieAsGif('circle',data.circleJsonName,imageName);
