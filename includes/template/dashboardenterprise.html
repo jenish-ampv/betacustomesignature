@@ -649,6 +649,9 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             x.style.display = "none";
         }
     }
+
+    jQuery.noConflict();
+    (function($) {
     $(document).on('click', function (event) {
         if (!$(event.target).closest('.menu_open').length && !$(event.target).is('.openPopupClass')) {
             $('.menu_open').hide();
@@ -958,6 +961,7 @@ IF("%%DEFINE_manage_signatures%%" == ""){
             shareModal.hide();
         });
     });
+    })(jQuery);
 </script>
 
 <script language="javascript">

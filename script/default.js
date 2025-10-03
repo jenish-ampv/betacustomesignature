@@ -1,18 +1,8 @@
 
-// jQuery.noConflict();
-// (function ($) {
-//     // generate loader bars dynamically
-//     function initLoader() {
-//     const $loaderInner = $(".loadingInner");
-//     for (let i = 0; i < 4; i++) {
-//         const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
-//         $loaderInner.append($bar);
-//     }
-//     }
-//     initLoader();
-// });
-
- function initLoader() {
+jQuery.noConflict();
+(function ($) {
+    // generate loader bars dynamically
+    function initLoader() {
     const $loaderInner = $(".loadingInner");
     for (let i = 0; i < 4; i++) {
         const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
@@ -20,6 +10,16 @@
     }
     }
     initLoader();
+});
+
+//  function initLoader() {
+//     const $loaderInner = $(".loadingInner");
+//     for (let i = 0; i < 4; i++) {
+//         const $bar = $("<div class='loading-bar'></div>").css("animation-delay", (i * 0.2) + "s");
+//         $loaderInner.append($bar);
+//     }
+//     }
+//     initLoader();
 // show loader
 function showLoader() {
   $(".chartLoading").removeClass("!hidden");
@@ -30,8 +30,11 @@ function hideLoader() {
   $(".chartLoading").addClass("!hidden");
 }
 
+jQuery.noConflict();
+(function ($) {
     var root_link = $('#root_link').val();
     var image_link = $('#image_link').val();
+});
     document.addEventListener("contextmenu", function (e){
         KTToast.show({
             icon: `<i class="hgi hgi-stroke hgi-alert-circle"></i>`,
@@ -323,6 +326,8 @@ function hideLoader() {
         });
     }
 
+    jQuery.noConflict();
+    (function ($) {
     // For pending import process popup
 
     $(document).on("click", "[data-kt-dropdown][data-kt-toggle-replace='true'] .kt-dropdown-menu-link", function () {
@@ -560,3 +565,5 @@ function hideLoader() {
         // });
 
     });
+
+})(jQuery);

@@ -470,6 +470,8 @@
 		}
 	}
 
+	jQuery.noConflict();
+    (function($) {
 	$(document).on('click', function (event) {
 		if (!$(event.target).closest('.menu_open').length && !$(event.target).is('.openPopupClass')) {
 			$('.menu_open').hide();
@@ -714,7 +716,7 @@
 		});
 	});
 
-	
+	})(jQuery);
 	document.addEventListener("DOMContentLoaded", function () {
 		const reviewModalEl = document.querySelector('#reviewModal');
 		const reviewModalKT = KTModal.getInstance(reviewModalEl);
@@ -777,7 +779,8 @@
 </script>
 
 <script language="javascript">
-
+	jQuery.noConflict();
+    (function($) {
 	$(document).ready(function () {
 		$('[title="Share"]').on('click', function (event) {
             console.log('hello')
@@ -822,6 +825,7 @@
 		});
 	});
 
+	})(jQuery);
 </script>
 IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 <script language="javascript">
@@ -1629,7 +1633,8 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 	}
 
 
-
+	jQuery.noConflict();
+    (function($) {
 	$(document).ready(function () {
 		// $('.line-chart-loader').show();
 		// $('.performers-chart-loader').show();
@@ -1649,6 +1654,7 @@ IF("%%DEFINE_IMPORT_SIGNATURE_PENDING_COUNT%%" > "0"){
 		loadChartData('days', startDate, endDate);
 		drawSignatureChart(startDate, endDate);
 	});
+	})(jQuery);
 </script>
 
 <script type="text/javascript">
