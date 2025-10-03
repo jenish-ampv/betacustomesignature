@@ -1,17 +1,17 @@
 <header class="flex items-center transition-[height] shrink-0 bg-background py-4 lg:py-0 lg:h-(--header-height)" data-kt-sticky="true" data-kt-sticky-class="transition-[height] fixed z-10 top-0 left-0 right-0 shadow-xs backdrop-blur-md bg-background/70" data-kt-sticky-name="header" data-kt-sticky-offset="200px" id="header">
     <div class="kt-container-fluid flex flex-wrap gap-2 items-center lg:gap-4" id="header_container">
-        <div class="flex items-stretch gap-5 justify-between w-full">
-            <div class="flex items-center gap-2.5">
+        <div class="flex flex-wrap md:flex-nowrap items-stretch gap-3 justify-between w-full">
+            <div class="flex items-center order-1 gap-2.5">
                 <a href="%%DEFINE_ROOT_LINK%%">
                     <img class="hidden lg:block h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/logo.svg"/>
                     <img class="lg:hidden h-[34px]" src="%%DEFINE_IMAGE_LINK%%/images/domo-logo1.png"/>
                 </a>
-                <button class="lg:hidden kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#mega_menu_container">
+                <!-- <button class="lg:hidden kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#mega_menu_container">
                     <i class="hgi hgi-stroke hgi-menu-11"></i>
-                </button>
+                </button> -->
             </div>
 
-            <div class="hidden lg:flex items-center justify-center grow" id="megaMenuWrapper">
+            <!-- <div class="hidden lg:flex items-center justify-center grow" id="megaMenuWrapper">
                 <div class="flex [--kt-reparent-mode:prepend] lg:[--kt-reparent-mode:prepend] [--kt-reparent-target:body] lg:[--kt-reparent-target:#megaMenuWrapper]" data-kt-reparent="true">
                     <div class="hidden fixed lg:relative lg:flex lg:items-stretch [--kt-drawer-enable:true] lg:[--kt-drawer-enable:false]" data-kt-drawer="true" data-kt-drawer-class="kt-drawer kt-drawer-start fixed z-10 top-0 bottom-0 w-full mr-5 max-w-[250px] p-5 lg:p-0 overflow-auto" id="mega_menu_container">
                         <ul class="kt-menu flex-col lg:flex-row flex gap-2 lg:items-center relative z-[1] *:cursor-pointer [&>*>*]:gap-2 [&>*>*]:group-[.active]:text-black [&>*>*]:group-[.active]:rounded-full [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:px-3 [&>*>*]:py-2 [&>*>*]:border [&>*>*]:border-transparent text-gray-500 [&>*>*]:hover:text-black [&>*>*]:hover:rounded-full [&>*>*]:hover:border-primary [&>*>*]:hover:bg-gradient-to-r [&>*>*]:hover:from-[#26B7FF]/10 [&>*>*]:hover:to-[#1D4AFE]/10" data-kt-menu="true" id="mega_menu">
@@ -53,9 +53,51 @@
                         <span id="mainMenuActive" class="hidden lg:block absolute top-0 h-full rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10"></span>
                     </div>
                 </div>
+            </div> -->
+
+            <div class="flex flex-wrap order-3 w-full md:w-auto md:order-2 md:flex-nowrap items-center justify-center grow">
+                <div class="flex">
+                    <ul class="kt-menu flex flex-wrap gap-2 items-center relative z-[1] *:cursor-pointer text-xs sm:[&>*>*]:text-sm [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:px-2.5 sm:[&>*>*]:px-3 [&>*>*]:py-2 [&>*>*]:border [&>*>*]:border-transparent text-gray-500 [&>*>*]:group-[.active]:text-black [&>*>*]:group-[.active]:rounded-full [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10 [&>*>*]:hover:text-black [&>*>*]:hover:rounded-full [&>*>*]:hover:border-primary [&>*>*]:hover:bg-gradient-to-r [&>*>*]:hover:from-[#26B7FF]/10 [&>*>*]:hover:to-[#1D4AFE]/10">
+                        <li class="dashboard group active">
+                            <a href="%%DEFINE_ROOT_LINK%%" >
+                                <i class="font-bold hgi hgi-stroke hgi-dashboard-square-01"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        IF("%%DEFINE_integration_settings%%" == "integration_settings"){
+                        <li class="integrations group">
+                            <a href="%%DEFINE_integrations%%">
+                                <i class="font-bold hgi hgi-stroke hgi-plug-socket"></i>
+                                <span>Integrations</span>
+                            </a>
+                        </li>
+                        {:IF}
+                        <li class="analytics group">
+                            <a href="%%DEFINE_ROOT_LINK%%/analytics">
+                                <i class="font-bold hgi hgi-stroke hgi-analytics-01"></i>
+                                <span>Analytics</span>
+                            </a>
+                        </li>
+                        IF("%%DEFINE_USERTYPE%%" == "enterprise"){
+                        <li class="bannercampaign group">
+                            <a href="%%DEFINE_ROOT_LINK%%/bannercampaign">
+                                <img src="%%DEFINE_IMAGE_LINK%%/images/new-banner-campaign.svg" alt="">
+                                <span>Banner Campaign</span>
+                            </a>
+                        </li>
+                        {:IF}
+                        <li class="tutorial group">
+                            <a target="_blank" href="https://www.customesignature.com/tutorials">
+                                <i class="font-bold hgi hgi-stroke hgi-computer-video"></i>
+                                <span>Tutorial</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <span id="mainMenuActive" class="hidden lg:block absolute top-0 h-full rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10"></span>
+                </div>
             </div>
 
-            <div class="flex gap-2">
+            <div class="flex gap-2 order-2 md:order-3">
                 %%DEFINE_IMPORT_SIGNATURE_PENDING_LEFTBAR%%
                 <!-- <div class="size-[42px] rounded-full flex items-center justify-center border border-primary/50 text-black">
                     <i class="fal fa-bell"></i>
@@ -65,7 +107,7 @@
                 </div> -->
                 <div data-kt-dropdown="true" data-kt-dropdown-placement="bottom-end" data-kt-dropdown-trigger="click" %%DEFINE_NLDN%%">
                     <div class="flex items-center gap-2 md:p-1 border border-primary/50 rounded-full cursor-pointer" data-kt-dropdown-toggle="true">
-                        <div class="size-[42px] md:size-8 rounded-full overflow-hidden bg-gradient text-white flex items-center justify-center">
+                        <div class="size-[35px] md:size-8 rounded-full overflow-hidden bg-gradient text-white flex items-center justify-center">
                             %%DEFINE_USERPROFILEIMG%%
                         </div>
                         <div class="hidden md:block">

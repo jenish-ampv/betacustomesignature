@@ -105,7 +105,7 @@ class CIT_USESIGNATURE
         		<a href="javascript:void(0);" id="copy_sorcecode" class="kt-btn border border-primary bg-white text-gray-500 w-full sm:w-auto"><i class="hgi hgi-stroke hgi-source-code"></i>Copy source code</a>';
 		if($signatureSubscription){
 			if($signatureSubscription['subscription_id'] == ""){
-				$GLOBALS['use_signature_buttons'] = '<a class="kt-btn kt-btn-primary w-full sm:w-auto" href="'.$GLOBALS['ROOT_LINK'].'/pricing">Install Signature</a>';
+				$GLOBALS['use_signature_buttons'] = '<a class="kt-btn kt-btn-primary w-full sm:w-auto" href="javascript:void(0);" data-kt-modal-toggle="#upgrade-plan-popup">Install Signature</a>';
 			}
 		}
 

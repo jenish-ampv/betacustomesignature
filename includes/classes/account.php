@@ -69,10 +69,10 @@ class CIT_account
 					$usrRes = $GLOBALS['DB']->row("SELECT user_status,user_image FROM `registerusers` WHERE `user_id`=? and user_status=1",array($GLOBALS['USERID']));
 					if($usrRes['user_image'] != 'default.png'){
 						$profile_img = $GLOBALS['UPLOAD_LINK'].'/profile/'.$usrRes['user_image'];
-						$GLOBALS['USERPROFILEIMG'] = '<div class="size-[42px] md:size-8 rounded-full overflow-hidden text-white flex items-center justify-center"><img src="'.$profile_img.'?'.time().'" alt=""></div>';
+						$GLOBALS['USERPROFILEIMG'] = '<div class="size-[35px] md:size-8 rounded-full overflow-hidden text-white flex items-center justify-center"><img src="'.$profile_img.'?'.time().'" alt=""></div>';
 					}else{
 						$profile_txt = substr($GLOBALS['USERNAME'],0,1);
-						$GLOBALS['USERPROFILEIMG'] = '<div class="size-[42px] md:size-8 rounded-full overflow-hidden bg-gradient text-white flex items-center justify-center"><span class="profiletxt">'.$profile_txt.'</span></div>';
+						$GLOBALS['USERPROFILEIMG'] = '<div class="size-[35px] md:size-8 rounded-full overflow-hidden bg-gradient text-white flex items-center justify-center"><span class="profiletxt">'.$profile_txt.'</span></div>';
 					}
 
 				}else{

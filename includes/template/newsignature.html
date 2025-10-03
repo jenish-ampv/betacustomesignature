@@ -126,7 +126,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
       </div>
     </div>
   </div>
-  <div class="flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
+  <div class="hidden sm:flex flex-col w-full py-8 px-3 md:w-6/12 xl:w-5/12 bg-gray-100 bg-top xxl:bg-center bg-cover bg-no-repeat"
     style="background-image: url(%%DEFINE_IMAGE_LINK%%/images/welcomebg.jpg);">
     <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center">
       <div class="swiper w-full" id="loginSlider">
@@ -165,21 +165,21 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
              <span class="kt-btn kt-btn-icon kt-btn-primary" data-kt-drawer-toggle="#drawer"><i class="hgi hgi-stroke hgi-sidebar-left"></i></span>
           </div> -->
           <div
-            class="hover_previous_right_bg order-1 lg:order-2 w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-5 sm:p-6 lg:p-8 2xl:p-10 overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
+            class="hover_previous_right_bg order-1 lg:order-2 w-full flex flex-col bg-cover rounded-xl border border-gray-300 bg-no-repeat bg-bottom p-3 sm:p-6 lg:p-8 2xl:p-10 overflow-auto" style="background-image: url('%%DEFINE_IMAGE_LINK%%/images/previous-right-bg.png');">
             <div class="flex-1 flex flex-col items-center justify-center">
-              <div class="border border-gray-300 rounded-xl p-5 bg-white max-w-[740px] mx-auto w-full">
+              <div class="border border-gray-300 rounded-xl p-3 sm:p-5 bg-white max-w-[740px] mx-auto w-full">
                 <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
-                  <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-2 sm:gap-3">
                     <img class="size-9 rounded-full object-cover" draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
-                    <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
+                    <p class="text-xs sm:text-sm">Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
                   </div>
                   <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt="">
                 </div>
                 <p>&nbsp;</p>
-                <p class="text-gray-300">Hey John,</p>
-                <div class="h-2 bg-gray-200 rounded-full mt-3">&nbsp;</div>
-                <div class="h-2 bg-gray-200 rounded-full mt-3 mb-10 w-1/2">&nbsp;</div>
-                <p class="text-gray-300">Best,</p>
+                <p class="text-gray-300 text-xs sm:text-sm">Hey John,</p>
+                <div class="hidden sm:block h-2 bg-gray-200 rounded-full mt-3">&nbsp;</div>
+                <div class="hidden sm:block h-2 bg-gray-200 rounded-full mt-3 mb-10 w-1/2">&nbsp;</div>
+                <p class="text-gray-300 text-xs sm:text-sm">Best,</p>
                 <p>&nbsp;</p>
                 %%DEFINE_lauout_load%%
                 %%DEFINE_signature_profilesize_hidden_input%%
@@ -193,7 +193,7 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                 </button>
               </div>
             </div>
-            <div class="flex flex-wrap text-sm items-center justify-center md:justify-between px-4 text-center mt-5">
+            <div class="flex flex-wrap items-center justify-center md:justify-between text-xs sm:text-sm text-center mt-5">
               <span class="text-gray-600">© 2025 Custom Esignature's Inc. All rights reserved.</span>
               <div class="flex text-gray-700 items-center gap-2">
                   <a href="https://www.customesignature.com/privacypolicy" target="_blank">Privacy Policy</a>
