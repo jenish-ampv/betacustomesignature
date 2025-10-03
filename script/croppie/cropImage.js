@@ -129,6 +129,7 @@ $(document).ready(function(){
 		
 		
 	// });
+
 	$('.cropped_image').on('click', function (e) {
 		e.preventDefault();
 		$image_crop.croppie('result', {
@@ -189,6 +190,138 @@ $(document).ready(function(){
 		ui(".cr-image").attr("src","");
 		ui("#upload-image").parent().hide();
 		ui("#uploadfile2").show();
+	});	
+
+
+	// FirstTimeImage
+	$image_crop_first_time = $('#upload-profile-image-first').croppie({
+		enableExif: true,
+		viewport: {
+			width: 300,
+			height: 300,
+			type: 'square'
+		},
+		boundary: {
+			width: 400,
+			height: 400
+		}
+	});
+	$('#profileImage').on('change', function () {
+		supportFileTypes = ['image/png', 'image/svg', 'image/jpg', 'image/jpeg']
+
+		dataFile = this.files[0]; 
+		var reader = new FileReader();
+		if(jQuery.inArray(dataFile.type, supportFileTypes) !== -1){
+			reader.onload = function (e) {
+				$image_crop_first_time.croppie('bind', {
+					url: e.target.result
+				}).then(function(){
+					console.log('jQuery bind complete');
+	              	
+				});			
+			}
+		}
+		if(jQuery.inArray(dataFile.type, supportFileTypes) === -1){
+			$('#upload-profile-image-first').croppie('destroy');
+			$('input[name=profileCropped').val('');
+			$('.cropped_image_first_time').hide();
+			$('.cropped_image_change_first_time').hide();
+		}else{
+      		
+      		$(".signature_profile_shape_section").removeClass('cursor-not-allowed opacity-50 pointer-events-none');
+			$('.cropped_image_first_time').show();
+			$('.cropped_image_change_first_time').show();
+			if(!$('#upload-profile-image-first').data('croppie')){
+				$image_crop_first_time = $('#upload-profile-image-first').croppie({
+					enableExif: true,
+					viewport: {
+						width: 300,
+						height: 300,
+						type: 'square'
+					},
+					boundary: {
+						width: 400,
+						height: 400
+					}
+				});
+			}
+			setTimeout(function () {
+				reader.readAsDataURL(dataFile);
+				if(dataFile.type != "image/gif"){
+					setTimeout(function () {
+						// $(".cropped_image").click();
+				   }, 300);
+				}
+				ui("#upload-profile-image-first").parent().show();
+				ui("#upload-profile-image-first").siblings().removeAttr("style");
+				ui("#uploadProfileImage").hide();
+			}, 1000);
+		}
+		
+		
+	});
+	
+	$('.cropped_image_first_time').on('click', function (e) {
+		e.preventDefault();
+		$image_crop_first_time.croppie('result', {
+			type: 'canvas',
+			size: 'viewport'
+		}).then(function (response) {
+			html = '<img src="' + response + '" />';
+			$(".signature_profile").attr("src",response);
+			$("#profileCroppedFirstTime").val(response);
+			$.ajax({
+			    type: "POST",
+			    url: $('#form_url').val(),
+			    data: {
+			        saveCroppedImageFirstTime: response
+			    },
+			    dataType: "json",  // expecting JSON response
+			    success: function(data) {
+		        path = root_link+'/upload-beta/signature/profile/'+data.user_id+'/'+data.img;
+		        imageName = data.img;
+		        src = data.src;
+		        if (path) {
+		        	$("#signature_profile_data").remove();
+		            $('<div>', {id: 'signature_profile_data'}).appendTo('body');
+		            $("#signature_profile_data").attr("data-image-path",path);
+		            $("#signature_profile_data").attr("data-image",imageName);
+		            $("#signature_profile_data").attr("data-circle-json",data.circleJsonName);
+		            $("#signature_profile_data").attr("data-square-json",data.squareJsonName);
+	              	$("#signature_profile_data").data("gifcreated", false);
+					// removeImage(path);
+					// removeCropedImage();
+					ui("#profileCroppedFirstTime").attr("src","");
+					ui(".cr-image").attr("src","");
+					ui("#upload-profile-image-first").parent().hide();
+					ui("#uploadProfileImage").show();
+					ui("#uploadProfileImage").empty();
+					var number = Math.random() * 100;
+					ui("#uploadProfileImage").append('<div class="edit_profile_img flex items-center justify-center"> <img class="max-h-[150px] max-w-[150px] object-cover" src="'+src+'?rand='+number+'"></div>');
+					// ui("#img_preview2").append('<input type="hidden" name="signature_profile" value="'+imageName+'">');
+
+					// exportLottieAsGif('circle',data.circleJsonName,imageName);
+					// exportLottieAsGif('square',data.squareJsonName,imageName);
+
+		        } else {
+		            console.error("Image Not Found");
+		        }
+			    },
+			    error: function(err) {
+		        console.error("Error saving image:", err);
+			    }
+			});
+
+		});
+	});	
+	$('.cropped_image_change').on('click', function (e) {
+		e.preventDefault();
+		removeImage1();
+		removeCropedImage();
+		ui("#profileCroppedFirstTime").attr("src","");
+		ui(".cr-image").attr("src","");
+		ui("#upload-profile-image-first").parent().hide();
+		ui("#uploadProfileImage").show();
 	});	
 });
 function removeImage(image_src){

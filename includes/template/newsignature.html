@@ -71,6 +71,19 @@ IF("%%DEFINE_USERUPLOADLIMIT%%" == "0"){
                   <input class="kt-switch" type="checkbox" id="profileImageCheck" checked>
                 </div>
                 <div id="profileUploadContainer">
+                  <div style="display:none;">
+                    <input class="profileCroppedFirstTime" type="hidden" name="profileCroppedFirstTime" id="profileCroppedFirstTime"
+                        value="">
+                    <div id="upload-profile-image-first"></div>
+                    <div class="flex items-center gap-3 justify-center croppie-buttons-first">
+                        <button class="kt-btn kt-btn-primary next action-button cropped_image_first_time">Set &
+                            Save</button>
+                        <a href="javascript:void(0);"
+                            class="kt-btn kt-btn-outline previous cropped_image_change_first_time">
+                            Change Image
+                        </a>
+                    </div>
+                </div>
                   <input class="hidden" type="file" name="profileImage" id="profileImage">
                   <label
                     class="w-full flex items-center justify-center bg-gray-50 border border-gray-200 rounded-[12px] text-center relative min-h-[206px] upload-area-profile"

@@ -42,7 +42,13 @@ ui(function() {
         var fd = new FormData();
 
         fd.append('profileImage', file[0]);
-        
+        ui("#profile_img_preview").html(`
+        <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3">
+            <span class="text-sm">Uploading...</span>
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </div>`);
+        ui('.croppie-buttons-first').addClass('cursor-not-allowed opacity-50 pointer-events-none');
+        // ui("#uploadfile2").hide();
         uploadProfileData(fd);
     });
 
@@ -107,7 +113,20 @@ function addProfileThumbnail(data){
 		// Creating an thumbnail
 	   // ui("#uploadProfileImage").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
 		ui("#uploadProfileImage").append('<div class="edit_profile_img flex items-center justify-center"> <img class="max-h-[150px] max-w-[150px] object-cover" src="'+src+'?rand='+number+'"></div>');
-		ui("#profile_img_preview").append(' <div class="img_preview_box rounded-lg bg-gray-100 flex items-center gap-2 p-2 mt-2"><i class="bg-gradient fa-solid fa-circle-check"></i>'+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeProfileImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
+		// ui("#profile_img_preview").append(' <div class="img_preview_box rounded-lg bg-gray-100 flex items-center gap-2 p-2 mt-2"><i class="bg-gradient fa-solid fa-circle-check"></i>'+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeProfileImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
+        ui("#profile_img_preview").append(`
+            <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3">
+              <img src="${image_link}/images/applied-icon.png" alt="">
+              <span>${displayname} &nbsp; (${size})</span>
+              <a class="ml-auto" href="javascript:void(0);" onclick="removeImage1();removeCropedImage();">
+                <i class="hgi hgi-stroke hgi-delete-02 text-danger"></i>
+              </a>
+              <input type="hidden" name="signature_profile" value="${name}">
+            </div>
+          `);
+        ui('.croppie-buttons-first').removeClass('cursor-not-allowed opacity-50 pointer-events-none');
+        ui("#upload-profile-image-first").parent().show();
+
 		// ui("#nxt2").prop('disabled', false);
 		ui("#profile_img_errormsg").html('');
 	}else{

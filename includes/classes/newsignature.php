@@ -203,6 +203,103 @@ class CIT_NEWSIGNATURE
 			echo json_encode($return_arr); exit;
 		}
 
+		if($_POST['saveCroppedImageFirstTime'] !=""){
+			$data = $_POST['saveCroppedImageFirstTime'];
+			list($type, $data) = explode(';', $data);
+			list(, $data)      = explode(',', $data);
+			$data = base64_decode($data);
+			$imageName = time().'-'.$GLOBALS['USERID'].'.png';
+			file_put_contents("upload-beta/signature/profile/".$GLOBALS['USERID'].'/'.$imageName, $data); 
+			$location =  GetConfig('SITE_UPLOAD_PATH').'/signature/profile/'.$GLOBALS['USERID'].'/'.$imageName ;
+			$targetDir = 'upload-beta/signature/profile/'.$GLOBALS['USERID'].'/';
+			if (!is_dir($targetDir)) {
+				mkdir($targetDir, 0755, true);
+			}
+			$result = $GLOBALS['S3Client']->putObject(array( // upload image s3bucket
+				'Bucket'=>$GLOBALS['BUCKETNAME'],
+				'Key' =>  'upload-beta/signature/profile/'.$GLOBALS['USERID'].'/'.$imageName,
+				'SourceFile' => $location,
+				'StorageClass' => 'REDUCED_REDUNDANCY',
+				'ACL'   => 'public-read'
+			));
+			
+
+
+			$inputJson = $GLOBALS['ROOT_LINK'].'/images/Profile_pic_circle.json';
+			$imagePath = GetConfig('SITE_UPLOAD_PATH').'/signature/profile/'.$GLOBALS['USERID'].'/'.$imageName ;
+			$outputJson = GetConfig('SITE_UPLOAD_PATH').'/signature/profile/output_updated_circle.json';
+
+			// === LOAD JSON ===
+			$lottie = json_decode(file_get_contents($inputJson), true);
+			if (!$lottie || !isset($lottie['assets'])) {
+			    // die("❌ Invalid Lottie JSON.\n");
+			}
+
+			// === PREPARE NEW IMAGE ===
+			$imageMime = 'png';
+			$imageData = base64_encode(file_get_contents($imagePath));
+			$imageBase64 = 'data:' . $imageMime . ';base64,' . $imageData;
+
+			// === FIND & REPLACE THE EXISTING IMAGE ASSET ===
+			$found = false;
+			foreach ($lottie['assets'] as &$asset) {
+			    if (isset($asset['p']) && strpos($asset['p'], 'base64') !== false) {
+			        $asset['p'] = $imageBase64;
+			        $asset['e'] = 1;
+			        $found = true;
+			        break;
+			    }
+			}
+
+			if (!$found) {
+			    // die("❌ No embedded image found in assets.\n");
+			}
+
+			// === SAVE MODIFIED JSON ===
+			file_put_contents($outputJson, json_encode($lottie, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+
+			$inputJson = $GLOBALS['ROOT_LINK'].'/images/Profile_pic_square.json';
+			$imagePath = GetConfig('SITE_UPLOAD_PATH').'/signature/profile/'.$GLOBALS['USERID'].'/'.$imageName ;
+			$outputJson = GetConfig('SITE_UPLOAD_PATH').'/signature/profile/output_updated_square.json';
+
+			// === LOAD JSON ===
+			$lottie = json_decode(file_get_contents($inputJson), true);
+			if (!$lottie || !isset($lottie['assets'])) {
+			    // die("❌ Invalid Lottie JSON.\n");
+			}
+
+			// === PREPARE NEW IMAGE ===
+			$imageMime = 'png';
+			$imageData = base64_encode(file_get_contents($imagePath));
+			$imageBase64 = 'data:' . $imageMime . ';base64,' . $imageData;
+
+			// === FIND & REPLACE THE EXISTING IMAGE ASSET ===
+			$found = false;
+			foreach ($lottie['assets'] as &$asset) {
+			    if (isset($asset['p']) && strpos($asset['p'], 'base64') !== false) {
+			        $asset['p'] = $imageBase64;
+			        $asset['e'] = 1;
+			        $found = true;
+			        break;
+			    }
+			}
+
+			if (!$found) {
+			    // die("❌ No embedded image found in assets.\n");
+			}
+
+			// === SAVE MODIFIED JSON ===
+			file_put_contents($outputJson, json_encode($lottie, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+			$circleJsonName = $GLOBALS['ROOT_LINK'].'/upload-beta/signature/profile/output_updated_circle.json';
+			$squareJsonName = $GLOBALS['ROOT_LINK'].'/upload-beta/signature/profile/output_updated_square.json';
+			$imageSrc = $GLOBALS['UPLOAD_LINK'].'/signature/profile/'.$GLOBALS['USERID'].'/'.$imageName;
+			$return_arr = array("error" =>0,"user_id"=>$GLOBALS['USERID'],"img"=>$imageName,'circleJsonName'=>$circleJsonName,'squareJsonName'=>$squareJsonName,'src'=>$imageSrc);
+
+			echo json_encode($return_arr); exit;
+		}
+
 		if($_POST['saveProfileGif'] == "true"){
 			if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
 			    $targetDir = "upload-beta/signature/profile/".$GLOBALS["USERID"]."/";
