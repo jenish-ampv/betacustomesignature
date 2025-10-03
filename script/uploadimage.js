@@ -131,7 +131,7 @@ function addThumbnail(data){
 		// Creating an thumbnail
 	   // ui("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
 		ui("#uploadfile").append('<div class="cursor-pointer p-6 upload-box flex item-center justify-center min-h-[225px] relative drag_your_image"><span class="kt-btn kt-btn-primary kt-btn-outline absolute top-4 right-4"><i class="hgi hgi-stroke hgi-edit-02"></i> Edit Logo</span><img src="'+src+'?rand='+number+'" class="max-w-[150px] object-contain max-h-[150px]"></div>');
-		ui("#img_preview").append(` <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3"><img src="${image_link}/images/applied-icon.png" alt=""> ${displayname} &nbsp; (${size}) <a class="ml-auto text-base" href="javascript:void(0);" onclick="removeImage()"><i class="hgi hgi-stroke hgi-delete-02 text-danger"></i></a><input type="hidden" name="signature_image" value="${name}"></div>`);
+		ui("#img_preview").append(` <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3"><img src="${image_link}/images/applied-icon.png" alt=""> ${displayname} &nbsp; (${size}) <a class="ml-auto text-lg" href="javascript:void(0);" onclick="removeImage()"><i class="hgi hgi-stroke hgi-delete-02 text-danger"></i></a><input type="hidden" name="signature_image" value="${name}"></div>`);
         ui('input[name=signature_image]').val(name);
 		ui("#nxt2").prop('disabled', false);
         ui('.layout_logo').attr("src",src+'?rand='+number);

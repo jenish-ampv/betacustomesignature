@@ -107,7 +107,7 @@ function addThumbnail1(data, isdragndrop = false){
             <div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3">
               <img src="${image_link}/images/applied-icon.png" alt="">
               <span>${displayname} &nbsp; (${size})</span>
-              <a class="ml-auto" href="javascript:void(0);" onclick="removeImage1();removeCropedImage();">
+              <a class="ml-auto text-lg" href="javascript:void(0);" onclick="removeImage1();removeCropedImage();">
                 <i class="hgi hgi-stroke hgi-delete-02 text-danger"></i>
               </a>
               <input type="hidden" name="signature_profile" value="${name}">

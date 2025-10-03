@@ -95,7 +95,7 @@ function addThumbnail(data){
 		// Creating an thumbnail
 	   // ui("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
 		ui("#uploadfile").append('<div class="edit_profile_img size-24 relative overflow-hidden mx-auto rounded-full"> <img src="'+src+'?rand='+number+'"></div>');
-		ui("#img_preview").append(' <div class="img_preview_box flex gap-2 items-center mb-3"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeImage()"><img class="trash_icon" src="'+image_link+'/images/trash-icon.svg" alt=""></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
+		ui("#img_preview").append(' <div class="img_preview_box flex gap-2 items-center mb-3"><img src="'+image_link+'/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a class="ml-auto text-lg" href="javascript:void(0);" onclick="removeImage()"><i class="hgi hgi-stroke hgi-delete-02 text-danger"></i></a><input type="hidden" name="profile_image" value="'+name+'"></div>');
 		ui("#nxt2").prop('disabled', false);
 		ui("#img_errormsg").html('');
 	}else{
