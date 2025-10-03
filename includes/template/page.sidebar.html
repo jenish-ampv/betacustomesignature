@@ -55,45 +55,47 @@
                 </div>
             </div> -->
 
-            <div class="flex flex-wrap order-3 w-full md:w-auto md:order-2 md:flex-nowrap items-center justify-center grow">
-                <div class="flex">
-                    <ul class="kt-menu flex flex-wrap gap-2 items-center relative z-[1] *:cursor-pointer text-xs sm:[&>*>*]:text-sm [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:px-2.5 sm:[&>*>*]:px-3 [&>*>*]:py-2 [&>*>*]:border [&>*>*]:border-transparent text-gray-500 [&>*>*]:group-[.active]:text-black [&>*>*]:group-[.active]:rounded-full [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10 [&>*>*]:hover:text-black [&>*>*]:hover:rounded-full [&>*>*]:hover:border-primary [&>*>*]:hover:bg-gradient-to-r [&>*>*]:hover:from-[#26B7FF]/10 [&>*>*]:hover:to-[#1D4AFE]/10">
-                        <li class="dashboard group active">
-                            <a href="%%DEFINE_ROOT_LINK%%" >
-                                <i class="font-bold hgi hgi-stroke hgi-dashboard-square-01"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        IF("%%DEFINE_integration_settings%%" == "integration_settings"){
-                        <li class="integrations group">
-                            <a href="%%DEFINE_integrations%%">
-                                <i class="font-bold hgi hgi-stroke hgi-plug-socket"></i>
-                                <span>Integrations</span>
-                            </a>
-                        </li>
-                        {:IF}
-                        <li class="analytics group">
-                            <a href="%%DEFINE_ROOT_LINK%%/analytics">
-                                <i class="font-bold hgi hgi-stroke hgi-analytics-01"></i>
-                                <span>Analytics</span>
-                            </a>
-                        </li>
-                        IF("%%DEFINE_USERTYPE%%" == "enterprise"){
-                        <li class="bannercampaign group">
-                            <a href="%%DEFINE_ROOT_LINK%%/bannercampaign">
-                                <img src="%%DEFINE_IMAGE_LINK%%/images/new-banner-campaign.svg" alt="">
-                                <span>Banner Campaign</span>
-                            </a>
-                        </li>
-                        {:IF}
-                        <li class="tutorial group">
-                            <a target="_blank" href="https://www.customesignature.com/tutorials">
-                                <i class="font-bold hgi hgi-stroke hgi-computer-video"></i>
-                                <span>Tutorial</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <span id="mainMenuActive" class="hidden lg:block absolute top-0 h-full rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10"></span>
+            <div class="flex flex-wrap order-3 w-full md:w-auto md:order-2 md:flex-nowrap items-center justify-center grow" id="megaMenuWrapper">
+                <div class="[--kt-reparent-mode:prepend] [--kt-reparent-target:#megaMenuWrapper]" data-kt-reparent="true">
+                    <div class="flex [--kt-drawer-enable:false]" data-kt-drawer-class="kt-drawer kt-drawer-start" data-kt-drawer="true">
+                        <ul class="kt-menu flex flex-wrap gap-2 items-center relative z-[1] *:cursor-pointer text-xs sm:[&>*>*]:text-sm [&>*>*]:gap-2 [&>*>*]:flex [&>*>*]:flex-items-center [&>*>*]:px-2.5 sm:[&>*>*]:px-3 [&>*>*]:py-2 [&>*>*]:border [&>*>*]:border-transparent text-gray-500 [&>*>*]:group-[.active]:text-black [&>*>*]:group-[.active]:rounded-full [&>*>*]:group-[.active]:border-primary [&>*>*]:group-[.active]:bg-gradient-to-r [&>*>*]:group-[.active]:from-[#26B7FF]/10 [&>*>*]:group-[.active]:to-[#1D4AFE]/10 [&>*>*]:hover:text-black [&>*>*]:hover:rounded-full [&>*>*]:hover:border-primary [&>*>*]:hover:bg-gradient-to-r [&>*>*]:hover:from-[#26B7FF]/10 [&>*>*]:hover:to-[#1D4AFE]/10" data-kt-menu="true">
+                            <li class="dashboard group active">
+                                <a href="%%DEFINE_ROOT_LINK%%" >
+                                    <i class="font-bold hgi hgi-stroke hgi-dashboard-square-01"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            IF("%%DEFINE_integration_settings%%" == "integration_settings"){
+                            <li class="integrations group">
+                                <a href="%%DEFINE_integrations%%">
+                                    <i class="font-bold hgi hgi-stroke hgi-plug-socket"></i>
+                                    <span>Integrations</span>
+                                </a>
+                            </li>
+                            {:IF}
+                            <li class="analytics group">
+                                <a href="%%DEFINE_ROOT_LINK%%/analytics">
+                                    <i class="font-bold hgi hgi-stroke hgi-analytics-01"></i>
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            IF("%%DEFINE_USERTYPE%%" == "enterprise"){
+                            <li class="bannercampaign group">
+                                <a href="%%DEFINE_ROOT_LINK%%/bannercampaign">
+                                    <img src="%%DEFINE_IMAGE_LINK%%/images/new-banner-campaign.svg" alt="">
+                                    <span>Banner Campaign</span>
+                                </a>
+                            </li>
+                            {:IF}
+                            <li class="tutorial group">
+                                <a target="_blank" href="https://www.customesignature.com/tutorials">
+                                    <i class="font-bold hgi hgi-stroke hgi-computer-video"></i>
+                                    <span>Tutorial</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <span id="mainMenuActive" class="hidden lg:block absolute top-0 h-full rounded-full bg-gradient-to-r from-[#26B7FF]/10 to-[#1D4AFE]/10"></span>
+                    </div>
                 </div>
             </div>
 

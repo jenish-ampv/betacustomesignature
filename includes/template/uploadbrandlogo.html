@@ -73,6 +73,7 @@ jQuery.noConflict();
 $(document).ready(function(){
 
   var ui = jQuery.noConflict();
+  var image_link = ui('#image_link').val();
   var upload_signature_logourl = ui('#upload_url').val();
   ui(function() {
 
@@ -185,7 +186,7 @@ $(document).ready(function(){
       // Creating an thumbnail
        // ui("#uploadfile").append('<div id="thumbnail_'+num+'" class="thumbnail"></div>');
       ui("#uploadlogofile").append('<div class="drag_your_image"> <img src="'+src+'?rand='+number+'" width="50%"></div>');
-      ui("#img_preview").append(' <div class="img_preview_box"><img src="%%DEFINE_IMAGE_LINK%%/images/applied-icon.png" alt=""> '+displayname+' &nbsp; ('+size+') <a href="javascript:void(0);" onclick="removeLogoImage()"><img class="trash_icon" src="%%DEFINE_IMAGE_LINK%%/images/trash-icon.svg" alt=""></a><input type="hidden" name="signature_image" value="'+name+'"></div>');
+      ui("#img_preview").append( `<div class="flex items-center p-5 gap-2 rounded-lg bg-gray-200 my-3"><img src="${image_link}/images/applied-icon.png" alt=""> ${displayname} &nbsp; (${size}) <a class="ml-auto text-base" href="javascript:void(0);" onclick="removeLogoImage()"><i class="hgi hgi-stroke hgi-delete-02 text-danger"></i></a><input type="hidden" name="signature_image" value="${name}"></div>`);
           ui('input[name=signature_image]').val(name);
       ui("#nxt2").prop('disabled', false);
           ui('.layout_logo').attr("src",src+'?rand='+number);
@@ -202,7 +203,7 @@ $(document).ready(function(){
   window.removeLogoImage = function() {
     ui("#uploadlogofile").empty();
     ui("#img_preview").empty();
-    ui("#uploadlogofile").append('<div class="drag_your_image"> <h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG</p><img src="%%DEFINE_IMAGE_LINK%%/images/img-icon.svg" alt=""></div>');
+    ui("#uploadlogofile").append(`<div class="drag_your_image"> <h4>Drag your image here, or <a href="#">browse</a></h4><p>Supports: PNG, SVG</p><img src="${image_link}/images/img-icon.svg" alt=""></div>`);
   }
 
   $(".submit").click(function(){
@@ -210,7 +211,7 @@ $(document).ready(function(){
     var redirecturld = $('#redirecturld').val();
     var fileInput = $('#logofile')[0]; // Get the DOM element
     if (fileInput.files.length === 0) {
-      $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select file</div>');
+      $('#snackbar-error').html(`<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="${image_link}/images/error-message-icon.svg" alt=""><strong>Failure! </strong>Please select file</div>`);
       $('#snackbar-error').show();
       setTimeout(function(){ $('#snackbar-error').hide(); }, 2000);
       return false;
@@ -228,12 +229,12 @@ $(document).ready(function(){
         var json = JSON.parse(data);
         $(".loader-image").hide();
         if(json.error != 1){
-          $('#snackbar').html('<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>');
+          $('#snackbar').html(`<div class="success-error-message gap-8 py-5 px-4 pl-11 border-l-9 border-green-600 rounded-xl relative bg-white bg-gradient-to-r from-[#00B71B]/12 to-[#00B71B]/0 shadow-lg"><img draggable="false" class="absolute left-4" src="${image_link}/images/success-message-icon.svg" alt=""><strong>Success! </strong>Signature saved! </div>`);
   			  $('#snackbar').show();
   			  setTimeout(function(){ $('#snackbar').hide(); window.location = redirecturld; }, 2000);
           setTimeout(function(){ x.className = x.className.replace("show", ""); window.location = redirecturld; }, 2000);
         }else{
-          $('#snackbar-error').html('<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="%%DEFINE_IMAGE_LINK%%/images/error-message-icon.svg" alt=""><strong>Failure! </strong>'+json.msg+' </div>');
+          $('#snackbar-error').html(`<div class="alert alert-danger"><img draggable="false" class="absolute left-4" src="${image_link}/images/error-message-icon.svg" alt=""><strong>Failure! </strong>${json.msg} </div>`);
           $('#snackbar-error').show();
           $("#img_preview").empty();
           setTimeout(function(){ $('#snackbar-error').hide(); window.location = redirecturld; }, 2000);
