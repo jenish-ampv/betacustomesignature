@@ -10,10 +10,10 @@
     <div class="kt-container-fluid p-4 h-full">
       <div id="register-error">%%DEFINE_Message%%</div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 xl:gap-10">
-        <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="kt-btn text-gray-600 !bg-transparent border !border-primary bg-gradient-to-r from-[#26B7FF]/20 to-[#1D4AFE]/20 kt-btn-icon absolute top-2 right-4">
+        <a href="%%DEFINE_ROOT_LINK%%/dashboard" class="!size-8 kt-btn text-gray-600 !bg-transparent border !border-primary bg-gradient-to-r from-[#26B7FF]/20 to-[#1D4AFE]/20 kt-btn-icon absolute top-4 right-4 z-2">
           <i class="hgi hgi-stroke hgi-cancel-01"></i>
         </a>
-        <div class="bg-gray-100 border border-gray-300 p-5 rounded-4xl" id="order-main">
+        <div class="bg-gray-100 border border-gray-300 p-5 rounded-2xl md:rounded-4xl" id="order-main">
           <div class="flex flex-wrap items-center justify-between mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 2xl:mb-10">
             <div>
               <h4 class="font-bold">Start Your <span
@@ -35,10 +35,10 @@
           </div>
           <p class="mb-3">How many signatures do you need?</p>
           <input type="hidden" id="plan_unit" name="plan_unit" value="%%DEFINE_plan_selunit%%" />
-          <div class="kt-card">
-            <div class="kt-card-content relative px-5 sm:p-10 pt-14 sm:pt-16 sm:pr-12">
+          <div class="kt-card bg-transparent sm:bg-white border-0 sm:border-[1px] shadow-none w-full max-sm:max-w-[90%] mx-auto">
+            <div class="kt-card-content relative px-0 sm:p-10 pt-10 sm:pt-16 sm:pr-12">
               <div class="relative">
-                  <div class="rangeTooltip" id="tooltip">1 Signatures</div>
+                  <div class="rangeTooltip text-xs" id="tooltip">1 Signatures</div>
                   <input type="range" class="appearance-none block !h-5 relative z-[1] bg-transparent !w-full"
                     id="rangeSlider" min="0" max="8" step="1" value="0">
                   <div class="h-1.5 bg-gray-200 absolute w-full top-1/2 -translate-y-1/2 rounded-full"></div>
@@ -77,20 +77,20 @@
             </div>
           </div> -->
           <div class="hidden kt-card mt-5 relative rounded-2xl" id="monthly-tab-panel">
-            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-top-[26px] -left-[26px] max-w-[fit-content] absolute">
-            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-right-[27px] -bottom-[27px] max-w-[fit-content] absolute rotate-180">
-            <div class="signature_layot kt-card-content p-8" style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-top-[24px] -left-[24px] max-w-[335px] sm:max-w-[fit-content] absolute">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-right-[27px] -bottom-[27px] max-w-[335px] sm:max-w-[fit-content] absolute rotate-180">
+            <div class="signature_layot kt-card-content p-5 lg:p-8" style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
               <input type="radio" name="plan_id" id="plan_id2" data-section="monthly" class="hidden imgbgchk" value="2" required="required" %%DEFINE_plan_selplan2%%>
               <label for="plan_id2" class="changeprice" data-price="20">
                 <div class="order_details_box border-price">
-                  <h5>Pro Plan</h5>
+                  <h5 class="font-bold">Pro Plan</h5>
                   <!-- <p><span class="offper_box"><span>Change to yearly, save 20%</span></span></p> -->
                   <p><span class="no_employee_qarter">5</span> Signature</p>
                   <p class="monthprice" style="display:none;">$<span class="month_propricespl cpricespl">60</span> USD </p>
                   <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
                   <!-- <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$ 30</p> -->
-                  <div class="flex items-end gap-3 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">
-                    <h2>$<span class="month_proprice cprice">0</span>/mo</h2>
+                  <div class="flex items-start sm:items-end flex-col sm:flex-row gap-3 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">
+                    <h2 class="font-semibold">$<span class="month_proprice cprice">0</span>/mo</h2>
                     <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">Change to yearly, save 20%</span>
                   </div>
                   <p class="text-gray-400 my-1">Billed Monthly</p>
@@ -101,7 +101,7 @@
                       <li class="gap-1 flex items-center"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Verification Badge <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
                       <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Social Icons</li>
                       <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Pro Templates</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Analytics <span class="text-gray-300">(coming soon)</span></li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Analytics</li>
                       <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Customer Support</li>
                     </ul>
                     <ul class="space-y-2">
@@ -118,18 +118,18 @@
             </div>
           </div>
           <div id="yearly-tab-panel" class="kt-card mt-5 relative rounded-2xl">
-            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-top-[26px] -left-[26px] max-w-[fit-content] absolute">
-            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-right-[27px] -bottom-[27px] max-w-[fit-content] absolute rotate-180">
-            <div class="kt-card-content p-8" style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-top-[26px] -left-[26px] max-w-[335px] sm:max-w-[fit-content] absolute">
+            <img src="%%DEFINE_IMAGE_LINK%%/images/topLeft.png" class="-right-[27px] -bottom-[27px] max-w-[335px] sm:max-w-[fit-content] absolute rotate-180">
+            <div class="kt-card-content p-5 lg:p-8" style="background: url('%%DEFINE_IMAGE_LINK%%/images/FreeTrial1.png') no-repeat top right">
               <input type="radio" name="plan_id" id="plan_id4" data-section="yearly" class="hidden imgbgchk" value="4" required="required" %%DEFINE_plan_selplan4%%>
               <label for="plan_id4" class="changeprice" data-price="20">
-                <h5>Pro Plan</h5>
+                <h5 class="font-bold">Pro Plan</h5>
                 <p><span class="no_employee_qarter">5</span> Signature</p>
                 <p class="yearprice" style="display:none;">$<span class="year_propricespl cpricespl">60</span> USD</p>
                 <p class="bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent">14-Day Risk-Free Guarantee</p>
                 <p class="line-through font-bold text-gray-500 mt-4 sm:mt-5 md:mt-6 lg:mt-7 xl:mt-10">$<span class="year_propricespl">0</span></p>
                 <div class="flex items-end gap-3">
-                  <h2>$<span class="year_proprice cprice">0</span> /mo </h2>
+                  <h2 class="font-semibold">$<span class="year_proprice cprice">0</span> /mo </h2>
                   <!-- <span class="kt-badge bg-[#B7FFD3] mb-2 rounded-full">First Month 50% OFF</span> -->
                 </div>
                 <p class="text-gray-400 my-1">Billed Yearly</p>
@@ -140,7 +140,7 @@
                       <li class="gap-1 flex items-center"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Verification Badge <img class="mt-0.5" src="%%DEFINE_IMAGE_LINK%%/images/verification-badge1.svg" alt=""></li>
                       <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Interactive Social Icons</li>
                       <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Pro Templates</li>
-                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Analytics <span class="text-gray-300">(coming soon)</span></li>
+                      <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Analytics</li>
                       <li class="gap-1 flex items-start"><i class="hgi hgi-stroke hgi-tick-02 bg-gradient-to-r from-[#26B7FF] to-[#1D4AFE] bg-clip-text text-transparent text-lg"></i>Customer Support</li>
                     </ul>
                     <ul class="space-y-2">

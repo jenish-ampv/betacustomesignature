@@ -23,20 +23,20 @@ tr, td{ border:none; border-collapse: collapse;}
       <div id="snackbar" class="success-error-message fixed top-0 right-0 p-3"></div>
       <div id="snackbar-error" class="success-error-message fixed top-0 right-0 p-3"></div>
       <div id="snackbar-info" class="success-error-message fixed top-0 right-0 p-3"></div>
-      <div class="border border-gray-300 rounded-xl p-5 bg-white max-w-[740px] mx-auto w-full">
+      <div class="border border-gray-300 rounded-xl p-4 bg-white max-w-[740px] mx-auto w-full">
         <div class="flex items-center justify-between !text-gray-300 border-b border-b-gray-200 pb-4">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3">
             <img class="size-9 rounded-full object-cover" draggable="false"
               src="%%DEFINE_IMAGE_LINK%%/images/previous-left-icon.svg" alt="">
-            <p>Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
+            <p class="text-xs sm:text-sm">Custom Esignature<br /><span>to: johnsmith@example.com</span></p>
           </div>
           <img draggable="false" src="%%DEFINE_IMAGE_LINK%%/images/previous-right-icon.svg" alt="">
         </div>
         <p>&nbsp;</p>
-        <p class="text-gray-300">Hey John,</p>
-        <div class="h-2 bg-gray-200 rounded-full mt-3">&nbsp;</div>
-        <div class="h-2 bg-gray-200 rounded-full mt-3 mb-10 w-1/2">&nbsp;</div>
-        <p class="text-gray-300">Best,</p>
+        <p class="text-gray-300 text-xs sm:text-sm">Hey John,</p>
+        <div class="hidden sm:block h-2 bg-gray-200 rounded-full mt-3">&nbsp;</div>
+        <div class="hidden sm:block h-2 bg-gray-200 rounded-full mt-3 mb-10 w-1/2">&nbsp;</div>
+        <p class="text-gray-300 text-xs sm:text-sm">Best,</p>
         <p>&nbsp;</p>
         <div id="signature_source" class="pointer-events-none">
    			 	%%DEFINE_signature_source%%
